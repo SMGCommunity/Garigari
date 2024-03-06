@@ -37,7 +37,16 @@ def main(compile_non_matching, use_ninja, clean_ninja):
         print("Using nonmatching functions")
         flags = flags + " -DNON_MATCHING "
 
-    #includes += f"-i {rvl_sdk_path} -I- -i {nw4r_path} -I- -i {trk_path} -I- -i {runtime_path} -I- -i {msl_c_path} -I- -i {msl_cpp_path} -I- -i {msl_c_common_path} -I- -i {facelib_path} "
+    rvl_sdk_path =      pathlib.Path("libs/RVL_SDK/include")
+    trk_path =          pathlib.Path("libs/MetroTRK/include")
+    runtime_path =      pathlib.Path("libs/Runtime/include")
+    msl_c_path =        pathlib.Path("libs/MSL_C/include")
+    msl_cpp_path =      pathlib.Path("libs/MSL_C++/include")
+    facelib_path =      pathlib.Path("libs/RVLFaceLib/include")
+    jsystem_path =      pathlib.Path("libs/JSystem/include")
+    nw4r_path =         pathlib.Path("libs/nw4r/include")
+
+    includes += f"-i {facelib_path} -i {rvl_sdk_path} -I- -i {trk_path} -I- -i {runtime_path} -I- -i {msl_c_path} -I- -i {msl_cpp_path} -I- -i {jsystem_path} -I- -i {nw4r_path} "
     flags += includes
 
     tasks = list()
