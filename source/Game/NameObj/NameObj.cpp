@@ -1,6 +1,6 @@
-#include "Game/NameObj/NameObj.h"
-#include "Game/NameObj/NameObjRegister.h"
-#include "Game/SingletonHolder.h"
+#include "Game/NameObj/NameObj.hpp"
+#include "Game/NameObj/NameObjRegister.hpp"
+#include "Game/SingletonHolder.hpp"
 
 NameObj::NameObj(const char *pName) : mLinkInfo() {
     mName = NULL;
@@ -61,7 +61,7 @@ void NameObj::executeMovement() {
 }
 
 void NameObj::requestSuspend() {
-    if ((mFlags & 4) == (u32)4) {
+    if ((mFlags & 4) == 4u) {
         mFlags &= 0xFFFB;
     }
 
@@ -69,7 +69,7 @@ void NameObj::requestSuspend() {
 }
 
 void NameObj::requestResume() {
-    if ((mFlags & 2) == (u32)2) {
+    if ((mFlags & 2) == 2u) {
         mFlags &= 0xFFFD;
     }
 
@@ -77,11 +77,11 @@ void NameObj::requestResume() {
 }
 
 void NameObj::syncWithFlags() {
-    if ((mFlags & 2) == (u32)2) {
+    if ((mFlags & 2) == 2u) {
         mFlags = mFlags & 0xFFFD | 1;
     }
 
-    if ((mFlags & 4) == (u32)4) {
+    if ((mFlags & 4) == 4u) {
         u16 flag = mFlags & 0xFFFB;
         flag &= ~0x1;
         mFlags = flag;
