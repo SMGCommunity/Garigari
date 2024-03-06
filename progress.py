@@ -5,6 +5,8 @@ from pathlib import Path
 import pandas as pd
 import plotly.express as px
 
+doGraph = False
+
 if "-graph" in sys.argv:
     doGraph = True
 
