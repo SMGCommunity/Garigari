@@ -34,5 +34,5 @@ public:
 class NameObjFunction {
 public:
     static void requestMovementOn(NameObj *);
-    static void requsetMovementOff(NameObj *);
+    static void requestMovementOff(NameObj *);
 };

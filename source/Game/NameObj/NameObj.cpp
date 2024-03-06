@@ -1,5 +1,6 @@
 #include "Game/NameObj/NameObj.hpp"
 #include "Game/NameObj/NameObjRegister.hpp"
+#include "Game/Scene/SceneNameObjMovementController.hpp"
 #include "Game/SingletonHolder.hpp"
 
 NameObj::NameObj(const char *pName) : mLinkInfo() {
@@ -86,4 +87,16 @@ void NameObj::syncWithFlags() {
         flag &= ~0x1;
         mFlags = flag;
     }
+}
+
+void NameObjFunction::requestMovementOn(NameObj *pObj) {
+    pObj->requestResume();
+    pObj->startMovement();
+    MR::notifyRequestNameObjMovementOnOff();
+}
+
+void NameObjFunction::requestMovementOff(NameObj *pObj) {
+    pObj->requestSuspend();
+    pObj->endMovement();
+    MR::notifyRequestNameObjMovementOnOff();
 }

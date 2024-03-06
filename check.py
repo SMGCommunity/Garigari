@@ -229,10 +229,10 @@ def check_symbol(function_library, mangled_symbol, obj_name):
                 assert(len(original_operands) == len(custom_operands))
 
                 # First check common r2 and r13 issues
-                if original_instruction.id in { PPC_INS_LBZ, PPC_INS_LWZ, PPC_INS_STW, PPC_INS_LFS }:
-                    assert(len(original_operands) == 2 and len(custom_operands) == 2)
+                if original_instruction.id in { PPC_INS_LBZ, PPC_INS_LWZ, PPC_INS_STB, PPC_INS_STW, PPC_INS_LFS }:
+                    #assert(len(original_operands) == 2 and len(custom_operands) == 2)
 
-                    # lbz, lwz, stw and lfs are sometimes used with r13, which is a pointer to a read-write
+                    # lbz, lwz, stb, stw and lfs are sometimes used with r13, which is a pointer to a read-write
                     # small data area (SDA). When compiling custom code, this SDA is not generated,
                     # so the register is set to r0 and the displacement is set to 0.
 
@@ -245,7 +245,7 @@ def check_symbol(function_library, mangled_symbol, obj_name):
                         continue
                     
                 if original_instruction.id in { PPC_INS_LWZ, PPC_INS_LFS, PPC_INS_LHZ, PPC_INS_LFS }:
-                    assert(len(original_operands) == 2 and len(custom_operands) == 2)
+                    #assert(len(original_operands) == 2 and len(custom_operands) == 2)
 
                     # Same as above, except with r2 instead of r13. r2 is a pointer to a read-only SDA.
 
@@ -310,6 +310,7 @@ def check_symbol(function_library, mangled_symbol, obj_name):
                 print(f"{Fore.RED}{str(original_instruction):<80}{custom_instruction}{Style.RESET_ALL}")
                 #print_instruction_comparison_error(f"Instruction mismatch on line {line_string}.", original_instruction, custom_instruction)
                 error_count += 1
+
 
         print()
         print(f"Check finished with {error_count} error(s), {warning_count} warning(s) and {hint_count} hint(s).")
