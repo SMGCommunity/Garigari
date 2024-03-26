@@ -87,7 +87,7 @@ def is_dol_correct():
         data = input.read()
 
         hash = hashlib.sha256(data).hexdigest().upper()
-        return hash == "F0F1638545A21366A2D86CF33AF1E7AB8AB286FAED8358152FBA7BE82C904A34"
+        return hash == "F0F1638545A21366A2D86CF33AF1E7AB8AB286FAED8358152FBA7BE82C904A34" or hash == "ABEA6B0C498C4AF90B17CFA08D54A01781186F097BEE3E0761DBFB4838CBC281"
 
 def get_code_from_dol(address, size):
     with open("baserom.dol", "rb") as input:
