@@ -1,0 +1,32 @@
+MEMORY
+{
+    text : origin = 0x80004000
+}
+
+SECTIONS
+{
+    GROUP:
+    {
+        .init ALIGN(0x4):{}
+        extab ALIGN(0x8):{}
+        extabindex ALIGN(0x10):{}
+        .text ALIGN(0x20):{}
+        .ctors ALIGN(0x10):{}
+        .dtors ALIGN(0x20):{}
+        .rodata ALIGN(0x20):{}
+        .data ALIGN(0x4):{}
+        .bss ALIGN(0x40):{}
+        .sdata ALIGN(0x20):{}
+        .sbss ALIGN(0x20):{}
+        .sdata2 ALIGN(0x20):{}
+        .sbss2 ALIGN(0x20):{}
+        .stack ALIGN(0x100):{}
+    } > text
+
+    _stack_end = _f_sbss2 + SIZEOF(.sbss2);
+    _stack_addr = (_stack_end + 0x10000 + 0x7) & ~0x7;
+    _db_stack_addr = (_stack_addr + 0x2000);
+    _db_stack_end = _stack_addr;
+    __ArenaLo = _db_stack_addr;
+    __ArenaHi = 0x81700000;
+}

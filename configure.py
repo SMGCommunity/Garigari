@@ -29,7 +29,7 @@ from tools.project import (
 # Game versions
 DEFAULT_VERSION = 0
 VERSIONS = [
-    "GAMEID",  # 0
+    "SB4E01",  # 0
 ]
 
 parser = argparse.ArgumentParser()
@@ -162,6 +162,7 @@ config.asflags = [
 config.ldflags = [
     "-fp hardware",
     "-nodefaults",
+    "-warn off"
 ]
 if args.debug:
     config.ldflags.append("-g")  # Or -gdwarf-2 for Wii linkers
@@ -225,7 +226,7 @@ cflags_rel = [
     "-sdata2 0",
 ]
 
-config.linker_version = "GC/1.3.2"
+config.linker_version = "GC/2.6"
 
 
 # Helper function for Dolphin libraries
@@ -243,7 +244,7 @@ def DolphinLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
 def Rel(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     return {
         "lib": lib_name,
-        "mw_version": "GC/1.3.2",
+        "mw_version": "Wii/1.0",
         "cflags": cflags_rel,
         "progress_category": "game",
         "objects": objects,
