@@ -22,6 +22,10 @@ Game/NameObj/NameObjAdaptor.cpp:
 	.text       start:0x80339900 end:0x80339B50
 	.data       start:0x806B3418 end:0x806B3448
 
+Game/NameObj/NameObjFactory.o:
+	.text       start:0x8033B190 end:0x803431F0
+	.data       start:0x806B34A8 end:0x806B79A0
+
 Game/NameObj/NameObjGroup.cpp:
 	.text       start:0x80343210 end:0x80343440
 	.data       start:0x806B79A0 end:0x806B79D0
