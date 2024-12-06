@@ -196,8 +196,31 @@ cflags_base = [
     "-RTTI off",
     "-fp_contract on",
     "-str reuse",
-    "-multibyte",  # For Wii compilers, replace with `-enc SJIS`
+    "-enc SJIS",
     "-i include",
+    f"-i build/{config.version}/include",
+    f"-DVERSION={version_num}",
+]
+
+cflags_game = [
+    "-nodefaults",
+    "-proc gekko",
+    "-align powerpc",
+    "-enum int",
+    "-fp hardware",
+    "-Cpp_exceptions off",
+    "-O4,s",
+    "-inline auto",
+    '-pragma "cats off"',
+    '-pragma "warn_notinlined off"',
+    "-maxerrors 1",
+    "-nosyspath",
+    "-RTTI off",
+    "-fp_contract on",
+    "-str reuse",
+    "-enc SJIS",
+    "-i include/Game",
+    "-i libs/RVL_SDK",
     f"-i build/{config.version}/include",
     f"-DVERSION={version_num}",
 ]
@@ -228,6 +251,14 @@ cflags_rel = [
 
 config.linker_version = "GC/2.6"
 
+def GameLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
+    return {
+        "lib": lib_name,
+        "mw_version": "Wii/1.0",
+        "cflags": cflags_game,
+        "progress_category": "game",
+        "objects": objects,
+    }
 
 # Helper function for Dolphin libraries
 def DolphinLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
@@ -274,6 +305,13 @@ config.libs = [
             Object(NonMatching, "Runtime.PPCEABI.H/__init_cpp_exceptions.cpp"),
         ],
     },
+
+    GameLib(
+        "NameObj",
+        [
+            Object(NonMatching, "Game/NameObj/NameObj.cpp")
+        ]
+    )
 ]
 
 # Optional extra categories for progress tracking
