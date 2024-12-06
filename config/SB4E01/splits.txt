@@ -12,3 +12,8 @@ Sections:
 	.sbss       type:bss align:32
 	.sdata2     type:rodata align:32
 	.sbss2      type:bss align:32
+
+Game/NameObj/NameObj.cpp:
+	.text       start:0x80339610 end:0x80339900
+	.data       start:0x806B33E8 end:0x806B3418
+	.sbss       start:0x807D4810 end:0x807D4818
