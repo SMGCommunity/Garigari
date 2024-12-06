@@ -309,7 +309,8 @@ config.libs = [
     GameLib(
         "NameObj",
         [
-            Object(NonMatching, "Game/NameObj/NameObj.cpp")
+            Object(NonMatching, "Game/NameObj/NameObj.cpp"),
+            Object(NonMatching, "Game/NameObj/NameObjAdaptor.cpp")
         ]
     )
 ]

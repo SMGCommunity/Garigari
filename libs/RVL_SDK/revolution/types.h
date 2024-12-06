@@ -42,7 +42,11 @@ typedef int BOOL;
 
 #define AT_ADDRESS(xyz) : (xyz)
 
+#ifdef __MWERKS__
 #define NO_INLINE __attribute__((noinline))
+#else
+#define NO_INLINE
+#endif
 
 #ifndef TRUE
 #define TRUE 1
