@@ -311,6 +311,7 @@ config.libs = [
         [
             Object(NonMatching, "Game/NameObj/NameObj.cpp"),
             Object(NonMatching, "Game/NameObj/NameObjAdaptor.cpp"),
+            Object(NonMatching, "Game/NameObj/NameObjGroup.cpp"),
             Object(NonMatching, "Game/NameObj/NameObjHolder.cpp"),
         ]
     )
