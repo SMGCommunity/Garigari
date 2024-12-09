@@ -22,12 +22,12 @@ Game/NameObj/NameObjAdaptor.cpp:
 	.text       start:0x80339900 end:0x80339B50
 	.data       start:0x806B3418 end:0x806B3448
 
-Game/NameObj/NameObjFactory.o:
-	.text		start:0x8033B190 end:0x803431F0
-	.data		start:0x806B34A8 end:0x806B79A0
+Game/NameObj/NameObjFactory.cpp:
+	.text       start:0x8033B190 end:0x803431F0
+	.data       start:0x806B34A8 end:0x806B79A0
 
 Game/NameObj/NameObjFinder.cpp:
-	.text		start:0x803431F0 end:0x80343210
+	.text       start:0x803431F0 end:0x80343210
 
 Game/NameObj/NameObjGroup.cpp:
 	.text       start:0x80343210 end:0x80343440
@@ -36,3 +36,6 @@ Game/NameObj/NameObjGroup.cpp:
 Game/NameObj/NameObjHolder.cpp:
 	.text       start:0x80343440 end:0x80343880
 	.data       start:0x806B79D0 end:0x806B79E0
+
+Game/NameObj/NameObjRegister.cpp:
+	.text       start:0x80343E20 end:0x80343E50
