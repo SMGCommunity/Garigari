@@ -22,6 +22,9 @@ Game/AreaObj/AreaObjContainer.cpp:
 	.rodata     start:0x806452F0 end:0x80645768
 	.data       start:0x8066A088 end:0x8066A7B0
 
+Game/LiveActor/LiveActorFlag.cpp:
+	.text       start:0x80238220 end:0x80238250
+
 Game/NameObj/MovementOnOffGroupHolder.cpp:
 	.text       start:0x80339560 end:0x80339610
 	.data       start:0x806B33B8 end:0x806B33E8
