@@ -309,6 +309,7 @@ config.libs = [
     GameLib(
         "NameObj",
         [
+            Object(NonMatching, "Game/NameObj/MovementOnOffGroupHolder.cpp"),
             Object(NonMatching, "Game/NameObj/NameObj.cpp"),
             Object(NonMatching, "Game/NameObj/NameObjAdaptor.cpp"),
             Object(NonMatching, "Game/NameObj/NameObjGroup.cpp"),
