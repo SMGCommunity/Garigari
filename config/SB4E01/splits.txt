@@ -13,6 +13,15 @@ Sections:
 	.sdata2     type:rodata align:32
 	.sbss2      type:bss align:32
 
+Game/AreaObj/AreaObj.cpp:
+	.text       start:0x80070650 end:0x80071060
+	.data       start:0x80669FE8 end:0x8066A088
+
+Game/AreaObj/AreaObjContainer.cpp:
+	.text       start:0x80071060 end:0x80071650
+	.rodata     start:0x806452F0 end:0x80645768
+	.data       start:0x8066A088 end:0x8066A7B0
+
 Game/NameObj/NameObj.cpp:
 	.text       start:0x80339610 end:0x80339900
 	.data       start:0x806B33E8 end:0x806B3418
