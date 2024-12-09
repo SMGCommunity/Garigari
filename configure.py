@@ -221,6 +221,7 @@ cflags_game = [
     "-enc SJIS",
     "-i include/Game",
     "-i libs/RVL_SDK",
+    "-i libs/JSystem",
     f"-i build/{config.version}/include",
     f"-DVERSION={version_num}",
 ]
@@ -305,6 +306,13 @@ config.libs = [
             Object(NonMatching, "Runtime.PPCEABI.H/__init_cpp_exceptions.cpp"),
         ],
     },
+
+    GameLib(
+        "LiveActor",
+        [
+            Object(NonMatching, "Game/LiveActor/LiveActorFlag.cpp"),
+        ]
+    ),
 
     GameLib(
         "NameObj",
