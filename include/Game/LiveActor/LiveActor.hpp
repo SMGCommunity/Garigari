@@ -17,9 +17,26 @@ class ShadowControllerList;
 class Spine;
 class StageSwitchCtrl;
 class StarPointerTarget;
+class HitSensor;
 
 class LiveActor : public NameObj {
 public:
+
+    virtual ~LiveActor();
+    virtual void init(const JMapInfoIter &);
+    virtual void movement();
+    virtual void calcAnim();
+    virtual void calcViewAndEntry();
+    virtual void appear();
+    virtual void makeActorAppeared();
+    virtual void kill();
+    virtual void makeActorDead();
+    virtual bool receiveMessage(u32, HitSensor *, HitSensor *);
+    virtual void attackSensor(HitSensor *, HitSensor *);
+    virtual bool receiveMsgPush(HitSensor *, HitSensor *);
+    virtual bool receiveMsgPlayerAttack(HitSensor *, HitSensor *);
+    virtual bool receiveMsgEnemyAttack(HitSensor *, HitSensor *);
+    virtual bool receiveOtherMsg(HitSensor *, HitSensor *);
 
     TVec3f mPosition;                       // 0x14
     TVec3f mRotation;                       // 0x20
