@@ -310,7 +310,9 @@ config.libs = [
     GameLib(
         "LiveActor",
         [
+            Object(NonMatching, "Game/LiveActor/LiveActor.cpp"),
             Object(NonMatching, "Game/LiveActor/LiveActorFlag.cpp"),
+            Object(NonMatching, "Game/LiveActor/LiveActorGroup.cpp")
         ]
     ),
 
