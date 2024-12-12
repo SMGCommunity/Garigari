@@ -312,7 +312,8 @@ config.libs = [
         [
             Object(NonMatching, "Game/LiveActor/LiveActor.cpp"),
             Object(NonMatching, "Game/LiveActor/LiveActorFlag.cpp"),
-            Object(NonMatching, "Game/LiveActor/LiveActorGroup.cpp")
+            Object(NonMatching, "Game/LiveActor/LiveActorGroup.cpp"),
+            Object(NonMatching, "Game/LiveActor/LiveActorGroupArray.cpp"),
         ]
     ),
 

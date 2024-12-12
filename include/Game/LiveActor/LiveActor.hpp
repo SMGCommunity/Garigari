@@ -38,6 +38,8 @@ public:
     virtual bool receiveMsgEnemyAttack(HitSensor *, HitSensor *);
     virtual bool receiveOtherMsg(HitSensor *, HitSensor *);
 
+    HitSensor* getSensor(const char *) const;
+
     TVec3f mPosition;                       // 0x14
     TVec3f mRotation;                       // 0x20
     TVec3f mScale;                          // 0x2C
