@@ -1,0 +1,16 @@
+#ifndef _MSL_CSTDIO
+#define _MSL_CSTDIO
+
+#include "size_t.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+int snprintf(char *, size_t, const char *, ...);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif // _MSL_CSTDIO
