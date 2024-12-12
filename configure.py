@@ -222,6 +222,7 @@ cflags_game = [
     "-i include/Game",
     "-i libs/RVL_SDK",
     "-i libs/JSystem",
+    "-i libs/MSL_C",
     f"-i build/{config.version}/include",
     f"-DVERSION={version_num}",
 ]
