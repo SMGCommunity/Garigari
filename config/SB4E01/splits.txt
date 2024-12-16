@@ -22,6 +22,13 @@ Game/AreaObj/AreaObjContainer.cpp:
 	.rodata     start:0x806452F0 end:0x80645768
 	.data       start:0x8066A088 end:0x8066A7B0
 
+Game/LiveActor/HitSensor.cpp:
+	.text       start:0x80235830 end:0x80235B70
+	.sdata2     start:0x807DC460 end:0x807DC468
+
+Game/LiveActor/HitSensorInfo.cpp:
+	.text       start:0x80235B70 end:0x80235ED0
+
 Game/LiveActor/LiveActor.cpp:
 	.text       start:0x80237320 end:0x80238220
 	.data       start:0x806952D8 end:0x80695348

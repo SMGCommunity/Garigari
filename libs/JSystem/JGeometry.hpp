@@ -2,6 +2,7 @@
 
 #include <revolution.h>
 #include <revolution/mtx/vec.h>
+#include "JMath.hpp"
 
 namespace JGeometry {
     template <typename T>
@@ -22,13 +23,14 @@ namespace JGeometry {
         }
     };
 
+    __attribute__((always_inline))
     inline void setTVec3f(const f32* a, f32* b) {
         #ifdef __MWERKS__
         const register f32* v_a = a;
         register f32* v_b = b;
 
-        register f32 a_x;
         register f32 b_x;
+        register f32 a_x;
 
         asm {
             psq_l a_x, 0(v_a), 0, 0
@@ -37,10 +39,6 @@ namespace JGeometry {
             stfs b_x, 8(v_b)
         };
         #endif
-    }
-
-    inline void setTVec3f(const Vec& a, Vec& b) {
-        setTVec3f(&a.x, &b.x);
     }
 
     template<>
@@ -70,6 +68,14 @@ namespace JGeometry {
             y = y_;
             z = z_;
         }
+
+        void setTrans(MtxPtr mtx) {
+            set((*mtx)[3], (*mtx)[7], (*mtx)[11]);
+        }
+
+        void add(const TVec3<f32> &b) {
+            JMathInlineVEC::PSVECAdd(this, &b, this);
+        }
     };
 
     template <typename T>
@@ -82,6 +88,16 @@ namespace JGeometry {
         f32 data[3][4];
 
         void identity();
+
+        typedef f32 ArrType[4];
+
+        operator ArrType*() {
+            return data;
+        }
+
+        operator const ArrType*() const {
+            return data;
+        }
     };
 
     template<typename T>
