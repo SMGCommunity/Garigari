@@ -32,6 +32,13 @@ public:
     virtual void kill();
     virtual void makeActorDead();
     virtual bool receiveMessage(u32, HitSensor *, HitSensor *);
+    virtual MtxPtr getBaseMtx() const;
+    virtual MtxPtr getTakenMtx() const;
+    virtual void startClipped();
+    virtual void endClipped();
+    virtual void control();
+    virtual void calcAndSetBaseMtx();
+    virtual void updateHitSensor(HitSensor *);
     virtual void attackSensor(HitSensor *, HitSensor *);
     virtual bool receiveMsgPush(HitSensor *, HitSensor *);
     virtual bool receiveMsgPlayerAttack(HitSensor *, HitSensor *);
