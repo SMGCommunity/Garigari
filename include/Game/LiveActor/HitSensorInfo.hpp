@@ -20,5 +20,5 @@ public:
     TVec3f _C;
     const TVec3f* mFollowPos;           // 0x18
     MtxPtr mFollowMtx;                  // 0x1C
-    bool _20;
+    bool mHasCallback;                  // 0x20
 };

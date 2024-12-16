@@ -11,6 +11,12 @@ namespace JGeometry {
         T y;
         T z;
 
+        inline TVec3(T val) {
+            x = val;
+            y = val;
+            z = val;
+        }
+
         TVec3<T>& operator=(const TVec3<T>& b) {
             set(b.x, b.y, b.z);
             return *this;
@@ -51,8 +57,14 @@ namespace JGeometry {
             setTVec3f(&vec.x, &x);
         }
 
-        TVec3(f32 x, f32 y, f32 z) {
-            set(x, y, z);
+        inline TVec3(f32 _x, f32 _y, f32 _z) {
+            x = _x;
+            y = _y;
+            z = _z;
+        }
+
+        TVec3(f32 val) {
+            z = y = x = val;
         }
 
         TVec3() {}

@@ -13,12 +13,12 @@ void HitSensorInfo::setFollowMtx(MtxPtr followMtx) {
 
 HitSensorInfo::HitSensorInfo(const char *pSensorName, HitSensor *pSensor, const TVec3f *pFollowPos, MtxPtr followMtx, const TVec3f &rVec, bool flag) :
     mSensorName(pSensorName), mNameHash(MR::getHashCode(pSensorName)), _C(rVec), mSensor(pSensor), mFollowPos(pFollowPos), mFollowMtx(followMtx) {
-        _20 = flag;
+        mHasCallback = flag;
 }
 
 // https://decomp.me/scratch/IDjcw
 void HitSensorInfo::update() {
-    if (_20) {
+    if (mHasCallback) {
         mSensor->mHostActor->updateHitSensor(mSensor);
         return;
     }
