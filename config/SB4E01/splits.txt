@@ -29,6 +29,10 @@ Game/LiveActor/HitSensor.cpp:
 Game/LiveActor/HitSensorInfo.cpp:
 	.text       start:0x80235B70 end:0x80235ED0
 
+Game/LiveActor/HitSensorKeeper.cpp:
+	.text       start:0x80235ED0 end:0x80236520
+	.sdata2     start:0x807DC468 end:0x807DC470
+
 Game/LiveActor/LiveActor.cpp:
 	.text       start:0x80237320 end:0x80238220
 	.data       start:0x806952D8 end:0x80695348
