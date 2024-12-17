@@ -49,6 +49,10 @@ Game/LiveActor/LiveActorGroupArray.cpp:
 	.text       start:0x802384F0 end:0x80238A70
 	.data       start:0x80695378 end:0x806953E0
 
+Game/Map/StageSwitch.cpp:
+	.text       start:0x80269F90 end:0x8026A8A0
+	.data       start:0x8069A600 end:0x8069A670
+
 Game/NameObj/MovementOnOffGroupHolder.cpp:
 	.text       start:0x80339560 end:0x80339610
 	.data       start:0x806B33B8 end:0x806B33E8

@@ -14,13 +14,19 @@ public:
         mZoneID = rInfo.mZoneID;
     }
 
+    JMapIdInfo(s32, const JMapInfoIter &);
+
     void operator=(const JMapIdInfo &rhs) {
         _0 = rhs._0;
         mZoneID = rhs.mZoneID;
     }
+    
+    int getZoneID() const {
+        return mZoneID;
+    }
 
     s32 _0;
-    s32 mZoneID;        // 0x04
+    int mZoneID;        // 0x04
 };
 
 namespace MR {

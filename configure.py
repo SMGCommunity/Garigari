@@ -321,6 +321,13 @@ config.libs = [
     ),
 
     GameLib(
+        "Map",
+        [
+            Object(NonMatching, "Game/Map/StageSwitch.cpp"),
+        ]
+    ),
+
+    GameLib(
         "NameObj",
         [
             Object(NonMatching, "Game/NameObj/MovementOnOffGroupHolder.cpp"),
