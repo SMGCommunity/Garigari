@@ -216,7 +216,7 @@ cflags_game = [
     "-maxerrors 1",
     "-nosyspath",
     "-RTTI off",
-    "-str reuse",
+    "-str pool",
     "-enc SJIS",
     "-i include/Game",
     "-i libs/RVL_SDK",
