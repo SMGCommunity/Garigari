@@ -31,6 +31,9 @@ public:
     inline JMapInfoIter() { }
     inline JMapInfoIter(const JMapInfo *pInfo, s32 index) : mInfo(pInfo), mIndex(index) {}
 
+    template<typename T>
+    bool getValue(const char *, T *) const;
+
     const JMapInfo* mInfo;      // 0x00
     s32 mIndex;                 // 0x04
 };
