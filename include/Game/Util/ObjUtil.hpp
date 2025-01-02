@@ -7,4 +7,6 @@ namespace MR {
     void requestMovementOff(NameObj *);
 
     void connectToScene(NameObj *, int, int, int, int);
+
+    void connectToSceneMapObjMovement(NameObj *);
 };

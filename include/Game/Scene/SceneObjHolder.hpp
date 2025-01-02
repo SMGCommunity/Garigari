@@ -1,6 +1,7 @@
 #pragma once
 
-#define SceneObj_StageSwitchContainer   0xA
+#define SceneObj_StageSwitchContainer       0xA
+#define SceneObj_SwitchWatcherHolder        0xB
 
 class NameObj;
 

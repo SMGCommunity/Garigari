@@ -216,7 +216,6 @@ cflags_game = [
     "-maxerrors 1",
     "-nosyspath",
     "-RTTI off",
-    "-str pool",
     "-enc SJIS",
     "-i include/Game",
     "-i libs/RVL_SDK",
@@ -324,6 +323,8 @@ config.libs = [
         "Map",
         [
             Object(NonMatching, "Game/Map/StageSwitch.cpp"),
+            Object(NonMatching, "Game/Map/SwitchSynchronizer.cpp"),
+            Object(NonMatching, "Game/Map/SwitchWatcher.cpp"),
         ]
     ),
 

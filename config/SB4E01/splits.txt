@@ -53,6 +53,14 @@ Game/Map/StageSwitch.cpp:
 	.text       start:0x80269F90 end:0x8026A8A0
 	.data       start:0x8069A600 end:0x8069A670
 
+Game/Map/SwitchSynchronizer.cpp:
+	.text       start:0x8026AA30 end:0x8026AC10
+	.data       start:0x8069A6C8 end:0x8069A6F8
+
+Game/Map/SwitchWatcher.cpp:
+	.text       start:0x8026AC10 end:0x8026B1A0
+	.data       start:0x8069A6F8 end:0x8069A788
+
 Game/NameObj/MovementOnOffGroupHolder.cpp:
 	.text       start:0x80339560 end:0x80339610
 	.data       start:0x806B33B8 end:0x806B33E8
