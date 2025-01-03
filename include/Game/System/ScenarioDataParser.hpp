@@ -15,7 +15,7 @@ public:
     s32 getPowerStarNum() const;
     bool getValueString(const char *, s32, const char **) const;
     bool getValueS32(const char *, s32, s32 *) const;
-    u32 getValueU32(const char *, s32, u32 *) const;
+    u32 getValueU32(const char *, s32) const;
     bool isPowerStarTypeHidden(s32) const;
     bool isPowerStarTypeGreen(s32) const;
     s32 getZoneNum() const;
@@ -39,8 +39,12 @@ public:
 
 class ScenarioDataParser : public NameObj {
 public:
+    ScenarioDataParser(const char *);
 
     virtual ~ScenarioDataParser();
+
+    ScenarioData* getScenarioData(const char *) const;
+    GalaxyStatusAccessor makeAccessor(const char *) const;
 
     ScenarioData* mScenarioData[0x60];        // 0x14
     s32 mNumScenarioData;                           // 0x194
@@ -59,4 +63,14 @@ public:
 
     ScenarioDataParser* mParser;        // 0x4
     s32 mCurIdx;                        // 0x8
+};
+
+namespace ScenarioDataFunction {
+    ScenarioDataParser* getScenarioDataParser();
+    bool getCurrentCommonLayers(const char *);
+    u32 getCurrentScenarioLayers(const char *, s32);
+};
+
+namespace MR {
+    ScenarioDataIter makeBeginScenarioDataIter();
 };

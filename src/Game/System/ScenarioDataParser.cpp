@@ -3,6 +3,8 @@
 #include "System/GalaxyStatusAccessor.hpp"
 #include "Util/JMapInfo.hpp"
 #include "Util.hpp"
+#include "Util/SceneUtil.hpp"
+#include "revolution/dvd.h"
 #include <cstring>
 
 ScenarioData::ScenarioData(const char *pName) {
@@ -78,7 +80,7 @@ bool ScenarioData::getValueS32(const char *pKey, s32 idx, s32 *pOut) const {
     return getScenarioDataIter(idx).getValue<u32>(pKey, (u32*)pOut);
 }
 
-u32 ScenarioData::getValueU32(const char *pKey, s32 idx, u32 *) const {
+u32 ScenarioData::getValueU32(const char *pKey, s32 idx) const {
     u32 out;
     bool ret = getScenarioDataIter(idx).getValue<u32>(pKey, &out);
 
@@ -196,6 +198,62 @@ bool ScenarioDataIter::isValidWorldNo(s32 no) const {
     s32 worldNo = accessor.getWorldNo();
     return worldNo > 0;
 }
+
+ScenarioDataParser::ScenarioDataParser(const char *pName) : NameObj(pName) {
+    mNumScenarioData = 0;
+    DVDDir stageDir;
+    DVDOpenDir("/StageData", &stageDir);
+    DVDDirEntry entry;
+
+    while (DVDReadDir(&stageDir, &entry)) {
+        if (entry.isDir) {
+            char buf[256];
+            MR::makeScenarioArchiveFileName(buf, sizeof(buf), entry.name);
+            if (MR::isFileExist(buf, false)) {
+                mScenarioData[mNumScenarioData++] = new ScenarioData(buf);
+            }
+        }
+    }
+
+    DVDCloseDir(&stageDir);
+}
+
+ScenarioData* ScenarioDataParser::getScenarioData(const char *pName) const {
+    for (s32 i = 0; i < mNumScenarioData; i++) {
+        ScenarioData* data = mScenarioData[i];
+        if (MR::isEqualStringCase(data->_0, pName)) {
+            return data;
+        }
+    }
+
+    return nullptr;
+}
+
+GalaxyStatusAccessor ScenarioDataParser::makeAccessor(const char *pName) const {
+    return GalaxyStatusAccessor(getScenarioData(pName));
+}
+
+namespace ScenarioDataFunction {
+    // ScenarioDataFunction::getScenarioDataParser
+
+    bool getCurrentCommonLayers(const char *pName) {
+        const char* stageName = MR::getCurrentStageName();
+        getScenarioDataParser()->getScenarioData(stageName);
+        return true;
+    }
+
+    u32 getCurrentScenarioLayers(const char *pName, s32 idx) {
+        const char* stageName = MR::getCurrentStageName();
+        return getScenarioDataParser()->getScenarioData(stageName)->getValueU32(pName, idx);
+    }
+};
+
+namespace MR {
+    ScenarioDataIter makeBeginScenarioDataIter() {
+        return ScenarioDataIter(ScenarioDataFunction::getScenarioDataParser());
+    }
+    
+};
 
 ScenarioDataParser::~ScenarioDataParser() {
     
