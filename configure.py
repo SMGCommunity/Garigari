@@ -217,6 +217,7 @@ cflags_game = [
     "-nosyspath",
     "-RTTI off",
     "-enc SJIS",
+    "-sdata 4",
     "-i include/Game",
     "-i libs/RVL_SDK",
     "-i libs/JSystem",
@@ -340,7 +341,14 @@ config.libs = [
             Object(NonMatching, "Game/NameObj/NameObjHolder.cpp"),
             Object(NonMatching, "Game/NameObj/NameObjRegister.cpp")
         ]
-    )
+    ),
+
+    GameLib(
+        "System",
+        [
+            Object(NonMatching, "Game/System/ScenarioDataParser.cpp")
+        ]
+    ),
 ]
 
 # Optional extra categories for progress tracking

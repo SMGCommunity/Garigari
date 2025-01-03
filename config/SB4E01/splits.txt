@@ -91,3 +91,7 @@ Game/NameObj/NameObjHolder.cpp:
 
 Game/NameObj/NameObjRegister.cpp:
 	.text       start:0x80343E20 end:0x80343E50
+
+Game/System/ScenarioDataParser.cpp:
+	.text       start:0x804CB460 end:0x804CC010
+	.data       start:0x806FC2E0 end:0x806FC3B8

@@ -22,6 +22,17 @@ class JMapInfoIter;
 
 class JMapInfo {
 public:
+    JMapInfo();
+
+    void attach(const void *);
+
+    template<typename T>
+    const bool getValue(int, const char *, T *) const;
+
+    inline s32 getLength() const {
+        return mData != nullptr ? mData->_0 : 0;
+    }
+
     const JMapData* mData;      // 0x00
     const char* mName;          // 0x04
 };
