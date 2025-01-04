@@ -346,7 +346,8 @@ config.libs = [
     GameLib(
         "System",
         [
-            Object(NonMatching, "Game/System/ScenarioDataParser.cpp")
+            Object(NonMatching, "Game/System/ResourceInfo.cpp"),
+            Object(NonMatching, "Game/System/ScenarioDataParser.cpp"),
         ]
     ),
 ]
