@@ -26,6 +26,10 @@ public:
 
     void attach(const void *);
 
+    int searchItemInfo(const char *) const;
+
+    void getValueFast(int, int, u32 *) const;
+
     template<typename T>
     const bool getValue(int, const char *, T *) const;
 
