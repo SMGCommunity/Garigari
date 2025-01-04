@@ -10,6 +10,8 @@ extern "C" {
 size_t strlen(const char *);
 int strcmp(const char *, const char *);
 
+char* strchr(const char *, int);
+char* strrchr(const char *, int);
 char* strstr(const char *, const char *);
 
 #ifdef __cplusplus
