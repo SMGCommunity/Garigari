@@ -1,5 +1,8 @@
 #pragma once
 
+#include "Util/ActorInitUtil.hpp"
+#include "Util/ActorSensorUtil.hpp"
+#include "Util/ActorShadowUtil.hpp"
 #include "Util/DemoUtil.hpp"
 #include "Util/FileUtil.hpp"
 #include "Util/HashUtil.hpp"

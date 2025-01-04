@@ -12,4 +12,6 @@ namespace MR {
     bool isEqualStringCase(const char *, const char *);
     bool isEqualSubString(const char *, const char *);
     bool hasStringSpace(const char *);
+
+    bool isNullOrEmptyString(const char *);
 };

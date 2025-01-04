@@ -12,12 +12,14 @@ class CollisionParts;
 class EffectKeeper;
 class HitSensorKeeper;
 class ModelManager;
+class ResourceHolder;
 class RailRider;
 class ShadowControllerList;
 class Spine;
 class StageSwitchCtrl;
 class StarPointerTarget;
 class HitSensor;
+class Nerve;
 
 class LiveActor : public NameObj {
 public:
@@ -46,6 +48,16 @@ public:
     virtual bool receiveOtherMsg(HitSensor *, HitSensor *);
 
     HitSensor* getSensor(const char *) const;
+
+    void initModelManagerWithAnm(const char *, const char *, const char *, bool);
+    void initNerve(const Nerve *, s32);
+    void initHitSensor(s32);
+    void initBinder(f32, f32, u32);
+    void initRailRider(const JMapInfoIter &);
+    void initEffectKeeper(s32, const char *, bool);
+    void initSound(s32, const char *, const TVec3f *, const TVec3f &);
+    void initShadowControllerList(u32);
+    void initActorCollisionParts(const char *, HitSensor *, ResourceHolder *, MtxPtr, bool, bool);
 
     TVec3f mPosition;                       // 0x14
     TVec3f mRotation;                       // 0x20
