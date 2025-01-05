@@ -20,7 +20,7 @@ namespace MR {
     JMapInfo* createCsvParserFromFile(const char *, const char *, ...);
 
     void getCsvDataStrOrNULL(const char **, const JMapInfo *, const char *, s32);
-    JMapInfoIter getCsvDataStrByElement(const char **, const JMapInfo *, const char *, const char *, const char *);
+    const JMapInfoIter getCsvDataStrByElement(const char **, const JMapInfo *, const char *, const char *, const char *);
 
     s32 getCsvDataElementNum(const JMapInfo *);
 

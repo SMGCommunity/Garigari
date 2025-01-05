@@ -4,6 +4,8 @@
 
 class JMapInfoIter;
 class LiveActor;
+class ResourceHolder;
+class HitSensor;
 
 namespace MR {
     void initSensors(LiveActor *, const char *, const char *);
@@ -16,6 +18,8 @@ namespace MR {
     void setScale(LiveActor *, f32, f32, f32);
     void setScale(LiveActor *, f32);
 
+    void scaleBinderRadius(LiveActor *, f32);
+
     void initDefaultPos(LiveActor *, const JMapInfoIter &);
 
     void initLightCtrl(LiveActor *);
@@ -25,4 +29,8 @@ namespace MR {
     void setGroupClipping(LiveActor *, const JMapInfoIter &, int);
 
     void setClippingTypeSphere(LiveActor *, f32);
+
+    void initCollisionPartsFromResourceHolder(LiveActor *, const char *, HitSensor *, ResourceHolder *, MtxPtr);
+
+    bool tryStartAllAnim(const LiveActor *, const char *);
 };
