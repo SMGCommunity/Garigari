@@ -317,6 +317,7 @@ config.libs = [
             Object(NonMatching, "Game/LiveActor/LiveActorFlag.cpp"),
             Object(NonMatching, "Game/LiveActor/LiveActorGroup.cpp"),
             Object(NonMatching, "Game/LiveActor/LiveActorGroupArray.cpp"),
+            Object(NonMatching, "Game/LiveActor/Spine.cpp"),
         ]
     ),
 
@@ -346,6 +347,7 @@ config.libs = [
     GameLib(
         "System",
         [
+            Object(NonMatching, "Game/System/NerveExecutor.cpp"),
             Object(NonMatching, "Game/System/ResourceInfo.cpp"),
             Object(NonMatching, "Game/System/ScenarioDataParser.cpp"),
         ]
