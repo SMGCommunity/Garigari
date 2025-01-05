@@ -16,10 +16,11 @@ public:
     ActorStateKeeper(int);
 
     void addState(ActorStateBaseInterface *, const Nerve *, const char *);
-    void updateCurrentState();
+    bool updateCurrentState();
     void startState(const Nerve *);
-
+    bool isStateDead() const;
     void endState();
+    ActorStateKeeper::State* findStateInfo(const Nerve *);
 
     int mMaxStates;             // 0x00
     int mNumStates;             // 0x04
