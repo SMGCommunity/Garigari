@@ -28,6 +28,7 @@ public:
 
     int searchItemInfo(const char *) const;
 
+    void getValueFast(int, int, const char **) const;
     void getValueFast(int, int, u32 *) const;
 
     template<typename T>

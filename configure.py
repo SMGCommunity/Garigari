@@ -350,6 +350,13 @@ config.libs = [
             Object(NonMatching, "Game/System/ScenarioDataParser.cpp"),
         ]
     ),
+
+    GameLib(
+        "Util",
+        [
+            Object(NonMatching, "Game/Util/ActorInitUtil.cpp"),
+        ]
+    ),
 ]
 
 # Optional extra categories for progress tracking

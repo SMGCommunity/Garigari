@@ -13,6 +13,11 @@ Sections:
 	.sdata2     type:rodata align:32
 	.sbss2      type:bss align:32
 
+Game/Util/ActorInitUtil.cpp:
+	.text       start:0x8000BF70 end:0x8000D620
+	.data       start:0x8065CD24 end:0x8065CFB8
+	.sdata2     start:0x807D6CE0 end:0x807D6CF0
+
 Game/AreaObj/AreaObj.cpp:
 	.text       start:0x80070650 end:0x80071060
 	.data       start:0x80669FE8 end:0x8066A088
