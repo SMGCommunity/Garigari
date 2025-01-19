@@ -13,6 +13,9 @@ Sections:
 	.sdata2     type:rodata align:32
 	.sbss2      type:bss align:32
 
+Runtime/__mem.c:
+	.init       start:0x800043C4 end:0x80004744
+
 Game/Util/ActorInitUtil.cpp:
 	.text       start:0x8000BF70 end:0x8000D620
 	.data       start:0x8065CD24 end:0x8065CFB8
@@ -128,3 +131,17 @@ libs/RVL_SDK/dvd/dvd.c:
 	.text       start:0x805D1D40 end:0x805D6B60
 	.data       start:0x8071BBF0 end:0x8071C038
 	.sbss       start:0x807D68E0 end:0x807D6978
+
+Runtime/__va_arg.c:
+	.text       start:0x8062DAD0 end:0x8062DB98
+
+Runtime/ptmf.c:
+	.text       start:0x8062DFA8 end:0x8062E03C
+
+Runtime/runtime.c:
+	.text       start:0x8062E03C end:0x8062E8FC
+	.rodata     start:0x8065B6F0 end:0x8065B708
+
+Runtime/Gecko_ExceptionPPC.cpp:
+	.text       start:0x8062E96C end:0x8062E9E0
+	.bss        start:0x807CC978 end:0x807CCAF8

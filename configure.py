@@ -196,7 +196,6 @@ cflags_base = [
     "-RTTI off",
     "-fp_contract on",
     "-str reuse",
-    "-enc SJIS",
     "-i include",
     f"-i build/{config.version}/include",
     f"-DVERSION={version_num}",
@@ -241,6 +240,8 @@ cflags_runtime = [
     "-gccinc",
     "-common off",
     "-inline auto",
+    "-i libs/MSL_C",
+    "-i libs/Runtime",
 ]
 
 # REL flags
@@ -289,8 +290,13 @@ config.libs = [
         "cflags": cflags_runtime,
         "progress_category": "sdk",  # str | List[str]
         "objects": [
-            Object(NonMatching, "Runtime.PPCEABI.H/global_destructor_chain.c"),
-            Object(NonMatching, "Runtime.PPCEABI.H/__init_cpp_exceptions.cpp"),
+            Object(NonMatching, "Runtime/ptmf.c"),
+            Object(NonMatching, "Runtime/runtime.c"),
+            Object(NonMatching, "Runtime/global_destructor_chain.c"),
+            Object(NonMatching, "Runtime/__init_cpp_exceptions.cpp"),
+            Object(NonMatching, "Runtime/__mem.c"),
+            Object(NonMatching, "Runtime/__va_arg.c"),
+            Object(NonMatching, "Runtime/Gecko_ExceptionPPC.cpp"),
         ],
     },
 
