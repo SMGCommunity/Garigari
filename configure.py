@@ -261,27 +261,14 @@ def GameLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
         "objects": objects,
     }
 
-# Helper function for Dolphin libraries
-def DolphinLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
+def RVLLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     return {
         "lib": lib_name,
-        "mw_version": "GC/1.2.5n",
+        "mw_version": "GC/3.0",
         "cflags": cflags_base,
         "progress_category": "sdk",
         "objects": objects,
     }
-
-
-# Helper function for REL script objects
-def Rel(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
-    return {
-        "lib": lib_name,
-        "mw_version": "Wii/1.0",
-        "cflags": cflags_rel,
-        "progress_category": "game",
-        "objects": objects,
-    }
-
 
 Matching = True                   # Object matches and should be linked
 NonMatching = False               # Object does not match and should not be linked
@@ -337,6 +324,7 @@ config.libs = [
             Object(NonMatching, "Game/NameObj/MovementOnOffGroupHolder.cpp"),
             Object(NonMatching, "Game/NameObj/NameObj.cpp"),
             Object(NonMatching, "Game/NameObj/NameObjAdaptor.cpp"),
+            Object(NonMatching, "Game/NameObj/NameObjCategoryList.cpp"),
             Object(NonMatching, "Game/NameObj/NameObjGroup.cpp"),
             Object(NonMatching, "Game/NameObj/NameObjFactory.cpp"),
             Object(NonMatching, "Game/NameObj/NameObjFinder.cpp"),
