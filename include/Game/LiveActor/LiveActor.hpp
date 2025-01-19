@@ -47,6 +47,10 @@ public:
     virtual bool receiveMsgEnemyAttack(HitSensor *, HitSensor *);
     virtual bool receiveOtherMsg(HitSensor *, HitSensor *);
 
+    void setNerve(const Nerve *);
+    bool isNerve(const Nerve *) const;
+    s32 getNerveStep() const;
+
     HitSensor* getSensor(const char *) const;
 
     void initModelManagerWithAnm(const char *, const char *, const char *, bool);
@@ -58,6 +62,7 @@ public:
     void initSound(s32, const char *, const TVec3f *, const TVec3f &);
     void initShadowControllerList(u32);
     void initActorCollisionParts(const char *, HitSensor *, ResourceHolder *, MtxPtr, bool, bool);
+    void initStageSwitch(const JMapInfoIter &);
 
     TVec3f mPosition;                       // 0x14
     TVec3f mRotation;                       // 0x20

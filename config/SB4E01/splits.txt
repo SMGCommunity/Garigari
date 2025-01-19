@@ -85,6 +85,10 @@ Game/NameObj/NameObjAdaptor.cpp:
 	.text       start:0x80339900 end:0x80339B50
 	.data       start:0x806B3418 end:0x806B3448
 
+Game/NameObj/NameObjCategoryList.cpp:
+	.text       start:0x80339B50 end:0x8033A1F0
+	.data       start:0x806B3448 end:0x806B3460
+
 Game/NameObj/NameObjFactory.cpp:
 	.text       start:0x8033B190 end:0x803431F0
 	.data       start:0x806B34A8 end:0x806B79A0
@@ -114,3 +118,13 @@ Game/System/ResourceInfo.cpp:
 Game/System/ScenarioDataParser.cpp:
 	.text       start:0x804CB460 end:0x804CC010
 	.data       start:0x806FC2E0 end:0x806FC3B8
+
+libs/RVL_SDK/dvd/dvdfs.c:
+	.text       start:0x805D1340 end:0x805D1D40
+	.data       start:0x8071BA50 end:0x8071BBF0
+	.sbss       start:0x807D68C0 end:0x807D68E0
+
+libs/RVL_SDK/dvd/dvd.c:
+	.text       start:0x805D1D40 end:0x805D6B60
+	.data       start:0x8071BBF0 end:0x8071C038
+	.sbss       start:0x807D68E0 end:0x807D6978
