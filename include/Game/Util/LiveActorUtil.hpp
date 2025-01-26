@@ -20,8 +20,6 @@ namespace MR {
 
     void scaleBinderRadius(LiveActor *, f32);
 
-    void initDefaultPos(LiveActor *, const JMapInfoIter &);
-
     void initLightCtrl(LiveActor *);
 
     void setClippingFarMax(LiveActor *);

@@ -47,8 +47,63 @@ namespace {
 };
 
 namespace MR {
+    bool isDataEnable(JMapInfo *pInfo, const char *pName) {
+        if (!MR::isExistElement(pInfo, "InitFunction", pName)) {
+            return false;
+        }
+
+        const char* str = nullptr;
+        MR::getCsvDataStrByElement(&str, pInfo, "InitFunction", pName, "Data");
+        return str[0] == 'o';
+    }
+
+    bool getInitSwitchType(const char **pSwitchType, const JMapInfo *pInfo, const char *pName) {
+        MR::getCsvDataStrByElement(pSwitchType, pInfo, "SwitchName", pName, "UseType");
+        return *pSwitchType[0] != 'x';
+    }
+
+    bool initActor(LiveActor *pActor, const JMapInfoIter &rIter, bool a3) {
+        const char* objName = nullptr;
+        MR::getObjectName(&objName, rIter);
+        return initActor(pActor, rIter, objName, nullptr, nullptr, a3);
+    }
+
+    bool initActor(LiveActor *pActor, const JMapInfoIter &rIter, const char *pObjName, bool a4) {
+        return initActor(pActor, rIter, pObjName, nullptr, nullptr, a4);
+    }
+
+    bool initActor(LiveActor *pActor, const JMapInfoIter &rIter, const char *pObjName, const char *a4, bool a5) {
+        return initActor(pActor, rIter, pObjName, nullptr, a4, a5);
+    }
+
+    bool initActor(LiveActor *pActor, const char *pObjName, bool a3) {
+        JMapInfoIter iter(0, -1);
+        return initActor(pActor, iter, pObjName, nullptr, nullptr, a3);
+    }
+
+    bool initActor(LiveActor *pActor, const char *pObjName, const char *a3, bool a4) {
+        JMapInfoIter iter(0, -1);
+        return initActor(pActor, iter, pObjName, nullptr, a3, a4);
+    }
+
+    JMapInfo* makeInitActorCsvParser(const char *a1, const char *pSubFile) {
+        const char* csv = "InitActor.bcsv";
+
+        if (pSubFile != nullptr) {
+            char buf[64];
+            snprintf(buf, sizeof(buf), "InitActor%s.bcsv", pSubFile);
+            csv = buf;
+        }
+
+        return createCsvParserFromFile(a1, csv);
+    }
+
+    bool isValidInitActorCsvParser(const char *a1, const char *pSubFile) {
+        return makeInitActorCsvParser(a1, pSubFile) != nullptr;
+    }
+
     /* https://decomp.me/scratch/xGEnY */
-    bool fn_8000C340(LiveActor *pActor, const JMapInfoIter &rIter, const char *pArchiveName, const char* a4, const char *a5, bool a6) {
+    bool initActor(LiveActor *pActor, const JMapInfoIter &rIter, const char *pArchiveName, const char* a4, const char *a5, bool a6) {
         bool flag = false;
         char archiveName[0x80];
         snprintf(archiveName, sizeof(archiveName), "%s.arc", pArchiveName);
@@ -250,5 +305,28 @@ namespace MR {
         }
 
         return info != nullptr;
+    }
+
+    bool initActorNoIter(LiveActor *pActor, const char *pObjName, const char *a3, bool a4) {
+        JMapInfoIter iter(0, -1);
+        return initActor(pActor, iter, pObjName, a3, nullptr, a4);
+    }
+
+    bool initActorNoIter(LiveActor *pActor, const char *pObjName, const char *a3, const char *a4, bool a5) {
+        JMapInfoIter iter(0, -1);
+        return initActor(pActor, iter, pObjName, a3, a4, a5);
+    }
+
+    void initDefaultPos(LiveActor *pActor, const JMapInfoIter &rIter) {
+        MR::getDefaultPos(pActor, rIter);
+        MR::normalizeVec(&pActor->mRotation, 0.0f);
+    }
+
+    void getDefaultPos(LiveActor *pActor, const JMapInfoIter &rIter) {
+        if (rIter.isValid()) {
+            MR::getJMapInfoTrans(rIter, &pActor->mPosition);
+            MR::getJMapInfoRotate(rIter, &pActor->mRotation);
+            MR::getJMapInfoScale(rIter, &pActor->mScale);
+        }
     }
 };
