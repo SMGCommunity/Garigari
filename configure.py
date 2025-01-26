@@ -217,6 +217,7 @@ cflags_game = [
     "-RTTI off",
     "-enc SJIS",
     "-sdata 4",
+    "-sdata2 4",
     "-i include/Game",
     "-i libs/RVL_SDK",
     "-i libs/JSystem",

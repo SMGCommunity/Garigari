@@ -13,3 +13,4 @@
 #include "Util/SceneUtil.hpp"
 #include "Util/StarPointerUtil.hpp"
 #include "Util/StringUtil.hpp"
+#include "Util/VectorUtil.hpp"

@@ -50,6 +50,8 @@ public:
     template<typename T>
     bool getValue(const char *, T *) const;
 
+    bool isValid() const;
+
     const JMapInfo* mInfo;      // 0x00
     s32 mIndex;                 // 0x04
 };

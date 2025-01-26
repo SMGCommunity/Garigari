@@ -1,0 +1,16 @@
+#ifndef _MSL_CMATH
+#define _MSL_CMATH
+
+#include "size_t.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+double fmod(double, double);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif // _MSL_CMATH
