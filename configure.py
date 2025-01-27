@@ -353,6 +353,7 @@ config.libs = [
         "Util",
         [
             Object(NonMatching, "Game/Util/ActorInitUtil.cpp"),
+            Object(NonMatching, "Game/Util/JMapUtil.cpp"),
         ]
     ),
 ]
