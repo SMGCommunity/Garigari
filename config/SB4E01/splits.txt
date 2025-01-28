@@ -23,8 +23,9 @@ Game/Util/ActorInitUtil.cpp:
 
 Game/Util/JMapUtil.cpp:
 	.text       start:0x8002BD90 end:0x8002D410
-	.data       start:0x8065DDF8 end:0x8065E118
+	.data       start:0x8065DE68 end:0x8065E118
 	.sdata      start:0x807CF388 end:0x807CF398
+	.sdata2     start:0x807D6EE8 end:0x807D6F08
 
 Game/AreaObj/AreaObj.cpp:
 	.text       start:0x80070650 end:0x80071060
