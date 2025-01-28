@@ -113,7 +113,10 @@ namespace JGeometry {
     };
 
     template<typename T>
-    struct TMatrix34 : public T {};
+    struct TMatrix34 : public T {
+    public:
+        void mult(const JGeometry::TVec3<f32> &, const JGeometry::TVec3<f32> &) const;
+    };
 
     template<typename T>
     struct TRotation3 : public T {};
