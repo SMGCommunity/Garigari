@@ -101,6 +101,33 @@ namespace JGeometry {
 
         void identity();
 
+        inline void rotateX(f32 cos, f32 sin) __attribute__((always_inline)) {
+            this->data[1][1] = cos;
+            this->data[2][1] = sin;
+            this->data[1][2] = -sin;
+            this->data[2][2] = cos;
+        }
+
+        inline void rotateY(f32 cos, f32 sin) __attribute__((always_inline)) {
+            this->data[0][0] = cos;
+            this->data[0][2] = sin;
+            this->data[2][0] = -sin;
+            this->data[2][2] = cos;            
+        }
+
+        inline void rotateZ(f32 cos, f32 sin) __attribute__((always_inline)) {
+            this->data[0][0] = cos;
+            this->data[1][0] = sin;
+            this->data[0][1] = -sin;
+            this->data[1][1] = cos;            
+        }
+
+        inline void scale(f32 x, f32 y, f32 z) {
+            this->data[0][0] = x;
+            this->data[1][1] = y;
+            this->data[2][2] = z;
+        }
+
         typedef f32 ArrType[4];
 
         operator ArrType*() {

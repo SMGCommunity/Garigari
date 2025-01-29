@@ -27,6 +27,14 @@ Game/Util/JMapUtil.cpp:
 	.sdata      start:0x807CF388 end:0x807CF398
 	.sdata2     start:0x807D6EE8 end:0x807D6F08
 
+Game/Util/MathUtil.cpp:
+	.text       start:0x8003B1A0 end:0x80040B90
+	.sdata2     start:0x807D6F78 end:0x807D7068
+
+Game/Util/MtxUtil.cpp:
+	.text       start:0x800447A0 end:0x80047510
+	.data       start:0x8065E8E8 end:0x8065E9D8
+
 Game/AreaObj/AreaObj.cpp:
 	.text       start:0x80070650 end:0x80071060
 	.data       start:0x80669FE8 end:0x8066A088

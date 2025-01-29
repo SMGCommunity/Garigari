@@ -13,6 +13,9 @@ typedef f32 (*MtxPtr)[4];
 #define MTXDegToRad(deg) ((deg) * 0.01745329252f)
 #define MTXRadToDeg(rad) ((rad) * 57.29577951f)
 
+void PSMTXConcat(const Mtx, const Mtx, Mtx);
+u32 PSMTXInverse(const Mtx, Mtx);
+
 #ifdef __cplusplus
 }
 #endif
