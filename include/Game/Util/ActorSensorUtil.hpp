@@ -7,7 +7,7 @@ class LiveActor;
 class HitSensor;
 
 namespace MR {
-    void setSensorFollowPos(LiveActor *, const char *, const TVec3f &);
+    void setSensorFollowPos(LiveActor *, const char *, const TVec3f *);
     void setSensorFollowMtx(LiveActor *, const char *, MtxPtr);
     HitSensor* addHitSensor(LiveActor *, const char *, u32, u16, f32, const TVec3f &);
     HitSensor* addHitSensorBinder(LiveActor *, const char *, u16, f32, const TVec3f &);
