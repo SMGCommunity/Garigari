@@ -90,18 +90,30 @@ namespace MR {
         return ((-(((sq * val) * sq) - 3.0f) * (sq * val)) * 0.5f);
     }*/
 
-    /*
-    bool isSameMtxRot(MtxPtr a, MtxPtr b) {
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 4; j++) {
-                if (a[i][j] != b[i][j]) {
-                    return false;
-                }
+    bool isSameMtx(MtxPtr a, MtxPtr b) {
+        f32* a2 = (f32*)a;
+        f32* b2 = (f32*)b;
+        for (u32 i = 0; i < 12; a2++, b2++, i++) {
+            if (*a2 != *b2) {
+                return false;
             }
         }
+        return true; 
+    }
 
-        return true;
-    }*/
+    bool isSameMtxRot(MtxPtr a, MtxPtr b) {
+        f32* a2 = (f32*)a;
+        f32* b2 = (f32*)b;
+        for (u32 i = 0; i < 12; a2++, b2++, i++) {
+            if ((i % 4) == 3) {
+                continue;
+            }
+            if (*a2 != *b2) {
+                return false;
+            }
+        }
+        return true; 
+    }
 
     MtxPtr tmpMtxScale(f32 x, f32 y, f32 z) {
         tmpmtx_sc[0][0] = x;

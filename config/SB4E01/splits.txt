@@ -21,6 +21,16 @@ Game/Util/ActorInitUtil.cpp:
 	.data       start:0x8065CD24 end:0x8065CFB8
 	.sdata2     start:0x807D6CE0 end:0x807D6CF0
 
+Game/Util/ActorSensorUtil.cpp:
+	.text       start:0x80014680 end:0x800171F0
+	.data       start:0x8065CFE0 end:0x8065CFE8
+	.sdata2     start:0x807D6D60 end:0x807D6D68
+
+Game/Util/ActorShadowUtil.cpp:
+	.text       start:0x800171F0 end:0x80019D60
+	.data       start:0x8065CFE8 end:0x8065D278
+	.sdata2     start:0x807D6D68 end:0x807D6D88
+
 Game/Util/JMapUtil.cpp:
 	.text       start:0x8002BD90 end:0x8002D410
 	.data       start:0x8065DE68 end:0x8065E118
@@ -34,6 +44,11 @@ Game/Util/MathUtil.cpp:
 Game/Util/MtxUtil.cpp:
 	.text       start:0x800447A0 end:0x80047510
 	.data       start:0x8065E8E8 end:0x8065E9D8
+
+Game/Util/NerveUtil.cpp:
+	.text       start:0x80047A50 end:0x80048580
+	.rodata     start:0x80645260 end:0x80645268
+	.sdata2     start:0x807D7068 end:0x807D7070
 
 Game/AreaObj/AreaObj.cpp:
 	.text       start:0x80070650 end:0x80071060
