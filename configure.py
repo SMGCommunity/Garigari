@@ -354,6 +354,8 @@ config.libs = [
         [
             Object(NonMatching, "Game/Util/ActorInitUtil.cpp"),
             Object(NonMatching, "Game/Util/JMapUtil.cpp"),
+            Object(NonMatching, "Game/Util/MathUtil.cpp"),
+            Object(NonMatching, "Game/Util/MtxUtil.cpp"),
         ]
     ),
 ]

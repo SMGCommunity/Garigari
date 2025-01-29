@@ -24,3 +24,9 @@ namespace JMathInlineVEC {
     void PSVECAdd(const Vec *, const Vec *, Vec *);
     #endif
 };
+
+f32 JMACosRadian(f32);
+f32 JMASinRadian(f32);
+
+f32 JMACosDegree(f32);
+f32 JMASinDegree(f32);
