@@ -37,7 +37,7 @@ void HitSensorInfo::update() {
             v20.set(mFollowPos->x, mFollowPos->y, mFollowPos->z);
         }
         else {
-            v20.set(mSensor->mHostActor->mPosition);
+            v20.set<f32>(mSensor->mHostActor->mPosition);
         }
 
         MtxPtr mtx = mSensor->mHostActor->getBaseMtx();
@@ -52,7 +52,7 @@ void HitSensorInfo::update() {
         }
     }
 
-    mSensor->mOffset.set(v20);
+    mSensor->mOffset.set<f32>(v20);
 }
 
 void HitSensorInfo::doObjCol() {

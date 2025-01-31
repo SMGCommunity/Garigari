@@ -286,7 +286,7 @@ namespace MR {
                     sensorScale.x *= y;
                     sensorScale.y *= y;
                     sensorScale.z *= y;
-                    sensorInfo->_C.set(sensorScale);
+                    sensorInfo->_C.set<f32>(sensorScale);
                 }
             }
 
