@@ -226,6 +226,27 @@ cflags_game = [
     f"-DVERSION={version_num}",
 ]
 
+cflags_sdk = [
+    "-nodefaults",
+    "-proc gekko",
+    "-align powerpc",
+    "-enum int",
+    "-fp hardware",
+    "-Cpp_exceptions off",
+    "-O4,p",
+    "-inline auto",
+    '-pragma "cats off"',
+    '-pragma "warn_notinlined off"',
+    "-maxerrors 1",
+    "-nosyspath",
+    "-RTTI off",
+    "-enc SJIS",
+    "-i libs/RVL_SDK",
+    "-i libs/MSL_C",
+    f"-i build/{config.version}/include",
+    f"-DVERSION={version_num}",
+]
+
 # Debug flags
 if args.debug:
     # Or -sym dwarf-2 for Wii compilers
@@ -266,8 +287,8 @@ def GameLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
 def RVLLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     return {
         "lib": lib_name,
-        "mw_version": "GC/3.0",
-        "cflags": cflags_base,
+        "mw_version": "Wii/1.0",
+        "cflags": cflags_sdk,
         "progress_category": "sdk",
         "objects": objects,
     }
@@ -357,6 +378,13 @@ config.libs = [
             Object(NonMatching, "Game/Util/JMapUtil.cpp"),
             Object(NonMatching, "Game/Util/MathUtil.cpp"),
             Object(NonMatching, "Game/Util/MtxUtil.cpp"),
+        ]
+    ),
+
+    RVLLib(
+        "os",
+        [
+            Object(NonMatching, "RVL_SDK/os/OSFont.c"),
         ]
     ),
 ]
