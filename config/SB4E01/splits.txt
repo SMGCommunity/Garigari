@@ -151,12 +151,18 @@ Game/System/ScenarioDataParser.cpp:
 	.text       start:0x804CB460 end:0x804CC010
 	.data       start:0x806FC2E0 end:0x806FC3B8
 
-libs/RVL_SDK/dvd/dvdfs.c:
+RVL_SDK/os/OSFont.c:
+	.text       start:0x805B8CE0 end:0x805B99D0
+	.data       start:0x8070D5B0 end:0x8070E0C0
+	.sdata      start:0x807D0988 end:0x807D0990
+	.sbss       start:0x807D66A0 end:0x807D66B0
+
+RVL_SDK/dvd/dvdfs.c:
 	.text       start:0x805D1340 end:0x805D1D40
 	.data       start:0x8071BA50 end:0x8071BBF0
 	.sbss       start:0x807D68C0 end:0x807D68E0
 
-libs/RVL_SDK/dvd/dvd.c:
+RVL_SDK/dvd/dvd.c:
 	.text       start:0x805D1D40 end:0x805D6B60
 	.data       start:0x8071BBF0 end:0x8071C038
 	.sbss       start:0x807D68E0 end:0x807D6978
