@@ -99,10 +99,10 @@ namespace MR {
     bool isSensorItem(const HitSensor *);
     bool isSensorGhost(const HitSensor *);
     bool tryGetItem(HitSensor *, HitSensor *);
-    TVec3f& getSensorPos(const HitSensor *);
-    TVec3f& getSensorPos(const LiveActor *, const char *);
-    TVec3f& tryGetSensorPos(const HitSensor *);
-    TVec3f& tryGetSensorPos(const LiveActor *, const char *);
+    const TVec3f* getSensorPos(const HitSensor *);
+    const TVec3f* getSensorPos(const LiveActor *, const char *);
+    const TVec3f* tryGetSensorPos(const HitSensor *);
+    const TVec3f* tryGetSensorPos(const LiveActor *, const char *);
     void calcSensorDirection(TVec3f *, const HitSensor *, const HitSensor *);
     void calcSensorDirectionNormalize(TVec3f *, const HitSensor *, const HitSensor *);
     void fn_80015D50(f32 *, f32 *, const HitSensor *, const HitSensor *, const TVec3f &);

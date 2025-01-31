@@ -69,6 +69,7 @@ namespace JGeometry {
 
         TVec3() {}
 
+        template <typename T>
         void set(const TVec3<f32>& rVec) {
             x = rVec.x;
             y = rVec.y;
@@ -83,6 +84,10 @@ namespace JGeometry {
 
         void setTrans(MtxPtr mtx) {
             set((*mtx)[3], (*mtx)[7], (*mtx)[11]);
+        }
+
+        void setPS(const TVec3<f32>& rVec) {
+            setTVec3f(&rVec.x, &x);
         }
 
         void add(const TVec3<f32> &b) {
