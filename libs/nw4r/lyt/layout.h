@@ -62,7 +62,13 @@ namespace nw4r {
             virtual void Animate(u32);
             virtual void SetTagProcessor(ut::TagProcessorBase<wchar_t> *);
 
+            const ut::Rect GetLayoutRect() const;
+
             static Pane* BuildPaneObj(s32, const void *, const ResBlockSet &);
+
+            GroupContainer* GetGroupContainer() const { 
+                return mpGroupContainer; 
+            }
 
             static MEMAllocator* mspAllocator;
 

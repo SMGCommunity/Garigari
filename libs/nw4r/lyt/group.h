@@ -30,6 +30,10 @@ namespace nw4r {
                  return mName;
             }
 
+            PaneLinkList& GetPaneList() { 
+                return mPaneLinkList;
+            }
+
             ut::LinkListNode mLink;
             PaneLinkList mPaneLinkList;
             char mName[17];

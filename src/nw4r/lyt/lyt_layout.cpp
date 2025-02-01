@@ -1,13 +1,39 @@
 #include "lyt/animation.h"
 #include "lyt/common.h"
+#include "lyt/group.h"
 #include "lyt/layout.h"
 #include "lyt/pane.h"
 #include "lyt/resources.h"
 #include "lyt/util.h"
 #include "revolution/mem/allocator.h"
+#include "ut/Rect.h"
 
 namespace nw4r {
     namespace lyt {
+        namespace {
+            bool IsIncludeAnimationGroupRef(GroupContainer *pGroupContainer, const AnimationGroupRef *const groupRefs, u16 bindGroupNum, bool bDescendingBind, Pane *pTargetPane) {
+                for (u16 grpIdx = 0; grpIdx < bindGroupNum; ++grpIdx) {
+                    Group* const pGroup = pGroupContainer->FindGroupByName(groupRefs[grpIdx].GetName());
+                    PaneLinkList& paneList = pGroup->GetPaneList();
+                    for (PaneLinkList::Iterator it = paneList.GetBeginIter(); it != paneList.GetEndIter(); ++it) {
+                        if (it->mTarget == pTargetPane) {
+                            return true;
+                        }
+
+                        if (bDescendingBind) {
+                            for (Pane* pParentPane = pTargetPane->GetParent(); pParentPane; pParentPane = pParentPane->GetParent()) {
+                                if (it->mTarget == pParentPane) {
+                                    return true;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                return false;
+            }
+        };
+
         MEMAllocator* Layout::mspAllocator = nullptr;
 
         Layout::Layout() : mpRootPane(nullptr), mpGroupContainer(nullptr), mLayoutSize(0.0f, 0.0f) {
@@ -170,7 +196,6 @@ namespace nw4r {
             UnbindAnimation(0);
         }
 
-        /*
         bool Layout::BindAnimationAuto(const AnimResource &animRes, ResourceAccessor *pResAcsr) {
             if (mpRootPane == nullptr) {
                 return false;
@@ -206,17 +231,37 @@ namespace nw4r {
             }
 
             const u16 animShareInfoNum = animRes.GetAnimationShareInfoNum();
-            if (animShareInfoNum < 0) {
+            if (animShareInfoNum > 0) {
                 const AnimationShareInfo* const animShareInfoAry = animRes.GetAnimationShareInfoArray();
 
                 for (int i = 0; i < animShareInfoNum; ++i) {
-                    Pane* const pSrcPane = mpRootPane->FindPaneByName(animShareInfoAry[i].GetSrcPaneName(), false);
-                    
+                    Pane* const pSrcPane = mpRootPane->FindPaneByName(animShareInfoAry[i].GetSrcPaneName(), true);
+                    detail::AnimPaneTree animPaneTree(pSrcPane, animRes);
+                    if (!animPaneTree.IsEnabled()) {
+                        continue;
+                    }
 
+                    Group* const pGroup = GetGroupContainer()->FindGroupByName(animShareInfoAry[i].GetTargetGroupName());
+                    PaneLinkList& paneList = pGroup->GetPaneList();
+                    u32 animIdx = 0;
+                    for (PaneLinkList::Iterator it = paneList.GetBeginIter(); it != paneList.GetEndIter(); ++it, ++animIdx) {
+                        if (it->mTarget != pSrcPane) {
+                            if (bindGroupNum > 0) {
+                                const bool bInclude = IsIncludeAnimationGroupRef(mpGroupContainer, animRes.GetGroupArray(), bindGroupNum, animRes.IsDescendingBind(), it->mTarget);
+
+                                if (!bInclude) {
+                                    continue;
+                                }
+                            }
+
+                            animPaneTree.Bind(this, it->mTarget, pResAcsr);
+                        }
+                    }
                 }
             }
+
+            return true;
         }
-        */
 
         void Layout::SetAnimationEnable(AnimTransform *pAnimTrans, bool bEnable) {
             if (mpRootPane != nullptr) {
@@ -248,6 +293,12 @@ namespace nw4r {
             mpRootPane->Animate(opt);
         }
 
-        
+        const ut::Rect Layout::GetLayoutRect() const {
+            return ut::Rect(- mLayoutSize.width / 2, mLayoutSize.height / 2, mLayoutSize.width / 2, - mLayoutSize.height / 2);
+        }
+
+        // have to do more headers to decomp these two
+        // nw4r::lyt::Layout::SetTagProcessor
+        // nw4r::lyt::Layout::BuildPaneObj
     };
 };

@@ -12,6 +12,7 @@ namespace nw4r {
         class AnimationLink;
         class ResourceAccessor;
         class Group;
+        class Layout;
 
         namespace res {
             struct AnimationBlock;
@@ -81,6 +82,35 @@ namespace nw4r {
             const res::AnimationBlock* mpResBlock;
             const res::AnimationTagBlock* mpTagBlock;
             const res::AnimationShareBlock* mpShareBlock;
+        };
+
+        namespace detail {
+            class AnimPaneTree {
+            public:
+                AnimPaneTree() {
+                    Init();
+                }
+
+                AnimPaneTree(Pane *pTargetPane, const AnimResource &animRes) {
+                    Init();
+                    Set(pTargetPane, animRes);
+                }
+
+                bool IsEnabled() const { 
+                    return mLinkNum > 0; 
+                }
+
+                AnimTransform* Bind(Layout *, Pane *, ResourceAccessor *) const;
+
+                void Set(Pane *, const AnimResource &);
+                void Init();
+
+                AnimResource mAnimRes;
+                u16 mAnimPaneIdx;
+                u16 mLinkNum;
+                u16 mAnimMatIdxs[9];
+                u8 mAnimMatCnt;
+            };
         };
     };
 };
