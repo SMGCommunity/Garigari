@@ -26,6 +26,10 @@ namespace nw4r {
 
             virtual ~Group();
 
+            const char* GetName() const {
+                 return mName;
+            }
+
             ut::LinkListNode mLink;
             PaneLinkList mPaneLinkList;
             char mName[17];
@@ -44,6 +48,8 @@ namespace nw4r {
             ~GroupContainer();
 
             void AppendGroup(Group *);
+
+            Group* FindGroupByName(const char *);
 
             GroupList mGroupList;
         };

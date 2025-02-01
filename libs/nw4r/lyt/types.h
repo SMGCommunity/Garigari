@@ -54,5 +54,34 @@ namespace nw4r {
         #else
         typedef ut::LinkList<AnimationLink, 0> AnimationList;
         #endif
+
+        struct AnimationGroupRef {
+            AnimationGroupRef() : flag(0) {
+
+            }
+
+            const char* GetName() const { 
+                return name;
+            }
+
+            char name[17];
+            u8 flag;
+            u8 padding[2];
+        };
+
+        struct AnimationShareInfo {
+
+            const char* GetSrcPaneName() const { 
+                return srcPaneName; 
+            }
+
+            const char* GetTargetGroupName() const {
+                return targetGroupName;
+            }
+
+            char srcPaneName[17];
+            char targetGroupName[17];
+            u8 padding[2];
+        };
     };
 };

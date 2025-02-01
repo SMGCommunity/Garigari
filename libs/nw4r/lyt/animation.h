@@ -9,6 +9,10 @@ namespace nw4r {
     namespace lyt {
         class Pane;
         class Material;
+        class AnimationLink;
+        class ResourceAccessor;
+        class Group;
+
         namespace res {
             struct AnimationBlock;
         };
@@ -35,8 +39,8 @@ namespace nw4r {
             AnimTransformBasic();
 
             virtual ~AnimTransformBasic();
-            virtual void SetResource(const res::AnimationBlock *, ResourceAccessor *) = 0;
-            virtual void SetResource(const res::AnimationBlock *, ResourceAccessor *, u16) = 0;
+            virtual void SetResource(const res::AnimationBlock *, ResourceAccessor *);
+            virtual void SetResource(const res::AnimationBlock *, ResourceAccessor *, u16);
             virtual void Bind(Pane *, bool, bool);
             virtual void Bind(Material *, bool);
             virtual void Animate(u32, Pane *);
@@ -50,6 +54,28 @@ namespace nw4r {
         class AnimResource {
         public:
             AnimResource();
+
+            explicit AnimResource(const void *anmResBuf) {
+                Set(anmResBuf);
+            }
+
+            void Set(const void *);
+
+            const res::AnimationBlock* GetResourceBlock() const {
+                return mpResBlock;
+            }
+
+            bool IsDescendingBind() const;
+            
+            u16 GetGroupNum() const;
+            const AnimationGroupRef* GetGroupArray() const;
+
+            u16 GetAnimationShareInfoNum() const;
+            const AnimationShareInfo* GetAnimationShareInfoArray() const;
+
+            u16 CalcAnimationNum(Pane*, bool) const;
+            u16 CalcAnimationNum(Material *) const;
+            u16 CalcAnimationNum(Group *, bool) const;
 
             const res::BinaryFileHeader* mpFileHeader;
             const res::AnimationBlock* mpResBlock;
