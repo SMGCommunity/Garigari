@@ -1,0 +1,10 @@
+#ifndef NEW_H
+#define NEW_H
+
+#include "size_t.h"
+
+void* operator new(size_t, void *ptr) {
+    return ptr;
+}
+
+#endif // NEW_H

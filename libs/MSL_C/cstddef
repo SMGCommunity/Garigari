@@ -1,0 +1,15 @@
+#ifndef CSTDDEF_H
+#define CSTDDEF_H
+
+#include "ansi_parms.h"
+#include "size_t.h"
+
+#ifndef _MSL_OFFSETOF
+	#define _MSL_OFFSETOF(type, member)	((__std(size_t)) &(((type *) 0)->member))
+#endif
+
+#ifndef offsetof
+	#define offsetof(type, member) _MSL_OFFSETOF(type, member)
+#endif
+
+#endif // CSTDDEF_H

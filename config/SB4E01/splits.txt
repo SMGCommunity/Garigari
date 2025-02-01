@@ -151,6 +151,15 @@ Game/System/ScenarioDataParser.cpp:
 	.text       start:0x804CB460 end:0x804CC010
 	.data       start:0x806FC2E0 end:0x806FC3B8
 
+nw4r/ut/ut_LinkList.cpp:
+	.text       start:0x8059D480 end:0x8059D5C0
+
+nw4r/lyt/lyt_layout.cpp:
+	.text       start:0x805A81C0 end:0x805A9220
+	.data       start:0x8070C428 end:0x8070C468
+	.sbss       start:0x807D65F0 end:0x807D65F8
+	.sdata2     start:0x807E2640 end:0x807E2648
+
 RVL_SDK/os/OSFont.c:
 	.text       start:0x805B8CE0 end:0x805B99D0
 	.data       start:0x8070D5B0 end:0x8070E0C0
