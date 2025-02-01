@@ -3,6 +3,7 @@
 #include "lyt/layout.h"
 #include "lyt/pane.h"
 #include "lyt/resources.h"
+#include "lyt/util.h"
 #include "revolution/mem/allocator.h"
 
 namespace nw4r {
@@ -127,11 +128,92 @@ namespace nw4r {
             return true;
         }
 
-        /*
         AnimTransform* Layout::CreateAnimTransform() {
-            const AnimTransformBasic* pAnimTrans = NewObj<AnimTransformBasic>();
+            AnimTransformBasic *const pAnimTrans = NewObj<AnimTransformBasic>();
             if (pAnimTrans != nullptr) {
-                mAnimTransList.Push
+                mAnimTransList.PushBack(pAnimTrans);
+            }
+            return pAnimTrans;
+        }
+
+        AnimTransform* Layout::CreateAnimTransform(const void *animResBuf, ResourceAccessor *pResAcsr) {
+            return CreateAnimTransform(AnimResource(animResBuf), pResAcsr);
+        }
+
+        AnimTransform* Layout::CreateAnimTransform(const AnimResource &animRes, ResourceAccessor *pResAcsr) {
+            const res::AnimationBlock* const pAnimBlock = animRes.GetResourceBlock();
+
+            if (pAnimBlock == nullptr) {
+                return nullptr;
+            }
+
+            AnimTransform* const pAnimTrans = CreateAnimTransform();
+            if (pAnimTrans != nullptr) {
+                pAnimTrans->SetResource(pAnimBlock, pResAcsr);
+            }
+            return pAnimTrans;
+        }
+
+        void Layout::BindAnimation(AnimTransform *pAnimTrans) {
+            if (mpRootPane != nullptr) {
+                mpRootPane->BindAnimation(pAnimTrans, true, false);
+            }
+        }
+
+        void Layout::UnbindAnimation(AnimTransform *pAnimTrans) {
+            if (mpRootPane != nullptr) {
+                mpRootPane->UnbindAnimation(pAnimTrans, true);
+            }
+        }
+
+        void Layout::UnbindAllAnimation() {
+            UnbindAnimation(0);
+        }
+
+        /*
+        bool Layout::BindAnimationAuto(const AnimResource &animRes, ResourceAccessor *pResAcsr) {
+            if (mpRootPane == nullptr) {
+                return false;
+            }
+
+            if (!animRes.GetResourceBlock()) {
+                return false;
+            }
+
+            AnimTransform *const pAnimTrans = CreateAnimTransform();
+            const u16 bindGroupNum = animRes.GetGroupNum();
+            u16 animNum = 0;
+
+            if (bindGroupNum == 0) {
+                animNum = animRes.GetResourceBlock()->animContNum;
+                pAnimTrans->SetResource(animRes.GetResourceBlock(), pResAcsr, animNum);
+                const bool bRecursive = true;
+                mpRootPane->BindAnimation(pAnimTrans, bRecursive, true);
+            }
+            else {
+                const AnimationGroupRef* const groupRefs = animRes.GetGroupArray();
+                for (int grpIdx = 0; grpIdx < bindGroupNum; ++grpIdx) {
+                    Group *const pGroup = mpGroupContainer->FindGroupByName(groupRefs[grpIdx].GetName());
+                    animNum += animRes.CalcAnimationNum(pGroup, animRes.IsDescendingBind());
+                }
+
+                pAnimTrans->SetResource(animRes.GetResourceBlock(), pResAcsr, animNum);
+
+                for (int grpIdx = 0; grpIdx < bindGroupNum; ++grpIdx) {
+                    Group* const pGroup = mpGroupContainer->FindGroupByName(groupRefs[grpIdx].GetName());
+                    nw4r::lyt::BindAnimation(pGroup, pAnimTrans, animRes.IsDescendingBind(), true);
+                }
+            }
+
+            const u16 animShareInfoNum = animRes.GetAnimationShareInfoNum();
+            if (animShareInfoNum < 0) {
+                const AnimationShareInfo* const animShareInfoAry = animRes.GetAnimationShareInfoArray();
+
+                for (int i = 0; i < animShareInfoNum; ++i) {
+                    Pane* const pSrcPane = mpRootPane->FindPaneByName(animShareInfoAry[i].GetSrcPaneName(), false);
+                    
+
+                }
             }
         }
         */

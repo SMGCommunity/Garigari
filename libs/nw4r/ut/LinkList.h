@@ -127,6 +127,14 @@ namespace nw4r {
                     return Iterator(&mNode);
                 }
 
+                void PushFront(pointer p) {
+                    Insert(GetBeginIter(), p);
+                }
+
+                void PushBack(pointer p)  {
+                    Insert(GetEndIter(), p);
+                }
+
                 Iterator Erase(pointer p);
                 Iterator Erase(Iterator it);
                 Iterator Erase(Iterator, Iterator);
@@ -211,6 +219,18 @@ namespace nw4r {
 
             }
 
+            Iterator Insert(Iterator it,pointer p) { 
+                return Iterator(Base::Insert(it.it_, GetNodeFromPointer(p)));
+            }
+
+            void PushFront(pointer p) { 
+                (void)Insert(GetBeginIter(), p);
+            }
+
+            void PushBack(pointer p) { 
+                (void)Insert(GetEndIter(), p);
+            }
+ 
             Iterator GetBeginIter() { 
                 return Iterator(Base::GetBeginIter());
             }
@@ -229,6 +249,10 @@ namespace nw4r {
 
             static pointer GetPointerFromNode(Node* p){
                 return reinterpret_cast<pointer>(reinterpret_cast<IntPtr>(p)-TNOffset);
+            }
+
+            static Node* GetNodeFromPointer(pointer p) {
+                return reinterpret_cast<Node*>(reinterpret_cast<IntPtr>(p)+TNOffset);
             }
         };
     };
