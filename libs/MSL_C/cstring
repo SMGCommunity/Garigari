@@ -3,19 +3,17 @@
 
 #include "size_t.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+_MSL_BEGIN_NAMESPACE_STD
+_MSL_BEGIN_EXTERN_C
 
-size_t strlen(const char *);
-int strcmp(const char *, const char *);
+    size_t strlen(const char *);
+    int strcmp(const char *, const char *);
 
-char* strchr(const char *, int);
-char* strrchr(const char *, int);
-char* strstr(const char *, const char *);
+    char* strchr(const char *, int);
+    char* strrchr(const char *, int);
+    char* strstr(const char *, const char *);
 
-#ifdef __cplusplus
-}
-#endif
+_MSL_END_EXTERN_C
+_MSL_END_NAMESPACE_STD
 
 #endif // CSTRING_H

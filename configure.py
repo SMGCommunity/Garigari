@@ -247,6 +247,28 @@ cflags_sdk = [
     f"-DVERSION={version_num}",
 ]
 
+cflags_nw = [
+    "-nodefaults",
+    "-proc gekko",
+    "-align powerpc",
+    "-enum int",
+    "-fp hardware",
+    "-Cpp_exceptions off",
+    "-O4,p",
+    "-inline auto",
+    '-pragma "cats off"',
+    '-pragma "warn_notinlined off"',
+    "-maxerrors 1",
+    "-nosyspath",
+    "-RTTI off",
+    "-enc SJIS",
+    "-i libs/RVL_SDK",
+    "-i libs/MSL_C",
+    "-i libs/nw4r",
+    f"-i build/{config.version}/include",
+    f"-DVERSION={version_num}",
+]
+
 # Debug flags
 if args.debug:
     # Or -sym dwarf-2 for Wii compilers
@@ -290,6 +312,15 @@ def RVLLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
         "mw_version": "Wii/1.0",
         "cflags": cflags_sdk,
         "progress_category": "sdk",
+        "objects": objects,
+    }
+
+def NWLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
+    return {
+        "lib": lib_name,
+        "mw_version": "Wii/1.3",
+        "cflags": cflags_nw,
+        "progress_category": "nw4r",
         "objects": objects,
     }
 
@@ -387,6 +418,20 @@ config.libs = [
             Object(NonMatching, "RVL_SDK/os/OSFont.c"),
         ]
     ),
+
+    NWLib(
+        "nw4r_lyt",
+        [
+            Object(NonMatching, "nw4r/lyt/lyt_layout.cpp"),
+        ]
+    ),
+
+    NWLib(
+        "nw4r_ut",
+        [
+            Object(NonMatching, "nw4r/ut/ut_LinkList.cpp"),
+        ]
+    ),
 ]
 
 # Optional extra categories for progress tracking
@@ -394,6 +439,7 @@ config.libs = [
 config.progress_categories = [
     ProgressCategory("game", "Game Code"),
     ProgressCategory("sdk", "SDK Code"),
+    ProgressCategory("nw4r", "NintendoWare Code"),
 ]
 config.progress_each_module = args.verbose
 
