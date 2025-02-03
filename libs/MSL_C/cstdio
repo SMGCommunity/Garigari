@@ -4,12 +4,14 @@
 #include "ansi_parms.h"
 #include "size_t.h"
 
-_MSL_BEGIN_NAMESPACE_STD
-_MSL_BEGIN_EXTERN_C
+#ifdef __cplusplus
+extern "C" {
+#endif
 
-    int snprintf(char *, size_t, const char *, ...);
+int snprintf(char *, size_t, const char *, ...);
 
-_MSL_END_NAMESPACE_STD  
-_MSL_END_EXTERN_C
+#ifdef __cplusplus
+}
+#endif
 
 #endif // _MSL_CSTDIO

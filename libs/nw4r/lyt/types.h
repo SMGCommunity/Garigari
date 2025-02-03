@@ -11,6 +11,11 @@ namespace nw4r {
             typedef u16 ResU16;
             typedef s32 ResS32;
             typedef u32 ResU32;
+
+            template<typename T>
+            inline const T* ConvertOffsToPtr(const void *baseAddr, unsigned int offs) {
+                return reinterpret_cast<const T*>(static_cast<const u8*>(baseAddr) + offs);
+            }
         };
 
         struct Size {

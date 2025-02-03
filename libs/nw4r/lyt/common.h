@@ -26,6 +26,8 @@ namespace nw4r {
             inline s32 GetSignatureInt(const char sig[4]) {
                 return *reinterpret_cast<const s32*>(sig);
             }
+
+            bool EqualsResName(const char *, const char *);
         };
     };
 };
