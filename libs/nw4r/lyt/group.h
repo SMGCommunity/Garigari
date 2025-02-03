@@ -26,12 +26,20 @@ namespace nw4r {
 
             virtual ~Group();
 
+            void Init();
+
             const char* GetName() const {
                  return mName;
             }
 
             PaneLinkList& GetPaneList() { 
                 return mPaneLinkList;
+            }
+
+            inline void AppendPane(Pane *);
+
+            bool IsUserAllocated() const {
+                return mbUserAllocated;
             }
 
             ut::LinkListNode mLink;
@@ -49,6 +57,10 @@ namespace nw4r {
 
         class GroupContainer {
         public:
+            GroupContainer() {
+
+            }
+
             ~GroupContainer();
 
             void AppendGroup(Group *);

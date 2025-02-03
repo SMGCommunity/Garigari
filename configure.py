@@ -422,6 +422,7 @@ config.libs = [
     NWLib(
         "nw4r_lyt",
         [
+            Object(NonMatching, "nw4r/lyt/lyt_group.cpp"),
             Object(NonMatching, "nw4r/lyt/lyt_layout.cpp"),
         ]
     ),
