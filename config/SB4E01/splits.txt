@@ -154,6 +154,17 @@ Game/System/ScenarioDataParser.cpp:
 nw4r/ut/ut_LinkList.cpp:
 	.text       start:0x8059D480 end:0x8059D5C0
 
+nw4r/ut/ut_binaryFileFormat.cpp:
+	.text       start:0x8059D5C0 end:0x8059D634
+
+nw4r/ut/ut_CharStrmReader.cpp:
+	.text       start:0x8059D640 end:0x8059D760
+
+nw4r/ut/ut_TagProcessorBase.cpp:
+	.text       start:0x8059D760 end:0x8059E0C0
+	.data       start:0x8070C158 end:0x8070C180
+	.sdata2     start:0x807E25C0 end:0x807E25C8
+
 nw4r/lyt/lyt_group.cpp:
 	.text       start:0x805A7E60 end:0x805A81C0
 	.data       start:0x8070C418 end:0x8070C428

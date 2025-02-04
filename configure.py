@@ -431,6 +431,9 @@ config.libs = [
         "nw4r_ut",
         [
             Object(NonMatching, "nw4r/ut/ut_LinkList.cpp"),
+            Object(NonMatching, "nw4r/ut/ut_binaryFileFormat.cpp"),
+            Object(NonMatching, "nw4r/ut/ut_CharStrmReader.cpp"),
+            Object(NonMatching, "nw4r/ut/ut_TagProcessorBase.cpp"),
         ]
     ),
 ]
