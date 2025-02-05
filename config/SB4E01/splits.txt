@@ -89,6 +89,12 @@ Game/LiveActor/LiveActorGroupArray.cpp:
 	.text       start:0x802384F0 end:0x80238A70
 	.data       start:0x80695378 end:0x806953E0
 
+Game/LiveActor/LodCtrl.cpp:
+	.text       start:0x80238A70 end:0x802396E0
+	.data       start:0x806953E0 end:0x80695440
+	.sdata      start:0x807CFAC8 end:0x807CFAD0
+	.sdata2     start:0x807DC490 end:0x807DC4A0
+
 Game/LiveActor/Spine.cpp:
 	.text       start:0x80243150 end:0x80243330
 

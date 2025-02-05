@@ -5,4 +5,6 @@
 class ActorLightCtrl {
 public:
     void setLightType(s32);
+
+    void copy(const ActorLightCtrl *);
 };
