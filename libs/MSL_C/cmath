@@ -9,6 +9,8 @@ extern "C" {
 
 double fmod(double, double);
 
+double acos(double);
+
 #ifdef __cplusplus
 }
 #endif
