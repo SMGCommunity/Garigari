@@ -6,22 +6,49 @@
 #include "Util/LiveActorUtil.hpp"
 #include "Util/ModelUtil.hpp"
 #include "Util/FileUtil.hpp"
+#include "Util/ActorShadowUtil.hpp"
 #include <cstdio>
 
-namespace {
-    template<typename T>
-    void LodFuntionCall(LodCtrl *pCtrl, void (*pFunc)(LiveActor *, T), T arg) NO_INLINE {
-        pFunc(pCtrl->mHighModel, arg);
+// LodCtrl::LodCtrl
 
-        if (pCtrl->mMiddleModel) {
-            pFunc(pCtrl->mMiddleModel, arg);
-        }
+void LodCtrl::offSyncShadowHost() {
+    MR::offShadowVisibleSyncHostAll(mHighModel);
+    _1A = false;
+}
 
-        if (pCtrl->mLowModel) {
-            pFunc(pCtrl->mLowModel, arg);
-        }
+void LodCtrl::appear() {
+    MR::showModel(mHighModel);
+    mActorLightCtrl = mHighModel->mLightCtrl;
+
+    if (mMiddleModel != nullptr && !MR::isDead(mMiddleModel)) {
+        mMiddleModel->makeActorDead();
     }
-};
+
+    if (mLowModel != nullptr && !MR::isDead(mLowModel)) {
+        mLowModel->makeActorDead();
+    }
+
+    if (!_1A) {
+        MR::offShadowVisibleSyncHostAll(mHighModel);
+    }
+}
+
+void LodCtrl::kill() {
+    MR::showModel(mHighModel);
+    if (mMiddleModel != nullptr && !MR::isDead(mMiddleModel)) {
+        mMiddleModel->makeActorDead();
+    }
+
+    if (mLowModel != nullptr && !MR::isDead(mLowModel)) {
+        mLowModel->makeActorDead();
+    }
+
+    if (!_1A) {
+        MR::onShadowVisibleSyncHostAll(mHighModel);
+    }
+
+    mActorLightCtrl = nullptr;
+}
 
 void LodCtrl::validate() {
     appear();
@@ -111,6 +138,30 @@ void LodCtrl::setDistanceToMiddleAndLow(f32 middle, f32 low) {
     mDistToMiddle = middle;
     mDistToLow = low;
 }
+
+namespace {
+    template<typename T>
+    void LodFuntionCall(LodCtrl *pCtrl, void (*pFunc)(LiveActor *, T), T arg) NO_INLINE {
+        pFunc(pCtrl->mHighModel, arg);
+
+        if (pCtrl->mMiddleModel) {
+            pFunc(pCtrl->mMiddleModel, arg);
+        }
+
+        if (pCtrl->mLowModel) {
+            pFunc(pCtrl->mLowModel, arg);
+        }
+    }
+};
+
+void LodCtrl::setClippingTypeSphereContainsModelBoundingBox(f32 bounds) {
+    LodFuntionCall<f32>(this, MR::setClippingTypeSphereContainsModelBoundingBox, bounds);
+}
+
+void LodCtrl::setFarClipping(f32 farClip) {
+    LodFuntionCall<f32>(this, MR::setClippingFar, farClip);
+}
+
 
 void LodCtrl::showHighModel() {
     if (MR::isHiddenModel(mHighModel)) {
@@ -275,11 +326,3 @@ bool LodCtrlFunction::isExistLodLowModel(const char *pName) {
 
 /* unused but sitting in .data */
 static const char* sMiddle = "/ObjectData/%sMiddle.arc";
-
-void LodCtrl::setClippingTypeSphereContainsModelBoundingBox(f32 bounds) {
-    LodFuntionCall<f32>(this, MR::setClippingTypeSphereContainsModelBoundingBox, bounds);
-}
-
-void LodCtrl::setFarClipping(f32 farClip) {
-    LodFuntionCall<f32>(this, MR::setClippingFar, farClip);
-}
