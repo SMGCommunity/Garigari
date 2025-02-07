@@ -373,6 +373,7 @@ config.libs = [
     GameLib(
         "Map",
         [
+            Object(NonMatching, "Game/Map/CollisionCode.cpp"),
             Object(NonMatching, "Game/Map/RailGraph.cpp"),
             Object(NonMatching, "Game/Map/RailGraphEdge.cpp"),
             Object(NonMatching, "Game/Map/RailGraphIter.cpp"),

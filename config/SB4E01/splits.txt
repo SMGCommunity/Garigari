@@ -109,6 +109,10 @@ Game/LiveActor/RailRider.cpp:
 Game/LiveActor/Spine.cpp:
 	.text       start:0x80243150 end:0x80243330
 
+Game/Map/CollisionCode.cpp:
+	.text       start:0x802491D0 end:0x80249DD0
+	.data       start:0x80696640 end:0x80696968
+
 Game/Map/RailGraph.cpp:
 	.text       start:0x80265EE0 end:0x802662A0
 
