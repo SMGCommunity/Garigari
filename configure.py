@@ -372,6 +372,11 @@ config.libs = [
     GameLib(
         "Map",
         [
+            Object(NonMatching, "Game/Map/RailGraph.cpp"),
+            Object(NonMatching, "Game/Map/RailGraphEdge.cpp"),
+            Object(NonMatching, "Game/Map/RailGraphIter.cpp"),
+            Object(NonMatching, "Game/Map/RailGraphNode.cpp"),
+            Object(NonMatching, "Game/Map/RailPart.cpp"),
             Object(NonMatching, "Game/Map/StageSwitch.cpp"),
             Object(NonMatching, "Game/Map/SwitchSynchronizer.cpp"),
             Object(NonMatching, "Game/Map/SwitchWatcher.cpp"),
@@ -408,6 +413,7 @@ config.libs = [
             Object(NonMatching, "Game/Util/ActorInitUtil.cpp"),
             Object(NonMatching, "Game/Util/ActorSensorUtil.cpp"),
             Object(NonMatching, "Game/Util/JMapUtil.cpp"),
+            Object(NonMatching, "Game/Util/LiveActorUtil.cpp"),
             Object(NonMatching, "Game/Util/MathUtil.cpp"),
             Object(NonMatching, "Game/Util/MtxUtil.cpp"),
         ]

@@ -9,7 +9,10 @@ extern "C" {
 
 typedef struct Vec {
     f32 x, y, z;
-} Vec;
+} Vec, *VecPtr;
+
+f32 PSVECDistance(const Vec *, const Vec *);
+f32 C_VECMag(const Vec *);
 
 #ifdef __cplusplus
 }
