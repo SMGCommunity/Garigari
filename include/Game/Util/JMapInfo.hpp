@@ -34,6 +34,8 @@ public:
     template<typename T>
     const bool getValue(int, const char *, T *) const;
 
+    u32 getValueType(const char *) const;
+
     inline s32 getLength() const {
         return mData != nullptr ? mData->_0 : 0;
     }
