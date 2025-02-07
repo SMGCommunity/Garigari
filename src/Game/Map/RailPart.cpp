@@ -1,5 +1,5 @@
 #include "Map/RailPart.hpp"
-#include "Map/BezierRailPart.hpp"
+#include "Map/BezierRail.hpp"
 #include <JMath.hpp>
 
 RailPart::RailPart() {

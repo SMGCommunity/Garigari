@@ -365,6 +365,7 @@ config.libs = [
             Object(NonMatching, "Game/LiveActor/LiveActorGroup.cpp"),
             Object(NonMatching, "Game/LiveActor/LiveActorGroupArray.cpp"),
             Object(NonMatching, "Game/LiveActor/LodCtrl.cpp"),
+            Object(NonMatching, "Game/LiveActor/RailRider.cpp"),
             Object(NonMatching, "Game/LiveActor/Spine.cpp"),
         ]
     ),

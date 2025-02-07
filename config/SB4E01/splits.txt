@@ -101,6 +101,11 @@ Game/LiveActor/LodCtrl.cpp:
 	.sdata      start:0x807CFAC8 end:0x807CFAD0
 	.sdata2     start:0x807DC490 end:0x807DC4A0
 
+Game/LiveActor/RailRider.cpp:
+	.text       start:0x8023D280 end:0x8023DEE0
+	.sdata      start:0x807CFAD8 end:0x807CFAE0
+	.sdata2     start:0x807DC4E8 end:0x807DC500
+
 Game/LiveActor/Spine.cpp:
 	.text       start:0x80243150 end:0x80243330
 
