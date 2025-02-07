@@ -5,6 +5,22 @@
 #include "JMath.hpp"
 
 namespace JGeometry {
+    template<typename T>
+    class TUtil {
+    public:
+        static int epsilonEquals(T a1, T a2, T a3) {
+            int ret = 0;
+
+            a1 -= a2;
+
+            if (-a3 <= a1 && a1 <= a3) {
+                ret = 1;
+            }
+
+            return ret;
+        }
+    };
+
     template <typename T>
     struct TVec3 {
         T x;
@@ -17,12 +33,7 @@ namespace JGeometry {
             z = val;
         }
 
-        TVec3<T>& operator=(const TVec3<T>& b) {
-            set(b.x, b.y, b.z);
-            return *this;
-        }
-
-        void set (T x_, T y_, T z_) {
+        void set(T x_, T y_, T z_) {
             x = x_;
             y = y_;
             z = z_;
@@ -67,7 +78,17 @@ namespace JGeometry {
             z = y = x = val;
         }
 
-        TVec3() {}
+        inline TVec3() {}
+
+        TVec3& operator=(const TVec3& b) NO_INLINE {
+            setTVec3f(&b.x, &x);
+            return *this;
+        }
+
+        TVec3& operator-=(const TVec3 &op) NO_INLINE {
+            sub(op);
+            return *this;
+        }
 
         template <typename T>
         void set(const TVec3<f32>& rVec) {
@@ -82,6 +103,10 @@ namespace JGeometry {
             z = z_;
         }
 
+        void sub(const TVec3<f32> &b) {
+            JMathInlineVEC::PSVECSubtract(this, &b, this);
+        }
+
         void setTrans(MtxPtr mtx) {
             set((*mtx)[3], (*mtx)[7], (*mtx)[11]);
         }
@@ -92,6 +117,25 @@ namespace JGeometry {
 
         void add(const TVec3<f32> &b) {
             JMathInlineVEC::PSVECAdd(this, &b, this);
+        }
+        
+        f32 squareMag() const {
+            return JMathInlineVEC::PSVECSquareMag(this);
+        }
+
+        f32 dot(const TVec3 &) const;
+
+        bool epsilonEquals(const TVec3<f32> &a1, f32 a2) const {
+            bool ret = false;
+            if (JGeometry::TUtil<f32>::epsilonEquals(x, a1.x, a2)) {
+                if (JGeometry::TUtil<f32>::epsilonEquals(y, a1.y, a2)) {
+                    if (JGeometry::TUtil<f32>::epsilonEquals(z, a1.z, a2)) {
+                        ret = true;
+                    }
+                }
+            }
+
+            return ret;
         }
     };
 

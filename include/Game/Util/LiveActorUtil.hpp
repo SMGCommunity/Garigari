@@ -7,6 +7,7 @@ class LiveActor;
 class ResourceHolder;
 class HitSensor;
 class ModelObj;
+class LodCtrl;
 
 namespace MR {
     void initSensors(LiveActor *, const char *, const char *);
@@ -49,4 +50,8 @@ namespace MR {
     const char* createMiddleModelObjName(const LiveActor *);
 
     const char* getModelResName(const LiveActor *);
+
+    LodCtrl* createLodCtrlNPC(LiveActor *, const JMapInfoIter &);
+    LodCtrl* createLodCtrlPlanet(LiveActor *, const JMapInfoIter &, f32, s32);
+    
 };
