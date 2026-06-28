@@ -20,4 +20,18 @@ namespace MR {
         ctrl->setFarClipping(farClip);
         return ctrl;
     }
+
+
+
+
+
+    void setClippingTypeSphere(LiveActor* pActor, f32 clippingRadius);
+    void setClippingTypeSphere(LiveActor* pActor, f32 clippingRadius, const TVec3f* pClippingPos);
+    void setClippingTypeSphereContainsModelBoundingBox(LiveActor* pActor, f32 radiusExtension);
+    void setClippingFar50m(LiveActor* pActor);
+    void setClippingFar100m(LiveActor* pActor);
+    void setClippingFar200m(LiveActor* pActor);
+    void setClippingFar300m(LiveActor* pActor);
+    void setClippingFarMax(LiveActor* pActor);
+    void setClippingFar(LiveActor* pActor, f32 farDistance);
 };

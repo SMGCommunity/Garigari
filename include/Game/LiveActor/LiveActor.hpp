@@ -23,8 +23,10 @@ class Nerve;
 
 class LiveActor : public NameObj {
 public:
+    /// @brief Creates a new `LiveActor`.
+    /// @param pName A pointer to the null-terminated name of the actor.
+    LiveActor(const char* pName);
 
-    virtual ~LiveActor();
     virtual void init(const JMapInfoIter &);
     virtual void movement();
     virtual void calcAnim();
@@ -35,17 +37,17 @@ public:
     virtual void makeActorDead();
     virtual bool receiveMessage(u32, HitSensor *, HitSensor *);
     virtual MtxPtr getBaseMtx() const;
-    virtual MtxPtr getTakenMtx() const;
+    virtual MtxPtr getTakingMtx() const;
     virtual void startClipped();
     virtual void endClipped();
     virtual void control();
     virtual void calcAndSetBaseMtx();
     virtual void updateHitSensor(HitSensor *);
-    virtual void attackSensor(HitSensor *, HitSensor *);
+    virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
     virtual bool receiveMsgPush(HitSensor *, HitSensor *);
-    virtual bool receiveMsgPlayerAttack(HitSensor *, HitSensor *);
-    virtual bool receiveMsgEnemyAttack(HitSensor *, HitSensor *);
-    virtual bool receiveOtherMsg(HitSensor *, HitSensor *);
+    virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    virtual bool receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
     void setNerve(const Nerve *);
     bool isNerve(const Nerve *) const;
@@ -54,7 +56,7 @@ public:
     HitSensor* getSensor(const char *) const;
 
     void initModelManagerWithAnm(const char *, const char *, const char *, bool);
-    void initNerve(const Nerve *, s32);
+    void initNerve(const Nerve *, s32 = 0);
     void initHitSensor(s32);
     void initBinder(f32, f32, u32);
     void initRailRider(const JMapInfoIter &);

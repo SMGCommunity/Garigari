@@ -48,6 +48,18 @@ typedef int BOOL;
 #define NO_INLINE
 #endif
 
+#ifdef __MWERKS__
+#define ALWAYS_INLINE __attribute__((always_inline))
+#else
+#define ALWAYS_INLINE
+#endif
+
+#ifdef __MWERKS__
+#define __REGISTER register
+#else
+#define __REGISTER
+#endif
+
 #ifndef TRUE
 #define TRUE 1
 #endif

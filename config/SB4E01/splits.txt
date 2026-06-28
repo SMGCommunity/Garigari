@@ -179,6 +179,35 @@ Game/NameObj/NameObjHolder.cpp:
 Game/NameObj/NameObjRegister.cpp:
 	.text       start:0x80343E20 end:0x80343E50
 
+Game/Ride/TubeSlider.cpp:
+	.text       start:0x8044B940 end:0x8044E620
+	.ctors      start:0x8064485C end:0x80644860
+	.data       start:0x806EEF78 end:0x806EF2D8
+	.sbss       start:0x807D52A0 end:0x807D52D8
+	.sdata2     start:0x807E1068 end:0x807E1160
+
+Game/Ride/TubeSliderCoinCreator.cpp:
+	.text       start:0x8044E620 end:0x8044EA40
+	.data       start:0x806EF2D8 end:0x806EF390
+	.sdata2     start:0x807E1160 end:0x807E1180
+
+Game/Ride/TubeSliderCrystal.cpp:
+	.text       start:0x8044EA40 end:0x8044ED20
+	.ctors      start:0x80644860 end:0x80644864
+	.data       start:0x806EF390 end:0x806EF458
+	.sbss       start:0x807D52D8 end:0x807D52E0
+	.sdata2     start:0x807E1180 end:0x807E1188
+
+Game/Ride/TubeSliderDamageObjCreator.cpp:
+	.text       start:0x8044ED20 end:0x8044F810
+	.ctors      start:0x80644864 end:0x80644868
+	.data       start:0x806EF458 end:0x806EF628
+	.sbss       start:0x807D52E0 end:0x807D52F0
+	.sdata2     start:0x807E1188 end:0x807E11C0
+
+Game/Ride/TubeSliderFunction.cpp:
+	.text       start:0x8044FF90 end:0x80450D60
+
 Game/System/NerveExecutor.cpp:
 	.text       start:0x804C4BB0 end:0x804C4D20
 	.data       start:0x806FBE80 end:0x806FBE90

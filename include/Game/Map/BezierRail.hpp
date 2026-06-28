@@ -9,7 +9,7 @@ class RailPart;
 
 class BezierRailPart {
 public:
-    inline BezierRailPart(const TVec3f &a1, const TVec3f &a2, const TVec3f &a3, const TVec3f &a4) __attribute__((always_inline)) {
+    inline BezierRailPart(const TVec3f &a1, const TVec3f &a2, const TVec3f &a3, const TVec3f &a4) ALWAYS_INLINE {
         set(a1, a2, a3, a4);
      }
 

@@ -1,6 +1,7 @@
 #pragma once
 
-class Spine;
+#include <revolution.h>
+#include "LiveActor/Spine.hpp"
 
 class Nerve {
 public:
