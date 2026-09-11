@@ -265,7 +265,7 @@ namespace MR {
     void initCollisionPartsFromResourceHolder(LiveActor* pActor, const char* pCollisionName, HitSensor* pBodySensor, ResourceHolder* pResourceHolder, MtxPtr pMtx);
     CollisionParts* createCollisionPartsFromLiveActor(LiveActor* pActor, const char* pCollisionName, HitSensor* pBodySensor, CollisionScaleType collisionScaleType);
     CollisionParts* createCollisionPartsFromLiveActor(LiveActor* pActor, const char* pCollisionName, HitSensor* pBodySensor, MtxPtr pMtx, CollisionScaleType collisionScaleType);
-    CollisionParts* createCollisionPartsFromResourceHolder(ResourceHolder* pResourceHolder, const char* pCollisionName, HitSensor* pBodySensor, const TMtx34f& rMtx, CollisionScaleType collisionScaleType);
+    CollisionParts* createCollisionPartsFromResourceHolder(ResourceHolder* pResourceHolder, const char* pCollisionName, HitSensor* pBodySensor, const TPos3f& rMtx, MtxPtr pMtx, CollisionScaleType collisionScaleType);
     CollisionParts* createDashYoshiStepCollisionPartsFromResourceHolder(ResourceHolder* pResourceHolder, const char* pCollisionName, HitSensor* pBodySensor, MtxPtr pMtx, CollisionScaleType collisionScaleType);
     CollisionParts* tryCreateCollisionMoveLimit(LiveActor* pActor, HitSensor* pBodySensor);
     CollisionParts* tryCreateCollisionWaterSurface(LiveActor* pActor, HitSensor* pBodySensor);

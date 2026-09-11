@@ -21,6 +21,11 @@
 #include "Util/SceneUtil.hpp"
 #include "Util/SupportPlayUtil.hpp"
 
+extern "C" void fn_80051940();
+extern "C" void fn_80051910();
+extern "C" void fn_8004FE50();
+extern "C" f32 lbl_807E3130;
+
 namespace {
 	f32 one = 1.0f;
 	f32 thirty = 30.0f;
@@ -159,19 +164,20 @@ void TubeSlider::exeRideAir() {
 	if (MR::isFirstStep(this))
 		_118 = 0;
 
+	TVec3f* center;
 	bool isReachedGoal = MR::isRailReachedNearGoal(this, 50.0f);
 	if (!isReachedGoal) {
 		TVec3f railEndPos(0.0f);
 		MR::calcRailEndPos(&railEndPos, this);
 		f32 distToEnd = PSVECDistance(railEndPos, MR::getPlayerCenterPos());
-		TVec3f* center = MR::getPlayerCenterPos();
+		center = MR::getPlayerCenterPos();
 		f32 distToRailPos = PSVECDistance(MR::getRailPos(this), center);
 		if (distToEnd <= distToRailPos)
 			isReachedGoal = true;
 	}
 
 	if (isReachedGoal) {
-		// Missing function here
+		fn_80051940();
 
 		MR::endActorCameraProgrammable(this, -1, true);
 		MR::endBindAndPlayerJump(this, _10C, 0);
@@ -205,7 +211,13 @@ void TubeSlider::exeRideAir() {
 		}
 	}
 	else {
-		MR::startActionSound(this, "Wind", (s32)_E0, MR::clamp(0 + 600, 0, (s32)1000), -1); // TODO: There's a LOT of missing math here...
+		const f32 windSpeed = _E0;
+		const f32 absoluteWindSpeed = __fabsf(windSpeed);
+		s32 windBase = 50;
+		s32 windScale = 10;
+		s32 windVolume = static_cast<s32>(windBase + windScale * absoluteWindSpeed);
+		s32 windPitch = MR::clamp(static_cast<s32>(windSpeed * windScale) + 600, 0, 1000);
+		MR::startActionSound(this, "Wind", windVolume, windPitch, -1);
 
 		if (isNerve(&NrvTubeSlider::TubeSliderNrvRideFall::sInstance) && MR::isLessEqualStep(this, 10) && tryPlayerJump(false))
 			return;
@@ -245,6 +257,7 @@ void TubeSlider::exeRideAir() {
 		_10C.sub(_A4.scaleInline(0.88f));
 		_100.add(_10C);
 		_B0.setXYZDir(fro, _A4, up);
+		_B0.setTrans(_100);
 		TVec3f igh(_98);
 		if (MR::isGreaterEqualStep(this, 10)) {
 			TubeSlider::tryCalcInfo(nullptr, nullptr, nullptr, this, true);
@@ -301,25 +314,24 @@ void TubeSlider::exeRideLand() {
 
 	if (tryPlayerJump(true)) {
 		if (isDamaging) {
-			// TODO: MISSING FUNCTION
-			return;
+			fn_80051940();
 		}
+		return;
 	}
 
 	if (updateOnGround()) {
 		if (isDamaging) {
-			// TODO: MISSING FUNCTION
-			return;
+			fn_80051940();
 		}
+		return;
 	}
 
 	if (MR::isActionEnd(_90)) {
 		if (isDamaging) {
-			// TODO: MISSING FUNCTION
+			fn_80051940();
 		}
+		setNerve(&NrvTubeSlider::TubeSliderNrvRide::sInstance);
 	}
-
-	setNerve(&NrvTubeSlider::TubeSliderNrvRide::sInstance);
 }
 
 void TubeSlider::exeDamageDeath() {
@@ -362,6 +374,15 @@ void TubeSlider::updateHitSensor(HitSensor* sensor) {
 	}
 }
 
+#pragma push
+#pragma section sconst_type ".sdata2" ".sdata2"
+namespace {
+    const f32 ceilingRestitution[] = {0.6f};
+    const f32 wallRestitution[] = {0.2f};
+    const f32 wallResponse[] = {2.0f};
+}
+#pragma pop
+
 void TubeSlider::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 	if (!_90)
 		return;
@@ -382,7 +403,10 @@ void TubeSlider::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 		f32 dotA = scratch.dot(scratch2);
 		f32 dotB = _10C.dot(scratch2);
 
-		if (dotB < 0.0f && !(dotA >= 50.0f) && isOffSlide()) {
+		f32 wallAngle = 0.0f;
+		if (dotB < 0.0f && (50.0f <= dotA ||
+            TubeSliderFunction::isHitLeftWall(this, &wallAngle) ||
+            TubeSliderFunction::isHitRightWall(this, &wallAngle)) && isOffSlide()) {
 			MR::tryRumblePadMiddle(this, 0);
 			MR::shakeCameraNormal();
 			if (MR::isPlayerDead())
@@ -390,7 +414,7 @@ void TubeSlider::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 			else if (isNerve(&NrvTubeSlider::TubeSliderNrvRideDamage::sInstance))
 				setNerve(&NrvTubeSlider::TubeSliderNrvRideDamageLand::sInstance);
 			else {
-				// Missing mario function
+				fn_80051940();
 				setNerve(&NrvTubeSlider::TubeSliderNrvRideLand::sInstance);
 			}
 
@@ -400,27 +424,26 @@ void TubeSlider::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 		if (TubeSliderFunction::isUnknown2(this))
 		   return;
 
-		if (dotB > 0.0f && dotA < -50.0f && dotA < -30.0f) {
+		if (dotB > 0.0f && -50.0f < dotA && dotA < -30.0f) {
 			MR::tryRumblePadMiddle(this, 0);
 			MR::shakeCameraNormal();
-			_10C.sub(scratch2.scaleInline(dotB).scaleInline(1.0f + 0.6f));
-			// Missing mario function
+			_10C.sub(scratch2.scaleInline(dotB).scaleInline(1.0f + ceilingRestitution[0]));
+			fn_80051940();
 			setNerve(&NrvTubeSlider::TubeSliderNrvRideSlamCeiling::sInstance);
 			return;
 		}
-		if (dotA >= -30.0f && dotA < 50.0f) {
+		if (-30.0f <= dotA && dotA < 50.0f) {
 			MR::tryRumblePadMiddle(this, 0);
 			MR::shakeCameraNormal();
-			_10C.sub(_98.scaleInline(_10C.dot(_98)).scaleInline(1.0f + 0.2f));
-			// Missing mario function
+			const f32 wallDot = _10C.dot(_98);
+			_10C.sub(_98.scaleInline(wallDot).scaleInline(1.0f + wallRestitution[0]));
+			fn_80051940();
 			setNerve(&NrvTubeSlider::TubeSliderNrvRideSlamWall::sInstance);
 			return;
 		}
 	}
-	else {
-		if (MR::tryGetItem(pSender, pReceiver))
-			return;
-	}
+	if (MR::tryGetItem(pSender, pReceiver))
+		return;
 }
 
 bool TubeSlider::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
@@ -526,7 +549,7 @@ bool TubeSlider::tryEndSlide() {
 	vec3.scale(20.0f);
 	vec3.add(TVec3f(0.0f, 1.0f, 0.0f).scaleInline(10.0f));
 	MR::startBckPlayerJ("チューブスライダージャンプ");
-	// Unknown mario function here
+	fn_80051940();
 	MR::endActorCameraProgrammable(this, -1, true);
 	MR::endBindAndPlayerForceWeakGravityJumpInputOff(this, vec3);
 	MR::invalidateShadow(this, nullptr);
@@ -581,7 +604,8 @@ bool TubeSlider::tryPlayerFall() {
 }
 
 void TubeSlider::startDamage() {
-	// Two missing functions here
+	fn_80051910();
+	fn_8004FE50();
 	MR::tryRumblePadMiddle(this, 0);
 	MR::startLevelSoundPlayer("DamageS", -1, -1);
 	MR::startBckPlayerJ("チューブスライダーダメージ");
@@ -615,29 +639,31 @@ bool TubeSlider::updateOnGround() {
 		return true;
 	}
 
-	// Too much math...
-
-	if (isNerve(&NrvTubeSlider::TubeSliderNrvRide::sInstance) || isNerve(&NrvTubeSlider::TubeSliderNrvRideLand::sInstance)) {
-		// MORE MATH
-	}
-
-	// ActionSound I can't interpret
-
-	if (TubeSliderFunction::isGroundWood(this)) {
-		//MR::startActionSound "SlipWood"
-		return false;
-	}
-
-	if (TubeSliderFunction::isGroundIce(this)) {
-		//MR::startActionSound "SlipIce"
-		return false;
-	}
-
-	if (TubeSliderFunction::isGroundNormal(this)) {
-		TubeSliderFunction::isGroundNormal2(this);
-		//MR::startActionSound "SlipNormal"
-		return false;
-	}
+    s32 curveScale = 300;
+    s32 pitchScale = 10;
+    s32 slipScale = 23;
+    s32 curveVolume = MR::clamp(static_cast<s32>(curveScale * __fabsf(MR::getSubPadStickX(0))) + 60, 0, 1000);
+    s32 slipVolume = static_cast<s32>(_E0 * slipScale);
+    s32 slipPitch = MR::clamp(static_cast<s32>(_E0 * pitchScale) + 600, 0, 1000);
+    if (curveVolume > 170)
+        slipVolume -= static_cast<s32>(0.4f * curveVolume);
+    if (!isNerve(&NrvTubeSlider::TubeSliderNrvRide::sInstance) && !isNerve(&NrvTubeSlider::TubeSliderNrvRideLand::sInstance)) {
+        slipVolume *= 0.4f;
+        curveVolume = slipVolume;
+        curveVolume *= 0.4f;
+    }
+    if (curveVolume > 170)
+        MR::startActionSound(this, "SlipCurve", curveVolume, -1, -1);
+    if (TubeSliderFunction::isGroundWood(this)) {
+        MR::startActionSound(this, "SlipWood", slipVolume, slipPitch, -1);
+    } else if (TubeSliderFunction::isGroundIce(this)) {
+        MR::startActionSound(this, "SlipIce", slipVolume, slipPitch, -1);
+    } else {
+        if (!TubeSliderFunction::isGroundNormal(this))
+            TubeSliderFunction::isGroundNormal2(this);
+        MR::startActionSound(this, "SlipNormal", slipVolume, slipPitch, -1);
+    }
+    return false;
 }
 
 bool TubeSlider::updatePlayer() {
@@ -663,11 +689,12 @@ bool TubeSlider::updatePlayer() {
 	_E0 = MR::clamp(_E0, 20.0f, 45.0f);
 	MR::moveCoordAndFollowTrans(this, _E0);
 	TubeSliderFunction::updateTubeSliderInfo(this, true);
-	TVec3f front(1.0f, 0.0f, 0.0f);
-	TVec3f cross;
-	PSVECCrossProduct(front, _A4, &cross);
+	TVec3f cross(1.0f, 0.0f, 0.0f);
+	PSVECCrossProduct(railDir, _A4, &cross);
 	MR::normalizeOrZero(&cross);
-	_EC -= cross.dot(MR::getRailDirection(this)) * 7.0f;
+	f32 turnAmount = cross.dot(MR::getRailDirection(this));
+	turnAmount *= 7.0f;
+	_EC -= turnAmount;
 	TVec3f vec(0.0f);
 	_B0.getTrans(vec);
 	TVec3f vec2(0.0f);
@@ -677,35 +704,37 @@ bool TubeSlider::updatePlayer() {
 		TubeSliderFunction::getRailUpVec(&upVec, this);
 		TPos3f mtx;
 		mtx.identity();
-		f32 rot = (180.0f + _E0) * 0.017453292f;
+		f32 rot = (180.0f + mPlayerTheta) * 0.017453292f;
 		mtx.setRotate(-MR::getRailDirection(this), rot);
 		mtx.mult(upVec, upVec);
 		MR::turnVecToVecDegree(&vec3, vec3, upVec, 10.0f, TVec3f((int)0, (int)1, (int)0));
 	}
 	vec2.set(mPosition.subInline(vec3.scaleInline(TubeSliderFunction::getRadius(this) - _F4 - _F8)));
-	_11C += _E0 - vec2.subInline(vec).dot(cross);
+	TVec3f movement(vec2.subInline(vec));
+	_11C += _E0 - movement.dot(railDir);
 	MR::turnVecToVecDegree(&_98, _98, MR::getRailDirection(this), 1.0f, TVec3f((int)0, (int)1, (int)0));
-	if (!TubeSliderFunction::isUnknown2(this) && MR::getSubPadStickX(0)) {
+	if (!TubeSliderFunction::isUnknown2(this) && 0.0f != MR::getSubPadStickX(0)) {
 		_EC += (0.215f * MR::getSubPadStickX(0));
 		f32 range = 1.45f;
 		_EC = MR::clamp(_EC, -range, range);
 
-		if (MR::getSubPadStickX(0) < 0.0f) {
-			_F0 = MR::getInterpolateValue(0.3f, _F0, MR::clamp(_EC, -1.0f, 0.0f));
+		const f32 stick = MR::getSubPadStickX(0);
+		if (stick < 0.0f) {
+			_F0 = MR::getInterpolateValue(0.3f, _F0, MR::clamp(stick, -1.0f, 0.0f));
 		}
-		else if (MR::getSubPadStickX(0) > 0.0f) {
-			_F0 = MR::getInterpolateValue(0.3f, _F0, MR::clamp(_EC, 0.0f, 1.0f));
+		else if (stick > 0.0f) {
+			_F0 = MR::getInterpolateValue(0.3f, _F0, MR::clamp(stick, 0.0f, 1.0f));
 		}
 	}
 	else {
-		mPlayerTheta += _EC;
+		_EC *= 0.95f;
 		_F0 = MR::getInterpolateValue(0.3f, _F0, 0.0f);
 	}
 
+	mPlayerTheta += _EC;
 	if (isNerve(&NrvTubeSlider::TubeSliderNrvRide::sInstance)) {
-		f32 one = 1.0f;
-		one *= _F0;
-		f32 clamp = MR::clamp(one, -1.0f, 1.0f);
+		f32 blend = _F0 * one;
+		f32 clamp = MR::clamp(blend, -1.0f, 1.0f);
 		if (clamp > 0.0f) {
 			MR::setBckBlendWeight(1.0f - clamp, 0.0f, clamp);
 		}
@@ -715,10 +744,9 @@ bool TubeSlider::updatePlayer() {
 	}
 
 	bool hasHitWall = false;
-	f32 two = 2.0f;
+	const f32 two = 2.0f;
 	if (_EC <= 0.0f) {
-		bool missingfunc;
-		if (missingfunc) {
+		if (TubeSliderFunction::isHitLeftWall(this, &mPlayerTheta)) {
 			_EC = two;
 			mPlayerTheta += two;
 			MR::repeatDegree(&mPlayerTheta);
@@ -732,10 +760,9 @@ bool TubeSlider::updatePlayer() {
 		}
 	}
 	if (_EC >= 0.0f) {
-		bool missingfunc;
-		if (missingfunc) {
-			_EC = -two;
-			mPlayerTheta += -two;
+		if (TubeSliderFunction::isHitRightWall(this, &mPlayerTheta)) {
+			_EC = -wallResponse[0];
+			mPlayerTheta += _EC;
 			MR::repeatDegree(&mPlayerTheta);
 			_E0 *= 0.2f;
 			MR::tryRumblePadMiddle(this, 0);
@@ -749,7 +776,13 @@ bool TubeSlider::updatePlayer() {
 
 	updateMarioPos();
 
-	// Sound code here that I can't figure out :(
+	const f32 windSpeed = _E0;
+	const f32 absoluteWindSpeed = __fabsf(windSpeed);
+	s32 windBase = 50;
+		s32 windScale = 10;
+		s32 windVolume = static_cast<s32>(windBase + windScale * absoluteWindSpeed);
+	s32 windPitch = MR::clamp(static_cast<s32>(windSpeed * windScale) + 600, 0, 1000);
+	MR::startActionSound(this, "Wind", windVolume, windPitch, -1);
 
 	if (hasHitWall) {
 		return true;
@@ -799,8 +832,9 @@ void TubeSlider::updateMarioPos() {
 	TVec3f up(_98);
 	MR::makeAxisUpFront(&front, &up, _A4, up);
 	_B0.setXYZDir(front, _A4, up);
-	_F8 = MR::lerp(_F8, 0.0f, 0.5f); // The 0.0f isn't real?
-	_B0.setTrans(mPosition.subInline(_A4.scaleInline(TubeSliderFunction::getRadius(this) - _F4 - _F8)));
+	_F8 = MR::lerp(_F8, lbl_807E3130, 0.5f);
+	TVec3f adjustedPosition(mPosition.subInline(_A4.scaleInline(TubeSliderFunction::getRadius(this) - _F4 - _F8)));
+	_B0.setTrans(adjustedPosition);
 	updateCameraAndShadow(MR::getRailDirection(this));
 }
 
@@ -809,7 +843,7 @@ void TubeSlider::updateCameraAndShadow(const TVec3f& rDir) {
 	_B0.getTrans(mShadowDropPos);
 	mShadowDropPos.add(_A4.scaleInline(10.0f));
 	MR::turnVecToVecDegree(&_184, _184, rDir, 0.85f, TVec3f((int)0, (int)1, (int)0));
-	MR::vecBlend(_190, _190, &_A4, 0.03f);
+	MR::vecBlend(&_190, _190, _A4, 0.03f);
 	_19C = MR::lerp(_19C, *_1A4, 0.03f);
 	_178 = MR::getPlayerPos()->addInline(_190.scaleInline(_19C));
 	_16C = _178.subInline(_184.scaleInline(550.0f)).addInline(_190.scaleInline(*_1A0));

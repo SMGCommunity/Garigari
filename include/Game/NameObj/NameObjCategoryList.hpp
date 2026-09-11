@@ -15,9 +15,7 @@ namespace {
             mNameObjFunc = in_func;
         }
 
-        virtual void operator()(NameObj *pNameObj) {
-            (pNameObj->*mNameObjFunc)();
-        }
+        virtual void operator()(NameObj *pNameObj);
 
         T mNameObjFunc; // 0x4
     };
@@ -30,13 +28,23 @@ struct CategoryListInitialTable {
 
 class NameObjCategoryList {
 public:
+    NameObjCategoryList(u32, const CategoryListInitialTable*, func, bool, const char*);
+    NameObjCategoryList(u32, const CategoryListInitialTable*, func_const, bool, const char*);
+    ~NameObjCategoryList();
     class CategoryInfo {
     public:
         CategoryInfo();
         ~CategoryInfo();
 
-        MR::AssignableArray<NameObj*> mList;                    // 0x00
-        s32 _8;
+        // Composed array/count storage adapts CC0 Petari (fa77cd4d).
+        // Galaxy 2 offsets and nested destructor calls confirm this layout.
+        // ListStorage is provisional; no original Galaxy 2 type name is claimed.
+        struct ListStorage {
+            MR::AssignableArray<NameObj*> array;
+            s32 count;
+            ListStorage() : count(0) {}
+        };
+        ListStorage mList;                    // 0x00
         MR::FunctorBase* mFunc;                                 // 0x0C
         u32 mCheck;                                             // 0x10
     };

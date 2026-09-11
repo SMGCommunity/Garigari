@@ -8,12 +8,6 @@ class JMapIdInfo {
 public:
     JMapIdInfo() { }
 
-    
-    JMapIdInfo(const JMapIdInfo &rInfo) __attribute__((forceinline)) {
-        _0 = rInfo._0;
-        mZoneID = rInfo.mZoneID;
-    }
-
     JMapIdInfo(s32, const JMapInfoIter &);
 
     void operator=(const JMapIdInfo &rhs) {
@@ -30,6 +24,6 @@ public:
 };
 
 namespace MR {
-    JMapIdInfo& createJMapIdInfoFromGroupId(const JMapInfoIter &);
-    JMapIdInfo& createJMapIdInfoFromClippingGroupId(const JMapInfoIter &);
+    JMapIdInfo createJMapIdInfoFromGroupId(const JMapInfoIter &);
+    JMapIdInfo createJMapIdInfoFromClippingGroupId(const JMapInfoIter &);
 };

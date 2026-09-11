@@ -53,11 +53,12 @@ s32 ScenarioData::getNormalPowerStarNum() const  {
 
 // https://decomp.me/scratch/StsJC
 s32 ScenarioData::getPowerStarNum() const {
+    const char* key = "PowerStarId";
     s32 num = 0;
 
     for (s32 i = 1; i <= mScenarioData->getLength(); i++) {
         u32 id = 0;
-        getScenarioDataIter(i).getValue<u32>("PowerStarId", &id);
+        getScenarioDataIter(i).getValue<u32>(key, &id);
 
         if (id != 0) {
             num++;
@@ -133,37 +134,32 @@ u32 ScenarioData::getWorldNo() const {
     return worldNo;
 }
 
-// https://decomp.me/scratch/Kumo6
+namespace {
+    ALWAYS_INLINE s32 scenarioLength(const JMapData* data, bool empty) {
+        s32 result;
+        if (!empty) { result = data->_0; }
+        else { result = 0; }
+        return result;
+    }
+    ALWAYS_INLINE JMapInfoIter findScenario(JMapInfo* scenario, s32 scenarioNo) {
+        s32 i;
+        bool empty;
+        const char* key = "ScenarioNo";
+        for (i = 0; i < scenarioLength(scenario->mData, empty = scenario->mData == nullptr); i++) {
+            s32 no;
+            scenario->getValue<s32>(i, key, &no);
+            if (no == scenarioNo) {
+                JMapInfoIter found(scenario, i);
+                return JMapInfoIter(found);
+            }
+        }
+        JMapInfoIter end(scenario, !empty ? scenario->mData->_0 : 0);
+        return JMapInfoIter(end);
+    }
+}
+
 JMapInfoIter ScenarioData::getScenarioDataIter(s32 scenarioNo) const {
-    JMapInfo* scenario = mScenarioData;
-
-    for (s32 i = 0; ; i++) {
-        s32 v6 = scenario->mData ? scenario->mData->_0 : 0;
-
-        if (i >= v6) {
-            break;
-        }
-
-        s32 no;
-        mScenarioData->getValue<s32>(i, "ScenarioNo", &no);
-
-        if (no == scenarioNo) {
-            JMapInfoIter derp(scenario, i);
-            return JMapInfoIter(derp);
-        }
-    }
-
-    s32 v7;
-
-    if (mScenarioData->mData != nullptr) {
-        v7 = mScenarioData->mData->_0;
-    }
-    else {
-        v7 = 0;
-    }
-
-    JMapInfoIter iter(mScenarioData, v7);
-    return JMapInfoIter(iter);
+    return JMapInfoIter(findScenario(mScenarioData, scenarioNo));
 }
 
 bool ScenarioData::getScenarioString(const char *pName, s32 idx, const char **pOut) const {
@@ -233,8 +229,21 @@ GalaxyStatusAccessor ScenarioDataParser::makeAccessor(const char *pName) const {
     return GalaxyStatusAccessor(getScenarioData(pName));
 }
 
+// Only the fields used by this accessor have been recovered.
+struct ScenarioParserHolder {
+    u8 _0[0x124];
+    ScenarioDataParser* parser;
+};
+struct ScenarioParserRoot {
+    u8 _0[0x24];
+    ScenarioParserHolder* holder;
+};
+extern "C" ScenarioParserRoot* lbl_807D0DA4;
+
 namespace ScenarioDataFunction {
-    // ScenarioDataFunction::getScenarioDataParser
+    ScenarioDataParser* getScenarioDataParser() NO_INLINE {
+        return lbl_807D0DA4->holder->parser;
+    }
 
     bool getCurrentCommonLayers(const char *pName) {
         const char* stageName = MR::getCurrentStageName();

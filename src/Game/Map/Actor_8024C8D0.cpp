@@ -1,0 +1,75 @@
+#include <JGeometry/TMatrix.hpp>
+void* operator new(unsigned long);
+struct Actor4C8D0 {
+    const void* vtable;
+    u8 opaque[0x8c];
+    u8 flag90;
+    u8 pad91[3];
+    void* field94;
+    void* value98;
+    void** entries;
+    void* fieldA0;
+    void* fieldA4;
+    TMtx34f matrixA8, matrixD8, matrix108;
+    f32 field138, field13C, field140;
+    s32 field144;
+    u8 flag148, flag149, flag14A, flag14B;
+    void* helper14C;
+    void* helper150;
+    void* field154;
+    u8 flag158, flag159, flag15A, pad15B;
+    f32 field15C, field160, field164;
+    u8 flag168, flag169, pad16A[2];
+    void* field16C;
+    void* field170;
+};
+extern "C" {
+void* __ct__9LiveActorFPCc(void*, const char*);
+void* fn_8024C750(void*, const void*);
+void* fn_8024E3E0(void*);
+void* fn_8024E560(void*, void*);
+extern const void* lbl_80696E20[];
+extern const f32 lbl_807DC6D4;
+Actor4C8D0* fn_8024C8D0(Actor4C8D0* obj, s32 argument, u8 flag, const void* value, const char* name) {
+    __ct__9LiveActorFPCc(obj, name);
+    obj->vtable = lbl_80696E20;
+    obj->flag90 = flag;
+    obj->field94 = 0;
+    void* copy = ::operator new(4);
+    if (copy) copy = fn_8024C750(copy, value);
+    obj->value98 = copy;
+    obj->fieldA0 = 0;
+    obj->fieldA4 = 0;
+    obj->field138 = lbl_807DC6D4;
+    obj->field13C = lbl_807DC6D4;
+    obj->field140 = lbl_807DC6D4;
+    obj->field144 = argument;
+    obj->flag148 = 0;
+    obj->flag149 = 0;
+    obj->flag14A = 0;
+    obj->flag14B = 0;
+    void* helper = ::operator new(12);
+    if (helper) helper = fn_8024E3E0(helper);
+    obj->helper14C = helper;
+    void* other = ::operator new(20);
+    if (other) other = fn_8024E560(other, obj);
+    obj->helper150 = other;
+    obj->field154 = 0;
+    obj->flag158 = 1;
+    obj->flag159 = 0;
+    obj->flag15A = 0;
+    obj->field15C = lbl_807DC6D4;
+    obj->field160 = lbl_807DC6D4;
+    obj->field164 = lbl_807DC6D4;
+    obj->flag168 = 1;
+    obj->flag169 = 0;
+    obj->field16C = 0;
+    obj->field170 = 0;
+    obj->matrixA8.identity();
+    obj->matrixD8.identity();
+    obj->matrix108.identity();
+    obj->entries = new void*[7];
+    for (s32 i = 0; i < 7; ++i) obj->entries[i] = 0;
+    return obj;
+}
+}

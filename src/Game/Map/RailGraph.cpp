@@ -18,11 +18,12 @@ RailGraph::RailGraph() {
 }
 
 s32 RailGraph::addNode(const TVec3f &rVec) {
+    s32 cnt;
     RailGraphNode node;
     node._0.x = rVec.x;
     node._0.y = rVec.y;
     node._0.z = rVec.z;
-    s32 cnt = _8;
+    cnt = _8;
     _8 = cnt + 1;
 
     RailGraphNode* nodes = &mNodes[cnt];

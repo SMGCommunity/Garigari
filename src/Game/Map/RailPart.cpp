@@ -2,6 +2,14 @@
 #include "Map/BezierRail.hpp"
 #include <JMath.hpp>
 
+#pragma push
+#pragma section sconst_type ".sdata2" ".sdata2"
+namespace {
+    const f32 railParamMaximum[] = {1.0f};
+    const f32 railParamMinimum[] = {0.0f};
+}
+#pragma pop
+
 RailPart::RailPart() {
     mLinearRailPart = nullptr;
     mBezierRailPart = nullptr;
@@ -19,7 +27,8 @@ void RailPart::init(const TVec3f &a1, const TVec3f &a2, const TVec3f &a3, const 
 
 /* https://decomp.me/scratch/hV4jg */
 void RailPart::initForBezier(const TVec3f &a1, const TVec3f &a2, const TVec3f &a3, const TVec3f &a4) {
-    mBezierRailPart = new BezierRailPart(a1, a2, a3, a4);
+    mBezierRailPart = new BezierRailPart;
+    mBezierRailPart->set(a1, a2, a3, a4);
 }
 
 void RailPart::calcPos(TVec3f *pPos, f32 a1) const {
@@ -80,19 +89,19 @@ void LinearRailPart::set(const TVec3f &a1, const TVec3f &a2) {
 }
 
 f32 LinearRailPart::getNearestParam(const TVec3f &a1, f32 a2) const {
-    TVec3f vec(a1);
+    TVec3f vec(static_cast<const Vec&>(a1));
     vec -= mStartPoint;
     f32 squareMag = mStopPoint.squareMag();
     f32 dot = vec.dot(mStopPoint) / squareMag;
 
-    f32 v12 = 0.0f;
-    if (dot < 0.0f) {
-        return 0.0f;
+    f32 v12 = railParamMinimum[0];
+    if (dot < railParamMinimum[0]) {
+        return railParamMinimum[0];
     }
 
-    v12 = 1.0f;
-    if (dot > 1.0f) {
-        return 1.0f;
+    v12 = railParamMaximum[0];
+    if (dot > railParamMaximum[0]) {
+        return railParamMaximum[0];
     }
 
     return dot;

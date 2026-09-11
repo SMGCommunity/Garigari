@@ -1,0 +1,11 @@
+#include "LiveActor/LiveActor.hpp"
+struct Actor523B0 : LiveActor { u8 opaque90[0x14]; void* childA4; u8 opaqueA8[0x28]; void* childD0; };
+extern "C" {
+bool fn_800308A0(const void*);
+bool fn_8045E990(const void*);
+extern u32 lbl_807D358C;
+void fn_802523B0(Actor523B0* obj) {
+    if (fn_800308A0(obj->childD0) && fn_8045E990(obj->childA4))
+        obj->setNerve(reinterpret_cast<const Nerve*>(&lbl_807D358C));
+}
+}

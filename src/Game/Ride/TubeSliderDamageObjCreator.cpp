@@ -14,10 +14,25 @@
 #include "Util/MathUtil.hpp"
 #include "Util/RailUtil.hpp"
 #include "Util/SupportPlayUtil.hpp"
+#include "Util/PlayerUtil.hpp"
+
+extern "C" f32 PSVECMag(const Vec*);
+extern "C" f32 fn_8005ABA0(const LiveActor*);
+extern "C" f32 fn_8003B850(f32, f32, f32, f32, f32);
 
 namespace {
+    ALWAYS_INLINE inline TVec3f relativeVelocity(const TVec3f& velocity, const TVec3f& actorVelocity) {
+        TVec3f result(velocity);
+        JMathInlineVEC::PSVECSubtract(&result, &actorVelocity, &result);
+        return result;
+    }
+    ALWAYS_INLINE inline TVec3f negateDirection(const TVec3f& direction) {
+        TVec3f result;
+        JMathInlineVEC::PSVECNegate(&direction, &result);
+        return result;
+    }
 	ALWAYS_INLINE inline TubeSliderDamageObj* createDamageObj(TubeSlider* pSlider, s32 type, f32 edgeOffset, TVec3f& vec) {
-		TubeSliderDamageObj* obj = new TubeSliderDamageObj(type, -MR::getRailDirection(pSlider)); // Negate operator needs to be inlined, but isn't
+		TubeSliderDamageObj* obj = new TubeSliderDamageObj(type, negateDirection(MR::getRailDirection(pSlider)));
 		if (type == 1)
 			edgeOffset += 50.0f;
 		TubeSliderFunction::getUnknown1(&obj->mPosition, pSlider, vec, -edgeOffset);
@@ -108,14 +123,32 @@ bool TubeSliderDamageObj::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, Hi
 	return false;
 }
 
+#pragma push
+#pragma section sconst_type ".sdata2" ".sdata2"
+namespace { const f32 damageSoundRange[] = {1000.0f}; }
+#pragma pop
+
 void TubeSliderDamageObj::control() {
-	// TODO: All of this :(
-	
-	// MR::getMicDistance???
-	MR::startActionSound(this, "MarioPassLv", -1, -1, -1); // incorrect statement. only here to make the string spawn in
+    f32 distance = fn_8005ABA0(this);
+    f32 playerDistance = MR::calcDistanceToPlayer(this);
+    if (playerDistance <= 450.0f && !_A0)
+        _A0 = true;
+    if (playerDistance <= damageSoundRange[0] && _A0) {
+        s32 pitchOffset = -100;
+        s32 volumeOffset = 50;
+        f32 volume = volumeOffset + 1000.0f * (100.0f * (2.3f / distance));
+        f32 pitch = pitchOffset + 1000.0f * (50.0f / (50.0f + (distance - _A4)));
+        s32 rawPitch = static_cast<s32>(pitch);
+        s32 soundPitch;
+        if (rawPitch < 50) soundPitch = 50;
+        else soundPitch = rawPitch > 1000 ? 1000 : rawPitch;
+        f32 soundVolume = fn_8003B850(PSVECMag(relativeVelocity(*MR::getPlayerVelocity(), mVelocity)), 27.0f, 34.0f, 0.0f, volume);
+        MR::startActionSound(this, "MarioPassLv", static_cast<s32>(soundVolume), soundPitch, -1);
+    } else if (_A0) {
+        _A0 = false;
+    }
+    _A4 = distance;
 }
-
-
 
 TubeSliderDamageObjCreator::TubeSliderDamageObjCreator(TubeSlider* pSlider) : LiveActor("ダメージオブジェ生成（チューブスライダー用）") {
 	mSlider = pSlider;

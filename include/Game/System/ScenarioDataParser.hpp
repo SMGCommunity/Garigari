@@ -37,18 +37,7 @@ public:
     JMapInfo* mGalaxyInfo;      // 0xC
 };
 
-class ScenarioDataParser : public NameObj {
-public:
-    ScenarioDataParser(const char *);
-
-    virtual ~ScenarioDataParser();
-
-    ScenarioData* getScenarioData(const char *) const;
-    GalaxyStatusAccessor makeAccessor(const char *) const;
-
-    ScenarioData* mScenarioData[0x60];        // 0x14
-    s32 mNumScenarioData;                           // 0x194
-};
+class ScenarioDataParser;
 
 class ScenarioDataIter {
 public:
@@ -65,8 +54,21 @@ public:
     s32 mCurIdx;                        // 0x8
 };
 
+class ScenarioDataParser : public NameObj {
+public:
+    ScenarioDataParser(const char *);
+
+    virtual ~ScenarioDataParser();
+
+    ScenarioData* getScenarioData(const char *) const;
+    GalaxyStatusAccessor makeAccessor(const char *) const;
+
+    ScenarioData* mScenarioData[0x60];        // 0x14
+    s32 mNumScenarioData;                           // 0x194
+};
+
 namespace ScenarioDataFunction {
-    ScenarioDataParser* getScenarioDataParser();
+    ScenarioDataParser* getScenarioDataParser() NO_INLINE;
     bool getCurrentCommonLayers(const char *);
     u32 getCurrentScenarioLayers(const char *, s32);
 };

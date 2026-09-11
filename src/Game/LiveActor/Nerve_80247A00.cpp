@@ -1,0 +1,18 @@
+#include <revolution.h>
+struct Nerve47A00 { inline Nerve47A00(Nerve47A00* (*init)(Nerve47A00*)) ALWAYS_INLINE { init(this); } const void* vtable; };
+extern "C" {
+Nerve47A00* fn_80247A60(Nerve47A00*) NO_INLINE;
+Nerve47A00* fn_80247A70(Nerve47A00*) NO_INLINE;
+Nerve47A00* fn_80247A80(Nerve47A00*) NO_INLINE;
+Nerve47A00* fn_80247A90(Nerve47A00*) NO_INLINE;
+Nerve47A00* fn_80247AA0(Nerve47A00*) NO_INLINE;
+Nerve47A00* fn_80247AB0(Nerve47A00*) NO_INLINE;
+Nerve47A00* fn_80247AC0(Nerve47A00*) NO_INLINE;
+Nerve47A00 lbl_807D34D0(fn_80247A60);
+Nerve47A00 lbl_807D34D4(fn_80247A70);
+Nerve47A00 lbl_807D34D8(fn_80247A80);
+Nerve47A00 lbl_807D34DC(fn_80247A90);
+Nerve47A00 lbl_807D34E0(fn_80247AA0);
+Nerve47A00 lbl_807D34E4(fn_80247AB0);
+Nerve47A00 lbl_807D34E8(fn_80247AC0);
+}

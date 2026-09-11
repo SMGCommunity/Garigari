@@ -1,6 +1,6 @@
 #include "Ride/TubeSliderCrystal.hpp"
 
-#include "LiveActor/Nerve.hpp"
+#include "Ride/TubeSliderCrystalNrv.hpp"
 #include "LiveActor/BreakModel.hpp"
 #include "MapObj/DummyDisplayModel.hpp"
 #include "Util/ActorInitUtil.hpp"
@@ -11,8 +11,8 @@
 
 
 namespace NrvTubeSliderCrystal {
-	NERVE(TubeSliderCrystalNrvWait, TubeSliderCrystal, Wait);
-	NERVE(TubeSliderCrystalNrvBreak, TubeSliderCrystal, Break);
+	TubeSliderCrystalNrvWait TubeSliderCrystalNrvWait::sInstance;
+	TubeSliderCrystalNrvBreak TubeSliderCrystalNrvBreak::sInstance;
 }
 
 TubeSliderCrystal::TubeSliderCrystal(const TVec3f& vec) : LiveActor("クリスタル（チューブスライダー用）"){

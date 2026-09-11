@@ -81,6 +81,39 @@ namespace JGeometry {
     template < class T >
     struct TRotation3 : public T {
     public:
+        void getXYZDir(TVec3f& x, TVec3f& y, TVec3f& z) const NO_INLINE {
+            {
+                f32 zValue = this->mMtx[2][0];
+                f32 yValue = this->mMtx[1][0];
+                f32 xValue = this->mMtx[0][0];
+                x.set<f32>(xValue, yValue, zValue);
+            }
+            {
+                f32 zValue = this->mMtx[2][1];
+                f32 yValue = this->mMtx[1][1];
+                f32 xValue = this->mMtx[0][1];
+                y.set<f32>(xValue, yValue, zValue);
+            }
+            {
+                f32 zValue = this->mMtx[2][2];
+                f32 yValue = this->mMtx[1][2];
+                f32 xValue = this->mMtx[0][2];
+                z.set<f32>(xValue, yValue, zValue);
+            }
+        }
+
+        void setScale(f32 x, f32 y, f32 z) NO_INLINE {
+            this->mMtx[0][0] = x;
+            this->mMtx[0][1] = 0.0f;
+            this->mMtx[0][2] = 0.0f;
+            this->mMtx[1][0] = 0.0f;
+            this->mMtx[1][1] = y;
+            this->mMtx[1][2] = 0.0f;
+            this->mMtx[2][0] = 0.0f;
+            this->mMtx[2][1] = 0.0f;
+            this->mMtx[2][2] = z;
+        }
+
         void setXYZDir(const TVec3f& rSrcX, const TVec3f& rSrcY, const TVec3f& rSrcZ) NO_INLINE {
             setXYZDirInline(rSrcX, rSrcY, rSrcZ);
         }
@@ -143,7 +176,14 @@ namespace JGeometry {
     struct TPosition3 : public TRotation3< T > {
     public:
         TPosition3() {};
+        void makeRotate(const TVec3f&, f32);
 
+
+        void zeroTrans() NO_INLINE {
+            this->mMtx[0][3] = 0.0f;
+            this->mMtx[1][3] = 0.0f;
+            this->mMtx[2][3] = 0.0f;
+        }
 
         void getTrans(TVec3f& rDest) const;
 

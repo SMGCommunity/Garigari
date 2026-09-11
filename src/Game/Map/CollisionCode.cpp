@@ -1,6 +1,15 @@
 #include "Map/CollisionCode.hpp"
 #include "Util/HashUtil.hpp"
 
+namespace {
+    extern char noCodeName[];
+}
+
+extern "C" bool fn_80067810(const JMapInfo*, s32, s32, u32*);
+
+template<>
+__attribute__((noinline)) bool JMapInfoIter::getValue<u32>(const char*, u32*) const;
+
 CollisionCode::CollisionCode()
     : mFloorTable(0), mWallTable(0), mSoundTable(0), mCameraTable(0) {
     
@@ -11,7 +20,7 @@ CollisionCode::CollisionCode()
 }
 
 void CollisionCode::createFloorTable() {
-    mFloorTable = new CodeTable(0x23);
+    mFloorTable = new CodeTable(0x2C);
 
     mFloorTable->add("Normal", 0);
     mFloorTable->add("Death", 1);
@@ -90,7 +99,7 @@ void CollisionCode::createWallTable() {
 }
 
 void CollisionCode::createSoundTable() {
-    mSoundTable = new CodeTable(0x10);
+    mSoundTable = new CodeTable(0x17);
 
     mSoundTable->add("null", 0);
     mSoundTable->add("Soil", 1);
@@ -141,7 +150,7 @@ const char* CodeTable::getString(u32 val) {
         }
     }
 
-    return "NoIter";   
+    return noCodeName;   
 }
 
 u32 CollisionCode::getWallCode(const JMapInfoIter &rIter) {
@@ -186,6 +195,16 @@ const char* CollisionCode::getSoundCodeString(const JMapInfoIter &rIter) {
     }
 
     return "null";
+}
+
+template<>
+__attribute__((noinline)) bool JMapInfoIter::getValue<u32>(const char* pName, u32* pValue) const {
+    const JMapInfo* info = mInfo;
+    const s32 index = mIndex;
+    const s32 item = info->searchItemInfo(pName);
+    if (item < 0)
+        return false;
+    return fn_80067810(info, index, item, pValue);
 }
 
 u32 CollisionCode::getCameraCode(const JMapInfoIter &rIter) {
@@ -242,4 +261,9 @@ u32 CollisionCode::getCode(const JMapInfoIter &rIter, CodeTable *pCodeTable, con
     }
 
     return 0;
+}
+
+// Keep the fallback string after the attribute keys in the original data order.
+namespace {
+    char noCodeName[] = "NoIter";
 }

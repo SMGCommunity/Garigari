@@ -1,3 +1,4 @@
+#include "LiveActor/ClippingDirector.hpp"
 #include "LiveActor/LodCtrl.hpp"
 #include "LiveActor/ActorLightCtrl.hpp"
 #include "LiveActor/ModelObj.hpp"
@@ -9,7 +10,28 @@
 #include "Util/ActorShadowUtil.hpp"
 #include <cstdio>
 
-// LodCtrl::LodCtrl
+extern "C" const bool lbl_807DC490 = false;
+
+LodCtrl::LodCtrl(LiveActor* actor, const JMapInfoIter& iter) {
+    mDistToMiddle = 2000.0f;
+    mDistToLow = 3000.0f;
+    mCurActiveModel = (ModelObj*)actor;
+    mHighModel = (ModelObj*)actor;
+    mMiddleModel = nullptr;
+    mLowModel = nullptr;
+    _18 = false;
+    _19 = false;
+    _1A = true;
+    mDistCameraCalc = false;
+    mViewGroupID = -1;
+    mActorLightCtrl = nullptr;
+    _1C = &lbl_807DC490;
+    _20 = &lbl_807DC490;
+    _24 = &lbl_807DC490;
+    _28 = &lbl_807DC490;
+    MR::getClippingDirector()->entryLodCtrl(this, iter);
+    mActorLightCtrl = mHighModel->mLightCtrl;
+}
 
 void LodCtrl::offSyncShadowHost() {
     MR::offShadowVisibleSyncHostAll(mHighModel);
@@ -152,6 +174,7 @@ namespace {
             pFunc(pCtrl->mLowModel, arg);
         }
     }
+    template void LodFuntionCall<f32>(LodCtrl*, void (*)(LiveActor*, f32), f32);
 };
 
 void LodCtrl::setClippingTypeSphereContainsModelBoundingBox(f32 bounds) {
@@ -325,4 +348,4 @@ bool LodCtrlFunction::isExistLodLowModel(const char *pName) {
 }
 
 /* unused but sitting in .data */
-static const char* sMiddle = "/ObjectData/%sMiddle.arc";
+static char sMiddle[32] = "/ObjectData/%sMiddle.arc";

@@ -5,8 +5,14 @@ namespace nw4r {
     namespace ut {
         namespace detail {
 
-            void LinkListImpl::Clear() {
-                Erase(GetBeginIter(), GetEndIter());
+            LinkListImpl::~LinkListImpl() {
+                Clear();
+            }
+
+            LinkListImpl::Iterator LinkListImpl::Erase(Iterator it) {
+                Iterator itNext=it;
+                (void)++itNext;
+                return Erase(it,itNext); 
             }
 
             LinkListImpl::Iterator LinkListImpl::Insert(Iterator it,pointer p)
@@ -46,15 +52,8 @@ namespace nw4r {
                 return itLast;
             }
 
-            LinkListImpl::~LinkListImpl() {
-                Clear();
-            }
-
-                    
-            LinkListImpl::Iterator LinkListImpl::Erase(Iterator it) {
-                Iterator itNext=it;
-                (void)++itNext;
-                return Erase(it,itNext); 
+            void LinkListImpl::Clear() {
+                Erase(GetBeginIter(), GetEndIter());
             }
         };
     };

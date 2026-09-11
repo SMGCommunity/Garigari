@@ -5,7 +5,7 @@
 #include <JMath.hpp>
 #include <cmath>
 
-static Vec gZeroVec;
+
 
 namespace MR {
     void sortSmall(s32, u32 *, s32 *);
@@ -15,13 +15,13 @@ namespace MR {
     bool isNearZero(f32, f32);
     bool isNearZero(const TVec3f &, f32);
 
-    f32 lerp(u8, u8, f32);
+    u8 lerp(u8, u8, f32);
     f32 lerp(f32, f32, f32);
     //f32 lerp(GXColor, GXColor, f32);
     void sortSmall(long, f32*, long*);
     void sortSmall(long, u32*, long*);
-    void PSvecBlend(const TVec3f*, const TVec3f*, f32, f32);
-    void vecBlend(const TVec3f&, const TVec3f&, TVec3f*, f32); // DIFFERENT THAN SMG1
+    void PSvecBlend(const TVec3f*, const TVec3f*, TVec3f*, f32, f32);
+    void vecBlend(TVec3f*, const TVec3f&, const TVec3f&, f32);
     void vecBlendNormal(TVec3f*, const TVec3f&, const TVec3f&, f32);
 
     f32 vecKillElement(const TVec3f&, const TVec3f&, TVec3f*);
@@ -30,11 +30,11 @@ namespace MR {
     void makeAxisUpFront(TVec3f*, TVec3f*, const TVec3f&, const TVec3f&);
     void makeAxisUpSide(TVec3f*, TVec3f*, const TVec3f&, const TVec3f&);
     void makeAxisVerticalZX(TVec3f*, const TVec3f&);
-    //void normalize(TVec2f*);
+    void normalize(TVec2f*);
     void normalize(TVec3f*);
-    //void normalize(TVec2f*, const TVec2f&);
+    void normalize(TVec2f*, const TVec2f&);
     void normalize(TVec3f*, const TVec3f&);
-    //bool normalizeOrZero(TVec2f*);
+    bool normalizeOrZero(TVec2f*);
     bool normalizeOrZero(TVec3f*);
     bool normalizeOrZero(const TVec3f&, TVec3f*);
     f32 turnVecToVecRadian(TVec3f*, const TVec3f&, const TVec3f&, f32, const TVec3f&);

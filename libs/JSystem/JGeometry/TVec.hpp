@@ -7,6 +7,12 @@
 
 namespace JGeometry {
     template <typename T>
+    struct TVec2 {
+        T x;
+        T y;
+    };
+
+    template <typename T>
     struct TVec3 {
         T x;
         T y;
@@ -44,13 +50,19 @@ namespace JGeometry {
 
     template<>
     struct TVec3< f32 > : public Vec {
+        bool isZero() const;
         TVec3(const Vec& vec) {
             setTVec3f(&vec.x, &x);
         }
         TVec3(const TVec3<f32>& vec) NO_INLINE {
             setTVec3f(&vec.x, &x);
         }
+        // Some target units inline scalar construction; retain the default elsewhere.
+#ifndef JGEOMETRY_INLINE_VEC3_CTOR
         TVec3(f32 _x, f32 _y, f32 _z) NO_INLINE {
+#else
+        TVec3(f32 _x, f32 _y, f32 _z) {
+#endif
             x = _x;
             y = _y;
             z = _z;
@@ -111,11 +123,15 @@ namespace JGeometry {
 
         
         // ADDITION
+#ifdef JGEOMETRY_OUTLINE_VEC3_ADD
+        TVec3& operator+=(const TVec3& op) NO_INLINE {
+#else
         TVec3& operator+=(const TVec3& op) {
+#endif
             add(op);
             return *this;
         }
-        void add(const TVec3<f32>& b) {
+        void add(const TVec3<f32>& b) NO_INLINE {
             JMathInlineVEC::PSVECAdd(this, &b, this);
         }
         TVec3 addInline(const TVec3& op) const {
@@ -126,11 +142,11 @@ namespace JGeometry {
 
 
         // SUBTRACT
-        TVec3& operator-=(const TVec3& op) {
+        TVec3& operator-=(const TVec3& op) NO_INLINE {
             sub(op);
             return *this;
         }
-        void sub(const TVec3<f32>& b) {
+        void sub(const TVec3<f32>& b) NO_INLINE {
             JMathInlineVEC::PSVECSubtract(this, &b, this);
         }
         TVec3 subInline(const TVec3& op) const {
@@ -141,7 +157,7 @@ namespace JGeometry {
 
 
         // MULTIPLY
-        void scale(f32 scale) {
+        void scale(f32 scale) NO_INLINE {
             x *= scale;
             y *= scale;
             z *= scale;
@@ -157,7 +173,7 @@ namespace JGeometry {
 
 
         // NEGATE
-        TVec3 operator-() const {
+        TVec3 operator-() const NO_INLINE {
             return this->negateInline();
         }
         void negate() {
@@ -201,3 +217,4 @@ namespace JGeometry {
 };
 
 typedef JGeometry::TVec3<f32> TVec3f;
+typedef JGeometry::TVec2<f32> TVec2f;

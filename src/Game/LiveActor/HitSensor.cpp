@@ -3,7 +3,27 @@
 #include "LiveActor/SensorHitChecker.hpp"
 #include "LiveActor/LiveActor.hpp"
 
-// HitSensor::HitSensor
+HitSensor::HitSensor(u32 type, u16 groupSize, f32 radius, LiveActor* host) {
+    mType = type;
+    mOffset.x = 0.0f;
+    mOffset.y = 0.0f;
+    mOffset.z = 0.0f;
+    mRadius = radius;
+    mSensorCount = 0;
+    mGroupSize = groupSize;
+    mSensors = nullptr;
+    mSensorGroup = nullptr;
+    mValidBySystem = false;
+    mValidByHost = true;
+    mHostActor = host;
+    if (mGroupSize != 0) {
+        mSensors = new HitSensor*[mGroupSize];
+        for (s32 i = 0; i < mGroupSize; i++) {
+            mSensors[i] = nullptr;
+        }
+    }
+    MR::initHitSensorGroup(this);
+}
 
 bool HitSensor::receiveMessage(u32 msg, HitSensor *pOther) {
     return mHostActor->receiveMessage(msg, pOther, this);

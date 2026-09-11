@@ -9,10 +9,6 @@ class RailPart;
 
 class BezierRailPart {
 public:
-    inline BezierRailPart(const TVec3f &a1, const TVec3f &a2, const TVec3f &a3, const TVec3f &a4) ALWAYS_INLINE {
-        set(a1, a2, a3, a4);
-     }
-
     void set(const TVec3f &, const TVec3f &, const TVec3f &, const TVec3f &);
     void calcPos(TVec3f *, f32) const;
     void calcVelocity(TVec3f *, f32) const;
@@ -20,7 +16,7 @@ public:
     f32 getParam(f32) const;
     f32 getNearestParam(const TVec3f &, f32) const;
 
-    TVec3f mPoints[4];      // 0x00
+    f32 _0[12];            // 0x00: four vector coefficients, scalar storage preserves trivial construction
     f32 mLength;            // 0x30
 };
 
@@ -37,11 +33,11 @@ public:
     f32 getNearestRailPosCoord(const TVec3f &) const;
     f32 getRailPosCoord(int) const;
     void calcCurrentRailCtrlPointIter(JMapInfoIter *, f32, bool) const;
-    void calcRailCtrlPointIter(JMapInfoIter *, int) const;
+    void calcRailCtrlPointIter(JMapInfoIter *, int) const NO_INLINE;
     void getIncludedSection(const RailPart **, f32 *, f32, int) const;
     int getCurrentCtrlPointIndex(f32, bool) const;
 
-    f32 getTotalLength() const;
+    f32 getTotalLength() const NO_INLINE;
 
     bool mIsClosed;       // 0x0
     u8 _1;

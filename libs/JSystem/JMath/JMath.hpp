@@ -76,11 +76,11 @@ namespace JMathInlineVEC {
         __asm {
             psq_l     v1xy, 0(vec1), 0, 0
             psq_l     v2xy, 0(vec2), 0, 0
-            psq_l     v1z,   8(vec1), 1, 0
             ps_sub    dxy, v1xy, v2xy
+            psq_st    dxy, 0(dst), 0, 0
+            psq_l     v1z,   8(vec1), 1, 0
             psq_l     v2z,   8(vec2), 1, 0
             ps_sub    dz, v1z, v2z
-            psq_st    dxy, 0(dst), 0, 0
             psq_st    dz,  8(dst), 1, 0            
         }
 #endif

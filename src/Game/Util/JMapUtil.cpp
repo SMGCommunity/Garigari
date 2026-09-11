@@ -1,8 +1,34 @@
+#include <cstdio>
 #include "Util/JMapUtil.hpp"
 #include "Util/JMapInfo.hpp"
 #include "Util/StringUtil.hpp"
 #include "Util/SceneUtil.hpp"
+#include "Util/MtxUtil.hpp"
 
+#pragma push
+#pragma section sconst_type ".sdata2" ".sdata2"
+namespace {
+    const f32 jmap_one[] = {1.0f};
+    const f32 jmap_zero[] = {0.0f};
+    const f32 jmap_negativeOne[] = {-1.0f};
+    const f32 jmap_halfPi[] = {1.57079637f};
+    const f32 jmap_negativeHalfPi[] = {-1.57079637f};
+    const f32 jmap_negativeTolerance[] = {-0.001f};
+    const f32 jmap_tolerance[] = {0.001f};
+    const f32 jmap_degreesPerRadian[] = {57.295780181884766f};
+}
+#pragma pop
+
+
+extern "C" {
+    void fn_80007380(TPos3f*, const TPos3f*, const TPos3f*);
+    f32 fn_80013DF0(f32, f32);
+    f64 fn_8063DDE0(f64);
+}
+namespace {
+    char objectTypeKey[] = "type";
+    char objectNameKey[] = "name";
+}
 namespace MR {
     bool isValidInfo(const JMapInfoIter &rIter) {
         return rIter.isValid();
@@ -13,11 +39,11 @@ namespace MR {
             return false;
         }
     
-        if (rIter.getValue<const char*>("type", pOut)) {
+        if (rIter.getValue<const char*>(objectTypeKey, pOut)) {
             return true;
         }
         
-        return rIter.getValue<const char*>("name", pOut);
+        return rIter.getValue<const char*>(objectNameKey, pOut);
     }
 
     bool isObjectName(const JMapInfoIter &rIter, const char *pName) {
@@ -77,7 +103,7 @@ namespace {
     }
 
     bool getJMapInfoArg(const JMapInfoIter &rIter, const char *pKey, f32 *pOut) {
-        *pOut = -1.0f;
+        *pOut = jmap_negativeOne[0];
         return getJMapInfoArgNoInit(rIter, pKey, pOut);
     }
 
@@ -151,7 +177,33 @@ namespace MR {
         return true;
     }
 
-    // MR::getJMapInfoRotate
+    bool getJMapInfoRotate(const JMapInfoIter& iter, TVec3f* out) {
+        if (!getJMapInfoRotateLocal(iter, out)) return false;
+        if (isPlacementLocalStage()) {
+            TPos3f rotation;
+            makeMtxRotate(rotation.mMtx, *out);
+            fn_80007380(&rotation, &getZonePlacementMtx(iter), &rotation);
+            if (jmap_negativeTolerance[0] <= rotation.mMtx[2][0] - jmap_one[0]) {
+                out->x = fn_80013DF0(-rotation.mMtx[0][1], rotation.mMtx[1][1]);
+                out->y = jmap_negativeHalfPi[0];
+                out->z = jmap_zero[0];
+            } else if (jmap_one[0] + rotation.mMtx[2][0] <= jmap_tolerance[0]) {
+                out->x = fn_80013DF0(rotation.mMtx[0][1], rotation.mMtx[1][1]);
+                out->y = jmap_halfPi[0];
+                out->z = jmap_zero[0];
+            } else {
+                out->x = fn_80013DF0(rotation.mMtx[2][1], rotation.mMtx[2][2]);
+                out->z = fn_80013DF0(rotation.mMtx[1][0], rotation.mMtx[0][0]);
+                out->y = fn_8063DDE0(-rotation.mMtx[2][0]);
+            }
+            TVec3f degrees(static_cast<const Vec&>(*out));
+            degrees.x *= jmap_degreesPerRadian[0];
+            degrees.y *= jmap_degreesPerRadian[0];
+            degrees.z *= jmap_degreesPerRadian[0];
+            out->setPS(degrees);
+        }
+        return true;
+    }
 
     bool getJMapInfoScale(const JMapInfoIter &rIter, TVec3f *pVec) {
         if (!rIter.getValue<f32>("scale_x", &pVec->x)) {
@@ -169,8 +221,23 @@ namespace MR {
         return true;
     }
 
-    // MR::getJMapInfoMatrixFromRT
-    // MR::getJMapInfoV3f
+    bool getJMapInfoMatrixFromRT(const JMapInfoIter& iter, TPos3f* matrix) {
+        TVec3f translation;
+        TVec3f rotation;
+        if (!getJMapInfoTrans(iter, &translation)) return false;
+        if (!getJMapInfoRotate(iter, &rotation)) return false;
+        makeMtxTR(matrix->mMtx, translation, rotation);
+        return true;
+    }
+    bool getJMapInfoV3f(const JMapInfoIter& iter, const char* prefix, TVec3f* out) {
+        char name[32];
+        sprintf(name, "%sX", prefix);
+        if (!iter.getValue<f32>(name, &out->x)) return false;
+        sprintf(name, "%sY", prefix);
+        if (!iter.getValue<f32>(name, &out->y)) return false;
+        sprintf(name, "%sZ", prefix);
+        return iter.getValue<f32>(name, &out->z);
+    }
 
     bool getJMapInfoArg0WithInit(const JMapInfoIter &rIter, s32 *pOut) {
         return ::getJMapInfoArg(rIter, "Obj_arg0", pOut);
@@ -376,7 +443,7 @@ namespace MR {
         }
 
         s32 id = -1;
-        ::getJMapInfoArgNoInit(rIter, "SW_A", &id);
+        rIter.getValue<s32>("SW_A", &id);
         return id != -1;
     }
     
@@ -386,7 +453,7 @@ namespace MR {
         }
 
         s32 id = -1;
-        ::getJMapInfoArgNoInit(rIter, "SW_B", &id);
+        rIter.getValue<s32>("SW_B", &id);
         return id != -1;
     }
 
@@ -396,7 +463,7 @@ namespace MR {
         }
 
         s32 id = -1;
-        ::getJMapInfoArgNoInit(rIter, "SW_APPEAR", &id);
+        rIter.getValue<s32>("SW_APPEAR", &id);
         return id != -1;
     }
 
@@ -406,7 +473,7 @@ namespace MR {
         }
 
         s32 id = -1;
-        ::getJMapInfoArgNoInit(rIter, "SW_DEAD", &id);
+        rIter.getValue<s32>("SW_DEAD", &id);
         return id != -1;
     }
 
@@ -416,7 +483,7 @@ namespace MR {
         }
 
         s32 id = -1;
-        ::getJMapInfoArgNoInit(rIter, "SW_AWAKE", &id);
+        rIter.getValue<s32>("SW_AWAKE", &id);
         return id != -1;
     }
 
@@ -426,7 +493,7 @@ namespace MR {
         }
 
         s32 id = -1;
-        ::getJMapInfoArgNoInit(rIter, "SW_PARAM", &id);
+        rIter.getValue<s32>("SW_PARAM", &id);
         return id != -1;
     }
 
@@ -436,7 +503,7 @@ namespace MR {
         }
 
         s32 id = -1;
-        ::getJMapInfoArgNoInit(rIter, "MessageId", &id);
+        rIter.getValue<s32>("MessageId", &id);
         return id != -1;
     }
 
@@ -474,7 +541,7 @@ namespace MR {
     }
 
     bool getJMapInfoParamScale(const JMapInfoIter &rIter, f32 *pScale) {
-        *pScale = 1.0f;
+        *pScale = jmap_one[0];
 
         if (!rIter.isValid()) {
             return false;

@@ -62,10 +62,10 @@ namespace JMath {
 
         ALWAYS_INLINE inline f32 sinRadian(f32 v) {
             if (v < 0.0f) {
-                f32 tmp = -(LEN / TWO_PI) * v;
+                f32 tmp = v * -(LEN / TAngleConstant_<f32>::RADIAN_DEG360());
                 return -table[(u16)tmp & LEN - 1].a1;
             } else {
-                f32 tmp = (LEN / TWO_PI) * v;
+                f32 tmp = v * (LEN / TAngleConstant_<f32>::RADIAN_DEG360());
                 return table[(u16)tmp & LEN - 1].a1;
             }
         }
@@ -196,11 +196,11 @@ inline f32 JMASSin(s16 v) {
 f32 JMAAcosRadian(f32 v);
 f32 JMAAsinRadian(f32 v);
 
-inline f32 JMACosDegree(f32 angle) {
+inline f32 JMACosDegree(f32 angle) NO_INLINE {
     return JMath::sSinCosTable.cosDegree(angle);
 }
 
-inline f32 JMACosRadian(f32 angle) {
+inline f32 JMACosRadian(f32 angle) NO_INLINE {
     return JMath::sSinCosTable.cosRadian(angle);
 }
 
@@ -208,11 +208,11 @@ inline f32 JMACosLap(f32 angle) {
     return JMath::sSinCosTable.cosLap(angle);
 }
 
-inline f32 JMASinDegree(f32 angle) {
+inline f32 JMASinDegree(f32 angle) NO_INLINE {
     return JMath::sSinCosTable.sinDegree(angle);
 }
 
-inline f32 JMASinRadian(f32 angle) {
+inline f32 JMASinRadian(f32 angle) NO_INLINE {
     return JMath::sSinCosTable.sinRadian(angle);
 }
 

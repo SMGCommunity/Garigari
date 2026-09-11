@@ -1,6 +1,6 @@
 Garigari  
 =============
-[![Build Status]][actions] ![Progress] [![Discord Badge]][discord]
+[![Discord Badge]][discord]
 <!--
 Replace with your repository's URL.
 -->
@@ -28,6 +28,17 @@ This repository does **not** contain any game assets or assembly whatsoever. An 
 Supported versions:
 
 - `SB4E01`: Rev 0 (USA)
+
+Verified fork progress
+======================
+![All units and functions](docs/progress/treemap.svg)
+
+This snapshot covers **2,239 units and 51,385 functions**. Rectangle area follows code/data size; unit borders group function rectangles. Green denotes source-linked code, blue exact instruction matches still using original objects, amber partial matches, and slate unreconstructed code. Exact scores do not establish relocation fidelity.
+
+**62,832 / 6,281,816 code bytes (1.00022%)** are source-integrated. The complete mixed-source executable is byte-identical to retail, SHA-1 `7d79810889824edd01c4ff02624713060a69818c`; most code still comes from original objects.
+
+[Full function inventory](docs/progress/functions.html) · [Machine-readable snapshot](docs/progress/snapshot.json) · [Provenance](docs/PROVENANCE.md).
+Regenerate the map with `python3 tools/render_progress.py` after refreshing the verified snapshot. This chart represents this fork, not upstream decomp.dev progress.
 
 Dependencies
 ============

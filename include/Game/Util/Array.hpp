@@ -11,11 +11,15 @@ namespace MR {
             mMaxItems = 0;
         }
 
+#ifdef MR_ASSIGNABLE_ARRAY_DEFER_DESTRUCTOR
+        ~AssignableArray();
+#else
         inline ~AssignableArray() {
             if (mArray != nullptr) {
                 delete[] mArray;
             }
         }
+#endif
 
         inline T operator[](int idx) {
             return mArray[idx];

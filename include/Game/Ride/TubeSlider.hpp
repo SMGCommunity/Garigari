@@ -50,7 +50,7 @@ public:
 	void exeWait();
 	void exeEnd();
 	void exeRideAir();
-	void exeRide();
+	void exeRide() ALWAYS_INLINE;
 	void exeRideWallHit();
 	void exeRideLand();
 	void exeDamageDeath();

@@ -1,0 +1,70 @@
+#include <revolution.h>
+void* operator new(unsigned long);
+struct Actor4F260 {
+    const void* vtable; u8 base[0x8c];
+    u32 field90;
+    u32 field94;
+    u32 field98;
+    u32 field9C;
+    u32 fieldA0;
+    u32 fieldA4;
+    u32 fieldA8;
+    u32 fieldAC;
+    u32 fieldB0;
+    u32 fieldB4;
+    u32 fieldB8;
+    u32 fieldBC;
+    u32 fieldC0;
+    u32 fieldC4;
+    u32 fieldC8;
+    u32 fieldCC;
+    u32 fieldD0;
+    u32 fieldD4;
+    void* fieldD8;
+    u32 fieldDC;
+    u8 fieldE0; u8 padE0[3];
+    u32 fieldE4;
+    u32 fieldE8;
+    u8 fieldEC; u8 padEC[3];
+    u32 fieldF0;
+    u32 fieldF4;
+    u8 fieldF8; u8 padF8[3];
+    u32 fieldFC;
+    u32 field100;
+    u32 field104;
+};
+extern "C" {
+extern const void* lbl_806974C0[];
+void* __ct__9LiveActorFPCc(void*, const char*);
+Actor4F260* fn_8024F260(Actor4F260* obj, const char* name) {
+    __ct__9LiveActorFPCc(obj, name);
+    obj->vtable = lbl_806974C0;
+    obj->field90 = 0;
+    obj->field94 = 0;
+    obj->field98 = 0;
+    obj->fieldA0 = 0;
+    obj->fieldA4 = 0;
+    obj->fieldA8 = 0;
+    obj->fieldB0 = 0;
+    obj->fieldB4 = 0;
+    obj->fieldB8 = 0;
+    obj->fieldBC = 0;
+    obj->fieldC4 = 0;
+    obj->fieldC8 = 0;
+    obj->fieldCC = 0;
+    obj->fieldD0 = 0;
+    obj->fieldD8 = ::operator new(8);
+    obj->fieldDC = 0;
+    obj->fieldE0 = 0;
+    obj->fieldE4 = 0;
+    obj->fieldE8 = 0;
+    obj->fieldEC = 0;
+    obj->fieldF0 = 0;
+    obj->fieldF4 = 0;
+    obj->fieldF8 = 0;
+    obj->fieldFC = 0;
+    obj->field100 = 0;
+    obj->field104 = 0;
+    return obj;
+}
+}

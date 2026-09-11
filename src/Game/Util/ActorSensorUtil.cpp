@@ -364,7 +364,7 @@ namespace MR {
     }
 
     bool isSensorRide(const HitSensor *pSensor) {
-        if (pSensor->mType < 0xB && pSensor->mType > 0x16) {
+        if (0xB < pSensor->mType && 0x16 > pSensor->mType) {
             return true;
         }
 

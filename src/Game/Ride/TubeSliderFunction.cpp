@@ -1,6 +1,8 @@
 #include "Ride/TubeSliderFunction.hpp"
 #include "Ride/TubeSlider.hpp"
 #include "Ride/TubeSliderCoinCreator.hpp"
+#include "Ride/TubeSliderDamageObjCreator.hpp"
+#include "Ride/TubeSliderChildObjects.hpp"
 #include "Util/ActorInitUtil.hpp"
 #include "Util/JMapUtil.hpp"
 #include "Util/MathUtil.hpp"
@@ -8,8 +10,16 @@
 #include "Util/SceneUtil.hpp"
 #include "Util/StringUtil.hpp"
 
+#pragma push
+#pragma section sconst_type ".sdata2" ".sdata2"
+namespace {
+    const f32 tube_one[] = {1.0f};
+    const f32 tube_zero[] = {0.0f};
+    const f32 tube_half[] = {0.5f};
+}
+#pragma pop
+
 namespace TubeSliderFunction {
-	// TODO: Needs class definitions
 	void initChildObjs(TubeSlider* pSlider, const JMapInfoIter& rIter) {
 		s32 childNum = MR::getChildObjNum(rIter);
 		for (s32 i = 0; i < childNum; i++) {
@@ -25,16 +35,19 @@ namespace TubeSliderFunction {
 				continue;
 			}
 			else if (MR::isEqualString(pName, "TubeSliderDamageObj")) {
+				MR::initChildObj(new TubeSliderDamageObjCreator(pSlider), rIter, i);
 				continue;
 			}
 			else if (MR::isEqualString(pName, "TubeSliderEnemy")) {
+				MR::initChildObj(new TubeSliderEnemy(pSlider), rIter, i);
 				continue;
 			}
 			else if (MR::isEqualString(pName, "TubeSliderHana")) {
+				MR::initChildObj(new TubeSliderHana(pSlider), rIter, i);
 				continue;
 			}
 			else {
-				// TubeSliderObjCreator
+				MR::initChildObj(new TubeSliderObjCreator(pSlider, pName), rIter, i);
 			}
 		}
 	}
@@ -47,24 +60,25 @@ namespace TubeSliderFunction {
 		if (*floorangle == -1.0f) {
 			*floorangle = getFloorAngle(pSlider);
 		}
-		*floorangle = MR::repeat(*floorangle, 0.0f, 360.0f);
+		*floorangle = MR::repeat(*floorangle, tube_zero[0], 360.0f);
 		unknown(pActor, vec, pSlider, *railcoord, *floorangle, flt);
 	}
 	f32 interpolateBetweenPoints(const TubeSlider* pSlider, f32 A, f32 B) {
 		f32 nextPointDist;
 		f32 currentPointDist;
-		currentPointDist = 0.0f;
-		nextPointDist = 0.0f;
+		currentPointDist = tube_zero[0];
+		nextPointDist = tube_zero[0];
 		MR::calcDistanceToCurrentAndNextRailPoint(pSlider, &currentPointDist, &nextPointDist);
 
-		f32 f0 = nextPointDist;
-		f32 f3 = 1.0f;
-		if (currentPointDist + nextPointDist < 1.0f) {
-			f0 = 0.0f;
+		f32 totalDistance = currentPointDist + nextPointDist;
+		f32 f0;
+		f32 f3 = tube_one[0];
+		if (totalDistance < tube_one[0]) {
+			f0 = tube_zero[0];
 		}
 		else {
-			f3 = currentPointDist / (currentPointDist + nextPointDist);
-			f0 = nextPointDist / (currentPointDist + nextPointDist);
+			f3 = currentPointDist / totalDistance;
+			f0 = nextPointDist / totalDistance;
 		}
 		return (A * f0) + (B * f3);
 	}
@@ -82,7 +96,7 @@ namespace TubeSliderFunction {
 			pSlider->mInfo.mPrimaryFloorType = currentArg1;
 
 			f32 nextArg2;
-			f32 currentArg2 = 0.0f;
+			f32 currentArg2 = tube_zero[0];
 			MR::getCurrentRailPointArg2NoInit(pSlider, &currentArg2);
 			bool interpolate = false;
 			MR::getCurrentRailPointArg4NoInit(pSlider, &interpolate);
@@ -98,7 +112,7 @@ namespace TubeSliderFunction {
 			pSlider->mInfo.mPrimaryFloorAngle = primaryangle;
 
 			f32 nextArg3;
-			f32 currentArg3 = 0.0f;
+			f32 currentArg3 = tube_zero[0];
 			MR::getCurrentRailPointArg3NoInit(pSlider, &currentArg3);
 			bool interpolate2 = false;
 			MR::getCurrentRailPointArg4NoInit(pSlider, &interpolate2);
@@ -118,7 +132,7 @@ namespace TubeSliderFunction {
 			pSlider->mInfo.mSecondaryFloorType = currentArg5;
 
 			f32 nextArg6;
-			f32 currentArg6 = 0.0f;
+			f32 currentArg6 = tube_zero[0];
 			MR::getCurrentRailPointArg6NoInit(pSlider, &currentArg6);
 			bool interpolate3 = false;
 			MR::getCurrentRailPointArg4NoInit(pSlider, &interpolate3);
@@ -134,7 +148,7 @@ namespace TubeSliderFunction {
 			pSlider->mInfo.mSecondaryFloorAngle = secondaryangle;
 
 			f32 nextArg7;
-			f32 currentArg7 = 0.0f;
+			f32 currentArg7 = tube_zero[0];
 			MR::getCurrentRailPointArg7NoInit(pSlider, &currentArg7);
 			bool interpolate4 = false;
 			MR::getCurrentRailPointArg4NoInit(pSlider, &interpolate4);
@@ -151,7 +165,7 @@ namespace TubeSliderFunction {
 		}
 	}
 	void getRailUpVec(TVec3f* pDest, const TubeSlider* pSlider) {
-		TVec3f min(0.0f, -1.0f, 0.0f);
+		TVec3f min(tube_zero[0], -1.0f, tube_zero[0]);
 		
 		TVec3f out;
 		TVec3f neg = -min;
@@ -167,8 +181,11 @@ namespace TubeSliderFunction {
 	}
 	void getUnknown1(TVec3f* pOut, const TubeSlider* pSlider, const TVec3f& vec, f32 a) {
 		pOut->set(vec);
-		pOut->scale(a + pSlider->mInfo.getRadius());
-		pOut->add(MR::getRailPos(pSlider));
+		f32 scale = a + pSlider->mInfo.getRadius();
+		pOut->x *= scale;
+		pOut->y *= scale;
+		pOut->z *= scale;
+		JMathInlineVEC::PSVECAdd(pOut, &MR::getRailPos(pSlider), pOut);
 	}
 	f32 getRadiusAtRailCoord(f32 coord, TubeSlider* pSlider) {
 		f32 railCoord = MR::getRailCoord(pSlider);
@@ -183,17 +200,17 @@ namespace TubeSliderFunction {
 		return pSlider->mInfo.getRadius();
 	}
 	f32 getFloorAngle(const TubeSlider* pSlider) {
-		if (pSlider->mInfo.mPrimaryFloorWidth <= 0 && pSlider->mInfo.mSecondaryFloorWidth > 0)
+		if (pSlider->mInfo.mPrimaryFloorWidth <= tube_zero[0] && pSlider->mInfo.mSecondaryFloorWidth > tube_zero[0])
 			return pSlider->mInfo.mSecondaryFloorAngle;
 		f32 angle = pSlider->mInfo.mPrimaryFloorAngle;
-		return MR::repeat(180.0f + angle, 0.0f, 360.0f);
+		return MR::repeat(180.0f + angle, tube_zero[0], 360.0f);
 	}
 	bool isUnknown1(f32 a, f32 b, f32 c) {
-		if (c <= 0.0f)
+		if (c <= tube_zero[0])
 			return false;
 
-		f32 vA = b - (c / 2);
-		f32 vB = b + (c / 2);
+		f32 vA = b - (c * tube_half[0]);
+		f32 vB = b + (c * tube_half[0]);
 
 		if (vA <= a && a <= vB)
 			return true;
@@ -234,11 +251,11 @@ namespace TubeSliderFunction {
 	}
 	bool isHitWall(const TubeSlider* pSlider, f32* f, bool checkLeft) {
 		const TubeSliderInfo& pInfo = pSlider->mInfo;
-		if (pInfo.mPrimaryFloorWidth <= 0.0f || !pInfo.hasWall(checkLeft)) {
+		if (pInfo.mPrimaryFloorWidth <= tube_zero[0] || !pInfo.hasWall(checkLeft)) {
 			return false;
 		}
-		f32 f31 = pInfo.mPrimaryFloorAngle - (pInfo.mPrimaryFloorWidth / 2);
-		f32 f30 = pInfo.mPrimaryFloorAngle + (pInfo.mPrimaryFloorWidth / 2);
+		f32 f31 = pInfo.mPrimaryFloorAngle - (pInfo.mPrimaryFloorWidth * tube_half[0]);
+		f32 f30 = pInfo.mPrimaryFloorAngle + (pInfo.mPrimaryFloorWidth * tube_half[0]);
 		if (isUnknown3(f, checkLeft, *f, f31, f30) || isUnknown3(f, checkLeft, *f - 360.0f, f31, f30) || isUnknown3(f, checkLeft, *f + 360.0f, f31, f30))
 			return true;
 		return false;
@@ -283,7 +300,7 @@ namespace TubeSliderFunction {
 		f32 OriginalRailCoord = MR::getRailCoord(pSlider);
 		MR::setRailCoord(pSlider, railcoord);
 		updateTubeSliderInfo(pSlider, true);
-		TVec3f railUpVec(0.0f, 1.0f, 0.0f);
+		TVec3f railUpVec(tube_zero[0], tube_one[0], tube_zero[0]);
 		getRailUpVec(&railUpVec, pSlider);
 		MR::rotateVecDegree(&railUpVec, -MR::getRailDirection(pSlider), rotate);
 		getUnknown1(&pActor->mPosition, pSlider, railUpVec, u);

@@ -5,7 +5,38 @@
 #include "Util/JMapIdInfo.hpp"
 #include <cstdio>
 
-// nonmatching
+namespace {
+    struct MatchGroupId {
+        ALWAYS_INLINE bool operator()(MsgSharedGroup* group, const JMapIdInfo& id) const {
+            bool matches = false;
+            if (group->mIdInfo->_0 == id._0 && group->mIdInfo->mZoneID == id.mZoneID)
+                matches = true;
+            return matches;
+        }
+    };
+    struct ContainsActor {
+        ALWAYS_INLINE bool operator()(MsgSharedGroup* group, const LiveActor* actor) const {
+            for (s32 i = 0; i < group->mObjectCount; ++i)
+                if (group->getActor(i) == actor)
+                    return true;
+            return false;
+        }
+    };
+    template<typename Operation, typename Argument>
+    struct BoundGroupPredicate {
+        Operation operation;
+        Argument argument;
+        BoundGroupPredicate(Operation op, Argument arg) : operation(op), argument(arg) {}
+        ALWAYS_INLINE bool operator()(MsgSharedGroup* group) const { return operation(group, argument); }
+    };
+    template<typename Predicate>
+    ALWAYS_INLINE inline MsgSharedGroup* const* findMatchingGroup(MsgSharedGroup* const* first, MsgSharedGroup* const* last, Predicate predicate) {
+        while (first != last && !predicate(*first))
+            ++first;
+        return first;
+    }
+}
+
 MsgSharedGroup::MsgSharedGroup(const char *pName, s32 maxActor, const JMapInfoIter &rIter) : LiveActorGroup(pName, maxActor) {
     mIdInfo = nullptr;
     mMsg = -1;
@@ -14,7 +45,13 @@ MsgSharedGroup::MsgSharedGroup(const char *pName, s32 maxActor, const JMapInfoIt
     MR::copyString(mGroupName, pName, GROUP_NAME_LEN);
     setName(mGroupName);
 
-    mIdInfo = new JMapIdInfo(MR::createJMapIdInfoFromClippingGroupId(rIter));
+    JMapIdInfo* id = new JMapIdInfo;
+    if (id) {
+        const JMapIdInfo value = MR::createJMapIdInfoFromGroupId(rIter);
+        id->_0 = value._0;
+        id->mZoneID = value.mZoneID;
+    }
+    mIdInfo = id;
 }
 
 void MsgSharedGroup::init(const JMapInfoIter &rIter) {
@@ -81,8 +118,15 @@ MsgSharedGroup* LiveActorGroupArray::createGroup(const JMapInfoIter &rIter, cons
     return group;
 }
 
-// findGroup__19LiveActorGroupArrayCFRC12JMapInfoIter
-// findGroup__19LiveActorGroupArrayCFPC9LiveActor
+MsgSharedGroup* LiveActorGroupArray::findGroup(const JMapInfoIter& iter) const {
+    MsgSharedGroup* const* current = findMatchingGroup(mGroups, mGroups + mNumUsedGroups, BoundGroupPredicate<MatchGroupId, const JMapIdInfo&>(MatchGroupId(), MR::createJMapIdInfoFromGroupId(iter)));
+    return current != mGroups + mNumUsedGroups ? *current : nullptr;
+}
+
+MsgSharedGroup* LiveActorGroupArray::findGroup(const LiveActor* actor) const {
+    MsgSharedGroup* const* current = findMatchingGroup(mGroups, mGroups + mNumUsedGroups, BoundGroupPredicate<ContainsActor, const LiveActor*>(ContainsActor(), actor));
+    return current != mGroups + mNumUsedGroups ? *current : nullptr;
+}
 
 MsgSharedGroup::~MsgSharedGroup() {
 

@@ -47,6 +47,9 @@ public:
 class JMapInfoIter {
 public:
     inline JMapInfoIter() { }
+#ifdef JMAP_INLINE_ITER_COPY
+    inline JMapInfoIter(const JMapInfoIter& other) ALWAYS_INLINE : mInfo(other.mInfo), mIndex(other.mIndex) {}
+#endif
     inline JMapInfoIter(const JMapInfo *pInfo, s32 index) : mInfo(pInfo), mIndex(index) {}
 
     template<typename T>

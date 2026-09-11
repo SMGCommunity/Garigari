@@ -33,6 +33,7 @@ Game/Util/ActorShadowUtil.cpp:
 
 Game/Util/JMapUtil.cpp:
 	.text       start:0x8002BD90 end:0x8002D410
+	.rodata     start:0x806451E8 end:0x806451F0
 	.data       start:0x8065DE68 end:0x8065E118
 	.sdata      start:0x807CF388 end:0x807CF398
 	.sdata2     start:0x807D6EE8 end:0x807D6F08
@@ -64,6 +65,16 @@ Game/AreaObj/AreaObjContainer.cpp:
 	.text       start:0x80071060 end:0x80071650
 	.rodata     start:0x806452F0 end:0x80645768
 	.data       start:0x8066A088 end:0x8066A7B0
+
+Game/LiveActor/ModelObjDestructor.cpp:
+	.text       start:0x800BD0E0 end:0x800BD140
+
+Game/LiveActor/ActorSoundHolder.cpp:
+	.text       start:0x8022CB10 end:0x8022CEE0
+	.sdata2     start:0x807DC3A0 end:0x807DC3A8
+
+Game/LiveActor/ActorStateBase.cpp:
+	.text       start:0x8022CEE0 end:0x8022CF40
 
 Game/LiveActor/ActorStateKeeper.cpp:
 	.text       start:0x8022CF40 end:0x8022D140
@@ -101,17 +112,851 @@ Game/LiveActor/LodCtrl.cpp:
 	.sdata      start:0x807CFAC8 end:0x807CFAD0
 	.sdata2     start:0x807DC490 end:0x807DC4A0
 
+Game/LiveActor/ModelManager.cpp:
+	.text       start:0x8023B380 end:0x8023C460
+	.data       start:0x80695658 end:0x80695660
+	.sdata      start:0x807CFAD0 end:0x807CFAD8
+	.sdata2     start:0x807DC4D0 end:0x807DC4D8
+
+Game/LiveActor/ModelObj.cpp:
+	.text       start:0x8023C540 end:0x8023C6D0
+	.data       start:0x806956D0 end:0x80695740
+	.sdata2     start:0x807DC4D8 end:0x807DC4E0
+
 Game/LiveActor/RailRider.cpp:
 	.text       start:0x8023D280 end:0x8023DEE0
 	.sdata      start:0x807CFAD8 end:0x807CFAE0
 	.sdata2     start:0x807DC4E8 end:0x807DC500
 
+Game/LiveActor/SensorGroup.cpp:
+	.text       start:0x8023DEE0 end:0x8023E020
+
+Game/LiveActor/SensorHitChecker.cpp:
+	.text       start:0x8023E020 end:0x8023E780
+	.data       start:0x80695900 end:0x80695958
+	.sdata      start:0x807CFAE0 end:0x807CFAE8
+
+Game/LiveActor/ShadowControllerHolderCtor.cpp:
+	.text       start:0x8023E780 end:0x8023E8A0
+	.data       start:0x80695958 end:0x80695990
+
+Game/LiveActor/ShadowControllerVectorCtor.cpp:
+	.text       start:0x8023E8A0 end:0x8023E8C0
+
+Game/LiveActor/ShadowControllerHolder.cpp:
+	.text       start:0x8023E8C0 end:0x8023EAD0
+	.rodata     start:0x80648AB8 end:0x80648AC0
+	.data       start:0x80695990 end:0x806959E8
+
+Game/LiveActor/ShadowControllerList.cpp:
+	.text       start:0x8023EAD0 end:0x8023ECC0
+
+Game/LiveActor/ShadowController.cpp:
+	.text       start:0x8023ECC0 end:0x8023F8B0
+	.sdata      start:0x807CFAE8 end:0x807CFAF0
+	.sdata2     start:0x807DC500 end:0x807DC518
+
+Game/LiveActor/ShadowControllerFunction.cpp:
+	.text       start:0x8023F8B0 end:0x8023F970
+
+Game/LiveActor/ShadowControllerVectorAppend.cpp:
+	.text       start:0x8023F970 end:0x8023F990
+
+Game/LiveActor/ShadowControllerHolderDestructor.cpp:
+	.text       start:0x8023F990 end:0x8023FA70
+
+Game/LiveActor/ShadowDrawer.cpp:
+	.text       start:0x8023FA70 end:0x8023FAE0
+	.data       start:0x806959E8 end:0x80695A18
+
+Game/LiveActor/ShadowSurfaceBoxData.cpp:
+	.data       start:0x80695A18 end:0x80695A60
+	.sdata2     start:0x807DC518 end:0x807DC530
+
+Game/LiveActor/ShadowSurfaceCircleData.cpp:
+	.data       start:0x80695A60 end:0x80695AA0
+	.sdata2     start:0x807DC530 end:0x807DC538
+
+Game/LiveActor/ShadowSurfaceBoxCtor.cpp:
+	.text       start:0x8023FAE0 end:0x8023FB40
+
+Game/LiveActor/ShadowSurfaceDrawerDestructor.cpp:
+	.text       start:0x8023FB40 end:0x8023FBA0
+
+Game/LiveActor/ShadowSurfaceBoxSize.cpp:
+	.text       start:0x8023FBA0 end:0x8023FBC0
+
+Game/LiveActor/ShadowSurfaceBox.cpp:
+	.text       start:0x8023FBC0 end:0x80240000
+
+Game/LiveActor/ShadowSurfaceBoxDestructor.cpp:
+	.text       start:0x80240000 end:0x80240060
+
+Game/LiveActor/ShadowSurfaceCircleCtor.cpp:
+	.text       start:0x80240060 end:0x802400C0
+
+Game/LiveActor/ShadowSurfaceCircle.cpp:
+	.text       start:0x802400C0 end:0x80240210
+
+Game/LiveActor/ShadowSurfaceCircleDestructor.cpp:
+	.text       start:0x80240210 end:0x80240270
+
+Game/LiveActor/ShadowSurfaceDrawer.cpp:
+	.text       start:0x80240270 end:0x80240450
+	.data       start:0x80695AA0 end:0x80695AF8
+
+Game/LiveActor/ShadowSurfaceOvalData.cpp:
+	.data       start:0x80695AF8 end:0x80695B50
+	.sdata2     start:0x807DC538 end:0x807DC548
+
+Game/LiveActor/ShadowVolumeBoxData.cpp:
+	.data       start:0x80695B50 end:0x80695BA8
+	.sdata2     start:0x807DC548 end:0x807DC558
+
+Game/LiveActor/ShadowVolumeCylinderData.cpp:
+	.data       start:0x80695BA8 end:0x80695C10
+	.sdata2     start:0x807DC558 end:0x807DC560
+
+Game/LiveActor/ShadowVolumeDrawerData.cpp:
+	.data       start:0x80695C10 end:0x80695C98
+	.sdata2     start:0x807DC560 end:0x807DC568
+
+Game/LiveActor/ShadowSurfaceOvalSupport.cpp:
+	.text       start:0x80240450 end:0x80240550
+
+Game/LiveActor/ShadowSurfaceOval.cpp:
+	.text       start:0x80240550 end:0x802406E0
+
+Game/LiveActor/ShadowSurfaceOvalDestructor.cpp:
+	.text       start:0x802406E0 end:0x80240740
+
+Game/LiveActor/ShadowVolumeBoxSupport.cpp:
+	.text       start:0x80240740 end:0x80240840
+
+Game/LiveActor/ShadowVolumeBoxDestructor.cpp:
+	.text       start:0x80241120 end:0x80241180
+
+Game/LiveActor/ShadowVolumeCylinderSupport.cpp:
+	.text       start:0x80241180 end:0x80241250
+
+Game/LiveActor/ShadowVolumeCylinderDraw.cpp:
+	.text       start:0x80241250 end:0x80241350
+
+Game/LiveActor/ShadowDestructor_80241350.cpp:
+	.text       start:0x80241350 end:0x802413B0
+
+Game/LiveActor/ShadowVolumeDrawInitCtor.cpp:
+	.text       start:0x802413B0 end:0x80241420
+
+Game/LiveActor/ShadowVolumeDrawerSupport.cpp:
+	.text       start:0x80241420 end:0x80241520
+
+Game/LiveActor/ShadowVolumeDrawerPosition.cpp:
+	.text       start:0x80241520 end:0x80241600
+
+Game/LiveActor/ShadowVolumeDrawerLength.cpp:
+	.text       start:0x80241600 end:0x80241720
+
+Game/LiveActor/ShadowVolumeDrawerDraw.cpp:
+	.text       start:0x80241720 end:0x80241820
+
+Game/LiveActor/ShadowVolumeDrawInitDestructor.cpp:
+	.text       start:0x80241820 end:0x80241880
+
+Game/LiveActor/ShadowVolumeModelSupport.cpp:
+	.text       start:0x802420C0 end:0x80242160
+
+Game/LiveActor/ShadowSupport_80242160.cpp:
+	.text       start:0x80242160 end:0x80242230
+
+Game/LiveActor/ShadowDraw_80242230.cpp:
+	.text       start:0x80242230 end:0x80242490
+
+Game/LiveActor/ShadowSupport_80242490.cpp:
+	.text       start:0x80242490 end:0x80242580
+
+Game/LiveActor/ShadowDraw_80242580.cpp:
+	.text       start:0x80242580 end:0x80242820
+
+Game/LiveActor/ShadowSupport_80242820.cpp:
+	.text       start:0x80242820 end:0x80242920
+
+Game/LiveActor/ShadowDraw_80242920.cpp:
+	.text       start:0x80242920 end:0x802429F0
+
+Game/LiveActor/ShadowDraw_802429F0.cpp:
+	.text       start:0x802429F0 end:0x80242C60
+	.rodata     start:0x80648AC0 end:0x80648AC8
+
+Game/LiveActor/ShadowSupport_80242C60.cpp:
+	.text       start:0x80242C60 end:0x80242D30
+
+Game/LiveActor/ShadowSupport_80242D30.cpp:
+	.text       start:0x80242D30 end:0x80242DA0
+
+Game/LiveActor/ShadowDraw_80242DA0.cpp:
+	.text       start:0x80242DA0 end:0x80242E80
+
+Game/LiveActor/ShadowDestructor_80242E80.cpp:
+	.text       start:0x80242E80 end:0x80242EE0
+
+Game/LiveActor/ShadowCtor_80242EE0.cpp:
+	.text       start:0x80242EE0 end:0x80242FD0
+
+Game/LiveActor/ShadowDraw_80242FD0.cpp:
+	.text       start:0x80242FD0 end:0x80243050
+
+Game/LiveActor/ShadowCallback_80243050.cpp:
+	.text       start:0x80243050 end:0x80243080
+
+Game/LiveActor/ShadowClone_80243080.cpp:
+	.text       start:0x80243080 end:0x802430F0
+
+Game/LiveActor/ShadowDestructor_802430F0.cpp:
+	.text       start:0x802430F0 end:0x80243150
+
 Game/LiveActor/Spine.cpp:
 	.text       start:0x80243150 end:0x80243330
+
+Game/LiveActor/Ctor_80243330.cpp:
+	.text       start:0x80243330 end:0x80243460
+
+Game/LiveActor/Control_80243460.cpp:
+	.text       start:0x80243460 end:0x80243510
+
+Game/LiveActor/Support_80243510.cpp:
+	.text       start:0x80243510 end:0x80243580
+
+Game/LiveActor/Support_80243580.cpp:
+	.text       start:0x80243580 end:0x80243620
+
+Game/LiveActor/Init_80243620.cpp:
+	.text       start:0x80243620 end:0x80243780
+
+Game/LiveActor/Support_80243780.cpp:
+	.text       start:0x80243780 end:0x80243860
+
+Game/LiveActor/Update_80243860.cpp:
+	.text       start:0x80243860 end:0x80243990
+
+Game/LiveActor/Ctor_80243990.cpp:
+	.text       start:0x80243990 end:0x80243A90
+
+Game/LiveActor/Support_80243A90.cpp:
+	.text       start:0x80243A90 end:0x80243B20
+
+Game/LiveActor/Fade_80243B20.cpp:
+	.text       start:0x80243B20 end:0x80243BD0
+	.rodata     start:0x80648AC8 end:0x80648AD0
+
+Game/LiveActor/Update_80243BD0.cpp:
+	.text       start:0x80243BD0 end:0x80243C60
+
+Game/LiveActor/Predicate_80243C60.cpp:
+	.text       start:0x80243C60 end:0x80243CF0
+
+Game/LiveActor/Matrix_80243CF0.cpp:
+	.text       start:0x80243CF0 end:0x80243D50
+
+Game/LiveActor/Matrix_80243F60.cpp:
+	.text       start:0x80243F60 end:0x802440B0
+
+Game/LiveActor/Support_802440B0.cpp:
+	.text       start:0x802440B0 end:0x802442B0
+
+Game/LiveActor/Init_802442B0.cpp:
+	.text       start:0x802442B0 end:0x802444F0
+	.data       start:0x806960E0 end:0x80696100
+
+Game/LiveActor/Support_802444F0.cpp:
+	.text       start:0x802444F0 end:0x80244790
+
+Game/LiveActor/State_80244790.cpp:
+	.text       start:0x80244790 end:0x80244960
+
+Game/LiveActor/Support_80244960.cpp:
+	.text       start:0x80244960 end:0x80244BF0
+
+Game/LiveActor/Callback_80244BF0.cpp:
+	.text       start:0x80244BF0 end:0x80244E70
+
+Game/LiveActor/Nerve_80244E70.cpp:
+	.text       start:0x80244E70 end:0x80244EA4
+	.ctors      start:0x80644294 end:0x80644298
+	.sbss       start:0x807D34C0 end:0x807D34D0
+
+Game/LiveActor/Nerve_80244EB0.cpp:
+	.text       start:0x80244EB0 end:0x80244F10
+
+Game/LiveActor/Switch_80244F10.cpp:
+	.text       start:0x80244F10 end:0x802450C0
+
+Game/LiveActor/Iterate_802450C0.cpp:
+	.text       start:0x802450C0 end:0x80245220
+
+Game/LiveActor/Awake_80245220.cpp:
+	.text       start:0x80245220 end:0x802453C0
+
+Game/LiveActor/Awake_802453C0.cpp:
+	.text       start:0x802453C0 end:0x80245620
+
+Game/Map/BezierRail.cpp:
+	.text       start:0x80245620 end:0x80245A00
+
+Game/Map/BezierLength_80245A00.cpp:
+	.text       start:0x80245A00 end:0x80245C10
+	.rodata     start:0x80648AD8 end:0x80648AF8
+
+Game/Map/BezierParam_80245C10.cpp:
+	.text       start:0x80245C10 end:0x80245D70
+
+Game/Map/BezierNearest_80245D70.cpp:
+	.text       start:0x80245D70 end:0x80245E80
+
+Game/Map/BezierInit_80245E80.cpp:
+	.text       start:0x80245E80 end:0x802460A0
+
+Game/Map/BezierSupport_802460A0.cpp:
+	.text       start:0x802460A0 end:0x802462B0
+
+Game/Map/BezierCoord_802462B0.cpp:
+	.text       start:0x802462B0 end:0x802464E0
+
+Game/Map/BezierSection_802464E0.cpp:
+	.text       start:0x802464E0 end:0x802467D0
+
+Game/LiveActor/Actor_802467D0.cpp:
+	.text       start:0x802467D0 end:0x80246850
+
+Game/LiveActor/Init_80246850.cpp:
+	.text       start:0x80246850 end:0x80246A20
+
+Game/LiveActor/Support_80246A20.cpp:
+	.text       start:0x80246A20 end:0x80246AF0
+
+Game/LiveActor/Matrix_80246AF0.cpp:
+	.text       start:0x80246AF0 end:0x80246BD0
+
+Game/LiveActor/Sensor_80246BD0.cpp:
+	.text       start:0x80246BD0 end:0x80246C40
+
+Game/LiveActor/Vector_80246C40.cpp:
+	.text       start:0x80246C40 end:0x80246E40
+
+Game/LiveActor/Vector_80246E40.cpp:
+	.text       start:0x80246E40 end:0x80246FE0
+
+Game/LiveActor/State_80246FE0.cpp:
+	.text       start:0x80246FE0 end:0x80247130
+
+Game/LiveActor/State_80247130.cpp:
+	.text       start:0x80247130 end:0x80247220
+
+Game/LiveActor/State_80247220.cpp:
+	.text       start:0x80247220 end:0x80247290
+
+Game/LiveActor/Flag_80247290.cpp:
+	.text       start:0x80247290 end:0x80247340
+
+Game/LiveActor/Move_80247340.cpp:
+	.text       start:0x80247340 end:0x802474B0
+
+Game/LiveActor/State_802474B0.cpp:
+	.text       start:0x802474B0 end:0x80247560
+
+Game/LiveActor/Move_80247560.cpp:
+	.text       start:0x80247560 end:0x80247670
+
+Game/LiveActor/Move_80247670.cpp:
+	.text       start:0x80247670 end:0x80247760
+
+Game/LiveActor/Move_80247760.cpp:
+	.text       start:0x80247760 end:0x80247850
+
+Game/LiveActor/Move_80247850.cpp:
+	.text       start:0x80247850 end:0x80247900
+
+Game/LiveActor/State_80247900.cpp:
+	.text       start:0x80247900 end:0x802479A0
+
+Game/LiveActor/Cleanup_802479A0.cpp:
+	.text       start:0x802479A0 end:0x80247A00
+
+Game/LiveActor/Nerve_80247A00.cpp:
+	.text       start:0x80247A00 end:0x80247A54
+	.ctors      start:0x80644298 end:0x8064429C
+	.sbss       start:0x807D34D0 end:0x807D34F0
+
+Game/LiveActor/Nerve_80247A60.cpp:
+	.text       start:0x80247A60 end:0x80247B40
+
+Game/LiveActor/Holder_80247B40.cpp:
+	.text       start:0x80247B40 end:0x80247BE0
+
+Game/LiveActor/Iterate_80247BE0.cpp:
+	.text       start:0x80247BE0 end:0x80247CD0
+
+Game/LiveActor/Group_80247CD0.cpp:
+	.text       start:0x80247CD0 end:0x80247D70
+
+Game/LiveActor/Group_80247D70.cpp:
+	.text       start:0x80247D70 end:0x80247DF0
+
+Game/LiveActor/Query_80247DF0.cpp:
+	.text       start:0x80247DF0 end:0x80248020
+
+Game/LiveActor/Query_80248020.cpp:
+	.text       start:0x80248020 end:0x80248270
+
+Game/LiveActor/Query_80248270.cpp:
+	.text       start:0x80248270 end:0x802484D0
+
+Game/LiveActor/Query_802484D0.cpp:
+	.text       start:0x802484D0 end:0x80248790
+
+Game/LiveActor/Query_80248790.cpp:
+	.text       start:0x80248790 end:0x80248950
+
+Game/LiveActor/Query_80248950.cpp:
+	.text       start:0x80248950 end:0x80248AB0
+
+Game/LiveActor/Bounds_80248AB0.cpp:
+	.text       start:0x80248AB0 end:0x80248B40
+
+Game/LiveActor/Find_80248B40.cpp:
+	.text       start:0x80248B40 end:0x80248BC0
+
+Game/LiveActor/Access_80248BC0.cpp:
+	.text       start:0x80248BC0 end:0x80248C70
+
+Game/LiveActor/Group_80248C70.cpp:
+	.text       start:0x80248C70 end:0x80248D60
+
+Game/LiveActor/Bounds_80248D60.cpp:
+	.text       start:0x80248D60 end:0x80248F20
+
+Game/LiveActor/Bounds_80248F20.cpp:
+	.text       start:0x80248F20 end:0x80249010
+
+Game/LiveActor/Bounds_80249010.cpp:
+	.text       start:0x80249010 end:0x802490F0
+
+Game/LiveActor/Remove_802490F0.cpp:
+	.text       start:0x802490F0 end:0x80249170
+
+Game/LiveActor/Cleanup_80249170.cpp:
+	.text       start:0x80249170 end:0x802491D0
 
 Game/Map/CollisionCode.cpp:
 	.text       start:0x802491D0 end:0x80249DD0
 	.data       start:0x80696640 end:0x80696968
+	.sdata      start:0x807CFAF8 end:0x807CFB10
+
+Game/Map/CollisionDirector.cpp:
+	.text       start:0x80249DD0 end:0x80249FB0
+
+Game/Map/Init_80249FB0.cpp:
+	.text       start:0x80249FB0 end:0x8024A0F0
+
+Game/Map/Setup_8024A0F0.cpp:
+	.text       start:0x8024A0F0 end:0x8024A1C0
+
+Game/Map/Scale_8024A1C0.cpp:
+	.text       start:0x8024A1C0 end:0x8024A270
+
+Game/Map/Group_8024A270.cpp:
+	.text       start:0x8024A270 end:0x8024A330
+
+Game/Map/Flags_8024A330.cpp:
+	.text       start:0x8024A330 end:0x8024A3A0
+
+Game/Map/Matrix_8024A3A0.cpp:
+	.text       start:0x8024A3A0 end:0x8024A4A0
+
+Game/Map/Update_8024A4A0.cpp:
+	.text       start:0x8024A4A0 end:0x8024A5F0
+
+Game/Map/Normalize_8024A5F0.cpp:
+	.text       start:0x8024A5F0 end:0x8024A7B0
+
+Game/Map/Access_8024A7B0.cpp:
+	.text       start:0x8024A7B0 end:0x8024A840
+
+Game/Map/Name_8024A840.cpp:
+	.text       start:0x8024A840 end:0x8024A870
+
+Game/Map/Index_8024A870.cpp:
+	.text       start:0x8024A870 end:0x8024A880
+
+Game/Map/Query_8024A880.cpp:
+	.text       start:0x8024A880 end:0x8024AA30
+
+Game/Map/Query_8024AA30.cpp:
+	.text       start:0x8024AA30 end:0x8024AD00
+	.rodata     start:0x80648B10 end:0x80648B18
+
+Game/Map/Query_8024AD00.cpp:
+	.text       start:0x8024AD00 end:0x8024AEB0
+
+Game/Map/Query_8024AEB0.cpp:
+	.text       start:0x8024AEB0 end:0x8024B070
+
+Game/Map/Project_8024B070.cpp:
+	.text       start:0x8024B070 end:0x8024B3D4
+
+Game/Map/Plane_8024B3E0.cpp:
+	.text       start:0x8024B3E0 end:0x8024B494 align:16
+
+Game/Map/Query_8024B4A0.cpp:
+	.text       start:0x8024B4A0 end:0x8024B68C align:16
+
+Game/Map/Query_8024B690.cpp:
+	.text       start:0x8024B690 end:0x8024B77C align:16
+
+Game/Map/Query_8024B780.cpp:
+	.text       start:0x8024B780 end:0x8024B890 align:16
+
+Game/Map/Displacement_8024B890.cpp:
+	.text       start:0x8024B890 end:0x8024B918 align:16
+
+Game/Map/Actor_8024B920.cpp:
+	.text       start:0x8024B920 end:0x8024B994 align:16
+
+Game/Map/Init_8024B9A0.cpp:
+	.text       start:0x8024B9A0 end:0x8024BA00 align:16
+
+Game/Map/Appear_8024BA00.cpp:
+	.text       start:0x8024BA00 end:0x8024BAC8 align:16
+
+Game/Map/State_8024BAD0.cpp:
+	.text       start:0x8024BAD0 end:0x8024BB18 align:16
+
+Game/Map/State_8024BB20.cpp:
+	.text       start:0x8024BB20 end:0x8024BC80 align:16
+
+Game/Map/Step_8024BC80.cpp:
+	.text       start:0x8024BC80 end:0x8024BD18 align:16
+
+Game/Map/Step_8024BD20.cpp:
+	.text       start:0x8024BD20 end:0x8024BFE4 align:16
+	.rodata     start:0x80648B48 end:0x80648B50
+
+Game/Map/Camera_8024BFF0.cpp:
+	.text       start:0x8024BFF0 end:0x8024C0B8 align:16
+
+Game/Map/Cleanup_8024C0C0.cpp:
+	.text       start:0x8024C0C0 end:0x8024C120 align:16
+
+Game/Map/Nerve_8024C120.cpp:
+	.text       start:0x8024C120 end:0x8024C164 align:16
+	.ctors      start:0x8064429C end:0x806442A0
+	.sbss       start:0x807D34F0 end:0x807D3508
+
+auto_03_8024C164_text:
+	.text       start:0x8024C164 end:0x8024C170
+
+Game/Map/Nerve_8024C170.cpp:
+	.text       start:0x8024C170 end:0x8024C208 align:16
+
+Game/Map/Actor_8024C210.cpp:
+	.text       start:0x8024C210 end:0x8024C254 align:16
+
+Game/Map/Init_8024C260.cpp:
+	.text       start:0x8024C260 end:0x8024C2CC align:16
+
+Game/Map/State_8024C2D0.cpp:
+	.text       start:0x8024C2D0 end:0x8024C380 align:16
+
+Game/Map/Step_8024C380.cpp:
+	.text       start:0x8024C380 end:0x8024C424 align:16
+
+Game/Map/Matrix_8024C430.cpp:
+	.text       start:0x8024C430 end:0x8024C568 align:16
+
+Game/Map/Cleanup_8024C570.cpp:
+	.text       start:0x8024C570 end:0x8024C5CC align:16
+
+Game/Map/Nerve_8024C5D0.cpp:
+	.text       start:0x8024C5D0 end:0x8024C604 align:16
+	.ctors      start:0x806442A0 end:0x806442A4
+	.sbss       start:0x807D3508 end:0x807D3518
+
+Game/Map/Nerve_8024C610.cpp:
+	.text       start:0x8024C610 end:0x8024C654 align:16
+
+auto_03_8024C654_text:
+	.text       start:0x8024C654 end:0x8024C660
+
+Game/Map/Nerve_8024C660.cpp:
+	.text       start:0x8024C660 end:0x8024C670 align:16
+
+Game/Map/Name_8024C670.cpp:
+	.text       start:0x8024C670 end:0x8024C740 align:16
+
+Game/Map/Value_8024C740.cpp:
+	.text       start:0x8024C740 end:0x8024C7F0 align:16
+
+Game/Map/Query_8024C7F0.cpp:
+	.text       start:0x8024C7F0 end:0x8024C8D0 align:16
+
+Game/Map/Actor_8024C8D0.cpp:
+	.text       start:0x8024C8D0 end:0x8024CA30 align:16
+
+Game/Map/Init_8024CA30.cpp:
+	.text       start:0x8024CA30 end:0x8024CB00 align:16
+
+Game/Map/Lifecycle_8024CB00.cpp:
+	.text       start:0x8024CB00 end:0x8024CC70 align:16
+
+Game/Map/State_8024CC70.cpp:
+	.text       start:0x8024CC70 end:0x8024CD60 align:16
+
+Game/Map/Change_8024CD60.cpp:
+	.text       start:0x8024CD60 end:0x8024CE30 align:16
+
+Game/Map/Control_8024CE30.cpp:
+	.text       start:0x8024CE30 end:0x8024CED0 align:16
+
+Game/Map/Control_8024CED0.cpp:
+	.text       start:0x8024CED0 end:0x8024CFD0 align:16
+
+Game/Map/Step_8024CFD0.cpp:
+	.text       start:0x8024CFD0 end:0x8024D110 align:16
+
+Game/Map/Step_8024D110.cpp:
+	.text       start:0x8024D110 end:0x8024D220 align:16
+
+Game/Map/Step_8024D220.cpp:
+	.text       start:0x8024D220 end:0x8024D380 align:16
+
+Game/Map/Matrix_8024D380.cpp:
+	.text       start:0x8024D380 end:0x8024D580 align:16
+
+Game/Map/Setup_8024D580.cpp:
+	.text       start:0x8024D580 end:0x8024D7F0 align:16
+
+Game/Map/Control_8024D7F0.cpp:
+	.text       start:0x8024D7F0 end:0x8024D8F0 align:16
+
+Game/Map/Motion_8024D8F0.cpp:
+	.text       start:0x8024D8F0 end:0x8024DF60 align:16
+
+Game/Map/Appear_8024DF60.cpp:
+	.text       start:0x8024DF60 end:0x8024DFE0 align:16
+
+Game/Map/Children_8024DFE0.cpp:
+	.text       start:0x8024DFE0 end:0x8024E0C0 align:16
+
+Game/Map/Effects_8024E0C0.cpp:
+	.text       start:0x8024E0C0 end:0x8024E3E0 align:16
+
+Game/Map/Helper_8024E3E0.cpp:
+	.text       start:0x8024E3E0 end:0x8024E440 align:16
+
+Game/Map/Factor_8024E440.cpp:
+	.text       start:0x8024E440 end:0x8024E560 align:16
+
+Game/Map/Helper_8024E560.cpp:
+	.text       start:0x8024E560 end:0x8024E7B0 align:16
+
+Game/Map/Control_8024E7B0.cpp:
+	.text       start:0x8024E7B0 end:0x8024EA60 align:16
+
+Game/Map/Cleanup_8024EA60.cpp:
+	.text       start:0x8024EA60 end:0x8024EB80 align:16
+
+Game/Map/Nerve_8024EB80.cpp:
+	.text       start:0x8024EB80 end:0x8024EC04 align:16
+	.ctors      start:0x806442A4 end:0x806442A8
+	.sbss       start:0x807D3518 end:0x807D3550
+
+auto_03_8024EC04_text:
+	.text       start:0x8024EC04 end:0x8024EC10
+
+Game/Map/Nerve_8024EC10.cpp:
+	.text       start:0x8024EC10 end:0x8024EDB0 align:16
+
+Game/Map/Actor_8024EDB0.cpp:
+	.text       start:0x8024EDB0 end:0x8024F080 align:16
+
+Game/Map/Cleanup_8024F080.cpp:
+	.text       start:0x8024F080 end:0x8024F0E0 align:16
+
+Game/Map/Nerve_8024F0E0.cpp:
+	.text       start:0x8024F0E0 end:0x8024F11C align:16
+	.ctors      start:0x806442A8 end:0x806442AC
+	.sbss       start:0x807D3550 end:0x807D3560
+
+auto_03_8024F11C_text:
+	.text       start:0x8024F11C end:0x8024F120
+
+Game/Map/Nerve_8024F120.cpp:
+	.text       start:0x8024F120 end:0x8024F220 align:16
+
+Game/Map/Lookup_8024F220.cpp:
+	.text       start:0x8024F220 end:0x8024F260 align:16
+
+Game/Map/Actor_8024F260.cpp:
+	.text       start:0x8024F260 end:0x8024F320 align:16
+
+Game/Map/Init_8024F320.cpp:
+	.text       start:0x8024F320 end:0x8024F490 align:16
+
+Game/Map/State_8024F490.cpp:
+	.text       start:0x8024F490 end:0x8024F580 align:16
+
+Game/Map/State_8024F580.cpp:
+	.text       start:0x8024F580 end:0x8024F5B0 align:16
+
+Game/Map/Positions_8024F5B0.cpp:
+	.text       start:0x8024F5B0 end:0x8024F6F0 align:16
+
+Game/Map/Query_8024F6F0.cpp:
+	.text       start:0x8024F6F0 end:0x8024F700 align:16
+
+Game/Map/Setup_8024F700.cpp:
+	.text       start:0x8024F700 end:0x8024F7B0 align:16
+
+Game/Map/Group_8024F7B0.cpp:
+	.text       start:0x8024F7B0 end:0x8024F900 align:16
+
+Game/Map/Callbacks_8024F900.cpp:
+	.text       start:0x8024F900 end:0x8024FA20 align:16
+
+Game/Map/Callback_8024FA20.cpp:
+	.text       start:0x8024FA20 end:0x8024FA60 align:16
+
+Game/Map/Setup_8024FA60.cpp:
+	.text       start:0x8024FA60 end:0x8024FBB0 align:16
+
+Game/Map/Setup_8024FBB0.cpp:
+	.text       start:0x8024FBB0 end:0x8024FD70 align:16
+
+Game/Map/Group_8024FD70.cpp:
+	.text       start:0x8024FD70 end:0x8024FDF0 align:16
+
+Game/Map/Control_8024FDF0.cpp:
+	.text       start:0x8024FDF0 end:0x8024FE80 align:16
+
+Game/Map/Query_8024FE80.cpp:
+	.text       start:0x8024FE80 end:0x8024FEF0 align:16
+
+Game/Map/Control_8024FEF0.cpp:
+	.text       start:0x8024FEF0 end:0x8024FFA0 align:16
+
+Game/Map/Group_8024FFA0.cpp:
+	.text       start:0x8024FFA0 end:0x80250120 align:16
+
+Game/Map/Array_80250120.cpp:
+	.text       start:0x80250120 end:0x80250240 align:16
+
+Game/Map/Select_80250240.cpp:
+	.text       start:0x80250240 end:0x802502C0 align:16
+
+Game/Map/Control_802502C0.cpp:
+	.text       start:0x802502C0 end:0x802503B0 align:16
+
+Game/Map/Display_802503B0.cpp:
+	.text       start:0x802503B0 end:0x80250570 align:16
+
+Game/Map/Positions_80250570.cpp:
+	.text       start:0x80250570 end:0x802506F0 align:16
+
+Game/Map/Create_802506F0.cpp:
+	.text       start:0x802506F0 end:0x80250790 align:16
+
+Game/Map/Refresh_80250790.cpp:
+	.text       start:0x80250790 end:0x802508D0 align:16
+
+Game/Map/Control_802508D0.cpp:
+	.text       start:0x802508D0 end:0x80250A70 align:16
+
+Game/Map/Rotation_80250A70.cpp:
+	.text       start:0x80250A70 end:0x80250CD0 align:16
+
+Game/Map/Matrix_80250CD0.cpp:
+	.text       start:0x80250CD0 end:0x80250E20 align:16
+
+Game/Map/Query_80250E20.cpp:
+	.text       start:0x80250E20 end:0x80250FC0 align:16
+
+Game/Map/Value_80250FC0.cpp:
+	.text       start:0x80250FC0 end:0x80251180 align:16
+
+Game/Map/Query_80251180.cpp:
+	.text       start:0x80251180 end:0x80251340 align:16
+
+Game/Map/Control_80251340.cpp:
+	.text       start:0x80251340 end:0x80251430 align:16
+
+Game/Map/Group_80251430.cpp:
+	.text       start:0x80251430 end:0x802515A0 align:16
+
+Game/Map/Setup_802515A0.cpp:
+	.text       start:0x802515A0 end:0x80251690 align:16
+
+Game/Map/State_80251690.cpp:
+	.text       start:0x80251690 end:0x80251850 align:16
+
+Game/Map/State_80251850.cpp:
+	.text       start:0x80251850 end:0x80251A50 align:16
+
+Game/Map/State_80251A50.cpp:
+	.text       start:0x80251A50 end:0x80251BB0 align:16
+
+Game/Map/State_80251BB0.cpp:
+	.text       start:0x80251BB0 end:0x80251CC0 align:16
+
+Game/Map/State_80251CC0.cpp:
+	.text       start:0x80251CC0 end:0x80251DD0 align:16
+
+Game/Map/State_80251DD0.cpp:
+	.text       start:0x80251DD0 end:0x80251E50 align:16
+
+Game/Map/State_80251E50.cpp:
+	.text       start:0x80251E50 end:0x80251F30 align:16
+
+Game/Map/State_80251F30.cpp:
+	.text       start:0x80251F30 end:0x80251FA0 align:16
+
+Game/Map/State_80251FA0.cpp:
+	.text       start:0x80251FA0 end:0x80252090 align:16
+
+Game/Map/State_80252090.cpp:
+	.text       start:0x80252090 end:0x80252120 align:16
+
+Game/Map/State_80252120.cpp:
+	.text       start:0x80252120 end:0x80252180 align:16
+
+Game/Map/State_80252180.cpp:
+	.text       start:0x80252180 end:0x80252270 align:16
+
+Game/Map/State_80252270.cpp:
+	.text       start:0x80252270 end:0x802523B0 align:16
+
+Game/Map/State_802523B0.cpp:
+	.text       start:0x802523B0 end:0x80252410 align:16
+
+Game/Map/State_80252410.cpp:
+	.text       start:0x80252410 end:0x80252470 align:16
+
+Game/Map/State_80252470.cpp:
+	.text       start:0x80252470 end:0x80252610 align:16
+
+Game/Map/State_80252610.cpp:
+	.text       start:0x80252610 end:0x80252690 align:16
+
+Game/Map/State_80252690.cpp:
+	.text       start:0x80252690 end:0x80252770 align:16
+
+Game/Map/State_80252770.cpp:
+	.text       start:0x80252770 end:0x80252800 align:16
+
+Game/Map/State_80252800.cpp:
+	.text       start:0x80252800 end:0x80252860 align:16
+
+Game/Map/State_80252860.cpp:
+	.text       start:0x80252860 end:0x80252900 align:16
 
 Game/Map/RailGraph.cpp:
 	.text       start:0x80265EE0 end:0x802662A0
@@ -141,8 +986,12 @@ Game/Map/SwitchSynchronizer.cpp:
 	.data       start:0x8069A6C8 end:0x8069A6F8
 
 Game/Map/SwitchWatcher.cpp:
-	.text       start:0x8026AC10 end:0x8026B1A0
-	.data       start:0x8069A6F8 end:0x8069A788
+	.text       start:0x8026AC10 end:0x8026AE80
+	.data       start:0x8069A6F8 end:0x8069A738
+
+Game/Map/SwitchWatcherHolder.cpp:
+	.text       start:0x8026AE80 end:0x8026B1A0
+	.data       start:0x8069A738 end:0x8069A788
 
 Game/NameObj/MovementOnOffGroupHolder.cpp:
 	.text       start:0x80339560 end:0x80339610
@@ -192,11 +1041,15 @@ Game/Ride/TubeSliderCoinCreator.cpp:
 	.sdata2     start:0x807E1160 end:0x807E1180
 
 Game/Ride/TubeSliderCrystal.cpp:
-	.text       start:0x8044EA40 end:0x8044ED20
+	.text       start:0x8044EA40 end:0x8044ECE0
 	.ctors      start:0x80644860 end:0x80644864
-	.data       start:0x806EF390 end:0x806EF458
+	.data       start:0x806EF390 end:0x806EF438
 	.sbss       start:0x807D52D8 end:0x807D52E0
 	.sdata2     start:0x807E1180 end:0x807E1188
+
+Game/Ride/TubeSliderCrystalNrv.cpp:
+	.text       start:0x8044ECE0 end:0x8044ED20
+	.data       start:0x806EF438 end:0x806EF458
 
 Game/Ride/TubeSliderDamageObjCreator.cpp:
 	.text       start:0x8044ED20 end:0x8044F810
@@ -207,6 +1060,9 @@ Game/Ride/TubeSliderDamageObjCreator.cpp:
 
 Game/Ride/TubeSliderFunction.cpp:
 	.text       start:0x8044FF90 end:0x80450D60
+	.rodata     start:0x8064C070 end:0x8064C078
+	.data       start:0x806EF730 end:0x806EF798
+	.sdata2     start:0x807E11F0 end:0x807E1210
 
 Game/System/NerveExecutor.cpp:
 	.text       start:0x804C4BB0 end:0x804C4D20
@@ -219,6 +1075,7 @@ Game/System/ResourceInfo.cpp:
 Game/System/ScenarioDataParser.cpp:
 	.text       start:0x804CB460 end:0x804CC010
 	.data       start:0x806FC2E0 end:0x806FC3B8
+	.sdata      start:0x807D0478 end:0x807D0480
 
 nw4r/ut/ut_LinkList.cpp:
 	.text       start:0x8059D480 end:0x8059D5C0
@@ -249,6 +1106,7 @@ RVL_SDK/os/OSFont.c:
 	.data       start:0x8070D5B0 end:0x8070E0C0
 	.sdata      start:0x807D0988 end:0x807D0990
 	.sbss       start:0x807D66A0 end:0x807D66B0
+	.sdata2     start:0x807E2730 end:0x807E2738
 
 RVL_SDK/dvd/dvdfs.c:
 	.text       start:0x805D1340 end:0x805D1D40

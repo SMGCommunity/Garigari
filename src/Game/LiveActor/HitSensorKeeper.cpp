@@ -4,6 +4,16 @@
 #include "Util.hpp"
 #include <cstring>
 
+namespace {
+    ALWAYS_INLINE inline TVec3f zeroSensorOffset() {
+        TVec3f offset;
+        offset.x = 0.0f;
+        offset.y = 0.0f;
+        offset.z = 0.0f;
+        return offset;
+    }
+}
+
 HitSensorKeeper::HitSensorKeeper(int max) {
     mSensorCount = 0;
     mMaxSensorCount = max;
@@ -24,7 +34,7 @@ HitSensorInfo* HitSensorKeeper::add(const char *pSensorName, u32 sensorType, u16
 }
 
 HitSensorInfo* HitSensorKeeper::addCallback(const char *pSensorName, u32 sensorType, u16 numSensors, f32 radius, LiveActor *pActor) {
-    HitSensorInfo* info = new HitSensorInfo(pSensorName, new HitSensor(sensorType, numSensors, radius, pActor), nullptr, nullptr, TVec3f(0.0f), true);
+    HitSensorInfo* info = new HitSensorInfo(pSensorName, new HitSensor(sensorType, numSensors, radius, pActor), nullptr, nullptr, zeroSensorOffset(), true);
     registHitSensorInfo(info);
     return info;
 }

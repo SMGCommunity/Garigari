@@ -41,7 +41,7 @@ public:
     virtual void startClipped();
     virtual void endClipped();
     virtual void control();
-    virtual void calcAndSetBaseMtx();
+    virtual void calcAndSetBaseMtx() NO_INLINE;
     virtual void updateHitSensor(HitSensor *);
     virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
     virtual bool receiveMsgPush(HitSensor *, HitSensor *);
@@ -49,11 +49,15 @@ public:
     virtual bool receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
     virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
+    void updateBinder() NO_INLINE;
+    void calcAnmMtx() NO_INLINE;
     void setNerve(const Nerve *);
     bool isNerve(const Nerve *) const;
     s32 getNerveStep() const;
 
     HitSensor* getSensor(const char *) const;
+    HitSensorKeeper* getSensorKeeper() const { return mSensorKeeper; }
+    const char* getName() const { return mName; }
 
     void initModelManagerWithAnm(const char *, const char *, const char *, bool);
     void initNerve(const Nerve *, s32 = 0);
@@ -65,6 +69,8 @@ public:
     void initShadowControllerList(u32);
     void initActorCollisionParts(const char *, HitSensor *, ResourceHolder *, MtxPtr, bool, bool);
     void initStageSwitch(const JMapInfoIter &);
+    void initActorLightCtrl();
+    void initActorStarPointerTarget(f32, const TVec3f*, MtxPtr, TVec3f);
 
     TVec3f mPosition;                       // 0x14
     TVec3f mRotation;                       // 0x20
