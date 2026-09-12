@@ -111,7 +111,11 @@ Game/LiveActor/Spine.cpp:
 
 Game/Map/CollisionCode.cpp:
 	.text       start:0x802491D0 end:0x80249DD0
-	.data       start:0x80696640 end:0x80696968
+	.data       start:0x80696640 end:0x80696968DWW 
+
+Game/Map/KCollision.cpp:
+	.text		start:0x801830E4 end:0x80259D90
+	.sdata2		start:0x807DC878 end:0x807DC880
 
 Game/Map/RailGraph.cpp:
 	.text       start:0x80265EE0 end:0x802662A0
@@ -220,6 +224,10 @@ RVL_SDK/os/OSFont.c:
 	.data       start:0x8070D5B0 end:0x8070E0C0
 	.sdata      start:0x807D0988 end:0x807D0990
 	.sbss       start:0x807D66A0 end:0x807D66B0
+
+RVL_SDK/os/OSInterrupt.c:
+	.text		start:0x805B99D0 end:0x805BA1A0
+	
 
 RVL_SDK/dvd/dvdfs.c:
 	.text       start:0x805D1340 end:0x805D1D40
