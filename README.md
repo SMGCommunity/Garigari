@@ -1,29 +1,28 @@
-Garigari  
-=============
+Garigari
 [![Build Status]][actions] ![Progress] [![Discord Badge]][discord]
-<!--
-Replace with your repository's URL.
--->
+=============
+
 [Build Status]: https://github.com/SMGCommunity/Garigari/actions/workflows/build.yml/badge.svg
 [actions]: https://github.com/SMGCommunity/Garigari/actions/workflows/build.yml
-<!---
-Code progress URL:
-https://progress.decomp.club/data/[project]/[version]/all/?mode=shield&measure=code
-URL encoded then appended to: https://img.shields.io/endpoint?label=Code&url=
--->
+
 [Progress]: https://decomp.dev/SMGCommunity/Garigari.svg?mode=shield&measure=code&label=Code
-<!---
-DOL progress URL:
-https://progress.decomp.club/data/[project]/[version]/dol/?mode=shield&measure=code
-URL encoded then appended to: https://img.shields.io/endpoint?label=DOL&url=
--->
 
 [Discord Badge]: https://img.shields.io/discord/727908905392275526?color=%237289DA&logo=discord&logoColor=%23FFFFFF
 [discord]: https://discord.gg/ZxEqyYeZbf
+[progress_link]: https://decomp.dev/SMGCommunity/Garigari
+
+<!-- markdownlint-disable MD033 -->
+[<img src="https://decomp.dev/SMGCommunity/Garigari.svg?w=512&h=256" width="512" height="256" alt="A visual">][progress_link]
+<!-- markdownlint-enable MD033 -->
 
 A work-in-progress decompilation of Super Mario Galaxy 2.
 
 This repository does **not** contain any game assets or assembly whatsoever. An existing copy of the game is required.
+
+This project is **not** meant to be an effort to create a PC Port. Please do not ask for any information on a PC port on this repository or in the Discord server.
+
+> [!NOTE]
+> AI may be used for code cleanup, formatting, documentation, and naming assistance. AI-generated decompilation work is not allowed. Pull requests containing obvious AI-generated decompilation output or other AI slop will be rejected. Contributors should be able to explain and justify any decompilation work they submit. This also applies to all tool-generated code. We want to keep this project as human as possible.
 
 Supported versions:
 
@@ -52,24 +51,14 @@ macOS
   brew install ninja
   ```
 
-- Install [wine-crossover](https://github.com/Gcenx/homebrew-wine):
-
-  ```sh
-  brew install --cask --no-quarantine gcenx/wine/wine-crossover
-  ```
-
-After OS upgrades, if macOS complains about `Wine Crossover.app` being unverified, you can unquarantine it using:
-
-```sh
-sudo xattr -rd com.apple.quarantine '/Applications/Wine Crossover.app'
-```
+[wibo](https://github.com/decompals/wibo), a minimal 32-bit Windows binary wrapper, will be automatically downloaded and used.
 
 Linux
 ------
 
 - Install [ninja](https://github.com/ninja-build/ninja/wiki/Pre-built-Ninja-packages).
-- For non-x86(_64) platforms: Install wine from your package manager.
-  - For x86(_64), [wibo](https://github.com/decompals/wibo), a minimal 32-bit Windows binary wrapper, will be automatically downloaded and used.
+
+[wibo](https://github.com/decompals/wibo), a minimal 32-bit Windows binary wrapper, will be automatically downloaded and used.
 
 Building
 ========
@@ -80,18 +69,17 @@ Building
   git clone https://github.com/SMGCommunity/Garigari.git
   ```
 
-- Copy your game's disc image to `orig/SB4E01`.
-  - Supported formats: ISO (GCM), RVZ, WIA, WBFS, CISO, NFS, GCZ, TGC
-  - After the initial build, the disc image can be deleted to save space.
-
+- Using [Dolphin Emulator](https://dolphin-emu.org/), extract your game to `orig/GAMEID`.
+![](assets/dolphin-extract.png)
+  - To save space, the only necessary files are the following. Any others can be deleted.
+    - `sys/main.dol`
 - Configure:
 
   ```sh
   python configure.py
   ```
 
-  To use a version other than `SB4E01` (USA), specify it with `--version`.
-
+  To use a version other than `GAMEID` (USA), specify it with `--version`.
 - Build:
 
   ```sh
@@ -108,3 +96,7 @@ Download the latest release from [encounter/objdiff](https://github.com/encounte
 Select an object from the left sidebar to begin diffing. Changes to the project will rebuild automatically: changes to source files, headers, `configure.py`, `splits.txt` or `symbols.txt`.
 
 ![](assets/objdiff.png)
+
+Credits
+=======
+Big thanks to the [doldecomp team](https://github.com/doldecomp/sdk_2009-12-11) for their efforts on bte, [tp](https://github.com/zeldaret/tp) for JSystem, and [ogws](https://github.com/doldecomp/ogws/tree/master), where this repository has sourced code and headers from.
