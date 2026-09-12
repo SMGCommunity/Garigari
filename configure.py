@@ -402,6 +402,17 @@ config.libs = [
     ),
 
     GameLib(
+        "Ride",
+        [
+            Object(NonMatching, "Game/Ride/TubeSlider.cpp"),
+            Object(NonMatching, "Game/Ride/TubeSliderCoinCreator.cpp"),
+            Object(NonMatching, "Game/Ride/TubeSliderCrystal.cpp"),
+            Object(NonMatching, "Game/Ride/TubeSliderDamageObjCreator.cpp"),
+            Object(NonMatching, "Game/Ride/TubeSliderFunction.cpp"),
+        ]
+    ),
+
+    GameLib(
         "System",
         [
             Object(NonMatching, "Game/System/NerveExecutor.cpp"),
@@ -415,6 +426,7 @@ config.libs = [
         [
             Object(NonMatching, "Game/Util/ActorInitUtil.cpp"),
             Object(NonMatching, "Game/Util/ActorSensorUtil.cpp"),
+            Object(NonMatching, "Game/Util/ActorShadowUtil.cpp"),
             Object(NonMatching, "Game/Util/JMapUtil.cpp"),
             Object(NonMatching, "Game/Util/LiveActorUtil.cpp"),
             Object(NonMatching, "Game/Util/MathUtil.cpp"),
