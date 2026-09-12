@@ -23,7 +23,7 @@ namespace {
     };
 
     
-    inline s32 getConnectionIdx(const char *pName) __attribute__((always_inline)) {
+    inline s32 getConnectionIdx(const char *pName) ALWAYS_INLINE {
         for (s32 i = 0; i < 0x31; i++) {
             const MR::ObjConnection* c = &cConnections[i];
             if (MR::isEqualString(pName, c->mObjType)) {
@@ -34,7 +34,7 @@ namespace {
         return -1;
     }
 
-    inline s32 getLightIDIdx(const char *pLight) __attribute__((always_inline)) {
+    inline s32 getLightIDIdx(const char *pLight) ALWAYS_INLINE {
         for (s32 i = 0; i < 0x31; i++) {
             const MR::ObjLight* c = &cLightTable[i];
             if (MR::isEqualString(pLight, c->mTypeStr)) {

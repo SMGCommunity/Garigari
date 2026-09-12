@@ -11,7 +11,7 @@ public:
 
     virtual ~NerveExecutor();
 
-    void initNerve(const Nerve *, s32);
+    void initNerve(const Nerve *, s32 = 0);
     void updateNerve();
     void setNerve(const Nerve *);
     bool isNerve(const Nerve *) const;

@@ -12,6 +12,7 @@ typedef struct Vec {
 } Vec, *VecPtr;
 
 f32 PSVECDistance(const Vec *, const Vec *);
+void PSVECCrossProduct(const Vec* srcA, const Vec* srcB, Vec* dest);
 f32 C_VECMag(const Vec *);
 
 #ifdef __cplusplus

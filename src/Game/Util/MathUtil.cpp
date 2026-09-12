@@ -19,4 +19,22 @@ namespace MR {
             gAcosTable[i++] = acos(v7);
         } while (i < 0x100);
     }
+
+
+
+
+
+
+
+    void repeatDegree(f32* value) {
+        *value = repeat(*value, 0.0f, 360.0f);
+    }
+
+    f32 repeatDegree(f32 value) {
+        return repeat(value, 0.0f, 360.0f);
+    }
+
+
+
+
 };

@@ -1,6 +1,9 @@
 #pragma once
 
-#include "LiveActor/ActorStateKeeper.hpp"
+#include <revolution.h>
+
+class Nerve;
+class ActorStateKeeper;
 
 class Spine {
 public:
