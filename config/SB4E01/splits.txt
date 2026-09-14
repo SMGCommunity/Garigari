@@ -111,7 +111,7 @@ Game/LiveActor/Spine.cpp:
 
 Game/Map/CollisionCode.cpp:
 	.text       start:0x802491D0 end:0x80249DD0
-	.data       start:0x80696640 end:0x80696968DWW 
+	.data       start:0x80696640 end:0x80696968
 
 Game/Map/KCollision.cpp:
 	.text		start:0x801830E4 end:0x80259D90
