@@ -130,7 +130,7 @@ Game/Util/MapUtil.cpp:
 Game/Util/MathUtil.cpp:
 	.text       start:0x8003B1A0 end:0x80040B90
 	.rodata     start:0x80645208 end:0x80645238
-	.sbss       start:0x807D0DA0 end:0x807D0DA4
+	.sbss       start:0x807D0DA0 end:0x807D0DA8
 	.sdata2     start:0x807D6F78 end:0x807D7068
 
 Game/Util/MemoryUtil.cpp:
@@ -1555,7 +1555,7 @@ Game/Enemy/BombBird.cpp:
 Game/Enemy/BombBirdBomb.cpp:
 	.text       start:0x8016B0E0 end:0x8016BB10
 	.ctors      start:0x806440B8 end:0x806440BC
-	.sbss       start:0x807D21F8 end:0x807D2204
+	.sbss       start:0x807D21F8 end:0x807D2208
 
 Game/Enemy/BombHei.cpp:
 	.text       start:0x8016BB10 end:0x8016E560
@@ -1648,7 +1648,7 @@ Game/Enemy/JumpEmitter.cpp:
 Game/Enemy/JumpSpider.cpp:
 	.text       start:0x801A12B0 end:0x801A2A80
 	.ctors      start:0x80644150 end:0x80644154
-	.sbss       start:0x807D2750 end:0x807D278C
+	.sbss       start:0x807D2750 end:0x807D2790
 
 Game/Enemy/Kabokuri.cpp:
 	.text       start:0x801A2A80 end:0x801A42A0
@@ -1672,7 +1672,7 @@ Game/Enemy/Kameck.cpp:
 Game/Enemy/KameckBeam.cpp:
 	.text       start:0x801A6B30 end:0x801A7BD0
 	.ctors      start:0x80644160 end:0x80644164
-	.sbss       start:0x807D2810 end:0x807D281C
+	.sbss       start:0x807D2810 end:0x807D2820
 
 Game/Enemy/KameckBeamHolder.cpp:
 	.text       start:0x801A7BE0 end:0x801A7C90
@@ -1730,7 +1730,7 @@ Game/Enemy/KuriboChief.cpp:
 	.text       start:0x801BB520 end:0x801BCB90
 	.ctors      start:0x8064418C end:0x80644190
 	.bss        start:0x807290F8 end:0x807291C8
-	.sbss       start:0x807D2A20 end:0x807D2A44
+	.sbss       start:0x807D2A20 end:0x807D2A48
 
 Game/Enemy/KuriboMini.cpp:
 	.text       start:0x801BCC50 end:0x801BE920
@@ -1810,7 +1810,7 @@ Game/Enemy/RingBeam.cpp:
 Game/Enemy/RingBeamer.cpp:
 	.text       start:0x801F7550 end:0x801F7F30
 	.ctors      start:0x8064420C end:0x80644210
-	.sbss       start:0x807D3060 end:0x807D306C
+	.sbss       start:0x807D3060 end:0x807D3070
 
 Game/Enemy/SamboHead.cpp:
 	.text       start:0x801F7F30 end:0x801F9980
@@ -1861,7 +1861,7 @@ Game/Enemy/TakoHei.cpp:
 	.text       start:0x80205B70 end:0x80208400
 	.ctors      start:0x80644234 end:0x80644238
 	.bss        start:0x807294D0 end:0x807294E0
-	.sbss       start:0x807D3220 end:0x807D3264
+	.sbss       start:0x807D3220 end:0x807D3268
 
 Game/Enemy/TakoHeiInk.cpp:
 	.text       start:0x80208400 end:0x80208770
@@ -2531,7 +2531,7 @@ Game/MapObj/AnmModelObj.cpp:
 Game/MapObj/ArrowSwitch.cpp:
 	.text       start:0x802705F0 end:0x80271460
 	.ctors      start:0x806442F4 end:0x806442F8
-	.sbss       start:0x807D3718 end:0x807D3724
+	.sbss       start:0x807D3718 end:0x807D3728
 
 Game/MapObj/AssemblyBlock.cpp:
 	.text       start:0x80271460 end:0x80271F60
