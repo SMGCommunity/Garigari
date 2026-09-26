@@ -291,7 +291,7 @@ cflags_rel = [
     "-sdata2 0",
 ]
 
-config.linker_version = "GC/2.6"
+config.linker_version = "GC/3.0a5"
 
 
 def GameLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
