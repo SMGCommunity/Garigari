@@ -16,10 +16,25 @@ Sections:
 Runtime/__mem.c:
 	.init       start:0x800043C4 end:0x80004744
 
+Game/Util/ActionSoundUtil.cpp:
+	.text       start:0x80008350 end:0x800083F0
+
+Game/Util/ActorAnimUtil.cpp:
+	.text       start:0x800086C0 end:0x8000B000
+
+Game/Util/ActorCameraUtil.cpp:
+	.text       start:0x8000B000 end:0x8000BF70
+
 Game/Util/ActorInitUtil.cpp:
 	.text       start:0x8000BF70 end:0x8000D620
 	.data       start:0x8065CD24 end:0x8065CFB8
 	.sdata2     start:0x807D6CE0 end:0x807D6CF0
+
+Game/Util/ActorMoveParamUtil.cpp:
+	.text       start:0x8000D8C0 end:0x8000DAD0
+
+Game/Util/ActorMovementUtil.cpp:
+	.text       start:0x8000DBE0 end:0x800140B0
 
 Game/Util/ActorSensorUtil.cpp:
 	.text       start:0x80014680 end:0x800171F0
@@ -31,11 +46,77 @@ Game/Util/ActorShadowUtil.cpp:
 	.data       start:0x8065CFE8 end:0x8065D278
 	.sdata2     start:0x807D6D68 end:0x807D6D88
 
+Game/Util/ActorStateUtil.cpp:
+	.text       start:0x80019ED0 end:0x8001A2C0
+
+Game/Util/ActorSwitchUtil.cpp:
+	.text       start:0x8001A2C0 end:0x8001AC70
+
+Game/Util/BgmUtil.cpp:
+	.text       start:0x8001AC70 end:0x8001C190
+
+Game/Util/CameraUtil.cpp:
+	.text       start:0x8001CC90 end:0x8001ED20
+
+Game/Util/CSSoundUtil.cpp:
+	.text       start:0x8001EDD0 end:0x8001F0C0
+
+Game/Util/DemoUtil.cpp:
+	.text       start:0x8001F360 end:0x80021280
+
+Game/Util/DrawUtil.cpp:
+	.text       start:0x80021480 end:0x80022AE0
+	.ctors      start:0x80643D24 end:0x80643D28
+	.data       start:0x8065D700 end:0x8065D728
+
+Game/Util/EffectUtil.cpp:
+	.text       start:0x80022AE0 end:0x80023780
+
+Game/Util/EventUtil.cpp:
+	.text       start:0x800237F0 end:0x80025460
+
+Game/Util/FileUtil.cpp:
+	.text       start:0x80025520 end:0x80025E80
+
+Game/Util/FootPrint.cpp:
+	.text       start:0x80025E80 end:0x80026A60
+	.data       start:0x8065DAD0 end:0x8065DB00
+
+Game/Util/FurCtrl.cpp:
+	.text       start:0x80026D90 end:0x80027AC0
+	.data       start:0x8065DCE4 end:0x8065DD38
+
+Game/Util/FurDrawer.cpp:
+	.text       start:0x80027B80 end:0x800288B0
+
+Game/Util/FurMulti.cpp:
+	.text       start:0x800288B0 end:0x80029170
+	.data       start:0x8065DD38 end:0x8065DDE0
+
+Game/Util/GamePadUtil.cpp:
+	.text       start:0x80029E90 end:0x8002B150
+
+Game/Util/GravityUtil.cpp:
+	.text       start:0x8002B180 end:0x8002B7C0
+
+Game/Util/HashUtil.cpp:
+	.text       start:0x8002BD00 end:0x8002BD90
+
 Game/Util/JMapUtil.cpp:
 	.text       start:0x8002BD90 end:0x8002D410
 	.data       start:0x8065DE68 end:0x8065E118
 	.sdata      start:0x807CF388 end:0x807CF398
 	.sdata2     start:0x807D6EE8 end:0x807D6F08
+
+Game/Util/JointUtil.cpp:
+	.text       start:0x8002D410 end:0x8002DD50
+
+Game/Util/LayoutUtil.cpp:
+	.text       start:0x8002DE00 end:0x80030D40
+	.data       start:0x8065E130 end:0x8065E180
+
+Game/Util/LightUtil.cpp:
+	.text       start:0x80030E70 end:0x80030F90
 
 Game/Util/LiveActorUtil.cpp:
 	.text       start:0x80031170 end:0x80036F40
@@ -43,18 +124,189 @@ Game/Util/LiveActorUtil.cpp:
 	.sdata      start:0x807CF3A0 end:0x807CF3A8
 	.sdata2     start:0x807D6F18 end:0x807D6F48
 
+Game/Util/MapPartsUtil.cpp:
+	.text       start:0x80037160 end:0x80037660
+
+Game/Util/MapUtil.cpp:
+	.text       start:0x80037660 end:0x80038CF0
+
 Game/Util/MathUtil.cpp:
 	.text       start:0x8003B1A0 end:0x80040B90
+	.rodata     start:0x80645208 end:0x80645238
+	.sbss       start:0x807D0DA0 end:0x807D0DA4
 	.sdata2     start:0x807D6F78 end:0x807D7068
+
+Game/Util/MemoryUtil.cpp:
+	.text       start:0x80040D50 end:0x80041360
+	.sbss       start:0x807D0DA8 end:0x807D0DAC
+
+Game/Util/MessageUtil.cpp:
+	.text       start:0x80041380 end:0x80041BE0
+
+Game/Util/ModelUtil.cpp:
+	.text       start:0x800426C0 end:0x800447A0
 
 Game/Util/MtxUtil.cpp:
 	.text       start:0x800447A0 end:0x80047510
 	.data       start:0x8065E8E8 end:0x8065E9D8
 
+Game/Util/MultiEventCamera.cpp:
+	.text       start:0x80047510 end:0x80047A50
+
 Game/Util/NerveUtil.cpp:
 	.text       start:0x80047A50 end:0x80048580
 	.rodata     start:0x80645260 end:0x80645268
 	.sdata2     start:0x807D7068 end:0x807D7070
+
+Game/Util/NPCUtil.cpp:
+	.text       start:0x80048650 end:0x8004AA20
+	.ctors      start:0x80643D28 end:0x80643D2C
+	.data       start:0x8065EBE0 end:0x8065EC98
+	.sbss       start:0x807D0DB8 end:0x807D0DE0
+
+Game/Util/ObjUtil.cpp:
+	.text       start:0x8004AB70 end:0x8004EA20
+	.ctors      start:0x80643D2C end:0x80643D30
+	.bss        start:0x807286E0 end:0x807286F0
+
+Game/Util/ParabolicPath.cpp:
+	.text       start:0x8004EA20 end:0x8004EFA0
+
+Game/Util/PlayerUtil.cpp:
+	.text       start:0x8004EFA0 end:0x80051910
+
+Game/Util/RailGraphUtil.cpp:
+	.text       start:0x80051970 end:0x80051F20
+
+Game/Util/RailUtil.cpp:
+	.text       start:0x80051F20 end:0x80054650
+
+Game/Util/SceneUtil.cpp:
+	.text       start:0x80056470 end:0x800583F0
+	.ctors      start:0x80643D30 end:0x80643D34
+
+Game/Util/ScreenUtil.cpp:
+	.text       start:0x80058490 end:0x8005A430
+
+Game/Util/SequenceUtil.cpp:
+	.text       start:0x8005A430 end:0x8005A4E0
+
+Game/Util/SoundUtil.cpp:
+	.text       start:0x8005A5B0 end:0x8005BBE0
+
+Game/Util/StarPointerUtil.cpp:
+	.text       start:0x8005BCB0 end:0x8005EF40
+
+Game/Util/StringUtil.cpp:
+	.text       start:0x8005F000 end:0x8005FAE0
+
+Game/Util/SupportPlayUtil.cpp:
+	.text       start:0x8005FAE0 end:0x8005FFC0
+
+Game/Util/SwitchEventFunctorListener.cpp:
+	.text       start:0x80060040 end:0x80060140
+	.data       start:0x80669B90 end:0x80669BA8
+
+Game/Util/SystemUtil.cpp:
+	.text       start:0x80060170 end:0x80060820
+
+Game/Util/TalkUtil.cpp:
+	.text       start:0x80060820 end:0x80061570
+
+Game/Util/AreaObjUtil.cpp:
+	.text       start:0x80061570 end:0x80062970
+
+Game/Util/BaseMatrixFollowTargetHolder.cpp:
+	.text       start:0x80062EA0 end:0x80063510
+	.data       start:0x80669C60 end:0x80669CA0
+
+Game/Util/CollisionPartsFilter.cpp:
+	.text       start:0x80063800 end:0x80063850
+
+Game/Util/DirectDrawUtil.cpp:
+	.text       start:0x80065A30 end:0x80065DF0
+
+Game/Util/FixedPosition.cpp:
+	.text       start:0x80065EF0 end:0x80066230
+
+Game/Util/IKJoint.cpp:
+	.text       start:0x80066E70 end:0x80067310
+
+Game/Util/JMapIdInfo.cpp:
+	.text       start:0x800674B0 end:0x80067610
+
+Game/Util/JMapInfo.cpp:
+	.text       start:0x80067610 end:0x80067950
+
+Game/Util/JMapLinkInfo.cpp:
+	.text       start:0x80067950 end:0x80067BE0
+
+Game/Util/JointController.cpp:
+	.text       start:0x80067BE0 end:0x80067EE0
+	.data       start:0x80669D68 end:0x80669D78
+
+Game/Util/JointRumbler.cpp:
+	.text       start:0x80067EE0 end:0x80068190
+
+Game/Util/RumbleCalculator.cpp:
+	.text       start:0x80068B30 end:0x80068CC0
+	.data       start:0x80669DD0 end:0x80669DE8
+
+Game/Util/SpringValue.cpp:
+	.text       start:0x80068D90 end:0x80068E40
+
+Game/Util/TriangleFilter.cpp:
+	.text       start:0x80068E60 end:0x80068EB0
+	.data       start:0x80669DE8 end:0x80669DF4
+
+Game/Util/TriggerChecker.cpp:
+	.text       start:0x80068F80 end:0x80069020
+
+Game/Util/ValueControl.cpp:
+	.text       start:0x80069020 end:0x80069240
+
+Game/Animation/BckCtrl.cpp:
+	.text       start:0x800695A0 end:0x80069B80
+
+Game/Animation/BpkPlayer.cpp:
+	.text       start:0x80069D70 end:0x80069DD0
+	.data       start:0x80669E88 end:0x80669EA0
+
+Game/Animation/BrkPlayer.cpp:
+	.text       start:0x80069DD0 end:0x80069E30
+	.data       start:0x80669EA0 end:0x80669EB8
+
+Game/Animation/BtkPlayer.cpp:
+	.text       start:0x80069E30 end:0x80069E90
+	.data       start:0x80669EB8 end:0x80669ED0
+
+Game/Animation/BtpPlayer.cpp:
+	.text       start:0x80069E90 end:0x80069EF0
+	.data       start:0x80669ED0 end:0x80669EE8
+
+Game/Animation/BvaPlayer.cpp:
+	.text       start:0x80069EF0 end:0x8006A040
+	.data       start:0x80669EE8 end:0x80669EF8
+
+Game/Animation/LayoutAnmPlayer.cpp:
+	.text       start:0x8006A040 end:0x8006A190
+	.data       start:0x80669EF8 end:0x80669F10
+
+Game/Animation/MaterialAnmBuffer.cpp:
+	.text       start:0x8006A190 end:0x8006AC50
+
+Game/Animation/XanimeCore.cpp:
+	.text       start:0x8006AEC0 end:0x8006CF60
+	.data       start:0x80669F20 end:0x80669F50
+
+Game/Animation/XanimePlayer.cpp:
+	.text       start:0x8006CF60 end:0x8006E420
+
+Game/Effect/SyncBckEffectChecker.cpp:
+	.text       start:0x8006F080 end:0x8006F670
+
+Game/Effect/SyncBckEffectInfo.cpp:
+	.text       start:0x8006F750 end:0x8006F7E0
 
 Game/AreaObj/AreaObj.cpp:
 	.text       start:0x80070650 end:0x80071060
@@ -65,8 +317,1783 @@ Game/AreaObj/AreaObjContainer.cpp:
 	.rodata     start:0x806452F0 end:0x80645768
 	.data       start:0x8066A088 end:0x8066A7B0
 
+Game/AreaObj/AreaObjFollower.cpp:
+	.text       start:0x80071650 end:0x80071790
+	.data       start:0x8066A7B0 end:0x8066A7C0
+
+Game/AreaObj/AudioEffectArea.cpp:
+	.text       start:0x80071790 end:0x80071930
+	.data       start:0x8066A7C0 end:0x8066A7F8
+
+Game/AreaObj/BgmChangeArea.cpp:
+	.text       start:0x80071930 end:0x80071E70
+
+Game/AreaObj/BgmVolumeFadeArea.cpp:
+	.text       start:0x80071E70 end:0x800720C0
+
+Game/AreaObj/ImageEffectArea.cpp:
+	.text       start:0x80072120 end:0x80072180
+
+Game/AreaObj/BloomArea.cpp:
+	.text       start:0x80072180 end:0x800721F0
+	.data       start:0x8066A890 end:0x8066A8D0
+
+Game/AreaObj/CancelBeeMorphArea.cpp:
+	.text       start:0x80072270 end:0x80072460
+
+Game/AreaObj/ClipDrawArea.cpp:
+	.text       start:0x80072460 end:0x80072530
+
+Game/AreaObj/CollisionArea.cpp:
+	.text       start:0x80072530 end:0x800739A0
+	.data       start:0x8066A968 end:0x8066AA10
+
+Game/AreaObj/CubeCameraArea.cpp:
+	.text       start:0x800739A0 end:0x80073D90
+
+Game/AreaObj/CumulativeTimerSwitchArea.cpp:
+	.text       start:0x80073DF0 end:0x80073F60
+
+Game/AreaObj/DeathArea.cpp:
+	.text       start:0x80073F60 end:0x80074150
+	.data       start:0x8066AAD8 end:0x8066AB10
+
+Game/AreaObj/DepthOfFieldArea.cpp:
+	.text       start:0x80074150 end:0x800742F0
+	.data       start:0x8066AB20 end:0x8066AB60
+
+Game/AreaObj/GlaringLightAreaMgr.cpp:
+	.text       start:0x800742F0 end:0x80074390
+
+Game/AreaObj/HazeCube.cpp:
+	.text       start:0x80074390 end:0x80074530
+	.data       start:0x8066ABA0 end:0x8066ABD8
+
+Game/AreaObj/LightArea.cpp:
+	.text       start:0x80074630 end:0x80074790
+	.data       start:0x8066AC50 end:0x8066AC88
+
+Game/AreaObj/LightAreaHolder.cpp:
+	.text       start:0x80074790 end:0x800748F0
+	.data       start:0x8066AC98 end:0x8066ACC8
+
+Game/AreaObj/MercatorTransformCube.cpp:
+	.text       start:0x800748F0 end:0x80075380
+	.data       start:0x8066ACD8 end:0x8066AD10
+
+Game/AreaObj/MessageArea.cpp:
+	.text       start:0x80075380 end:0x80075480
+	.data       start:0x8066AD10 end:0x8066AD48
+
+Game/AreaObj/MorphSwitchArea.cpp:
+	.text       start:0x80075480 end:0x80075670
+
+Game/AreaObj/PostFogArea.cpp:
+	.text       start:0x80075670 end:0x80075890
+
+Game/AreaObj/PostOutlineArea.cpp:
+	.text       start:0x80075890 end:0x800759B0
+
+Game/AreaObj/SceneChangeArea.cpp:
+	.text       start:0x800759B0 end:0x80075B00
+
+Game/AreaObj/ShadowColorArea.cpp:
+	.text       start:0x80075B00 end:0x80075BF0
+
+Game/AreaObj/SoundEmitterCube.cpp:
+	.text       start:0x80075BF0 end:0x80075F30
+	.data       start:0x8066AF00 end:0x8066AF38
+
+Game/AreaObj/SoundEmitterCubeWorldMapSync.cpp:
+	.text       start:0x80076070 end:0x80076120
+
+Game/AreaObj/SoundEmitterSphere.cpp:
+	.text       start:0x80076120 end:0x800763F0
+	.data       start:0x8066AF60 end:0x8066AF98
+
+Game/AreaObj/SoundPlayArea.cpp:
+	.text       start:0x800763F0 end:0x80076630
+
+Game/AreaObj/SpinGuidanceArea.cpp:
+	.text       start:0x80076630 end:0x80076770
+	.data       start:0x8066B040 end:0x8066B078
+
+Game/AreaObj/SpinSwitchArea.cpp:
+	.text       start:0x80076770 end:0x800768F0
+
+Game/AreaObj/SunLightArea.cpp:
+	.text       start:0x800768F0 end:0x800769A0
+	.data       start:0x8066B0B0 end:0x8066B0E8
+
+Game/AreaObj/SwitchArea.cpp:
+	.text       start:0x800769A0 end:0x80076CE0
+	.data       start:0x8066B130 end:0x8066B168
+
+Game/AreaObj/ViewGroupCtrlArea.cpp:
+	.text       start:0x80076CE0 end:0x80076D80
+
+Game/AreaObj/WarpCube.cpp:
+	.text       start:0x80076EC0 end:0x80077220
+	.data       start:0x8066B1B8 end:0x8066B1F0
+
+Game/AreaObj/WaterArea.cpp:
+	.text       start:0x80077220 end:0x80077330
+	.data       start:0x8066B1F0 end:0x8066B258
+
+Game/AreaObj/YoshiEatGuidanceArea.cpp:
+	.text       start:0x80077390 end:0x80077500
+
+Game/AudioLib/AudSystem.cpp:
+	.text       start:0x80077560 end:0x8007BC10
+	.ctors      start:0x80643D38 end:0x80643D3C
+	.data       start:0x8066B340 end:0x8066B4B0
+	.bss        start:0x80728788 end:0x807287C8
+
+Game/AudioLib/AudSystemVolumeController.cpp:
+	.text       start:0x8007BEA0 end:0x8007C1C0
+
+Game/AudioLib/AudSoundInfo.cpp:
+	.text       start:0x8007C370 end:0x8007C850
+	.sbss       start:0x807D0E30 end:0x807D0E38
+
+Game/AudioLib/AudWrap.cpp:
+	.text       start:0x8007C850 end:0x8007CA90
+	.ctors      start:0x80643D3C end:0x80643D40
+
+Game/AudioLib/AudSoundObject.cpp:
+	.text       start:0x8007CC90 end:0x8007DC70
+
+Game/AudioLib/AudAnmSoundObject.cpp:
+	.text       start:0x8007FE80 end:0x80080A70
+	.data       start:0x8066B648 end:0x8066B6A8
+	.sbss       start:0x807D0E38 end:0x807D0E40
+
+Game/AudioLib/AudBgm.cpp:
+	.text       start:0x80080AC0 end:0x80080B80
+	.data       start:0x8066B6A8 end:0x8066B880
+
+Game/AudioLib/AudBgmKeeper.cpp:
+	.text       start:0x800828A0 end:0x80082C20
+
+Game/AudioLib/AudBgmMgr.cpp:
+	.text       start:0x80082D20 end:0x80083540
+
+Game/AudioLib/AudBgmRhythmStrategy.cpp:
+	.text       start:0x80083540 end:0x80083890
+	.ctors      start:0x80643D44 end:0x80643D48
+	.data       start:0x8066B880 end:0x8066B890
+
+Game/AudioLib/AudBgmSetting.cpp:
+	.text       start:0x80083B80 end:0x80083DE0
+	.rodata     start:0x80645DA0 end:0x80645F8C
+
+Game/AudioLib/AudBgmVolumeController.cpp:
+	.text       start:0x80083E50 end:0x800841C0
+
+Game/AudioLib/AudEffector.cpp:
+	.text       start:0x800841C0 end:0x80084390
+	.data       start:0x8066B930 end:0x8066B9B0
+
+Game/AudioLib/AudFader.cpp:
+	.text       start:0x80084520 end:0x80084600
+
+Game/AudioLib/AudMeNameConverter.cpp:
+	.text       start:0x800846B0 end:0x800848E0
+	.ctors      start:0x80643D4C end:0x80643D50
+
+Game/AudioLib/AudMicWrap.cpp:
+	.text       start:0x800848E0 end:0x800849F0
+
+Game/AudioLib/AudRemixMgr.cpp:
+	.text       start:0x800849F0 end:0x80084BE0
+
+Game/AudioLib/AudRemixSequencer.cpp:
+	.text       start:0x80084EF0 end:0x80085100
+
+Game/AudioLib/AudSceneMgr.cpp:
+	.text       start:0x80085120 end:0x80085A20
+	.ctors      start:0x80643D50 end:0x80643D54
+
+Game/AudioLib/AudSeStrategy.cpp:
+	.text       start:0x80085A20 end:0x80085CF0
+	.ctors      start:0x80643D54 end:0x80643D58
+	.data       start:0x8066BDA4 end:0x8066BDB8
+
+Game/AudioLib/AudSoundNameConverter.cpp:
+	.text       start:0x80085F20 end:0x80086520
+	.data       start:0x8066BDB8 end:0x8066BE00
+	.sbss       start:0x807D0E48 end:0x807D0E50
+
+Game/AudioLib/AudSoundObjHolder.cpp:
+	.text       start:0x80086580 end:0x80086720
+
+Game/AudioLib/AudSpeakerWrap.cpp:
+	.text       start:0x80086720 end:0x80086B50
+	.ctors      start:0x80643D58 end:0x80643D5C
+	.sbss       start:0x807D0E50 end:0x807D0E58
+
+Game/AudioLib/AudTrackController.cpp:
+	.text       start:0x80086C20 end:0x80087030
+
+Game/AudioLib/AudUtil.cpp:
+	.text       start:0x80087030 end:0x80087190
+
+Game/AudioLib/OverwriteJAudio.cpp:
+	.text       start:0x80089150 end:0x800891B0
+	.ctors      start:0x80643D5C end:0x80643D60
+	.bss        start:0x807288E0 end:0x807288F0
+
+Game/AudioLib/CSSoundNameConverter.cpp:
+	.text       start:0x80089240 end:0x80089470
+
+Game/Util/Color8.cpp:
+	.text       start:0x8008B150 end:0x8008B190
+
+Game/Boss/BossStinkBug.cpp:
+	.text       start:0x800A31D0 end:0x800A4580
+	.ctors      start:0x80643DD4 end:0x80643DD8
+	.rodata     start:0x80647040 end:0x80647068
+	.bss        start:0x80728B40 end:0x80728B50
+
+Game/Boss/BossStinkBugActionBase.cpp:
+	.text       start:0x800A4580 end:0x800A63A0
+	.data       start:0x8066EC34 end:0x8066EC88
+
+Game/Boss/BossStinkBugActionFlyHigh.cpp:
+	.text       start:0x800A63A0 end:0x800A7290
+	.ctors      start:0x80643DD8 end:0x80643DDC
+	.data       start:0x8066ECB8 end:0x8066EE10
+
+Game/Boss/BossStinkBugActionFlyLow.cpp:
+	.text       start:0x800A7290 end:0x800A7C10
+	.ctors      start:0x80643DDC end:0x80643DE0
+	.data       start:0x8066EE40 end:0x8066EF18
+
+Game/Boss/BossStinkBugActionGround.cpp:
+	.text       start:0x800A7C10 end:0x800A8610
+	.ctors      start:0x80643DE0 end:0x80643DE4
+	.data       start:0x8066EF50 end:0x8066F028
+
+Game/Boss/BossStinkBugActionSequencer.cpp:
+	.text       start:0x800A8610 end:0x800A8CE0
+	.ctors      start:0x80643DE4 end:0x80643DE8
+	.data       start:0x8066F044 end:0x8066F0E0
+
+Game/Boss/BossStinkBugAngryDemo.cpp:
+	.text       start:0x800A8CE0 end:0x800A90F0
+	.ctors      start:0x80643DE8 end:0x80643DEC
+
+Game/Boss/BossStinkBugBomb.cpp:
+	.text       start:0x800A90F0 end:0x800A98A0
+	.ctors      start:0x80643DEC end:0x80643DF0
+
+Game/Boss/BossStinkBugBombHolder.cpp:
+	.text       start:0x800A98A0 end:0x800A9A10
+	.data       start:0x8066F38C end:0x8066F3B8
+
+Game/Boss/BossStinkBugFinishDemo.cpp:
+	.text       start:0x800A9A10 end:0x800A9DB0
+	.ctors      start:0x80643DF0 end:0x80643DF4
+	.data       start:0x8066F438 end:0x8066F4A0
+
+Game/Boss/BossStinkBugFlyDemo.cpp:
+	.text       start:0x800A9DB0 end:0x800AA240
+	.ctors      start:0x80643DF4 end:0x80643DF8
+
+Game/Boss/BossStinkBugFunction.cpp:
+	.text       start:0x800AA400 end:0x800AAAB0
+
+Game/Boss/BossStinkBugOpeningDemo.cpp:
+	.text       start:0x800AAC00 end:0x800AAF50
+	.ctors      start:0x80643DF8 end:0x80643DFC
+
+Game/Boss/DinoPackun.cpp:
+	.text       start:0x800ABDB0 end:0x800ACDB0
+	.ctors      start:0x80643DFC end:0x80643E00
+	.rodata     start:0x80647080 end:0x806470B8
+	.data       start:0x8066F8F0 end:0x8066F998
+	.bss        start:0x80728B50 end:0x80728B74
+
+Game/Boss/DinoPackunAction.cpp:
+	.text       start:0x800ACDB0 end:0x800AD5E0
+	.data       start:0x8066FA00 end:0x8066FA60
+
+Game/Boss/DinoPackunBall.cpp:
+	.text       start:0x800AD6D0 end:0x800AE710
+	.ctors      start:0x80643E00 end:0x80643E04
+	.data       start:0x8066FB04 end:0x8066FC00
+
+Game/Boss/DinoPackunBattleEgg.cpp:
+	.text       start:0x800AE710 end:0x800AED80
+	.ctors      start:0x80643E04 end:0x80643E08
+	.data       start:0x8066FC40 end:0x8066FCB0
+	.bss        start:0x80728BB8 end:0x80728BC8
+
+Game/Boss/DinoPackunBattleEggVs2.cpp:
+	.text       start:0x800AED80 end:0x800AF410
+	.ctors      start:0x80643E08 end:0x80643E0C
+	.data       start:0x8066FCF0 end:0x8066FD60
+	.bss        start:0x80728BC8 end:0x80728BD8
+
+Game/Boss/DinoPackunBattleVs1Lv1.cpp:
+	.text       start:0x800AF410 end:0x800AFD80
+	.ctors      start:0x80643E0C end:0x80643E10
+	.data       start:0x8066FDE0 end:0x8066FEA0
+
+Game/Boss/DinoPackunBattleVs1Lv2.cpp:
+	.text       start:0x800AFD80 end:0x800B07D0
+	.ctors      start:0x80643E10 end:0x80643E14
+	.data       start:0x8066FF10 end:0x8066FFD0
+
+Game/Boss/DinoPackunBattleVs2Lv1.cpp:
+	.text       start:0x800B07D0 end:0x800B1B20
+	.ctors      start:0x80643E14 end:0x80643E18
+	.data       start:0x80670070 end:0x80670130
+	.bss        start:0x80728BD8 end:0x80728BE8
+
+Game/Boss/DinoPackunDemo.cpp:
+	.text       start:0x800B1B20 end:0x800B27B0
+	.ctors      start:0x80643E18 end:0x80643E1C
+
+Game/Boss/DinoPackunDemoPosition.cpp:
+	.text       start:0x800B27B0 end:0x800B2A50
+	.ctors      start:0x80643E1C end:0x80643E20
+	.data       start:0x806703B8 end:0x80670438
+
+Game/Boss/DinoPackunEggShell.cpp:
+	.text       start:0x800B2A50 end:0x800B2DD0
+	.ctors      start:0x80643E20 end:0x80643E24
+	.data       start:0x80670458 end:0x806704D8
+
+Game/Boss/DinoPackunFire.cpp:
+	.text       start:0x800B2ED0 end:0x800B3520
+	.ctors      start:0x80643E24 end:0x80643E28
+	.data       start:0x80670588 end:0x80670670
+
+Game/Boss/DinoPackunSequencer.cpp:
+	.text       start:0x800B3520 end:0x800B3750
+	.data       start:0x80670670 end:0x806706B0
+
+Game/Boss/DinoPackunStateAwake.cpp:
+	.text       start:0x800B3750 end:0x800B3960
+	.ctors      start:0x80643E28 end:0x80643E2C
+	.data       start:0x806706F0 end:0x80670740
+
+Game/Boss/DinoPackunStateDamage.cpp:
+	.text       start:0x800B3960 end:0x800B44A0
+	.ctors      start:0x80643E2C end:0x80643E30
+	.data       start:0x806708F8 end:0x80670998
+	.bss        start:0x80728BE8 end:0x80728C00
+
+Game/Boss/DinoPackunStateFire.cpp:
+	.text       start:0x800B44A0 end:0x800B4B00
+	.ctors      start:0x80643E30 end:0x80643E34
+	.data       start:0x80670A38 end:0x80670AB8
+
+Game/Boss/DinoPackunTail.cpp:
+	.text       start:0x800B4B00 end:0x800B53E0
+
+Game/Boss/DinoPackunTailNode.cpp:
+	.text       start:0x800B53E0 end:0x800B5A30
+	.data       start:0x80670AC4 end:0x80670B48
+
+Game/Boss/DinoPackunTailPart.cpp:
+	.text       start:0x800B5A60 end:0x800B5FB0
+	.ctors      start:0x80643E34 end:0x80643E38
+	.data       start:0x80670B68 end:0x80670C10
+
+Game/Boss/DinoPackunTailRoot.cpp:
+	.text       start:0x800B5FB0 end:0x800B6370
+
+Game/Boss/DinoPackunTrackFire.cpp:
+	.text       start:0x800B6470 end:0x800B69B0
+	.ctors      start:0x80643E38 end:0x80643E3C
+	.data       start:0x80670D14 end:0x80670DD0
+
+Game/Boss/DinoPackunVs1.cpp:
+	.text       start:0x800B69B0 end:0x800B7080
+	.ctors      start:0x80643E3C end:0x80643E40
+	.data       start:0x80670DE8 end:0x80670EB8
+	.sbss       start:0x807D1310 end:0x807D1318
+
+Game/Boss/DinoPackunVs2.cpp:
+	.text       start:0x800B7080 end:0x800B7880
+	.ctors      start:0x80643E40 end:0x80643E44
+	.data       start:0x80670EF0 end:0x80670FC0
+	.sbss       start:0x807D1338 end:0x807D1340
+
+Game/Boss/Dodoryu.cpp:
+	.text       start:0x800BCDD0 end:0x800BE450
+	.ctors      start:0x80643E54 end:0x80643E58
+	.data       start:0x80672488 end:0x80672680
+
+Game/Boss/DodoryuStateBase.cpp:
+	.text       start:0x800BE690 end:0x800BE740
+
+Game/Boss/DodoryuDemo.cpp:
+	.text       start:0x800BF800 end:0x800BF890
+	.ctors      start:0x80643E58 end:0x80643E5C
+	.data       start:0x806728C0 end:0x80672B90
+
+Game/Boss/DodoryuHill.cpp:
+	.text       start:0x800BFA30 end:0x800BFBA0
+	.data       start:0x80672CC8 end:0x80672D40
+
+Game/Boss/DodoryuStateLv1.cpp:
+	.text       start:0x800C0730 end:0x800C1AE0
+	.ctors      start:0x80643E5C end:0x80643E60
+	.data       start:0x80672F38 end:0x80673058
+
+Game/Boss/DodoryuStateLv2.cpp:
+	.text       start:0x800C1C30 end:0x800C4680
+	.ctors      start:0x80643E60 end:0x80643E64
+	.data       start:0x80673300 end:0x80673420
+
+Game/Boss/DodoryuStateWait.cpp:
+	.text       start:0x800C4A10 end:0x800C4C50
+	.ctors      start:0x80643E64 end:0x80643E68
+	.data       start:0x806735A0 end:0x806736C0
+
+Game/Boss/DodoryuUtil.cpp:
+	.text       start:0x800C5060 end:0x800C51D0
+
+Game/Boss/OtaKing.cpp:
+	.text       start:0x800ED900 end:0x800F1390
+	.ctors      start:0x80643F60 end:0x80643F64
+	.data       start:0x80678868 end:0x80678A08
+
+Game/Boss/OtaKingLongFoot.cpp:
+	.text       start:0x800F1390 end:0x800F1AB0
+	.ctors      start:0x80643F64 end:0x80643F68
+	.data       start:0x80678A68 end:0x80678B18
+
+Game/Boss/OtaKingMagma.cpp:
+	.text       start:0x800F1AB0 end:0x800F24A0
+	.ctors      start:0x80643F68 end:0x80643F6C
+
+Game/Boss/Polta.cpp:
+	.text       start:0x800F2620 end:0x800F32B0
+	.data       start:0x80678E18 end:0x80678F00
+
+Game/Boss/PoltaActionBase.cpp:
+	.text       start:0x800F3310 end:0x800F38D0
+	.data       start:0x80678FE8 end:0x80679038
+
+Game/Boss/PoltaActionSequencer.cpp:
+	.text       start:0x800F38D0 end:0x800F3EC0
+	.ctors      start:0x80643F6C end:0x80643F70
+	.data       start:0x80679050 end:0x806790C0
+
+Game/Boss/PoltaArm.cpp:
+	.text       start:0x800F3EC0 end:0x800F4BF0
+	.ctors      start:0x80643F70 end:0x80643F74
+	.data       start:0x806791D8 end:0x806792C8
+
+Game/Boss/PoltaBattleLv1.cpp:
+	.text       start:0x800F4BF0 end:0x800F5620
+	.ctors      start:0x80643F74 end:0x80643F78
+	.data       start:0x80679358 end:0x806793F8
+
+Game/Boss/PoltaBattleLv2.cpp:
+	.text       start:0x800F5620 end:0x800F6580
+	.ctors      start:0x80643F78 end:0x80643F7C
+	.data       start:0x80679488 end:0x80679548
+
+Game/Boss/PoltaDemo.cpp:
+	.text       start:0x800F6580 end:0x800F6F00
+	.ctors      start:0x80643F7C end:0x80643F80
+
+Game/Boss/PoltaFunction.cpp:
+	.text       start:0x800F6F00 end:0x800F7970
+
+Game/Boss/PoltaGroundRock.cpp:
+	.text       start:0x800F7970 end:0x800F8270
+	.ctors      start:0x80643F80 end:0x80643F84
+	.data       start:0x80679798 end:0x80679848
+
+Game/Boss/PoltaGroundRockHolder.cpp:
+	.text       start:0x800F8270 end:0x800F8430
+	.data       start:0x8067986C end:0x80679898
+
+Game/Boss/PoltaRock.cpp:
+	.text       start:0x800F8430 end:0x800F9090
+	.ctors      start:0x80643F84 end:0x80643F88
+
+Game/Boss/PoltaRockHolder.cpp:
+	.text       start:0x800F9090 end:0x800F91F0
+	.data       start:0x80679A0C end:0x80679A38
+
+Game/Boss/PoltaSensorCtrl.cpp:
+	.text       start:0x800F91F0 end:0x800F95E0
+	.rodata     start:0x806474E8 end:0x80647758
+
+Game/Boss/PoltaStateAttackGround.cpp:
+	.text       start:0x800F95E0 end:0x800F9A80
+	.ctors      start:0x80643F88 end:0x80643F8C
+	.data       start:0x80679C38 end:0x80679CA8
+
+Game/Boss/PoltaStateGenerateRock.cpp:
+	.text       start:0x800F9A80 end:0x800F9EF0
+	.ctors      start:0x80643F8C end:0x80643F90
+	.rodata     start:0x80647758 end:0x80647870
+	.data       start:0x80679D00 end:0x80679D50
+
+Game/Boss/PoltaStateGroundRockAttack.cpp:
+	.text       start:0x800F9EF0 end:0x800FA370
+	.ctors      start:0x80643F90 end:0x80643F94
+	.data       start:0x80679E08 end:0x80679E78
+
+Game/Boss/PoltaStatePunch.cpp:
+	.text       start:0x800FA370 end:0x800FA870
+	.ctors      start:0x80643F94 end:0x80643F98
+	.data       start:0x80679F30 end:0x80679FA0
+
+Game/Boss/PoltaStateStagger.cpp:
+	.text       start:0x800FA870 end:0x800FAB80
+	.ctors      start:0x80643F98 end:0x80643F9C
+	.data       start:0x80679FE0 end:0x8067A010
+
+Game/Boss/PoltaWaitStart.cpp:
+	.text       start:0x800FAB80 end:0x800FAC80
+	.data       start:0x8067A020 end:0x8067A050
+
+Game/Camera/CamHeliEffector.cpp:
+	.text       start:0x8010BE80 end:0x8010C1C0
+
+Game/Camera/CamKarikariEffector.cpp:
+	.text       start:0x8010C300 end:0x8010C770
+
+Game/Camera/CamTranslatorAnim.cpp:
+	.text       start:0x8010C8B0 end:0x8010C8F0
+	.data       start:0x8067BBD8 end:0x8067BBE8
+
+Game/Camera/CamTranslatorBehind.cpp:
+	.text       start:0x8010C8F0 end:0x8010C960
+	.data       start:0x8067BBE8 end:0x8067BBF8
+
+Game/Camera/CamTranslatorBlackHole.cpp:
+	.text       start:0x8010C960 end:0x8010C9E0
+	.data       start:0x8067BBF8 end:0x8067BC08
+
+Game/Camera/CamTranslatorCharmedFix.cpp:
+	.text       start:0x8010C9E0 end:0x8010CAA0
+	.data       start:0x8067BC08 end:0x8067BC18
+
+Game/Camera/CamTranslatorCharmedVecReg.cpp:
+	.text       start:0x8010CAA0 end:0x8010CB90
+	.data       start:0x8067BC18 end:0x8067BC28
+
+Game/Camera/CamTranslatorCharmedVecRegTower.cpp:
+	.text       start:0x8010CB90 end:0x8010CCA0
+	.data       start:0x8067BC28 end:0x8067BC38
+
+Game/Camera/CamTranslatorCubePlanet.cpp:
+	.text       start:0x8010CCA0 end:0x8010CCF0
+	.data       start:0x8067BC38 end:0x8067BC48
+
+Game/Camera/CamTranslatorDPD.cpp:
+	.text       start:0x8010CCF0 end:0x8010CD60
+	.data       start:0x8067BC48 end:0x8067BC58
+
+Game/Camera/CamTranslatorDead.cpp:
+	.text       start:0x8010CD60 end:0x8010CDC0
+	.data       start:0x8067BC58 end:0x8067BC68
+
+Game/Camera/CamTranslatorFix.cpp:
+	.text       start:0x8010CDC0 end:0x8010CE60
+	.data       start:0x8067BC68 end:0x8067BC78
+
+Game/Camera/CamTranslatorFixedPoint.cpp:
+	.text       start:0x8010CE60 end:0x8010CE90
+	.data       start:0x8067BC78 end:0x8067BC88
+
+Game/Camera/CamTranslatorFixedThere.cpp:
+	.text       start:0x8010CE90 end:0x8010CED0
+	.data       start:0x8067BC88 end:0x8067BC98
+
+Game/Camera/CamTranslatorFollow.cpp:
+	.text       start:0x8010CED0 end:0x8010CF30
+	.data       start:0x8067BC98 end:0x8067BCA8
+
+Game/Camera/CamTranslatorFooFighter.cpp:
+	.text       start:0x8010CF30 end:0x8010CF90
+	.data       start:0x8067BCA8 end:0x8067BCB8
+
+Game/Camera/CamTranslatorFooFighterPlanet.cpp:
+	.text       start:0x8010CF90 end:0x8010CFF0
+	.data       start:0x8067BCB8 end:0x8067BCC8
+
+Game/Camera/CamTranslatorFrontAndBack.cpp:
+	.text       start:0x8010CFF0 end:0x8010D100
+	.data       start:0x8067BCC8 end:0x8067BCD8
+
+Game/Camera/CamTranslatorGround.cpp:
+	.text       start:0x8010D120 end:0x8010D180
+	.data       start:0x8067BCE8 end:0x8067BCF8
+
+Game/Camera/CamTranslatorInnerCylinder.cpp:
+	.text       start:0x8010D180 end:0x8010D280
+	.data       start:0x8067BCF8 end:0x8067BD08
+
+Game/Camera/CamTranslatorInwardSphere.cpp:
+	.text       start:0x8010D280 end:0x8010D2C0
+	.data       start:0x8067BD08 end:0x8067BD18
+
+Game/Camera/CamTranslatorInwardTower.cpp:
+	.text       start:0x8010D2C0 end:0x8010D3A0
+	.data       start:0x8067BD18 end:0x8067BD28
+
+Game/Camera/CamTranslatorMedianPlanet.cpp:
+	.text       start:0x8010D3A0 end:0x8010D500
+	.data       start:0x8067BD28 end:0x8067BD38
+
+Game/Camera/CamTranslatorMedianTower.cpp:
+	.text       start:0x8010D500 end:0x8010D5D0
+	.data       start:0x8067BD38 end:0x8067BD48
+
+Game/Camera/CamTranslatorMtxRegParallel.cpp:
+	.text       start:0x8010D5D0 end:0x8010D670
+	.data       start:0x8067BD48 end:0x8067BD58
+
+Game/Camera/CamTranslatorObjParallel.cpp:
+	.text       start:0x8010D670 end:0x8010D6B0
+	.data       start:0x8067BD58 end:0x8067BD68
+
+Game/Camera/CamTranslatorParallel.cpp:
+	.text       start:0x8010D6B0 end:0x8010D730
+	.data       start:0x8067BD68 end:0x8067BD78
+
+Game/Camera/CamTranslatorRaceFollow.cpp:
+	.text       start:0x8010D730 end:0x8010D790
+	.data       start:0x8067BD78 end:0x8067BD88
+
+Game/Camera/CamTranslatorRailDemo.cpp:
+	.text       start:0x8010D790 end:0x8010D800
+	.data       start:0x8067BD88 end:0x8067BD98
+
+Game/Camera/CamTranslatorRailFollow.cpp:
+	.text       start:0x8010D800 end:0x8010D870
+	.data       start:0x8067BD98 end:0x8067BDA8
+
+Game/Camera/CamTranslatorRailWatch.cpp:
+	.text       start:0x8010D870 end:0x8010D8E0
+	.data       start:0x8067BDA8 end:0x8067BDB8
+
+Game/Camera/CamTranslatorSlide.cpp:
+	.text       start:0x8010D8E0 end:0x8010DB20
+	.data       start:0x8067BDB8 end:0x8067BDC8
+
+Game/Camera/CamTranslatorSpiral.cpp:
+	.text       start:0x8010DBE0 end:0x8010DC50
+	.data       start:0x8067BDD8 end:0x8067BDE8
+
+Game/Camera/CamTranslatorTalk.cpp:
+	.text       start:0x8010DC50 end:0x8010DC80
+	.data       start:0x8067BDE8 end:0x8067BDF8
+
+Game/Camera/CamTranslatorTower.cpp:
+	.text       start:0x8010DC80 end:0x8010DD30
+	.data       start:0x8067BDF8 end:0x8067BE08
+
+Game/Camera/CamTranslatorTowerPos.cpp:
+	.text       start:0x8010DD30 end:0x8010DE00
+	.data       start:0x8067BE08 end:0x8067BE18
+
+Game/Camera/CamTranslatorTripodPlanet.cpp:
+	.text       start:0x8010DE00 end:0x8010DEE0
+	.data       start:0x8067BE18 end:0x8067BE28
+
+Game/Camera/CamTranslatorTrundle.cpp:
+	.text       start:0x8010DEE0 end:0x8010DFD0
+	.data       start:0x8067BE28 end:0x8067BE38
+
+Game/Camera/CamTranslatorTwistedPassage.cpp:
+	.text       start:0x8010DFD0 end:0x8010E040
+	.data       start:0x8067BE38 end:0x8067BE48
+
+Game/Camera/CamTranslatorWaterFollow.cpp:
+	.text       start:0x8010E040 end:0x8010E0A0
+	.data       start:0x8067BE48 end:0x8067BE58
+
+Game/Camera/CamTranslatorWaterPlanet.cpp:
+	.text       start:0x8010E0A0 end:0x8010E100
+	.data       start:0x8067BE58 end:0x8067BE68
+
+Game/Camera/CamTranslatorWaterPlanetBoss.cpp:
+	.text       start:0x8010E100 end:0x8010E1C0
+	.data       start:0x8067BE68 end:0x8067BE78
+
+Game/Camera/CamTranslatorWonderPlanet.cpp:
+	.text       start:0x8010E1C0 end:0x8010E220
+	.data       start:0x8067BE78 end:0x8067BE88
+
+Game/Camera/Camera.cpp:
+	.text       start:0x8010E450 end:0x8010E740
+	.data       start:0x8067BE88 end:0x8067BF00
+
+Game/Camera/CameraAnim.cpp:
+	.text       start:0x8010ED70 end:0x8010F5B0
+	.data       start:0x8067BF00 end:0x8067BFA8
+
+Game/Camera/CameraBehind.cpp:
+	.text       start:0x8010F630 end:0x8010FA20
+	.data       start:0x8067BFA8 end:0x8067C010
+
+Game/Camera/CameraBlackHole.cpp:
+	.text       start:0x8010FA20 end:0x8010FDF0
+	.data       start:0x8067C010 end:0x8067C078
+
+Game/Camera/CameraCharmedFix.cpp:
+	.text       start:0x80110380 end:0x801107F0
+	.data       start:0x8067C078 end:0x8067C0E0
+
+Game/Camera/CameraCharmedVecReg.cpp:
+	.text       start:0x801107F0 end:0x80110E00
+	.data       start:0x8067C0E0 end:0x8067C148
+
+Game/Camera/CameraCharmedVecRegTower.cpp:
+	.text       start:0x80110E00 end:0x80111410
+	.data       start:0x8067C148 end:0x8067C1B0
+
+Game/Camera/CameraContext.cpp:
+	.text       start:0x80111410 end:0x80111C00
+	.data       start:0x8067C1C4 end:0x8067C1F0
+
+Game/Camera/CameraCover.cpp:
+	.text       start:0x80111C00 end:0x80111F00
+	.ctors      start:0x80644008 end:0x8064400C
+	.data       start:0x8067C20C end:0x8067C238
+	.sbss       start:0x807D1D60 end:0x807D1D68
+
+Game/Camera/CameraCubePlanet.cpp:
+	.text       start:0x80111F10 end:0x80112420
+	.data       start:0x8067C238 end:0x8067C2A0
+
+Game/Camera/CameraDPD.cpp:
+	.text       start:0x80112420 end:0x80112F40
+	.data       start:0x8067C2A0 end:0x8067C308
+
+Game/Camera/CameraDead.cpp:
+	.text       start:0x80112F40 end:0x80113540
+	.data       start:0x8067C308 end:0x8067C370
+
+Game/Camera/CameraPoseParam.cpp:
+	.text       start:0x80113960 end:0x80113A00
+
+Game/Camera/CameraDirector.cpp:
+	.text       start:0x80113A00 end:0x80115E50
+	.data       start:0x8067C4C4 end:0x8067C500
+
+Game/Camera/CameraFix.cpp:
+	.text       start:0x80115E50 end:0x801161E0
+	.data       start:0x8067C518 end:0x8067C580
+
+Game/Camera/CameraFixedPoint.cpp:
+	.text       start:0x801161E0 end:0x80116690
+	.data       start:0x8067C580 end:0x8067C5E8
+
+Game/Camera/CameraFixedThere.cpp:
+	.text       start:0x80116690 end:0x80116EA0
+	.data       start:0x8067C5E8 end:0x8067C650
+
+Game/Camera/CameraFollow.cpp:
+	.text       start:0x80116EA0 end:0x801183E0
+	.ctors      start:0x8064400C end:0x80644010
+	.sbss       start:0x807D1D70 end:0x807D1D78
+
+Game/Camera/CameraFooFighter.cpp:
+	.text       start:0x801183E0 end:0x80118C80
+	.data       start:0x8067C6B8 end:0x8067C720
+
+Game/Camera/CameraFooFighterPlanet.cpp:
+	.text       start:0x80118C80 end:0x801195A0
+	.data       start:0x8067C720 end:0x8067C788
+
+Game/Camera/CameraFrontAndBack.cpp:
+	.text       start:0x80119750 end:0x80119D70
+	.data       start:0x8067C7F0 end:0x8067C858
+
+Game/Camera/CameraGround.cpp:
+	.text       start:0x80119D70 end:0x8011A110
+	.data       start:0x8067C858 end:0x8067C8C0
+
+Game/Camera/CameraHeightArrange.cpp:
+	.text       start:0x8011A110 end:0x8011B3A0
+	.data       start:0x8067C8D4 end:0x8067C900
+
+Game/Camera/CameraHolder.cpp:
+	.text       start:0x8011BEA0 end:0x8011C120
+	.rodata     start:0x80647968 end:0x80647C28
+	.data       start:0x8067D29C end:0x8067D2C8
+
+Game/Camera/CameraInnerCylinder.cpp:
+	.text       start:0x8011C120 end:0x8011C880
+	.data       start:0x8067D2C8 end:0x8067D330
+
+Game/Camera/CameraInwardSphere.cpp:
+	.text       start:0x8011C880 end:0x8011D1A0
+	.data       start:0x8067D330 end:0x8067D398
+
+Game/Camera/CameraInwardTower.cpp:
+	.text       start:0x8011D1A0 end:0x8011D7E0
+	.data       start:0x8067D398 end:0x8067D400
+
+Game/Camera/CameraLocalUtil.cpp:
+	.text       start:0x8011D7E0 end:0x8011E9F0
+
+Game/Camera/CameraMan.cpp:
+	.text       start:0x8011E9F0 end:0x8011EBB0
+	.data       start:0x8067D400 end:0x8067D468
+
+Game/Camera/CameraManEvent.cpp:
+	.text       start:0x8011EBB0 end:0x8011FEC0
+	.data       start:0x8067D478 end:0x8067D4E0
+
+Game/Camera/CameraManGame.cpp:
+	.text       start:0x8011FEC0 end:0x80121E30
+	.data       start:0x8067D5F0 end:0x8067D654
+
+Game/Camera/CameraManPause.cpp:
+	.text       start:0x80121E30 end:0x801224B0
+	.data       start:0x8067D660 end:0x8067D6C8
+
+Game/Camera/CameraManSubjective.cpp:
+	.text       start:0x801224B0 end:0x80122610
+	.data       start:0x8067D6D4 end:0x8067D738
+
+Game/Camera/CameraMedianPlanet.cpp:
+	.text       start:0x80122610 end:0x801233A0
+	.data       start:0x8067D738 end:0x8067D7A0
+
+Game/Camera/CameraMedianTower.cpp:
+	.text       start:0x801233A0 end:0x80123FA0
+	.data       start:0x8067D7A0 end:0x8067D808
+
+Game/Camera/CameraMtxRegParallel.cpp:
+	.text       start:0x80123FA0 end:0x80124280
+	.data       start:0x8067D808 end:0x8067D870
+
+Game/Camera/CameraObjParallel.cpp:
+	.text       start:0x80124280 end:0x801245D0
+	.data       start:0x8067D870 end:0x8067D8D8
+
+Game/Camera/CameraParallel.cpp:
+	.text       start:0x801245D0 end:0x80124E00
+	.data       start:0x8067D8D8 end:0x8067D940
+
+Game/Camera/CameraParamChunk.cpp:
+	.text       start:0x80124E00 end:0x80125C50
+	.ctors      start:0x80644010 end:0x80644014
+	.data       start:0x8067DC50 end:0x8067DC80
+	.bss        start:0x80728DF0 end:0x80728E80
+
+Game/Camera/CameraParamChunkHolder.cpp:
+	.text       start:0x80125C50 end:0x80126810
+	.data       start:0x8067DD88 end:0x8067DDC0
+
+Game/Camera/CameraParamChunkID.cpp:
+	.text       start:0x80126840 end:0x80126DF0
+	.data       start:0x8067DDEC end:0x8067DDF8
+
+Game/Camera/CameraParamString.cpp:
+	.text       start:0x80126E00 end:0x80126EA0
+
+Game/Camera/CameraRaceFollow.cpp:
+	.text       start:0x80126FD0 end:0x801275E0
+	.data       start:0x8067DDF8 end:0x8067DE60
+
+Game/Camera/CameraRailDemo.cpp:
+	.text       start:0x801275E0 end:0x80127AE0
+	.data       start:0x8067DE60 end:0x8067DEC8
+
+Game/Camera/CameraRailFollow.cpp:
+	.text       start:0x80127AE0 end:0x80128080
+	.data       start:0x8067DEC8 end:0x8067DF30
+
+Game/Camera/CameraRailHolder.cpp:
+	.text       start:0x80128080 end:0x801284C0
+	.data       start:0x8067DF38 end:0x8067DF68
+
+Game/Camera/CameraRailWatch.cpp:
+	.text       start:0x801284C0 end:0x80128B60
+	.data       start:0x8067DF68 end:0x8067DFD0
+
+Game/Camera/CameraRegisterHolder.cpp:
+	.text       start:0x80128B60 end:0x80128F00
+	.data       start:0x8067E004 end:0x8067E030
+
+Game/Camera/CameraRotChecker.cpp:
+	.text       start:0x80128F00 end:0x80129070
+	.ctors      start:0x80644014 end:0x80644018
+	.sbss       start:0x807D1D78 end:0x807D1D80
+
+Game/Camera/CameraShakeTask.cpp:
+	.text       start:0x80129870 end:0x80129B20
+
+Game/Camera/CameraShaker.cpp:
+	.text       start:0x80129B20 end:0x8012A390
+	.data       start:0x8067E068 end:0x8067E098
+
+Game/Camera/CameraSlide.cpp:
+	.text       start:0x8012A390 end:0x8012A800
+	.data       start:0x8067E098 end:0x8067E100
+
+Game/Camera/CameraSpiral.cpp:
+	.text       start:0x8012AD60 end:0x8012B380
+	.data       start:0x8067E168 end:0x8067E1D0
+
+Game/Camera/CameraSubjective.cpp:
+	.text       start:0x8012B380 end:0x8012B9B0
+	.data       start:0x8067E1D0 end:0x8067E238
+
+Game/Camera/CameraTalk.cpp:
+	.text       start:0x8012B9B0 end:0x8012C170
+	.data       start:0x8067E238 end:0x8067E2A0
+
+Game/Camera/CameraTargetArg.cpp:
+	.text       start:0x8012C170 end:0x8012C240
+
+Game/Camera/CameraTargetHolder.cpp:
+	.text       start:0x8012C240 end:0x8012C460
+	.data       start:0x8067E2BC end:0x8067E2C8
+
+Game/Camera/CameraTargetMtx.cpp:
+	.text       start:0x8012C570 end:0x8012C710
+	.data       start:0x8067E2D8 end:0x8067E378
+
+Game/Camera/CameraTargetObj.cpp:
+	.text       start:0x8012C820 end:0x8012CF60
+	.ctors      start:0x80644018 end:0x8064401C
+	.data       start:0x8067E378 end:0x8067E558
+	.bss        start:0x80728E80 end:0x80728E90
+
+Game/Camera/CameraTower.cpp:
+	.text       start:0x8012CFB0 end:0x8012DD30
+	.ctors      start:0x8064401C end:0x80644020
+	.data       start:0x8067E558 end:0x8067E5C0
+	.sbss       start:0x807D1D80 end:0x807D1D88
+
+Game/Camera/CameraTowerBase.cpp:
+	.text       start:0x8012DD30 end:0x8012E280
+	.data       start:0x8067E5C0 end:0x8067E638
+
+Game/Camera/CameraTowerPos.cpp:
+	.text       start:0x8012E280 end:0x8012EB60
+	.data       start:0x8067E638 end:0x8067E6B0
+
+Game/Camera/CameraTripodPlanet.cpp:
+	.text       start:0x8012EB60 end:0x8012F080
+	.data       start:0x8067E6B0 end:0x8067E718
+
+Game/Camera/CameraTrundle.cpp:
+	.text       start:0x8012F080 end:0x8012F460
+	.data       start:0x8067E718 end:0x8067E780
+
+Game/Camera/CameraTwistedPassage.cpp:
+	.text       start:0x8012F460 end:0x8012FB00
+	.data       start:0x8067E780 end:0x8067E7E8
+
+Game/Camera/CameraViewInterpolator.cpp:
+	.text       start:0x8012FBB0 end:0x80130A60
+
+Game/Camera/CameraWaterFollow.cpp:
+	.text       start:0x80130D30 end:0x80131520
+	.data       start:0x8067E800 end:0x8067E868
+
+Game/Camera/CameraWaterPlanet.cpp:
+	.text       start:0x80131520 end:0x80131B70
+	.data       start:0x8067E868 end:0x8067E8D0
+
+Game/Camera/CameraWaterPlanetBoss.cpp:
+	.text       start:0x80131B70 end:0x801324F0
+	.data       start:0x8067E8D0 end:0x8067E938
+
+Game/Camera/CameraWonderPlanet.cpp:
+	.text       start:0x801324F0 end:0x80132D10
+	.data       start:0x8067E938 end:0x8067E9A0
+
+Game/Camera/GameCameraCreator.cpp:
+	.text       start:0x80133170 end:0x80133400
+
+Game/Camera/OnlyCamera.cpp:
+	.text       start:0x80133400 end:0x80133C20
+	.data       start:0x8067EA20 end:0x8067EA50
+
+Game/Demo/DemoActionKeeper.cpp:
+	.text       start:0x80134090 end:0x80134DD0
+
+Game/Demo/DemoCameraFunction.cpp:
+	.text       start:0x80134DD0 end:0x80134E70
+
+Game/Demo/DemoCameraKeeper.cpp:
+	.text       start:0x80134EB0 end:0x80135140
+
+Game/Demo/DemoCastGroup.cpp:
+	.text       start:0x80135550 end:0x801357F0
+	.data       start:0x8067ED28 end:0x8067ED60
+
+Game/Demo/DemoCastGroupHolder.cpp:
+	.text       start:0x801357F0 end:0x80135A70
+	.data       start:0x8067ED78 end:0x8067EDA8
+
+Game/Demo/DemoCastSubGroup.cpp:
+	.text       start:0x80135A70 end:0x80135BF0
+	.data       start:0x8067EDA8 end:0x8067EDE0
+
+Game/Demo/DemoCtrlBase.cpp:
+	.text       start:0x80135BF0 end:0x80135E80
+
+Game/Demo/DemoDirector.cpp:
+	.text       start:0x80135E80 end:0x80136520
+	.data       start:0x8067EF7C end:0x8067EFA8
+
+Game/Demo/DemoExecutor.cpp:
+	.text       start:0x80136A30 end:0x80137D50
+	.data       start:0x8067F1D0 end:0x8067F228
+
+Game/Demo/DemoExecutorFunction.cpp:
+	.text       start:0x80137D50 end:0x80138110
+
+Game/Demo/DemoFunction.cpp:
+	.text       start:0x80138110 end:0x801391E0
+
+Game/Demo/DemoPlayerKeeper.cpp:
+	.text       start:0x80139480 end:0x801395B0
+
+Game/Demo/DemoPositionController.cpp:
+	.text       start:0x80139850 end:0x801399F0
+
+Game/Demo/DemoSimpleCastHolder.cpp:
+	.text       start:0x80139A60 end:0x80139C20
+
+Game/Demo/DemoSoundKeeper.cpp:
+	.text       start:0x80139D70 end:0x80139F10
+
+Game/Demo/DemoStartRequestHolder.cpp:
+	.text       start:0x8013A2C0 end:0x8013A960
+
+Game/Demo/DemoStartRequestUtil.cpp:
+	.text       start:0x8013A960 end:0x8013B6D0
+
+Game/Demo/DemoSubPartKeeper.cpp:
+	.text       start:0x8013B760 end:0x8013B980
+
+Game/Demo/DemoTalkAnimCtrl.cpp:
+	.text       start:0x8013BAA0 end:0x8013C590
+
+Game/Demo/DemoTimeKeeper.cpp:
+	.text       start:0x8013C5F0 end:0x8013CA10
+
+Game/Demo/DemoWipeKeeper.cpp:
+	.text       start:0x8013D710 end:0x8013D990
+	.data       start:0x8067F7A8 end:0x8067F808
+
+Game/Demo/GrandStarReturnDemoStarter.cpp:
+	.text       start:0x8013D9E0 end:0x8013E630
+	.ctors      start:0x8064402C end:0x80644030
+
+Game/Demo/ReturnDemoRailMove.cpp:
+	.text       start:0x80142440 end:0x80142880
+
+Game/Demo/ScenarioStarter.cpp:
+	.text       start:0x80142950 end:0x801440F0
+	.ctors      start:0x80644048 end:0x8064404C
+	.data       start:0x80680A90 end:0x80680B60
+	.sbss       start:0x807D1E60 end:0x807D1E78
+
+Game/Demo/StarReturnDemoStarter.cpp:
+	.text       start:0x80145300 end:0x80146190
+	.ctors      start:0x80644050 end:0x80644054
+	.data       start:0x80680F58 end:0x80681068
+	.sbss       start:0x807D1E98 end:0x807D1EC0
+
+Game/Effect/AutoEffectGroup.cpp:
+	.text       start:0x80148160 end:0x80148240
+
+Game/Effect/AutoEffectGroupHolder.cpp:
+	.text       start:0x80148460 end:0x801485A0
+
+Game/Effect/AutoEffectInfo.cpp:
+	.text       start:0x80148710 end:0x80148C80
+	.rodata     start:0x80647DF0 end:0x80647E40
+
+Game/Effect/EffectObjR500F50.cpp:
+	.text       start:0x80148D20 end:0x80148D80
+
+Game/Effect/CaveStream.cpp:
+	.text       start:0x80148DE0 end:0x80148E40
+
+Game/Effect/EffectSystem.cpp:
+	.text       start:0x80148E40 end:0x80149290
+	.data       start:0x8068183C end:0x80681868
+
+Game/Effect/EffectSystemUtil.cpp:
+	.text       start:0x80149290 end:0x801493B0
+
+Game/Effect/MultiEmitter.cpp:
+	.text       start:0x8014A2D0 end:0x8014AF50
+
+Game/Effect/MultiEmitterCallBack.cpp:
+	.text       start:0x8014BF70 end:0x8014CDF0
+	.data       start:0x806819C8 end:0x806819E8
+
+Game/Effect/MultiEmitterParticleCallBack.cpp:
+	.text       start:0x8014CDF0 end:0x8014CE80
+	.data       start:0x80681A08 end:0x80681A20
+
+Game/Effect/ParticleCalcExecutor.cpp:
+	.text       start:0x8014CE80 end:0x8014D370
+	.data       start:0x80681AA8 end:0x80681AC8
+
+Game/Effect/ParticleDrawExecutor.cpp:
+	.text       start:0x8014D410 end:0x8014DC80
+	.data       start:0x80681C00 end:0x80681C30
+
+Game/Effect/ParticleEmitter.cpp:
+	.text       start:0x8014DFC0 end:0x8014E080
+
+Game/Effect/ParticleEmitterHolder.cpp:
+	.text       start:0x8014E2C0 end:0x8014E560
+
+Game/Effect/ParticleResourceHolder.cpp:
+	.text       start:0x8014E560 end:0x8014E820
+
+Game/Effect/RandomEffectObj.cpp:
+	.text       start:0x8014E820 end:0x8014EAC0
+	.data       start:0x80681C80 end:0x80681D08
+
+Game/Effect/SimpleEffectObj.cpp:
+	.text       start:0x8014EAC0 end:0x8014F2D0
+	.ctors      start:0x8064405C end:0x80644060
+	.rodata     start:0x80647E58 end:0x80647F90
+	.sbss       start:0x807D1F10 end:0x807D1F18
+
+Game/Effect/SingleEmitter.cpp:
+	.text       start:0x8014F2D0 end:0x8014F4C0
+
+Game/Effect/SpinPullParticleCallBack.cpp:
+	.text       start:0x8014F8F0 end:0x8014FA60
+	.data       start:0x806820E0 end:0x806820F8
+
+Game/Effect/WaterFortressRain.cpp:
+	.text       start:0x8014FA60 end:0x8014FD20
+
+Game/Enemy/WalkerStateBindStarPointer.cpp:
+	.text       start:0x8014FD90 end:0x80150100
+	.ctors      start:0x80644064 end:0x80644068
+	.data       start:0x806821E8 end:0x80682238
+	.sbss       start:0x807D1F28 end:0x807D1F30
+
+Game/Enemy/AnimScaleController.cpp:
+	.text       start:0x801501D0 end:0x801508C0
+	.ctors      start:0x80644068 end:0x8064406C
+	.data       start:0x80682254 end:0x806822B0
+	.bss        start:0x80728E90 end:0x80728EF8
+	.sbss       start:0x807D1F30 end:0x807D1F48
+
+Game/Enemy/AnimStampController.cpp:
+	.text       start:0x801508C0 end:0x80150C20
+	.ctors      start:0x8064406C end:0x80644070
+	.data       start:0x806822CC end:0x806822F8
+	.sbss       start:0x807D1F48 end:0x807D1F50
+
+Game/Enemy/Balloonfish.cpp:
+	.text       start:0x801560F0 end:0x80156C00
+	.ctors      start:0x80644088 end:0x8064408C
+	.data       start:0x80682AF0 end:0x80682BA0
+	.sbss       start:0x807D1FC8 end:0x807D1FD0
+
+Game/Enemy/BasaBasa.cpp:
+	.text       start:0x80156C00 end:0x801591F0
+	.ctors      start:0x8064408C end:0x80644090
+	.data       start:0x80682D00 end:0x80682E90
+	.sbss       start:0x807D1FD0 end:0x807D2018
+
+Game/Enemy/BegomanBaby.cpp:
+	.text       start:0x8015D270 end:0x8015F280
+	.ctors      start:0x80644098 end:0x8064409C
+	.data       start:0x80683648 end:0x80683838
+	.sbss       start:0x807D2070 end:0x807D20C0
+
+Game/Enemy/BegomanBase.cpp:
+	.text       start:0x8015F290 end:0x80162700
+	.ctors      start:0x8064409C end:0x806440A0
+	.data       start:0x806839A0 end:0x80683AE0
+	.sbss       start:0x807D20C0 end:0x807D20D0
+
+Game/Enemy/BegomanLauncher.cpp:
+	.text       start:0x80162830 end:0x80163460
+	.ctors      start:0x806440A0 end:0x806440A4
+	.data       start:0x80683BD8 end:0x80683CC8
+	.sbss       start:0x807D20D0 end:0x807D20E8
+
+Game/Enemy/BegomanSpike.cpp:
+	.text       start:0x80163460 end:0x80165510
+	.ctors      start:0x806440A4 end:0x806440A8
+	.data       start:0x80683F58 end:0x80684148
+	.sbss       start:0x807D20E8 end:0x807D2130
+
+Game/Enemy/BegomanSpring.cpp:
+	.text       start:0x80165510 end:0x80167AE0
+	.ctors      start:0x806440A8 end:0x806440AC
+	.data       start:0x80684420 end:0x80684620
+	.sbss       start:0x807D2138 end:0x807D2188
+
+Game/Enemy/BegomanSpringHead.cpp:
+	.text       start:0x80167B50 end:0x80168180
+	.ctors      start:0x806440AC end:0x806440B0
+	.data       start:0x806846B0 end:0x806847E0
+	.sbss       start:0x807D2188 end:0x807D21A0
+
+Game/Enemy/Birikyu.cpp:
+	.text       start:0x80168180 end:0x80169160
+	.ctors      start:0x806440B0 end:0x806440B4
+
+Game/Enemy/BombBird.cpp:
+	.text       start:0x80169160 end:0x8016B0E0
+	.ctors      start:0x806440B4 end:0x806440B8
+	.rodata     start:0x806481B0 end:0x806481C0
+	.sbss       start:0x807D21C0 end:0x807D21F0
+
+Game/Enemy/BombBirdBomb.cpp:
+	.text       start:0x8016B0E0 end:0x8016BB10
+	.ctors      start:0x806440B8 end:0x806440BC
+	.sbss       start:0x807D21F8 end:0x807D2204
+
+Game/Enemy/BombHei.cpp:
+	.text       start:0x8016BB10 end:0x8016E560
+	.ctors      start:0x806440BC end:0x806440C0
+	.data       start:0x80684EE8 end:0x80685060
+	.sbss       start:0x807D2208 end:0x807D2248
+
+Game/Enemy/BombHeiLauncher.cpp:
+	.text       start:0x8016E560 end:0x8016EDD0
+	.ctors      start:0x806440C0 end:0x806440C4
+	.data       start:0x806850D0 end:0x80685180
+	.sbss       start:0x807D224C end:0x807D2250
+
+Game/Enemy/BombTeresa.cpp:
+	.text       start:0x8016EDD0 end:0x80171AC0
+	.ctors      start:0x806440C4 end:0x806440C8
+	.data       start:0x80685370 end:0x806854F8
+	.sbss       start:0x807D2250 end:0x807D2290
+
+Game/Enemy/CocoNutBall.cpp:
+	.text       start:0x801772C0 end:0x80179D20
+	.ctors      start:0x806440E0 end:0x806440E4
+
+Game/Enemy/Dossun.cpp:
+	.text       start:0x8017B3C0 end:0x8017C0A0
+	.ctors      start:0x806440E8 end:0x806440EC
+	.data       start:0x80686170 end:0x80686240
+	.sbss       start:0x807D2398 end:0x807D23B0
+
+Game/Enemy/ElectricPressureBullet.cpp:
+	.text       start:0x8017D010 end:0x8017D670
+	.ctors      start:0x806440F0 end:0x806440F4
+	.data       start:0x80686448 end:0x806864C8
+	.sbss       start:0x807D23D0 end:0x807D23D8
+
+Game/Enemy/FireBall.cpp:
+	.text       start:0x8017D670 end:0x8017E260
+	.ctors      start:0x806440F4 end:0x806440F8
+
+Game/Enemy/FireBubble.cpp:
+	.text       start:0x8017F800 end:0x80180980
+	.ctors      start:0x80644100 end:0x80644104
+	.rodata     start:0x80648240 end:0x8064824C
+	.data       start:0x806868C0 end:0x806869B0
+	.sbss       start:0x807D2408 end:0x807D2428
+
+Game/Enemy/Gesso.cpp:
+	.text       start:0x80182860 end:0x80184560
+	.ctors      start:0x80644110 end:0x80644114
+	.data       start:0x80686E48 end:0x80686F78
+	.sbss       start:0x807D2470 end:0x807D24A0
+
+Game/Enemy/GliderShooterBullet.cpp:
+	.text       start:0x80184560 end:0x80184B30
+
+Game/Enemy/HammerHeadPackun.cpp:
+	.text       start:0x8018BE10 end:0x8018DFE0
+	.ctors      start:0x80644128 end:0x8064412C
+	.data       start:0x80687B00 end:0x80687B70
+
+Game/Enemy/Hanachan.cpp:
+	.text       start:0x80190030 end:0x80192690
+	.ctors      start:0x8064412C end:0x80644130
+
+Game/Enemy/HomingKiller.cpp:
+	.text       start:0x80194AC0 end:0x801984F0
+	.ctors      start:0x80644138 end:0x8064413C
+	.sbss       start:0x807D2628 end:0x807D2648
+
+Game/Enemy/Jellyfish.cpp:
+	.text       start:0x80198790 end:0x80199B80
+	.ctors      start:0x80644140 end:0x80644144
+	.data       start:0x80688AD8 end:0x80688BF8
+	.sbss       start:0x807D2660 end:0x807D2690
+
+Game/Enemy/JellyfishElectric.cpp:
+	.text       start:0x80199B80 end:0x8019ABD0
+	.ctors      start:0x80644144 end:0x80644148
+	.data       start:0x80688CB0 end:0x80688DA0
+	.sbss       start:0x807D2690 end:0x807D26B8
+
+Game/Enemy/JumpBeamer.cpp:
+	.text       start:0x8019F700 end:0x801A0D20
+	.ctors      start:0x8064414C end:0x80644150
+	.sbss       start:0x807D2718 end:0x807D2748
+
+Game/Enemy/JumpEmitter.cpp:
+	.text       start:0x801A0D20 end:0x801A12B0
+
+Game/Enemy/JumpSpider.cpp:
+	.text       start:0x801A12B0 end:0x801A2A80
+	.ctors      start:0x80644150 end:0x80644154
+	.sbss       start:0x807D2750 end:0x807D278C
+
+Game/Enemy/Kabokuri.cpp:
+	.text       start:0x801A2A80 end:0x801A42A0
+	.ctors      start:0x80644154 end:0x80644158
+	.sbss       start:0x807D2790 end:0x807D27B8
+
+Game/Enemy/KabokuriFire.cpp:
+	.text       start:0x801A42A0 end:0x801A4670
+	.ctors      start:0x80644158 end:0x8064415C
+	.data       start:0x80689A90 end:0x80689B10
+	.sbss       start:0x807D27C0 end:0x807D27C8
+
+Game/Enemy/KabokuriFireHolder.cpp:
+	.text       start:0x801A4670 end:0x801A48B0
+	.data       start:0x80689B2C end:0x80689B58
+
+Game/Enemy/Kameck.cpp:
+	.text       start:0x801A48B0 end:0x801A6A80
+	.ctors      start:0x8064415C end:0x80644160
+
+Game/Enemy/KameckBeam.cpp:
+	.text       start:0x801A6B30 end:0x801A7BD0
+	.ctors      start:0x80644160 end:0x80644164
+	.sbss       start:0x807D2810 end:0x807D281C
+
+Game/Enemy/KameckBeamHolder.cpp:
+	.text       start:0x801A7BE0 end:0x801A7C90
+	.data       start:0x8068A0F4 end:0x8068A120
+
+Game/Enemy/KameckFireBall.cpp:
+	.text       start:0x801A83A0 end:0x801A8BF0
+	.ctors      start:0x80644164 end:0x80644168
+	.data       start:0x8068A374 end:0x8068A428
+	.sbss       start:0x807D2820 end:0x807D2824
+
+Game/Enemy/KameckTurtle.cpp:
+	.text       start:0x801A8C20 end:0x801A96F0
+	.ctors      start:0x80644168 end:0x8064416C
+	.data       start:0x8068A4D0 end:0x8068A588
+	.sbss       start:0x807D2830 end:0x807D2838
+
+Game/Enemy/Kanina.cpp:
+	.text       start:0x801A9730 end:0x801ACC90
+	.ctors      start:0x8064416C end:0x80644170
+
+Game/Enemy/Karikari.cpp:
+	.text       start:0x801ADF70 end:0x801B0960
+	.ctors      start:0x80644174 end:0x80644178
+	.data       start:0x8068AB10 end:0x8068ACA0
+	.sbss       start:0x807D28B0 end:0x807D28F8
+
+Game/Enemy/KarikariDirector.cpp:
+	.text       start:0x801B0960 end:0x801B0F40
+	.data       start:0x8068ACCC end:0x8068ACF8
+
+Game/Enemy/Karon.cpp:
+	.text       start:0x801B0F40 end:0x801B3420
+	.ctors      start:0x80644178 end:0x8064417C
+
+Game/Enemy/Kiraira.cpp:
+	.text       start:0x801B3F70 end:0x801B5230
+	.ctors      start:0x80644180 end:0x80644184
+	.sbss       start:0x807D2960 end:0x807D2980
+
+Game/Enemy/KirairaChain.cpp:
+	.text       start:0x801B5230 end:0x801B6190
+	.data       start:0x8068B350 end:0x8068B3C0
+
+Game/Enemy/KoteBug.cpp:
+	.text       start:0x801B6190 end:0x801B88D0
+	.ctors      start:0x80644184 end:0x80644188
+
+Game/Enemy/Kuribo.cpp:
+	.text       start:0x801B8990 end:0x801BB3E0
+	.ctors      start:0x80644188 end:0x8064418C
+	.bss        start:0x80729078 end:0x807290F8
+
+Game/Enemy/KuriboChief.cpp:
+	.text       start:0x801BB520 end:0x801BCB90
+	.ctors      start:0x8064418C end:0x80644190
+	.bss        start:0x807290F8 end:0x807291C8
+	.sbss       start:0x807D2A20 end:0x807D2A44
+
+Game/Enemy/KuriboMini.cpp:
+	.text       start:0x801BCC50 end:0x801BE920
+	.ctors      start:0x80644190 end:0x80644194
+	.bss        start:0x807291C8 end:0x80729248
+	.sbss       start:0x807D2A48 end:0x807D2A70
+
+Game/Enemy/MechanicKoopaMini.cpp:
+	.text       start:0x801C19D0 end:0x801C3A50
+	.ctors      start:0x806441A0 end:0x806441A4
+	.bss        start:0x80729248 end:0x80729258
+
+Game/Enemy/Meramera.cpp:
+	.text       start:0x801C6330 end:0x801C9BA0
+	.ctors      start:0x806441A8 end:0x806441AC
+
+Game/Enemy/Metbo.cpp:
+	.text       start:0x801C9EE0 end:0x801CC320
+	.ctors      start:0x806441AC end:0x806441B0
+	.sbss       start:0x807D2B98 end:0x807D2BDC
+
+Game/Enemy/Mogucchi.cpp:
+	.text       start:0x801CC320 end:0x801CDBA0
+	.ctors      start:0x806441B0 end:0x806441B4
+	.data       start:0x8068D1C0 end:0x8068D230
+
+Game/Enemy/MogucchiShooter.cpp:
+	.text       start:0x801CDC80 end:0x801CF910
+	.ctors      start:0x806441B4 end:0x806441B8
+	.data       start:0x8068D438 end:0x8068D4B8
+
+Game/Enemy/MogucchiHill.cpp:
+	.text       start:0x801D0130 end:0x801D0D70
+	.ctors      start:0x806441B8 end:0x806441BC
+
+Game/Enemy/NokonokoLand.cpp:
+	.text       start:0x801D3020 end:0x801D61F0
+	.ctors      start:0x806441C0 end:0x806441C4
+
+Game/Enemy/Onimasu.cpp:
+	.text       start:0x801DA7B0 end:0x801DBC30
+	.ctors      start:0x806441CC end:0x806441D0
+	.data       start:0x8068E370 end:0x8068E458
+	.sbss       start:0x807D2D38 end:0x807D2D50
+
+Game/Enemy/OnimasuJump.cpp:
+	.text       start:0x801DBC30 end:0x801DC190
+	.data       start:0x8068E458 end:0x8068E4F0
+
+Game/Enemy/OtaRock.cpp:
+	.text       start:0x801DC190 end:0x801DD430
+	.ctors      start:0x806441D0 end:0x806441D4
+	.sbss       start:0x807D2D50 end:0x807D2D6C
+
+Game/Enemy/PackunPetit.cpp:
+	.text       start:0x801E2600 end:0x801E4960
+	.ctors      start:0x806441E0 end:0x806441E4
+	.sbss       start:0x807D2E00 end:0x807D2E44
+
+Game/Enemy/Petari.cpp:
+	.text       start:0x801E8080 end:0x801EA900
+	.ctors      start:0x806441F0 end:0x806441F4
+	.data       start:0x8068F9D0 end:0x8068FA40
+
+Game/Enemy/Pukupuku.cpp:
+	.text       start:0x801F0520 end:0x801F1BE0
+	.ctors      start:0x806441FC end:0x80644200
+	.rodata     start:0x80648718 end:0x80648738
+	.data       start:0x806901C0 end:0x80690270
+
+Game/Enemy/RingBeam.cpp:
+	.text       start:0x801F64C0 end:0x801F7550
+	.ctors      start:0x80644208 end:0x8064420C
+	.data       start:0x80690878 end:0x80690930
+	.sbss       start:0x807D3058 end:0x807D3060
+
+Game/Enemy/RingBeamer.cpp:
+	.text       start:0x801F7550 end:0x801F7F30
+	.ctors      start:0x8064420C end:0x80644210
+	.sbss       start:0x807D3060 end:0x807D306C
+
+Game/Enemy/SamboHead.cpp:
+	.text       start:0x801F7F30 end:0x801F9980
+	.ctors      start:0x80644210 end:0x80644214
+	.data       start:0x80690B40 end:0x80690CB0
+	.sbss       start:0x807D3070 end:0x807D30B0
+
+Game/Enemy/SearchBeamer.cpp:
+	.text       start:0x801F9980 end:0x801FB8E0
+	.ctors      start:0x80644214 end:0x80644218
+	.sbss       start:0x807D30B0 end:0x807D30E8
+
+Game/Enemy/Snakehead.cpp:
+	.text       start:0x801FB8E0 end:0x801FCE00
+	.ctors      start:0x80644218 end:0x8064421C
+	.rodata     start:0x80648740 end:0x806487C0
+	.data       start:0x806910E8 end:0x806911C8
+	.sbss       start:0x807D30F0 end:0x807D3110
+
+Game/Enemy/SpinHitController.cpp:
+	.text       start:0x801FCE00 end:0x801FD0C0
+
+Game/Enemy/StinkBugBase.cpp:
+	.text       start:0x801FD0C0 end:0x801FD730
+	.data       start:0x806911D0 end:0x80691240
+
+Game/Enemy/StinkBugParent.cpp:
+	.text       start:0x801FD730 end:0x801FF410
+	.ctors      start:0x8064421C end:0x80644220
+	.rodata     start:0x806487C0 end:0x806487D8
+
+Game/Enemy/StinkBugSmall.cpp:
+	.text       start:0x801FF460 end:0x80200DE0
+	.ctors      start:0x80644220 end:0x80644224
+	.data       start:0x806917C0 end:0x80691930
+	.sbss       start:0x807D3160 end:0x807D31A0
+
+Game/Enemy/StringSpider.cpp:
+	.text       start:0x80200DE0 end:0x802033C0
+	.ctors      start:0x80644224 end:0x80644228
+
+Game/Enemy/Takobo.cpp:
+	.text       start:0x802038F0 end:0x80205390
+	.ctors      start:0x8064422C end:0x80644230
+	.data       start:0x80691D60 end:0x80691DD0
+
+Game/Enemy/TakoHei.cpp:
+	.text       start:0x80205B70 end:0x80208400
+	.ctors      start:0x80644234 end:0x80644238
+	.bss        start:0x807294D0 end:0x807294E0
+	.sbss       start:0x807D3220 end:0x807D3264
+
+Game/Enemy/TakoHeiInk.cpp:
+	.text       start:0x80208400 end:0x80208770
+	.ctors      start:0x80644238 end:0x8064423C
+	.data       start:0x806922E0 end:0x80692360
+	.sbss       start:0x807D3268 end:0x807D3270
+
+Game/Enemy/TakoHeiInkHolder.cpp:
+	.text       start:0x80208770 end:0x80208970
+	.data       start:0x8069237C end:0x806923A8
+
+Game/Enemy/Teresa.cpp:
+	.text       start:0x8020BD90 end:0x8020F380
+	.ctors      start:0x80644244 end:0x80644248
+	.sbss       start:0x807D32D0 end:0x807D3320
+
+Game/Enemy/TeresaWater.cpp:
+	.text       start:0x80210620 end:0x80210F70
+	.ctors      start:0x8064424C end:0x80644250
+	.data       start:0x80692E10 end:0x80692EC0
+	.sbss       start:0x807D3350 end:0x807D3360
+
+Game/Enemy/TerritoryMover.cpp:
+	.text       start:0x80210F70 end:0x80211100
+
+Game/Enemy/Unizo.cpp:
+	.text       start:0x80216CC0 end:0x802195D0
+	.ctors      start:0x80644260 end:0x80644264
+	.data       start:0x806937E8 end:0x806938F8
+	.sbss       start:0x807D3408 end:0x807D3430
+
+Game/Enemy/WalkerStateChase.cpp:
+	.text       start:0x802196A0 end:0x80219990
+	.ctors      start:0x80644264 end:0x80644268
+	.data       start:0x80693918 end:0x80693958
+	.bss        start:0x80729538 end:0x80729550
+	.sbss       start:0x807D3430 end:0x807D3438
+
+Game/Enemy/WalkerStateFindPlayer.cpp:
+	.text       start:0x80219A50 end:0x80219E90
+	.ctors      start:0x80644268 end:0x8064426C
+	.data       start:0x80693998 end:0x806939F8
+	.bss        start:0x80729550 end:0x80729560
+	.sbss       start:0x807D3438 end:0x807D3448
+
+Game/Enemy/WalkerStateFunction.cpp:
+	.text       start:0x80219F20 end:0x80219FA0
+
+Game/Enemy/WalkerStateParam.cpp:
+	.text       start:0x80219FA0 end:0x80219FE0
+
+Game/Enemy/WalkerStateStagger.cpp:
+	.text       start:0x8021A100 end:0x8021A8F0
+	.ctors      start:0x8064426C end:0x80644270
+	.data       start:0x80693A38 end:0x80693A78
+	.bss        start:0x80729560 end:0x80729590
+	.sbss       start:0x807D3448 end:0x807D3450
+
+Game/Enemy/WalkerStateWander.cpp:
+	.text       start:0x8021AA10 end:0x8021ACB0
+	.ctors      start:0x80644270 end:0x80644274
+	.data       start:0x80693AA0 end:0x80693AE0
+	.bss        start:0x80729590 end:0x807295A8
+	.sbss       start:0x807D3450 end:0x807D3458
+
+Game/GameAudio/AudBgmConductor.cpp:
+	.text       start:0x80220CA0 end:0x80221440
+	.data       start:0x806941E8 end:0x80694218
+
+Game/GameAudio/AudCameraWatcher.cpp:
+	.text       start:0x80221440 end:0x802217E0
+	.data       start:0x80694244 end:0x80694270
+
+Game/GameAudio/AudEffectDirector.cpp:
+	.text       start:0x802217E0 end:0x80221A00
+	.data       start:0x80694294 end:0x806942C0
+
+Game/GameAudio/AudTalkSoundData.cpp:
+	.text       start:0x80221A00 end:0x80222390
+	.ctors      start:0x80644280 end:0x80644284
+	.bss        start:0x807295A8 end:0x807298B0
+
+Game/GameAudio/AudTamakoroBgmCtrl.cpp:
+	.text       start:0x80222390 end:0x80222750
+	.sdata      start:0x807CF9C8 end:0x807CF9E8
+
+Game/Gravity/BarrelGravity.cpp:
+	.text       start:0x80222AD0 end:0x80222BB0
+
+Game/Gravity/ConeGravity.cpp:
+	.text       start:0x80222E70 end:0x80222F60
+	.data       start:0x806942F0 end:0x80694300
+
+Game/Gravity/CubeGravity.cpp:
+	.text       start:0x802234E0 end:0x80223550
+	.data       start:0x806943D8 end:0x806943E8
+
+Game/Gravity/DiskGravity.cpp:
+	.text       start:0x802241A0 end:0x80224810
+	.data       start:0x806943E8 end:0x806943F8
+
+Game/Gravity/DiskTorusGravity.cpp:
+	.text       start:0x80224810 end:0x80224930
+	.data       start:0x806943F8 end:0x80694408
+
+Game/Gravity/GlobalGravityObj.cpp:
+	.text       start:0x80224CB0 end:0x80225790
+	.data       start:0x80694408 end:0x80694478
+
+Game/Gravity/GravityFollower.cpp:
+	.text       start:0x80225790 end:0x80225920
+
+Game/Gravity/GravityCreator.cpp:
+	.text       start:0x80225920 end:0x80225AC0
+
+Game/Gravity/GravityInfo.cpp:
+	.text       start:0x80226A50 end:0x80226AB0
+
+Game/Gravity/ParallelGravity.cpp:
+	.text       start:0x80226AB0 end:0x80226E10
+	.data       start:0x80694630 end:0x80694640
+
+Game/Gravity/PlanetGravity.cpp:
+	.text       start:0x80227180 end:0x802274D0
+	.data       start:0x80694640 end:0x80694650
+
+Game/Gravity/PlanetGravityManager.cpp:
+	.text       start:0x802274D0 end:0x802277E0
+	.data       start:0x80694650 end:0x80694680
+
+Game/Gravity/PointGravity.cpp:
+	.text       start:0x802277E0 end:0x80227850
+	.data       start:0x80694680 end:0x80694690
+
+Game/Gravity/SegmentGravity.cpp:
+	.text       start:0x80227990 end:0x80228090
+	.data       start:0x80694690 end:0x806946A0
+
+Game/Gravity/WireGravity.cpp:
+	.text       start:0x80228090 end:0x80228150
+	.data       start:0x806946A0 end:0x806946B0
+
+Game/LiveActor/ActorAnimKeeper.cpp:
+	.text       start:0x802283B0 end:0x80228D20
+	.sdata      start:0x807CF9F0 end:0x807CF9F4
+
+Game/LiveActor/ActionBgmCtrl.cpp:
+	.text       start:0x80228D60 end:0x80229200
+
+Game/LiveActor/ActorPadAndCameraCtrl.cpp:
+	.text       start:0x8022A0B0 end:0x8022A430
+	.sdata      start:0x807CFA30 end:0x807CFA38
+
+Game/LiveActor/ActorActionKeeper.cpp:
+	.text       start:0x8022A8D0 end:0x8022AB70
+
+Game/LiveActor/ActorCameraInfo.cpp:
+	.text       start:0x8022AB70 end:0x8022AC00
+
+Game/LiveActor/ActorJointCtrl.cpp:
+	.text       start:0x8022BCA0 end:0x8022BF50
+
+Game/LiveActor/ActorLightCtrl.cpp:
+	.text       start:0x8022BF50 end:0x8022C550
+
+Game/LiveActor/ActorSoundHolder.cpp:
+	.text       start:0x8022CD70 end:0x8022CE50
+
 Game/LiveActor/ActorStateKeeper.cpp:
 	.text       start:0x8022CF40 end:0x8022D140
+
+Game/LiveActor/ActorStateParamScale.cpp:
+	.text       start:0x8022D140 end:0x8022D870
+
+Game/LiveActor/AllLiveActorGroup.cpp:
+	.text       start:0x8022D870 end:0x8022DA80
+	.data       start:0x80694C94 end:0x80694CC0
+
+Game/LiveActor/AnimationRandomPlayer.cpp:
+	.text       start:0x8022DA80 end:0x8022DD40
+	.ctors      start:0x80644284 end:0x80644288
+	.data       start:0x80694CC0 end:0x80694CF0
+	.sbss       start:0x807D34A0 end:0x807D34A8
+
+Game/LiveActor/Binder.cpp:
+	.text       start:0x8022DE40 end:0x8022F3B0
+
+Game/LiveActor/BreakModel.cpp:
+	.text       start:0x8022F3B0 end:0x8022F640
+
+Game/LiveActor/ChangeObj.cpp:
+	.text       start:0x8022F6B0 end:0x8022F750
+
+Game/LiveActor/ClippingActorHolder.cpp:
+	.text       start:0x8022F9D0 end:0x802301A0
+	.data       start:0x80694DCC end:0x80694DF8
+
+Game/LiveActor/ClippingActorInfo.cpp:
+	.text       start:0x802301A0 end:0x802303B0
+
+Game/LiveActor/ClippingDirector.cpp:
+	.text       start:0x802305B0 end:0x802308C0
+	.data       start:0x80694E20 end:0x80694E50
+
+Game/LiveActor/ClippingGroupHolder.cpp:
+	.text       start:0x80230C10 end:0x80230F90
+	.data       start:0x80694E6C end:0x80694EC8
+
+Game/LiveActor/ClippingJudge.cpp:
+	.text       start:0x80230F90 end:0x802315E0
+	.data       start:0x80694EC8 end:0x80694EF8
+
+Game/LiveActor/DisplayListMaker.cpp:
+	.text       start:0x802315E0 end:0x802322E0
+
+Game/LiveActor/DynamicJointCtrl.cpp:
+	.text       start:0x802322E0 end:0x80232C80
+	.data       start:0x80694FE8 end:0x80695000
+
+Game/LiveActor/EffectKeeper.cpp:
+	.text       start:0x80233240 end:0x80234660
+
+Game/LiveActor/FaceJointCtrl.cpp:
+	.text       start:0x802347B0 end:0x80234890
+	.data       start:0x80695110 end:0x80695128
+
+Game/LiveActor/FlashingCtrl.cpp:
+	.text       start:0x802354C0 end:0x80235830
+	.data       start:0x806951B8 end:0x806951E8
 
 Game/LiveActor/HitSensor.cpp:
 	.text       start:0x80235830 end:0x80235B70
@@ -78,6 +2105,10 @@ Game/LiveActor/HitSensorInfo.cpp:
 Game/LiveActor/HitSensorKeeper.cpp:
 	.text       start:0x80235ED0 end:0x80236520
 	.sdata2     start:0x807DC468 end:0x807DC470
+
+Game/LiveActor/IKJointCtrl.cpp:
+	.text       start:0x80236520 end:0x80236EC0
+	.data       start:0x806952C0 end:0x806952D8
 
 Game/LiveActor/LiveActor.cpp:
 	.text       start:0x80237320 end:0x80238220
@@ -101,21 +2132,309 @@ Game/LiveActor/LodCtrl.cpp:
 	.sdata      start:0x807CFAC8 end:0x807CFAD0
 	.sdata2     start:0x807DC490 end:0x807DC4A0
 
+Game/LiveActor/MaterialCtrl.cpp:
+	.text       start:0x802396E0 end:0x802397E0
+	.data       start:0x80695450 end:0x806954D0
+
+Game/LiveActor/MessageSensorHolder.cpp:
+	.text       start:0x8023A580 end:0x8023A680
+	.data       start:0x806954D0 end:0x80695540
+
+Game/LiveActor/MirrorActor.cpp:
+	.text       start:0x8023A680 end:0x8023AA30
+	.data       start:0x80695540 end:0x806955B0
+
+Game/LiveActor/MirrorCamera.cpp:
+	.text       start:0x8023AA30 end:0x8023B050
+	.data       start:0x806955BC end:0x806955E8
+
+Game/LiveActor/MirrorReflectionModel.cpp:
+	.text       start:0x8023B050 end:0x8023B380
+	.data       start:0x806955E8 end:0x80695658
+
+Game/LiveActor/ModelManager.cpp:
+	.text       start:0x8023B380 end:0x8023C460
+
+Game/LiveActor/ModelObj.cpp:
+	.text       start:0x8023C540 end:0x8023C6D0
+	.data       start:0x806956D0 end:0x80695740
+
+Game/LiveActor/Nerve.cpp:
+	.text       start:0x8023C8F0 end:0x8023C900
+
+Game/LiveActor/PartsModel.cpp:
+	.text       start:0x8023C900 end:0x8023CF60
+	.data       start:0x80695820 end:0x80695890
+
+Game/LiveActor/PartsModelLodCtrl.cpp:
+	.text       start:0x8023CF60 end:0x8023D100
+
+Game/LiveActor/RailObj.cpp:
+	.text       start:0x8023D100 end:0x8023D280
+
 Game/LiveActor/RailRider.cpp:
 	.text       start:0x8023D280 end:0x8023DEE0
 	.sdata      start:0x807CFAD8 end:0x807CFAE0
 	.sdata2     start:0x807DC4E8 end:0x807DC500
 
+Game/LiveActor/SensorHitChecker.cpp:
+	.text       start:0x8023DFE0 end:0x8023E780
+	.data       start:0x8069592C end:0x80695958
+
+Game/LiveActor/ShadowController.cpp:
+	.text       start:0x8023ECC0 end:0x8023F970
+	.data       start:0x806959BC end:0x806959E8
+
+Game/LiveActor/ShadowDrawer.cpp:
+	.text       start:0x8023FA70 end:0x8023FAE0
+	.data       start:0x806959E8 end:0x80695A18
+
+Game/LiveActor/ShadowSurfaceDrawer.cpp:
+	.text       start:0x8023FB40 end:0x8023FBA0
+
+Game/LiveActor/ShadowSurfaceBox.cpp:
+	.text       start:0x8023FBC0 end:0x80240060
+	.data       start:0x80695A30 end:0x80695A60
+
+Game/LiveActor/ShadowSurfaceCircle.cpp:
+	.text       start:0x80240060 end:0x80240270
+	.data       start:0x80695A70 end:0x80695AA0
+
+Game/LiveActor/ShadowSurfaceOval.cpp:
+	.text       start:0x80240450 end:0x80240740
+	.data       start:0x80695B20 end:0x80695B50
+
+Game/LiveActor/ShadowVolumeBox.cpp:
+	.text       start:0x80240740 end:0x80241180
+	.data       start:0x80695B70 end:0x80695BA8
+
+Game/LiveActor/ShadowVolumeCylinder.cpp:
+	.text       start:0x80241240 end:0x802413B0
+	.data       start:0x80695BD8 end:0x80695C10
+
+Game/LiveActor/ShadowVolumeDrawer.cpp:
+	.text       start:0x80241420 end:0x802418D0
+	.ctors      start:0x80644290 end:0x80644294
+	.data       start:0x80695C30 end:0x80695C98
+	.sbss       start:0x807D34B8 end:0x807D34C0
+
+Game/LiveActor/ShadowVolumeFlatModel.cpp:
+	.text       start:0x802418D0 end:0x80241C90
+	.data       start:0x80695CB8 end:0x80695CF0
+
+Game/LiveActor/ShadowVolumeLine.cpp:
+	.text       start:0x80241C90 end:0x802420C0
+	.data       start:0x80695D10 end:0x80695D48
+
+Game/LiveActor/ShadowVolumeModel.cpp:
+	.text       start:0x802420C0 end:0x80242160
+	.data       start:0x80695D48 end:0x80695D80
+
+Game/LiveActor/ShadowVolumeOval.cpp:
+	.text       start:0x80242160 end:0x80242510
+	.data       start:0x80695DB0 end:0x80695DE8
+
+Game/LiveActor/ShadowVolumeOvalPole.cpp:
+	.text       start:0x80242510 end:0x802428A0
+	.data       start:0x80695E20 end:0x80695E58
+
+Game/LiveActor/ShadowVolumeSphere.cpp:
+	.text       start:0x80242CD0 end:0x80242EE0
+	.data       start:0x80695EE0 end:0x80695F18
+
+Game/LiveActor/SimpleJ3DModelDrawer.cpp:
+	.text       start:0x80242EE0 end:0x80243150
+	.data       start:0x80695F28 end:0x80695FA8
+
 Game/LiveActor/Spine.cpp:
 	.text       start:0x80243150 end:0x80243330
 
+Game/LiveActor/SpotMarkLight.cpp:
+	.text       start:0x80243330 end:0x80243580
+	.data       start:0x80695FD8 end:0x80696048
+
+Game/LiveActor/ViewGroupCtrl.cpp:
+	.text       start:0x80243580 end:0x80243990
+
+Game/LiveActor/VolumeDrawer.cpp:
+	.text       start:0x80243990 end:0x80244180
+
+Game/Map/ActorAppearSwitchListener.cpp:
+	.text       start:0x80244180 end:0x80244260
+	.data       start:0x806960C8 end:0x806960E0
+
+Game/Map/Air.cpp:
+	.text       start:0x80244260 end:0x80244F10
+	.ctors      start:0x80644294 end:0x80644298
+	.sbss       start:0x807D34C0 end:0x807D34C8
+
+Game/Map/BezierRail.cpp:
+	.text       start:0x80245E80 end:0x802467D0
+
+Game/Map/Butterfly.cpp:
+	.text       start:0x802467D0 end:0x80247B40
+	.ctors      start:0x80644298 end:0x8064429C
+	.data       start:0x80696510 end:0x806965F0
+	.sbss       start:0x807D34D0 end:0x807D34F0
+
+Game/Map/CollisionCategorizedKeeper.cpp:
+	.text       start:0x80248B40 end:0x802491D0
+	.data       start:0x80696610 end:0x80696640
+
 Game/Map/CollisionCode.cpp:
 	.text       start:0x802491D0 end:0x80249DD0
-	.data       start:0x80696640 end:0x80696968DWW 
+	.data       start:0x80696640 end:0x80696968
+
+Game/Map/CollisionDirector.cpp:
+	.text       start:0x80249DD0 end:0x80249FB0
+	.data       start:0x80696978 end:0x806969A8
+
+Game/Map/CollisionParts.cpp:
+	.text       start:0x80249FB0 end:0x8024A880
+
+Game/Map/FileSelectCameraController.cpp:
+	.text       start:0x8024B920 end:0x8024C170
+	.ctors      start:0x8064429C end:0x806442A0
+	.rodata     start:0x80648B18 end:0x80648B3C
+	.data       start:0x806969A8 end:0x80696A18
+
+Game/Map/FileSelectEffect.cpp:
+	.text       start:0x8024C210 end:0x8024C610
+	.ctors      start:0x806442A0 end:0x806442A4
+	.data       start:0x80696A98 end:0x80696B08
+
+Game/Map/FileSelectFunc.cpp:
+	.text       start:0x8024C670 end:0x8024C740
+	.data       start:0x80696BFC end:0x80696C18
+
+Game/Map/FileSelectIconID.cpp:
+	.text       start:0x8024C740 end:0x8024C7F0
+
+Game/Map/FileSelectItem.cpp:
+	.text       start:0x8024C8D0 end:0x8024ED60
+	.ctors      start:0x806442A4 end:0x806442A8
+	.data       start:0x80696E08 end:0x80696F10
+	.sbss       start:0x807D352C end:0x807D3550
+
+Game/Map/FileSelectModel.cpp:
+	.text       start:0x8024EDB0 end:0x8024F120
+	.ctors      start:0x806442A8 end:0x806442AC
+	.data       start:0x80696FA8 end:0x80697018
+
+Game/Map/FileSelector.cpp:
+	.text       start:0x8024FD80 end:0x80252F00
+	.ctors      start:0x806442AC end:0x806442B0
+	.rodata     start:0x80648B78 end:0x80648B90
+	.data       start:0x80697468 end:0x80697540
+
+Game/Map/FishGroup.cpp:
+	.text       start:0x80253C00 end:0x80254110
+	.ctors      start:0x806442B0 end:0x806442B4
+	.data       start:0x806977F0 end:0x80697900
+	.sbss       start:0x807D35F0 end:0x807D3600
+
+Game/Map/Flag.cpp:
+	.text       start:0x80254110 end:0x802559E0
+	.data       start:0x806979C8 end:0x80697A38
+
+Game/Map/GroundChecker.cpp:
+	.text       start:0x802559E0 end:0x80255B10
+	.data       start:0x80697A38 end:0x80697AA8
+
+Game/Map/GroupSwitchWatcher.cpp:
+	.text       start:0x80255B10 end:0x80255D60
+	.data       start:0x80697AA8 end:0x80697B18
+
+Game/Map/Halo.cpp:
+	.text       start:0x80255EB0 end:0x80256710
+	.ctors      start:0x806442B4 end:0x806442B8
+	.data       start:0x80697B6C end:0x80697CD8
+	.sbss       start:0x807D3600 end:0x807D3610
+
+Game/Map/HitInfo.cpp:
+	.text       start:0x802570C0 end:0x802571A0
 
 Game/Map/KCollision.cpp:
-	.text		start:0x801830E4 end:0x80259D90
-	.sdata2		start:0x807DC878 end:0x807DC880
+	.text       start:0x802571A0 end:0x80259D90
+	.sdata2     start:0x807DC878 end:0x807DC880
+
+Game/Map/KCollisionPlus.cpp:
+	.text       start:0x80259D90 end:0x80259F80
+
+Game/Map/LightDataHolder.cpp:
+	.text       start:0x8025A330 end:0x8025A460
+
+Game/Map/LightDirector.cpp:
+	.text       start:0x8025A460 end:0x8025A740
+	.data       start:0x80697EB4 end:0x80697EE0
+
+Game/Map/LightFunction.cpp:
+	.text       start:0x8025A740 end:0x8025B410
+
+Game/Map/LightPointCtrl.cpp:
+	.text       start:0x8025B410 end:0x8025BA90
+
+Game/Map/LightZoneDataHolder.cpp:
+	.text       start:0x8025BBF0 end:0x8025BCE0
+
+Game/Map/NamePosHolder.cpp:
+	.text       start:0x8025C040 end:0x8025C450
+	.data       start:0x80697FEC end:0x80698018
+
+Game/Map/OceanSphere.cpp:
+	.text       start:0x8025CC10 end:0x8025F390
+	.ctors      start:0x806442B8 end:0x806442BC
+	.data       start:0x806980D0 end:0x80698160
+	.bss        start:0x807298B0 end:0x807298D8
+	.sbss       start:0x807D3610 end:0x807D3618
+
+Game/Map/OceanSpherePoint.cpp:
+	.text       start:0x8025F430 end:0x8025F540
+
+Game/Map/PlanetMap.cpp:
+	.text       start:0x8025FA40 end:0x80260930
+
+Game/Map/PlanetMapCreator.cpp:
+	.text       start:0x80260CF0 end:0x80261CA0
+
+Game/Map/PlanetMapWithoutHighModel.cpp:
+	.text       start:0x80261CA0 end:0x80261E10
+	.data       start:0x806990A8 end:0x80699140
+
+Game/Map/ProductMapCreator.cpp:
+	.text       start:0x80262DB0 end:0x802630D0
+
+Game/Effect/EffectObj10x10x10SyncClipping.cpp:
+	.text       start:0x802630D0 end:0x80263130
+
+Game/Effect/EffectObj50x50x10SyncClipping.cpp:
+	.text       start:0x80263130 end:0x80263190
+
+Game/Effect/EffectObj20x20x10SyncClipping.cpp:
+	.text       start:0x80263190 end:0x802631F0
+
+Game/Effect/EffectObjR1000F50.cpp:
+	.text       start:0x802633B0 end:0x80263410
+
+Game/Effect/EffectObjR1500F400.cpp:
+	.text       start:0x80263410 end:0x80263470
+
+Game/Map/QuakeEffectGenerator.cpp:
+	.text       start:0x80263590 end:0x802638C0
+	.ctors      start:0x806442C0 end:0x806442C4
+	.data       start:0x80699958 end:0x806999F8
+	.sbss       start:0x807D3630 end:0x807D3640
+
+Game/Map/RaceManager.cpp:
+	.text       start:0x802638C0 end:0x80265800
+	.ctors      start:0x806442C4 end:0x806442C8
+	.rodata     start:0x80649070 end:0x80649088
+	.data       start:0x80699B20 end:0x80699C80
+	.sbss       start:0x807D3644 end:0x807D3680
+
+Game/Map/RaceRail.cpp:
+	.text       start:0x80265810 end:0x80265E50
+	.data       start:0x80699CD8 end:0x80699DF8
 
 Game/Map/RailGraph.cpp:
 	.text       start:0x80265EE0 end:0x802662A0
@@ -136,9 +2455,36 @@ Game/Map/RailPart.cpp:
 	.text       start:0x80266720 end:0x80266AE0
 	.sdata2     start:0x807DC9A8 end:0x807DC9B8
 
+Game/Map/ScenarioSelectStar.cpp:
+	.text       start:0x80266D70 end:0x80267AB0
+	.ctors      start:0x806442C8 end:0x806442CC
+	.data       start:0x80699F80 end:0x8069A028
+	.sbss       start:0x807D3680 end:0x807D36A0
+
+Game/Map/SeaGull.cpp:
+	.text       start:0x80267AB0 end:0x80268900
+	.ctors      start:0x806442CC end:0x806442D0
+	.data       start:0x8069A060 end:0x8069A170
+	.sbss       start:0x807D36A0 end:0x807D36B0
+
+Game/Map/Sky.cpp:
+	.text       start:0x80268B80 end:0x80269770
+	.ctors      start:0x806442D0 end:0x806442D4
+	.sbss       start:0x807D36B0 end:0x807D36B8
+
+Game/Map/SpaceInner.cpp:
+	.text       start:0x80269C80 end:0x80269F90
+	.ctors      start:0x806442D4 end:0x806442D8
+	.data       start:0x8069A570 end:0x8069A600
+	.sbss       start:0x807D36B8 end:0x807D36C0
+
 Game/Map/StageSwitch.cpp:
 	.text       start:0x80269F90 end:0x8026A8A0
 	.data       start:0x8069A600 end:0x8069A670
+
+Game/Map/SunshadeMapHolder.cpp:
+	.text       start:0x8026A8A0 end:0x8026AA30
+	.data       start:0x8069A698 end:0x8069A6C8
 
 Game/Map/SwitchSynchronizer.cpp:
 	.text       start:0x8026AA30 end:0x8026AC10
@@ -147,6 +2493,823 @@ Game/Map/SwitchSynchronizer.cpp:
 Game/Map/SwitchWatcher.cpp:
 	.text       start:0x8026AC10 end:0x8026B1A0
 	.data       start:0x8069A6F8 end:0x8069A788
+
+Game/Map/TimerSwitch.cpp:
+	.text       start:0x8026B1A0 end:0x8026B380
+	.data       start:0x8069A788 end:0x8069A7F8
+
+Game/Map/WaterAreaHolder.cpp:
+	.text       start:0x8026B380 end:0x8026B910
+	.data       start:0x8069A830 end:0x8069A860
+
+Game/Map/WaterInfo.cpp:
+	.text       start:0x8026B910 end:0x8026BA20
+
+Game/Map/WaterPlant.cpp:
+	.text       start:0x8026BA20 end:0x8026CD80
+	.ctors      start:0x806442D8 end:0x806442DC
+	.data       start:0x8069A8A0 end:0x8069A9E0
+	.bss        start:0x807298D8 end:0x807298E8
+
+Game/MapObj/AirBubble.cpp:
+	.text       start:0x8026E320 end:0x8026EEB0
+	.ctors      start:0x806442E4 end:0x806442E8
+
+Game/MapObj/AirBubbleGenerator.cpp:
+	.text       start:0x8026EEB0 end:0x8026F270
+	.ctors      start:0x806442E8 end:0x806442EC
+	.data       start:0x8069ACD8 end:0x8069AD68
+	.sbss       start:0x807D36F0 end:0x807D36F8
+
+Game/MapObj/AirBubbleHolder.cpp:
+	.text       start:0x8026F270 end:0x8026F4D0
+	.data       start:0x8069AD78 end:0x8069ADA8
+
+Game/MapObj/AnmModelObj.cpp:
+	.text       start:0x8026FA10 end:0x802705F0
+	.ctors      start:0x806442F0 end:0x806442F4
+	.data       start:0x8069B2CC end:0x8069B478
+	.sbss       start:0x807D3708 end:0x807D3718
+
+Game/MapObj/ArrowSwitch.cpp:
+	.text       start:0x802705F0 end:0x80271460
+	.ctors      start:0x806442F4 end:0x806442F8
+	.sbss       start:0x807D3718 end:0x807D3724
+
+Game/MapObj/AssemblyBlock.cpp:
+	.text       start:0x80271460 end:0x80271F60
+	.ctors      start:0x806442F8 end:0x806442FC
+	.data       start:0x8069B6D8 end:0x8069B798
+	.sbss       start:0x807D3728 end:0x807D3740
+
+Game/MapObj/BallOpener.cpp:
+	.text       start:0x802733F0 end:0x80273D80
+	.ctors      start:0x80644300 end:0x80644304
+	.data       start:0x8069B960 end:0x8069BA00
+	.sbss       start:0x807D3768 end:0x807D3778
+
+Game/MapObj/BallRail.cpp:
+	.text       start:0x80273D80 end:0x802748B0
+	.ctors      start:0x80644304 end:0x80644308
+	.data       start:0x8069BA20 end:0x8069BAD0
+	.sbss       start:0x807D3778 end:0x807D3788
+
+Game/MapObj/BeeFlowerHover.cpp:
+	.text       start:0x802748B0 end:0x802752D0
+	.ctors      start:0x80644308 end:0x8064430C
+	.data       start:0x8069BB48 end:0x8069BC08
+	.sbss       start:0x807D3788 end:0x807D37A0
+
+Game/MapObj/BenefitItemInvincible.cpp:
+	.text       start:0x80275E60 end:0x80276320
+	.data       start:0x8069BEBC end:0x8069BF58
+
+Game/MapObj/BenefitItemLifeUp.cpp:
+	.text       start:0x80276320 end:0x80276420
+	.data       start:0x8069BF68 end:0x8069C008
+
+Game/MapObj/BenefitItemObj.cpp:
+	.text       start:0x80276420 end:0x80278810
+	.ctors      start:0x80644314 end:0x80644318
+	.data       start:0x8069C0C0 end:0x8069C180
+
+Game/Boss/TripodBossKinokoOneUp.cpp:
+	.text       start:0x80278810 end:0x80278970
+	.sbss       start:0x807D37D0 end:0x807D37E8
+
+Game/MapObj/BigFan.cpp:
+	.text       start:0x80278970 end:0x802791D0
+	.ctors      start:0x80644318 end:0x8064431C
+	.data       start:0x8069C290 end:0x8069C350
+
+Game/MapObj/BigFanHolder.cpp:
+	.text       start:0x802798C0 end:0x80279BF0
+	.data       start:0x8069C448 end:0x8069C478
+
+Game/MapObj/BlackHole.cpp:
+	.text       start:0x8027A160 end:0x8027AD40
+	.ctors      start:0x80644324 end:0x80644328
+	.data       start:0x8069C620 end:0x8069C6C0
+
+Game/MapObj/BlueStarCupsulePlanet.cpp:
+	.text       start:0x8027B270 end:0x8027C170
+	.ctors      start:0x8064432C end:0x80644330
+	.data       start:0x8069C8C8 end:0x8069C9F8
+
+Game/MapObj/BreakableCage.cpp:
+	.text       start:0x8027C590 end:0x8027D620
+	.ctors      start:0x80644334 end:0x80644338
+	.data       start:0x8069CBC0 end:0x8069CC60
+
+Game/MapObj/Candlestand.cpp:
+	.text       start:0x8027E990 end:0x8027F9C0
+	.ctors      start:0x80644338 end:0x8064433C
+	.rodata     start:0x80649160 end:0x806491B8
+
+Game/MapObj/CapsuleCage.cpp:
+	.text       start:0x8027F9C0 end:0x80280150
+	.ctors      start:0x8064433C end:0x80644340
+	.data       start:0x8069CFD0 end:0x8069D0C8
+
+Game/MapObj/ChipBase.cpp:
+	.text       start:0x802824D0 end:0x802837A0
+	.ctors      start:0x80644354 end:0x80644358
+
+Game/MapObj/ChipCounter.cpp:
+	.text       start:0x802837A0 end:0x80284330
+	.ctors      start:0x80644358 end:0x8064435C
+
+Game/MapObj/ChipGroup.cpp:
+	.text       start:0x80284330 end:0x80284B90
+	.data       start:0x8069D930 end:0x8069D998
+
+Game/MapObj/ChipHolder.cpp:
+	.text       start:0x80284CD0 end:0x80285240
+	.data       start:0x8069D9CC end:0x8069D9F8
+
+Game/MapObj/CircleCoinGroup.cpp:
+	.text       start:0x80285240 end:0x80285690
+	.data       start:0x8069DA28 end:0x8069DAA8
+
+Game/MapObj/ClipArea.cpp:
+	.text       start:0x80285690 end:0x80285B50
+	.ctors      start:0x8064435C end:0x80644360
+	.data       start:0x8069DAB8 end:0x8069DB30
+
+Game/MapObj/ClipAreaDrop.cpp:
+	.text       start:0x80285B50 end:0x80285FE0
+	.ctors      start:0x80644360 end:0x80644364
+	.data       start:0x8069DB30 end:0x8069DBB8
+
+Game/MapObj/ClipAreaDropHolder.cpp:
+	.text       start:0x80285FF0 end:0x80286150
+
+Game/MapObj/ClipAreaHolder.cpp:
+	.text       start:0x802862F0 end:0x80286620
+	.data       start:0x8069DC68 end:0x8069DC98
+
+Game/MapObj/ClipAreaMovable.cpp:
+	.text       start:0x80286620 end:0x80286EA0
+	.data       start:0x8069DCAC end:0x8069DD20
+
+Game/MapObj/ClipAreaShape.cpp:
+	.text       start:0x80286EA0 end:0x80286EF0
+
+Game/MapObj/ClipFieldFillDraw.cpp:
+	.text       start:0x80287790 end:0x80287D20
+	.data       start:0x8069DD90 end:0x8069DDC0
+
+Game/MapObj/ClipFieldSwitch.cpp:
+	.text       start:0x80287D20 end:0x80287F60
+	.data       start:0x8069DDC8 end:0x8069DE38
+
+Game/MapObj/CocoNut.cpp:
+	.text       start:0x80288A30 end:0x8028B270
+	.ctors      start:0x80644368 end:0x8064436C
+	.data       start:0x8069E110 end:0x8069E1E0
+
+Game/MapObj/CoconutTreeLeaf.cpp:
+	.text       start:0x8028B3C0 end:0x8028BC10
+	.data       start:0x8069E208 end:0x8069E2E8
+
+Game/MapObj/Coin.cpp:
+	.text       start:0x8028BC70 end:0x8028DE30
+	.ctors      start:0x8064436C end:0x80644370
+	.sbss       start:0x807D3970 end:0x807D3990
+
+Game/MapObj/CoinGroup.cpp:
+	.text       start:0x8028DFD0 end:0x8028E970
+	.ctors      start:0x80644370 end:0x80644374
+	.data       start:0x8069E5C8 end:0x8069E6A8
+
+Game/MapObj/CoinHolder.cpp:
+	.text       start:0x8028E9C0 end:0x8028F370
+	.data       start:0x8069E708 end:0x8069E738
+
+Game/MapObj/CoinRotater.cpp:
+	.text       start:0x8028FE10 end:0x80290080
+	.data       start:0x8069E8C8 end:0x8069E8F8
+
+Game/MapObj/CollapsePlane.cpp:
+	.text       start:0x80290080 end:0x80290920
+	.ctors      start:0x80644378 end:0x8064437C
+	.data       start:0x8069E968 end:0x8069EA58
+	.sbss       start:0x807D39C8 end:0x807D39D8
+
+Game/MapObj/CollectCounter.cpp:
+	.text       start:0x80290920 end:0x80290C90
+	.ctors      start:0x8064437C end:0x80644380
+	.data       start:0x8069EA70 end:0x8069EAC8
+
+Game/MapObj/CrystalCage.cpp:
+	.text       start:0x80291A70 end:0x80292ED0
+	.ctors      start:0x8064438C end:0x80644390
+	.data       start:0x8069EEB8 end:0x8069EF78
+
+Game/MapObj/DashRing.cpp:
+	.text       start:0x80293F70 end:0x802948F0
+	.data       start:0x8069F2A0 end:0x8069F310
+
+Game/MapObj/DummyDisplayModel.cpp:
+	.text       start:0x80295440 end:0x80295EA0
+	.data       start:0x8069F5F0 end:0x8069F660
+
+Game/MapObj/DynamicCollisionObj.cpp:
+	.text       start:0x80295EA0 end:0x80296580
+	.data       start:0x8069F668 end:0x8069F6D8
+
+Game/MapObj/EarthenPipe.cpp:
+	.text       start:0x80296B20 end:0x80298520
+	.ctors      start:0x806443A8 end:0x806443AC
+
+Game/MapObj/ElectricRail.cpp:
+	.text       start:0x80299400 end:0x8029ABA0
+	.ctors      start:0x806443B0 end:0x806443B4
+	.data       start:0x8069FDA0 end:0x8069FEF8
+
+Game/MapObj/ElectricRailHolder.cpp:
+	.text       start:0x8029BAD0 end:0x8029C250
+	.data       start:0x806A0110 end:0x806A01A0
+
+Game/MapObj/ElectricRailFunction.cpp:
+	.text       start:0x8029C250 end:0x8029C360
+
+Game/MapObj/ElectricRailMoving.cpp:
+	.text       start:0x8029C670 end:0x8029E420
+	.ctors      start:0x806443B8 end:0x806443BC
+	.data       start:0x806A02A8 end:0x806A03C8
+
+Game/MapObj/FallDownBridge.cpp:
+	.text       start:0x8029EE00 end:0x8029F860
+	.ctors      start:0x806443C4 end:0x806443C8
+	.data       start:0x806A0618 end:0x806A06A8
+	.bss        start:0x80729940 end:0x80729950
+	.sbss       start:0x807D3AC8 end:0x807D3AD0
+
+Game/MapObj/FallOutFieldDraw.cpp:
+	.text       start:0x8029FAE0 end:0x802A0380
+	.ctors      start:0x806443CC end:0x806443D0
+	.data       start:0x806A07DC end:0x806A0808
+
+Game/MapObj/FireBar.cpp:
+	.text       start:0x802A0760 end:0x802A1610
+	.ctors      start:0x806443D0 end:0x806443D4
+	.sbss       start:0x807D3AE0 end:0x807D3AE4
+
+Game/MapObj/FirePressure.cpp:
+	.text       start:0x802A1630 end:0x802A1900
+	.data       start:0x806A0998 end:0x806A0A10
+
+Game/MapObj/FirePressureBullet.cpp:
+	.text       start:0x802A1900 end:0x802A1F00
+	.ctors      start:0x806443D4 end:0x806443D8
+
+Game/MapObj/FirePressureBulletHolder.cpp:
+	.text       start:0x802A1F00 end:0x802A2080
+	.data       start:0x806A0B04 end:0x806A0B30
+
+Game/MapObj/FlipPanel.cpp:
+	.text       start:0x802A3180 end:0x802A4360
+	.ctors      start:0x806443E0 end:0x806443E4
+	.data       start:0x806A0E44 end:0x806A0FF0
+
+Game/MapObj/Fountain.cpp:
+	.text       start:0x802A45F0 end:0x802A4D80
+	.ctors      start:0x806443E8 end:0x806443EC
+	.data       start:0x806A10C0 end:0x806A1150
+
+Game/MapObj/FountainBig.cpp:
+	.text       start:0x802A4D80 end:0x802A5520
+	.ctors      start:0x806443EC end:0x806443F0
+	.data       start:0x806A1228 end:0x806A1278
+
+Game/MapObj/GCapture.cpp:
+	.text       start:0x802A5520 end:0x802A7AA0
+	.ctors      start:0x806443F0 end:0x806443F4
+	.data       start:0x806A13B0 end:0x806A1490
+	.sbss       start:0x807D3B60 end:0x807D3B64
+
+Game/MapObj/GCaptureRibbon.cpp:
+	.text       start:0x802A7AA0 end:0x802A8250
+	.data       start:0x806A14B8 end:0x806A1528
+
+Game/MapObj/GCaptureTarget.cpp:
+	.text       start:0x802A8250 end:0x802A90F0
+	.ctors      start:0x806443F4 end:0x806443F8
+	.data       start:0x806A1638 end:0x806A1778
+
+Game/MapObj/GravityLightRoad.cpp:
+	.text       start:0x802ACC20 end:0x802AD580
+	.ctors      start:0x80644420 end:0x80644424
+
+Game/MapObj/HipDropRock.cpp:
+	.text       start:0x802AEB00 end:0x802AF2A0
+	.ctors      start:0x80644430 end:0x80644434
+	.data       start:0x806A2500 end:0x806A25A0
+
+Game/MapObj/HipDropSwitch.cpp:
+	.text       start:0x802AF2A0 end:0x802AFC20
+	.ctors      start:0x80644434 end:0x80644438
+	.data       start:0x806A25E8 end:0x806A2688
+
+Game/MapObj/HipDropTimerSwitch.cpp:
+	.text       start:0x802AFC20 end:0x802B0780
+	.ctors      start:0x80644438 end:0x8064443C
+	.data       start:0x806A2798 end:0x806A2818
+
+Game/MapObj/IceStep.cpp:
+	.text       start:0x802B1670 end:0x802B1CD0
+	.ctors      start:0x80644444 end:0x80644448
+	.data       start:0x806A2AE0 end:0x806A2B70
+
+Game/MapObj/InvisiblePolygonObj.cpp:
+	.text       start:0x802B1CD0 end:0x802B1EE0
+	.data       start:0x806A2B78 end:0x806A2BE8
+
+Game/MapObj/ItemBlock.cpp:
+	.text       start:0x802B1EE0 end:0x802B2C80
+	.ctors      start:0x80644448 end:0x8064444C
+
+Game/MapObj/ItemDice.cpp:
+	.text       start:0x802B4860 end:0x802B5510
+
+Game/MapObj/JetTurtle.cpp:
+	.text       start:0x802B8FF0 end:0x802BBDD0
+	.ctors      start:0x8064445C end:0x80644460
+	.sbss       start:0x807D3D48 end:0x807D3D50
+
+Game/MapObj/JumpHole.cpp:
+	.text       start:0x802BBDD0 end:0x802BCBE0
+	.ctors      start:0x80644460 end:0x80644464
+	.data       start:0x806A3CE0 end:0x806A3D90
+	.bss        start:0x807299A0 end:0x807299B8
+
+Game/MapObj/JumpStand.cpp:
+	.text       start:0x802BCBE0 end:0x802BD8B0
+	.ctors      start:0x80644464 end:0x80644468
+	.data       start:0x806A3EC0 end:0x806A3F70
+
+Game/MapObj/KeySwitch.cpp:
+	.text       start:0x802BDD50 end:0x802BE7B0
+	.ctors      start:0x8064446C end:0x80644470
+	.data       start:0x806A40A8 end:0x806A4148
+
+Game/MapObj/LavaFloater.cpp:
+	.text       start:0x802BFB20 end:0x802C0360
+	.ctors      start:0x8064447C end:0x80644480
+	.data       start:0x806A44E8 end:0x806A4578
+
+Game/MapObj/LavaGeyser.cpp:
+	.text       start:0x802C0360 end:0x802C0E40
+	.ctors      start:0x80644480 end:0x80644484
+	.data       start:0x806A4620 end:0x806A46F0
+	.sbss       start:0x807D3DE8 end:0x807D3E00
+
+Game/MapObj/LavaProminence.cpp:
+	.text       start:0x802C0E40 end:0x802C2110
+	.ctors      start:0x80644484 end:0x80644488
+	.data       start:0x806A47B0 end:0x806A48A0
+
+Game/MapObj/LightFruitClipArea.cpp:
+	.text       start:0x802C4AC0 end:0x802C51D0
+
+Game/MapObj/LotusLeaf.cpp:
+	.text       start:0x802C52B0 end:0x802C5870
+	.ctors      start:0x8064449C end:0x806444A0
+	.data       start:0x806A4FC8 end:0x806A5078
+
+Game/MapObj/ManholeCover.cpp:
+	.text       start:0x802C70C0 end:0x802C7670
+	.ctors      start:0x806444B4 end:0x806444B8
+	.data       start:0x806A54C0 end:0x806A5560
+	.sbss       start:0x807D3EE0 end:0x807D3EF0
+
+Game/MapObj/MapObjActor.cpp:
+	.text       start:0x802C9B00 end:0x802CBBB0
+	.ctors      start:0x806444C8 end:0x806444CC
+	.data       start:0x806A5D68 end:0x806A5E50
+	.sbss       start:0x807D3F50 end:0x807D3F60
+
+Game/MapObj/MapObjActorInitInfo.cpp:
+	.text       start:0x802CBBB0 end:0x802CBEB0
+
+Game/MapObj/MapObjConnector.cpp:
+	.text       start:0x802CC2F0 end:0x802CC690
+
+Game/MapObj/MarioLauncher.cpp:
+	.text       start:0x802CD9C0 end:0x802CFA20
+	.ctors      start:0x806444D0 end:0x806444D4
+	.data       start:0x806A6368 end:0x806A6550
+
+Game/MapObj/MeteorStrike.cpp:
+	.text       start:0x802D0490 end:0x802D1510
+	.ctors      start:0x806444E0 end:0x806444E4
+	.data       start:0x806A68E8 end:0x806A6978
+
+Game/MapObj/MeteorStrikeLauncher.cpp:
+	.text       start:0x802D1510 end:0x802D1BC0
+	.ctors      start:0x806444E4 end:0x806444E8
+	.data       start:0x806A69A8 end:0x806A6A38
+
+Game/MapObj/MorphItemCollection.cpp:
+	.text       start:0x802D1BC0 end:0x802D1FA0
+
+Game/MapObj/MorphItemObjNeo.cpp:
+	.text       start:0x802D20D0 end:0x802D4500
+	.ctors      start:0x806444EC end:0x806444F0
+	.sbss       start:0x807D3FC8 end:0x807D3FE0
+
+Game/MapObj/NeedlePlant.cpp:
+	.text       start:0x802D5110 end:0x802D6090
+	.ctors      start:0x806444F4 end:0x806444F8
+
+Game/MapObj/Note.cpp:
+	.text       start:0x802D66A0 end:0x802D6E30
+	.ctors      start:0x806444FC end:0x80644500
+	.data       start:0x806A75AC end:0x806A7678
+
+Game/MapObj/NoteFairy.cpp:
+	.text       start:0x802D6E30 end:0x802D83D0
+	.ctors      start:0x80644500 end:0x80644504
+
+Game/MapObj/PhantomTorch.cpp:
+	.text       start:0x802D9E80 end:0x802DAA40
+	.ctors      start:0x8064450C end:0x80644510
+	.data       start:0x806A7DB8 end:0x806A7E78
+
+Game/MapObj/PicketSwitch.cpp:
+	.text       start:0x802DAA40 end:0x802DAEF0
+	.ctors      start:0x80644510 end:0x80644514
+	.data       start:0x806A7EC8 end:0x806A7F68
+
+Game/MapObj/PlantGroup.cpp:
+	.text       start:0x802DB560 end:0x802DE0C0
+	.ctors      start:0x80644514 end:0x80644518
+	.data       start:0x806A81C8 end:0x806A82F8
+
+Game/MapObj/PlantRailInfo.cpp:
+	.text       start:0x802DE220 end:0x802DE400
+
+Game/MapObj/PowerStar.cpp:
+	.text       start:0x802DF170 end:0x802E1960
+	.ctors      start:0x80644518 end:0x8064451C
+
+Game/MapObj/PowerStarAppearPoint.cpp:
+	.text       start:0x802E1960 end:0x802E1A90
+	.data       start:0x806A87D0 end:0x806A8840
+
+Game/MapObj/PowerStarHolder.cpp:
+	.text       start:0x802E1A90 end:0x802E1E10
+	.data       start:0x806A8840 end:0x806A8870
+
+Game/MapObj/PressureBase.cpp:
+	.text       start:0x802E1F60 end:0x802E31B0
+	.ctors      start:0x8064451C end:0x80644520
+
+Game/MapObj/PunchBox.cpp:
+	.text       start:0x802E4D80 end:0x802E5750
+	.ctors      start:0x80644528 end:0x8064452C
+
+Game/MapObj/PunchingKinoko.cpp:
+	.text       start:0x802E5750 end:0x802E7710
+	.ctors      start:0x8064452C end:0x80644530
+
+Game/MapObj/PurpleCoinHolder.cpp:
+	.text       start:0x802E7920 end:0x802E7A40
+	.data       start:0x806A9254 end:0x806A9280
+
+Game/MapObj/QuestionCoin.cpp:
+	.text       start:0x802E7A40 end:0x802E89F0
+	.ctors      start:0x80644534 end:0x80644538
+
+Game/MapObj/RailCoin.cpp:
+	.text       start:0x802E8D40 end:0x802E90A0
+	.data       start:0x806A94E0 end:0x806A9570
+
+Game/MapObj/RailMoveObj.cpp:
+	.text       start:0x802E9770 end:0x802EB480
+	.ctors      start:0x80644544 end:0x80644548
+	.sbss       start:0x807D41D0 end:0x807D41E0
+
+Game/MapObj/Rock.cpp:
+	.text       start:0x802F2650 end:0x802F4F60
+	.ctors      start:0x80644564 end:0x80644568
+	.data       start:0x806AB2A0 end:0x806AB370
+
+Game/MapObj/RockCreator.cpp:
+	.text       start:0x802F55E0 end:0x802F5A30
+	.ctors      start:0x8064456C end:0x80644570
+	.data       start:0x806AB458 end:0x806AB4F8
+
+Game/MapObj/RotateMoveObj.cpp:
+	.text       start:0x802F7460 end:0x802F80E0
+	.ctors      start:0x8064457C end:0x80644584
+	.data       start:0x806AB900 end:0x806AB9E8
+
+Game/MapObj/Sandstorm.cpp:
+	.text       start:0x802F9D10 end:0x802FB580
+	.ctors      start:0x80644590 end:0x80644594
+	.data       start:0x806ABF58 end:0x806AC0A8
+
+Game/MapObj/Shellfish.cpp:
+	.text       start:0x802FBDE0 end:0x802FCD50
+	.ctors      start:0x8064459C end:0x806445A0
+	.data       start:0x806AC430 end:0x806AC520
+
+Game/MapObj/ShootingStar.cpp:
+	.text       start:0x802FCD50 end:0x802FD6A0
+	.ctors      start:0x806445A0 end:0x806445A4
+	.data       start:0x806AC5C8 end:0x806AC688
+
+Game/MapObj/SimpleBreakableObj.cpp:
+	.text       start:0x802FD6A0 end:0x802FE720
+	.ctors      start:0x806445A4 end:0x806445A8
+
+Game/MapObj/SimpleClipPartsObj.cpp:
+	.text       start:0x802FE720 end:0x802FEF30
+	.ctors      start:0x806445A8 end:0x806445AC
+
+Game/MapObj/SimpleFloaterObj.cpp:
+	.text       start:0x802FF310 end:0x802FF680
+	.ctors      start:0x806445B0 end:0x806445B4
+	.data       start:0x806ACE40 end:0x806ACEC0
+
+Game/MapObj/SimpleMapObj.cpp:
+	.text       start:0x802FF680 end:0x802FFB30
+	.rodata     start:0x80649740 end:0x806497A0
+
+Game/MapObj/SmallStone.cpp:
+	.text       start:0x80300170 end:0x803012F0
+	.data       start:0x806AD680 end:0x806AD760
+
+Game/MapObj/SnowMan.cpp:
+	.text       start:0x80302C70 end:0x803035A0
+	.ctors      start:0x806445B8 end:0x806445BC
+	.data       start:0x806AD908 end:0x806AD9E8
+
+Game/MapObj/SoundEmitter.cpp:
+	.text       start:0x80304840 end:0x80304CF0
+	.ctors      start:0x806445C4 end:0x806445C8
+	.data       start:0x806ADC48 end:0x806ADCD8
+
+Game/MapObj/SpaceMine.cpp:
+	.text       start:0x80304CF0 end:0x80305A60
+	.ctors      start:0x806445C8 end:0x806445CC
+
+Game/MapObj/SpaceShipStep.cpp:
+	.text       start:0x80305A60 end:0x80306100
+	.ctors      start:0x806445CC end:0x806445D0
+	.data       start:0x806ADEB0 end:0x806ADF88
+
+Game/MapObj/SphereRailDash.cpp:
+	.text       start:0x80306100 end:0x80306950
+	.ctors      start:0x806445D0 end:0x806445D4
+
+Game/MapObj/SpiderThread.cpp:
+	.text       start:0x80306950 end:0x80307350
+	.data       start:0x806AE030 end:0x806AE0A0
+
+Game/MapObj/SpiderThreadHangInfo.cpp:
+	.text       start:0x80307350 end:0x80307480
+
+Game/MapObj/SpiderThreadMainPoint.cpp:
+	.text       start:0x80307550 end:0x80307930
+
+Game/MapObj/SpiderThreadPart.cpp:
+	.text       start:0x80307930 end:0x80309440
+	.ctors      start:0x806445D4 end:0x806445D8
+
+Game/MapObj/SpiderThreadPoint.cpp:
+	.text       start:0x80309440 end:0x80309900
+
+Game/MapObj/SpiderThreadRadialLine.cpp:
+	.text       start:0x80309900 end:0x803099C0
+
+Game/MapObj/SpiderThreadWindCtrl.cpp:
+	.text       start:0x803099C0 end:0x80309A70
+
+Game/MapObj/SpinDriver.cpp:
+	.text       start:0x8030B880 end:0x8030DBE0
+	.ctors      start:0x806445E0 end:0x806445E4
+	.data       start:0x806AE640 end:0x806AE730
+
+Game/MapObj/SpinDriverCamera.cpp:
+	.text       start:0x8030DBE0 end:0x8030E1D0
+
+Game/MapObj/SpinDriverPathDrawer.cpp:
+	.text       start:0x8030E570 end:0x8030F380
+	.data       start:0x806AE7E0 end:0x806AE8A0
+
+Game/MapObj/SpinDriverShootPath.cpp:
+	.text       start:0x8030F3E0 end:0x8030F950
+
+Game/MapObj/SpinLeverSwitch.cpp:
+	.text       start:0x8030FD20 end:0x803105A0
+	.ctors      start:0x806445E4 end:0x806445E8
+	.data       start:0x806AE968 end:0x806AEA08
+
+Game/MapObj/StarLightAreaHolder.cpp:
+	.text       start:0x80310BE0 end:0x80310FB0
+
+Game/MapObj/StarPiece.cpp:
+	.text       start:0x80310FB0 end:0x80314E80
+	.ctors      start:0x806445E8 end:0x806445EC
+	.data       start:0x806AEC98 end:0x806AEDE0
+	.sbss       start:0x807D44A8 end:0x807D44D8
+
+Game/MapObj/StarPieceDirector.cpp:
+	.text       start:0x80315680 end:0x80317250
+	.ctors      start:0x806445F4 end:0x806445F8
+	.data       start:0x806AF070 end:0x806AF130
+
+Game/MapObj/StarPieceFollowGroup.cpp:
+	.text       start:0x80317970 end:0x80318690
+	.ctors      start:0x806445FC end:0x80644600
+	.data       start:0x806AF270 end:0x806AF310
+
+Game/MapObj/StarPieceGroup.cpp:
+	.text       start:0x80318810 end:0x80319950
+	.ctors      start:0x80644600 end:0x80644604
+	.data       start:0x806AF3D0 end:0x806AF480
+
+Game/MapObj/StarPieceMother.cpp:
+	.text       start:0x8031A720 end:0x8031B1F0
+	.ctors      start:0x80644608 end:0x8064460C
+	.data       start:0x806AF670 end:0x806AF720
+
+Game/MapObj/StarPieceSpot.cpp:
+	.text       start:0x8031B5E0 end:0x8031B920
+	.data       start:0x806AF818 end:0x806AF8A8
+
+Game/MapObj/Sun.cpp:
+	.text       start:0x8031DE20 end:0x8031DF20
+	.data       start:0x806AFC68 end:0x806AFCD8
+
+Game/MapObj/SuperSpinDriver.cpp:
+	.text       start:0x8031DF20 end:0x803211D0
+	.ctors      start:0x80644618 end:0x8064461C
+	.data       start:0x806B00A8 end:0x806B01F8
+
+Game/MapObj/TimeAttackClock.cpp:
+	.text       start:0x803231E0 end:0x80323680
+
+Game/MapObj/TreasureBoxCracked.cpp:
+	.text       start:0x80324D90 end:0x803259A0
+	.ctors      start:0x80644638 end:0x8064463C
+	.data       start:0x806B0CA8 end:0x806B0D58
+	.sbss       start:0x807D4628 end:0x807D4638
+
+Game/MapObj/TreasureSpot.cpp:
+	.text       start:0x803259A0 end:0x80325E90
+	.ctors      start:0x8064463C end:0x80644640
+	.data       start:0x806B0D88 end:0x806B0E50
+	.sbss       start:0x807D4638 end:0x807D4648
+
+Game/MapObj/Tsukidashikun.cpp:
+	.text       start:0x80325E90 end:0x803265A0
+	.ctors      start:0x80644640 end:0x80644644
+	.data       start:0x806B0EE8 end:0x806B1010
+
+Game/MapObj/TypicalDoor.cpp:
+	.text       start:0x803265A0 end:0x80326EA0
+	.ctors      start:0x80644644 end:0x80644648
+	.data       start:0x806B1058 end:0x806B1270
+	.sbss       start:0x807D4668 end:0x807D4678
+
+Game/MapObj/UFOKinoko.cpp:
+	.text       start:0x80326EA0 end:0x80327450
+	.ctors      start:0x80644648 end:0x8064464C
+	.data       start:0x806B12E8 end:0x806B13D0
+
+Game/MapObj/WarpPod.cpp:
+	.text       start:0x80327A40 end:0x80328D30
+	.data       start:0x806B16B0 end:0x806B1750
+	.sbss       start:0x807D4690 end:0x807D4698
+
+Game/MapObj/WaterPressure.cpp:
+	.text       start:0x80328D30 end:0x80328FD0
+	.data       start:0x806B1758 end:0x806B17D0
+
+Game/MapObj/WaterPressureBullet.cpp:
+	.text       start:0x80328FD0 end:0x80329E30
+	.ctors      start:0x80644650 end:0x80644654
+	.data       start:0x806B18B0 end:0x806B1940
+
+Game/MapObj/WaterPressureBulletHolder.cpp:
+	.text       start:0x80329E30 end:0x80329FB0
+
+Game/MapObj/WoodBox.cpp:
+	.text       start:0x8032A8B0 end:0x8032B2D0
+	.ctors      start:0x80644658 end:0x8064465C
+	.data       start:0x806B1C28 end:0x806B1CC8
+	.sbss       start:0x807D46A8 end:0x807D46B8
+
+Game/MapObj/YellowChip.cpp:
+	.text       start:0x8032DA60 end:0x8032DB10
+	.data       start:0x806B2070 end:0x806B20E0
+
+Game/MapObj/MapParts.cpp:
+	.text       start:0x8032F950 end:0x8032F960
+
+Game/MapObj/GeneralMapParts.cpp:
+	.text       start:0x8032FA10 end:0x8032FD70
+	.ctors      start:0x80644670 end:0x80644674
+	.data       start:0x806B2508 end:0x806B2548
+	.sbss       start:0x807D46F8 end:0x807D4708
+
+Game/MapObj/FloaterFloatingForce.cpp:
+	.text       start:0x8032FE70 end:0x8032FF80
+	.data       start:0x806B2550 end:0x806B25A0
+
+Game/MapObj/FloaterFloatingForceTypeNormal.cpp:
+	.text       start:0x80330020 end:0x80330860
+	.ctors      start:0x80644674 end:0x80644678
+	.data       start:0x806B2608 end:0x806B2698
+	.sbss       start:0x807D4708 end:0x807D4718
+
+Game/MapObj/FloaterFunction.cpp:
+	.text       start:0x80330860 end:0x80330930
+
+Game/MapObj/LavaHomeSeesawRotator.cpp:
+	.text       start:0x80330990 end:0x80331590
+	.ctors      start:0x80644678 end:0x8064467C
+	.data       start:0x806B2740 end:0x806B2790
+	.sbss       start:0x807D4718 end:0x807D4730
+
+Game/MapObj/LavaHomeVolcanoFlow.cpp:
+	.text       start:0x80331590 end:0x803319F0
+	.ctors      start:0x8064467C end:0x80644680
+	.data       start:0x806B27F0 end:0x806B2890
+	.sbss       start:0x807D4730 end:0x807D4740
+
+Game/MapObj/MapPartsBreaker.cpp:
+	.text       start:0x80331A20 end:0x80331C80
+	.ctors      start:0x80644680 end:0x80644684
+	.data       start:0x806B28A0 end:0x806B28D0
+	.sbss       start:0x807D4740 end:0x807D4750
+
+Game/MapObj/MapPartsFloatingForce.cpp:
+	.text       start:0x80331D80 end:0x80332A80
+	.ctors      start:0x80644684 end:0x80644688
+	.sbss       start:0x807D4750 end:0x807D4760
+
+Game/MapObj/MapPartsFunction.cpp:
+	.text       start:0x80332A80 end:0x80332DC0
+	.data       start:0x806B29F0 end:0x806B2A30
+
+Game/MapObj/MapPartsRailGuideDrawer.cpp:
+	.text       start:0x80332DC0 end:0x80333420
+	.ctors      start:0x80644688 end:0x8064468C
+	.data       start:0x806B2A68 end:0x806B2AD8
+	.sbss       start:0x807D4768 end:0x807D4778
+
+Game/MapObj/MapPartsRailGuideHolder.cpp:
+	.text       start:0x80333420 end:0x80333610
+	.data       start:0x806B2AFC end:0x806B2B28
+
+Game/MapObj/MapPartsRailGuidePoint.cpp:
+	.text       start:0x80333610 end:0x80333830
+	.data       start:0x806B2B38 end:0x806B2BA8
+
+Game/MapObj/MapPartsRailMover.cpp:
+	.text       start:0x80333D10 end:0x80335390
+	.ctors      start:0x8064468C end:0x80644690
+	.data       start:0x806B2D58 end:0x806B2E60
+	.sbss       start:0x807D4778 end:0x807D47A8
+
+Game/MapObj/MapPartsRailPointPassChecker.cpp:
+	.text       start:0x80335390 end:0x80335520
+	.data       start:0x806B2E78 end:0x806B2EB8
+
+Game/MapObj/MapPartsRailPosture.cpp:
+	.text       start:0x80335520 end:0x80335960
+	.ctors      start:0x80644690 end:0x80644694
+	.data       start:0x806B2ED0 end:0x806B2F30
+	.sbss       start:0x807D47A8 end:0x807D47B0
+
+Game/MapObj/MapPartsRailRotator.cpp:
+	.text       start:0x80335960 end:0x80336430
+	.ctors      start:0x80644694 end:0x80644698
+	.data       start:0x806B2F6C end:0x806B2FF0
+	.sbss       start:0x807D47B0 end:0x807D47C0
+
+Game/MapObj/MapPartsRotator.cpp:
+	.text       start:0x80336430 end:0x80337340
+	.ctors      start:0x80644698 end:0x8064469C
+	.data       start:0x806B3080 end:0x806B3120
+	.sbss       start:0x807D47C0 end:0x807D47D8
+
+Game/MapObj/MapPartsSeesaw1AxisRotator.cpp:
+	.text       start:0x80337340 end:0x803383D0
+	.ctors      start:0x8064469C end:0x806446A0
+	.data       start:0x806B3170 end:0x806B3210
+	.sbss       start:0x807D47D8 end:0x807D47F0
+
+Game/MapObj/MapPartsSeesaw2AxisRotator.cpp:
+	.text       start:0x803383D0 end:0x80338CB0
+	.ctors      start:0x806446A0 end:0x806446A4
+	.data       start:0x806B3238 end:0x806B32C8
+	.sbss       start:0x807D47F0 end:0x807D4800
 
 Game/NameObj/MovementOnOffGroupHolder.cpp:
 	.text       start:0x80339560 end:0x80339610
@@ -165,6 +3328,10 @@ Game/NameObj/NameObjCategoryList.cpp:
 	.text       start:0x80339B50 end:0x8033A1F0
 	.data       start:0x806B3448 end:0x806B3460
 
+Game/NameObj/NameObjExecuteHolder.cpp:
+	.text       start:0x8033A780 end:0x8033B190
+	.data       start:0x806B3478 end:0x806B34A8
+
 Game/NameObj/NameObjFactory.cpp:
 	.text       start:0x8033B190 end:0x803431F0
 	.data       start:0x806B34A8 end:0x806B79A0
@@ -180,8 +3347,586 @@ Game/NameObj/NameObjHolder.cpp:
 	.text       start:0x80343440 end:0x80343880
 	.data       start:0x806B79D0 end:0x806B79E0
 
+Game/NameObj/NameObjListExecutor.cpp:
+	.text       start:0x80343880 end:0x80343C70
+	.data       start:0x806B79E0 end:0x806B7A00
+
 Game/NameObj/NameObjRegister.cpp:
 	.text       start:0x80343E20 end:0x80343E50
+
+Game/NPC/CareTaker.cpp:
+	.text       start:0x80346070 end:0x80346330
+
+Game/NPC/CollectTico.cpp:
+	.text       start:0x80347C70 end:0x80348660
+	.ctors      start:0x806446B4 end:0x806446B8
+	.data       start:0x806B84E8 end:0x806B85C8
+	.sbss       start:0x807D48B0 end:0x807D48C8
+
+Game/NPC/HoneyBee.cpp:
+	.text       start:0x8034B570 end:0x8034BCE0
+	.ctors      start:0x806446C4 end:0x806446C8
+	.data       start:0x806B8DE8 end:0x806B8ECC
+	.sbss       start:0x807D4908 end:0x807D4918
+
+Game/NPC/HoneyQueen.cpp:
+	.text       start:0x8034BCE0 end:0x8034C410
+	.ctors      start:0x806446C8 end:0x806446CC
+	.data       start:0x806B8F90 end:0x806B9028
+	.sbss       start:0x807D4918 end:0x807D4920
+
+Game/NPC/Kinopio.cpp:
+	.text       start:0x8034C460 end:0x8034E280
+	.ctors      start:0x806446CC end:0x806446D0
+	.data       start:0x806B9284 end:0x806B9488
+	.bss        start:0x80729AD8 end:0x80729B10
+	.sbss       start:0x807D4920 end:0x807D4960
+
+Game/NPC/MiiDatabase.cpp:
+	.text       start:0x80354580 end:0x80354610
+
+JSystem/JKernel/JKRFileFinder.cpp:
+	.text       start:0x80354610 end:0x80354650
+
+Game/NPC/MiiFaceIcon.cpp:
+	.text       start:0x803546B0 end:0x803549C0
+	.data       start:0x806BAD38 end:0x806BAD68
+
+Game/NPC/MiiFaceIconHolder.cpp:
+	.text       start:0x803549C0 end:0x80354C20
+	.data       start:0x806BAD88 end:0x806BADC8
+
+Game/NPC/MiiFaceParts.cpp:
+	.text       start:0x80354C20 end:0x80355070
+	.data       start:0x806BADC8 end:0x806BAE38
+
+Game/NPC/MiiFacePartsHolder.cpp:
+	.text       start:0x80355070 end:0x80355BD0
+	.data       start:0x806BAEF0 end:0x806BAF58
+
+Game/NPC/MiiFaceRecipe.cpp:
+	.text       start:0x80355D20 end:0x80355E90
+
+Game/NPC/Peach.cpp:
+	.text       start:0x80357770 end:0x80357940
+	.data       start:0x806BB308 end:0x806BB3B0
+
+Game/NPC/Penguin.cpp:
+	.text       start:0x80357BD0 end:0x80358790
+	.ctors      start:0x80644708 end:0x8064470C
+	.data       start:0x806BB5E8 end:0x806BB710
+	.sbss       start:0x807D4A10 end:0x807D4A20
+
+Game/NPC/PenguinCoach.cpp:
+	.text       start:0x80358790 end:0x80358D70
+	.ctors      start:0x8064470C end:0x80644710
+	.data       start:0x806BB860 end:0x806BB8F8
+	.sbss       start:0x807D4A20 end:0x807D4A28
+
+Game/NPC/PenguinMaster.cpp:
+	.text       start:0x80358D70 end:0x803590A0
+	.ctors      start:0x80644710 end:0x80644714
+	.data       start:0x806BB9B0 end:0x806BBA38
+	.sbss       start:0x807D4A28 end:0x807D4A30
+
+Game/NPC/PowerStarEventKeeper.cpp:
+	.text       start:0x8035B9B0 end:0x8035BF10
+
+Game/NPC/Rabbit.cpp:
+	.text       start:0x8035BF10 end:0x8035C8A0
+	.ctors      start:0x80644720 end:0x80644724
+	.data       start:0x806BC898 end:0x806BC9A0
+	.sbss       start:0x807D4A78 end:0x807D4A90
+
+Game/NPC/RabbitStateCaught.cpp:
+	.text       start:0x8035C8A0 end:0x8035CF50
+	.ctors      start:0x80644724 end:0x80644728
+	.data       start:0x806BCA60 end:0x806BCAE0
+	.sbss       start:0x807D4A90 end:0x807D4AA0
+
+Game/NPC/RabbitStateWaitStart.cpp:
+	.text       start:0x8035CFE0 end:0x8035DA60
+	.ctors      start:0x80644728 end:0x8064472C
+	.data       start:0x806BCBB8 end:0x806BCC70
+	.sbss       start:0x807D4AA0 end:0x807D4AC0
+
+Game/NPC/Rosetta.cpp:
+	.text       start:0x8035DA60 end:0x8035DE80
+	.ctors      start:0x8064472C end:0x80644730
+	.data       start:0x806BCCD8 end:0x806BCD50
+
+Game/NPC/SignBoard.cpp:
+	.text       start:0x8035EC70 end:0x8035F110
+	.ctors      start:0x80644734 end:0x80644738
+	.data       start:0x806BD020 end:0x806BD0A8
+	.sbss       start:0x807D4AF0 end:0x807D4AF8
+
+Game/NPC/StrayTico.cpp:
+	.text       start:0x8035F620 end:0x80360C50
+	.ctors      start:0x8064473C end:0x80644740
+	.sbss       start:0x807D4B00 end:0x807D4B14
+
+Game/NPC/Tico.cpp:
+	.text       start:0x803659C0 end:0x803677E0
+	.ctors      start:0x80644764 end:0x80644768
+	.bss        start:0x80729B80 end:0x80729BA0
+
+Game/NPC/TicoEat.cpp:
+	.text       start:0x80367E30 end:0x80368590
+
+Game/NPC/TicoComet.cpp:
+	.text       start:0x803685E0 end:0x80368680
+	.data       start:0x806BE294 end:0x806BE390
+	.sbss       start:0x807D4C08 end:0x807D4C20
+
+Game/NPC/TicoRail.cpp:
+	.text       start:0x8036B8B0 end:0x8036C910
+	.ctors      start:0x8064477C end:0x80644780
+	.data       start:0x806BEB28 end:0x806BEC38
+	.sbss       start:0x807D4C88 end:0x807D4CB0
+
+Game/NPC/TicoShop.cpp:
+	.text       start:0x8036C910 end:0x8036D020
+	.ctors      start:0x80644780 end:0x80644784
+	.data       start:0x806BED28 end:0x806BEDE0
+	.sbss       start:0x807D4CB0 end:0x807D4CB8
+
+Game/NPC/TrickRabbit.cpp:
+	.text       start:0x8036EDB0 end:0x80371E80
+	.ctors      start:0x80644790 end:0x80644794
+	.data       start:0x806BF4C8 end:0x806BF688
+	.sbss       start:0x807D4CF0 end:0x807D4D48
+
+Game/NPC/TrickRabbitUtil.cpp:
+	.text       start:0x80371E80 end:0x80371F20
+
+Game/NPC/CometEventExecutorTimeLimit.cpp:
+	.text       start:0x80371F20 end:0x803722E0
+	.ctors      start:0x80644794 end:0x80644798
+	.data       start:0x806BF6C0 end:0x806BF798
+	.sbss       start:0x807D4D48 end:0x807D4D50
+
+Game/NPC/CometEventKeeper.cpp:
+	.text       start:0x80372800 end:0x80372B90
+
+Game/NPC/EventDirector.cpp:
+	.text       start:0x80372B90 end:0x80373280
+	.data       start:0x806BF900 end:0x806BF930
+
+Game/NPC/NPCActor.cpp:
+	.text       start:0x80373480 end:0x803753C0
+	.ctors      start:0x8064479C end:0x806447A0
+	.bss        start:0x80729BD8 end:0x80729C0C
+	.sbss       start:0x807D4D58 end:0x807D4D68
+
+Game/NPC/NPCDirector.cpp:
+	.text       start:0x803753C0 end:0x803754F0
+	.data       start:0x806BFA7C end:0x806BFAA8
+
+Game/NPC/NPCFunction.cpp:
+	.text       start:0x803754F0 end:0x803755F0
+
+Game/Player/RaceDataReader.cpp:
+	.text       start:0x80376160 end:0x80376530
+
+Game/NPC/TalkBalloon.cpp:
+	.text       start:0x803774B0 end:0x80378D20
+	.ctors      start:0x806447A4 end:0x806447A8
+	.sbss       start:0x807D4D78 end:0x807D4D94
+
+Game/NPC/TalkDirector.cpp:
+	.text       start:0x803795D0 end:0x80379DA0
+
+Game/NPC/TalkMessageCtrl.cpp:
+	.text       start:0x8037A770 end:0x8037B870
+	.data       start:0x806C051C end:0x806C0548
+
+Game/NPC/TalkMessageInfo.cpp:
+	.text       start:0x8037B870 end:0x8037B9C0
+
+Game/NPC/TalkNodeCtrl.cpp:
+	.text       start:0x8037BA60 end:0x8037C4B0
+
+Game/NPC/TalkState.cpp:
+	.text       start:0x8037C500 end:0x8037D100
+	.data       start:0x806C05B8 end:0x806C0658
+
+Game/NPC/TalkSupportPlayerWatcher.cpp:
+	.text       start:0x8037D100 end:0x8037D2E0
+
+Game/NPC/TalkTextFormer.cpp:
+	.text       start:0x8037D2E0 end:0x8037D870
+
+Game/NPC/TurnJointCtrl.cpp:
+	.text       start:0x8037D950 end:0x8037DE90
+
+Game/Player/DrawAdaptor.cpp:
+	.text       start:0x8037E310 end:0x8037E420
+	.data       start:0x806C0694 end:0x806C06C0
+
+Game/Player/FireMarioBall.cpp:
+	.text       start:0x8037E420 end:0x8037EC50
+	.ctors      start:0x806447AC end:0x806447B0
+	.data       start:0x806C0750 end:0x806C07D0
+	.sbss       start:0x807D4DB8 end:0x807D4DC0
+
+Game/Player/GhostPacket.cpp:
+	.text       start:0x8037EC50 end:0x8037EFF0
+
+Game/Player/GhostPlayer.cpp:
+	.text       start:0x8037F530 end:0x8037FA30
+	.rodata     start:0x8064BB00 end:0x8064BC68
+
+Game/Player/GhostPacketData.cpp:
+	.text       start:0x80380290 end:0x80380450
+
+Game/Player/GhostPacketReader.cpp:
+	.text       start:0x80380660 end:0x803807B0
+
+Game/Player/GhostPacketSyncData.cpp:
+	.text       start:0x803807B0 end:0x80380A60
+
+Game/Player/GroupChecker.cpp:
+	.text       start:0x80380A60 end:0x80380C50
+	.data       start:0x806C093C end:0x806C0998
+
+Game/Player/J3DModelX.cpp:
+	.text       start:0x80384600 end:0x803861E0
+	.data       start:0x806C13E0 end:0x806C1408
+
+Game/Player/JetTurtleShadow.cpp:
+	.text       start:0x803861E0 end:0x803863B0
+	.data       start:0x806C1410 end:0x806C1480
+
+Game/Player/MarineSnow.cpp:
+	.text       start:0x80386500 end:0x80386690
+
+Game/Player/Mario.cpp:
+	.text       start:0x80386D60 end:0x803B0BA0
+	.data       start:0x806C4B60 end:0x806C4B90
+
+Game/Player/MarioAccess.cpp:
+	.text       start:0x803B4950 end:0x803B7340
+
+Game/Player/MarioActor.cpp:
+	.text       start:0x803B7470 end:0x803C4F70
+	.data       start:0x806C7430 end:0x806C74D8
+
+Game/Player/CloudMarioHat.cpp:
+	.text       start:0x803D9ED0 end:0x803DAA10
+
+Game/Player/MarioAnimator.cpp:
+	.text       start:0x803DC0F0 end:0x803E0030
+	.ctors      start:0x806447D0 end:0x806447D4
+
+Game/Player/MarioBlown.cpp:
+	.text       start:0x803E1940 end:0x803E1CE0
+	.data       start:0x806DC548 end:0x806DC590
+
+Game/Player/MarioBump.cpp:
+	.text       start:0x803E2200 end:0x803E2410
+	.data       start:0x806DC590 end:0x806DC5D8
+
+Game/Player/MarioClimb.cpp:
+	.text       start:0x803E2410 end:0x803E2620
+	.data       start:0x806DC608 end:0x806DC650
+
+Game/Player/MarioDamage.cpp:
+	.text       start:0x803E4290 end:0x803E5060
+	.data       start:0x806DC848 end:0x806DC9F8
+
+Game/Player/HorrorDamageExecutor.cpp:
+	.text       start:0x803E6E50 end:0x803E70A0
+
+Game/Player/MarioAllModel.cpp:
+	.text       start:0x803E7720 end:0x803E7BB0
+
+Game/Player/MarioEffect.cpp:
+	.text       start:0x803E7C80 end:0x803E8300
+	.data       start:0x806DCDA0 end:0x806DCDE0
+
+Game/Player/MarioFaint.cpp:
+	.text       start:0x803E8320 end:0x803E8850
+	.data       start:0x806DCE38 end:0x806DCE80
+
+Game/Player/MarioFlip.cpp:
+	.text       start:0x803E8850 end:0x803E90C0
+	.data       start:0x806DCED8 end:0x806DCF20
+
+Game/Player/MarioFlow.cpp:
+	.text       start:0x803E90C0 end:0x803E9540
+	.data       start:0x806DCF98 end:0x806DCFE0
+
+Game/Player/MarioFoo.cpp:
+	.text       start:0x803E9540 end:0x803EBD60
+	.ctors      start:0x806447D8 end:0x806447DC
+	.data       start:0x806DD244 end:0x806DD290
+	.sbss       start:0x807D4E78 end:0x807D4E88
+
+Game/Player/MarioFpView.cpp:
+	.text       start:0x803EBD60 end:0x803EC110
+	.data       start:0x806DD2F0 end:0x806DD338
+
+Game/Player/MarioFrontStep.cpp:
+	.text       start:0x803EC110 end:0x803EC500
+	.data       start:0x806DD348 end:0x806DD390
+
+Game/Player/MarioHang.cpp:
+	.text       start:0x803ECB50 end:0x803ED7E0
+	.data       start:0x806DD5E8 end:0x806DD630
+
+Game/Player/MarioHolder.cpp:
+	.text       start:0x803EDED0 end:0x803EE520
+	.data       start:0x806DD63C end:0x806DD668
+
+Game/Player/FloorCode.cpp:
+	.text       start:0x803EE520 end:0x803EE590
+
+Game/Player/MarioMessenger.cpp:
+	.text       start:0x803EE590 end:0x803EE730
+	.data       start:0x806DD680 end:0x806DD6B0
+
+Game/Player/MarioModule.cpp:
+	.text       start:0x803EE730 end:0x803EFA20
+
+Game/Player/MarioMove.cpp:
+	.text       start:0x803EFA80 end:0x803EFB40
+
+Game/Player/MarioNullBck.cpp:
+	.text       start:0x803EFB40 end:0x803EFE20
+	.data       start:0x806DD8C0 end:0x806DD930
+
+Game/Player/MarioParts.cpp:
+	.text       start:0x803EFE20 end:0x803F0090
+	.data       start:0x806DD930 end:0x806DD9A0
+
+Game/Player/MarioRabbit.cpp:
+	.text       start:0x803F0090 end:0x803F0E40
+	.data       start:0x806DDAE8 end:0x806DDB30
+
+Game/Player/MarioRecovery.cpp:
+	.text       start:0x803F10E0 end:0x803F1B70
+	.data       start:0x806DDB98 end:0x806DDBE0
+
+Game/Player/MarioSearchLight.cpp:
+	.text       start:0x803F1B70 end:0x803F2310
+	.data       start:0x806DDC30 end:0x806DDCA0
+
+Game/Player/MarioSideStep.cpp:
+	.text       start:0x803F4530 end:0x803F4AF0
+	.data       start:0x806DDD30 end:0x806DDD78
+
+Game/Player/MarioSkate.cpp:
+	.text       start:0x803F4B40 end:0x803F56D0
+	.data       start:0x806DDED0 end:0x806DDF18
+
+Game/Player/MarioSlider.cpp:
+	.text       start:0x803F56D0 end:0x803F6290
+	.data       start:0x806DDF60 end:0x806DDFA8
+
+Game/Player/MarioMagic.cpp:
+	.text       start:0x803F62E0 end:0x803F65B0
+	.data       start:0x806DE048 end:0x806DE090
+
+Game/Player/MarioState.cpp:
+	.text       start:0x803F65B0 end:0x803F6740
+	.data       start:0x806DE090 end:0x806DE0D8
+
+Game/Player/MarioStep.cpp:
+	.text       start:0x803F6740 end:0x803F69A0
+	.data       start:0x806DE0D8 end:0x806DE120
+
+Game/Player/MarioStick.cpp:
+	.text       start:0x803F6B80 end:0x803F7190
+	.data       start:0x806DE170 end:0x806DE1B8
+
+Game/Player/MarioSukekiyo.cpp:
+	.text       start:0x803F7190 end:0x803F7590
+	.data       start:0x806DE258 end:0x806DE2E8
+
+Game/Player/MarioSwim.cpp:
+	.text       start:0x803F7590 end:0x804036D0
+
+Game/Player/MarioTalk.cpp:
+	.text       start:0x80403CF0 end:0x80403F90
+	.data       start:0x806DEAD8 end:0x806DEB20
+
+Game/Player/MarioTeresa.cpp:
+	.text       start:0x80403F90 end:0x80405BC0
+	.data       start:0x806DEB88 end:0x806DEBD0
+
+Game/Player/MarioWait.cpp:
+	.text       start:0x80406390 end:0x804067C0
+	.data       start:0x806DED30 end:0x806DED78
+
+Game/Player/MarioWall.cpp:
+	.text       start:0x80406AC0 end:0x80407A90
+	.data       start:0x806DEE58 end:0x806DEEA0
+
+Game/Player/MarioWarp.cpp:
+	.text       start:0x80407F30 end:0x80408F20
+	.data       start:0x806DEFF0 end:0x806DF038
+
+Game/Player/MatrixValueGetter.cpp:
+	.text       start:0x804092C0 end:0x80409470
+
+Game/Player/ModelHolder.cpp:
+	.text       start:0x80409470 end:0x804095C0
+	.data       start:0x806DF0E8 end:0x806DF158
+
+Game/Player/TornadoMario.cpp:
+	.text       start:0x8040B8C0 end:0x8040BD00
+	.data       start:0x806DF968 end:0x806DF9D8
+
+Game/RhythmLib/AudRhythmSeqParser.cpp:
+	.text       start:0x80422990 end:0x80423790
+	.data       start:0x806EB620 end:0x806EB640
+	.sbss       start:0x807D4FD8 end:0x807D4FE0
+
+Game/RhythmLib/AudBgmTempoAdjuster.cpp:
+	.text       start:0x804238D0 end:0x80423C60
+
+Game/RhythmLib/AudMeTrack.cpp:
+	.text       start:0x80423C60 end:0x80425A80
+	.ctors      start:0x806447F8 end:0x806447FC
+	.rodata     start:0x8064BF68 end:0x8064BF98
+	.bss        start:0x8072B490 end:0x8072B4A0
+
+Game/RhythmLib/AudMeChannelMgr.cpp:
+	.text       start:0x80425B00 end:0x80425C60
+
+Game/RhythmLib/AudMeSeqCtrl.cpp:
+	.text       start:0x80425CA0 end:0x80425EA0
+	.ctors      start:0x806447FC end:0x80644800
+	.data       start:0x806EB640 end:0x806EB650
+	.sbss       start:0x807D4FE8 end:0x807D4FF0
+
+Game/RhythmLib/AudMeSeqReader.cpp:
+	.text       start:0x80425EB0 end:0x80426030
+
+Game/RhythmLib/AudMeSeqParser.cpp:
+	.text       start:0x80426030 end:0x80427110
+	.ctors      start:0x80644800 end:0x80644804
+	.data       start:0x806EB650 end:0x806EC050
+
+Game/RhythmLib/AudMeTrackCallback.cpp:
+	.text       start:0x80427220 end:0x80427270
+	.ctors      start:0x80644804 end:0x80644808
+	.bss        start:0x8072B500 end:0x8072B600
+
+Game/RhythmLib/AudMePlayer.cpp:
+	.text       start:0x80427FE0 end:0x80428080
+	.ctors      start:0x80644808 end:0x8064480C
+	.sbss       start:0x807D4FF0 end:0x807D4FF8
+
+Game/RhythmLib/AudRhythmMeSystem.cpp:
+	.text       start:0x80428200 end:0x804285B0
+	.ctors      start:0x8064480C end:0x80644810
+
+Game/RhythmLib/AudMeHandles.cpp:
+	.text       start:0x804285B0 end:0x80428650
+
+Game/RhythmLib/AudMeObject.cpp:
+	.text       start:0x80428770 end:0x804289F0
+	.data       start:0x806EC050 end:0x806EC070
+
+Game/RhythmLib/AudChordInfo.cpp:
+	.text       start:0x80428BD0 end:0x8042A100
+
+Game/RhythmLib/AudRhythmHolder.cpp:
+	.text       start:0x8042A100 end:0x8042A680
+
+Game/RhythmLib/AudRhythmWrap.cpp:
+	.text       start:0x8042A6D0 end:0x8042A960
+	.ctors      start:0x80644810 end:0x80644814
+
+Game/Ride/Creeper.cpp:
+	.text       start:0x8042ADD0 end:0x8042C690
+	.ctors      start:0x80644814 end:0x80644818
+	.data       start:0x806EC1E8 end:0x806EC2A8
+	.sbss       start:0x807D4FF8 end:0x807D5018
+
+Game/Ride/Fluff.cpp:
+	.text       start:0x8042C690 end:0x8042E250
+	.ctors      start:0x80644818 end:0x8064481C
+	.data       start:0x806EC508 end:0x806EC618
+	.sbss       start:0x807D501C end:0x807D5040
+
+Game/Ride/FluffWind.cpp:
+	.text       start:0x8042E4F0 end:0x8042EC10
+	.ctors      start:0x8064481C end:0x80644820
+	.data       start:0x806EC678 end:0x806EC7B8
+	.sbss       start:0x807D5040 end:0x807D5048
+
+Game/Ride/JumpBranch.cpp:
+	.text       start:0x80433310 end:0x80433E40
+	.ctors      start:0x8064482C end:0x80644830
+	.data       start:0x806ED180 end:0x806ED220
+	.sbss       start:0x807D50A8 end:0x807D50B8
+
+Game/Ride/Plant.cpp:
+	.text       start:0x80433E40 end:0x80434FF0
+	.data       start:0x806ED3D0 end:0x806ED510
+	.sbss       start:0x807D50B8 end:0x807D50F0
+
+Game/Ride/PlantLeaf.cpp:
+	.text       start:0x80436330 end:0x80436970
+	.data       start:0x806ED548 end:0x806ED628
+
+Game/Ride/PlantStalk.cpp:
+	.text       start:0x80438AC0 end:0x80439A80
+	.ctors      start:0x80644838 end:0x8064483C
+	.data       start:0x806ED7F8 end:0x806ED8C0
+	.sbss       start:0x807D5110 end:0x807D5120
+
+Game/Ride/Pole.cpp:
+	.text       start:0x80439A80 end:0x8043C5F0
+	.ctors      start:0x8064483C end:0x80644840
+	.data       start:0x806EDBB8 end:0x806EDD18
+	.sbss       start:0x807D5120 end:0x807D5160
+
+Game/Ride/SledRopePoint.cpp:
+	.text       start:0x804405A0 end:0x80440620
+	.data       start:0x806EE1E0 end:0x806EE1F0
+
+Game/Ride/SphereAccelSensorController.cpp:
+	.text       start:0x80440710 end:0x80440B90
+	.data       start:0x806EE1F0 end:0x806EE218
+
+Game/Ride/SphereController.cpp:
+	.text       start:0x80440B90 end:0x80440C20
+	.data       start:0x806EE218 end:0x806EE238
+
+Game/Ride/SpherePadController.cpp:
+	.text       start:0x80440C20 end:0x80440D10
+	.data       start:0x806EE238 end:0x806EE260
+
+Game/Ride/SwingRope.cpp:
+	.text       start:0x804410B0 end:0x80443BB0
+	.ctors      start:0x8064484C end:0x80644850
+	.data       start:0x806EE398 end:0x806EE4C8
+	.sbss       start:0x807D5198 end:0x807D51C0
+
+Game/Ride/SwingRopePoint.cpp:
+	.text       start:0x80443F20 end:0x804440A0
+	.data       start:0x806EE4C8 end:0x806EE4D8
+
+Game/Ride/Tamakoro.cpp:
+	.text       start:0x804442D0 end:0x80447DB0
+	.ctors      start:0x80644850 end:0x80644854
+
+Game/Ride/TamakoroTutorial.cpp:
+	.text       start:0x80447DB0 end:0x80448F60
+	.ctors      start:0x80644854 end:0x80644858
+	.data       start:0x806EEA58 end:0x806EEBC8
+	.bss        start:0x8072B688 end:0x8072B698
+	.sbss       start:0x807D5218 end:0x807D5258
+
+Game/Ride/Trapeze.cpp:
+	.text       start:0x80448F60 end:0x8044B6F0
+	.ctors      start:0x80644858 end:0x8064485C
+	.data       start:0x806EEDE0 end:0x806EEE98
+	.sbss       start:0x807D5290 end:0x807D52A0
 
 Game/Ride/TubeSlider.cpp:
 	.text       start:0x8044B940 end:0x8044E620
@@ -212,9 +3957,743 @@ Game/Ride/TubeSliderDamageObjCreator.cpp:
 Game/Ride/TubeSliderFunction.cpp:
 	.text       start:0x8044FF90 end:0x80450D60
 
+Game/Scene/GameScene.cpp:
+	.text       start:0x80451390 end:0x80452A70
+	.ctors      start:0x80644870 end:0x80644874
+	.sbss       start:0x807D5308 end:0x807D5328
+
+Game/Scene/GameSceneFunction.cpp:
+	.text       start:0x80452A70 end:0x80452DD0
+
+Game/Scene/GameScenePauseControl.cpp:
+	.text       start:0x80452DD0 end:0x80453040
+	.ctors      start:0x80644874 end:0x80644878
+	.data       start:0x806EFAFC end:0x806EFB08
+	.sbss       start:0x807D5330 end:0x807D5338
+
+Game/Scene/GameSceneScenarioOpeningCameraState.cpp:
+	.text       start:0x80453060 end:0x80453470
+	.ctors      start:0x80644878 end:0x8064487C
+	.data       start:0x806EFB80 end:0x806EFB90
+
+Game/Scene/IntermissionScene.cpp:
+	.text       start:0x804534B0 end:0x80453750
+	.data       start:0x806EFBC8 end:0x806EFBE8
+
+Game/Scene/LogoScene.cpp:
+	.text       start:0x80453750 end:0x80453DC0
+	.ctors      start:0x8064487C end:0x80644880
+	.data       start:0x806EFC30 end:0x806EFC50
+
+Game/Scene/MultiSceneActor.cpp:
+	.text       start:0x80454D80 end:0x80455160
+	.data       start:0x806EFE28 end:0x806EFE60
+
+Game/Scene/MultiSceneEffectKeeper.cpp:
+	.text       start:0x804558E0 end:0x80455DC0
+
+Game/Scene/PlacementInfoOrdered.cpp:
+	.text       start:0x80455DC0 end:0x80456790
+
+Game/Scene/PlacementStateChecker.cpp:
+	.text       start:0x80456830 end:0x80456940
+	.data       start:0x806EFEC8 end:0x806EFEF8
+
+Game/Scene/ScenarioSelectScene.cpp:
+	.text       start:0x80456940 end:0x804579B0
+	.ctors      start:0x80644884 end:0x80644888
+	.data       start:0x806EFF30 end:0x806EFFE8
+	.sbss       start:0x807D5368 end:0x807D5390
+
+Game/Scene/Scene.cpp:
+	.text       start:0x804579B0 end:0x80457B90
+	.data       start:0x806EFFE8 end:0x806F0008
+
+Game/Scene/SceneDataInitializer.cpp:
+	.text       start:0x80457B90 end:0x80457D60
+	.data       start:0x806F003C end:0x806F0068
+
+Game/Scene/SceneFunction.cpp:
+	.text       start:0x80457D60 end:0x80459010
+
+Game/Scene/SceneNameObjListExecutor.cpp:
+	.text       start:0x80459010 end:0x80459240
+	.rodata     start:0x8064C0A0 end:0x8064C8D0
+	.data       start:0x806F00AC end:0x806F00C8
+
+Game/Scene/SceneNameObjMovementController.cpp:
+	.text       start:0x80459240 end:0x80459940
+	.ctors      start:0x80644888 end:0x8064488C
+	.data       start:0x806F0100 end:0x806F0158
+	.sbss       start:0x807D5390 end:0x807D5398
+
+Game/Scene/SceneObjHolder.cpp:
+	.text       start:0x80459980 end:0x8045A9E0
+
+Game/Scene/StageDataHolder.cpp:
+	.text       start:0x8045B5F0 end:0x8045CCE0
+
+Game/Scene/StageFileLoader.cpp:
+	.text       start:0x8045CCE0 end:0x8045CF40
+
+Game/Scene/StopSceneController.cpp:
+	.text       start:0x8045D090 end:0x8045D2D0
+	.data       start:0x806F13DC end:0x806F1438
+
+Game/Screen/BackButton.cpp:
+	.text       start:0x8045E820 end:0x8045EB70
+	.data       start:0x806F1778 end:0x806F17B0
+
+Game/Screen/BatteryInfo.cpp:
+	.text       start:0x8045EC60 end:0x8045F5B0
+	.ctors      start:0x80644890 end:0x80644894
+	.data       start:0x806F1880 end:0x806F18C8
+
+Game/Screen/ImageEffectBase.cpp:
+	.text       start:0x8045F8F0 end:0x8045F950
+
+Game/Screen/BloomEffect.cpp:
+	.text       start:0x8045F950 end:0x80460980
+	.rodata     start:0x8064C8D0 end:0x8064C918
+	.data       start:0x806F1988 end:0x806F19C8
+
+Game/Screen/BloomEffectSimple.cpp:
+	.text       start:0x80460A30 end:0x80460ED0
+	.data       start:0x806F19D8 end:0x806F1A18
+
+Game/Screen/BombTimerLayout.cpp:
+	.text       start:0x80460ED0 end:0x804614E0
+	.ctors      start:0x80644894 end:0x80644898
+	.data       start:0x806F1AA0 end:0x806F1B18
+
+Game/Screen/ButtonPaneController.cpp:
+	.text       start:0x804614E0 end:0x80462600
+	.ctors      start:0x80644898 end:0x8064489C
+
+Game/Screen/CameraInfo.cpp:
+	.text       start:0x80462600 end:0x80462FB0
+	.ctors      start:0x8064489C end:0x806448A0
+	.data       start:0x806F1C90 end:0x806F1D18
+
+Game/Screen/CaptureScreenDirector.cpp:
+	.text       start:0x80462FB0 end:0x804633D0
+	.rodata     start:0x8064C938 end:0x8064C998
+	.data       start:0x806F1D70 end:0x806F1DC8
+
+Game/Screen/CenterScreenBlur.cpp:
+	.text       start:0x80463430 end:0x80463830
+	.ctors      start:0x806448A0 end:0x806448A4
+	.data       start:0x806F1DD8 end:0x806F1E78
+
+Game/Screen/CinemaFrame.cpp:
+	.text       start:0x80463830 end:0x80464220
+	.ctors      start:0x806448A4 end:0x806448A8
+	.data       start:0x806F1EC0 end:0x806F1F68
+
+Game/Screen/CoinCounter.cpp:
+	.text       start:0x80464220 end:0x80464A80
+	.ctors      start:0x806448A8 end:0x806448AC
+	.data       start:0x806F2038 end:0x806F20B0
+	.sbss       start:0x807D5470 end:0x807D5480
+
+Game/Screen/CometMedalCounter.cpp:
+	.text       start:0x80464A80 end:0x804650B0
+
+Game/Screen/CopyFilterNegater.cpp:
+	.text       start:0x804651D0 end:0x80465290
+
+Game/Screen/CounterLayoutAppearer.cpp:
+	.text       start:0x804653E0 end:0x80465710
+	.ctors      start:0x806448B0 end:0x806448B4
+	.data       start:0x806F21A4 end:0x806F21F0
+	.sbss       start:0x807D5498 end:0x807D54A8
+
+Game/Screen/CounterLayoutController.cpp:
+	.text       start:0x80465710 end:0x80466290
+	.ctors      start:0x806448B4 end:0x806448B8
+	.data       start:0x806F2248 end:0x806F22A0
+	.sbss       start:0x807D54A8 end:0x807D54B0
+
+Game/Screen/CountUpPaneRumbler.cpp:
+	.text       start:0x80466290 end:0x80466460
+
+Game/Screen/CustomTagProcessor.cpp:
+	.text       start:0x80466460 end:0x80468A50
+	.data       start:0x806F24F8 end:0x806F250C
+
+Game/Screen/MessageTagSkipTagProcessor.cpp:
+	.text       start:0x80468A50 end:0x80468AB0
+
+Game/Screen/DepthOfFieldBlur.cpp:
+	.text       start:0x8046AB40 end:0x8046BC20
+	.data       start:0x806F2E70 end:0x806F2EB0
+
+Game/Screen/EncouragePal60Window.cpp:
+	.text       start:0x8046C670 end:0x8046C9C0
+	.ctors      start:0x806448C4 end:0x806448C8
+	.data       start:0x806F3060 end:0x806F3098
+
+Game/Screen/ErrorMessageWindow.cpp:
+	.text       start:0x8046CA20 end:0x8046CE20
+	.ctors      start:0x806448C8 end:0x806448CC
+	.data       start:0x806F3130 end:0x806F3168
+
+Game/Screen/FileSelectButton.cpp:
+	.text       start:0x8046CFE0 end:0x8046D7A0
+	.ctors      start:0x806448CC end:0x806448D0
+	.data       start:0x806F32C0 end:0x806F32F8
+
+Game/Screen/FileSelectInfo.cpp:
+	.text       start:0x8046D820 end:0x8046E2C0
+	.ctors      start:0x806448D0 end:0x806448D4
+	.data       start:0x806F34EC end:0x806F3570
+	.sbss       start:0x807D5514 end:0x807D5528
+
+Game/Screen/FileSelectNumber.cpp:
+	.text       start:0x8046E330 end:0x8046EB00
+	.ctors      start:0x806448D4 end:0x806448D8
+	.data       start:0x806F35E0 end:0x806F3668
+
+Game/Screen/FullnessMeter.cpp:
+	.text       start:0x8046EBC0 end:0x8046F1B0
+	.ctors      start:0x806448D8 end:0x806448DC
+	.data       start:0x806F3748 end:0x806F37B0
+
+Game/Screen/FullScreenBlur.cpp:
+	.text       start:0x8046F1B0 end:0x8046F470
+
+Game/Screen/GalaxyCometScreenFilter.cpp:
+	.text       start:0x8046F470 end:0x8046F5D0
+	.data       start:0x806F37E8 end:0x806F3820
+
+Game/Screen/GalaxyConfirmLayout.cpp:
+	.text       start:0x8046F5D0 end:0x8046FD90
+	.ctors      start:0x806448DC end:0x806448E0
+	.data       start:0x806F3940 end:0x806F39A8
+
+Game/Screen/GalaxyMapGalaxyPlain.cpp:
+	.text       start:0x8046FDA0 end:0x80470240
+	.data       start:0x806F39F8 end:0x806F3A30
+
+Game/Screen/GalaxyNamePlate.cpp:
+	.text       start:0x80470240 end:0x80470950
+	.ctors      start:0x806448E0 end:0x806448E4
+	.data       start:0x806F3B58 end:0x806F3BC0
+
+Game/Screen/GalaxyNamePlateDrawer.cpp:
+	.text       start:0x80470950 end:0x80471240
+	.data       start:0x806F3BDC end:0x806F3C08
+
+Game/Screen/GamePauseSequence.cpp:
+	.text       start:0x80471240 end:0x80471580
+	.ctors      start:0x806448E4 end:0x806448E8
+	.data       start:0x806F3C38 end:0x806F3C70
+
+Game/Screen/GameSceneLayoutHolder.cpp:
+	.text       start:0x804715E0 end:0x80471CD0
+	.data       start:0x806F3D30 end:0x806F3D60
+
+Game/Screen/GameStageClearSequence.cpp:
+	.text       start:0x80472030 end:0x804725C0
+	.ctors      start:0x806448EC end:0x806448F0
+	.data       start:0x806F3E38 end:0x806F3E90
+
+Game/Screen/HeatHazeEffect.cpp:
+	.text       start:0x80474690 end:0x80474B00
+	.data       start:0x806F427C end:0x806F4318
+
+Game/Screen/HomeButtonLayout.cpp:
+	.text       start:0x80474B60 end:0x80475570
+	.ctors      start:0x806448F8 end:0x806448FC
+	.data       start:0x806F4390 end:0x806F43C8
+
+Game/Screen/IconAButton.cpp:
+	.text       start:0x804755D0 end:0x80475BC0
+	.ctors      start:0x806448FC end:0x80644900
+	.data       start:0x806F4458 end:0x806F44C0
+
+Game/Screen/ImageEffectDirector.cpp:
+	.text       start:0x80475F10 end:0x80476760
+	.data       start:0x806F4510 end:0x806F4558
+
+Game/Screen/ImageEffectLocalUtil.cpp:
+	.text       start:0x804767A0 end:0x80477230
+	.data       start:0x806F45A0 end:0x806F45C0
+
+Game/Screen/ImageEffectResource.cpp:
+	.text       start:0x80477C90 end:0x80478200
+
+Game/Screen/ImageEffectState.cpp:
+	.text       start:0x80478360 end:0x80478570
+	.data       start:0x806F4628 end:0x806F4680
+
+Game/Screen/ImageEffectSystemHolder.cpp:
+	.text       start:0x80478EE0 end:0x804790E0
+	.data       start:0x806F46A8 end:0x806F46D8
+
+Game/Screen/InformationMessage.cpp:
+	.text       start:0x804790E0 end:0x80479840
+	.ctors      start:0x80644900 end:0x80644904
+	.data       start:0x806F47C0 end:0x806F4828
+	.sbss       start:0x807D55F0 end:0x807D5600
+
+Game/Screen/InformationObserver.cpp:
+	.text       start:0x80479840 end:0x8047A220
+	.ctors      start:0x80644904 end:0x80644908
+	.sbss       start:0x807D5600 end:0x807D5608
+
+Game/Screen/LayoutActor.cpp:
+	.text       start:0x8047A220 end:0x8047A840
+	.data       start:0x806F4C38 end:0x806F4C70
+
+Game/Screen/LayoutActorFlag.cpp:
+	.text       start:0x8047A840 end:0x8047A860
+
+Game/Screen/LayoutCoreUtil.cpp:
+	.text       start:0x8047A9B0 end:0x8047B270
+
+Game/Screen/LayoutGroupCtrl.cpp:
+	.text       start:0x8047B4E0 end:0x8047B820
+
+Game/Screen/LayoutManager.cpp:
+	.text       start:0x8047B8A0 end:0x8047D7F0
+	.rodata     start:0x8064CA30 end:0x8064CA38
+	.data       start:0x806F4DCC end:0x806F4DE8
+
+Game/Screen/LayoutPaneCtrl.cpp:
+	.text       start:0x8047E710 end:0x8047ED30
+
+Game/Screen/LensFlare.cpp:
+	.text       start:0x8047FCD0 end:0x8047FF20
+	.ctors      start:0x8064490C end:0x80644910
+	.data       start:0x806F5010 end:0x806F5230
+
+Game/Screen/LogoFader.cpp:
+	.text       start:0x80480020 end:0x804803B0
+	.ctors      start:0x80644910 end:0x80644914
+	.data       start:0x806F5280 end:0x806F52B8
+
+Game/Screen/Manual2P.cpp:
+	.text       start:0x80480490 end:0x80481310
+	.ctors      start:0x80644914 end:0x80644918
+	.data       start:0x806F5450 end:0x806F5498
+
+Game/Screen/MarioMeter.cpp:
+	.text       start:0x80481430 end:0x80481700
+	.data       start:0x806F5574 end:0x806F55A0
+
+Game/Screen/MarioSubMeter.cpp:
+	.text       start:0x80481700 end:0x804819C0
+	.data       start:0x806F55D8 end:0x806F5608
+
+Game/Screen/MeterLayout.cpp:
+	.text       start:0x80481B10 end:0x80482E30
+	.ctors      start:0x80644918 end:0x8064491C
+	.data       start:0x806F5728 end:0x806F5820
+	.sbss       start:0x807D5680 end:0x807D56B0
+
+Game/Screen/MiiConfirmIcon.cpp:
+	.text       start:0x80482E30 end:0x80483110
+	.ctors      start:0x8064491C end:0x80644920
+	.data       start:0x806F5878 end:0x806F58B0
+
+Game/Screen/MiiSelect.cpp:
+	.text       start:0x804831B0 end:0x804847F0
+	.ctors      start:0x80644920 end:0x80644924
+	.data       start:0x806F5A00 end:0x806F5A38
+
+Game/Screen/MiiSelectIcon.cpp:
+	.text       start:0x804848D0 end:0x804853A0
+	.ctors      start:0x80644924 end:0x80644928
+	.data       start:0x806F5B30 end:0x806F5B68
+
+Game/Screen/MissLayout.cpp:
+	.text       start:0x80485440 end:0x80485700
+	.ctors      start:0x80644928 end:0x8064492C
+	.data       start:0x806F5BD0 end:0x806F5C08
+
+Game/Screen/NoteCounter.cpp:
+	.text       start:0x80485760 end:0x80485E60
+	.ctors      start:0x8064492C end:0x80644930
+	.data       start:0x806F5C50 end:0x806F5CD8
+
+Game/Screen/OneUpBoard.cpp:
+	.text       start:0x80485E60 end:0x804861B0
+	.ctors      start:0x80644930 end:0x80644934
+	.data       start:0x806F5D00 end:0x806F5D58
+
+Game/Screen/PaneEffectKeeper.cpp:
+	.text       start:0x804861B0 end:0x80486640
+
+Game/Map/PauseBlur.cpp:
+	.text       start:0x80486640 end:0x80486BD0
+
+Game/Screen/PauseMenu.cpp:
+	.text       start:0x80486C40 end:0x80487F80
+	.ctors      start:0x80644934 end:0x80644938
+
+Game/Screen/PlayerActionGuidance.cpp:
+	.text       start:0x80487F80 end:0x80488B90
+	.ctors      start:0x80644938 end:0x8064493C
+	.data       start:0x806F6250 end:0x806F6288
+
+Game/Screen/PlayerLeft.cpp:
+	.text       start:0x80488C30 end:0x80489230
+	.ctors      start:0x8064493C end:0x80644940
+	.data       start:0x806F6320 end:0x806F6398
+	.sbss       start:0x807D5758 end:0x807D5768
+
+Game/Screen/PlayerMissLeft.cpp:
+	.text       start:0x80489230 end:0x80489740
+	.ctors      start:0x80644940 end:0x80644944
+	.data       start:0x806F63E0 end:0x806F6458
+
+Game/Screen/PurpleCoinCounter.cpp:
+	.text       start:0x8048BBE0 end:0x8048C080
+	.ctors      start:0x8064494C end:0x80644950
+	.data       start:0x806F6A28 end:0x806F6A80
+
+Game/Screen/ReplaceTagProcessor.cpp:
+	.text       start:0x8048C790 end:0x8048CE40
+	.rodata     start:0x8064CAB8 end:0x8064CAF0
+
+Game/Screen/SaveIcon.cpp:
+	.text       start:0x8048CF20 end:0x8048D070
+	.data       start:0x806F6C30 end:0x806F6C68
+
+Game/Screen/ScenarioSelectLayout.cpp:
+	.text       start:0x8048D240 end:0x8048F920
+	.ctors      start:0x80644954 end:0x80644958
+	.rodata     start:0x8064CAF0 end:0x8064CB14
+	.data       start:0x806F7010 end:0x806F70E8
+
+Game/Screen/ScenarioTitle.cpp:
+	.text       start:0x8048F920 end:0x8048FBE0
+	.ctors      start:0x80644958 end:0x8064495C
+	.data       start:0x806F7120 end:0x806F7158
+
+Game/Screen/SceneWipeHolder.cpp:
+	.text       start:0x8048FC40 end:0x804900F0
+	.data       start:0x806F71E0 end:0x806F7240
+
+Game/Screen/ScreenAlphaCapture.cpp:
+	.text       start:0x80490DE0 end:0x804911F0
+	.data       start:0x806F73D8 end:0x806F7408
+
+Game/Screen/ScreenBlurEffect.cpp:
+	.text       start:0x804911F0 end:0x80491980
+	.data       start:0x806F7408 end:0x806F7448
+
+Game/Screen/ScreenPreserver.cpp:
+	.text       start:0x80491980 end:0x80491BB0
+	.data       start:0x806F7454 end:0x806F7480
+
+Game/Screen/SimpleLayout.cpp:
+	.text       start:0x80491BB0 end:0x80491C50
+	.data       start:0x806F74D8 end:0x806F7548
+
+Game/Screen/StaffRoll.cpp:
+	.text       start:0x804920F0 end:0x80492E90
+	.ctors      start:0x80644968 end:0x8064496C
+	.data       start:0x806F7648 end:0x806F7680
+
+Game/Screen/StageResultInformer.cpp:
+	.text       start:0x80494C20 end:0x80496A40
+	.ctors      start:0x80644974 end:0x80644978
+	.data       start:0x806F7BB0 end:0x806F7BF8
+
+Game/Screen/StarCounter.cpp:
+	.text       start:0x80496F90 end:0x804974D0
+	.ctors      start:0x80644978 end:0x8064497C
+	.data       start:0x806F7E50 end:0x806F7EC8
+	.sbss       start:0x807D5910 end:0x807D5920
+
+Game/Screen/StarPieceCounter.cpp:
+	.text       start:0x804983C0 end:0x804990A0
+	.ctors      start:0x80644980 end:0x80644984
+	.data       start:0x806F8270 end:0x806F82E8
+	.sbss       start:0x807D5940 end:0x807D5950
+
+Game/Screen/StarPointerBlur.cpp:
+	.text       start:0x804990A0 end:0x80499A60
+	.data       start:0x806F8300 end:0x806F8330
+
+Game/Screen/StarPointerController.cpp:
+	.text       start:0x80499A60 end:0x8049A000
+
+Game/Screen/StarPointerDirector.cpp:
+	.text       start:0x8049A0B0 end:0x8049A540
+	.data       start:0x806F8368 end:0x806F83A8
+
+Game/Screen/StarPointerGuidance.cpp:
+	.text       start:0x8049BE70 end:0x8049C990
+	.ctors      start:0x80644988 end:0x8064498C
+	.data       start:0x806F8510 end:0x806F85B8
+
+Game/Screen/StarPointerLayout.cpp:
+	.text       start:0x8049CC30 end:0x8049F320
+	.ctors      start:0x8064498C end:0x80644990
+	.data       start:0x806F8868 end:0x806F8998
+
+Game/Screen/StarPointerTarget.cpp:
+	.text       start:0x8049F620 end:0x8049F780
+
+Game/Map/StartCountdownLayout.cpp:
+	.text       start:0x8049FD70 end:0x804A0090
+
+Game/Screen/SubMeterLayout.cpp:
+	.text       start:0x804A0A70 end:0x804A0FE0
+	.data       start:0x806F8B90 end:0x806F8BC8
+
+Game/Screen/SuddenDeathMeter.cpp:
+	.text       start:0x804A0FE0 end:0x804A1BA0
+	.ctors      start:0x80644998 end:0x8064499C
+	.data       start:0x806F8C80 end:0x806F8D38
+	.sbss       start:0x807D59D0 end:0x807D59F0
+
+Game/Screen/SwitchingScreenEffect.cpp:
+	.text       start:0x804A2460 end:0x804A2510
+
+Game/Screen/SysInfoWindow.cpp:
+	.text       start:0x804A2630 end:0x804A3090
+	.ctors      start:0x806449A4 end:0x806449A8
+	.rodata     start:0x8064CDF0 end:0x8064CDF8
+	.data       start:0x806F9050 end:0x806F90B8
+
+Game/Screen/SystemWipeHolder.cpp:
+	.text       start:0x804A3090 end:0x804A3760
+
+Game/Screen/TimeLimitLayout.cpp:
+	.text       start:0x804A3760 end:0x804A4210
+	.ctors      start:0x806449A8 end:0x806449AC
+	.sbss       start:0x807D5A20 end:0x807D5A40
+
+Game/Screen/TimeStopScreenEffect.cpp:
+	.text       start:0x804A4630 end:0x804A46E0
+
+Game/Screen/TitleSequenceProduct.cpp:
+	.text       start:0x804A4D70 end:0x804A5730
+	.ctors      start:0x806449B4 end:0x806449B8
+	.data       start:0x806F95B0 end:0x806F95F8
+
+Game/Screen/WaterCameraFilter.cpp:
+	.text       start:0x804A5850 end:0x804A6410
+	.ctors      start:0x806449B8 end:0x806449BC
+	.data       start:0x806F9708 end:0x806F97B8
+
+Game/Screen/WipeFade.cpp:
+	.text       start:0x804A6410 end:0x804A68A0
+	.data       start:0x806F97B8 end:0x806F9818
+
+Game/Screen/WipeGameOver.cpp:
+	.text       start:0x804A68A0 end:0x804A6D60
+	.ctors      start:0x806449BC end:0x806449C0
+	.data       start:0x806F983C end:0x806F98B8
+
+Game/Screen/WipeHolderBase.cpp:
+	.text       start:0x804A6D60 end:0x804A71D0
+	.data       start:0x806F98B8 end:0x806F9918
+
+Game/Screen/WipeKoopa.cpp:
+	.text       start:0x804A71D0 end:0x804A75E0
+	.ctors      start:0x806449C0 end:0x806449C4
+	.data       start:0x806F9934 end:0x806F9990
+
+Game/Screen/WipeRing.cpp:
+	.text       start:0x804A7B80 end:0x804A8820
+	.ctors      start:0x806449C8 end:0x806449CC
+	.data       start:0x806F9A94 end:0x806F9AF0
+
+Game/Screen/YesNoController.cpp:
+	.text       start:0x804AA740 end:0x804AAFE0
+	.ctors      start:0x806449E0 end:0x806449E4
+	.data       start:0x806FA020 end:0x806FA080
+
+Game/Screen/YesNoLayout.cpp:
+	.text       start:0x804AAFE0 end:0x804AB290
+	.ctors      start:0x806449E4 end:0x806449E8
+	.data       start:0x806FA0B8 end:0x806FA100
+
+Game/Speaker/SpkSpeakerCtrl.cpp:
+	.text       start:0x804AB6A0 end:0x804ABF80
+
+Game/Speaker/SpkSystem.cpp:
+	.text       start:0x804ABF80 end:0x804AC2F0
+	.ctors      start:0x806449EC end:0x806449F0
+	.bss        start:0x8072B838 end:0x8072B848
+
+Game/Speaker/SpkMixingBuffer.cpp:
+	.text       start:0x804AC380 end:0x804AC4F0
+
+Game/Speaker/SpkWave.cpp:
+	.text       start:0x804AC4F0 end:0x804AC660
+
+Game/Speaker/SpkTable.cpp:
+	.text       start:0x804AC660 end:0x804AC6F0
+
+Game/Speaker/SpkData.cpp:
+	.text       start:0x804AC6F0 end:0x804AC7F0
+
+Game/Speaker/SpkSound.cpp:
+	.text       start:0x804ACAD0 end:0x804AD660
+	.ctors      start:0x806449F0 end:0x806449F4
+
+Game/System/ArchiveHolder.cpp:
+	.text       start:0x804ADCA0 end:0x804ADFE0
+
+Game/System/AudSystemWrapper.cpp:
+	.text       start:0x804AE050 end:0x804AE7D0
+
+Game/System/BinaryDataChunkHolder.cpp:
+	.text       start:0x804AE7D0 end:0x804AEBA0
+
+Game/System/BinaryDataContentAccessor.cpp:
+	.text       start:0x804AEDE0 end:0x804AEF20
+
+Game/System/DrawBuffer.cpp:
+	.text       start:0x804AF450 end:0x804AFBA0
+
+Game/System/DrawBufferExecuter.cpp:
+	.text       start:0x804AFBA0 end:0x804AFE70
+
+Game/System/DrawBufferGroup.cpp:
+	.text       start:0x804AFE70 end:0x804B05B0
+
+Game/System/DrawBufferHolder.cpp:
+	.text       start:0x804B05D0 end:0x804B0AA0
+
+Game/System/DrawSyncManager.cpp:
+	.text       start:0x804B0AA0 end:0x804B11C0
+	.sbss       start:0x807D5B70 end:0x807D5B78
+
+Game/System/FileHolder.cpp:
+	.text       start:0x804B1380 end:0x804B1650
+
+Game/System/FileLoader.cpp:
+	.text       start:0x804B16C0 end:0x804B1CC0
+
+Game/System/FileLoaderThread.cpp:
+	.text       start:0x804B1CC0 end:0x804B1F00
+	.data       start:0x806FA210 end:0x806FA220
+
+Game/System/FileRipper.cpp:
+	.text       start:0x804B1F00 end:0x804B2640
+	.bss        start:0x8072B858 end:0x8072B870
+
+Game/System/FunctionAsyncExecutor.cpp:
+	.text       start:0x804B2930 end:0x804B2E90
+	.bss        start:0x8072B870 end:0x8072B888
+
+Game/System/GameSequenceInGame.cpp:
+	.text       start:0x804B3D70 end:0x804B4060
+
+Game/System/GameSystem.cpp:
+	.text       start:0x804B63D0 end:0x804B6FC0
+	.ctors      start:0x80644A18 end:0x80644A1C
+	.data       start:0x806FAD18 end:0x806FAD88
+
+Game/System/GameSystemDataHolder.cpp:
+	.text       start:0x804B6FC0 end:0x804B7220
+
+Game/System/GameSystemDimmingWatcher.cpp:
+	.text       start:0x804B7280 end:0x804B7370
+
+Game/System/GameSystemErrorWatcher.cpp:
+	.text       start:0x804B7370 end:0x804B7BD0
+	.ctors      start:0x80644A1C end:0x80644A20
+	.data       start:0x806FAEEC end:0x806FAF38
+	.sbss       start:0x807D5C68 end:0x807D5C78
+
+Game/System/GameSystemException.cpp:
+	.text       start:0x804B7C50 end:0x804B7E70
+	.rodata     start:0x8064CEB8 end:0x8064CED8
+
+Game/System/GameSystemFontHolder.cpp:
+	.text       start:0x804B7E70 end:0x804B82B0
+
+Game/System/GameSystemFrameControl.cpp:
+	.text       start:0x804B82B0 end:0x804B8350
+
+Game/System/GameSystemFunction.cpp:
+	.text       start:0x804B8350 end:0x804B8D70
+
+Game/System/GameSystemObjHolder.cpp:
+	.text       start:0x804B8D90 end:0x804B95C0
+
+Game/System/GameSystemResetAndPowerProcess.cpp:
+	.text       start:0x804B95D0 end:0x804BA020
+	.ctors      start:0x80644A20 end:0x80644A24
+	.data       start:0x806FB0F8 end:0x806FB190
+	.sbss       start:0x807D5C88 end:0x807D5CA0
+
+Game/System/GameSystemSceneController.cpp:
+	.text       start:0x804BA120 end:0x804BB8E0
+	.ctors      start:0x80644A24 end:0x80644A28
+	.data       start:0x806FB270 end:0x806FB340
+	.sbss       start:0x807D5CA0 end:0x807D5CD0
+
+Game/System/GameSystemStationedArchiveLoader.cpp:
+	.text       start:0x804BB8E0 end:0x804BC7B0
+	.ctors      start:0x80644A28 end:0x80644A2C
+
+Game/System/HeapMemoryWatcher.cpp:
+	.text       start:0x804BCA60 end:0x804BD040
+	.sbss       start:0x807D5D00 end:0x807D5D08
+
+Game/System/Language.cpp:
+	.text       start:0x804BD1E0 end:0x804BD3C0
+	.rodata     start:0x8064CF18 end:0x8064CF80
+
+Game/System/LayoutHolder.cpp:
+	.text       start:0x804BD3C0 end:0x804BDAE0
+	.rodata     start:0x8064CF80 end:0x8064CF88
+	.data       start:0x806FB7D0 end:0x806FB800
+
+Game/System/MainLoopFramework.cpp:
+	.text       start:0x804BDAE0 end:0x804BEE60
+	.ctors      start:0x80644A2C end:0x80644A30
+	.bss        start:0x8072B894 end:0x8072B8A0
+	.sbss       start:0x807D5D28 end:0x807D5D2C
+
+Game/System/NANDErrorSequence.cpp:
+	.text       start:0x804C3390 end:0x804C41A0
+	.ctors      start:0x80644A30 end:0x80644A34
+
+Game/System/NANDManager.cpp:
+	.text       start:0x804C4620 end:0x804C4820
+
+Game/System/NANDManagerThread.cpp:
+	.text       start:0x804C4820 end:0x804C4BB0
+	.data       start:0x806FBE70 end:0x806FBE80
+
 Game/System/NerveExecutor.cpp:
 	.text       start:0x804C4BB0 end:0x804C4D20
 	.data       start:0x806FBE80 end:0x806FBE90
+
+Game/System/OSThreadWrapper.cpp:
+	.text       start:0x804C4D20 end:0x804C4F30
+
+Game/System/Overwrite.cpp:
+	.text       start:0x804C5310 end:0x804C7790
+	.data       start:0x806FBEE8 end:0x806FC020
+	.bss        start:0x8072B8E0 end:0x8072B900
+	.sdata      start:0x807D0454 end:0x807D0468
+
+Game/System/PauseButtonCheckerInGame.cpp:
+	.text       start:0x804C86D0 end:0x804C8850
+
+Game/System/PlayResultInStageHolder.cpp:
+	.text       start:0x804C8BF0 end:0x804C9500
+
+Game/System/RenderMode.cpp:
+	.text       start:0x804C9810 end:0x804C9960
+
+Game/System/ResourceHolder.cpp:
+	.text       start:0x804C99C0 end:0x804CA650
+	.rodata     start:0x8064D218 end:0x8064D278
+
+Game/System/ResourceHolderManager.cpp:
+	.text       start:0x804CA650 end:0x804CAFE0
 
 Game/System/ResourceInfo.cpp:
 	.text       start:0x804CB0D0 end:0x804CB460
@@ -223,6 +4702,863 @@ Game/System/ResourceInfo.cpp:
 Game/System/ScenarioDataParser.cpp:
 	.text       start:0x804CB460 end:0x804CC010
 	.data       start:0x806FC2E0 end:0x806FC3B8
+
+Game/System/ShapePacketUserData.cpp:
+	.text       start:0x804CC010 end:0x804CC4F0
+
+Game/System/StarPointerOnOffController.cpp:
+	.text       start:0x804CC920 end:0x804CDBE0
+	.data       start:0x806FC4D0 end:0x806FC4E0
+
+Game/System/StationedArchiveLoader.cpp:
+	.text       start:0x804CDC30 end:0x804CDE90
+
+Game/System/StationedFileInfo.cpp:
+	.text       start:0x804CDF70 end:0x804CDF80
+	.rodata     start:0x8064D278 end:0x8064DF38
+
+Game/System/WPad.cpp:
+	.text       start:0x804CDF80 end:0x804CE640
+
+Game/System/WPadAcceleration.cpp:
+	.text       start:0x804CE680 end:0x804CEE40
+
+Game/System/WPadButton.cpp:
+	.text       start:0x804CEE40 end:0x804CF130
+
+Game/System/WPadHVSwing.cpp:
+	.text       start:0x804CF130 end:0x804CF4C0
+
+Game/System/WPadHolder.cpp:
+	.text       start:0x804CF720 end:0x804CFD90
+
+Game/System/WPadInfoChecker.cpp:
+	.text       start:0x804CFDF0 end:0x804CFEE0
+
+Game/System/WPadLeaveWatcher.cpp:
+	.text       start:0x804CFEE0 end:0x804D0010
+
+Game/System/WPadPointer.cpp:
+	.text       start:0x804D0010 end:0x804D0460
+
+Game/System/WPadRumble.cpp:
+	.text       start:0x804D05C0 end:0x804D0C60
+	.data       start:0x806FE750 end:0x806FE760
+
+Game/System/WPadStick.cpp:
+	.text       start:0x804D0D30 end:0x804D0FB0
+
+Game/System/ConfigDataHolder.cpp:
+	.text       start:0x804D1150 end:0x804D1390
+	.data       start:0x806FF288 end:0x806FF2A8
+
+Game/System/ConfigDataMii.cpp:
+	.text       start:0x804D1390 end:0x804D1710
+	.data       start:0x806FF2A8 end:0x806FF2C8
+
+Game/System/ConfigDataMisc.cpp:
+	.text       start:0x804D1710 end:0x804D1900
+	.data       start:0x806FF2C8 end:0x806FF2E8
+
+Game/System/GalaxyStatusAccessor.cpp:
+	.text       start:0x804D1900 end:0x804D2300
+
+Game/System/GameDataConst.cpp:
+	.text       start:0x804D2300 end:0x804D2410
+
+Game/System/GameDataFunction.cpp:
+	.text       start:0x804D2410 end:0x804D4540
+
+Game/System/GameDataHolder.cpp:
+	.text       start:0x804D4760 end:0x804D4C40
+
+Game/System/GameEventFlagTable.cpp:
+	.text       start:0x804D5520 end:0x804D5680
+	.rodata     start:0x8064DF48 end:0x8064E038
+	.sbss       start:0x807D5DA0 end:0x807D5DA8
+
+Game/System/GameSequenceDirector.cpp:
+	.text       start:0x804D57F0 end:0x804D59E0
+
+Game/System/GameSequenceFunction.cpp:
+	.text       start:0x804D59E0 end:0x804D85D0
+
+Game/System/SaveDataBannerCreator.cpp:
+	.text       start:0x804D9240 end:0x804D9640
+	.ctors      start:0x80644A38 end:0x80644A3C
+	.data       start:0x806FFEA0 end:0x806FFEE0
+	.sbss       start:0x807D5DA8 end:0x807D5DB8
+
+Game/System/SaveDataFileAccessor.cpp:
+	.text       start:0x804D96A0 end:0x804D9800
+
+Game/System/SaveDataHandleSequence.cpp:
+	.text       start:0x804D9800 end:0x804DB1C0
+	.ctors      start:0x80644A3C end:0x80644A40
+
+Game/System/SaveDataHandler.cpp:
+	.text       start:0x804DB340 end:0x804DC1B0
+	.ctors      start:0x80644A40 end:0x80644A44
+	.rodata     start:0x8064E060 end:0x8064E078
+
+Game/System/GameEventFlagStorage.cpp:
+	.text       start:0x804DC320 end:0x804DC690
+
+Game/System/GameEventValueChecker.cpp:
+	.text       start:0x804DC690 end:0x804DCD30
+	.data       start:0x80700640 end:0x80700660
+
+Game/System/GameDataPlayerStatus.cpp:
+	.text       start:0x804DDC50 end:0x804DE190
+	.data       start:0x80700760 end:0x80700798
+
+Game/System/StarPieceAlmsStorage.cpp:
+	.text       start:0x804DE340 end:0x804DE350
+
+Game/System/SysConfigFile.cpp:
+	.text       start:0x804DEF40 end:0x804DEFE0
+	.data       start:0x807008B4 end:0x807008F0
+
+Game/System/UserFile.cpp:
+	.text       start:0x804DEFE0 end:0x804DF2B0
+
+Game/NWC24/NWC24Function.cpp:
+	.text       start:0x804FE450 end:0x804FE6D0
+
+Game/NWC24/NWC24Messenger.cpp:
+	.text       start:0x804FE6D0 end:0x80500100
+	.ctors      start:0x80644AF0 end:0x80644AF4
+	.data       start:0x80703D98 end:0x80703EB8
+	.sbss       start:0x807D60B8 end:0x807D60F8
+
+Game/NWC24/NWC24SendThread.cpp:
+	.text       start:0x80500100 end:0x80500640
+	.bss        start:0x8072BB78 end:0x8072BB98
+	.sdata      start:0x807D05A8 end:0x807D05B0
+	.sbss       start:0x807D60F8 end:0x807D6100
+
+Game/NWC24/NWC24System.cpp:
+	.text       start:0x80500640 end:0x80500820
+
+Game/NWC24/ReceiverTagMail.cpp:
+	.text       start:0x80500980 end:0x80500A10
+
+JSystem/JKernel/JKRHeap.cpp:
+	.text       start:0x80500F60 end:0x80501920
+	.data       start:0x80704000 end:0x80704060
+
+JSystem/JKernel/JKRExpHeap.cpp:
+	.text       start:0x805019F0 end:0x80503670
+	.data       start:0x807043F8 end:0x80704458
+
+JSystem/JKernel/JKRSolidHeap.cpp:
+	.text       start:0x80503670 end:0x80503F00
+	.data       start:0x807045C8 end:0x80704628
+
+JSystem/JKernel/JKRUnitHeap.cpp:
+	.text       start:0x80503F00 end:0x80504B50
+	.data       start:0x80704680 end:0x807046E0
+
+JSystem/JKernel/JKRDisposer.cpp:
+	.text       start:0x80504B50 end:0x80504C40
+	.data       start:0x807046E0 end:0x807046F0
+
+JSystem/JKernel/JKRThread.cpp:
+	.text       start:0x80504C40 end:0x80505160
+	.ctors      start:0x80644AF8 end:0x80644AFC
+	.data       start:0x807046F0 end:0x80704700
+	.bss        start:0x8072BBBC end:0x8072BC08
+	.sbss       start:0x807D6150 end:0x807D6158
+
+JSystem/JKernel/JKRAram.cpp:
+	.text       start:0x80505280 end:0x80505F40
+	.ctors      start:0x80644AFC end:0x80644B00
+	.data       start:0x80704730 end:0x80704740
+	.sbss       start:0x807D6158 end:0x807D615C
+
+JSystem/JKernel/JKRAramHeap.cpp:
+	.text       start:0x80505FD0 end:0x80506310
+	.ctors      start:0x80644B00 end:0x80644B04
+	.data       start:0x80704740 end:0x80704750
+	.bss        start:0x8072BC74 end:0x8072BC80
+
+JSystem/JKernel/JKRAramBlock.cpp:
+	.text       start:0x805063A0 end:0x80506630
+	.data       start:0x80704750 end:0x80704760
+
+JSystem/JKernel/JKRAramPiece.cpp:
+	.text       start:0x80506630 end:0x80506B90
+	.ctors      start:0x80644B04 end:0x80644B08
+	.bss        start:0x8072BC8C end:0x8072BCB0
+
+JSystem/JKernel/JKRAramStream.cpp:
+	.text       start:0x80506B90 end:0x805070E0
+	.bss        start:0x8072BCB0 end:0x8072BCE0
+	.sbss       start:0x807D6198 end:0x807D61A8
+
+JSystem/JKernel/JKRFileLoader.cpp:
+	.text       start:0x805070E0 end:0x805073C0
+	.ctors      start:0x80644B08 end:0x80644B0C
+	.data       start:0x80704818 end:0x80704858
+	.bss        start:0x8072BCEC end:0x8072BD10
+	.sbss       start:0x807D61A8 end:0x807D61B0
+
+JSystem/JKernel/JKRArchivePri.cpp:
+	.text       start:0x805085A0 end:0x80508680
+	.sbss       start:0x807D61B0 end:0x807D61B8
+
+JSystem/JKernel/JKRMemArchive.cpp:
+	.text       start:0x80508700 end:0x80508E80
+	.data       start:0x807048F0 end:0x80704940
+
+JSystem/JKernel/JKRAramArchive.cpp:
+	.text       start:0x80508E80 end:0x80509920
+	.data       start:0x80704968 end:0x807049B8
+
+JSystem/JKernel/JKRDvdArchive.cpp:
+	.text       start:0x80509920 end:0x8050A480
+	.data       start:0x80704A30 end:0x80704A80
+
+JSystem/JKernel/JKRCompArchive.cpp:
+	.text       start:0x8050A480 end:0x8050B170
+	.data       start:0x80704AC0 end:0x80704B10
+
+JSystem/JKernel/JKRDvdFile.cpp:
+	.text       start:0x8050B170 end:0x8050B6A0
+	.ctors      start:0x80644B0C end:0x80644B10
+	.data       start:0x80704B38 end:0x80704B80
+	.bss        start:0x8072BD1C end:0x8072BD28
+
+JSystem/JKernel/JKRDvdRipper.cpp:
+	.text       start:0x8050B730 end:0x8050C2F0
+	.ctors      start:0x80644B10 end:0x80644B14
+	.bss        start:0x8072BD34 end:0x8072BD40
+
+JSystem/JKernel/JKRDvdAramRipper.cpp:
+	.text       start:0x8050C380 end:0x8050D0B0
+	.ctors      start:0x80644B14 end:0x80644B18
+	.bss        start:0x8072BD64 end:0x8072BD70
+
+JSystem/JKernel/JKRDecomp.cpp:
+	.text       start:0x8050D140 end:0x8050D810
+	.data       start:0x80704BE0 end:0x80704BF0
+	.bss        start:0x8072BD88 end:0x8072BDC8
+	.sbss       start:0x807D6240 end:0x807D6248
+
+JSystem/JSupport/JSUInputStream.cpp:
+	.text       start:0x8050DCD0 end:0x8050DDD0
+
+JSystem/JSupport/JSUOutputStream.cpp:
+	.text       start:0x8050DE90 end:0x8050DF80
+
+JSystem/JGadget/linklist.cpp:
+	.text       start:0x8050E4F0 end:0x8050E6E0
+
+JSystem/JUtility/JUTTexture.cpp:
+	.text       start:0x8050E6E0 end:0x8050EEC0
+
+JSystem/JUtility/JUTPalette.cpp:
+	.text       start:0x8050EEC0 end:0x8050EFC0
+
+JSystem/JUtility/JUTNameTab.cpp:
+	.text       start:0x8050EFC0 end:0x8050F1C0
+	.data       start:0x80704C98 end:0x80704CA8
+
+JSystem/JUtility/JUTFont.cpp:
+	.text       start:0x8050F1C0 end:0x8050F340
+
+JSystem/JUtility/JUTException.cpp:
+	.text       start:0x8050F340 end:0x80510C20
+	.ctors      start:0x80644B18 end:0x80644B1C
+	.data       start:0x80705250 end:0x80705260
+	.bss        start:0x8072BE08 end:0x8072BE18
+	.sbss       start:0x807D6250 end:0x807D6278
+
+JSystem/JUtility/JUTDirectPrint.cpp:
+	.text       start:0x80510CB0 end:0x805113C0
+	.sbss       start:0x807D6278 end:0x807D6280
+
+JSystem/JUtility/JUTVideo.cpp:
+	.text       start:0x805116D0 end:0x80511AA0
+	.data       start:0x80705528 end:0x80705538
+	.sbss       start:0x807D6288 end:0x807D6294
+
+JSystem/JUtility/JUTXfb.cpp:
+	.text       start:0x80511C60 end:0x80511E30
+	.sbss       start:0x807D62A0 end:0x807D62A8
+
+JSystem/JUtility/JUTConsole.cpp:
+	.text       start:0x80512670 end:0x80512FB0
+	.data       start:0x80705538 end:0x80705548
+	.sbss       start:0x807D62A8 end:0x807D62AC
+
+JSystem/J2DGraph/J2DGrafContext.cpp:
+	.text       start:0x80512FB0 end:0x80513910
+	.data       start:0x80705548 end:0x80705570
+
+JSystem/J2DGraph/J2DOrthoGraph.cpp:
+	.text       start:0x80513910 end:0x80513BD0
+	.data       start:0x80705570 end:0x80705598
+
+JSystem/J2DGraph/J2DPane.cpp:
+	.text       start:0x80513C30 end:0x80515090
+	.ctors      start:0x80644B1C end:0x80644B20
+	.data       start:0x80705598 end:0x80705630
+	.bss        start:0x8072C220 end:0x8072C240
+
+JSystem/J2DGraph/J2DScreen.cpp:
+	.text       start:0x80515090 end:0x805150E0
+	.sbss       start:0x807D62B8 end:0x807D62C0
+
+JSystem/J2DGraph/J2DPicture.cpp:
+	.text       start:0x805150E0 end:0x80517C80
+	.data       start:0x80705630 end:0x80705780
+
+JSystem/J3DGraphBase/J3DGD.cpp:
+	.text       start:0x80517CF0 end:0x805195E0
+
+JSystem/J3DGraphBase/J3DSys.cpp:
+	.text       start:0x805195E0 end:0x8051A6C0
+	.ctors      start:0x80644B20 end:0x80644B24
+	.bss        start:0x8072C360 end:0x8072C39C
+
+JSystem/J3DGraphBase/J3DTransform.cpp:
+	.text       start:0x8051A8C0 end:0x8051B360
+
+JSystem/J3DGraphBase/J3DPacket.cpp:
+	.text       start:0x8051B5F0 end:0x8051B620
+	.data       start:0x807058F0 end:0x80705930
+	.bss        start:0x8072C410 end:0x8072C420
+	.sbss       start:0x807D62C8 end:0x807D62D0
+
+JSystem/J3DGraphBase/J3DShapeMtx.cpp:
+	.text       start:0x8051BF40 end:0x8051D6A0
+	.bss        start:0x8072C438 end:0x8072C440
+
+JSystem/J3DGraphBase/J3DShapeDraw.cpp:
+	.text       start:0x8051D6A0 end:0x8051D8B0
+	.data       start:0x80705B60 end:0x80705B70
+
+JSystem/J3DGraphBase/J3DShape.cpp:
+	.text       start:0x8051D8B0 end:0x8051E470
+	.data       start:0x80705B70 end:0x80705B88
+	.sbss       start:0x807D62F0 end:0x807D62F4
+
+JSystem/J3DGraphBase/J3DMaterial.cpp:
+	.text       start:0x8051E470 end:0x8051FDB0
+	.data       start:0x80705B88 end:0x80705C68
+
+JSystem/J3DGraphBase/J3DMatBlock.cpp:
+	.text       start:0x805210C0 end:0x80527CB0
+	.ctors      start:0x80644B24 end:0x80644B28
+	.data       start:0x80705D28 end:0x80706708
+
+JSystem/J3DGraphBase/J3DTevs.cpp:
+	.text       start:0x80527D70 end:0x80528BC0
+
+JSystem/J3DGraphBase/J3DDrawBuffer.cpp:
+	.text       start:0x80528BC0 end:0x80529250
+	.data       start:0x80706828 end:0x80706888
+	.sbss       start:0x807D6300 end:0x807D6308
+
+JSystem/J3DGraphAnimator/J3DShapeTable.cpp:
+	.text       start:0x80529400 end:0x80529510
+
+JSystem/J3DGraphAnimator/J3DJointTree.cpp:
+	.text       start:0x80529510 end:0x805298C0
+	.data       start:0x80706888 end:0x80706898
+
+JSystem/J3DGraphAnimator/J3DModelData.cpp:
+	.text       start:0x805299A0 end:0x80529BE0
+	.data       start:0x80706898 end:0x807068B0
+
+JSystem/J3DGraphAnimator/J3DMtxBuffer.cpp:
+	.text       start:0x80529BE0 end:0x8052A970
+
+JSystem/J3DGraphAnimator/J3DModel.cpp:
+	.text       start:0x8052A970 end:0x8052B940
+	.data       start:0x807068B8 end:0x807068E8
+
+JSystem/J3DGraphAnimator/J3DAnimation.cpp:
+	.text       start:0x8052D590 end:0x8052EE90
+	.data       start:0x807068E8 end:0x80706A08
+
+JSystem/J3DGraphAnimator/J3DMaterialAnm.cpp:
+	.text       start:0x8052F790 end:0x8052FB60
+	.data       start:0x80706A08 end:0x80706A18
+
+JSystem/J3DGraphAnimator/J3DSkinDeform.cpp:
+	.text       start:0x8052FB60 end:0x8052FBD0
+
+JSystem/J3DGraphAnimator/J3DJoint.cpp:
+	.text       start:0x80530820 end:0x80530F20
+	.sbss       start:0x807D6310 end:0x807D6320
+
+JSystem/J3DGraphLoader/J3DMaterialFactory.cpp:
+	.text       start:0x80531910 end:0x80534550
+	.data       start:0x80706A28 end:0x80706C78
+
+JSystem/J3DGraphLoader/J3DMaterialFactory_v21.cpp:
+	.text       start:0x80534790 end:0x80535B90
+
+JSystem/J3DGraphLoader/J3DModelLoader.cpp:
+	.text       start:0x80536710 end:0x805385E0
+	.data       start:0x80706C78 end:0x80706E00
+
+JSystem/J3DGraphLoader/J3DJointFactory.cpp:
+	.text       start:0x805385E0 end:0x80538770
+
+JSystem/J3DGraphLoader/J3DShapeFactory.cpp:
+	.text       start:0x80538770 end:0x80538E30
+
+JSystem/JMath/JMath.cpp:
+	.text       start:0x8053A730 end:0x8053A9B0
+
+JSystem/JMath/JMATrigonometric.cpp:
+	.text       start:0x8053AB20 end:0x8053AB60
+	.ctors      start:0x80644B28 end:0x80644B2C
+
+JSystem/JParticle/JPAResourceManager.cpp:
+	.text       start:0x8053ADF0 end:0x8053AF30
+
+JSystem/JParticle/JPAResource.cpp:
+	.text       start:0x8053AF30 end:0x8053D8B0
+
+JSystem/JParticle/JPABaseShape.cpp:
+	.text       start:0x8053E7B0 end:0x8053F970
+
+JSystem/JParticle/JPAExtraShape.cpp:
+	.text       start:0x8053F970 end:0x8053FFF0
+
+JSystem/JParticle/JPAChildShape.cpp:
+	.text       start:0x8053FFF0 end:0x80540190
+
+JSystem/JParticle/JPAExTexShape.cpp:
+	.text       start:0x80540190 end:0x80540280
+
+JSystem/JParticle/JPADynamicsBlock.cpp:
+	.text       start:0x80540280 end:0x80540EE0
+
+JSystem/JParticle/JPAFieldBlock.cpp:
+	.text       start:0x805416E0 end:0x805419B0
+	.data       start:0x80707254 end:0x807072B8
+
+JSystem/JParticle/JPAKeyBlock.cpp:
+	.text       start:0x80541AF0 end:0x80541BA0
+
+JSystem/JParticle/JPATexture.cpp:
+	.text       start:0x80541BA0 end:0x80541C60
+	.data       start:0x807072B8 end:0x807072C8
+
+JSystem/JParticle/JPAResourceLoader.cpp:
+	.text       start:0x80541C60 end:0x80542050
+
+JSystem/JParticle/JPAEmitterManager.cpp:
+	.text       start:0x80542050 end:0x80542800
+
+JSystem/JParticle/JPAMath.cpp:
+	.text       start:0x80543C40 end:0x80544010
+
+RVL_SDK/gd/GDBase.c:
+	.text       start:0x80544010 end:0x80544180
+	.sbss       start:0x807D6320 end:0x807D6324
+
+RVL_SDK/gd/GDGeometry.c:
+	.text       start:0x80544180 end:0x805459B0
+
+RVL_SDK/gd/GDLight.c:
+	.text       start:0x80545A90 end:0x805460E0
+
+RVL_SDK/gd/GDPixel.c:
+	.text       start:0x805460E0 end:0x80546C80
+
+RVL_SDK/gd/GDTev.c:
+	.text       start:0x80546C80 end:0x805476D0
+
+RVL_SDK/gd/GDTexture.c:
+	.text       start:0x805476D0 end:0x80547B20
+
+RVL_SDK/kpad/KPAD.c:
+	.text       start:0x80547F00 end:0x8054C0D0
+
+RVL_SDK/tpl/TPL.c:
+	.text       start:0x8054FA00 end:0x8054FB40
+
+RVL_SDK/rso/RSOLink.c:
+	.text       start:0x8054FE20 end:0x805511E0
+
+RVLFaceLib/RFL_System.c:
+	extab       start:0x80006720 end:0x80006740
+	extabindex  start:0x80006A20 end:0x80006A50
+	.text       start:0x805511E0 end:0x80551C10
+
+RVLFaceLib/RFL_NANDLoader.c:
+	extab       start:0x80006740 end:0x800067C0
+	extabindex  start:0x80006A50 end:0x80006B10
+	.text       start:0x80551C10 end:0x80552CB0
+
+RVLFaceLib/RFL_NANDAccess.c:
+	extab       start:0x800067C0 end:0x80006838
+	extabindex  start:0x80006B10 end:0x80006BC4
+	.text       start:0x80552CB0 end:0x805544F0
+
+RVLFaceLib/RFL_Model.c:
+	extab       start:0x80006838 end:0x800068A0
+	extabindex  start:0x80006BC4 end:0x80006C60
+	.text       start:0x805544F0 end:0x80556430
+
+RVLFaceLib/RFL_MakeTex.c:
+	extab       start:0x800068B0 end:0x800068F0
+	extabindex  start:0x80006C78 end:0x80006CD8
+	.text       start:0x805564B0 end:0x80558C50
+
+RVLFaceLib/RFL_Icon.c:
+	extab       start:0x800068F0 end:0x80006908
+	extabindex  start:0x80006CD8 end:0x80006CFC
+	.text       start:0x80558C50 end:0x805591C0
+
+RVLFaceLib/RFL_Database.c:
+	extab       start:0x80006910 end:0x80006988
+	extabindex  start:0x80006D08 end:0x80006DBC
+	.text       start:0x80559200 end:0x8055A250
+
+RVLFaceLib/RFL_Controller.c:
+	extab       start:0x80006988 end:0x80006998
+	extabindex  start:0x80006DBC end:0x80006DD4
+	.text       start:0x8055A250 end:0x8055A4F0
+
+RVLFaceLib/RFL_MiddleDatabase.c:
+	extab       start:0x80006998 end:0x800069A0
+	extabindex  start:0x80006DD4 end:0x80006DE0
+	.text       start:0x8055A4F0 end:0x8055A660
+
+RVLFaceLib/RFL_DataUtility.c:
+	extab       start:0x800069A0 end:0x800069C8
+	extabindex  start:0x80006DE0 end:0x80006E1C
+	.text       start:0x8055A680 end:0x8055AEF0
+
+RVL_SDK/nwc24/NWC24StdAPI.c:
+	.text       start:0x8055B56C end:0x8055C15C
+
+RVL_SDK/nwc24/NWC24FileAPI.c:
+	.text       start:0x8055C15C end:0x8055C4B0
+
+RVL_SDK/nwc24/NWC24Manage.c:
+	.text       start:0x8055DD44 end:0x8055E094
+
+RVL_SDK/nwc24/NWC24MsgObj.c:
+	.text       start:0x8055E09C end:0x8055E9AC
+
+RVL_SDK/nwc24/NWC24Mime.c:
+	.text       start:0x80560524 end:0x80560B54
+
+RVL_SDK/nwc24/NWC24DateParser.c:
+	.text       start:0x80563898 end:0x80563D08
+
+RVL_SDK/nwc24/NWC24Time.c:
+	.text       start:0x805645BC end:0x80564AA4
+
+RVL_SDK/vf/pf_clib.c:
+	.text       start:0x80565620 end:0x80565890
+
+RVL_SDK/vf/pf_code.c:
+	.text       start:0x80565950 end:0x80565970
+
+RVL_SDK/vf/pf_str.c:
+	.text       start:0x80565AB0 end:0x80565C80
+
+RVL_SDK/vf/pdm_bpb.c:
+	.text       start:0x80567240 end:0x80567550
+
+RVL_SDK/vf/pdm_disk.c:
+	.text       start:0x80568A10 end:0x80568AF0
+
+RVL_SDK/vf/pdm_mbr.c:
+	.text       start:0x8056A360 end:0x8056A480
+
+RVL_SDK/vf/pf_cache.c:
+	.text       start:0x8056BD00 end:0x8056BE80
+
+RVL_SDK/vf/pf_cluster.c:
+	.text       start:0x8056C760 end:0x8056C830
+
+RVL_SDK/vf/pf_fat.c:
+	.text       start:0x80573980 end:0x80573A90
+
+RVL_SDK/vf/pf_api_util.c:
+	.text       start:0x8057D910 end:0x8057D970
+
+RVL_SDK/vf/d_common.c:
+	.text       start:0x80580D80 end:0x805816B0
+
+RVL_SDK/vf/nand_drv.c:
+	.text       start:0x80581F60 end:0x805833F0
+
+JSystem/JAudio2/JASCalc.cpp:
+	.text       start:0x80583400 end:0x80583780
+
+JSystem/JAudio2/JASTaskThread.cpp:
+	.text       start:0x80583780 end:0x80583D40
+	.data       start:0x807081C8 end:0x807081D8
+
+JSystem/JAudio2/JASHeapCtrl.cpp:
+	.text       start:0x80584B10 end:0x80584B60
+	.ctors      start:0x80644B2C end:0x80644B30
+	.bss        start:0x8077B804 end:0x8077B848
+	.sbss       start:0x807D6460 end:0x807D6468
+
+JSystem/JAudio2/JASResArcLoader.cpp:
+	.text       start:0x80584B60 end:0x80584CF0
+
+JSystem/JAudio2/JASProbe.cpp:
+	.text       start:0x80584CF0 end:0x80584EC0
+	.bss        start:0x8077B848 end:0x8077B888
+
+JSystem/JAudio2/JASReport.cpp:
+	.text       start:0x80584EC0 end:0x80584FD0
+
+JSystem/JAudio2/JASCmdStack.cpp:
+	.text       start:0x80585010 end:0x80585200
+	.ctors      start:0x80644B30 end:0x80644B34
+	.bss        start:0x8077B8AC end:0x8077B8D0
+
+JSystem/JAudio2/JASTrack.cpp:
+	.text       start:0x80585200 end:0x805877D0
+	.rodata     start:0x80659280 end:0x806592B0
+	.data       start:0x807081F8 end:0x80708220
+
+JSystem/JAudio2/JASTrackPort.cpp:
+	.text       start:0x80587CA0 end:0x80587DD0
+
+JSystem/JAudio2/JASRegisterParam.cpp:
+	.text       start:0x80587DD0 end:0x80588010
+
+JSystem/JAudio2/JASSeqCtrl.cpp:
+	.text       start:0x80588010 end:0x80588430
+	.ctors      start:0x80644B38 end:0x80644B3C
+	.sbss       start:0x807D6478 end:0x807D6480
+
+JSystem/JAudio2/JASSeqParser.cpp:
+	.text       start:0x80588430 end:0x8058A2F0
+	.ctors      start:0x80644B3C end:0x80644B40
+	.sbss       start:0x807D6480 end:0x807D6484
+
+JSystem/JAudio2/JASSeqReader.cpp:
+	.text       start:0x8058A2F0 end:0x8058A550
+
+JSystem/JAudio2/JASAramStream.cpp:
+	.text       start:0x8058A550 end:0x8058BB20
+	.ctors      start:0x80644B40 end:0x80644B44
+	.sbss       start:0x807D6490 end:0x807D64A0
+
+JSystem/JAudio2/JASBank.cpp:
+	.text       start:0x8058BB80 end:0x8058BCC0
+	.ctors      start:0x80644B44 end:0x80644B48
+
+JSystem/JAudio2/JASBasicBank.cpp:
+	.text       start:0x8058BCC0 end:0x8058BE10
+	.data       start:0x80709BA8 end:0x80709BC0
+
+JSystem/JAudio2/JASVoiceBank.cpp:
+	.text       start:0x8058BE10 end:0x8058BEA0
+	.rodata     start:0x80659328 end:0x80659340
+	.data       start:0x80709BC0 end:0x80709BD8
+	.sbss       start:0x807D64A8 end:0x807D64B0
+
+JSystem/JAudio2/JASBasicInst.cpp:
+	.text       start:0x8058BEA0 end:0x8058C380
+	.data       start:0x80709BD8 end:0x80709BF0
+
+JSystem/JAudio2/JASDrumSet.cpp:
+	.text       start:0x8058C380 end:0x8058C6B0
+	.data       start:0x80709BF0 end:0x80709C08
+
+JSystem/JAudio2/JASBasicWaveBank.cpp:
+	.text       start:0x8058C6B0 end:0x8058CED0
+	.data       start:0x80709C08 end:0x80709C68
+
+JSystem/JAudio2/JASSimpleWaveBank.cpp:
+	.text       start:0x8058CED0 end:0x8058D1F0
+	.data       start:0x80709C68 end:0x80709CB0
+
+JSystem/JAudio2/JASInstSense.cpp:
+	.text       start:0x8058D200 end:0x8058D3D0
+	.data       start:0x80709CB0 end:0x80709CC0
+
+JSystem/JAudio2/JASInstRand.cpp:
+	.text       start:0x8058D3D0 end:0x8058D510
+	.data       start:0x80709CC0 end:0x80709CD0
+
+JSystem/JAudio2/JASWSParser.cpp:
+	.text       start:0x8058D510 end:0x8058DAA0
+
+JSystem/JAudio2/JASBNKParser.cpp:
+	.text       start:0x8058DCE0 end:0x8058EA50
+
+JSystem/JAudio2/JASWaveArcLoader.cpp:
+	.text       start:0x8058EA50 end:0x8058EAE0
+	.sbss       start:0x807D64C8 end:0x807D64D0
+
+JSystem/JAudio2/JASChannel.cpp:
+	.text       start:0x8058EFE0 end:0x805903F0
+	.ctors      start:0x80644B48 end:0x80644B4C
+	.bss        start:0x8077BD78 end:0x8077BE18
+	.sbss       start:0x807D64D0 end:0x807D64D8
+
+JSystem/JAudio2/JASLfo.cpp:
+	.text       start:0x805903F0 end:0x80590560
+	.ctors      start:0x80644B4C end:0x80644B50
+	.bss        start:0x8077BE28 end:0x8077BE40
+
+JSystem/JAudio2/JASOscillator.cpp:
+	.text       start:0x80590560 end:0x80590A20
+
+JSystem/JAudio2/JASAudioThread.cpp:
+	.text       start:0x80591330 end:0x80591680
+	.ctors      start:0x80644B50 end:0x80644B54
+	.data       start:0x80709DD0 end:0x80709DE0
+	.sbss       start:0x807D6508 end:0x807D6510
+
+JSystem/JAudio2/JASAudioReseter.cpp:
+	.text       start:0x80591680 end:0x805918C0
+
+JSystem/JAudio2/JASDSPChannel.cpp:
+	.text       start:0x805918C0 end:0x80591F70
+	.sbss       start:0x807D6510 end:0x807D6518
+
+JSystem/JAudio2/JASDSPInterface.cpp:
+	.text       start:0x80592240 end:0x80592670
+	.sdata      start:0x807D08D8 end:0x807D08DC
+	.sbss       start:0x807D6518 end:0x807D6528
+
+JSystem/JAudio2/JASDriverIF.cpp:
+	.text       start:0x805927F0 end:0x80592840
+	.ctors      start:0x80644B54 end:0x80644B58
+	.bss        start:0x8077BE60 end:0x8077C160
+	.sdata      start:0x807D08E4 end:0x807D08E8
+
+JSystem/JAudio2/JASSoundParams.cpp:
+	.text       start:0x80592870 end:0x805928E0
+
+JSystem/JAudio2/JAIAudible.cpp:
+	.text       start:0x805934D0 end:0x80593510
+
+JSystem/JAudio2/JAIAudience.cpp:
+	.text       start:0x80593510 end:0x80593550
+
+JSystem/JAudio2/JAISe.cpp:
+	.text       start:0x80593690 end:0x80593D80
+	.data       start:0x8070BD00 end:0x8070BD58
+
+JSystem/JAudio2/JAISeMgr.cpp:
+	.text       start:0x805944C0 end:0x80594DC0
+	.ctors      start:0x80644B58 end:0x80644B5C
+	.data       start:0x8070BD70 end:0x8070BD98
+	.bss        start:0x8077E268 end:0x8077E278
+	.sbss       start:0x807D6540 end:0x807D6544
+
+JSystem/JAudio2/JAISeq.cpp:
+	.text       start:0x80594FB0 end:0x80595A50
+	.ctors      start:0x80644B5C end:0x80644B60
+	.data       start:0x8070BDB0 end:0x8070BDE0
+	.bss        start:0x8077E290 end:0x8077E2A0
+
+JSystem/JAudio2/JAISeqDataMgr.cpp:
+	.text       start:0x80595B20 end:0x80595B60
+
+JSystem/JAudio2/JAISeqMgr.cpp:
+	.text       start:0x80595F40 end:0x80596290
+	.ctors      start:0x80644B60 end:0x80644B64
+	.data       start:0x8070BDE0 end:0x8070BE08
+	.bss        start:0x8077E2B0 end:0x8077E2C0
+
+JSystem/JAudio2/JAISoundParams.cpp:
+	.text       start:0x80596440 end:0x805964C0
+
+JSystem/JAudio2/JAISound.cpp:
+	.text       start:0x805964C0 end:0x805968A0
+	.data       start:0x8070BE48 end:0x8070BE78
+
+JSystem/JAudio2/JAISoundChild.cpp:
+	.text       start:0x805968A0 end:0x805969C0
+
+JSystem/JAudio2/JAISoundHandles.cpp:
+	.text       start:0x805969C0 end:0x80596A60
+
+JSystem/JAudio2/JAISoundInfo.cpp:
+	.text       start:0x80596B00 end:0x80596BE0
+	.data       start:0x8070BE78 end:0x8070BEA0
+
+JSystem/JAudio2/JAISoundStarter.cpp:
+	.text       start:0x80596CB0 end:0x80596D90
+	.data       start:0x8070BEA0 end:0x8070BEB0
+
+JSystem/JAudio2/JAIStream.cpp:
+	.text       start:0x80596E70 end:0x80597820
+	.ctors      start:0x80644B64 end:0x80644B68
+	.data       start:0x8070BEB0 end:0x8070BEE0
+
+JSystem/JAudio2/JAIStreamDataMgr.cpp:
+	.text       start:0x80597820 end:0x80597860
+
+JSystem/JAudio2/JAIStreamMgr.cpp:
+	.text       start:0x805978A0 end:0x80597E30
+	.ctors      start:0x80644B68 end:0x80644B6C
+	.bss        start:0x8077E2E0 end:0x8077E2F0
+
+JSystem/JAudio2/JAUAudience.cpp:
+	.text       start:0x80597F30 end:0x805980A0
+	.ctors      start:0x80644B6C end:0x80644B70
+	.bss        start:0x8077E338 end:0x8077E398
+
+JSystem/JAudio2/JAUAudioArcInterpreter.cpp:
+	.text       start:0x80598400 end:0x805988A0
+	.data       start:0x8070BEF0 end:0x8070BF38
+
+JSystem/JAudio2/JAUAudioArcLoader.cpp:
+	.text       start:0x805988A0 end:0x80598B50
+	.data       start:0x8070BF38 end:0x8070BF80
+
+JSystem/JAudio2/JAUBankTable.cpp:
+	.text       start:0x80598B60 end:0x80598B90
+
+JSystem/JAudio2/JAUInitializer.cpp:
+	.text       start:0x80598CB0 end:0x80598E20
+	.ctors      start:0x80644B70 end:0x80644B74
+
+JSystem/JAudio2/JAUSectionHeap.cpp:
+	.text       start:0x80598E20 end:0x8059A990
+	.data       start:0x8070BF90 end:0x8070BFF8
+	.sbss       start:0x807D6568 end:0x807D6570
+
+JSystem/JAudio2/JAUSeqCollection.cpp:
+	.text       start:0x8059AAC0 end:0x8059ABA0
+	.data       start:0x8070C040 end:0x8070C058
+
+JSystem/JAudio2/JAUSoundAnimator.cpp:
+	.text       start:0x8059B400 end:0x8059BA20
+	.data       start:0x8070C058 end:0x8070C070
+
+JSystem/JAudio2/JAUSoundMgr.cpp:
+	.text       start:0x8059BA20 end:0x8059BE50
+	.data       start:0x8070C070 end:0x8070C080
+
+JSystem/JAudio2/JAUSoundObject.cpp:
+	.text       start:0x8059C120 end:0x8059C390
+	.data       start:0x8070C080 end:0x8070C0A8
+
+JSystem/JAudio2/JAUSoundTable.cpp:
+	.text       start:0x8059C390 end:0x8059C640
+
+JSystem/JAudio2/JAUStdSoundInfo.cpp:
+	.text       start:0x8059C8F0 end:0x8059CDD0
+
+JSystem/JAudio2/JAUStreamFileTable.cpp:
+	.text       start:0x8059CDE0 end:0x8059CE80
+
+RVL_SDK/aralt/aralt.c:
+	.text       start:0x8059CF20 end:0x8059D360
+	.sdata      start:0x807D0900 end:0x807D0908
 
 nw4r/ut/ut_LinkList.cpp:
 	.text       start:0x8059D480 end:0x8059D5C0
@@ -238,6 +5574,34 @@ nw4r/ut/ut_TagProcessorBase.cpp:
 	.data       start:0x8070C158 end:0x8070C180
 	.sdata2     start:0x807E25C0 end:0x807E25C8
 
+nw4r/ut/ut_ResFontBase.cpp:
+	.text       start:0x8059E1B0 end:0x8059E950
+	.data       start:0x8070C21C end:0x8070C278
+
+nw4r/ut/ut_ResFont.cpp:
+	.text       start:0x8059E950 end:0x8059EC60
+	.data       start:0x8070C278 end:0x8070C2D8
+
+nw4r/ut/ut_CharWriter.cpp:
+	.text       start:0x8059EC60 end:0x8059FCD0
+	.bss        start:0x8077E440 end:0x8077E450
+
+nw4r/db/db_console.cpp:
+	.text       start:0x805A4BF0 end:0x805A4CD0
+
+nw4r/db/db_assert.cpp:
+	.text       start:0x805A67F0 end:0x805A6AA0
+	.sbss       start:0x807D65DC end:0x807D65E0
+
+nw4r/math/math_triangular.cpp:
+	.text       start:0x805A6C60 end:0x805A6D50
+
+nw4r/lyt/lyt_pane.cpp:
+	.text       start:0x805A6E40 end:0x805A7E60
+	.ctors      start:0x80644B78 end:0x80644B7C
+	.data       start:0x8070C3A0 end:0x8070C418
+	.sbss       start:0x807D65E8 end:0x807D65F0
+
 nw4r/lyt/lyt_group.cpp:
 	.text       start:0x805A7E60 end:0x805A81C0
 	.data       start:0x8070C418 end:0x8070C428
@@ -248,6 +5612,93 @@ nw4r/lyt/lyt_layout.cpp:
 	.sbss       start:0x807D65F0 end:0x807D65F8
 	.sdata2     start:0x807E2640 end:0x807E2648
 
+nw4r/lyt/lyt_picture.cpp:
+	.text       start:0x805A9220 end:0x805A97B0
+	.ctors      start:0x80644B7C end:0x80644B80
+	.data       start:0x8070C468 end:0x8070C4E0
+	.sbss       start:0x807D65F8 end:0x807D6600
+
+nw4r/lyt/lyt_textBox.cpp:
+	.text       start:0x805A97B0 end:0x805AB060
+	.ctors      start:0x80644B80 end:0x80644B84
+	.data       start:0x8070C4E0 end:0x8070C568
+	.sbss       start:0x807D6600 end:0x807D6608
+
+nw4r/lyt/lyt_window.cpp:
+	.text       start:0x805AB060 end:0x805AD600
+	.ctors      start:0x80644B84 end:0x80644B88
+	.data       start:0x8070C5A4 end:0x8070C630
+	.sbss       start:0x807D6608 end:0x807D6610
+
+nw4r/lyt/lyt_bounding.cpp:
+	.text       start:0x805AD600 end:0x805AD6D0
+	.ctors      start:0x80644B88 end:0x80644B8C
+	.data       start:0x8070C630 end:0x8070C6A8
+	.sbss       start:0x807D6610 end:0x807D6618
+
+nw4r/lyt/lyt_material.cpp:
+	.text       start:0x805AD6D0 end:0x805B04B0
+
+nw4r/lyt/lyt_texMap.cpp:
+	.text       start:0x805B04B0 end:0x805B07E0
+
+nw4r/lyt/lyt_drawInfo.cpp:
+	.text       start:0x805B07E0 end:0x805B08A0
+	.data       start:0x8070C718 end:0x8070C728
+
+nw4r/lyt/lyt_animation.cpp:
+	.text       start:0x805B08A0 end:0x805B16D0
+	.data       start:0x8070C728 end:0x8070C750
+
+nw4r/lyt/lyt_resourceAccessor.cpp:
+	.text       start:0x805B1E60 end:0x805B1EC0
+	.data       start:0x8070C750 end:0x8070C768
+
+nw4r/lyt/lyt_common.cpp:
+	.text       start:0x805B1EC0 end:0x805B2A20
+
+RVL_SDK/base/PPCArch.c:
+	.text       start:0x805B2A90 end:0x805B2CB0
+
+RVL_SDK/os/OS.c:
+	.text       start:0x805B2CB0 end:0x805B4190
+	.data       start:0x8070CB70 end:0x8070CBAC
+	.bss        start:0x8077E4C0 end:0x8077E4DC
+	.sdata      start:0x807D0928 end:0x807D092C
+
+RVL_SDK/os/OSAlarm.c:
+	.text       start:0x805B4190 end:0x805B4A60
+	.sbss       start:0x807D6668 end:0x807D6670
+
+RVL_SDK/os/OSAlloc.c:
+	.text       start:0x805B4B10 end:0x805B4E30
+
+RVL_SDK/os/OSArena.c:
+	.text       start:0x805B4E30 end:0x805B4F30
+	.sdata      start:0x807D0960 end:0x807D0968
+	.sbss       start:0x807D6680 end:0x807D6688
+
+RVL_SDK/os/OSAudioSystem.c:
+	.text       start:0x805B4F30 end:0x805B53F0
+	.data       start:0x8070CBC0 end:0x8070CC40
+
+RVL_SDK/os/OSCache.c:
+	.text       start:0x805B53F0 end:0x805B5810
+
+RVL_SDK/os/OSContext.c:
+	.text       start:0x805B5810 end:0x805B6210
+
+RVL_SDK/os/OSError.c:
+	.text       start:0x805B6210 end:0x805B6960
+	.bss        start:0x8077E530 end:0x8077E574
+
+RVL_SDK/os/OSExec.c:
+	.text       start:0x805B6AE0 end:0x805B80B0
+	.sbss       start:0x807D6694 end:0x807D6698
+
+RVL_SDK/os/OSFatal.c:
+	.text       start:0x805B80B0 end:0x805B8CE0
+
 RVL_SDK/os/OSFont.c:
 	.text       start:0x805B8CE0 end:0x805B99D0
 	.data       start:0x8070D5B0 end:0x8070E0C0
@@ -255,29 +5706,555 @@ RVL_SDK/os/OSFont.c:
 	.sbss       start:0x807D66A0 end:0x807D66B0
 
 RVL_SDK/os/OSInterrupt.c:
-	.text		start:0x805B99D0 end:0x805BA1A0
-	
+	.text       start:0x805B99D0 end:0x805BA1A0
+
+RVL_SDK/os/OSMessage.c:
+	.text       start:0x805BA1C0 end:0x805BA4A0
+
+RVL_SDK/os/OSMemory.c:
+	.text       start:0x805BA4A0 end:0x805BAD10
+
+RVL_SDK/os/OSMutex.c:
+	.text       start:0x805BAD10 end:0x805BB030
+
+RVL_SDK/os/OSReboot.c:
+	.text       start:0x805BB030 end:0x805BB0C0
+
+RVL_SDK/os/OSReset.c:
+	.text       start:0x805BB0C0 end:0x805BB9F0
+	.sbss       start:0x807D66E0 end:0x807D66E8
+
+RVL_SDK/os/OSRtc.c:
+	.text       start:0x805BB9F0 end:0x805BC4A0
+	.bss        start:0x8077E880 end:0x8077E8D4
+
+RVL_SDK/os/OSSync.c:
+	.text       start:0x805BC4A0 end:0x805BC520
+
+RVL_SDK/os/OSThread.c:
+	.text       start:0x805BC520 end:0x805BDD70
+	.bss        start:0x8077E8D8 end:0x8077EBF0
+	.sdata      start:0x807D0990 end:0x807D0994
+	.sbss       start:0x807D66E8 end:0x807D66F4
+
+RVL_SDK/os/OSTime.c:
+	.text       start:0x805BDD70 end:0x805BE1A0
+
+RVL_SDK/os/OSUtf.c:
+	.text       start:0x805BE1A0 end:0x805BE3F0
+
+RVL_SDK/os/OSIpc.c:
+	.text       start:0x805BE3F0 end:0x805BE430
+	.sdata      start:0x807D0998 end:0x807D099C
+	.sbss       start:0x807D66F8 end:0x807D66FC
+
+RVL_SDK/os/OSStateTM.c:
+	.text       start:0x805BE430 end:0x805BEB40
+	.bss        start:0x8077F2E0 end:0x8077F320
+	.sbss       start:0x807D6700 end:0x807D6720
+
+RVL_SDK/os/OSPlayRecord.c:
+	.text       start:0x805BEB40 end:0x805BF260
+	.sdata      start:0x807D09A0 end:0x807D09A4
+	.sbss       start:0x807D6728 end:0x807D6740
+
+RVL_SDK/os/OSStateFlags.c:
+	.text       start:0x805BF260 end:0x805BF480
+
+RVL_SDK/os/OSNandbootInfo.c:
+	.text       start:0x805BF540 end:0x805BF750
+
+RVL_SDK/os/OSPlayTime.c:
+	.text       start:0x805BF750 end:0x805BFF30
+	.bss        start:0x8077F5C0 end:0x8077F5F0
+
+RVL_SDK/os/__ppc_eabi_init.c:
+	.text       start:0x805C0280 end:0x805C0340
+
+RVL_SDK/exi/EXIBios.c:
+	.text       start:0x805C0340 end:0x805C1C40
+	.bss        start:0x8077F5F0 end:0x8077F6B0
+	.sdata      start:0x807D09B0 end:0x807D09B4
+	.sbss       start:0x807D6760 end:0x807D6764
+
+RVL_SDK/si/SIBios.c:
+	.text       start:0x805C2410 end:0x805C3150
+	.sdata      start:0x807D09B8 end:0x807D09BC
+
+RVL_SDK/vi/vi.c:
+	.text       start:0x805C33E0 end:0x805C5C80
+	.sbss       start:0x807D6800 end:0x807D6804
+
+RVL_SDK/vi/vi3in1.c:
+	.text       start:0x805C7800 end:0x805C7D00
+	.bss        start:0x8077FA60 end:0x8077FAE0
+
+RVL_SDK/mtx/mtx.c:
+	.text       start:0x805C7D00 end:0x805C86D0
+
+RVL_SDK/mtx/mtxvec.c:
+	.text       start:0x805C86D0 end:0x805C8820
+
+RVL_SDK/mtx/mtx44.c:
+	.text       start:0x805C8820 end:0x805C8A40
+
+RVL_SDK/mtx/vec.c:
+	.text       start:0x805C8A40 end:0x805C8C70
+
+RVL_SDK/mtx/quat.c:
+	.text       start:0x805C8C70 end:0x805C9060
+
+RVL_SDK/gx/GXInit.c:
+	.text       start:0x805C9060 end:0x805CA1F0
+	.data       start:0x8071B330 end:0x8071B400
+	.sdata      start:0x807D0A00 end:0x807D0A04
+	.sbss       start:0x807D6860 end:0x807D6870
+	.sdata2     start:0x807E27A0 end:0x807E27A4
+
+RVL_SDK/gx/GXFifo.c:
+	.text       start:0x805CA1F0 end:0x805CAEE0
+
+RVL_SDK/gx/GXAttr.c:
+	.text       start:0x805CAEE0 end:0x805CBA30
+
+RVL_SDK/gx/GXMisc.c:
+	.text       start:0x805CBA30 end:0x805CC4B0
+
+RVL_SDK/gx/GXGeometry.c:
+	.text       start:0x805CC4B0 end:0x805CCAC0
+
+RVL_SDK/gx/GXFrameBuf.c:
+	.text       start:0x805CCAC0 end:0x805CD5D0
+
+RVL_SDK/gx/GXLight.c:
+	.text       start:0x805CD5D0 end:0x805CDD00
+
+RVL_SDK/gx/GXTexture.c:
+	.text       start:0x805CDD00 end:0x805CEF30
+
+RVL_SDK/gx/GXBump.c:
+	.text       start:0x805CEF30 end:0x805CF3F0
+
+RVL_SDK/gx/GXTev.c:
+	.text       start:0x805CF3F0 end:0x805CFAC0
+
+RVL_SDK/gx/GXPixel.c:
+	.text       start:0x805CFAC0 end:0x805D00E0
+
+RVL_SDK/gx/GXDisplayList.c:
+	.text       start:0x805D00E0 end:0x805D02D0
+
+RVL_SDK/gx/GXTransform.c:
+	.text       start:0x805D02D0 end:0x805D0A60
+
+RVL_SDK/gx/GXPerf.c:
+	.text       start:0x805D0A60 end:0x805D1340
 
 RVL_SDK/dvd/dvdfs.c:
 	.text       start:0x805D1340 end:0x805D1D40
 	.data       start:0x8071BA50 end:0x8071BBF0
+	.sdata      start:0x807D0A60 end:0x807D0A64
 	.sbss       start:0x807D68C0 end:0x807D68E0
 
 RVL_SDK/dvd/dvd.c:
 	.text       start:0x805D1D40 end:0x805D6B60
 	.data       start:0x8071BBF0 end:0x8071C038
+	.sdata      start:0x807D0A70 end:0x807D0A74
 	.sbss       start:0x807D68E0 end:0x807D6978
+
+RVL_SDK/dvd/dvdFatal.c:
+	.text       start:0x805D78F0 end:0x805D7A20
+	.sbss       start:0x807D6988 end:0x807D698C
+
+RVL_SDK/dvd/dvdDeviceError.c:
+	.text       start:0x805D7A60 end:0x805D7CF0
+	.rodata     start:0x8065AD48 end:0x8065AD64
+	.bss        start:0x80785780 end:0x807857A0
+	.sdata      start:0x807D0A90 end:0x807D0A94
+	.sbss       start:0x807D6990 end:0x807D6994
+
+RVL_SDK/dvd/dvd_broadway.c:
+	.text       start:0x805D7EC0 end:0x805DA390
+
+RVL_SDK/ai/ai.c:
+	.text       start:0x805DA3A0 end:0x805DA6E0
+
+RVL_SDK/mem/mem_expHeap.c:
+	.text       start:0x805DC500 end:0x805DC840
+
+RVL_SDK/mem/mem_allocator.c:
+	.text       start:0x805DC8B0 end:0x805DC8D0
+
+RVL_SDK/dsp/dsp.c:
+	.text       start:0x805DCA10 end:0x805DCA70
+
+RVL_SDK/nand/nand.c:
+	.text       start:0x805DCF90 end:0x805DE200
+
+RVL_SDK/nand/NANDOpenClose.c:
+	.text       start:0x805DE540 end:0x805DF3A0
+
+RVL_SDK/nand/NANDCore.c:
+	.text       start:0x805DF600 end:0x805DFE30
+	.data       start:0x8071DD20 end:0x8071DD60
+	.bss        start:0x80785AA0 end:0x80785AE0
+	.sdata      start:0x807D0AD8 end:0x807D0ADC
+	.sbss       start:0x807D6A40 end:0x807D6A44
+
+RVL_SDK/nand/NANDCheck.c:
+	.text       start:0x805E0390 end:0x805E04A0
+
+RVL_SDK/nand/NANDLogging.c:
+	.text       start:0x805E04A0 end:0x805E0AF0
+	.bss        start:0x80785B00 end:0x80785C00
+	.sbss       start:0x807D6A48 end:0x807D6A50
+
+RVL_SDK/sc/scsystem.c:
+	.text       start:0x805E0DF0 end:0x805E2440
+	.sdata      start:0x807D0B18 end:0x807D0B1C
+
+RVL_SDK/sc/scapi.c:
+	.text       start:0x805E2780 end:0x805E2C30
+
+RVL_SDK/arc/arc.c:
+	.text       start:0x805E3210 end:0x805E36D0
+
+RVL_SDK/esp/esp.c:
+	.text       start:0x805E38A0 end:0x805E3DF0
+	.sdata      start:0x807D0C40 end:0x807D0C44
+
+RVL_SDK/ipc/ipcMain.c:
+	.text       start:0x805E3EC0 end:0x805E3FB0
+
+RVL_SDK/ipc/ipcclt.c:
+	.text       start:0x805E3FB0 end:0x805E5A10
+	.bss        start:0x8078DFA0 end:0x8078E070
+	.sdata      start:0x807D0C50 end:0x807D0C58
+
+RVL_SDK/ipc/memory.c:
+	.text       start:0x805E5A10 end:0x805E5F40
+
+RVL_SDK/ipc/ipcProfile.c:
+	.text       start:0x805E5F40 end:0x805E60B0
+	.sbss       start:0x807D6A98 end:0x807D6AA0
+
+RVL_SDK/fs/fs.c:
+	.text       start:0x805E6350 end:0x805E7AF0
+	.sdata      start:0x807D0C58 end:0x807D0C5C
+
+RVL_SDK/wpad/WPAD.c:
+	.text       start:0x805E9080 end:0x805F01E0
+
+RVL_SDK/wud/WUD.c:
+	.text       start:0x805F8EC0 end:0x805FC3D0
+
+RVL_SDK/euart/euart.c:
+	.text       start:0x805FEA10 end:0x805FED90
+
+RVL_SDK/usb/usb.c:
+	.text       start:0x805FED90 end:0x806002E0
+
+RVL_SDK/bte/gki_buffer.c:
+	.text       start:0x806002E0 end:0x80601780
+
+RVL_SDK/bte/gki_time.c:
+	.text       start:0x80601780 end:0x80601D10
+
+RVL_SDK/bte/gki_ppc.c:
+	.text       start:0x80601D10 end:0x80602020
+
+RVL_SDK/bte/hcisu_h2.c:
+	.text       start:0x80602020 end:0x806026E0
+
+RVL_SDK/bte/uusb_ppc.c:
+	.text       start:0x806026E0 end:0x80603370
+
+RVL_SDK/bte/bte_hcisu.c:
+	.text       start:0x80603370 end:0x80603440
+
+RVL_SDK/bte/bte_logmsg.c:
+	.text       start:0x80603470 end:0x80603610
+
+RVL_SDK/bte/bte_main.c:
+	.text       start:0x80603610 end:0x80603780
+
+RVL_SDK/bte/btu_task1.c:
+	.text       start:0x80603780 end:0x80603BC4
+
+RVL_SDK/bte/bd.c:
+	.text       start:0x80603BC4 end:0x80603C98
+
+RVL_SDK/bte/bta_sys_conn.c:
+	.text       start:0x80603C98 end:0x80603EEC
+
+RVL_SDK/bte/bta_sys_main.c:
+	.text       start:0x80603EEC end:0x80604130
+
+RVL_SDK/bte/ptim.c:
+	.text       start:0x80604130 end:0x80604310
+
+RVL_SDK/bte/utl.c:
+	.text       start:0x80604310 end:0x80604354
+
+RVL_SDK/bte/bta_dm_act.c:
+	.text       start:0x80604354 end:0x80606690
+
+RVL_SDK/bte/bta_dm_api.c:
+	.text       start:0x80606690 end:0x80606AFC
+
+RVL_SDK/bte/bta_dm_main.c:
+	.text       start:0x80606AFC end:0x80606C5C
+
+RVL_SDK/bte/bta_dm_pm.c:
+	.text       start:0x80606C5C end:0x80607678
+
+RVL_SDK/bte/bta_hh_act.c:
+	.text       start:0x80607678 end:0x80608DC0
+
+RVL_SDK/bte/bta_hh_api.c:
+	.text       start:0x80608DC0 end:0x80609190
+
+RVL_SDK/bte/bta_hh_main.c:
+	.text       start:0x80609190 end:0x806096E4
+
+RVL_SDK/bte/bta_hh_utils.c:
+	.text       start:0x806096E4 end:0x80609A90
+
+RVL_SDK/bte/btm_acl.c:
+	.text       start:0x80609A90 end:0x8060B7D4
+
+RVL_SDK/bte/btm_dev.c:
+	.text       start:0x8060B7D4 end:0x8060BEA0
+
+RVL_SDK/bte/btm_devctl.c:
+	.text       start:0x8060BEA0 end:0x8060D828
+
+RVL_SDK/bte/btm_discovery.c:
+	.text       start:0x8060D828 end:0x8060D95C
+
+RVL_SDK/bte/btm_inq.c:
+	.text       start:0x8060D95C end:0x8060F3F4
+
+RVL_SDK/bte/btm_pm.c:
+	.text       start:0x8060F450 end:0x806100E4
+
+RVL_SDK/bte/btm_sco.c:
+	.text       start:0x806100E4 end:0x80610F1C
+
+RVL_SDK/bte/btm_sec.c:
+	.text       start:0x80610F1C end:0x80613EE0
+
+RVL_SDK/bte/btu_hcif.c:
+	.text       start:0x80613EE0 end:0x8061513C
+
+RVL_SDK/bte/btu_init.c:
+	.text       start:0x8061513C end:0x806151B4
+
+RVL_SDK/bte/gap_conn.c:
+	.text       start:0x806152F4 end:0x80615E30
+
+RVL_SDK/bte/gap_utils.c:
+	.text       start:0x80615E30 end:0x8061644C
+
+RVL_SDK/bte/hcicmds.c:
+	.text       start:0x8061644C end:0x80618B68
+
+RVL_SDK/bte/hidd_conn.c:
+	.text       start:0x80618BD0 end:0x80618C90
+
+RVL_SDK/bte/hidd_pm.c:
+	.text       start:0x80618D58 end:0x806190D4
+
+RVL_SDK/bte/hidh_api.c:
+	.text       start:0x806190D4 end:0x80619E54
+
+RVL_SDK/bte/hidh_conn.c:
+	.text       start:0x80619E54 end:0x8061BE94
+
+RVL_SDK/bte/l2c_api.c:
+	.text       start:0x8061BE94 end:0x8061CA60
+
+RVL_SDK/bte/l2c_csm.c:
+	.text       start:0x8061CA60 end:0x8061DF3C
+
+RVL_SDK/bte/l2c_link.c:
+	.text       start:0x8061DF3C end:0x8061F0C8
+
+RVL_SDK/bte/l2c_main.c:
+	.text       start:0x8061F0C8 end:0x806200F8
+
+RVL_SDK/bte/l2c_utils.c:
+	.text       start:0x806200F8 end:0x80621FBC
+
+RVL_SDK/bte/port_rfc.c:
+	.text       start:0x8062200C end:0x80623408
+
+RVL_SDK/bte/port_utils.c:
+	.text       start:0x80623408 end:0x806239E0
+
+RVL_SDK/bte/rfc_l2cap_if.c:
+	.text       start:0x806239E0 end:0x80624314
+
+RVL_SDK/bte/rfc_mx_fsm.c:
+	.text       start:0x80624314 end:0x80624F58
+
+RVL_SDK/bte/rfc_port_fsm.c:
+	.text       start:0x80624F58 end:0x806260F8
+
+RVL_SDK/bte/rfc_port_if.c:
+	.text       start:0x806260F8 end:0x80626624
+
+RVL_SDK/bte/rfc_ts_frames.c:
+	.text       start:0x80626624 end:0x80627C6C
+
+RVL_SDK/bte/rfc_utils.c:
+	.text       start:0x80627C6C end:0x8062844C
+
+RVL_SDK/bte/sdp_api.c:
+	.text       start:0x8062844C end:0x806292B4
+
+RVL_SDK/bte/sdp_db.c:
+	.text       start:0x806292B4 end:0x80629F80
+
+RVL_SDK/bte/sdp_discovery.c:
+	.text       start:0x80629F80 end:0x8062B1F8
+
+RVL_SDK/bte/sdp_main.c:
+	.text       start:0x8062B1F8 end:0x8062BD64
+
+RVL_SDK/bte/sdp_server.c:
+	.text       start:0x8062BD64 end:0x8062CA74
+
+RVL_SDK/bte/sdp_utils.c:
+	.text       start:0x8062CA74 end:0x8062DAB4
 
 Runtime/__va_arg.c:
 	.text       start:0x8062DAD0 end:0x8062DB98
 
+Runtime/global_destructor_chain.c:
+	.text       start:0x8062DB98 end:0x8062DBF8
+	.sbss       start:0x807D6BE0 end:0x807D6BE4
+
+Runtime/NMWException.cpp:
+	extab       start:0x800069D0 end:0x80006A18
+	extabindex  start:0x80006E28 end:0x80006E64
+	.text       start:0x8062DBF8 end:0x8062DFA8
+
 Runtime/ptmf.c:
 	.text       start:0x8062DFA8 end:0x8062E03C
+	.rodata     start:0x8065B6E0 end:0x8065B6F0
 
 Runtime/runtime.c:
 	.text       start:0x8062E03C end:0x8062E8FC
 	.rodata     start:0x8065B6F0 end:0x8065B708
 
+Runtime/__init_cpp_exceptions.cpp:
+	.text       start:0x8062E8FC end:0x8062E96C
+	.ctors      start:0x80643D20 end:0x80643D24 rename:.ctors$10
+	.dtors      start:0x80644BA0 end:0x80644BA4 rename:.dtors$10
+	.dtors      start:0x80644BA4 end:0x80644BA8 rename:.dtors$15
+	.sdata      start:0x807D0D40 end:0x807D0D44
+
 Runtime/Gecko_ExceptionPPC.cpp:
 	.text       start:0x8062E96C end:0x8062E9E0
 	.bss        start:0x807CC978 end:0x807CCAF8
+
+MSL_C/alloc.c:
+	.text       start:0x8062EA98 end:0x8062EFAC
+
+MSL_C/ansi_files.c:
+	.text       start:0x8062EFAC end:0x8062F0BC
+	.data       start:0x80727788 end:0x807278C8
+
+MSL_C/ansi_fp.c:
+	.text       start:0x8062F0BC end:0x8063093C
+
+MSL_C/buffer_io.c:
+	.text       start:0x8063094C end:0x80630A2C
+
+MSL_C/file_io.c:
+	.text       start:0x80630D34 end:0x80630F24
+
+MSL_C/FILE_POS.c:
+	.text       start:0x80630F24 end:0x80631194
+
+MSL_C/mbstring.c:
+	.text       start:0x80631194 end:0x8063138C
+
+MSL_C/mem.c:
+	.text       start:0x8063138C end:0x806314FC
+
+MSL_C/mem_funcs.c:
+	.text       start:0x806314FC end:0x806317CC
+
+MSL_C/math_api.c:
+	.text       start:0x806317CC end:0x806318C0
+
+MSL_C/printf.c:
+	.text       start:0x80633008 end:0x80633D90
+
+MSL_C/scanf.c:
+	.text       start:0x80634424 end:0x80635274
+
+MSL_C/string.c:
+	.text       start:0x8063531C end:0x8063568C
+
+MSL_C/strtold.c:
+	.text       start:0x8063568C end:0x806369B0
+
+MSL_C/strtoul.c:
+	.text       start:0x806369B0 end:0x806373D8
+
+MSL_C/wmem.c:
+	.text       start:0x806378E0 end:0x80637910
+
+MSL_C/wprintf.c:
+	.text       start:0x806390AC end:0x80639C28
+
+MSL_C/wstring.c:
+	.text       start:0x80639CB8 end:0x80639D94
+
+MetroTRK/gamedev/cust_connection/cc/exi2/GCN/EXI2_GDEV_GCN/main.c:
+	.text       start:0x8063E1B0 end:0x8063E428
+
+MetroTRK/gamedev/cust_connection/utils/gc/MWCriticalSection_gc.c:
+	.text       start:0x8063E428 end:0x8063E464
+
+MetroTRK/gamedev/cust_connection/utils/common/CircleBuffer.c:
+	.text       start:0x8063E464 end:0x8063E6A0
+
+MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/flush_cache.c:
+	.text       start:0x8063E6A0 end:0x8063E6D8
+
+MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/dolphin_trk.c:
+	.text       start:0x8063EB84 end:0x8063EE98
+
+MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/dolphin_trk_glue.c:
+	.text       start:0x8063EEA8 end:0x8063F244
+	.bss        start:0x807CD370 end:0x807CD398
+
+MetroTRK/debugger/embedded/MetroTRK/Portable/nubevent.c:
+	.text       start:0x8063F2D4 end:0x8063F470
+
+MetroTRK/debugger/embedded/MetroTRK/Portable/nubinit.c:
+	.text       start:0x8063F470 end:0x8063F54C
+
+MetroTRK/debugger/embedded/MetroTRK/Portable/serpoll.c:
+	.text       start:0x8063F68C end:0x8063F708
+	.sbss       start:0x807D6C48 end:0x807D6C4C
+
+MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/mpc_7xx_603e.c:
+	.text       start:0x8063FD7C end:0x806400A4
+
+MetroTRK/debugger/embedded/MetroTRK/Portable/msgbuf.c:
+	.text       start:0x80640108 end:0x806401E8
+
+MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/targimpl.c:
+	.text       start:0x80641A24 end:0x806431B0
+	.data       start:0x80728640 end:0x80728650
+
+NDEV/DebuggerDriver.c:
+	.text       start:0x80643258 end:0x8064358C
+
+NDEV/exi2.c:
+	.text       start:0x8064358C end:0x80643D18
