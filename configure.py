@@ -142,12 +142,12 @@ if not config.non_matching:
     config.asm_dir = None
 
 # Tool versions
-config.binutils_tag = "2.42-1"
-config.compilers_tag = "20240706"
-config.dtk_tag = "v1.3.0"
-config.objdiff_tag = "v2.4.0"
-config.sjiswrap_tag = "v1.2.0"
-config.wibo_tag = "0.6.11"
+config.binutils_tag = "2.42-2"
+config.compilers_tag = "20251118"
+config.dtk_tag = "v1.8.3"
+config.objdiff_tag = "v3.6.1"
+config.sjiswrap_tag = "v1.2.2"
+config.wibo_tag = "1.0.3"
 
 # Project
 config.config_path = Path("config") / config.version / "config.yml"
@@ -159,11 +159,7 @@ config.asflags = [
     f"-I build/{config.version}/include",
     f"--defsym version={version_num}",
 ]
-config.ldflags = [
-    "-fp hardware",
-    "-nodefaults",
-    "-warn off"
-]
+config.ldflags = ["-fp hardware", "-nodefaults", "-warn off"]
 if args.debug:
     config.ldflags.append("-g")  # Or -gdwarf-2 for Wii linkers
 if args.map:
@@ -297,6 +293,7 @@ cflags_rel = [
 
 config.linker_version = "GC/2.6"
 
+
 def GameLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     return {
         "lib": lib_name,
@@ -305,6 +302,7 @@ def GameLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
         "progress_category": "game",
         "objects": objects,
     }
+
 
 def RVLLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     return {
@@ -315,6 +313,7 @@ def RVLLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
         "objects": objects,
     }
 
+
 def NWLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     return {
         "lib": lib_name,
@@ -324,9 +323,12 @@ def NWLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
         "objects": objects,
     }
 
-Matching = True                   # Object matches and should be linked
-NonMatching = False               # Object does not match and should not be linked
-Equivalent = config.non_matching  # Object should be linked when configured with --non-matching
+
+Matching = True  # Object matches and should be linked
+NonMatching = False  # Object does not match and should not be linked
+Equivalent = (
+    config.non_matching
+)  # Object should be linked when configured with --non-matching
 
 
 # Object is only matching for specific versions
@@ -352,7 +354,6 @@ config.libs = [
             Object(NonMatching, "Runtime/Gecko_ExceptionPPC.cpp"),
         ],
     },
-
     GameLib(
         "LiveActor",
         [
@@ -367,9 +368,8 @@ config.libs = [
             Object(NonMatching, "Game/LiveActor/LodCtrl.cpp"),
             Object(NonMatching, "Game/LiveActor/RailRider.cpp"),
             Object(NonMatching, "Game/LiveActor/Spine.cpp"),
-        ]
+        ],
     ),
-
     GameLib(
         "Map",
         [
@@ -383,9 +383,8 @@ config.libs = [
             Object(NonMatching, "Game/Map/StageSwitch.cpp"),
             Object(NonMatching, "Game/Map/SwitchSynchronizer.cpp"),
             Object(NonMatching, "Game/Map/SwitchWatcher.cpp"),
-        ]
+        ],
     ),
-
     GameLib(
         "NameObj",
         [
@@ -397,10 +396,9 @@ config.libs = [
             Object(NonMatching, "Game/NameObj/NameObjFactory.cpp"),
             Object(NonMatching, "Game/NameObj/NameObjFinder.cpp"),
             Object(NonMatching, "Game/NameObj/NameObjHolder.cpp"),
-            Object(NonMatching, "Game/NameObj/NameObjRegister.cpp")
-        ]
+            Object(NonMatching, "Game/NameObj/NameObjRegister.cpp"),
+        ],
     ),
-
     GameLib(
         "Ride",
         [
@@ -409,18 +407,16 @@ config.libs = [
             Object(NonMatching, "Game/Ride/TubeSliderCrystal.cpp"),
             Object(NonMatching, "Game/Ride/TubeSliderDamageObjCreator.cpp"),
             Object(NonMatching, "Game/Ride/TubeSliderFunction.cpp"),
-        ]
+        ],
     ),
-
     GameLib(
         "System",
         [
             Object(NonMatching, "Game/System/NerveExecutor.cpp"),
             Object(NonMatching, "Game/System/ResourceInfo.cpp"),
             Object(NonMatching, "Game/System/ScenarioDataParser.cpp"),
-        ]
+        ],
     ),
-
     GameLib(
         "Util",
         [
@@ -431,24 +427,21 @@ config.libs = [
             Object(NonMatching, "Game/Util/LiveActorUtil.cpp"),
             Object(NonMatching, "Game/Util/MathUtil.cpp"),
             Object(NonMatching, "Game/Util/MtxUtil.cpp"),
-        ]
+        ],
     ),
-
     RVLLib(
         "os",
         [
             Object(NonMatching, "RVL_SDK/os/OSFont.c"),
-        ]
+        ],
     ),
-
     NWLib(
         "nw4r_lyt",
         [
             Object(NonMatching, "nw4r/lyt/lyt_group.cpp"),
             Object(NonMatching, "nw4r/lyt/lyt_layout.cpp"),
-        ]
+        ],
     ),
-
     NWLib(
         "nw4r_ut",
         [
@@ -456,7 +449,7 @@ config.libs = [
             Object(NonMatching, "nw4r/ut/ut_binaryFileFormat.cpp"),
             Object(NonMatching, "nw4r/ut/ut_CharStrmReader.cpp"),
             Object(NonMatching, "nw4r/ut/ut_TagProcessorBase.cpp"),
-        ]
+        ],
     ),
 ]
 
