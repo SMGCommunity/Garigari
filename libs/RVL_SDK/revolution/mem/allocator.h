@@ -1,15 +1,16 @@
 #ifndef ALLOCATOR_H
 #define ALLOCATOR_H
 
-#include "revolution/types.h"
-
 #ifdef __cplusplus
 extern "C" {
 #endif
 
+#include "revolution/types.h"
+#include "revolution/mem/heapCommon.h"
+
 typedef struct MEMAllocator MEMAllocator;
-typedef void* (*MEMFuncAllocatorAlloc)( MEMAllocator *, u32);
-typedef void  (*MEMFuncAllocatorFree) ( MEMAllocator *, void *);
+typedef void* (*MEMFuncAllocatorAlloc)( MEMAllocator* pAllocator, u32 size );
+typedef void  (*MEMFuncAllocatorFree) ( MEMAllocator* pAllocator, void* memBlock );
 typedef struct MEMAllocatorFunc MEMAllocatorFunc;
 
 struct MEMAllocatorFunc {
@@ -18,7 +19,7 @@ struct MEMAllocatorFunc {
 };
 
 struct MEMAllocator {
-    MEMAllocatorFunc const* pFunc;
+    const MEMAllocatorFunc* pFunc;
     void* pHeap;
     u32 heapParam1;
     u32 heapParam2;
@@ -26,6 +27,8 @@ struct MEMAllocator {
 
 void* MEMAllocFromAllocator(MEMAllocator *, u32);
 void MEMFreeToAllocator(MEMAllocator *, void *);
+void MEMInitAllocatorForExpHeap(MEMAllocator *, MEMHeapHandle, int);
+
 
 #ifdef __cplusplus
 }

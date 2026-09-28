@@ -1,23 +1,6 @@
-#ifndef MTX_H
-#define MTX_H
+#ifndef REVOLUTION_MTX_MTX_H
+#define REVOLUTION_MTX_MTX_H
 
-#include "revolution/types.h"
+#include "revolution/mtx.h"
 
-#ifdef __cplusplus
-extern "C" {
 #endif
-
-typedef f32 Mtx[3][4];
-typedef f32 (*MtxPtr)[4];
-
-#define MTXDegToRad(deg) ((deg) * 0.01745329252f)
-#define MTXRadToDeg(rad) ((rad) * 57.29577951f)
-
-void PSMTXConcat(const Mtx, const Mtx, Mtx);
-u32 PSMTXInverse(const Mtx, Mtx);
-
-#ifdef __cplusplus
-}
-#endif
-
-#endif // MTX_H

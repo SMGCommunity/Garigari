@@ -14,7 +14,7 @@ class BenefitItemOneUp;
 class BenefitItemLifeUp;
 class StageSwitchCtrl;
 class Color8;
-struct GXColor;
+typedef struct _GXColor GXColor;
 
 namespace MR {
     JMapInfo* createCsvParserFromFile(const char *, const char *, ...);
