@@ -6,3 +6,6 @@ symbols: config/SB4E01/symbols.txt
 splits: config/SB4E01/splits.txt
 mw_comment_version: 14
 ldscript_template: config/SB4E01/ldscript.lcf
+
+block_relocations:
+- source: .data:0x8070B820

@@ -55,6 +55,12 @@ typedef int BOOL;
 #endif
 
 #ifdef __MWERKS__
+#define ATTRIBUTE_ALIGN(num) __attribute__((aligned(num)))
+#else
+#define ATTRIBUTE_ALIGN(num)
+#endif
+
+#ifdef __MWERKS__
 #define __REGISTER register
 #else
 #define __REGISTER
