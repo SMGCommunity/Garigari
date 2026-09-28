@@ -8,7 +8,22 @@
 extern "C" {
 #endif
 
+#include <cstring>
+#include <file_struct.h>
+#include <va_list.h>
+
 int snprintf(char *, size_t, const char *, ...);
+
+int fprintf(FILE* stream, const char* format, ...);
+int printf(const char* format, ...);
+int sprintf(char* pStr, const char* pFormat, ...);
+int vprintf(const char*, va_list);
+int vsnprintf(char*, size_t, const char*, va_list);
+
+int sscanf(const char*, const char*, ...);
+
+int fclose(FILE*);
+int fflush(FILE*);
 
 #ifdef __cplusplus
 }

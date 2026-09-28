@@ -1,0 +1,29 @@
+#ifndef CWCTYPE_H
+#define CWCTYPE_H
+
+#include "locale.h"
+#include <wchar_t.h>
+
+typedef wchar_t wint_t;	
+
+inline int iswalpha(wint_t c) {
+    return ((c < 0) || (c >= 0x100)) ? 0 : (int)(_current_locale.ctype_cmpt_ptr->wctype_map_ptr[c] & 0x1);
+}
+
+inline int iswdigit(wint_t c) {
+    return ((c < 0) || (c >= 0x100)) ? 0 : (int)(_current_locale.ctype_cmpt_ptr->wctype_map_ptr[c] & 0x8);
+}
+
+inline int iswupper(wint_t c) {
+    return ((c < 0) || (c >= 0x100)) ? 0 : (int)(_current_locale.ctype_cmpt_ptr->wctype_map_ptr[c] & 0x200);
+}
+
+inline int iswspace(wint_t c) {
+    return ((c < 0) || (c >= 0x100)) ? 0 : (int)(_current_locale.ctype_cmpt_ptr->wctype_map_ptr[c] & 0x100);
+}
+
+inline wint_t towupper(wint_t c) {
+    return ((c < 0) || (c >= 0x100)) ? c : (wint_t)(_current_locale.ctype_cmpt_ptr->wupper_map_ptr[c]);
+}
+
+#endif // CWCTYPE_H
