@@ -1,22 +1,6 @@
-#ifndef VEC_H
-#define VEC_H
+#ifndef REVOLUTION_MTX_VEC_H
+#define REVOLUTION_MTX_VEC_H
 
-#include "revolution/types.h"
+#include "revolution/mtx.h"
 
-#ifdef __cplusplus
-extern "C" {
 #endif
-
-typedef struct Vec {
-    f32 x, y, z;
-} Vec, *VecPtr;
-
-f32 PSVECDistance(const Vec *, const Vec *);
-void PSVECCrossProduct(const Vec* srcA, const Vec* srcB, Vec* dest);
-f32 C_VECMag(const Vec *);
-
-#ifdef __cplusplus
-}
-#endif
-
-#endif // VEC_H

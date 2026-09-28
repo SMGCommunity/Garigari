@@ -239,8 +239,56 @@ cflags_sdk = [
     "-enc SJIS",
     "-i libs/RVL_SDK",
     "-i libs/MSL_C",
+    "-i libs/Runtime",
+    "-i libs/MetroTRK",
+    "-i libs/RVLFaceLib",
+    "-i src/RVL_SDK/bte",
     f"-i build/{config.version}/include",
     f"-DVERSION={version_num}",
+    "-ir libs/RVL_SDK/revolution/bte",
+    "-DREVOLUTION",
+]
+
+cflags_sdk_ipa = [
+    *cflags_sdk,
+    "-str reuse",
+    "-lang=c",
+    "-ipa file",
+    "-fp_contract off",
+    "-func_align 16",
+]
+
+cflags_sdk_exi = ["-O3" if flag == "-O4,p" else flag for flag in cflags_sdk]
+
+cflags_sdk_gc = [
+    "-nodefaults",
+    "-proc gekko",
+    "-align powerpc",
+    "-enum int",
+    "-fp hardware",
+    "-Cpp_exceptions off",
+    "-O4,p",
+    "-inline auto,level=3",
+    '-pragma "cats off"',
+    '-pragma "warn_notinlined off"',
+    "-maxerrors 1",
+    "-nosyspath",
+    "-RTTI off",
+    "-str reuse",
+    "-enc SJIS",
+    "-ipa file",
+    "-sdata 8",
+    "-sdata2 8",
+    "-i libs/RVL_SDK",
+    "-i libs/MSL_C",
+    "-i libs/Runtime",
+    "-i libs/MetroTRK",
+    "-i libs/RVLFaceLib",
+    "-i src/RVL_SDK/bte",
+    f"-i build/{config.version}/include",
+    f"-DVERSION={version_num}",
+    "-ir libs/RVL_SDK/revolution/bte",
+    "-DREVOLUTION",
 ]
 
 cflags_nw = [
@@ -326,11 +374,25 @@ def GameLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     }
 
 
-def RVLLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
+def RVLLib(
+    lib_name: str, objects: List[Object], cflags: List[str] = cflags_sdk_ipa
+) -> Dict[str, Any]:
     return {
         "lib": lib_name,
         "mw_version": "Wii/1.0",
-        "cflags": cflags_sdk,
+        "cflags": cflags,
+        "progress_category": "sdk",
+        "objects": objects,
+    }
+
+
+def RVLLibGC(
+    lib_name: str, objects: List[Object], mw_version: str = "GC/3.0a3"
+) -> Dict[str, Any]:
+    return {
+        "lib": lib_name,
+        "mw_version": mw_version,
+        "cflags": cflags_sdk_gc,
         "progress_category": "sdk",
         "objects": objects,
     }
@@ -472,9 +534,423 @@ config.libs = [
         ],
     ),
     RVLLib(
+        "gd",
+        [
+            Object(NonMatching, "RVL_SDK/gd/GDBase.c"),
+            Object(NonMatching, "RVL_SDK/gd/GDGeometry.c"),
+            Object(NonMatching, "RVL_SDK/gd/GDLight.c"),
+            Object(NonMatching, "RVL_SDK/gd/GDPixel.c"),
+            Object(NonMatching, "RVL_SDK/gd/GDTev.c"),
+            Object(NonMatching, "RVL_SDK/gd/GDTexture.c"),
+        ],
+    ),
+    RVLLib(
+        "kpad",
+        [
+            Object(NonMatching, "RVL_SDK/kpad/KPAD.c"),
+        ],
+    ),
+    RVLLib(
+        "tpl",
+        [
+            Object(NonMatching, "RVL_SDK/tpl/TPL.c"),
+        ],
+    ),
+    RVLLib(
+        "rso",
+        [
+            Object(NonMatching, "RVL_SDK/rso/RSOLink.c"),
+        ],
+    ),
+    RVLLibGC(
+        "nwc24",
+        [
+            Object(NonMatching, "RVL_SDK/nwc24/NWC24StdAPI.c"),
+            Object(NonMatching, "RVL_SDK/nwc24/NWC24FileAPI.c"),
+            Object(NonMatching, "RVL_SDK/nwc24/NWC24Manage.c"),
+            Object(NonMatching, "RVL_SDK/nwc24/NWC24MsgObj.c"),
+            Object(NonMatching, "RVL_SDK/nwc24/NWC24Mime.c"),
+            Object(NonMatching, "RVL_SDK/nwc24/NWC24DateParser.c"),
+            Object(NonMatching, "RVL_SDK/nwc24/NWC24Time.c"),
+        ],
+        "GC/3.0a5.2",
+    ),
+    RVLLib(
+        "vf",
+        [
+            Object(NonMatching, "RVL_SDK/vf/pf_clib.c"),
+            Object(
+                NonMatching,
+                "RVL_SDK/vf/pf_code.c",
+                mw_version="GC/3.0a3",
+                cflags=cflags_sdk_gc,
+            ),
+            Object(
+                NonMatching,
+                "RVL_SDK/vf/pf_str.c",
+                mw_version="GC/3.0a3",
+                cflags=cflags_sdk_gc,
+            ),
+            Object(NonMatching, "RVL_SDK/vf/pdm_bpb.c"),
+            Object(NonMatching, "RVL_SDK/vf/pdm_disk.c"),
+            Object(NonMatching, "RVL_SDK/vf/pdm_mbr.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_cache.c"),
+            Object(
+                NonMatching,
+                "RVL_SDK/vf/pf_cluster.c",
+                mw_version="GC/3.0a3",
+                cflags=cflags_sdk_gc,
+            ),
+            Object(
+                NonMatching,
+                "RVL_SDK/vf/pf_fat.c",
+                mw_version="GC/3.0a3",
+                cflags=cflags_sdk_gc,
+            ),
+            Object(NonMatching, "RVL_SDK/vf/pf_api_util.c"),
+            Object(NonMatching, "RVL_SDK/vf/d_common.c"),
+            Object(NonMatching, "RVL_SDK/vf/nand_drv.c"),
+        ],
+    ),
+    RVLLibGC(
+        "aralt",
+        [
+            Object(NonMatching, "RVL_SDK/aralt/aralt.c", extra_cflags=["-O4,s"]),
+        ],
+    ),
+    RVLLib(
+        "base",
+        [
+            Object(NonMatching, "RVL_SDK/base/PPCArch.c"),
+        ],
+    ),
+    RVLLib(
         "os",
         [
+            Object(NonMatching, "RVL_SDK/os/OS.c"),
+            Object(NonMatching, "RVL_SDK/os/OSAlarm.c"),
+            Object(NonMatching, "RVL_SDK/os/OSAlloc.c"),
+            Object(NonMatching, "RVL_SDK/os/OSArena.c"),
+            Object(NonMatching, "RVL_SDK/os/OSAudioSystem.c"),
+            Object(
+                NonMatching,
+                "RVL_SDK/os/OSCache.c",
+                mw_version="GC/3.0a5.2",
+                cflags=cflags_sdk_gc,
+            ),
+            Object(NonMatching, "RVL_SDK/os/OSContext.c"),
+            Object(NonMatching, "RVL_SDK/os/OSError.c"),
+            Object(
+                NonMatching,
+                "RVL_SDK/os/OSExec.c",
+                extra_cflags=["-opt nolifetimes,noloop"],
+            ),
+            Object(NonMatching, "RVL_SDK/os/OSFatal.c"),
             Object(NonMatching, "RVL_SDK/os/OSFont.c"),
+            Object(NonMatching, "RVL_SDK/os/OSInterrupt.c"),
+            Object(
+                NonMatching,
+                "RVL_SDK/os/OSMessage.c",
+                mw_version="GC/3.0a5.2",
+                cflags=cflags_sdk_gc,
+            ),
+            Object(NonMatching, "RVL_SDK/os/OSMemory.c"),
+            Object(
+                NonMatching,
+                "RVL_SDK/os/OSMutex.c",
+                mw_version="GC/3.0a5.2",
+                cflags=cflags_sdk_gc,
+            ),
+            Object(NonMatching, "RVL_SDK/os/OSReboot.c"),
+            Object(NonMatching, "RVL_SDK/os/OSReset.c"),
+            Object(NonMatching, "RVL_SDK/os/OSRtc.c"),
+            Object(NonMatching, "RVL_SDK/os/OSSync.c"),
+            Object(NonMatching, "RVL_SDK/os/OSThread.c"),
+            Object(NonMatching, "RVL_SDK/os/OSTime.c"),
+            Object(NonMatching, "RVL_SDK/os/OSUtf.c"),
+            Object(NonMatching, "RVL_SDK/os/OSIpc.c"),
+            Object(
+                NonMatching,
+                "RVL_SDK/os/OSStateTM.c",
+                extra_cflags=[
+                    "-flag no-opt_generateconditionalassignments",
+                    "-flag no-opt_rebuildconditionals",
+                ],
+            ),
+            Object(NonMatching, "RVL_SDK/os/OSPlayRecord.c"),
+            Object(NonMatching, "RVL_SDK/os/OSStateFlags.c"),
+            Object(NonMatching, "RVL_SDK/os/OSNandbootInfo.c"),
+            Object(
+                NonMatching,
+                "RVL_SDK/os/OSPlayTime.c",
+                mw_version="GC/3.0a5.2",
+                cflags=cflags_sdk_gc,
+            ),
+            Object(NonMatching, "RVL_SDK/os/__ppc_eabi_init.c"),
+        ],
+    ),
+    RVLLib(
+        "exi",
+        [
+            Object(NonMatching, "RVL_SDK/exi/EXIBios.c"),
+        ],
+        cflags_sdk_exi,
+    ),
+    RVLLib(
+        "si",
+        [
+            Object(NonMatching, "RVL_SDK/si/SIBios.c"),
+        ],
+    ),
+    RVLLib(
+        "vi",
+        [
+            Object(NonMatching, "RVL_SDK/vi/vi.c"),
+            Object(NonMatching, "RVL_SDK/vi/vi3in1.c"),
+        ],
+    ),
+    RVLLib(
+        "mtx",
+        [
+            Object(NonMatching, "RVL_SDK/mtx/mtx.c"),
+            Object(NonMatching, "RVL_SDK/mtx/mtxvec.c"),
+            Object(NonMatching, "RVL_SDK/mtx/mtx44.c"),
+            Object(
+                NonMatching,
+                "RVL_SDK/mtx/vec.c",
+                mw_version="GC/3.0a3",
+                cflags=cflags_sdk_gc,
+            ),
+            Object(NonMatching, "RVL_SDK/mtx/quat.c"),
+        ],
+    ),
+    RVLLib(
+        "gx",
+        [
+            Object(NonMatching, "RVL_SDK/gx/GXInit.c"),
+            Object(NonMatching, "RVL_SDK/gx/GXFifo.c"),
+            Object(NonMatching, "RVL_SDK/gx/GXAttr.c"),
+            Object(NonMatching, "RVL_SDK/gx/GXMisc.c"),
+            Object(NonMatching, "RVL_SDK/gx/GXGeometry.c"),
+            Object(NonMatching, "RVL_SDK/gx/GXFrameBuf.c"),
+            Object(NonMatching, "RVL_SDK/gx/GXLight.c"),
+            Object(NonMatching, "RVL_SDK/gx/GXTexture.c"),
+            Object(NonMatching, "RVL_SDK/gx/GXBump.c"),
+            Object(NonMatching, "RVL_SDK/gx/GXTev.c"),
+            Object(NonMatching, "RVL_SDK/gx/GXPixel.c"),
+            Object(NonMatching, "RVL_SDK/gx/GXDisplayList.c"),
+            Object(NonMatching, "RVL_SDK/gx/GXTransform.c"),
+            Object(NonMatching, "RVL_SDK/gx/GXPerf.c"),
+        ],
+    ),
+    RVLLib(
+        "dvd",
+        [
+            Object(
+                NonMatching,
+                "RVL_SDK/dvd/dvdfs.c",
+                mw_version="GC/3.0a3",
+                cflags=cflags_sdk_gc,
+            ),
+            Object(NonMatching, "RVL_SDK/dvd/dvd.c"),
+            Object(
+                NonMatching,
+                "RVL_SDK/dvd/dvdFatal.c",
+                mw_version="GC/3.0a3",
+                cflags=cflags_sdk_gc,
+            ),
+            Object(NonMatching, "RVL_SDK/dvd/dvdDeviceError.c"),
+            Object(NonMatching, "RVL_SDK/dvd/dvd_broadway.c"),
+        ],
+    ),
+    RVLLibGC(
+        "ai",
+        [
+            Object(NonMatching, "RVL_SDK/ai/ai.c"),
+        ],
+    ),
+    RVLLib(
+        "mem",
+        [
+            Object(NonMatching, "RVL_SDK/mem/mem_expHeap.c"),
+            Object(NonMatching, "RVL_SDK/mem/mem_allocator.c"),
+        ],
+    ),
+    RVLLib(
+        "dsp",
+        [
+            Object(NonMatching, "RVL_SDK/dsp/dsp.c"),
+        ],
+    ),
+    RVLLib(
+        "nand",
+        [
+            Object(NonMatching, "RVL_SDK/nand/nand.c"),
+            Object(NonMatching, "RVL_SDK/nand/NANDOpenClose.c"),
+            Object(
+                NonMatching,
+                "RVL_SDK/nand/NANDCore.c",
+                mw_version="GC/3.0a3",
+                cflags=cflags_sdk_gc,
+            ),
+            Object(NonMatching, "RVL_SDK/nand/NANDCheck.c"),
+            Object(NonMatching, "RVL_SDK/nand/NANDLogging.c"),
+        ],
+    ),
+    RVLLib(
+        "sc",
+        [
+            Object(NonMatching, "RVL_SDK/sc/scsystem.c"),
+            Object(
+                NonMatching,
+                "RVL_SDK/sc/scapi.c",
+                mw_version="GC/3.0a3",
+                cflags=cflags_sdk_gc,
+            ),
+        ],
+    ),
+    RVLLib(
+        "arc",
+        [
+            Object(NonMatching, "RVL_SDK/arc/arc.c"),
+        ],
+    ),
+    RVLLib(
+        "esp",
+        [
+            Object(NonMatching, "RVL_SDK/esp/esp.c"),
+        ],
+    ),
+    RVLLib(
+        "ipc",
+        [
+            Object(
+                NonMatching,
+                "RVL_SDK/ipc/ipcMain.c",
+                mw_version="GC/3.0a3",
+                cflags=cflags_sdk_gc,
+            ),
+            Object(NonMatching, "RVL_SDK/ipc/ipcclt.c"),
+            Object(NonMatching, "RVL_SDK/ipc/memory.c"),
+            Object(NonMatching, "RVL_SDK/ipc/ipcProfile.c"),
+        ],
+    ),
+    RVLLib(
+        "fs",
+        [
+            Object(NonMatching, "RVL_SDK/fs/fs.c"),
+        ],
+    ),
+    RVLLib(
+        "wpad",
+        [
+            Object(NonMatching, "RVL_SDK/wpad/WPAD.c", extra_cflags=["-fp off"]),
+        ],
+    ),
+    RVLLib(
+        "wud",
+        [
+            Object(NonMatching, "RVL_SDK/wud/WUD.c"),
+        ],
+    ),
+    RVLLib(
+        "euart",
+        [
+            Object(NonMatching, "RVL_SDK/euart/euart.c"),
+        ],
+    ),
+    RVLLib(
+        "usb",
+        [
+            Object(NonMatching, "RVL_SDK/usb/usb.c"),
+        ],
+    ),
+    RVLLibGC(
+        "bte",
+        [
+            Object(
+                NonMatching,
+                "RVL_SDK/bte/gki_buffer.c",
+                mw_version="Wii/1.0",
+                cflags=cflags_sdk_ipa,
+            ),
+            Object(
+                NonMatching,
+                "RVL_SDK/bte/gki_time.c",
+                mw_version="Wii/1.0",
+                cflags=cflags_sdk_ipa,
+            ),
+            Object(
+                NonMatching,
+                "RVL_SDK/bte/gki_ppc.c",
+                mw_version="Wii/1.0",
+                cflags=cflags_sdk_ipa,
+            ),
+            Object(
+                NonMatching,
+                "RVL_SDK/bte/hcisu_h2.c",
+                mw_version="Wii/1.0",
+                cflags=cflags_sdk_ipa,
+            ),
+            Object(NonMatching, "RVL_SDK/bte/uusb_ppc.c", mw_version="GC/3.0a5.2"),
+            Object(NonMatching, "RVL_SDK/bte/bte_hcisu.c"),
+            Object(
+                NonMatching,
+                "RVL_SDK/bte/bte_logmsg.c",
+                mw_version="Wii/1.0",
+                cflags=cflags_sdk_ipa,
+            ),
+            Object(NonMatching, "RVL_SDK/bte/bte_main.c"),
+            Object(NonMatching, "RVL_SDK/bte/btu_task1.c"),
+            Object(NonMatching, "RVL_SDK/bte/bd.c"),
+            Object(NonMatching, "RVL_SDK/bte/bta_sys_conn.c"),
+            Object(NonMatching, "RVL_SDK/bte/bta_sys_main.c"),
+            Object(NonMatching, "RVL_SDK/bte/ptim.c"),
+            Object(NonMatching, "RVL_SDK/bte/utl.c"),
+            Object(NonMatching, "RVL_SDK/bte/bta_dm_act.c"),
+            Object(NonMatching, "RVL_SDK/bte/bta_dm_api.c"),
+            Object(NonMatching, "RVL_SDK/bte/bta_dm_main.c"),
+            Object(NonMatching, "RVL_SDK/bte/bta_dm_pm.c"),
+            Object(NonMatching, "RVL_SDK/bte/bta_hh_act.c"),
+            Object(NonMatching, "RVL_SDK/bte/bta_hh_api.c"),
+            Object(NonMatching, "RVL_SDK/bte/bta_hh_main.c"),
+            Object(NonMatching, "RVL_SDK/bte/bta_hh_utils.c"),
+            Object(NonMatching, "RVL_SDK/bte/btm_acl.c"),
+            Object(NonMatching, "RVL_SDK/bte/btm_dev.c"),
+            Object(NonMatching, "RVL_SDK/bte/btm_devctl.c"),
+            Object(NonMatching, "RVL_SDK/bte/btm_discovery.c"),
+            Object(NonMatching, "RVL_SDK/bte/btm_inq.c"),
+            Object(NonMatching, "RVL_SDK/bte/btm_pm.c"),
+            Object(NonMatching, "RVL_SDK/bte/btm_sco.c"),
+            Object(NonMatching, "RVL_SDK/bte/btm_sec.c"),
+            Object(NonMatching, "RVL_SDK/bte/btu_hcif.c"),
+            Object(NonMatching, "RVL_SDK/bte/btu_init.c"),
+            Object(NonMatching, "RVL_SDK/bte/gap_conn.c"),
+            Object(NonMatching, "RVL_SDK/bte/gap_utils.c"),
+            Object(NonMatching, "RVL_SDK/bte/hcicmds.c"),
+            Object(NonMatching, "RVL_SDK/bte/hidd_conn.c"),
+            Object(NonMatching, "RVL_SDK/bte/hidd_pm.c"),
+            Object(NonMatching, "RVL_SDK/bte/hidh_api.c"),
+            Object(NonMatching, "RVL_SDK/bte/hidh_conn.c"),
+            Object(NonMatching, "RVL_SDK/bte/l2c_api.c"),
+            Object(NonMatching, "RVL_SDK/bte/l2c_csm.c"),
+            Object(NonMatching, "RVL_SDK/bte/l2c_link.c"),
+            Object(NonMatching, "RVL_SDK/bte/l2c_main.c"),
+            Object(NonMatching, "RVL_SDK/bte/l2c_utils.c"),
+            Object(NonMatching, "RVL_SDK/bte/port_rfc.c"),
+            Object(NonMatching, "RVL_SDK/bte/port_utils.c"),
+            Object(NonMatching, "RVL_SDK/bte/rfc_l2cap_if.c"),
+            Object(NonMatching, "RVL_SDK/bte/rfc_mx_fsm.c"),
+            Object(NonMatching, "RVL_SDK/bte/rfc_port_fsm.c"),
+            Object(NonMatching, "RVL_SDK/bte/rfc_port_if.c"),
+            Object(NonMatching, "RVL_SDK/bte/rfc_ts_frames.c"),
+            Object(NonMatching, "RVL_SDK/bte/rfc_utils.c"),
+            Object(NonMatching, "RVL_SDK/bte/sdp_api.c"),
+            Object(NonMatching, "RVL_SDK/bte/sdp_db.c"),
+            Object(NonMatching, "RVL_SDK/bte/sdp_discovery.c"),
+            Object(NonMatching, "RVL_SDK/bte/sdp_main.c"),
+            Object(NonMatching, "RVL_SDK/bte/sdp_server.c"),
+            Object(NonMatching, "RVL_SDK/bte/sdp_utils.c"),
         ],
     ),
     NWLib(

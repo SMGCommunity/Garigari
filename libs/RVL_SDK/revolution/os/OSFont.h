@@ -1,7 +1,7 @@
 #ifndef OSFONT_H
 #define OSFONT_H
 
-#include "revolution.h"
+#include "revolution/types.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -34,6 +34,7 @@ typedef struct OSFontHeader {
     u8  c3;
 } OSFontHeader;
 
+u32 OSLoadFont(OSFontHeader *, void *);
 char* OSGetFontTexel(const char *, void *, s32, s32, s32 *);
 
 
