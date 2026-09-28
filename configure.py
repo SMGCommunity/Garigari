@@ -265,6 +265,16 @@ cflags_nw = [
     f"-DVERSION={version_num}",
 ]
 
+cflags_trk = [
+    *cflags_base,
+    "-use_lmw_stmw on",
+    "-func_align 4",
+    "-pool off",
+    "-i libs/MetroTRK",
+    "-i libs/RVL_SDK",
+    "-i libs/MSL_C",
+]
+
 # Debug flags
 if args.debug:
     # Or -sym dwarf-2 for Wii compilers
@@ -320,6 +330,16 @@ def NWLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
         "mw_version": "Wii/1.3",
         "cflags": cflags_nw,
         "progress_category": "nw4r",
+        "objects": objects,
+    }
+
+
+def TRKLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
+    return {
+        "lib": lib_name,
+        "mw_version": "Wii/1.0a",
+        "cflags": cflags_trk,
+        "progress_category": "trk",
         "objects": objects,
     }
 
@@ -451,6 +471,37 @@ config.libs = [
             Object(NonMatching, "nw4r/ut/ut_TagProcessorBase.cpp"),
         ],
     ),
+    TRKLib(
+        "MetroTRK",
+        [
+            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/exception.s"),
+            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Export/targsupp.s"),
+            Object(Matching, "MetroTRK/gamedev/cust_connection/cc/exi2/GCN/EXI2_GDEV_GCN/main.c"),
+            Object(Matching, "MetroTRK/gamedev/cust_connection/utils/gc/MWCriticalSection_gc.c"),
+            Object(Matching, "MetroTRK/gamedev/cust_connection/utils/common/CircleBuffer.c"),
+            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/flush_cache.c"),
+            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/main_TRK.c"),
+            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/mainloop.c"),
+            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/mem_TRK.c"),
+            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/dispatch.c"),
+            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/dolphin_trk.c"),
+            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/dolphin_trk_glue.c", extra_cflags=["-str pool"]),
+            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/notify.c"),
+            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/nubevent.c"),
+            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/nubinit.c"),
+            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/serpoll.c"),
+            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/string_TRK.c"),
+            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/support.c", extra_cflags=["-str pool"]),
+            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/targcont.c"),
+            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/mpc_7xx_603e.c"),
+            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/msg.c"),
+            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/msgbuf.c"),
+            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/msghndlr.c", extra_cflags=["-str pool"]),
+            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Export/mslsupp.c"),
+            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/targimpl.c"),
+            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/target_options.c"),
+        ],
+    ),
 ]
 
 # Optional extra categories for progress tracking
@@ -459,6 +510,7 @@ config.progress_categories = [
     ProgressCategory("game", "Game Code"),
     ProgressCategory("sdk", "SDK Code"),
     ProgressCategory("nw4r", "NintendoWare Code"),
+    ProgressCategory("trk", "MetroTRK Code"),
 ]
 config.progress_each_module = args.verbose
 
