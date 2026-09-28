@@ -15,6 +15,21 @@ char* strrchr(const char *, int);
 char* strstr(const char *, const char *);
 char* strncpy(char *, const char *, size_t);
 
+int strncmp(const char*, const char*, size_t);
+
+void* memcpy(void*, const void*, unsigned long);
+void* memmove(void*, const void*, size_t);
+void* memchr(const void*, int, size_t);
+int memcpi(const void*, const void*, size_t);
+
+int memcmp(const void*, const void*, size_t);
+
+char* strcpy(char* pDest, const char* pSrc);
+
+char* strcat(char*, const char*);
+
+int strcasecmp(const char*, const char*);
+
 #ifdef __cplusplus
 }
 #endif
