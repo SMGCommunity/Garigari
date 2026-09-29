@@ -1743,6 +1743,10 @@ Game/Enemy/MechanicKoopaMini.cpp:
 	.ctors      start:0x806441A0 end:0x806441A4
 	.bss        start:0x80729248 end:0x80729258
 
+Game/Enemy/Menbo.cpp:
+	.text       start:0x801C3A50 end:0x801C6330
+	.ctors      start:0x806441A4 end:0x806441A8
+
 Game/Enemy/Meramera.cpp:
 	.text       start:0x801C6330 end:0x801C9BA0
 	.ctors      start:0x806441A8 end:0x806441AC
