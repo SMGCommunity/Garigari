@@ -2,6 +2,7 @@
 
 #include "NameObj/NameObj.hpp"
 #include "LiveActor/LiveActorFlag.hpp"
+#include "Liveactor/ActorSoundHolder.hpp"
 #include <JGeometry.hpp>
 
 class ActorActionKeeper;
