@@ -313,6 +313,32 @@ cflags_nw = [
     f"-DVERSION={version_num}",
 ]
 
+cflags_rfl = [
+    "-nodefaults",
+    "-proc gekko",
+    "-align powerpc",
+    "-enum int",
+    "-fp hardware",
+    "-Cpp_exceptions on",
+    "-O4,p",
+    "-inline auto",
+    '-pragma "cats off"',
+    '-pragma "warn_notinlined off"',
+    "-maxerrors 1",
+    "-nosyspath",
+    "-RTTI off",
+    "-str reuse",
+    "-enc SJIS",
+    "-ipa file",
+    "-i libs/MSL_C",
+    "-i libs/MetroTRK",
+    "-i libs/RVL_SDK",
+    "-i libs/Runtime",
+    "-i libs/RVLFaceLib",
+    f"-i build/{config.version}/include",
+    f"-DVERSION={version_num}",
+]
+
 cflags_msl = [
     *cflags_base,
     "-use_lmw_stmw on",
@@ -408,6 +434,16 @@ def NWLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     }
 
 
+def RFLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
+    return {
+        "lib": lib_name,
+        "mw_version": "Wii/1.0",
+        "cflags": cflags_rfl,
+        "progress_category": "rfl",
+        "objects": objects,
+    }
+
+
 def MSLLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     return {
         "lib": lib_name,
@@ -443,6 +479,24 @@ def MatchingFor(*versions):
 config.warn_missing_config = True
 config.warn_missing_source = False
 config.libs = [
+    RFLib(
+        "RVLFaceLib",
+        [
+            Object(NonMatching, "RVLFaceLib/RFL_System.c"),
+            Object(NonMatching, "RVLFaceLib/RFL_NANDLoader.c"),
+            Object(NonMatching, "RVLFaceLib/RFL_NANDAccess.c"),
+            Object(NonMatching, "RVLFaceLib/RFL_Model.c"),
+            Object(NonMatching, "RVLFaceLib/RFL_MakeTex.c"),
+            Object(NonMatching, "RVLFaceLib/RFL_Icon.c"),
+            Object(Matching, "RVLFaceLib/RFL_HiddenDatabase.c"),
+            Object(NonMatching, "RVLFaceLib/RFL_Database.c"),
+            Object(NonMatching, "RVLFaceLib/RFL_Controller.c"),
+            Object(NonMatching, "RVLFaceLib/RFL_MiddleDatabase.c"),
+            Object(Matching, "RVLFaceLib/RFL_DefaultDatabase.c"),
+            Object(NonMatching, "RVLFaceLib/RFL_DataUtility.c"),
+            Object(Matching, "RVLFaceLib/RFL_Format.c"),
+        ],
+    ),
     {
         "lib": "Runtime.PPCEABI.H",
         "mw_version": config.linker_version,
@@ -1229,6 +1283,7 @@ config.progress_categories = [
     ProgressCategory("game", "Game Code"),
     ProgressCategory("sdk", "SDK Code"),
     ProgressCategory("nw4r", "NintendoWare Code"),
+    ProgressCategory("rfl", "RVLFaceLib"),
     ProgressCategory("msl", "MSL_C Code"),
     ProgressCategory("trk", "MetroTRK Code"),
 ]
