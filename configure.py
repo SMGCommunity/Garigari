@@ -313,6 +313,39 @@ cflags_nw = [
     f"-DVERSION={version_num}",
 ]
 
+cflags_jsys = [
+    "-nodefaults",
+    "-proc gekko",
+    "-align powerpc",
+    "-enum int",
+    "-fp hardware",
+    "-Cpp_exceptions off",
+    "-O4,s",
+    "-inline auto",
+    '-pragma "cats off"',
+    '-pragma "warn_notinlined off"',
+    "-maxerrors 1",
+    "-nosyspath",
+    "-RTTI off",
+    "-fp_contract off",
+    "-str reuse",
+    "-enc SJIS",
+    "-sdata 4",
+    "-sdata2 4",
+    "-use_lmw_stmw off",
+    "-i include",
+    "-i libs/JSystem/include",
+    "-i libs/RVL_SDK",
+    "-i libs/MSL_C",
+    "-i libs/MSL_C++/include",
+    f"-i build/{config.version}/include",
+    f"-DVERSION={version_num}",
+]
+
+cflags_jsys_jaudio = [*cflags_jsys, "-ipa file", "-sym on"]
+cflags_jsys_jpa = [*cflags_jsys, "-ipa file"]
+
+
 cflags_rfl = [
     "-nodefaults",
     "-proc gekko",
@@ -434,6 +467,36 @@ def NWLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     }
 
 
+def JSysLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
+    return {
+        "lib": lib_name,
+        "mw_version": "Wii/1.0",
+        "cflags": cflags_jsys,
+        "progress_category": "jsys",
+        "objects": objects,
+    }
+
+
+def JSys_JAudioLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
+    return {
+        "lib": lib_name,
+        "mw_version": "Wii/1.0",
+        "cflags": cflags_jsys_jaudio,
+        "progress_category": "jsys",
+        "objects": objects,
+    }
+
+
+def JSys_JParticleLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
+    return {
+        "lib": lib_name,
+        "mw_version": "Wii/1.0",
+        "cflags": cflags_jsys_jpa,
+        "progress_category": "jsys",
+        "objects": objects,
+    }
+
+
 def RFLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     return {
         "lib": lib_name,
@@ -479,6 +542,442 @@ def MatchingFor(*versions):
 config.warn_missing_config = True
 config.warn_missing_source = False
 config.libs = [
+    JSysLib(
+        "J2DGraph",
+        [
+            Object(
+                NonMatching,
+                "JSystem/J2DGraph/J2DGrafContext.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(NonMatching, "JSystem/J2DGraph/J2DOrthoGraph.cpp"),
+            Object(NonMatching, "JSystem/J2DGraph/J2DMatBlock.cpp"),
+            Object(NonMatching, "JSystem/J2DGraph/J2DPane.cpp"),
+            Object(NonMatching, "JSystem/J2DGraph/J2DScreen.cpp"),
+            Object(
+                NonMatching,
+                "JSystem/J2DGraph/J2DPicture.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(Matching, "JSystem/J2DGraph/J2DManage.cpp"),
+        ],
+    ),
+    JSysLib(
+        "J3DGraphAnimator",
+        [
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphAnimator/J3DShapeTable.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphAnimator/J3DJointTree.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphAnimator/J3DModelData.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphAnimator/J3DMtxBuffer.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphAnimator/J3DModel.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphAnimator/J3DAnimation.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphAnimator/J3DMaterialAnm.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphAnimator/J3DSkinDeform.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphAnimator/J3DCluster.cpp",
+                extra_cflags=["-ipa file"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphAnimator/J3DJoint.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphAnimator/J3DMaterialAttach.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+        ],
+    ),
+    JSysLib(
+        "J3DGraphBase",
+        [
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphBase/J3DGD.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(
+                NonMatching, "JSystem/J3DGraphBase/J3DSys.cpp", extra_cflags=["-ipa file"]
+            ),
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphBase/J3DVertex.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphBase/J3DTransform.cpp",
+                extra_cflags=["-ipa file", "-sym on", "-opt nolifetimes,nocse"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphBase/J3DPacket.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphBase/J3DShapeMtx.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphBase/J3DShapeDraw.cpp",
+                extra_cflags=["-ipa file"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphBase/J3DShape.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphBase/J3DMaterial.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphBase/J3DMatBlock.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphBase/J3DTevs.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphBase/J3DDrawBuffer.cpp",
+                extra_cflags=["-ipa file"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphBase/J3DStruct.cpp",
+                extra_cflags=["-ipa file"],
+            ),
+        ],
+    ),
+    JSysLib(
+        "J3DGraphLoader",
+        [
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphLoader/J3DMaterialFactory.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphLoader/J3DMaterialFactory_v21.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphLoader/J3DModelLoader.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphLoader/J3DModelLoaderCalcSize.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphLoader/J3DJointFactory.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphLoader/J3DShapeFactory.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphLoader/J3DAnmLoader.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+        ],
+    ),
+    JSys_JAudioLib(
+        "JAudio2",
+        [
+            Object(NonMatching, "JSystem/JAudio2/JASCalc.cpp", cflags=cflags_jsys),
+            Object(NonMatching, "JSystem/JAudio2/JASTaskThread.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASDvdThread.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASCallback.cpp"),
+            Object(
+                NonMatching, "JSystem/JAudio2/JASHeapCtrl.cpp", mw_version="GC/3.0a3.2"
+            ),
+            Object(NonMatching, "JSystem/JAudio2/JASResArcLoader.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASProbe.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASReport.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASCmdStack.cpp"),
+            Object(
+                NonMatching,
+                "JSystem/JAudio2/JASTrack.cpp",
+                cflags=[*cflags_jsys_jaudio, "-inline off"],
+            ),
+            Object(NonMatching, "JSystem/JAudio2/JASTrackPort.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASRegisterParam.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASSeqCtrl.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASSeqParser.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASSeqReader.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASAramStream.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASBank.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASBasicBank.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASVoiceBank.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASBasicInst.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASDrumSet.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASBasicWaveBank.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASSimpleWaveBank.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASInstSense.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASInstRand.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASWSParser.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASBNKParser.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASWaveArcLoader.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASChannel.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASLfo.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASOscillator.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASAiCtrl.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASAudioThread.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASAudioReseter.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASDSPChannel.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASDSPInterface.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASDriverIF.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASSoundParams.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAIAudible.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAIAudience.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAISe.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAISeMgr.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAISeq.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAISeqDataMgr.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAISeqMgr.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAISound.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAISoundChild.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAISoundHandles.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAISoundInfo.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAISoundParams.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAISoundStarter.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAIStream.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAIStreamDataMgr.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAIStreamMgr.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAUAudience.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAUAudioArcInterpreter.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAUAudioArcLoader.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAUBankTable.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAUInitializer.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAUSectionHeap.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAUSeqCollection.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAUSeqDataBlockMgr.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAUSoundAnimator.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAUSoundMgr.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAUSoundObject.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAUSoundTable.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAUStdSoundInfo.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAUStreamFileTable.cpp"),
+        ],
+    ),
+    JSysLib(
+        "JGadget",
+        [
+            Object(
+                Matching, "JSystem/JGadget/hashcode.cpp", extra_cflags=["-ipa file"]
+            ),
+            Object(
+                NonMatching, "JSystem/JGadget/linklist.cpp", extra_cflags=["-ipa file"]
+            ),
+        ],
+    ),
+    JSysLib(
+        "JKernel",
+        [
+            Object(
+                NonMatching, "JSystem/JKernel/JKRHeap.cpp", extra_cflags=["-ipa file"]
+            ),
+            Object(NonMatching, "JSystem/JKernel/JKRExpHeap.cpp"),
+            Object(NonMatching, "JSystem/JKernel/JKRSolidHeap.cpp"),
+            Object(NonMatching, "JSystem/JKernel/JKRUnitHeap.cpp"),
+            Object(NonMatching, "JSystem/JKernel/JKRDisposer.cpp"),
+            Object(
+                NonMatching,
+                "JSystem/JKernel/JKRThread.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/JKernel/JKRAram.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/JKernel/JKRAramHeap.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(NonMatching, "JSystem/JKernel/JKRAramBlock.cpp"),
+            Object(NonMatching, "JSystem/JKernel/JKRAramPiece.cpp"),
+            Object(NonMatching, "JSystem/JKernel/JKRAramStream.cpp"),
+            Object(
+                NonMatching,
+                "JSystem/JKernel/JKRFileLoader.cpp",
+                extra_cflags=["-ipa file"],
+            ),
+            Object(NonMatching, "JSystem/JKernel/JKRFileFinder.cpp"),
+            Object(NonMatching, "JSystem/JKernel/JKRArchivePub.cpp"),
+            Object(NonMatching, "JSystem/JKernel/JKRArchivePri.cpp"),
+            Object(NonMatching, "JSystem/JKernel/JKRMemArchive.cpp"),
+            Object(
+                NonMatching,
+                "JSystem/JKernel/JKRAramArchive.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(NonMatching, "JSystem/JKernel/JKRDvdArchive.cpp"),
+            Object(NonMatching, "JSystem/JKernel/JKRCompArchive.cpp"),
+            Object(
+                NonMatching,
+                "JSystem/JKernel/JKRDvdFile.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/JKernel/JKRDvdRipper.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/JKernel/JKRDvdAramRipper.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(NonMatching, "JSystem/JKernel/JKRDecomp.cpp"),
+        ],
+    ),
+    JSysLib(
+        "JMath",
+        [
+            Object(NonMatching, "JSystem/JMath/JMath.cpp", extra_cflags=["-opt nocse"]),
+            Object(NonMatching, "JSystem/JMath/random.cpp"),
+            Object(
+                NonMatching,
+                "JSystem/JMath/JMATrigonometric.cpp",
+                extra_cflags=["-opt nocse"],
+            ),
+        ],
+    ),
+    JSys_JParticleLib(
+        "JParticle",
+        [
+            Object(NonMatching, "JSystem/JParticle/JPAResourceManager.cpp"),
+            Object(NonMatching, "JSystem/JParticle/JPAResource.cpp"),
+            Object(
+                NonMatching,
+                "JSystem/JParticle/JPABaseShape.cpp",
+                extra_cflags=["-sym on"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/JParticle/JPAExtraShape.cpp",
+                extra_cflags=["-opt nocse"],
+            ),
+            Object(NonMatching, "JSystem/JParticle/JPAChildShape.cpp"),
+            Object(NonMatching, "JSystem/JParticle/JPAExTexShape.cpp"),
+            Object(
+                NonMatching,
+                "JSystem/JParticle/JPADynamicsBlock.cpp",
+                extra_cflags=["-opt nolifetimes,nocse,noprop", "-sym on"],
+            ),
+            Object(NonMatching, "JSystem/JParticle/JPAFieldBlock.cpp"),
+            Object(NonMatching, "JSystem/JParticle/JPAKeyBlock.cpp"),
+            Object(
+                NonMatching, "JSystem/JParticle/JPATexture.cpp", extra_cflags=["-ipa off"]
+            ),
+            Object(Matching, "JSystem/JParticle/JPAResourceLoader.cpp"),
+            Object(NonMatching, "JSystem/JParticle/JPAEmitterManager.cpp"),
+            Object(NonMatching, "JSystem/JParticle/JPAEmitter.cpp"),
+            Object(NonMatching, "JSystem/JParticle/JPAParticle.cpp"),
+            Object(
+                NonMatching,
+                "JSystem/JParticle/JPAMath.cpp",
+                extra_cflags=["-opt nolifetimes,nocse"],
+            ),
+        ],
+    ),
+    JSysLib(
+        "JSupport",
+        [
+            Object(NonMatching, "JSystem/JSupport/JSUList.cpp"),
+            Object(NonMatching, "JSystem/JSupport/JSUInputStream.cpp"),
+            Object(NonMatching, "JSystem/JSupport/JSUOutputStream.cpp"),
+            Object(NonMatching, "JSystem/JSupport/JSUMemoryStream.cpp"),
+            Object(
+                NonMatching,
+                "JSystem/JSupport/JSUFileStream.cpp",
+                extra_cflags=["-ipa file"],
+            ),
+        ],
+    ),
+    JSysLib(
+        "JUtility",
+        [
+            Object(
+                NonMatching,
+                "JSystem/JUtility/JUTTexture.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(NonMatching, "JSystem/JUtility/JUTPalette.cpp"),
+            Object(NonMatching, "JSystem/JUtility/JUTNameTab.cpp"),
+            Object(NonMatching, "JSystem/JUtility/JUTFont.cpp"),
+            Object(
+                NonMatching,
+                "JSystem/JUtility/JUTException.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(NonMatching, "JSystem/JUtility/JUTDirectPrint.cpp"),
+            Object(NonMatching, "JSystem/JUtility/JUTAssert.cpp"),
+            Object(
+                NonMatching,
+                "JSystem/JUtility/JUTVideo.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(NonMatching, "JSystem/JUtility/JUTXfb.cpp"),
+            Object(
+                NonMatching,
+                "JSystem/JUtility/JUTConsole.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(NonMatching, "JSystem/JUtility/JUTDbPrint.cpp"),
+        ],
+    ),
     RFLib(
         "RVLFaceLib",
         [
@@ -1283,6 +1782,7 @@ config.progress_categories = [
     ProgressCategory("game", "Game Code"),
     ProgressCategory("sdk", "SDK Code"),
     ProgressCategory("nw4r", "NintendoWare Code"),
+    ProgressCategory("jsys", "JSystem"),
     ProgressCategory("rfl", "RVLFaceLib"),
     ProgressCategory("msl", "MSL_C Code"),
     ProgressCategory("trk", "MetroTRK Code"),
