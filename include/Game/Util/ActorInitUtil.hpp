@@ -21,7 +21,7 @@ namespace MR {
     };
 
     bool isDataEnable(JMapInfo *, const char *);
-    bool getInitSwitchType(const char **, const JMapInfo *, const char *);
+    bool getInitSwitchType(const char **, const JMapInfo *, const char *) NO_INLINE;
     bool initActor(LiveActor *, const JMapInfoIter &, bool);
     bool initActor(LiveActor *, const JMapInfoIter &, const char *, bool);
     bool initActor(LiveActor *, const JMapInfoIter &, const char *, const char *, bool);
@@ -31,6 +31,9 @@ namespace MR {
     bool isValidInitActorCsvParser(const char *, const char *);
     bool initActor(LiveActor *, const JMapInfoIter &, const char *, const char *, const char *, bool);
     bool initActorNoIter(LiveActor *, const char *, const char *, bool);
-    void initDefaultPos(LiveActor *, const JMapInfoIter &);
+    void initDefaultPos(LiveActor *, const JMapInfoIter &) NO_INLINE;
+    bool getRestartPosData(TVec3f*, TVec3f*, const JMapInfoIter&);
+    bool tryInitFromRestartPos(LiveActor*, const JMapInfoIter&);
+    void initRotation(TVec3f*, const JMapInfoIter&);
     void getDefaultPos(LiveActor *, const JMapInfoIter &);
 };
