@@ -5911,101 +5911,114 @@ RVL_SDK/aralt/aralt.c:
 	.sbss       start:0x807D6570 end:0x807D65A8
 
 nw4r/ut/ut_LinkList.cpp:
-	.text       start:0x8059D480 end:0x8059D5C0
+	.text       start:0x8059D480 end:0x8059D5C0 align:16
 
 nw4r/ut/ut_binaryFileFormat.cpp:
-	.text       start:0x8059D5C0 end:0x8059D634
+	.text       start:0x8059D5C0 end:0x8059D634 align:16
 
 nw4r/ut/ut_CharStrmReader.cpp:
-	.text       start:0x8059D640 end:0x8059D760
+	.text       start:0x8059D640 end:0x8059D760 align:16
 
 nw4r/ut/ut_TagProcessorBase.cpp:
-	.text       start:0x8059D760 end:0x8059E0C0
+	.text       start:0x8059D760 end:0x8059E0C0 align:16
 	.data       start:0x8070C158 end:0x8070C180
 	.sdata2     start:0x807E25C0 end:0x807E25C8
 
+nw4r/ut/ut_Font.cpp:
+	.text       start:0x8059E0C0 end:0x8059E170 align:16
+
 nw4r/ut/ut_ResFontBase.cpp:
-	.text       start:0x8059E1B0 end:0x8059E950
+	.text       start:0x8059E170 end:0x8059E950 align:16
 	.data       start:0x8070C21C end:0x8070C278
 
 nw4r/ut/ut_ResFont.cpp:
-	.text       start:0x8059E950 end:0x8059EC60
+	.text       start:0x8059E950 end:0x8059EC60 align:16
 	.data       start:0x8070C278 end:0x8070C2D8
 
 nw4r/ut/ut_CharWriter.cpp:
-	.text       start:0x8059EC60 end:0x8059FCD0
+	.text       start:0x8059EC60 end:0x805A00B0 align:16
 	.bss        start:0x8077E440 end:0x8077E450
 
+nw4r/ut/ut_TextWriterBase.cpp:
+	.text       start:0x805A00B0 end:0x805A4BF0 align:16
+	.ctors      start:0x80644B74 end:0x80644B78
+
 nw4r/db/db_console.cpp:
-	.text       start:0x805A4BF0 end:0x805A4CD0
+	.text       start:0x805A4BF0 end:0x805A4CD0 align:16
 
 nw4r/db/db_assert.cpp:
-	.text       start:0x805A67F0 end:0x805A6AA0
+	.text       start:0x805A67F0 end:0x805A6AA0 align:16
 	.sbss       start:0x807D65DC end:0x807D65E0
 
 nw4r/math/math_triangular.cpp:
-	.text       start:0x805A6C60 end:0x805A6D50
+	.text       start:0x805A6C60 end:0x805A6D50 align:16
+
+nw4r/math/math_types.cpp:
+	.text       start:0x805A6D50 end:0x805A6DE0 align:16
+
+nw4r/lyt/lyt_init.cpp:
+	.text       start:0x805A6DE0 end:0x805A6E40 align:16
 
 nw4r/lyt/lyt_pane.cpp:
-	.text       start:0x805A6E40 end:0x805A7E60
+	.text       start:0x805A6E40 end:0x805A7E60 align:16
 	.ctors      start:0x80644B78 end:0x80644B7C
 	.data       start:0x8070C3A0 end:0x8070C418
 	.sbss       start:0x807D65E8 end:0x807D65F0
 
 nw4r/lyt/lyt_group.cpp:
-	.text       start:0x805A7E60 end:0x805A81C0
+	.text       start:0x805A7E60 end:0x805A81C0 align:16
 	.data       start:0x8070C418 end:0x8070C428
 
 nw4r/lyt/lyt_layout.cpp:
-	.text       start:0x805A81C0 end:0x805A9220
+	.text       start:0x805A81C0 end:0x805A9220 align:16
 	.data       start:0x8070C428 end:0x8070C468
 	.sbss       start:0x807D65F0 end:0x807D65F8
 	.sdata2     start:0x807E2640 end:0x807E2648
 
 nw4r/lyt/lyt_picture.cpp:
-	.text       start:0x805A9220 end:0x805A97B0
+	.text       start:0x805A9220 end:0x805A97B0 align:16
 	.ctors      start:0x80644B7C end:0x80644B80
 	.data       start:0x8070C468 end:0x8070C4E0
 	.sbss       start:0x807D65F8 end:0x807D6600
 
 nw4r/lyt/lyt_textBox.cpp:
-	.text       start:0x805A97B0 end:0x805AB060
+	.text       start:0x805A97B0 end:0x805AB060 align:16
 	.ctors      start:0x80644B80 end:0x80644B84
 	.data       start:0x8070C4E0 end:0x8070C568
 	.sbss       start:0x807D6600 end:0x807D6608
 
 nw4r/lyt/lyt_window.cpp:
-	.text       start:0x805AB060 end:0x805AD600
+	.text       start:0x805AB060 end:0x805AD600 align:16
 	.ctors      start:0x80644B84 end:0x80644B88
 	.data       start:0x8070C5A4 end:0x8070C630
 	.sbss       start:0x807D6608 end:0x807D6610
 
 nw4r/lyt/lyt_bounding.cpp:
-	.text       start:0x805AD600 end:0x805AD6D0
+	.text       start:0x805AD600 end:0x805AD6D0 align:16
 	.ctors      start:0x80644B88 end:0x80644B8C
 	.data       start:0x8070C630 end:0x8070C6A8
 	.sbss       start:0x807D6610 end:0x807D6618
 
 nw4r/lyt/lyt_material.cpp:
-	.text       start:0x805AD6D0 end:0x805B04B0
+	.text       start:0x805AD6D0 end:0x805B04B0 align:16
 
 nw4r/lyt/lyt_texMap.cpp:
-	.text       start:0x805B04B0 end:0x805B07E0
+	.text       start:0x805B04B0 end:0x805B07E0 align:16
 
 nw4r/lyt/lyt_drawInfo.cpp:
-	.text       start:0x805B07E0 end:0x805B08A0
+	.text       start:0x805B07E0 end:0x805B08A0 align:16
 	.data       start:0x8070C718 end:0x8070C728
 
 nw4r/lyt/lyt_animation.cpp:
-	.text       start:0x805B08A0 end:0x805B16D0
+	.text       start:0x805B08A0 end:0x805B16D0 align:16
 	.data       start:0x8070C728 end:0x8070C750
 
 nw4r/lyt/lyt_resourceAccessor.cpp:
-	.text       start:0x805B1E60 end:0x805B1EC0
+	.text       start:0x805B1E60 end:0x805B1EC0 align:16
 	.data       start:0x8070C750 end:0x8070C768
 
 nw4r/lyt/lyt_common.cpp:
-	.text       start:0x805B1EC0 end:0x805B2A20
+	.text       start:0x805B1EC0 end:0x805B2A20 align:16
 
 RVL_SDK/base/PPCArch.c:
 	.text       start:0x805B2A90 end:0x805B2CB0
