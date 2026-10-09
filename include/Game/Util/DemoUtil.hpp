@@ -4,7 +4,7 @@ class NameObj;
 class LiveActor;
 
 namespace MR {
-    void registerDemoSimpleCastAll(NameObj *);
+    void registerDemoSimpleCastAll(NameObj*);
 
-    void registerDemoSimpleCastAll(LiveActor *);
-};
+    void registerDemoSimpleCastAll(LiveActor*);
+};  // namespace MR

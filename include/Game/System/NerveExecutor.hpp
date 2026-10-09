@@ -7,15 +7,15 @@ class Nerve;
 
 class NerveExecutor {
 public:
-    NerveExecutor(const char *);
+    NerveExecutor(const char*);
 
     virtual ~NerveExecutor();
 
-    void initNerve(const Nerve *, s32 = 0);
+    void initNerve(const Nerve*, s32 = 0);
     void updateNerve();
-    void setNerve(const Nerve *);
-    bool isNerve(const Nerve *) const;
+    void setNerve(const Nerve*);
+    bool isNerve(const Nerve*) const;
     s32 getNerveStep() const;
 
-    Spine* mSpine;          // 0x04
+    Spine* mSpine;  // 0x04
 };

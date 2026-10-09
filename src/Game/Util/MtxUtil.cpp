@@ -3,10 +3,10 @@
 #include <JGeometry.hpp>
 #include <JMath.hpp>
 
-Mtx tmpmtx_sc = { 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f };
-Mtx tmpmtx_rx = { 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f };
-Mtx tmpmtx_ry = { 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f };
-Mtx tmpmtx_rz = { 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f };
+Mtx tmpmtx_sc = {1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f};
+Mtx tmpmtx_rx = {1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f};
+Mtx tmpmtx_ry = {1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f};
+Mtx tmpmtx_rz = {1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f};
 
 namespace MR {
     void setMtxTrans(MtxPtr mtx, f32 x, f32 y, f32 z) {
@@ -15,18 +15,18 @@ namespace MR {
         mtx[2][3] = z;
     }
 
-    void addTransMtx(MtxPtr mtx, const TVec3f &rTrans) {
+    void addTransMtx(MtxPtr mtx, const TVec3f& rTrans) {
         mtx[0][3] += rTrans.x;
         mtx[1][3] += rTrans.y;
         mtx[2][3] += rTrans.z;
     }
 
-    void addTransMtxLocal(MtxPtr mtx, const TVec3f &rVec) {
+    void addTransMtxLocal(MtxPtr mtx, const TVec3f& rVec) {
         MR::addTransMtxLocalX(mtx, rVec.x);
         MR::addTransMtxLocalY(mtx, rVec.y);
         MR::addTransMtxLocalZ(mtx, rVec.z);
     }
-    
+
     void addTransMtxLocalX(MtxPtr mtx, f32 x) {
         mtx[0][3] += mtx[0][0] * x;
         mtx[1][3] += mtx[1][0] * x;
@@ -45,31 +45,31 @@ namespace MR {
         mtx[2][3] += mtx[2][2] * z;
     }
 
-    void extractMtxXDir(MtxPtr mtx, TVec3f *pDir) {
+    void extractMtxXDir(MtxPtr mtx, TVec3f* pDir) {
         pDir->x = mtx[0][0];
         pDir->y = mtx[1][0];
         pDir->z = mtx[2][0];
     }
 
-    void extractMtxYDir(MtxPtr mtx, TVec3f *pDir) {
+    void extractMtxYDir(MtxPtr mtx, TVec3f* pDir) {
         pDir->x = mtx[0][1];
         pDir->y = mtx[1][1];
         pDir->z = mtx[2][1];
     }
 
-    void extractMtxZDir(MtxPtr mtx, TVec3f *pDir) {
+    void extractMtxZDir(MtxPtr mtx, TVec3f* pDir) {
         pDir->x = mtx[0][2];
         pDir->y = mtx[1][2];
         pDir->z = mtx[2][2];
     }
 
-    void extractMtxXYZDir(MtxPtr mtx, TVec3f *pX, TVec3f *pY, TVec3f *pZ) {
+    void extractMtxXYZDir(MtxPtr mtx, TVec3f* pX, TVec3f* pY, TVec3f* pZ) {
         MR::extractMtxXDir(mtx, pX);
         MR::extractMtxYDir(mtx, pY);
         MR::extractMtxZDir(mtx, pZ);
     }
 
-    void extractMtxTrans(MtxPtr mtx, TVec3f *pTrans) {
+    void extractMtxTrans(MtxPtr mtx, TVec3f* pTrans) {
         pTrans->x = mtx[0][3];
         pTrans->y = mtx[1][3];
         pTrans->z = mtx[2][3];
@@ -84,7 +84,7 @@ namespace MR {
         #ifdef __MWERKS__
         f64 sq = __frsqrte(val);
         #else
-        f32 sq = 0.0f; 
+        f32 sq = 0.0f;
         #endif
 
         return ((-(((sq * val) * sq) - 3.0f) * (sq * val)) * 0.5f);
@@ -98,7 +98,7 @@ namespace MR {
                 return false;
             }
         }
-        return true; 
+        return true;
     }
 
     bool isSameMtxRot(MtxPtr a, MtxPtr b) {
@@ -112,7 +112,7 @@ namespace MR {
                 return false;
             }
         }
-        return true; 
+        return true;
     }
 
     MtxPtr tmpMtxScale(f32 x, f32 y, f32 z) {
@@ -182,7 +182,7 @@ namespace MR {
         return tmpmtx_rz;
     }
 
-    void orderRotateMtx(s16 idx, const TVec3f &rSrc, MtxPtr mtx) {
+    void orderRotateMtx(s16 idx, const TVec3f& rSrc, MtxPtr mtx) {
         MtxPtr xRot = MR::tmpMtxRotXRad(rSrc.x);
         MtxPtr yRot = MR::tmpMtxRotYRad(rSrc.y);
         MtxPtr zRot = MR::tmpMtxRotZRad(rSrc.z);
@@ -192,44 +192,44 @@ namespace MR {
         MtxPtr v12;
 
         switch (idx) {
-            case 0:
-                v12 = v9;
-                v10 = xRot;
-                v9 = zRot;
-                break;
-            case 1:
-                v10 = xRot;
-                v12 = zRot;
-                break;
-            case 2:
-               v10 = v9;
-                v12 = xRot;
-                v9 = zRot;
-                break;
-            case 3:
-                 v10 = v9;
-                v12 = zRot;
-                v9 = xRot;
-                break;
-            case 4:
-                v10 = zRot;
-                v12 = xRot;
-                v9 = zRot;
-                break;
-            case 5:
-                v12 = v9;
-                v10 = zRot;
-                v9 = xRot;
-                break;
+        case 0:
+            v12 = v9;
+            v10 = xRot;
+            v9 = zRot;
+            break;
+        case 1:
+            v10 = xRot;
+            v12 = zRot;
+            break;
+        case 2:
+            v10 = v9;
+            v12 = xRot;
+            v9 = zRot;
+            break;
+        case 3:
+            v10 = v9;
+            v12 = zRot;
+            v9 = xRot;
+            break;
+        case 4:
+            v10 = zRot;
+            v12 = xRot;
+            v9 = zRot;
+            break;
+        case 5:
+            v12 = v9;
+            v10 = zRot;
+            v9 = xRot;
+            break;
         }
-        
+
         PSMTXConcat(v12, v10, mtx);
         PSMTXConcat(v9, mtx, mtx);
     }
 
-    void inverseConcatMtx(MtxPtr a1, MtxPtr a2, TMtx34f *pMtx) {
+    void inverseConcatMtx(MtxPtr a1, MtxPtr a2, TMtx34f* pMtx) {
         Mtx mtx;
         PSMTXInverse(a1, mtx);
         PSMTXConcat(mtx, a2, *pMtx);
     }
-};
+};  // namespace MR

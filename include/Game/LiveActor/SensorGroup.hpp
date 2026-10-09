@@ -6,6 +6,6 @@ class HitSensor;
 
 class SensorGroup {
 public:
-    void add(HitSensor *);
-    void remove(HitSensor *);
+    void add(HitSensor*);
+    void remove(HitSensor*);
 };

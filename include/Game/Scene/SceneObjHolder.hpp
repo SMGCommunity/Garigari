@@ -1,7 +1,7 @@
 #pragma once
 
-#define SceneObj_StageSwitchContainer       0xA
-#define SceneObj_SwitchWatcherHolder        0xB
+#define SceneObj_StageSwitchContainer 0xA
+#define SceneObj_SwitchWatcherHolder 0xB
 
 class NameObj;
 
@@ -12,7 +12,7 @@ public:
     bool isExist(int) const;
     NameObj* newEachObj(int);
 
-    NameObj* mObjs[0x99];       // 0x00
+    NameObj* mObjs[0x99];  // 0x00
 };
 
 namespace MR {
@@ -20,8 +20,8 @@ namespace MR {
     SceneObjHolder* getSceneObjHolder();
     bool isExistSceneObj(int);
 
-    template <class T>
+    template < class T >
     inline T getSceneObj(int objID) {
-        return reinterpret_cast<T>(MR::getSceneObjHolder()->getObj(objID));
+        return reinterpret_cast< T >(MR::getSceneObjHolder()->getObj(objID));
     }
-};
+};  // namespace MR
