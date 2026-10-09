@@ -1,7 +1,7 @@
 #pragma once
 
-#include <revolution.h>
 #include <JGeometry.hpp>
+#include <revolution.h>
 
 class Color8;
 class HitSensor;
@@ -16,7 +16,8 @@ namespace MR {
     void addShadowVolumeCylinder(LiveActor* pActor, const char* pShadowName, f32 radius);
     void addShadowVolumeBox(LiveActor* pActor, const char* pShadowName, const TVec3f& rSize);
     void addShadowVolumeBox(LiveActor* pActor, const char* pShadowName, const TVec3f& rSize, MtxPtr pDropPosMtx);
-    void addShadowVolumeLine(LiveActor* pActor, const char* pShadowName, LiveActor* pStartActor, const char* pStartShadowName, f32 fromWidth, LiveActor* pEndActor, const char* pEndShadowName, f32 toWidth);
+    void addShadowVolumeLine(LiveActor* pActor, const char* pShadowName, LiveActor* pStartActor, const char* pStartShadowName, f32 fromWidth,
+                             LiveActor* pEndActor, const char* pEndShadowName, f32 toWidth);
     void addShadowVolumeFlatModel(LiveActor* pActor, const char* pShadowName, const char* pShadowModelName, MtxPtr pDropPosMtx);
 
     void initShadowSurfaceCircle(LiveActor* pActor, f32 radius);
@@ -85,4 +86,4 @@ namespace MR {
     HitSensor* getShadowProjectedSensor(const LiveActor* pActor, const char* pShadowName);
     bool isShadowProjectedAny(const LiveActor* pActor);
     f32 getShadowNearProjectionLength(const LiveActor* pActor);
-};
+};  // namespace MR

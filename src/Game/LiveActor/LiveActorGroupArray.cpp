@@ -1,12 +1,12 @@
 #include "LiveActor/LiveActorGroupArray.hpp"
-#include "LiveActor/LiveActor.hpp"
 #include "LiveActor/HitSensor.hpp"
+#include "LiveActor/LiveActor.hpp"
 #include "Util.hpp"
 #include "Util/JMapIdInfo.hpp"
 #include <cstdio>
 
 // nonmatching
-MsgSharedGroup::MsgSharedGroup(const char *pName, s32 maxActor, const JMapInfoIter &rIter) : LiveActorGroup(pName, maxActor) {
+MsgSharedGroup::MsgSharedGroup(const char* pName, s32 maxActor, const JMapInfoIter& rIter) : LiveActorGroup(pName, maxActor) {
     mIdInfo = nullptr;
     mMsg = -1;
     mSensor = nullptr;
@@ -17,7 +17,7 @@ MsgSharedGroup::MsgSharedGroup(const char *pName, s32 maxActor, const JMapInfoIt
     mIdInfo = new JMapIdInfo(MR::createJMapIdInfoFromClippingGroupId(rIter));
 }
 
-void MsgSharedGroup::init(const JMapInfoIter &rIter) {
+void MsgSharedGroup::init(const JMapInfoIter& rIter) {
     MR::connectToScene(this, 6, -1, -1, -1);
 }
 
@@ -34,21 +34,20 @@ void MsgSharedGroup::movement() {
     }
 }
 
-void MsgSharedGroup::sendMsgToGroupMember(u32 msg, HitSensor *pSensor, const char *pName) {
+void MsgSharedGroup::sendMsgToGroupMember(u32 msg, HitSensor* pSensor, const char* pName) {
     mMsg = msg;
     mSensor = pSensor;
     mSensorName = pName;
 }
 
-LiveActorGroupArray::LiveActorGroupArray(const char *pName): NameObj(pName) {
+LiveActorGroupArray::LiveActorGroupArray(const char* pName) : NameObj(pName) {
     mNumUsedGroups = 0;
 }
 
-void LiveActorGroupArray::init(const JMapInfoIter &) {
-
+void LiveActorGroupArray::init(const JMapInfoIter&) {
 }
 
-MsgSharedGroup* LiveActorGroupArray::tryCreateGroupForLiveActor(LiveActor *pActor, const JMapInfoIter &rIter, const char *pGroupName, s32 max) {
+MsgSharedGroup* LiveActorGroupArray::tryCreateGroupForLiveActor(LiveActor* pActor, const JMapInfoIter& rIter, const char* pGroupName, s32 max) {
     s32 groupID = -1;
     MR::getJMapInfoGroupID(rIter, &groupID);
 
@@ -68,11 +67,11 @@ MsgSharedGroup* LiveActorGroupArray::tryCreateGroupForLiveActor(LiveActor *pActo
     return group;
 }
 
-MsgSharedGroup* LiveActorGroupArray::getLiveActorGroup(const LiveActor *pActor) const {
+MsgSharedGroup* LiveActorGroupArray::getLiveActorGroup(const LiveActor* pActor) const {
     return findGroup(pActor);
 }
 
-MsgSharedGroup* LiveActorGroupArray::createGroup(const JMapInfoIter &rIter, const char *pGroupName, s32 max) {
+MsgSharedGroup* LiveActorGroupArray::createGroup(const JMapInfoIter& rIter, const char* pGroupName, s32 max) {
     MsgSharedGroup* group = new MsgSharedGroup(pGroupName, max, rIter);
     group->initWithoutIter();
     s32 curGroups = mNumUsedGroups;
@@ -85,9 +84,7 @@ MsgSharedGroup* LiveActorGroupArray::createGroup(const JMapInfoIter &rIter, cons
 // findGroup__19LiveActorGroupArrayCFPC9LiveActor
 
 MsgSharedGroup::~MsgSharedGroup() {
-
 }
 
 LiveActorGroupArray::~LiveActorGroupArray() {
-    
 }

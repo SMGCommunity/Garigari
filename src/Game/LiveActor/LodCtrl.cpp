@@ -2,11 +2,11 @@
 #include "LiveActor/ActorLightCtrl.hpp"
 #include "LiveActor/ModelObj.hpp"
 #include "Util/ActorMovementUtil.hpp"
+#include "Util/ActorShadowUtil.hpp"
 #include "Util/CameraUtil.hpp"
+#include "Util/FileUtil.hpp"
 #include "Util/LiveActorUtil.hpp"
 #include "Util/ModelUtil.hpp"
-#include "Util/FileUtil.hpp"
-#include "Util/ActorShadowUtil.hpp"
 #include <cstdio>
 
 // LodCtrl::LodCtrl
@@ -62,7 +62,6 @@ void LodCtrl::invalidate() {
 
 void LodCtrl::update() {
     if (!MR::isDead(mHighModel) && _18) {
-
         bool v2 = false;
         if (mMiddleModel != nullptr || mLowModel != nullptr) {
             v2 = true;
@@ -112,7 +111,7 @@ bool LodCtrl::isShowLowModel() const {
     ModelObj* low = mLowModel;
     bool ret = false;
     if (low != nullptr && low == mCurActiveModel) {
-        ret = true; 
+        ret = true;
     }
 
     return ret;
@@ -140,8 +139,8 @@ void LodCtrl::setDistanceToMiddleAndLow(f32 middle, f32 low) {
 }
 
 namespace {
-    template<typename T>
-    void LodFuntionCall(LodCtrl *pCtrl, void (*pFunc)(LiveActor *, T), T arg) NO_INLINE {
+    template < typename T >
+    void LodFuntionCall(LodCtrl* pCtrl, void (*pFunc)(LiveActor*, T), T arg) NO_INLINE {
         pFunc(pCtrl->mHighModel, arg);
 
         if (pCtrl->mMiddleModel) {
@@ -152,16 +151,15 @@ namespace {
             pFunc(pCtrl->mLowModel, arg);
         }
     }
-};
+};  // namespace
 
 void LodCtrl::setClippingTypeSphereContainsModelBoundingBox(f32 bounds) {
-    LodFuntionCall<f32>(this, MR::setClippingTypeSphereContainsModelBoundingBox, bounds);
+    LodFuntionCall< f32 >(this, MR::setClippingTypeSphereContainsModelBoundingBox, bounds);
 }
 
 void LodCtrl::setFarClipping(f32 farClip) {
-    LodFuntionCall<f32>(this, MR::setClippingFar, farClip);
+    LodFuntionCall< f32 >(this, MR::setClippingFar, farClip);
 }
-
 
 void LodCtrl::showHighModel() {
     if (MR::isHiddenModel(mHighModel)) {
@@ -171,8 +169,7 @@ void LodCtrl::showHighModel() {
 
         mActorLightCtrl = mHighModel->mLightCtrl;
         MR::showModel(mHighModel);
-    }
-    else {
+    } else {
         if (mMiddleModel != nullptr && !MR::isDead(mMiddleModel)) {
             mMiddleModel->makeActorDead();
         }
@@ -194,8 +191,7 @@ void LodCtrl::showMiddleModel() {
         mActorLightCtrl = mMiddleModel->mLightCtrl;
         mMiddleModel->makeActorAppeared();
         MR::calcAnimDirect(mHighModel);
-    }
-    else {
+    } else {
         if (!MR::isHiddenModel(mHighModel)) {
             MR::hideModelAndOnCalcAnim(mHighModel);
         }
@@ -217,8 +213,7 @@ void LodCtrl::showLowModel() {
         mActorLightCtrl = mLowModel->mLightCtrl;
         mLowModel->makeActorAppeared();
         MR::calcAnimDirect(mHighModel);
-    }
-    else {
+    } else {
         if (!MR::isHiddenModel(mHighModel)) {
             MR::hideModelAndOnCalcAnim(mHighModel);
         }
@@ -247,7 +242,7 @@ void LodCtrl::hideAllModel() {
     mCurActiveModel = nullptr;
 }
 
-void LodCtrl::setViewCtrlPtr(const bool *a1, const bool *a2, const bool *a3, const bool *a4) {
+void LodCtrl::setViewCtrlPtr(const bool* a1, const bool* a2, const bool* a3, const bool* a4) {
     _1C = a1;
     _20 = a2;
     _24 = a3;
@@ -281,8 +276,7 @@ void LodCtrl::createLodModel(int movement, int calcAnim, int drawBuffer) {
     if (mMiddleModel != nullptr || mLowModel != nullptr) {
         appear();
         _18 = true;
-    }
-    else {
+    } else {
         kill();
         _18 = false;
     }
@@ -305,7 +299,7 @@ void LodCtrl::syncJointAnimation() {
 
     if (mLowModel != nullptr) {
         MR::syncJointAnimation(mLowModel, mHighModel);
-    } 
+    }
 }
 
 void LodCtrl::initLightCtrl() {
@@ -318,7 +312,7 @@ void LodCtrl::initLightCtrl() {
     }
 }
 
-bool LodCtrlFunction::isExistLodLowModel(const char *pName) {
+bool LodCtrlFunction::isExistLodLowModel(const char* pName) {
     char buf[0x100];
     snprintf(buf, sizeof(buf), "/ObjectData/%sLow.arc", pName);
     return MR::isFileExist(buf, false);

@@ -1,7 +1,7 @@
 #include "System/NerveExecutor.hpp"
 #include "LiveActor/Spine.hpp"
 
-NerveExecutor::NerveExecutor(const char *) {
+NerveExecutor::NerveExecutor(const char*) {
     mSpine = nullptr;
 }
 
@@ -9,7 +9,7 @@ NerveExecutor::~NerveExecutor() {
     delete mSpine;
 }
 
-void NerveExecutor::initNerve(const Nerve *pNerve, s32 numStates) {
+void NerveExecutor::initNerve(const Nerve* pNerve, s32 numStates) {
     mSpine = new Spine(this, pNerve, numStates);
 }
 
@@ -19,11 +19,11 @@ void NerveExecutor::updateNerve() {
     }
 }
 
-void NerveExecutor::setNerve(const Nerve *pNerve) {
+void NerveExecutor::setNerve(const Nerve* pNerve) {
     mSpine->setNerve(pNerve);
 }
 
-bool NerveExecutor::isNerve(const Nerve *pNerve) const {
+bool NerveExecutor::isNerve(const Nerve* pNerve) const {
     return mSpine->getCurrentNerve() == pNerve;
 }
 

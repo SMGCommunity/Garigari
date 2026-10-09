@@ -1,23 +1,23 @@
 #pragma once
 
-#include <revolution.h>
 #include <JGeometry.hpp>
+#include <revolution.h>
 
 class SensorGroup;
 class LiveActor;
 
 class HitSensor {
 public:
-    HitSensor(u32, u16, f32, LiveActor *);
+    HitSensor(u32, u16, f32, LiveActor*);
 
-    bool receiveMessage(u32, HitSensor *);
+    bool receiveMessage(u32, HitSensor*);
     void setType(u32);
     bool isType(u32) const;
     void validate();
     void invalidate();
     void validateBySystem();
     void invalidateBySystem();
-    void addHitSensor(HitSensor *);
+    void addHitSensor(HitSensor*);
 
     u32 mType;                  // 0x0
     TVec3f mOffset;             // 0x4

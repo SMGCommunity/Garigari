@@ -14,14 +14,13 @@ void BitFlag128::set(int bit_index, bool setTrue) {
 
     if (setTrue) {
         flag |= (1 << (bit_index % 32));
-    }
-    else {
+    } else {
         flag &= ~(1 << (bit_index % 32));
     }
 }
 
 ZoneSwitch::ZoneSwitch(int zoneId) : BitFlag128() {
-    s32 *sw = mSwitchFlags;
+    s32* sw = mSwitchFlags;
 
     do {
         *sw = 0;
@@ -37,7 +36,7 @@ ZoneSwitch::ZoneSwitch(int zoneId) : BitFlag128() {
     }
 }
 
-SwitchIdInfo::SwitchIdInfo(s32 switchID, const JMapInfoIter &rIter) {
+SwitchIdInfo::SwitchIdInfo(s32 switchID, const JMapInfoIter& rIter) {
     mIDInfo = nullptr;
     mIsGlobal = switchID >= GLOBAL_SWITCH_ID;
     mIDInfo = new JMapIdInfo(switchID, rIter);
@@ -57,7 +56,7 @@ StageSwitchContainer::StageSwitchContainer() : NameObj("ステージスイッチ
     mParentZone = new ZoneSwitch(-1);
 }
 
-void StageSwitchContainer::createAndAddZone(const SwitchIdInfo &rInfo) {
+void StageSwitchContainer::createAndAddZone(const SwitchIdInfo& rInfo) {
     if (findZoneSwitchFromTable(rInfo) == nullptr) {
         ZoneSwitch* sw = new ZoneSwitch(rInfo.mIDInfo->mZoneID);
         s32 numSwitchCount = mSwitchCount;
@@ -66,7 +65,7 @@ void StageSwitchContainer::createAndAddZone(const SwitchIdInfo &rInfo) {
     }
 }
 
-ZoneSwitch* StageSwitchContainer::getZoneSwitch(const SwitchIdInfo &rInfo) {
+ZoneSwitch* StageSwitchContainer::getZoneSwitch(const SwitchIdInfo& rInfo) {
     if (rInfo.mIsGlobal) {
         return mParentZone;
     }
@@ -74,7 +73,7 @@ ZoneSwitch* StageSwitchContainer::getZoneSwitch(const SwitchIdInfo &rInfo) {
     return findZoneSwitchFromTable(rInfo);
 }
 
-ZoneSwitch* StageSwitchContainer::findZoneSwitchFromTable(const SwitchIdInfo &rInfo) {
+ZoneSwitch* StageSwitchContainer::findZoneSwitchFromTable(const SwitchIdInfo& rInfo) {
     for (s32 i = 0; i < mSwitchCount; i++) {
         if (rInfo.getZoneID() == mZoneSwitches[i]->mZoneID) {
             return mZoneSwitches[i];
@@ -85,7 +84,7 @@ ZoneSwitch* StageSwitchContainer::findZoneSwitchFromTable(const SwitchIdInfo &rI
 }
 
 // https://decomp.me/scratch/x3aBu
-StageSwitchCtrl::StageSwitchCtrl(const JMapInfoIter &rIter) {
+StageSwitchCtrl::StageSwitchCtrl(const JMapInfoIter& rIter) {
     mSW_A = nullptr;
     mSW_B = nullptr;
     mSW_Appear = nullptr;
@@ -157,7 +156,7 @@ bool StageSwitchCtrl::isOnAllSwitchAfterB(int idx) const {
     for (int i = 0; i < idx; i++) {
         v7 = i + mSW_B->getSwitchNo();
         info = mSW_B;
-        StageSwitchContainer* container = MR::getSceneObj<StageSwitchContainer*>(SceneObj_StageSwitchContainer);
+        StageSwitchContainer* container = MR::getSceneObj< StageSwitchContainer* >(SceneObj_StageSwitchContainer);
 
         if (!container->getZoneSwitch(*info)->get(v7)) {
             return false;
@@ -173,7 +172,7 @@ bool StageSwitchCtrl::isOnAnyOneSwitchAfterB(int idx) const {
     for (int i = 0; i < idx; i++) {
         v7 = i + mSW_B->getSwitchNo();
         info = mSW_B;
-        StageSwitchContainer* container = MR::getSceneObj<StageSwitchContainer*>(SceneObj_StageSwitchContainer);
+        StageSwitchContainer* container = MR::getSceneObj< StageSwitchContainer* >(SceneObj_StageSwitchContainer);
 
         if (container->getZoneSwitch(*info)->get(v7)) {
             return true;
@@ -184,9 +183,9 @@ bool StageSwitchCtrl::isOnAnyOneSwitchAfterB(int idx) const {
 }
 
 namespace StageSwitchFunction {
-    SwitchIdInfo* createSwitchIdInfo(const char *pName, const JMapInfoIter &rIter, bool /* unused*/) {
+    SwitchIdInfo* createSwitchIdInfo(const char* pName, const JMapInfoIter& rIter, bool /* unused*/) {
         s32 switchVal;
-        if (!rIter.getValue<s32>(pName, &switchVal)) {
+        if (!rIter.getValue< s32 >(pName, &switchVal)) {
             return nullptr;
         }
 
@@ -197,52 +196,52 @@ namespace StageSwitchFunction {
         SwitchIdInfo* info = new SwitchIdInfo(switchVal, rIter);
 
         if (switchVal < 1000) {
-            MR::getSceneObj<StageSwitchContainer*>(SceneObj_StageSwitchContainer)->createAndAddZone(*info);
+            MR::getSceneObj< StageSwitchContainer* >(SceneObj_StageSwitchContainer)->createAndAddZone(*info);
         }
 
         return info;
     }
 
-    void onSwitchBySwitchIdInfo(const SwitchIdInfo &rInfo) {
+    void onSwitchBySwitchIdInfo(const SwitchIdInfo& rInfo) {
         s32 switchNo = rInfo.getSwitchNo();
-        StageSwitchContainer* container = MR::getSceneObj<StageSwitchContainer*>(SceneObj_StageSwitchContainer);
+        StageSwitchContainer* container = MR::getSceneObj< StageSwitchContainer* >(SceneObj_StageSwitchContainer);
         ZoneSwitch* zs = container->getZoneSwitch(rInfo);
         if (!zs->get(switchNo)) {
             zs->set(switchNo, true);
         }
     }
 
-    void offSwitchBySwitchIdInfo(const SwitchIdInfo &rInfo) {
+    void offSwitchBySwitchIdInfo(const SwitchIdInfo& rInfo) {
         s32 switchNo = rInfo.getSwitchNo();
-        StageSwitchContainer* container = MR::getSceneObj<StageSwitchContainer*>(SceneObj_StageSwitchContainer);
+        StageSwitchContainer* container = MR::getSceneObj< StageSwitchContainer* >(SceneObj_StageSwitchContainer);
         ZoneSwitch* zs = container->getZoneSwitch(rInfo);
         if (zs->get(switchNo)) {
             zs->set(switchNo, false);
         }
     }
 
-    bool isOnSwitchBySwitchIdInfo(const SwitchIdInfo &rInfo) {
+    bool isOnSwitchBySwitchIdInfo(const SwitchIdInfo& rInfo) {
         s32 switchNo = rInfo.getSwitchNo();
-        StageSwitchContainer* container = MR::getSceneObj<StageSwitchContainer*>(SceneObj_StageSwitchContainer);
+        StageSwitchContainer* container = MR::getSceneObj< StageSwitchContainer* >(SceneObj_StageSwitchContainer);
         ZoneSwitch* zs = container->getZoneSwitch(rInfo);
         return zs->get(switchNo);
     }
 
     void onGlobalSwitchById(int switchNo) {
-        StageSwitchContainer* container = MR::getSceneObj<StageSwitchContainer*>(SceneObj_StageSwitchContainer);
+        StageSwitchContainer* container = MR::getSceneObj< StageSwitchContainer* >(SceneObj_StageSwitchContainer);
         ZoneSwitch* parentZone = container->mParentZone;
 
         if (!parentZone->get(switchNo)) {
             parentZone->set(switchNo, true);
         }
     }
-};
+};  // namespace StageSwitchFunction
 
 namespace MR {
-    StageSwitchCtrl* createStageSwitchCtrl(NameObj */* unused */, const JMapInfoIter &rInfo) {
+    StageSwitchCtrl* createStageSwitchCtrl(NameObj* /* unused */, const JMapInfoIter& rInfo) {
         return new StageSwitchCtrl(rInfo);
     }
-};
+};  // namespace MR
 
 bool StageSwitchCtrl::isOnSwitchParam() const {
     return StageSwitchFunction::isOnSwitchBySwitchIdInfo(*mSW_Param);
@@ -253,5 +252,4 @@ bool StageSwitchCtrl::isValidSwitchParam() const {
 }
 
 StageSwitchContainer::~StageSwitchContainer() {
-    
 }

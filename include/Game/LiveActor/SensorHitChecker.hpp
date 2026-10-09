@@ -3,5 +3,5 @@
 class HitSensor;
 
 namespace MR {
-    void initHitSensorGroup(HitSensor *);
+    void initHitSensorGroup(HitSensor*);
 };

@@ -297,6 +297,7 @@ cflags_nw = [
     "-align powerpc",
     "-enum int",
     "-fp hardware",
+    '-pragma "ppc_no_fp_blockmove on"',
     "-Cpp_exceptions off",
     "-O4,p",
     "-inline auto",
@@ -305,10 +306,76 @@ cflags_nw = [
     "-maxerrors 1",
     "-nosyspath",
     "-RTTI off",
+    "-fp_contract off",
+    "-str reuse",
     "-enc SJIS",
+    "-ipa file",
+    "-i libs/MSL_C++/include",
+    "-i libs/MSL_C",
+    "-i libs/MetroTRK",
+    "-i libs/RVL_SDK",
+    "-i libs/Runtime",
+    "-i libs/nw4r/include",
+    "-i libs/nw4r",
+    f"-i build/{config.version}/include",
+    f"-DVERSION={version_num}",
+]
+
+cflags_jsys = [
+    "-nodefaults",
+    "-proc gekko",
+    "-align powerpc",
+    "-enum int",
+    "-fp hardware",
+    "-Cpp_exceptions off",
+    "-O4,s",
+    "-inline auto",
+    '-pragma "cats off"',
+    '-pragma "warn_notinlined off"',
+    "-maxerrors 1",
+    "-nosyspath",
+    "-RTTI off",
+    "-fp_contract off",
+    "-str reuse",
+    "-enc SJIS",
+    "-sdata 4",
+    "-sdata2 4",
+    "-use_lmw_stmw off",
+    "-i include",
+    "-i libs/JSystem/include",
     "-i libs/RVL_SDK",
     "-i libs/MSL_C",
-    "-i libs/nw4r",
+    "-i libs/MSL_C++/include",
+    f"-i build/{config.version}/include",
+    f"-DVERSION={version_num}",
+]
+
+cflags_jsys_jaudio = [*cflags_jsys, "-ipa file", "-sym on"]
+cflags_jsys_jpa = [*cflags_jsys, "-ipa file"]
+
+
+cflags_rfl = [
+    "-nodefaults",
+    "-proc gekko",
+    "-align powerpc",
+    "-enum int",
+    "-fp hardware",
+    "-Cpp_exceptions on",
+    "-O4,p",
+    "-inline auto",
+    '-pragma "cats off"',
+    '-pragma "warn_notinlined off"',
+    "-maxerrors 1",
+    "-nosyspath",
+    "-RTTI off",
+    "-str reuse",
+    "-enc SJIS",
+    "-ipa file",
+    "-i libs/MSL_C",
+    "-i libs/MetroTRK",
+    "-i libs/RVL_SDK",
+    "-i libs/Runtime",
+    "-i libs/RVLFaceLib",
     f"-i build/{config.version}/include",
     f"-DVERSION={version_num}",
 ]
@@ -408,6 +475,46 @@ def NWLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     }
 
 
+def JSysLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
+    return {
+        "lib": lib_name,
+        "mw_version": "Wii/1.0",
+        "cflags": cflags_jsys,
+        "progress_category": "jsys",
+        "objects": objects,
+    }
+
+
+def JSys_JAudioLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
+    return {
+        "lib": lib_name,
+        "mw_version": "Wii/1.0",
+        "cflags": cflags_jsys_jaudio,
+        "progress_category": "jsys",
+        "objects": objects,
+    }
+
+
+def JSys_JParticleLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
+    return {
+        "lib": lib_name,
+        "mw_version": "Wii/1.0",
+        "cflags": cflags_jsys_jpa,
+        "progress_category": "jsys",
+        "objects": objects,
+    }
+
+
+def RFLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
+    return {
+        "lib": lib_name,
+        "mw_version": "Wii/1.0",
+        "cflags": cflags_rfl,
+        "progress_category": "rfl",
+        "objects": objects,
+    }
+
+
 def MSLLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     return {
         "lib": lib_name,
@@ -443,6 +550,460 @@ def MatchingFor(*versions):
 config.warn_missing_config = True
 config.warn_missing_source = False
 config.libs = [
+    JSysLib(
+        "J2DGraph",
+        [
+            Object(
+                NonMatching,
+                "JSystem/J2DGraph/J2DGrafContext.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(NonMatching, "JSystem/J2DGraph/J2DOrthoGraph.cpp"),
+            Object(NonMatching, "JSystem/J2DGraph/J2DMatBlock.cpp"),
+            Object(NonMatching, "JSystem/J2DGraph/J2DPane.cpp"),
+            Object(NonMatching, "JSystem/J2DGraph/J2DScreen.cpp"),
+            Object(
+                NonMatching,
+                "JSystem/J2DGraph/J2DPicture.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(Matching, "JSystem/J2DGraph/J2DManage.cpp"),
+        ],
+    ),
+    JSysLib(
+        "J3DGraphAnimator",
+        [
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphAnimator/J3DShapeTable.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphAnimator/J3DJointTree.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphAnimator/J3DModelData.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphAnimator/J3DMtxBuffer.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphAnimator/J3DModel.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphAnimator/J3DAnimation.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphAnimator/J3DMaterialAnm.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphAnimator/J3DSkinDeform.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphAnimator/J3DCluster.cpp",
+                extra_cflags=["-ipa file"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphAnimator/J3DJoint.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphAnimator/J3DMaterialAttach.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+        ],
+    ),
+    JSysLib(
+        "J3DGraphBase",
+        [
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphBase/J3DGD.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(
+                NonMatching, "JSystem/J3DGraphBase/J3DSys.cpp", extra_cflags=["-ipa file"]
+            ),
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphBase/J3DVertex.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphBase/J3DTransform.cpp",
+                extra_cflags=["-ipa file", "-sym on", "-opt nolifetimes,nocse"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphBase/J3DPacket.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphBase/J3DShapeMtx.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphBase/J3DShapeDraw.cpp",
+                extra_cflags=["-ipa file"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphBase/J3DShape.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphBase/J3DMaterial.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphBase/J3DMatBlock.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphBase/J3DTevs.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphBase/J3DDrawBuffer.cpp",
+                extra_cflags=["-ipa file"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphBase/J3DStruct.cpp",
+                extra_cflags=["-ipa file"],
+            ),
+        ],
+    ),
+    JSysLib(
+        "J3DGraphLoader",
+        [
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphLoader/J3DMaterialFactory.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphLoader/J3DMaterialFactory_v21.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphLoader/J3DModelLoader.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphLoader/J3DModelLoaderCalcSize.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphLoader/J3DJointFactory.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphLoader/J3DShapeFactory.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/J3DGraphLoader/J3DAnmLoader.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+        ],
+    ),
+    JSys_JAudioLib(
+        "JAudio2",
+        [
+            Object(NonMatching, "JSystem/JAudio2/JASCalc.cpp", cflags=cflags_jsys),
+            Object(NonMatching, "JSystem/JAudio2/JASTaskThread.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASDvdThread.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASCallback.cpp"),
+            Object(
+                NonMatching, "JSystem/JAudio2/JASHeapCtrl.cpp", mw_version="GC/3.0a3.2"
+            ),
+            Object(NonMatching, "JSystem/JAudio2/JASResArcLoader.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASProbe.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASReport.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASCmdStack.cpp"),
+            Object(
+                NonMatching,
+                "JSystem/JAudio2/JASTrack.cpp",
+                cflags=[*cflags_jsys_jaudio, "-inline off"],
+            ),
+            Object(NonMatching, "JSystem/JAudio2/JASTrackPort.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASRegisterParam.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASSeqCtrl.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASSeqParser.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASSeqReader.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASAramStream.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASBank.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASBasicBank.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASVoiceBank.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASBasicInst.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASDrumSet.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASBasicWaveBank.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASSimpleWaveBank.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASInstSense.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASInstRand.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASWSParser.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASBNKParser.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASWaveArcLoader.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASChannel.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASLfo.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASOscillator.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASAiCtrl.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASAudioThread.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASAudioReseter.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASDSPChannel.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASDSPInterface.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASDriverIF.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASSoundParams.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAIAudible.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAIAudience.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAISe.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAISeMgr.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAISeq.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAISeqDataMgr.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAISeqMgr.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAISound.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAISoundChild.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAISoundHandles.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAISoundInfo.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAISoundParams.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAISoundStarter.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAIStream.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAIStreamDataMgr.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAIStreamMgr.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAUAudience.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAUAudioArcInterpreter.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAUAudioArcLoader.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAUBankTable.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAUInitializer.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAUSectionHeap.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAUSeqCollection.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAUSeqDataBlockMgr.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAUSoundAnimator.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAUSoundMgr.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAUSoundObject.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAUSoundTable.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAUStdSoundInfo.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAUStreamFileTable.cpp"),
+        ],
+    ),
+    JSysLib(
+        "JGadget",
+        [
+            Object(
+                Matching, "JSystem/JGadget/hashcode.cpp", extra_cflags=["-ipa file"]
+            ),
+            Object(
+                NonMatching, "JSystem/JGadget/linklist.cpp", extra_cflags=["-ipa file"]
+            ),
+        ],
+    ),
+    JSysLib(
+        "JKernel",
+        [
+            Object(
+                NonMatching, "JSystem/JKernel/JKRHeap.cpp", extra_cflags=["-ipa file"]
+            ),
+            Object(NonMatching, "JSystem/JKernel/JKRExpHeap.cpp"),
+            Object(NonMatching, "JSystem/JKernel/JKRSolidHeap.cpp"),
+            Object(NonMatching, "JSystem/JKernel/JKRUnitHeap.cpp"),
+            Object(NonMatching, "JSystem/JKernel/JKRDisposer.cpp"),
+            Object(
+                NonMatching,
+                "JSystem/JKernel/JKRThread.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/JKernel/JKRAram.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/JKernel/JKRAramHeap.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(NonMatching, "JSystem/JKernel/JKRAramBlock.cpp"),
+            Object(NonMatching, "JSystem/JKernel/JKRAramPiece.cpp"),
+            Object(NonMatching, "JSystem/JKernel/JKRAramStream.cpp"),
+            Object(
+                NonMatching,
+                "JSystem/JKernel/JKRFileLoader.cpp",
+                extra_cflags=["-ipa file"],
+            ),
+            Object(NonMatching, "JSystem/JKernel/JKRFileFinder.cpp"),
+            Object(NonMatching, "JSystem/JKernel/JKRArchivePub.cpp"),
+            Object(NonMatching, "JSystem/JKernel/JKRArchivePri.cpp"),
+            Object(NonMatching, "JSystem/JKernel/JKRMemArchive.cpp"),
+            Object(
+                NonMatching,
+                "JSystem/JKernel/JKRAramArchive.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(NonMatching, "JSystem/JKernel/JKRDvdArchive.cpp"),
+            Object(NonMatching, "JSystem/JKernel/JKRCompArchive.cpp"),
+            Object(
+                NonMatching,
+                "JSystem/JKernel/JKRDvdFile.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/JKernel/JKRDvdRipper.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/JKernel/JKRDvdAramRipper.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(NonMatching, "JSystem/JKernel/JKRDecomp.cpp"),
+        ],
+    ),
+    JSysLib(
+        "JMath",
+        [
+            Object(NonMatching, "JSystem/JMath/JMath.cpp", extra_cflags=["-opt nocse"]),
+            Object(NonMatching, "JSystem/JMath/random.cpp"),
+            Object(
+                NonMatching,
+                "JSystem/JMath/JMATrigonometric.cpp",
+                extra_cflags=["-opt nocse"],
+            ),
+        ],
+    ),
+    JSys_JParticleLib(
+        "JParticle",
+        [
+            Object(NonMatching, "JSystem/JParticle/JPAResourceManager.cpp"),
+            Object(NonMatching, "JSystem/JParticle/JPAResource.cpp"),
+            Object(
+                NonMatching,
+                "JSystem/JParticle/JPABaseShape.cpp",
+                extra_cflags=["-sym on"],
+            ),
+            Object(
+                NonMatching,
+                "JSystem/JParticle/JPAExtraShape.cpp",
+                extra_cflags=["-opt nocse"],
+            ),
+            Object(NonMatching, "JSystem/JParticle/JPAChildShape.cpp"),
+            Object(NonMatching, "JSystem/JParticle/JPAExTexShape.cpp"),
+            Object(
+                NonMatching,
+                "JSystem/JParticle/JPADynamicsBlock.cpp",
+                extra_cflags=["-opt nolifetimes,nocse,noprop", "-sym on"],
+            ),
+            Object(NonMatching, "JSystem/JParticle/JPAFieldBlock.cpp"),
+            Object(NonMatching, "JSystem/JParticle/JPAKeyBlock.cpp"),
+            Object(
+                NonMatching, "JSystem/JParticle/JPATexture.cpp", extra_cflags=["-ipa off"]
+            ),
+            Object(Matching, "JSystem/JParticle/JPAResourceLoader.cpp"),
+            Object(NonMatching, "JSystem/JParticle/JPAEmitterManager.cpp"),
+            Object(NonMatching, "JSystem/JParticle/JPAEmitter.cpp"),
+            Object(NonMatching, "JSystem/JParticle/JPAParticle.cpp"),
+            Object(
+                NonMatching,
+                "JSystem/JParticle/JPAMath.cpp",
+                extra_cflags=["-opt nolifetimes,nocse"],
+            ),
+        ],
+    ),
+    JSysLib(
+        "JSupport",
+        [
+            Object(NonMatching, "JSystem/JSupport/JSUList.cpp"),
+            Object(NonMatching, "JSystem/JSupport/JSUInputStream.cpp"),
+            Object(NonMatching, "JSystem/JSupport/JSUOutputStream.cpp"),
+            Object(NonMatching, "JSystem/JSupport/JSUMemoryStream.cpp"),
+            Object(
+                NonMatching,
+                "JSystem/JSupport/JSUFileStream.cpp",
+                extra_cflags=["-ipa file"],
+            ),
+        ],
+    ),
+    JSysLib(
+        "JUtility",
+        [
+            Object(
+                NonMatching,
+                "JSystem/JUtility/JUTTexture.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(NonMatching, "JSystem/JUtility/JUTPalette.cpp"),
+            Object(NonMatching, "JSystem/JUtility/JUTNameTab.cpp"),
+            Object(NonMatching, "JSystem/JUtility/JUTFont.cpp"),
+            Object(
+                NonMatching,
+                "JSystem/JUtility/JUTException.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(NonMatching, "JSystem/JUtility/JUTDirectPrint.cpp"),
+            Object(NonMatching, "JSystem/JUtility/JUTAssert.cpp"),
+            Object(
+                NonMatching,
+                "JSystem/JUtility/JUTVideo.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(NonMatching, "JSystem/JUtility/JUTXfb.cpp"),
+            Object(
+                NonMatching,
+                "JSystem/JUtility/JUTConsole.cpp",
+                extra_cflags=["-ipa file", "-sym on"],
+            ),
+            Object(NonMatching, "JSystem/JUtility/JUTDbPrint.cpp"),
+        ],
+    ),
+    RFLib(
+        "RVLFaceLib",
+        [
+            Object(NonMatching, "RVLFaceLib/RFL_System.c"),
+            Object(NonMatching, "RVLFaceLib/RFL_NANDLoader.c"),
+            Object(NonMatching, "RVLFaceLib/RFL_NANDAccess.c"),
+            Object(NonMatching, "RVLFaceLib/RFL_Model.c"),
+            Object(NonMatching, "RVLFaceLib/RFL_MakeTex.c"),
+            Object(NonMatching, "RVLFaceLib/RFL_Icon.c"),
+            Object(Matching, "RVLFaceLib/RFL_HiddenDatabase.c"),
+            Object(NonMatching, "RVLFaceLib/RFL_Database.c"),
+            Object(NonMatching, "RVLFaceLib/RFL_Controller.c"),
+            Object(NonMatching, "RVLFaceLib/RFL_MiddleDatabase.c"),
+            Object(Matching, "RVLFaceLib/RFL_DefaultDatabase.c"),
+            Object(NonMatching, "RVLFaceLib/RFL_DataUtility.c"),
+            Object(Matching, "RVLFaceLib/RFL_Format.c"),
+        ],
+    ),
     {
         "lib": "Runtime.PPCEABI.H",
         "mw_version": config.linker_version,
@@ -539,16 +1100,20 @@ config.libs = [
         [
             Object(NonMatching, "RVL_SDK/gd/GDBase.c"),
             Object(NonMatching, "RVL_SDK/gd/GDGeometry.c"),
+            Object(NonMatching, "RVL_SDK/gd/GDIndirect.c"),
             Object(NonMatching, "RVL_SDK/gd/GDLight.c"),
             Object(NonMatching, "RVL_SDK/gd/GDPixel.c"),
             Object(NonMatching, "RVL_SDK/gd/GDTev.c"),
             Object(NonMatching, "RVL_SDK/gd/GDTexture.c"),
+            Object(NonMatching, "RVL_SDK/gd/GDTransform.c"),
         ],
     ),
     RVLLib(
         "kpad",
         [
             Object(NonMatching, "RVL_SDK/kpad/KPAD.c"),
+            Object(NonMatching, "RVL_SDK/kpad/KMPLS.c"),
+            Object(NonMatching, "RVL_SDK/kpad/KZMplsTestSub.c"),
         ],
     ),
     RVLLib(
@@ -557,6 +1122,13 @@ config.libs = [
             Object(NonMatching, "RVL_SDK/tpl/TPL.c"),
         ],
     ),
+    RVLLibGC(
+        "wenc",
+        [
+            Object(NonMatching, "RVL_SDK/wenc/wenc.c"),
+        ],
+        "GC/3.0a5.2",
+    ),
     RVLLib(
         "rso",
         [
@@ -564,15 +1136,37 @@ config.libs = [
         ],
     ),
     RVLLibGC(
+        "net",
+        [
+            Object(NonMatching, "RVL_SDK/net/nettime.c"),
+            Object(NonMatching, "RVL_SDK/net/NETVersion.c"),
+            Object(NonMatching, "RVL_SDK/net/netmemcpy.c"),
+            Object(NonMatching, "RVL_SDK/net/netmemset.c"),
+        ],
+        "GC/3.0a5.2",
+    ),
+    RVLLibGC(
         "nwc24",
         [
             Object(NonMatching, "RVL_SDK/nwc24/NWC24StdAPI.c"),
             Object(NonMatching, "RVL_SDK/nwc24/NWC24FileAPI.c"),
+            Object(NonMatching, "RVL_SDK/nwc24/NWC24Config.c"),
+            Object(NonMatching, "RVL_SDK/nwc24/NWC24Utils.c"),
             Object(NonMatching, "RVL_SDK/nwc24/NWC24Manage.c"),
             Object(NonMatching, "RVL_SDK/nwc24/NWC24MsgObj.c"),
+            Object(NonMatching, "RVL_SDK/nwc24/NWC24MBoxCtrl.c"),
             Object(NonMatching, "RVL_SDK/nwc24/NWC24Mime.c"),
+            Object(NonMatching, "RVL_SDK/nwc24/NWC24Parser.c"),
+            Object(NonMatching, "RVL_SDK/nwc24/NWC24MsgCommit.c"),
+            Object(NonMatching, "RVL_SDK/nwc24/NWC24Schedule.c"),
             Object(NonMatching, "RVL_SDK/nwc24/NWC24DateParser.c"),
+            Object(NonMatching, "RVL_SDK/nwc24/NWC24FriendList.c"),
+            Object(NonMatching, "RVL_SDK/nwc24/NWC24SecretFList.c"),
+            Object(NonMatching, "RVL_SDK/nwc24/NWC24UserId.c"),
             Object(NonMatching, "RVL_SDK/nwc24/NWC24Time.c"),
+            Object(NonMatching, "RVL_SDK/nwc24/NWC24Ipc.c"),
+            Object(NonMatching, "RVL_SDK/nwc24/NWC24Download.c"),
+            Object(NonMatching, "RVL_SDK/nwc24/NWC24System.c"),
         ],
         "GC/3.0a5.2",
     ),
@@ -586,29 +1180,70 @@ config.libs = [
                 mw_version="GC/3.0a3",
                 cflags=cflags_sdk_gc,
             ),
+            Object(NonMatching, "RVL_SDK/vf/pf_service.c"),
             Object(
                 NonMatching,
                 "RVL_SDK/vf/pf_str.c",
                 mw_version="GC/3.0a3",
                 cflags=cflags_sdk_gc,
             ),
+            Object(NonMatching, "RVL_SDK/vf/pf_w_clib.c"),
+            Object(
+                NonMatching,
+                "RVL_SDK/vf/pf_driver.c",
+                mw_version="GC/3.0a3",
+                cflags=cflags_sdk_gc,
+            ),
             Object(NonMatching, "RVL_SDK/vf/pdm_bpb.c"),
             Object(NonMatching, "RVL_SDK/vf/pdm_disk.c"),
+            Object(NonMatching, "RVL_SDK/vf/pdm_partition.c"),
             Object(NonMatching, "RVL_SDK/vf/pdm_mbr.c"),
+            Object(NonMatching, "RVL_SDK/vf/pdm_dskmng.c"),
             Object(NonMatching, "RVL_SDK/vf/pf_cache.c"),
-            Object(
-                NonMatching,
-                "RVL_SDK/vf/pf_cluster.c",
-                mw_version="GC/3.0a3",
-                cflags=cflags_sdk_gc,
-            ),
-            Object(
-                NonMatching,
-                "RVL_SDK/vf/pf_fat.c",
-                mw_version="GC/3.0a3",
-                cflags=cflags_sdk_gc,
-            ),
+            Object(NonMatching, "RVL_SDK/vf/pf_cluster.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_dir.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_entry.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_entry_iterator.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_fat.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_fat12.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_fat16.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_fat32.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_fatfs.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_file.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_path.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_sector.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_volume.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_cp932.c"),
             Object(NonMatching, "RVL_SDK/vf/pf_api_util.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_attach.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_detach.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_errnum.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_fclose.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_finfo.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_fopen.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_fread.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_fseek.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_fwrite.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_getdev.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_init_prfile2.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_remove.c"),
+            Object(NonMatching, "RVL_SDK/vf/pf_unmount.c"),
+            Object(
+                NonMatching,
+                "RVL_SDK/vf/pf_filelock.c",
+                mw_version="GC/3.0a3",
+                cflags=cflags_sdk_gc,
+            ),
+            Object(NonMatching, "RVL_SDK/vf/pf_system.c"),
+            Object(
+                NonMatching,
+                "RVL_SDK/vf/d_vf.c",
+                mw_version="GC/3.0a3",
+                cflags=cflags_sdk_gc,
+            ),
+            Object(NonMatching, "RVL_SDK/vf/d_vf_sys.c"),
+            Object(NonMatching, "RVL_SDK/vf/d_hash.c"),
+            Object(NonMatching, "RVL_SDK/vf/d_time.c"),
             Object(NonMatching, "RVL_SDK/vf/d_common.c"),
             Object(NonMatching, "RVL_SDK/vf/nand_drv.c"),
         ],
@@ -649,6 +1284,7 @@ config.libs = [
             Object(NonMatching, "RVL_SDK/os/OSFatal.c"),
             Object(NonMatching, "RVL_SDK/os/OSFont.c"),
             Object(NonMatching, "RVL_SDK/os/OSInterrupt.c"),
+            Object(NonMatching, "RVL_SDK/os/OSLink.c"),
             Object(
                 NonMatching,
                 "RVL_SDK/os/OSMessage.c",
@@ -680,6 +1316,7 @@ config.libs = [
             ),
             Object(NonMatching, "RVL_SDK/os/OSPlayRecord.c"),
             Object(NonMatching, "RVL_SDK/os/OSStateFlags.c"),
+            Object(NonMatching, "RVL_SDK/os/OSNet.c"),
             Object(NonMatching, "RVL_SDK/os/OSNandbootInfo.c"),
             Object(
                 NonMatching,
@@ -687,13 +1324,29 @@ config.libs = [
                 mw_version="GC/3.0a5.2",
                 cflags=cflags_sdk_gc,
             ),
+            Object(NonMatching, "RVL_SDK/os/OSCrc.c"),
+            Object(NonMatching, "RVL_SDK/os/OSLaunch.c"),
             Object(NonMatching, "RVL_SDK/os/__ppc_eabi_init.c"),
+            Object(
+                NonMatching,
+                "RVL_SDK/os/init/__start.c",
+                mw_version="GC/3.0a3",
+                cflags=cflags_sdk_gc,
+            ),
+            Object(
+                NonMatching,
+                "RVL_SDK/os/init/__ppc_eabi_init.cpp",
+                mw_version="GC/3.0a3",
+                cflags=cflags_sdk_gc,
+            ),
         ],
     ),
     RVLLib(
         "exi",
         [
             Object(NonMatching, "RVL_SDK/exi/EXIBios.c"),
+            Object(NonMatching, "RVL_SDK/exi/EXIUart.c", cflags=cflags_sdk_ipa),
+            Object(NonMatching, "RVL_SDK/exi/EXICommon.c", cflags=cflags_sdk_ipa),
         ],
         cflags_sdk_exi,
     ),
@@ -701,12 +1354,14 @@ config.libs = [
         "si",
         [
             Object(NonMatching, "RVL_SDK/si/SIBios.c"),
+            Object(NonMatching, "RVL_SDK/si/SISamplingRate.c"),
         ],
     ),
     RVLLib(
         "vi",
         [
             Object(NonMatching, "RVL_SDK/vi/vi.c"),
+            Object(NonMatching, "RVL_SDK/vi/i2c.c"),
             Object(NonMatching, "RVL_SDK/vi/vi3in1.c"),
         ],
     ),
@@ -754,6 +1409,9 @@ config.libs = [
                 cflags=cflags_sdk_gc,
             ),
             Object(NonMatching, "RVL_SDK/dvd/dvd.c"),
+            Object(NonMatching, "RVL_SDK/dvd/dvdqueue.c"),
+            Object(NonMatching, "RVL_SDK/dvd/dvderror.c"),
+            Object(NonMatching, "RVL_SDK/dvd/dvdidutils.c"),
             Object(
                 NonMatching,
                 "RVL_SDK/dvd/dvdFatal.c",
@@ -771,16 +1429,47 @@ config.libs = [
         ],
     ),
     RVLLib(
+        "ax",
+        [
+            Object(NonMatching, "RVL_SDK/ax/AXAlloc.c"),
+            Object(NonMatching, "RVL_SDK/ax/AXAux.c"),
+            Object(NonMatching, "RVL_SDK/ax/AXCL.c"),
+            Object(NonMatching, "RVL_SDK/ax/AXVPB.c"),
+        ],
+    ),
+    RVLLib(
+        "axfx",
+        [
+            Object(NonMatching, "RVL_SDK/axfx/AXFXReverbHi.c"),
+            Object(NonMatching, "RVL_SDK/axfx/AXFXReverbHiExp.c"),
+            Object(
+                NonMatching,
+                "RVL_SDK/axfx/AXFXHooks.c",
+                mw_version="GC/3.0a3",
+                cflags=cflags_sdk_gc,
+            ),
+        ],
+    ),
+    RVLLib(
         "mem",
         [
+            Object(NonMatching, "RVL_SDK/mem/mem_heapCommon.c"),
             Object(NonMatching, "RVL_SDK/mem/mem_expHeap.c"),
             Object(NonMatching, "RVL_SDK/mem/mem_allocator.c"),
+            Object(NonMatching, "RVL_SDK/mem/mem_list.c"),
         ],
     ),
     RVLLib(
         "dsp",
         [
             Object(NonMatching, "RVL_SDK/dsp/dsp.c"),
+            Object(NonMatching, "RVL_SDK/dsp/dsp_debug.c"),
+            Object(
+                NonMatching,
+                "RVL_SDK/dsp/dsp_task.c",
+                mw_version="GC/3.0a3",
+                cflags=cflags_sdk_gc,
+            ),
         ],
     ),
     RVLLib(
@@ -796,6 +1485,7 @@ config.libs = [
             ),
             Object(NonMatching, "RVL_SDK/nand/NANDCheck.c"),
             Object(NonMatching, "RVL_SDK/nand/NANDLogging.c"),
+            Object(NonMatching, "RVL_SDK/nand/NANDErrorMessage.c"),
         ],
     ),
     RVLLib(
@@ -808,6 +1498,7 @@ config.libs = [
                 mw_version="GC/3.0a3",
                 cflags=cflags_sdk_gc,
             ),
+            Object(NonMatching, "RVL_SDK/sc/scapi_prdinfo.c"),
         ],
     ),
     RVLLib(
@@ -843,15 +1534,26 @@ config.libs = [
         ],
     ),
     RVLLib(
+        "pad",
+        [
+            Object(NonMatching, "RVL_SDK/pad/Pad.c"),
+        ],
+    ),
+    RVLLib(
         "wpad",
         [
             Object(NonMatching, "RVL_SDK/wpad/WPAD.c", extra_cflags=["-fp off"]),
+            Object(NonMatching, "RVL_SDK/wpad/WPADHIDParser.c"),
+            Object(NonMatching, "RVL_SDK/wpad/WPADEncrypt.c"),
+            Object(NonMatching, "RVL_SDK/wpad/WPADMem.c"),
+            Object(NonMatching, "RVL_SDK/wpad/lint.c"),
         ],
     ),
     RVLLib(
         "wud",
         [
             Object(NonMatching, "RVL_SDK/wud/WUD.c"),
+            Object(NonMatching, "RVL_SDK/wud/WUDHidHost.c"),
         ],
     ),
     RVLLib(
@@ -894,7 +1596,11 @@ config.libs = [
                 cflags=cflags_sdk_ipa,
             ),
             Object(NonMatching, "RVL_SDK/bte/uusb_ppc.c", mw_version="GC/3.0a5.2"),
+            Object(NonMatching, "RVL_SDK/bte/bta_dm_cfg.c"),
+            Object(NonMatching, "RVL_SDK/bte/bta_hh_cfg.c"),
+            Object(NonMatching, "RVL_SDK/bte/bta_sys_cfg.c"),
             Object(NonMatching, "RVL_SDK/bte/bte_hcisu.c"),
+            Object(NonMatching, "RVL_SDK/bte/bte_init.c"),
             Object(
                 NonMatching,
                 "RVL_SDK/bte/bte_logmsg.c",
@@ -921,15 +1627,20 @@ config.libs = [
             Object(NonMatching, "RVL_SDK/bte/btm_devctl.c"),
             Object(NonMatching, "RVL_SDK/bte/btm_discovery.c"),
             Object(NonMatching, "RVL_SDK/bte/btm_inq.c"),
+            Object(NonMatching, "RVL_SDK/bte/btm_main.c"),
             Object(NonMatching, "RVL_SDK/bte/btm_pm.c"),
             Object(NonMatching, "RVL_SDK/bte/btm_sco.c"),
             Object(NonMatching, "RVL_SDK/bte/btm_sec.c"),
             Object(NonMatching, "RVL_SDK/bte/btu_hcif.c"),
             Object(NonMatching, "RVL_SDK/bte/btu_init.c"),
+            Object(NonMatching, "RVL_SDK/bte/wbt_ext.c"),
+            Object(NonMatching, "RVL_SDK/bte/gap_api.c"),
             Object(NonMatching, "RVL_SDK/bte/gap_conn.c"),
             Object(NonMatching, "RVL_SDK/bte/gap_utils.c"),
             Object(NonMatching, "RVL_SDK/bte/hcicmds.c"),
+            Object(NonMatching, "RVL_SDK/bte/hidd_api.c"),
             Object(NonMatching, "RVL_SDK/bte/hidd_conn.c"),
+            Object(NonMatching, "RVL_SDK/bte/hidd_mgmt.c"),
             Object(NonMatching, "RVL_SDK/bte/hidd_pm.c"),
             Object(NonMatching, "RVL_SDK/bte/hidh_api.c"),
             Object(NonMatching, "RVL_SDK/bte/hidh_conn.c"),
@@ -938,6 +1649,7 @@ config.libs = [
             Object(NonMatching, "RVL_SDK/bte/l2c_link.c"),
             Object(NonMatching, "RVL_SDK/bte/l2c_main.c"),
             Object(NonMatching, "RVL_SDK/bte/l2c_utils.c"),
+            Object(NonMatching, "RVL_SDK/bte/port_api.c"),
             Object(NonMatching, "RVL_SDK/bte/port_rfc.c"),
             Object(NonMatching, "RVL_SDK/bte/port_utils.c"),
             Object(NonMatching, "RVL_SDK/bte/rfc_l2cap_if.c"),
@@ -955,19 +1667,50 @@ config.libs = [
         ],
     ),
     NWLib(
-        "nw4r_lyt",
+        "libnw4r_ut",
         [
-            Object(NonMatching, "nw4r/lyt/lyt_group.cpp"),
-            Object(NonMatching, "nw4r/lyt/lyt_layout.cpp"),
+            Object(NonMatching, "nw4r/ut/ut_LinkList.cpp"),
+            Object(Matching, "nw4r/ut/ut_binaryFileFormat.cpp"),
+            Object(Matching, "nw4r/ut/ut_CharStrmReader.cpp"),
+            Object(NonMatching, "nw4r/ut/ut_TagProcessorBase.cpp"),
+            Object(NonMatching, "nw4r/ut/ut_Font.cpp"),
+            Object(NonMatching, "nw4r/ut/ut_ResFontBase.cpp"),
+            Object(NonMatching, "nw4r/ut/ut_ResFont.cpp"),
+            Object(NonMatching, "nw4r/ut/ut_CharWriter.cpp"),
+            Object(NonMatching, "nw4r/ut/ut_TextWriterBase.cpp"),
         ],
     ),
     NWLib(
-        "nw4r_ut",
+        "libnw4r_db",
         [
-            Object(NonMatching, "nw4r/ut/ut_LinkList.cpp"),
-            Object(NonMatching, "nw4r/ut/ut_binaryFileFormat.cpp"),
-            Object(NonMatching, "nw4r/ut/ut_CharStrmReader.cpp"),
-            Object(NonMatching, "nw4r/ut/ut_TagProcessorBase.cpp"),
+            Object(NonMatching, "nw4r/db/db_console.cpp"),
+            Object(NonMatching, "nw4r/db/db_assert.cpp"),
+        ],
+    ),
+    NWLib(
+        "libnw4r_math",
+        [
+            Object(NonMatching, "nw4r/math/math_triangular.cpp"),
+            Object(Matching, "nw4r/math/math_types.cpp"),
+        ],
+    ),
+    NWLib(
+        "libnw4r_lyt",
+        [
+            Object(NonMatching, "nw4r/lyt/lyt_init.cpp"),
+            Object(NonMatching, "nw4r/lyt/lyt_pane.cpp"),
+            Object(NonMatching, "nw4r/lyt/lyt_group.cpp"),
+            Object(NonMatching, "nw4r/lyt/lyt_layout.cpp"),
+            Object(NonMatching, "nw4r/lyt/lyt_picture.cpp"),
+            Object(NonMatching, "nw4r/lyt/lyt_textBox.cpp"),
+            Object(NonMatching, "nw4r/lyt/lyt_window.cpp"),
+            Object(NonMatching, "nw4r/lyt/lyt_bounding.cpp"),
+            Object(NonMatching, "nw4r/lyt/lyt_material.cpp"),
+            Object(NonMatching, "nw4r/lyt/lyt_texMap.cpp"),
+            Object(NonMatching, "nw4r/lyt/lyt_drawInfo.cpp"),
+            Object(NonMatching, "nw4r/lyt/lyt_animation.cpp"),
+            Object(NonMatching, "nw4r/lyt/lyt_resourceAccessor.cpp"),
+            Object(NonMatching, "nw4r/lyt/lyt_common.cpp"),
         ],
     ),
     MSLLib(
@@ -1079,6 +1822,8 @@ config.progress_categories = [
     ProgressCategory("game", "Game Code"),
     ProgressCategory("sdk", "SDK Code"),
     ProgressCategory("nw4r", "NintendoWare Code"),
+    ProgressCategory("jsys", "JSystem"),
+    ProgressCategory("rfl", "RVLFaceLib"),
     ProgressCategory("msl", "MSL_C Code"),
     ProgressCategory("trk", "MetroTRK Code"),
 ]

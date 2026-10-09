@@ -1,6 +1,6 @@
 #include "Util/MathUtil.hpp"
-#include <revolution.h>
 #include <cmath>
+#include <revolution.h>
 
 namespace {
     f32* gAcosTable;
@@ -20,12 +20,6 @@ namespace MR {
         } while (i < 0x100);
     }
 
-
-
-
-
-
-
     void repeatDegree(f32* value) {
         *value = repeat(*value, 0.0f, 360.0f);
     }
@@ -34,7 +28,4 @@ namespace MR {
         return repeat(value, 0.0f, 360.0f);
     }
 
-
-
-
-};
+};  // namespace MR
