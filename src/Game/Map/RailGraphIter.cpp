@@ -1,6 +1,6 @@
 #include "Map/RailGraphIter.hpp"
 
-RailGraphIter::RailGraphIter(const RailGraph *pGraph) {
+RailGraphIter::RailGraphIter(const RailGraph* pGraph) {
     mGraph = pGraph;
     _4 = -1;
     mSelectedEdge = -1;
@@ -47,7 +47,7 @@ void RailGraphIter::selectEdge(s32 edge) {
 
 bool RailGraphIter::isWatchedPrevEdge() const {
     RailGraphEdge* edge = mGraph->getEdge(mNextEdge);
-    return edge->getNextNode(_4) == _10;   
+    return edge->getNextNode(_4) == _10;
 }
 
 bool RailGraphIter::isSelectedEdge() const {

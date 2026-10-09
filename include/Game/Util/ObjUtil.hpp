@@ -1,8 +1,8 @@
 #pragma once
 
-#include <JGeometry.hpp>
-#include "Util/JMapInfo.hpp"
 #include "Util/Functor.hpp"
+#include "Util/JMapInfo.hpp"
+#include <JGeometry.hpp>
 
 class NameObj;
 class LiveActor;
@@ -17,11 +17,8 @@ class Color8;
 typedef struct _GXColor GXColor;
 
 namespace MR {
-    JMapInfo* createCsvParserFromFile(const char *, const char *, ...);
-    bool isExistElement(const JMapInfo *, const char *, const char *);
-
-
-
+    JMapInfo* createCsvParserFromFile(const char*, const char*, ...);
+    bool isExistElement(const JMapInfo*, const char*, const char*);
 
     bool isJudgedToClipFrustum(const TVec3f& rPosition, f32 radius);
     bool isJudgedToClipFrustum50m(const TVec3f& rPosition, f32 radius);
@@ -114,12 +111,15 @@ namespace MR {
     NameObjAdaptor* createAdaptorAndConnectToDrawBloomModel(const char* pName, const MR::FunctorBase& rFunctor);
 
     void listenNameObjStageSwitchOnAppear(const NameObj* pObj, const StageSwitchCtrl* pStageSwitchCtrl, const MR::FunctorBase& rFunctor);
-    void listenNameObjStageSwitchOnOffAppear(const NameObj* pObj, const StageSwitchCtrl* pStageSwitchCtrl, const MR::FunctorBase& rFunctorOn, const MR::FunctorBase& rFunctorOff);
+    void listenNameObjStageSwitchOnOffAppear(const NameObj* pObj, const StageSwitchCtrl* pStageSwitchCtrl, const MR::FunctorBase& rFunctorOn,
+                                             const MR::FunctorBase& rFunctorOff);
     void listenNameObjStageSwitchOnA(const NameObj* pObj, const StageSwitchCtrl* pStageSwitchCtrl, const MR::FunctorBase& rFunctor);
-    void listenNameObjStageSwitchOnOffA(const NameObj* pObj, const StageSwitchCtrl* pStageSwitchCtrl, const MR::FunctorBase& rFunctorOn, const MR::FunctorBase& rFunctorOff);
+    void listenNameObjStageSwitchOnOffA(const NameObj* pObj, const StageSwitchCtrl* pStageSwitchCtrl, const MR::FunctorBase& rFunctorOn,
+                                        const MR::FunctorBase& rFunctorOff);
     void listenNameObjStageSwitchOnB(const NameObj* pObj, const StageSwitchCtrl* pStageSwitchCtrl, const MR::FunctorBase& rFunctor);
     void listenNameObjStageSwitchOffB(const NameObj* pObj, const StageSwitchCtrl* pStageSwitchCtrl, const MR::FunctorBase& rFunctor);
-    void listenNameObjStageSwitchOnOffB(const NameObj* pObj, const StageSwitchCtrl* pStageSwitchCtrl, const MR::FunctorBase& rFunctorOn, const MR::FunctorBase& rFunctorOff);
+    void listenNameObjStageSwitchOnOffB(const NameObj* pObj, const StageSwitchCtrl* pStageSwitchCtrl, const MR::FunctorBase& rFunctorOn,
+                                        const MR::FunctorBase& rFunctorOff);
 
     ResourceHolder* createAndAddResourceHolder(const char* pObjName);
     // more ResourceHolder stuff...
@@ -135,7 +135,9 @@ namespace MR {
     const JMapInfo* tryCreateStageZoneInfoCsvParser(const char* pPathFormat, ...);
     const JMapInfo* tryCreateStageUseResourceCsvParser(const char* pStageName, const char* pPathFormat, ...);
 
-    const JMapInfo* tryCreateWorldMapCsvParser(u32* pWorldId, const char* pCsvName); // first argument isn't actually a u32 pointer (it's most likely a pointer to something world map related), but treating it as one is totally valid 
+    const JMapInfo* tryCreateWorldMapCsvParser(u32* pWorldId,
+                                               const char* pCsvName);  // first argument isn't actually a u32 pointer (it's most likely a pointer to
+                                                                       // something world map related), but treating it as one is totally valid
 
     s32 getCsvDataElementNum(const JMapInfo* pCsvData);
     void getCsvDataStr(const char** pDest, const JMapInfo* pCsvData, const char* pItemName, s32 dataRow);
@@ -152,14 +154,15 @@ namespace MR {
     bool hasCsvItem(const JMapInfo*, const char* pItemName);
     bool hasCsvDataItem(const JMapInfo*, const char* pItemName, const char* pDataName);
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <param name="pDest">The output</param>
     /// <param name="pCsvData">The BCSV to look through</param>
     /// <param name="pItemName">The BCSV Column to find pDataName in</param>
     /// <param name="pDataName">The value to find the first row of inside the pItemName Column</param>
     /// <param name="pElementName">The BCSV Column to get the data from using the index of the row found for pDataName</param>
-    JMapInfoIter getCsvDataStrByElement(const char** pDest, const JMapInfo* pCsvData, const char* pItemName, const char* pDataName, const char* pElementName);
+    JMapInfoIter getCsvDataStrByElement(const char** pDest, const JMapInfo* pCsvData, const char* pItemName, const char* pDataName,
+                                        const char* pElementName);
     // more csv functions...
 
     void declarePowerStar(const NameObj* pHost);
@@ -194,7 +197,8 @@ namespace MR {
     void clearGotCountStarPieceReceiver(const NameObj* pHost);
     bool hopStarPiece(const NameObj* pHost, const TVec3f&, const TVec3f&);
     bool appearStarPiece(const NameObj* pHost, const TVec3f& rPosition, s32 numItems, f32 radius, f32 height, bool);
-    bool appearStarPieceToDirection(const NameObj* pHost, const TVec3f& rPosition, const TVec3f& rDirection, s32 numItems, f32 radius, f32 height, bool);
+    bool appearStarPieceToDirection(const NameObj* pHost, const TVec3f& rPosition, const TVec3f& rDirection, s32 numItems, f32 radius, f32 height,
+                                    bool);
     // one unknown StarPiece function
     void initStarPieceGetCSSound();
 
@@ -245,4 +249,4 @@ namespace MR {
     bool findLinkNamePos(const NameObj* pLinkedObj, const char* pPosName, MtxPtr pMtx);
     bool tryFindLinkNamePos(const NameObj* pLinkedObj, const char* pPosName, TVec3f* pPosition, TVec3f* pRotation);
     bool tryFindLinkNamePos(const NameObj* pLinkedObj, const char* pPosName, MtxPtr pMtx);
-};
+};  // namespace MR

@@ -12,7 +12,7 @@ ResFileInfo::ResFileInfo() {
     _C = 0;
 }
 
-void ResFileInfo::setName(const char *pName, bool stripExt) {
+void ResFileInfo::setName(const char* pName, bool stripExt) {
     size_t len = strlen(pName) + 1;
     mName = new char[len];
     snprintf(mName, len, "%s", pName);
@@ -37,7 +37,7 @@ void ResTable::newFileInfoTable(u32 num) {
     mResArray = new ResFileInfo[num];
 }
 
-ResFileInfo* ResTable::add(const char *pName, void *pRes, bool stripExt) {
+ResFileInfo* ResTable::add(const char* pName, void* pRes, bool stripExt) {
     ResFileInfo* info = &mResArray[mResourceNum];
     info->mRes = pRes;
     info->setName(pName, stripExt);
@@ -53,11 +53,11 @@ void* ResTable::getRes(u32 idx) const {
     return mResArray[idx].mRes;
 }
 
-void* ResTable::getRes(const char *pName) const {
+void* ResTable::getRes(const char* pName) const {
     return findRes(pName);
 }
 
-ResFileInfo* ResTable::findFileInfo(const char *pName) const {
+ResFileInfo* ResTable::findFileInfo(const char* pName) const {
     int idx = getResIndex(pName);
 
     if (idx != -1) {
@@ -71,11 +71,11 @@ ResFileInfo* ResTable::getFileInfo(u32 idx) const {
     return &mResArray[idx];
 }
 
-bool ResTable::isExistRes(const char *pName) const {
+bool ResTable::isExistRes(const char* pName) const {
     return getResIndex(pName) != -1;
 }
 
-void* ResTable::findRes(const char *pName) const {
+void* ResTable::findRes(const char* pName) const {
     int idx = getResIndex(pName);
 
     if (idx != -1) {
@@ -85,7 +85,7 @@ void* ResTable::findRes(const char *pName) const {
     return nullptr;
 }
 
-int ResTable::getResIndex(const char *pName) const {
+int ResTable::getResIndex(const char* pName) const {
     u32 hash = MR::getHashCodeLower(pName);
 
     for (u32 i = 0; i < mResourceNum; i++) {
@@ -99,7 +99,7 @@ int ResTable::getResIndex(const char *pName) const {
     return -1;
 }
 
-const char* ResTable::findResName(const void *pRes) const {
+const char* ResTable::findResName(const void* pRes) const {
     for (u32 i = 0; i < mResourceNum; i++) {
         ResFileInfo* inf = &mResArray[i];
         if (pRes == inf->mRes) {
@@ -110,6 +110,6 @@ const char* ResTable::findResName(const void *pRes) const {
     return 0;
 }
 
-const char* ResTable::getResName(const void *pRes) const {
+const char* ResTable::getResName(const void* pRes) const {
     return findResName(pRes);
 }

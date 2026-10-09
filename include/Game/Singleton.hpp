@@ -2,14 +2,14 @@
 
 #include <revolution.h>
 
-template<typename T>
+template < typename T >
 class SingletonHolder {
 public:
     static T* get() {
         return sInstance;
     }
 
-    static void set(T *p) {
+    static void set(T* p) {
         sInstance = p;
     }
 

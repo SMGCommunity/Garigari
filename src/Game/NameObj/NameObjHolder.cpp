@@ -1,14 +1,13 @@
-#include "NameObj/NameObj.hpp"
 #include "NameObj/NameObjHolder.hpp"
+#include "NameObj/NameObj.hpp"
 #include "Util/ObjUtil.hpp"
 
-NameObjHolder::NameObjHolder(int a1) : 
-    mObjs(0), mMaxObjs(0), mObjCount(0), _4C(0) {
-        mObjs = new NameObj*[a1];
-        mMaxObjs = a1;
-    }
+NameObjHolder::NameObjHolder(int a1) : mObjs(0), mMaxObjs(0), mObjCount(0), _4C(0) {
+    mObjs = new NameObj*[a1];
+    mMaxObjs = a1;
+}
 
-void NameObjHolder::add(NameObj *pObj) {
+void NameObjHolder::add(NameObj* pObj) {
     u32 count = mObjCount;
     mObjCount = count + 1;
     mObjs[count] = pObj;

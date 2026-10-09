@@ -1,7 +1,7 @@
 #include "NameObj/NameObjGroup.hpp"
 #include "Util/ObjUtil.hpp"
 
-NameObjGroup::NameObjGroup(const char *pGroupName, int maxCount) : NameObj(pGroupName) {
+NameObjGroup::NameObjGroup(const char* pGroupName, int maxCount) : NameObj(pGroupName) {
     mMaxCount = 0;
     mObjectCount = 0;
     mObjects = 0;
@@ -12,7 +12,7 @@ NameObjGroup::~NameObjGroup() {
     delete[] mObjects;
 }
 
-void NameObjGroup::registerObj(NameObj *pObj) {
+void NameObjGroup::registerObj(NameObj* pObj) {
     mObjects[mObjectCount] = pObj;
     mObjectCount++;
 }

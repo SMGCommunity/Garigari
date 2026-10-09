@@ -1,18 +1,18 @@
 #include "Util/ActorInitUtil.hpp"
 #include "LiveActor/ActorActionKeeper.hpp"
-#include "LiveActor/Binder.hpp"
-#include "LiveActor/HitSensorKeeper.hpp"
-#include "LiveActor/HitSensorInfo.hpp"
 #include "LiveActor/ActorLightCtrl.hpp"
+#include "LiveActor/Binder.hpp"
+#include "LiveActor/HitSensorInfo.hpp"
+#include "LiveActor/HitSensorKeeper.hpp"
 #include "LiveActor/LiveActor.hpp"
 #include "Util.hpp"
-#include "Util/JMapInfo.hpp"
 #include "Util/ActorSwitchUtil.hpp"
+#include "Util/JMapInfo.hpp"
 #include "Util/MtxUtil.hpp"
 #include <cstdio>
 
 namespace MR {
-    bool isDataEnable(JMapInfo *pInfo, const char *pName) {
+    bool isDataEnable(JMapInfo* pInfo, const char* pName) {
         if (!MR::isExistElement(pInfo, "InitFunction", pName)) {
             return false;
         }
@@ -22,68 +22,67 @@ namespace MR {
         return str[0] == 'o';
     }
 
-}
+}  // namespace MR
 
 namespace {
     const MR::ObjConnection cConnections[] = {
-        { "MapObj", 33, 5, 9, -1 },
-        { "MapObjStrongLight", 33, 5, 11, -1 },
-        { "MapObjNoShadow", 33, 5, 13, -1 },
-        { "MapObjNoSilhouetted", 33, 5, 16, -1 },
-        { "MapObjDecoration", 34, 11, 11, -1 },
-        { "MapObjNoCalcAnim", 33, -1, 9, -1 },
-        { "MapObjMovement", 33, -1, -1, -1 },
-        { "MapObjNoMovement", -1, 5, 9, -1 },
-        { "MapObjIndirect", 33, 5, 26, -1 },
-        { "MapObjIndirectStrongLight", 33, 5, 27, -1 },
-        { "MapObjNoMovementNoCalcAnimIndirectStrongLight", -1, -1, 27, -1 },
-        { "ClippedMapParts", 27, 0, 0, -1 },
-        { "CollisionMapObj", 29, 2, 9, -1 },
-        { "CollisionMapObjWeakLight", 29, 2, 10, -1 },
-        { "CollisionMapObjNoShadow", 29, 5, 12, -1 },
-        { "CollisionMapObjNoShadowNoCalcAnim", 29, -1, 13, -1 },
-        { "CollisionMapObjIndirectNoCalcAnim", 29, -1, 27, -1 },
-        { "Enemy", 41, 8, 19, -1 },
-        { "EnemyDecoration", 42, 11, 20, -1 },
-        { "EnemyIndirect", 41, 8, 29, -1 },
-        { "EnemySilhouette", 41, 8, 19, 44 },
-        { "EnemyNoShadow", 41, 8, 13, -1 },
-        { "EnemyNoMovement", -1, 8, 19, -1 },
-        { "Boss", 41, 8, 19, -1 },
-        { "Npc", 39, 6, 17, -1 },
-        { "NpcNoShadow", 39, 6, 13, -1 },
-        { "NpcNoCalcAnim", 39, -1, 17, -1 },
-        { "Ride", 40, 7, 18, -1 },
-        { "RideSilhouette", 40, 7, 18, 44 },
-        { "Planet", 28, 1, 5, -1 },
-        { "PlanetIndirect", 28, 1, 30, -1 },
-        { "DynamicMapObj", 33, 5, -1, 35 },
-        { "PlayerDecoration", 37, 10, 22, -1 },
-        { "Item", 43, 15, 14, -1 },
-        { "Bloom", 34, 11, 31, -1 },
-        { "BossBussun", 41, 8, 1, -1 },
-        { "CrystalItem", 34, 11, 34, -1 },
-        { "FireBarBall", 33, 5, 12, -1 },
-        { "GliBird", 41, 7, 18, -1 },
-        { "HipDropStarMove", 33, 5, 9, 34 },
-        { "StoryBook", 39, 6, 38, -1 },
-        { "StoryBookFilter", 39, -1, 9, -1 },
-        { "WorldMapMiniObj", 47, 20, 39, -1 },
-        { "GhostMazeMask", 33, 5, 23, -1 },
-        { "Crystal", 33, 5, 33, -1 },
-        { "Tamakoro", 40, 7, 27, -1 },
-        { "SuperDreamer", 45, 6, 17, -1 },
-        { "Ghost2DWater", 41, 8, 19, -1 },
-        { "WoodLogBridge", 33, -1, -1, 33 },
+        {"MapObj", 33, 5, 9, -1},
+        {"MapObjStrongLight", 33, 5, 11, -1},
+        {"MapObjNoShadow", 33, 5, 13, -1},
+        {"MapObjNoSilhouetted", 33, 5, 16, -1},
+        {"MapObjDecoration", 34, 11, 11, -1},
+        {"MapObjNoCalcAnim", 33, -1, 9, -1},
+        {"MapObjMovement", 33, -1, -1, -1},
+        {"MapObjNoMovement", -1, 5, 9, -1},
+        {"MapObjIndirect", 33, 5, 26, -1},
+        {"MapObjIndirectStrongLight", 33, 5, 27, -1},
+        {"MapObjNoMovementNoCalcAnimIndirectStrongLight", -1, -1, 27, -1},
+        {"ClippedMapParts", 27, 0, 0, -1},
+        {"CollisionMapObj", 29, 2, 9, -1},
+        {"CollisionMapObjWeakLight", 29, 2, 10, -1},
+        {"CollisionMapObjNoShadow", 29, 5, 12, -1},
+        {"CollisionMapObjNoShadowNoCalcAnim", 29, -1, 13, -1},
+        {"CollisionMapObjIndirectNoCalcAnim", 29, -1, 27, -1},
+        {"Enemy", 41, 8, 19, -1},
+        {"EnemyDecoration", 42, 11, 20, -1},
+        {"EnemyIndirect", 41, 8, 29, -1},
+        {"EnemySilhouette", 41, 8, 19, 44},
+        {"EnemyNoShadow", 41, 8, 13, -1},
+        {"EnemyNoMovement", -1, 8, 19, -1},
+        {"Boss", 41, 8, 19, -1},
+        {"Npc", 39, 6, 17, -1},
+        {"NpcNoShadow", 39, 6, 13, -1},
+        {"NpcNoCalcAnim", 39, -1, 17, -1},
+        {"Ride", 40, 7, 18, -1},
+        {"RideSilhouette", 40, 7, 18, 44},
+        {"Planet", 28, 1, 5, -1},
+        {"PlanetIndirect", 28, 1, 30, -1},
+        {"DynamicMapObj", 33, 5, -1, 35},
+        {"PlayerDecoration", 37, 10, 22, -1},
+        {"Item", 43, 15, 14, -1},
+        {"Bloom", 34, 11, 31, -1},
+        {"BossBussun", 41, 8, 1, -1},
+        {"CrystalItem", 34, 11, 34, -1},
+        {"FireBarBall", 33, 5, 12, -1},
+        {"GliBird", 41, 7, 18, -1},
+        {"HipDropStarMove", 33, 5, 9, 34},
+        {"StoryBook", 39, 6, 38, -1},
+        {"StoryBookFilter", 39, -1, 9, -1},
+        {"WorldMapMiniObj", 47, 20, 39, -1},
+        {"GhostMazeMask", 33, 5, 23, -1},
+        {"Crystal", 33, 5, 33, -1},
+        {"Tamakoro", 40, 7, 27, -1},
+        {"SuperDreamer", 45, 6, 17, -1},
+        {"Ghost2DWater", 41, 8, 19, -1},
+        {"WoodLogBridge", 33, -1, -1, 33},
     };
 
     const MR::ObjLight cLightTable[] = {
-        { "プレイヤー", "Player", 0 },
-        { "目立たせ", "Strong", 1 },
-        { "なじませ", "Weak", 2 },
-        { "惑星", "Planet", 3 },
+        {"プレイヤー", "Player", 0},
+        {"目立たせ", "Strong", 1},
+        {"なじませ", "Weak", 2},
+        {"惑星", "Planet", 3},
     };
-
 
     struct SensorType {
         const char* mName;
@@ -91,44 +90,44 @@ namespace {
     };
 
     const SensorType cSensorTypes[] = {
-        { "Binder", 91 },
-        { "Enemy", 24 },
-        { "EnemyAttack", 26 },
-        { "EnemySimple", 25 },
-        { "MapObj", 64 },
-        { "MapObjPress", 113 },
-        { "MapObjSimple", 65 },
-        { "Message", 126 },
-        { "Npc", 8 },
-        { "Ride", 12 },
-        { "Eye", 122 },
-        { "Pukupuku", 39 },
-        { "KillerTargetMapObj", 78 },
-        { "PriorBinder", 93 },
-        { "Switch", 73 },
-        { "Push", 123 },
-        { "BellyDragonHead", 55 },
-        { "BellyDragonBody", 56 },
-        { "BellyDragonWeakPoint", 57 },
-        { "KoopaJrRobot", 51 },
-        { "KoopaJrCastle", 53 },
-        { "KoopaJrCastleTire", 54 },
-        { "BossBussunShotCollision", 85 },
-        { "Ghost", 21 },
-        { "HipDropStar", 60 },
-        { "JumpHole", 116 },
-        { "Karikari", 32 },
-        { "KinokoOneUp", 71 },
-        { "Kuribo", 31 },
-        { "LeafBoard", 52 },
-        { "PunchBox", 79 },
-        { "SandBird", 83 },
-        { "SnowStep", 82 },
-        { "SpherePlayer", 13 },
-        { "SpherePlayerBind", 96 },
-        { "SpherePlayerHit", 14 },
-        { "SpinCloudBlock", 86 },
-        { "SupportTico", 61 },
+        {"Binder", 91},
+        {"Enemy", 24},
+        {"EnemyAttack", 26},
+        {"EnemySimple", 25},
+        {"MapObj", 64},
+        {"MapObjPress", 113},
+        {"MapObjSimple", 65},
+        {"Message", 126},
+        {"Npc", 8},
+        {"Ride", 12},
+        {"Eye", 122},
+        {"Pukupuku", 39},
+        {"KillerTargetMapObj", 78},
+        {"PriorBinder", 93},
+        {"Switch", 73},
+        {"Push", 123},
+        {"BellyDragonHead", 55},
+        {"BellyDragonBody", 56},
+        {"BellyDragonWeakPoint", 57},
+        {"KoopaJrRobot", 51},
+        {"KoopaJrCastle", 53},
+        {"KoopaJrCastleTire", 54},
+        {"BossBussunShotCollision", 85},
+        {"Ghost", 21},
+        {"HipDropStar", 60},
+        {"JumpHole", 116},
+        {"Karikari", 32},
+        {"KinokoOneUp", 71},
+        {"Kuribo", 31},
+        {"LeafBoard", 52},
+        {"PunchBox", 79},
+        {"SandBird", 83},
+        {"SnowStep", 82},
+        {"SpherePlayer", 13},
+        {"SpherePlayerBind", 96},
+        {"SpherePlayerHit", 14},
+        {"SpinCloudBlock", 86},
+        {"SupportTico", 61},
     };
 
     inline u32 getSensorType(const char* pName) ALWAYS_INLINE {
@@ -146,7 +145,7 @@ namespace {
         return iter;
     }
 
-    inline s32 getConnectionIdx(const char *pName) ALWAYS_INLINE {
+    inline s32 getConnectionIdx(const char* pName) ALWAYS_INLINE {
         for (u32 i = 0; i < 0x31; i++) {
             const MR::ObjConnection* c = &cConnections[i];
             if (MR::isEqualString(pName, c->mObjType)) {
@@ -157,7 +156,7 @@ namespace {
         return -1;
     }
 
-    inline s32 getLightIDIdx(const char *pLight) ALWAYS_INLINE {
+    inline s32 getLightIDIdx(const char* pLight) ALWAYS_INLINE {
         for (u32 i = 0; i < 4; i++) {
             const MR::ObjLight* c = &cLightTable[i];
             if (MR::isEqualString(pLight, c->mTypeStr)) {
@@ -167,39 +166,39 @@ namespace {
 
         return 3;
     }
-};
+};  // namespace
 
 namespace MR {
-    bool getInitSwitchType(const char **pSwitchType, const JMapInfo *pInfo, const char *pName) {
+    bool getInitSwitchType(const char** pSwitchType, const JMapInfo* pInfo, const char* pName) {
         MR::getCsvDataStrByElement(pSwitchType, pInfo, "SwitchName", pName, "UseType");
         return *pSwitchType[0] != 'x';
     }
 
-    bool initActor(LiveActor *pActor, const JMapInfoIter &rIter, bool a3) {
+    bool initActor(LiveActor* pActor, const JMapInfoIter& rIter, bool a3) {
         const char* objName = nullptr;
         MR::getObjectName(&objName, rIter);
         return initActor(pActor, rIter, objName, nullptr, nullptr, a3);
     }
 
-    bool initActor(LiveActor *pActor, const JMapInfoIter &rIter, const char *pObjName, bool a4) {
+    bool initActor(LiveActor* pActor, const JMapInfoIter& rIter, const char* pObjName, bool a4) {
         return initActor(pActor, rIter, pObjName, nullptr, nullptr, a4);
     }
 
-    bool initActor(LiveActor *pActor, const JMapInfoIter &rIter, const char *pObjName, const char *a4, bool a5) {
+    bool initActor(LiveActor* pActor, const JMapInfoIter& rIter, const char* pObjName, const char* a4, bool a5) {
         return initActor(pActor, rIter, pObjName, nullptr, a4, a5);
     }
 
-    bool initActor(LiveActor *pActor, const char *pObjName, bool a3) {
+    bool initActor(LiveActor* pActor, const char* pObjName, bool a3) {
         JMapInfoIter iter(0, -1);
         return initActor(pActor, iter, pObjName, nullptr, nullptr, a3);
     }
 
-    bool initActor(LiveActor *pActor, const char *pObjName, const char *a3, bool a4) {
+    bool initActor(LiveActor* pActor, const char* pObjName, const char* a3, bool a4) {
         JMapInfoIter iter(0, -1);
         return initActor(pActor, iter, pObjName, nullptr, a3, a4);
     }
 
-    JMapInfo* makeInitActorCsvParser(const char *a1, const char *pSubFile) {
+    JMapInfo* makeInitActorCsvParser(const char* a1, const char* pSubFile) {
         const char* csv = "InitActor.bcsv";
 
         if (pSubFile != nullptr) {
@@ -211,12 +210,12 @@ namespace MR {
         return createCsvParserFromFile(a1, csv);
     }
 
-    bool isValidInitActorCsvParser(const char *a1, const char *pSubFile) {
+    bool isValidInitActorCsvParser(const char* a1, const char* pSubFile) {
         return makeInitActorCsvParser(a1, pSubFile) != nullptr;
     }
 
     /* https://decomp.me/scratch/xGEnY */
-    bool initActor(LiveActor *pActor, const JMapInfoIter &rIter, const char *pArchiveName, const char* a4, const char *a5, bool a6) {
+    bool initActor(LiveActor* pActor, const JMapInfoIter& rIter, const char* pArchiveName, const char* a4, const char* a5, bool a6) {
         bool flag = false;
         char archiveName[0x80];
         snprintf(archiveName, sizeof(archiveName), "%s.arc", pArchiveName);
@@ -236,8 +235,7 @@ namespace MR {
 
                 if (MR::isEqualString(railUse, "Need")) {
                     pActor->initRailRider(rIter);
-                }
-                else {
+                } else {
                     if (MR::isEqualString(railUse, "Use") && MR::isConnectedWithRail(rIter)) {
                         pActor->initRailRider(rIter);
                     }
@@ -267,8 +265,7 @@ namespace MR {
             const ObjConnection* connection;
             if (connectionIdx >= 0) {
                 connection = &cConnections[connectionIdx];
-            }
-            else {
+            } else {
                 connection = nullptr;
             }
 
@@ -291,9 +288,9 @@ namespace MR {
                 const char* binder = nullptr;
                 const JMapInfoIter& iter = getInitFunction(&binder, info, "Binder");
                 f32 param00 = 0.0f;
-                iter.getValue<f32>("Param00F32", &param00);
+                iter.getValue< f32 >("Param00F32", &param00);
                 f32 param01 = 0.0f;
-                iter.getValue<f32>("Param01F32", &param01);
+                iter.getValue< f32 >("Param01F32", &param01);
                 u32 paramInt = 0;
                 const JMapInfo* binderInfo = iter.mInfo;
                 s32 binderRow = iter.mIndex;
@@ -309,7 +306,7 @@ namespace MR {
             const JMapInfoIter& effectIter = getInitFunction(&effect, info, "Effect");
             if (*effect) {
                 s32 count = 0;
-                effectIter.getValue<s32>("Param00Int", &count);
+                effectIter.getValue< s32 >("Param00Int", &count);
                 pActor->initEffectKeeper(count, effect, false);
             }
 
@@ -321,14 +318,14 @@ namespace MR {
                     soundName = sound;
                 }
                 s32 count = 0;
-                soundIter.getValue<s32>("Param00Int", &count);
+                soundIter.getValue< s32 >("Param00Int", &count);
                 if (count <= 0) {
                     count = 4;
                 }
                 TVec3f offset(0.0f);
-                soundIter.getValue<f32>("Param00VecX", &offset.x);
-                soundIter.getValue<f32>("Param00VecY", &offset.y);
-                soundIter.getValue<f32>("Param00VecZ", &offset.z);
+                soundIter.getValue< f32 >("Param00VecX", &offset.x);
+                soundIter.getValue< f32 >("Param00VecY", &offset.y);
+                soundIter.getValue< f32 >("Param00VecZ", &offset.z);
                 pActor->initSound(count, soundName, nullptr, offset);
             }
 
@@ -336,15 +333,14 @@ namespace MR {
                 char shadowName[0x80];
                 snprintf(shadowName, sizeof(shadowName), "Shadow%s", a5);
                 MR::initShadowFromCSVWithoutInitShadowVolumeSphere(pActor, shadowName);
-            }
-            else {
+            } else {
                 MR::initShadowFromCSVWithoutInitShadowVolumeSphere(pActor, "Shadow");
             }
 
             const char* clipping = nullptr;
             const JMapInfoIter& clippingIter = getInitFunction(&clipping, info, "Clipping");
             f32 clippingRadius = 0.0f;
-            clippingIter.getValue<f32>("Param00F32", &clippingRadius);
+            clippingIter.getValue< f32 >("Param00F32", &clippingRadius);
             if (clippingRadius > 0.0f) {
                 MR::setClippingTypeSphere(pActor, clippingRadius);
                 if (MR::isEqualString(clipping, "FarMax")) {
@@ -356,7 +352,7 @@ namespace MR {
                 const char* groupClipping = nullptr;
                 const JMapInfoIter& groupIter = getInitFunction(&groupClipping, info, "GroupClipping");
                 s32 param00Int = 0;
-                groupIter.getValue<s32>("Param00Int", &param00Int);
+                groupIter.getValue< s32 >("Param00Int", &param00Int);
 
                 if (param00Int <= 0) {
                     param00Int = 0x10;
@@ -373,11 +369,11 @@ namespace MR {
                 const char* starPointer = nullptr;
                 const JMapInfoIter& iter = getInitFunction(&starPointer, info, "StarPointer");
                 f32 param00 = 0.0f;
-                iter.getValue<f32>("Param00F32", &param00);
+                iter.getValue< f32 >("Param00F32", &param00);
                 TVec3f vec(0.0f);
-                iter.getValue<f32>("Param00VecX", &vec.x);
-                iter.getValue<f32>("Param00VecY", &vec.y);
-                iter.getValue<f32>("Param00VecZ", &vec.z);
+                iter.getValue< f32 >("Param00VecX", &vec.x);
+                iter.getValue< f32 >("Param00VecY", &vec.y);
+                iter.getValue< f32 >("Param00VecZ", &vec.z);
 
                 const char* param = nullptr;
                 const JMapInfo* pointerInfo = iter.mInfo;
@@ -390,13 +386,11 @@ namespace MR {
 
                 if (!MR::isNullOrEmptyString(param)) {
                     MR::initStarPointerTargetAtJoint(pActor, param, param00, vec);
-                }
-                else {
+                } else {
                     MR::initStarPointerTarget(pActor, param00, vec);
                 }
             }
-        }
-        else {
+        } else {
             pActor->initModelManagerWithAnm(pArchiveName, a4, a5, a6);
         }
 
@@ -418,9 +412,9 @@ namespace MR {
                 MR::getCsvDataStrOrNULL(&jointName, colInfo, "JointName", i);
 
                 if (jointName != nullptr) {
-                    MR::initCollisionPartsFromResourceHolder(pActor, colName, pActor->getSensor(sensorName), holder, MR::getJointMtx(pActor, jointName));
-                }
-                else {
+                    MR::initCollisionPartsFromResourceHolder(pActor, colName, pActor->getSensor(sensorName), holder,
+                                                             MR::getJointMtx(pActor, jointName));
+                } else {
                     MR::initCollisionPartsFromResourceHolder(pActor, colName, pActor->getSensor(sensorName), holder, nullptr);
                 }
             }
@@ -469,22 +463,22 @@ namespace MR {
         return info != nullptr;
     }
 
-    bool initActorNoIter(LiveActor *pActor, const char *pObjName, const char *a3, bool a4) {
+    bool initActorNoIter(LiveActor* pActor, const char* pObjName, const char* a3, bool a4) {
         JMapInfoIter iter(0, -1);
         return initActor(pActor, iter, pObjName, a3, nullptr, a4);
     }
 
-    bool initActorNoIter(LiveActor *pActor, const char *pObjName, const char *a3, const char *a4, bool a5) {
+    bool initActorNoIter(LiveActor* pActor, const char* pObjName, const char* a3, const char* a4, bool a5) {
         JMapInfoIter iter(0, -1);
         return initActor(pActor, iter, pObjName, a3, a4, a5);
     }
 
-    void initDefaultPos(LiveActor *pActor, const JMapInfoIter &rIter) {
+    void initDefaultPos(LiveActor* pActor, const JMapInfoIter& rIter) {
         MR::getDefaultPos(pActor, rIter);
         MR::normalizeVec(&pActor->mRotation, 0.0f);
     }
 
-    void getDefaultPos(LiveActor *pActor, const JMapInfoIter &rIter) {
+    void getDefaultPos(LiveActor* pActor, const JMapInfoIter& rIter) {
         if (rIter.isValid()) {
             MR::getJMapInfoTrans(rIter, &pActor->mPosition);
             MR::getJMapInfoRotate(rIter, &pActor->mRotation);
@@ -504,7 +498,7 @@ namespace MR {
             TPos3f mtx;
             mtx.identity();
             MR::makeMtxRotate(mtx, rotation);
-            pFront->set<f32>(mtx[0][2], mtx[1][2], mtx[2][2]);
+            pFront->set< f32 >(mtx[0][2], mtx[1][2], mtx[2][2]);
         }
     }
 
@@ -542,11 +536,9 @@ namespace MR {
                 }
                 if (callback) {
                     addHitSensorCallback(pActor, sensor, type, maxCount, radius);
-                }
-                else if (joint != nullptr) {
+                } else if (joint != nullptr) {
                     addHitSensorAtJoint(pActor, sensor, joint, type, maxCount, radius, offset);
-                }
-                else {
+                } else {
                     addHitSensor(pActor, sensor, type, maxCount, radius, offset);
                 }
             }
@@ -560,50 +552,40 @@ namespace MR {
             if (getInitSwitchType(&type, info, "SW_APPEAR")) {
                 if (isEqualString(type, "UseRead")) {
                     initUseStageSwitchReadAppear(pActor, rIter);
-                }
-                else if (isEqualString(type, "NeedRead")) {
+                } else if (isEqualString(type, "NeedRead")) {
                     needStageSwitchReadAppear(pActor, rIter);
                 }
             }
             if (getInitSwitchType(&type, info, "SW_DEAD")) {
                 if (isEqualString(type, "UseWrite")) {
                     initUseStageSwitchWriteDead(pActor, rIter);
-                }
-                else if (isEqualString(type, "NeedWrite")) {
+                } else if (isEqualString(type, "NeedWrite")) {
                     needStageSwitchWriteDead(pActor, rIter);
-                }
-                else if (isEqualString(type, "UseWriteAuto")) {
+                } else if (isEqualString(type, "UseWriteAuto")) {
                     useStageSwitchWriteAutoDead(pActor, rIter);
-                }
-                else if (isEqualString(type, "NeedWriteAuto")) {
+                } else if (isEqualString(type, "NeedWriteAuto")) {
                     needStageSwitchWriteAutoDead(pActor, rIter);
                 }
             }
             if (getInitSwitchType(&type, info, "SW_A")) {
                 if (isEqualString(type, "UseRead")) {
                     initUseStageSwitchReadA(pActor, rIter);
-                }
-                else if (isEqualString(type, "UseWrite")) {
+                } else if (isEqualString(type, "UseWrite")) {
                     initUseStageSwitchWriteA(pActor, rIter);
-                }
-                else if (isEqualString(type, "NeedRead")) {
+                } else if (isEqualString(type, "NeedRead")) {
                     needStageSwitchReadA(pActor, rIter);
-                }
-                else if (isEqualString(type, "NeedWrite")) {
+                } else if (isEqualString(type, "NeedWrite")) {
                     needStageSwitchWriteA(pActor, rIter);
                 }
             }
             if (getInitSwitchType(&type, info, "SW_B")) {
                 if (isEqualString(type, "UseRead")) {
                     initUseStageSwitchReadB(pActor, rIter);
-                }
-                else if (isEqualString(type, "UseWrite")) {
+                } else if (isEqualString(type, "UseWrite")) {
                     initUseStageSwitchWriteB(pActor, rIter);
-                }
-                else if (isEqualString(type, "NeedRead")) {
+                } else if (isEqualString(type, "NeedRead")) {
                     needStageSwitchReadB(pActor, rIter);
-                }
-                else if (isEqualString(type, "NeedWrite")) {
+                } else if (isEqualString(type, "NeedWrite")) {
                     needStageSwitchWriteB(pActor, rIter);
                 }
             }
@@ -616,4 +598,4 @@ namespace MR {
             }
         }
     }
-};
+};  // namespace MR

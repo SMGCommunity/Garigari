@@ -6,11 +6,12 @@ class LiveActor;
 
 class LiveActorGroup : public NameObjGroup {
 public:
-    LiveActorGroup(const char *, int);
+    LiveActorGroup(const char*, int);
 
-    inline virtual ~LiveActorGroup() {}
+    inline virtual ~LiveActorGroup() {
+    }
 
-    void registerActor(LiveActor *);
+    void registerActor(LiveActor*);
     LiveActor* getActor(int) const;
     LiveActor* getDeadActor() const;
     s32 getLivingActorNum() const;
