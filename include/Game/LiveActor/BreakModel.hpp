@@ -4,16 +4,16 @@
 
 class BreakModel : public LiveActor {
 public:
-	BreakModel(LiveActor *pHost, const char *pName, const char *pModelName, MtxPtr pMtx, const char *pAnimName);
+    BreakModel(LiveActor* pHost, const char* pName, const char* pModelName, MtxPtr pMtx, const char* pAnimName);
 
-	virtual ~BreakModel();
-	virtual void init(const JMapInfoIter &rIter);
-	virtual void appear();
-	virtual void calcAndSetBaseMtx();
+    virtual ~BreakModel();
+    virtual void init(const JMapInfoIter& rIter);
+    virtual void appear();
+    virtual void calcAndSetBaseMtx();
 
-	void exeBreak();
+    void exeBreak();
 
-	LiveActor* mHost;      // _90
-	const char* mAnimName; // _94
-	MtxPtr mMtx;           // _98
+    LiveActor* mHost;       // _90
+    const char* mAnimName;  // _94
+    MtxPtr mMtx;            // _98
 };

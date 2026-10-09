@@ -3,7 +3,7 @@
 #include <revolution.h>
 
 namespace MR {
-    template<class T>
+    template < class T >
     class AssignableArray {
     public:
         inline AssignableArray() {
@@ -25,8 +25,8 @@ namespace MR {
             mArray = new T[count];
             mMaxItems = count;
         }
-        
+
         T* mArray;
         s32 mMaxItems;
     };
-};
+};  // namespace MR

@@ -1,30 +1,29 @@
 #include "LiveActor/ActorStateKeeper.hpp"
 #include "LiveActor/ActorStateBase.hpp"
 
-ActorStateKeeper::ActorStateKeeper(int capacity)
-	: mMaxStates(capacity), mNumStates(0), mStates(nullptr), mCurrentState(nullptr) {
-	mStates = new State [capacity];
-	for(s32 i = 0; i < mMaxStates; i++) {
-		State& e = mStates[i];
-		e.mInterface = nullptr;
-		e.mNerve = nullptr;
-		e.mStateName = nullptr;
-	}
+ActorStateKeeper::ActorStateKeeper(int capacity) : mMaxStates(capacity), mNumStates(0), mStates(nullptr), mCurrentState(nullptr) {
+    mStates = new State[capacity];
+    for (s32 i = 0; i < mMaxStates; i++) {
+        State& e = mStates[i];
+        e.mInterface = nullptr;
+        e.mNerve = nullptr;
+        e.mStateName = nullptr;
+    }
 }
 
 void ActorStateKeeper::addState(ActorStateBaseInterface* pInterface, const Nerve* pNerve, const char* pName) {
-	State& e = mStates[mNumStates];
-	e.mInterface = pInterface;
-	e.mNerve = pNerve;
-	e.mStateName = pName;
-	mNumStates += 1;
+    State& e = mStates[mNumStates];
+    e.mInterface = pInterface;
+    e.mNerve = pNerve;
+    e.mStateName = pName;
+    mNumStates += 1;
 }
 
 bool ActorStateKeeper::updateCurrentState() {
     return (!mCurrentState) ? false : (mCurrentState->mInterface)->update();
 }
 
-void ActorStateKeeper::startState(const Nerve *pNerve) {
+void ActorStateKeeper::startState(const Nerve* pNerve) {
     mCurrentState = findStateInfo(pNerve);
 
     if (mCurrentState != nullptr) {
@@ -36,8 +35,7 @@ void ActorStateKeeper::startState(const Nerve *pNerve) {
 bool ActorStateKeeper::isStateDead() const {
     if (mCurrentState != nullptr) {
         return mCurrentState->mInterface->mIsDead;
-    }
-    else {
+    } else {
         return true;
     }
 }
@@ -52,9 +50,10 @@ void ActorStateKeeper::endState() {
     }
 }
 
-ActorStateKeeper::State* ActorStateKeeper::findStateInfo(const Nerve *pNerve) {
-	for(int i = 0; i < mNumStates; i++) {
-		if(mStates[i].mNerve == pNerve) return &mStates[i];
-	}
-	return NULL;
+ActorStateKeeper::State* ActorStateKeeper::findStateInfo(const Nerve* pNerve) {
+    for (int i = 0; i < mNumStates; i++) {
+        if (mStates[i].mNerve == pNerve)
+            return &mStates[i];
+    }
+    return NULL;
 }

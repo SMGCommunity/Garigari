@@ -6,5 +6,4 @@ class ScenarioDataParser;
 
 class GameSystem {
 public:
-
 };

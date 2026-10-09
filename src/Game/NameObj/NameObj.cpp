@@ -1,43 +1,36 @@
 #include "NameObj/NameObj.hpp"
 #include "NameObj/NameObjRegister.hpp"
 #include "Scene/SceneNameObjMovementController.hpp"
-#include "Util/JMapInfo.hpp"
 #include "Singleton.hpp"
+#include "Util/JMapInfo.hpp"
 
-template<>
-NameObjRegister* SingletonHolder<NameObjRegister>::sInstance = nullptr;
+template <>
+NameObjRegister* SingletonHolder< NameObjRegister >::sInstance = nullptr;
 
-NameObj::NameObj(const char *pName) : mName(nullptr), mFlags(0), mExecutorIdx(-1) {
+NameObj::NameObj(const char* pName) : mName(nullptr), mFlags(0), mExecutorIdx(-1) {
     mName = pName;
-    SingletonHolder<NameObjRegister>::get()->add(this);
+    SingletonHolder< NameObjRegister >::get()->add(this);
 }
 
 NameObj::~NameObj() {
-
 }
 
-void NameObj::init(const JMapInfoIter &) {
-    
+void NameObj::init(const JMapInfoIter&) {
 }
 
 void NameObj::initAfterPlacement() {
-    
 }
 
 void NameObj::movement() {
-
 }
 
 void NameObj::draw() const {
-    
 }
 
 void NameObj::calcAnim() {
-
 }
 
 void NameObj::calcViewAndEntry() {
-    
 }
 
 void NameObj::initWithoutIter() {
@@ -45,11 +38,11 @@ void NameObj::initWithoutIter() {
     init(iter);
 }
 
-void NameObj::setName(const char *pName) {
+void NameObj::setName(const char* pName) {
     mName = pName;
 }
 
-void NameObj::setLinkedInfo(const JMapInfoIter &rIter) {
+void NameObj::setLinkedInfo(const JMapInfoIter& rIter) {
     mLinkInfo.setLinkedInfo(rIter);
 }
 
@@ -92,15 +85,15 @@ void NameObj::syncWithFlags() {
 }
 
 namespace NameObjFunction {
-    void requestMovementOn(NameObj *pObj) {
+    void requestMovementOn(NameObj* pObj) {
         pObj->requestResume();
         pObj->startMovement();
         MR::notifyRequestNameObjMovementOnOff();
     }
 
-    void requestMovementOff(NameObj *pObj) {
+    void requestMovementOff(NameObj* pObj) {
         pObj->requestSuspend();
         pObj->endMovement();
         MR::notifyRequestNameObjMovementOnOff();
     }
-};
+};  // namespace NameObjFunction

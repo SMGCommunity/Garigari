@@ -30,8 +30,8 @@ namespace JGeometry {
         const register f32* v_a = a;
         register f32* v_b = b;
 
-        register f32 b_x;
         register f32 a_x;
+        register f32 b_x;
 
         asm{
             psq_l a_x, 0(v_a), 0, 0
