@@ -29,9 +29,9 @@ namespace {
 }  // namespace
 
 namespace NrvTubeSliderDamageObj {
-    NERVE(TubeSliderDamageObjNrvWait, TubeSliderDamageObj, Wait);
-    NERVE(TubeSliderDamageObjNrvShake, TubeSliderDamageObj, Shake);
-    NERVE(TubeSliderDamageObjNrvSupportFreeze, TubeSliderDamageObj, SupportFreeze);
+    NEW_NERVE(TubeSliderDamageObjNrvWait, TubeSliderDamageObj, Wait);
+    NEW_NERVE(TubeSliderDamageObjNrvShake, TubeSliderDamageObj, Shake);
+    NEW_NERVE(TubeSliderDamageObjNrvSupportFreeze, TubeSliderDamageObj, SupportFreeze);
 }  // namespace NrvTubeSliderDamageObj
 
 TubeSliderDamageObj::TubeSliderDamageObj(s32 t, const TVec3f& vec) : LiveActor("ダメージオブジェ（チューブスライダー用）"), mType(t), _94(vec) {
@@ -45,7 +45,7 @@ void TubeSliderDamageObj::init(const JMapInfoIter& rIter) {
     } else {
         MR::initActor(this, rIter, "TubeSliderFire", false);
     }
-    initNerve(&NrvTubeSliderDamageObj::TubeSliderDamageObjNrvWait::sInstance);
+    initNerve(GET_NERVE(TubeSliderDamageObj, TubeSliderDamageObjNrvWait));
     MR::addEffect(this, "PointerTouch");
     makeActorAppeared();
 }
@@ -57,7 +57,7 @@ void TubeSliderDamageObj::exeWait() {
     }
     if (MR::attachSupportTicoToTarget(this)) {
         MR::invalidateClipping(this);
-        setNerve(&NrvTubeSliderDamageObj::TubeSliderDamageObjNrvSupportFreeze::sInstance);
+        setNerve(GET_NERVE(TubeSliderDamageObj, TubeSliderDamageObjNrvSupportFreeze));
     }
 }
 
@@ -66,12 +66,12 @@ void TubeSliderDamageObj::exeShake() {
         MR::startAction(this, "Shake");
     }
     if (MR::isActionEnd(this)) {
-        setNerve(&NrvTubeSliderDamageObj::TubeSliderDamageObjNrvWait::sInstance);
+        setNerve(GET_NERVE(TubeSliderDamageObj, TubeSliderDamageObjNrvWait));
         return;
     }
     if (MR::isGreaterStep(this, 30) && MR::attachSupportTicoToTarget(this)) {
         MR::invalidateClipping(this);
-        setNerve(&NrvTubeSliderDamageObj::TubeSliderDamageObjNrvSupportFreeze::sInstance);
+        setNerve(GET_NERVE(TubeSliderDamageObj, TubeSliderDamageObjNrvSupportFreeze));
     }
 }
 
@@ -82,7 +82,7 @@ void TubeSliderDamageObj::exeSupportFreeze() {
     }
     if (!MR::attachSupportTicoToTarget(this)) {
         MR::deleteEffect(this, "PointerTouch");
-        setNerve(&NrvTubeSliderDamageObj::TubeSliderDamageObjNrvShake::sInstance);
+        setNerve(GET_NERVE(TubeSliderDamageObj, TubeSliderDamageObjNrvShake));
     }
 }
 
@@ -91,16 +91,16 @@ void TubeSliderDamageObj::calcAndSetBaseMtx() {
 }
 
 void TubeSliderDamageObj::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
-    if (MR::isSensorRide(pReceiver) && !isNerve(&NrvTubeSliderDamageObj::TubeSliderDamageObjNrvSupportFreeze::sInstance)) {
+    if (MR::isSensorRide(pReceiver) && !isNerve(GET_NERVE(TubeSliderDamageObj, TubeSliderDamageObjNrvSupportFreeze))) {
         MR::sendMsgEnemyAttack(pReceiver, pSender);
-        if (isNerve(&NrvTubeSliderDamageObj::TubeSliderDamageObjNrvWait::sInstance))
-            setNerve(&NrvTubeSliderDamageObj::TubeSliderDamageObjNrvShake::sInstance);
+        if (isNerve(GET_NERVE(TubeSliderDamageObj, TubeSliderDamageObjNrvWait)))
+            setNerve(GET_NERVE(TubeSliderDamageObj, TubeSliderDamageObjNrvShake));
     }
 }
 
 bool TubeSliderDamageObj::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (MR::isMsgStarPieceReflect(msg) && !isNerve(&NrvTubeSliderDamageObj::TubeSliderDamageObjNrvSupportFreeze::sInstance)) {
-        setNerve(&NrvTubeSliderDamageObj::TubeSliderDamageObjNrvShake::sInstance);
+    if (MR::isMsgStarPieceReflect(msg) && !isNerve(GET_NERVE(TubeSliderDamageObj, TubeSliderDamageObjNrvSupportFreeze))) {
+        setNerve(GET_NERVE(TubeSliderDamageObj, TubeSliderDamageObjNrvShake));
         return true;
     }
     return false;
