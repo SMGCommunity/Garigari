@@ -1,7 +1,7 @@
 #pragma once
 
-#include <revolution.h>
 #include <JGeometry.hpp>
+#include <revolution.h>
 
 class ActorLightCtrl;
 struct BckCtrlData;
@@ -27,11 +27,7 @@ class TriangleFilterBase;
 class ProjmapEffectMtxSetter;
 
 namespace MR {
-    enum CollisionScaleType {
-        CollisionScaleType_AutoEqualScale,
-        CollisionScaleType_NotUsingScale,
-        CollisionScaleType_Default
-    };
+    enum CollisionScaleType { CollisionScaleType_AutoEqualScale, CollisionScaleType_NotUsingScale, CollisionScaleType_Default };
     void initSensors(LiveActor*, const char*, const char*);
     void initSwitches(LiveActor*, const JMapInfoIter&, const char*, const char*);
 
@@ -42,7 +38,7 @@ namespace MR {
     void setRotation(LiveActor* pActor, f32 xyz);
     void setRotation(LiveActor* pActor, const TMtx34f& rMtx);
     // TODO: Need Quaternion
-    //void setRotation(LiveActor* pActor, const TQuat4f& rQuat);
+    // void setRotation(LiveActor* pActor, const TQuat4f& rQuat);
     void setScale(LiveActor* pActor, const TVec3f&);
     void setScale(LiveActor* pActor, f32, f32, f32);
     void setScale(LiveActor* pActor, f32);
@@ -76,7 +72,7 @@ namespace MR {
     void setBaseTRMtx(LiveActor* pActor, MtxPtr pTRMtx);
     void setBaseTRMtx(LiveActor* pActor, const TPos3f& rMtx);
     // TODO: Need Quaternion
-    //void setBaseTRMtx(LiveActor* pActor, const TQuat4f& rQuat);
+    // void setBaseTRMtx(LiveActor* pActor, const TQuat4f& rQuat);
     // setBaseTRMtx operating on some unknown struct
     void setBaseScale(LiveActor* pActor, const TVec3f& rScale);
 
@@ -92,7 +88,7 @@ namespace MR {
     void initDLMakerFog(LiveActor* pActor, bool);
 
     // TODO: Need J3DGXColor
-    //void initDLMakerMatColor0(LiveActor* pActor, const char* pMaterialName, const J3DGXColor* pMatColor);
+    // void initDLMakerMatColor0(LiveActor* pActor, const char* pMaterialName, const J3DGXColor* pMatColor);
     void initDLMakerChangeTex(LiveActor* pActor, const char* pTexName);
     void initDLMakerTexMtx(LiveActor* pActor, const char* pTexName);
     ProjmapEffectMtxSetter* initDLMakerProjmapEffectMtxSetter(LiveActor* pActor);
@@ -126,7 +122,6 @@ namespace MR {
     const char* getPlayingBckName(const LiveActor* pActor);
     void reflectBckCtrlData(LiveActor* pActor, const BckCtrlData& rData);
     // one unknown function
-
 
     s32 getLightNumMax(const LiveActor* pActor);
 
@@ -262,11 +257,16 @@ namespace MR {
     void initCollisionParts(LiveActor* pActor, const char* pCollisionName, HitSensor* pBodySensor, MtxPtr pMtx);
     void initCollisionPartsAutoEqualScale(LiveActor* pActor, const char* pCollisionName, HitSensor* pBodySensor, MtxPtr pMtx);
     void initCollisionPartsAutoEqualScaleOne(LiveActor* pActor, const char* pCollisionName, HitSensor* pBodySensor, MtxPtr pMtx);
-    void initCollisionPartsFromResourceHolder(LiveActor* pActor, const char* pCollisionName, HitSensor* pBodySensor, ResourceHolder* pResourceHolder, MtxPtr pMtx);
-    CollisionParts* createCollisionPartsFromLiveActor(LiveActor* pActor, const char* pCollisionName, HitSensor* pBodySensor, CollisionScaleType collisionScaleType);
-    CollisionParts* createCollisionPartsFromLiveActor(LiveActor* pActor, const char* pCollisionName, HitSensor* pBodySensor, MtxPtr pMtx, CollisionScaleType collisionScaleType);
-    CollisionParts* createCollisionPartsFromResourceHolder(ResourceHolder* pResourceHolder, const char* pCollisionName, HitSensor* pBodySensor, const TMtx34f& rMtx, CollisionScaleType collisionScaleType);
-    CollisionParts* createDashYoshiStepCollisionPartsFromResourceHolder(ResourceHolder* pResourceHolder, const char* pCollisionName, HitSensor* pBodySensor, MtxPtr pMtx, CollisionScaleType collisionScaleType);
+    void initCollisionPartsFromResourceHolder(LiveActor* pActor, const char* pCollisionName, HitSensor* pBodySensor, ResourceHolder* pResourceHolder,
+                                              MtxPtr pMtx);
+    CollisionParts* createCollisionPartsFromLiveActor(LiveActor* pActor, const char* pCollisionName, HitSensor* pBodySensor,
+                                                      CollisionScaleType collisionScaleType);
+    CollisionParts* createCollisionPartsFromLiveActor(LiveActor* pActor, const char* pCollisionName, HitSensor* pBodySensor, MtxPtr pMtx,
+                                                      CollisionScaleType collisionScaleType);
+    CollisionParts* createCollisionPartsFromResourceHolder(ResourceHolder* pResourceHolder, const char* pCollisionName, HitSensor* pBodySensor,
+                                                           const TMtx34f& rMtx, CollisionScaleType collisionScaleType);
+    CollisionParts* createDashYoshiStepCollisionPartsFromResourceHolder(ResourceHolder* pResourceHolder, const char* pCollisionName,
+                                                                        HitSensor* pBodySensor, MtxPtr pMtx, CollisionScaleType collisionScaleType);
     CollisionParts* tryCreateCollisionMoveLimit(LiveActor* pActor, HitSensor* pBodySensor);
     CollisionParts* tryCreateCollisionWaterSurface(LiveActor* pActor, HitSensor* pBodySensor);
 
@@ -310,15 +310,15 @@ namespace MR {
     BreakModel* tryCreateBreakModel(LiveActor* pHost, MtxPtr pMtx);
     DemoObj* tryCreateBreakDustDemoObj(LiveActor* pHost, MtxPtr pMtx);
 
-    bool tryStartAllAnim(const LiveActor *, const char *);
-    ModelObj* createBloomModel2(LiveActor* pHost, MtxPtr pMtx); // directly jumps to function below
+    bool tryStartAllAnim(const LiveActor*, const char*);
+    ModelObj* createBloomModel2(LiveActor* pHost, MtxPtr pMtx);  // directly jumps to function below
     ModelObj* createBloomModel(LiveActor* pHost, MtxPtr pMtx);
     ModelObj* createWaterModel(LiveActor* pHost, MtxPtr pMtx);
     ModelObj* createIceModel(LiveActor* pHost, MtxPtr pMtx);
     ModelObj* createIndirectPlanetModel(LiveActor* pHost, MtxPtr pMtx);
     ModelObj* createIndirectModel(LiveActor* pHost, MtxPtr pMtx);
 
-    PartsModel* createPartsModelMapObj2(LiveActor* pHost, const char* pName, const char* pModelName, MtxPtr pMtx); // effectively the same as below
+    PartsModel* createPartsModelMapObj2(LiveActor* pHost, const char* pName, const char* pModelName, MtxPtr pMtx);  // effectively the same as below
     PartsModel* createPartsModelMapObj(LiveActor* pHost, const char* pName, const char* pModelName, MtxPtr pMtx);
     PartsModel* createPartsModelMapObjStrongLight(LiveActor* pHost, const char* pName, const char* pModelName, MtxPtr pMtx);
     PartsModel* createPartsModelNoSilhouettedMapObj(LiveActor* pHost, const char* pName, const char* pModelName, MtxPtr pMtx);
@@ -348,4 +348,4 @@ namespace MR {
 
     HitSensor* getBodySensor(LiveActor* pActor);
     void setBodySensorType(LiveActor* pActor, u32 sensorType);
-};
+};  // namespace MR

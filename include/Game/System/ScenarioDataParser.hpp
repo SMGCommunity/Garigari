@@ -1,58 +1,58 @@
 #pragma once
 
-#include "System/GalaxyStatusAccessor.hpp"
 #include "NameObj/NameObj.hpp"
+#include "System/GalaxyStatusAccessor.hpp"
 #include "Util/JMapInfo.hpp"
 #include "Util/StringUtil.hpp"
 #include <revolution.h>
 
 class ScenarioData {
 public:
-    ScenarioData(const char *);
+    ScenarioData(const char*);
 
-    void initialize(const char *);
+    void initialize(const char*);
     s32 getNormalPowerStarNum() const;
     s32 getPowerStarNum() const;
-    bool getValueString(const char *, s32, const char **) const;
-    bool getValueS32(const char *, s32, s32 *) const;
-    u32 getValueU32(const char *, s32) const;
+    bool getValueString(const char*, s32, const char**) const;
+    bool getValueS32(const char*, s32, s32*) const;
+    u32 getValueU32(const char*, s32) const;
     bool isPowerStarTypeHidden(s32) const;
     bool isPowerStarTypeGreen(s32) const;
     s32 getZoneNum() const;
     const char* getZoneName(int) const;
-    s32 getZoneId(const char *) const;
+    s32 getZoneId(const char*) const;
     u32 getWorldNo() const;
     JMapInfoIter getScenarioDataIter(s32) const;
-    bool getScenarioString(const char *, s32, const char **) const;
+    bool getScenarioString(const char*, s32, const char**) const;
 
-    inline bool isEqualScenarioString(const char *pKey, s32 idx, const char *pOther) const {
+    inline bool isEqualScenarioString(const char* pKey, s32 idx, const char* pOther) const {
         const char* val = nullptr;
         getScenarioString(pKey, idx, &val);
         return MR::isEqualString(val, pOther);
     }
 
     const char* _0;
-    JMapInfo* mScenarioData;    // 0x4
-    JMapInfo* mZoneList;        // 0x8
-    JMapInfo* mGalaxyInfo;      // 0xC
+    JMapInfo* mScenarioData;  // 0x4
+    JMapInfo* mZoneList;      // 0x8
+    JMapInfo* mGalaxyInfo;    // 0xC
 };
 
 class ScenarioDataParser : public NameObj {
 public:
-    ScenarioDataParser(const char *);
+    ScenarioDataParser(const char*);
 
     virtual ~ScenarioDataParser();
 
-    ScenarioData* getScenarioData(const char *) const;
-    GalaxyStatusAccessor makeAccessor(const char *) const;
+    ScenarioData* getScenarioData(const char*) const;
+    GalaxyStatusAccessor makeAccessor(const char*) const;
 
-    ScenarioData* mScenarioData[0x60];        // 0x14
-    s32 mNumScenarioData;                           // 0x194
+    ScenarioData* mScenarioData[0x60];  // 0x14
+    s32 mNumScenarioData;               // 0x194
 };
 
 class ScenarioDataIter {
 public:
-    ScenarioDataIter(ScenarioDataParser *);
+    ScenarioDataIter(ScenarioDataParser*);
 
     virtual bool isValidWorldNo(s32) const;
 
@@ -61,15 +61,15 @@ public:
     void goNext();
     GalaxyStatusAccessor makeAccessor() const;
 
-    ScenarioDataParser* mParser;        // 0x4
-    s32 mCurIdx;                        // 0x8
+    ScenarioDataParser* mParser;  // 0x4
+    s32 mCurIdx;                  // 0x8
 };
 
 namespace ScenarioDataFunction {
     ScenarioDataParser* getScenarioDataParser();
-    bool getCurrentCommonLayers(const char *);
-    u32 getCurrentScenarioLayers(const char *, s32);
-};
+    bool getCurrentCommonLayers(const char*);
+    u32 getCurrentScenarioLayers(const char*, s32);
+};  // namespace ScenarioDataFunction
 
 namespace MR {
     ScenarioDataIter makeBeginScenarioDataIter();

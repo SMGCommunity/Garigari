@@ -1,11 +1,11 @@
 #include "LiveActor/HitSensor.hpp"
+#include "LiveActor/LiveActor.hpp"
 #include "LiveActor/SensorGroup.hpp"
 #include "LiveActor/SensorHitChecker.hpp"
-#include "LiveActor/LiveActor.hpp"
 
 // HitSensor::HitSensor
 
-bool HitSensor::receiveMessage(u32 msg, HitSensor *pOther) {
+bool HitSensor::receiveMessage(u32 msg, HitSensor* pOther) {
     return mHostActor->receiveMessage(msg, pOther, this);
 }
 
@@ -74,7 +74,7 @@ void HitSensor::invalidateBySystem() {
     }
 }
 
-void HitSensor::addHitSensor(HitSensor *pSensor) {
+void HitSensor::addHitSensor(HitSensor* pSensor) {
     if (mSensorCount < mGroupSize) {
         mSensors[mSensorCount] = pSensor;
         mSensorCount++;

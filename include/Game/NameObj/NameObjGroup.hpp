@@ -4,11 +4,11 @@
 
 class NameObjGroup : public NameObj {
 public:
-    NameObjGroup(const char *, int);
+    NameObjGroup(const char*, int);
 
     virtual ~NameObjGroup();
 
-    void registerObj(NameObj *);
+    void registerObj(NameObj*);
     void clear();
     bool isFull() const;
     void pauseOffAll() const;
@@ -18,12 +18,12 @@ public:
         return mObjectCount;
     }
 
-    template<typename T>
+    template < typename T >
     T getObj(s32 idx) const {
-        return reinterpret_cast<T>(mObjects[idx]);
+        return reinterpret_cast< T >(mObjects[idx]);
     }
 
-    s32 mMaxCount;      // 0x14
-    s32 mObjectCount;   // 0x18
-    NameObj** mObjects; // 0x1C
+    s32 mMaxCount;       // 0x14
+    s32 mObjectCount;    // 0x18
+    NameObj** mObjects;  // 0x1C
 };

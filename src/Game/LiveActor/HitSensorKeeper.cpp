@@ -1,6 +1,6 @@
 #include "LiveActor/HitSensorKeeper.hpp"
-#include "LiveActor/HitSensorInfo.hpp"
 #include "LiveActor/HitSensor.hpp"
+#include "LiveActor/HitSensorInfo.hpp"
 #include "Util.hpp"
 #include <cstring>
 
@@ -8,28 +8,28 @@ HitSensorKeeper::HitSensorKeeper(int max) {
     mSensorCount = 0;
     mMaxSensorCount = max;
     mSensorInfo = nullptr;
-    _C =  0;
+    _C = 0;
     _10 = 0;
     mSensorInfo = new HitSensorInfo*[max];
 
     for (s32 i = 0; i < mMaxSensorCount; i++) {
         mSensorInfo[i] = nullptr;
-    }   
+    }
 }
 
-HitSensorInfo* HitSensorKeeper::add(const char *pSensorName, u32 sensorType, u16 numSensors, f32 radius, LiveActor *pActor, const TVec3f &rOffs) {
+HitSensorInfo* HitSensorKeeper::add(const char* pSensorName, u32 sensorType, u16 numSensors, f32 radius, LiveActor* pActor, const TVec3f& rOffs) {
     HitSensorInfo* info = new HitSensorInfo(pSensorName, new HitSensor(sensorType, numSensors, radius, pActor), nullptr, nullptr, rOffs, false);
     registHitSensorInfo(info);
     return info;
 }
 
-HitSensorInfo* HitSensorKeeper::addCallback(const char *pSensorName, u32 sensorType, u16 numSensors, f32 radius, LiveActor *pActor) {
+HitSensorInfo* HitSensorKeeper::addCallback(const char* pSensorName, u32 sensorType, u16 numSensors, f32 radius, LiveActor* pActor) {
     HitSensorInfo* info = new HitSensorInfo(pSensorName, new HitSensor(sensorType, numSensors, radius, pActor), nullptr, nullptr, TVec3f(0.0f), true);
     registHitSensorInfo(info);
     return info;
 }
 
-HitSensor* HitSensorKeeper::getSensor(const char *pName) const {
+HitSensor* HitSensorKeeper::getSensor(const char* pName) const {
     if (mSensorCount == 1) {
         return mSensorInfo[0]->mSensor;
     }
@@ -92,7 +92,7 @@ HitSensorInfo* HitSensorKeeper::getNthSensorInfo(int idx) const {
     return mSensorInfo[idx];
 }
 
-HitSensorInfo* HitSensorKeeper::getSensorInfo(const char *pName) const {
+HitSensorInfo* HitSensorKeeper::getSensorInfo(const char* pName) const {
     if (mSensorCount == 1) {
         return mSensorInfo[0];
     }
@@ -109,7 +109,7 @@ HitSensorInfo* HitSensorKeeper::getSensorInfo(const char *pName) const {
     return nullptr;
 }
 
-void HitSensorKeeper::registHitSensorInfo(HitSensorInfo *pInfo) {
+void HitSensorKeeper::registHitSensorInfo(HitSensorInfo* pInfo) {
     mSensorInfo[mSensorCount] = pInfo;
     mSensorCount++;
     pInfo->update();
