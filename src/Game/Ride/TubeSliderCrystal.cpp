@@ -10,8 +10,8 @@
 #include "Util/LiveActorUtil.hpp"
 
 namespace NrvTubeSliderCrystal {
-    NERVE(TubeSliderCrystalNrvWait, TubeSliderCrystal, Wait);
-    NERVE(TubeSliderCrystalNrvBreak, TubeSliderCrystal, Break);
+    NEW_NERVE(TubeSliderCrystalNrvWait, TubeSliderCrystal, Wait);
+    NEW_NERVE(TubeSliderCrystalNrvBreak, TubeSliderCrystal, Break);
 }  // namespace NrvTubeSliderCrystal
 
 TubeSliderCrystal::TubeSliderCrystal(const TVec3f& vec) : LiveActor("クリスタル（チューブスライダー用）") {
@@ -22,7 +22,7 @@ TubeSliderCrystal::TubeSliderCrystal(const TVec3f& vec) : LiveActor("クリス�
 
 void TubeSliderCrystal::init(const JMapInfoIter& rIter) {
     MR::initActor(this, rIter, "TubeSliderCrystal", false);
-    initNerve(&NrvTubeSliderCrystal::TubeSliderCrystalNrvWait::sInstance, 0);
+    initNerve(GET_NERVE(TubeSliderCrystal, TubeSliderCrystalNrvWait), 0);
     mDisplayModel = MR::createDummyDisplayModelCrystalItem(this, 4, TVec3f(0.0f, 0.0f, 0.0f), TVec3f(0.0f, 0.0f, 0.0f));
     mBreakModel = MR::createBreakModel(this, nullptr);
     makeActorAppeared();
@@ -45,6 +45,6 @@ void TubeSliderCrystal::exeBreak() {
 }
 
 void TubeSliderCrystal::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvTubeSliderCrystal::TubeSliderCrystalNrvWait::sInstance) && MR::isSensorRide(pReceiver))
-        setNerve(&NrvTubeSliderCrystal::TubeSliderCrystalNrvBreak::sInstance);
+    if (isNerve(GET_NERVE(TubeSliderCrystal, TubeSliderCrystalNrvWait)) && MR::isSensorRide(pReceiver))
+        setNerve(GET_NERVE(TubeSliderCrystal, TubeSliderCrystalNrvBreak));
 }

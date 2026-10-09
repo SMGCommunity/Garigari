@@ -47,19 +47,19 @@ bool TubeSliderInfo::hasWall(bool s) const {  // TRUE for Left side, FALSE for r
 }
 
 namespace NrvTubeSlider {
-    NERVE(TubeSliderNrvWait, TubeSlider, Wait);
-    NERVE(TubeSliderNrvEnd, TubeSlider, End);
-    NERVE(TubeSliderNrvRideJump, TubeSlider, RideAir);
-    NERVE(TubeSliderNrvRideSpin, TubeSlider, RideAir);
-    NERVE(TubeSliderNrvRideFall, TubeSlider, RideAir);
-    NERVE(TubeSliderNrvRide, TubeSlider, Ride);
-    NERVE(TubeSliderNrvRideWallHit, TubeSlider, RideWallHit);
-    NERVE(TubeSliderNrvRideLand, TubeSlider, RideLand);
-    NERVE(TubeSliderNrvRideDamage, TubeSlider, RideAir);
-    NERVE(TubeSliderNrvRideDamageLand, TubeSlider, RideLand);
-    NERVE(TubeSliderNrvRideDamageDeath, TubeSlider, DamageDeath);
-    NERVE(TubeSliderNrvRideSlamCeiling, TubeSlider, RideSlam);
-    NERVE(TubeSliderNrvRideSlamWall, TubeSlider, RideSlam);
+    NEW_NERVE(TubeSliderNrvWait, TubeSlider, Wait);
+    NEW_NERVE(TubeSliderNrvEnd, TubeSlider, End);
+    NEW_NERVE(TubeSliderNrvRideJump, TubeSlider, RideAir);
+    NEW_NERVE(TubeSliderNrvRideSpin, TubeSlider, RideAir);
+    NEW_NERVE(TubeSliderNrvRideFall, TubeSlider, RideAir);
+    NEW_NERVE(TubeSliderNrvRide, TubeSlider, Ride);
+    NEW_NERVE(TubeSliderNrvRideWallHit, TubeSlider, RideWallHit);
+    NEW_NERVE(TubeSliderNrvRideLand, TubeSlider, RideLand);
+    NEW_NERVE(TubeSliderNrvRideDamage, TubeSlider, RideAir);
+    NEW_NERVE(TubeSliderNrvRideDamageLand, TubeSlider, RideLand);
+    NEW_NERVE(TubeSliderNrvRideDamageDeath, TubeSlider, DamageDeath);
+    NEW_NERVE(TubeSliderNrvRideSlamCeiling, TubeSlider, RideSlam);
+    NEW_NERVE(TubeSliderNrvRideSlamWall, TubeSlider, RideSlam);
 }  // namespace NrvTubeSlider
 
 TubeSlider::TubeSlider(const char* pName) : LiveActor(pName) {
@@ -109,7 +109,7 @@ void TubeSlider::init(const JMapInfoIter& rIter) {
     initRailRider(rIter);
     MR::connectToScene(this, 0x28, -1, -1, -1);
     initSound(8, "Tubeslider", nullptr, TVec3f(0.0f));
-    initNerve(&NrvTubeSlider::TubeSliderNrvWait::sInstance, 0);
+    initNerve(GET_NERVE(TubeSlider, TubeSliderNrvWait), 0);
     MR::initAndSetRailClipping(&_148, this, 100.0f, 500.0f);
     MR::calcRailStartPointPos(&mPosition, this);
     initHitSensor(2);
@@ -152,7 +152,7 @@ void TubeSlider::exeWait() {
 
 void TubeSlider::exeEnd() {
     if (MR::isStep(this, 15) || MR::isOnGroundPlayer())
-        setNerve(&NrvTubeSlider::TubeSliderNrvWait::sInstance);
+        setNerve(GET_NERVE(TubeSlider, TubeSliderNrvWait));
 }
 
 void TubeSlider::exeRideAir() {
@@ -181,7 +181,7 @@ void TubeSlider::exeRideAir() {
         MR::tryDeleteEffect(_90, "共通スリップ坂");
         _90 = nullptr;
         MR::resetSupportTicoAttachRangeTubeSlider();
-        setNerve(&NrvTubeSlider::TubeSliderNrvEnd::sInstance);
+        setNerve(GET_NERVE(TubeSlider, TubeSliderNrvEnd));
 
         if (isReachedGoal && !_1A8) {
             if (MR::isEqualStageName("BigTree2Galaxy")) {
@@ -204,7 +204,7 @@ void TubeSlider::exeRideAir() {
     } else {
         MR::startActionSound(this, "Wind", (s32)_E0, MR::clamp(0 + 600, 0, (s32)1000), -1);  // TODO: There's a LOT of missing math here...
 
-        if (isNerve(&NrvTubeSlider::TubeSliderNrvRideFall::sInstance) && MR::isLessEqualStep(this, 10) && tryPlayerJump(false))
+        if (isNerve(GET_NERVE(TubeSlider, TubeSliderNrvRideFall)) && MR::isLessEqualStep(this, 10) && tryPlayerJump(false))
             return;
 
         if (_118 > 0)
@@ -217,7 +217,7 @@ void TubeSlider::exeRideAir() {
         TVec3f up(_98);
         MR::makeAxisUpFront(&fro, &up, _A4, up);
 
-        if (isNerve(&NrvTubeSlider::TubeSliderNrvRideDamage::sInstance)) {
+        if (isNerve(GET_NERVE(TubeSlider, TubeSliderNrvRideDamage))) {
             _10C.scale(0.98f);
         } else {
             _10C.scale(0.995f);
@@ -228,9 +228,9 @@ void TubeSlider::exeRideAir() {
             MR::turnVecToVecDegree(&_A4, _A4, -unk, 0.85f, TVec3f((int)0, (int)1, (int)0));
         }
         if (MR::getSubPadStickX(0) != 0.0f) {
-            if (isNerve(&NrvTubeSlider::TubeSliderNrvRideSpin::sInstance)) {
+            if (isNerve(GET_NERVE(TubeSlider, TubeSliderNrvRideSpin))) {
                 _10C.sub(fro.scaleInline(MR::getSubPadStickX(0)).scaleInline(0.2f));
-            } else if (isNerve(&NrvTubeSlider::TubeSliderNrvRideDamage::sInstance)) {
+            } else if (isNerve(GET_NERVE(TubeSlider, TubeSliderNrvRideDamage))) {
                 _10C.sub(fro.scaleInline(MR::getSubPadStickX(0)).scaleInline(0.3f));
             } else {
                 _10C.sub(fro.scaleInline(MR::getSubPadStickX(0)).scaleInline(0.03f));
@@ -247,7 +247,7 @@ void TubeSlider::exeRideAir() {
 
         updateCameraAndShadow(MR::getRailDirection(this));
 
-        if (!isNerve(&NrvTubeSlider::TubeSliderNrvRideSpin::sInstance) && !isNerve(&NrvTubeSlider::TubeSliderNrvRideDamage::sInstance) &&
+        if (!isNerve(GET_NERVE(TubeSlider, TubeSliderNrvRideSpin)) && !isNerve(GET_NERVE(TubeSlider, TubeSliderNrvRideDamage)) &&
             _10C.dot(_A4) < 0.0f && tryPlayerSpin())
             return;
 
@@ -268,12 +268,12 @@ void TubeSlider::exeRideWallHit() {
         MR::startBckPlayerJ("チューブスライダー壁ヒット");
     }
     if (!updateOnGround() && MR::isActionEnd(_90))
-        setNerve(&NrvTubeSlider::TubeSliderNrvRide::sInstance);
+        setNerve(GET_NERVE(TubeSlider, TubeSliderNrvRide));
 }
 
 void TubeSlider::exeRideLand() {
     if (MR::isFirstStep(this)) {
-        if (isNerve(&NrvTubeSlider::TubeSliderNrvRideDamageLand::sInstance)) {
+        if (isNerve(GET_NERVE(TubeSlider, TubeSliderNrvRideDamageLand))) {
             MR::startBckPlayerJ("チューブスライダーダメージ着地");
             MR::startLevelSoundPlayer("SliderDamageLand", -1, -1);
         } else {
@@ -287,7 +287,7 @@ void TubeSlider::exeRideLand() {
         MR::emitEffect(_90, "共通スリップ坂");
     }
 
-    bool isDamaging = isNerve(&NrvTubeSlider::TubeSliderNrvRideDamageLand::sInstance);
+    bool isDamaging = isNerve(GET_NERVE(TubeSlider, TubeSliderNrvRideDamageLand));
     if (isDamaging && MR::isStep(this, 40)) {
         MR::startLevelSoundPlayer("SliderDamageLand2nd", -1, -1);
     }
@@ -312,7 +312,7 @@ void TubeSlider::exeRideLand() {
         }
     }
 
-    setNerve(&NrvTubeSlider::TubeSliderNrvRide::sInstance);
+    setNerve(GET_NERVE(TubeSlider, TubeSliderNrvRide));
 }
 
 void TubeSlider::exeDamageDeath() {
@@ -321,7 +321,7 @@ void TubeSlider::exeDamageDeath() {
 }
 
 void TubeSlider::exeRideSlam() {
-    if (MR::isFirstStep(this) && isNerve(&NrvTubeSlider::TubeSliderNrvRideSlamWall::sInstance)) {
+    if (MR::isFirstStep(this) && isNerve(GET_NERVE(TubeSlider, TubeSliderNrvRideSlamWall))) {
         MR::startBckPlayerJ("壁ヒット");
     }
 
@@ -340,8 +340,8 @@ void TubeSlider::exeRideSlam() {
 }
 
 void TubeSlider::updateHitSensor(HitSensor* sensor) {
-    if (!_90 || (isNerve(&NrvTubeSlider::TubeSliderNrvRideJump::sInstance) || isNerve(&NrvTubeSlider::TubeSliderNrvRideSpin::sInstance) ||
-                 isNerve(&NrvTubeSlider::TubeSliderNrvRideFall::sInstance) || isNerve(&NrvTubeSlider::TubeSliderNrvRideDamage::sInstance))) {
+    if (!_90 || (isNerve(GET_NERVE(TubeSlider, TubeSliderNrvRideJump)) || isNerve(GET_NERVE(TubeSlider, TubeSliderNrvRideSpin)) ||
+                 isNerve(GET_NERVE(TubeSlider, TubeSliderNrvRideFall)) || isNerve(GET_NERVE(TubeSlider, TubeSliderNrvRideDamage)))) {
         TVec3f A(0.0f);
         TVec3f B(0.0f);
         f32 C = 0.0f;
@@ -357,9 +357,9 @@ void TubeSlider::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         return;
 
     if (MR::isSensorBinder(pSender) &&
-        (isNerve(&NrvTubeSlider::TubeSliderNrvRideJump::sInstance) || isNerve(&NrvTubeSlider::TubeSliderNrvRideSpin::sInstance) ||
-         (isNerve(&NrvTubeSlider::TubeSliderNrvRideFall::sInstance) && MR::isGreaterEqualStep(this, 5)) ||
-         isNerve(&NrvTubeSlider::TubeSliderNrvRideDamage::sInstance)) &&
+        (isNerve(GET_NERVE(TubeSlider, TubeSliderNrvRideJump)) || isNerve(GET_NERVE(TubeSlider, TubeSliderNrvRideSpin)) ||
+         (isNerve(GET_NERVE(TubeSlider, TubeSliderNrvRideFall)) && MR::isGreaterEqualStep(this, 5)) ||
+         isNerve(GET_NERVE(TubeSlider, TubeSliderNrvRideDamage))) &&
         MR::isSensorPlayer(pReceiver)) {
         const TVec3f* senderPos = MR::getSensorPos(pSender);
         const TVec3f* receiverPos = MR::getSensorPos(pReceiver);
@@ -375,12 +375,12 @@ void TubeSlider::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
             MR::tryRumblePadMiddle(this, 0);
             MR::shakeCameraNormal();
             if (MR::isPlayerDead())
-                setNerve(&NrvTubeSlider::TubeSliderNrvRideDamageDeath::sInstance);
-            else if (isNerve(&NrvTubeSlider::TubeSliderNrvRideDamage::sInstance))
-                setNerve(&NrvTubeSlider::TubeSliderNrvRideDamageLand::sInstance);
+                setNerve(GET_NERVE(TubeSlider, TubeSliderNrvRideDamageDeath));
+            else if (isNerve(GET_NERVE(TubeSlider, TubeSliderNrvRideDamage)))
+                setNerve(GET_NERVE(TubeSlider, TubeSliderNrvRideDamageLand));
             else {
                 // Missing mario function
-                setNerve(&NrvTubeSlider::TubeSliderNrvRideLand::sInstance);
+                setNerve(GET_NERVE(TubeSlider, TubeSliderNrvRideLand));
             }
 
             return;
@@ -394,7 +394,7 @@ void TubeSlider::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
             MR::shakeCameraNormal();
             _10C.sub(scratch2.scaleInline(dotB).scaleInline(1.0f + 0.6f));
             // Missing mario function
-            setNerve(&NrvTubeSlider::TubeSliderNrvRideSlamCeiling::sInstance);
+            setNerve(GET_NERVE(TubeSlider, TubeSliderNrvRideSlamCeiling));
             return;
         }
         if (dotA >= -30.0f && dotA < 50.0f) {
@@ -402,7 +402,7 @@ void TubeSlider::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
             MR::shakeCameraNormal();
             _10C.sub(_98.scaleInline(_10C.dot(_98)).scaleInline(1.0f + 0.2f));
             // Missing mario function
-            setNerve(&NrvTubeSlider::TubeSliderNrvRideSlamWall::sInstance);
+            setNerve(GET_NERVE(TubeSlider, TubeSliderNrvRideSlamWall));
             return;
         }
     } else {
@@ -423,8 +423,8 @@ bool TubeSlider::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* p
     if (!_90)
         return false;
 
-    if (!isNerve(&NrvTubeSlider::TubeSliderNrvRideDamage::sInstance) && !isNerve(&NrvTubeSlider::TubeSliderNrvRideDamageLand::sInstance) &&
-        !isNerve(&NrvTubeSlider::TubeSliderNrvRideDamageDeath::sInstance)) {
+    if (!isNerve(GET_NERVE(TubeSlider, TubeSliderNrvRideDamage)) && !isNerve(GET_NERVE(TubeSlider, TubeSliderNrvRideDamageLand)) &&
+        !isNerve(GET_NERVE(TubeSlider, TubeSliderNrvRideDamageDeath))) {
         startDamage();
         return true;
     }
@@ -433,7 +433,7 @@ bool TubeSlider::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* p
 
 bool TubeSlider::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgAutoRushBegin(msg)) {
-        if (isNerve(&NrvTubeSlider::TubeSliderNrvEnd::sInstance) || MR::isOnGroundPlayer())
+        if (isNerve(GET_NERVE(TubeSlider, TubeSliderNrvEnd)) || MR::isOnGroundPlayer())
             return false;
         _90 = MR::getSensorHost(pSender);
         MR::invalidateClipping(this);
@@ -454,7 +454,7 @@ bool TubeSlider::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiv
         MR::shakeCameraNormal();
         MR::setSupportTicoAttachRangeTubeSlider();
         MR::validateShadow(this, nullptr);
-        setNerve(&NrvTubeSlider::TubeSliderNrvRideLand::sInstance);
+        setNerve(GET_NERVE(TubeSlider, TubeSliderNrvRideLand));
         return true;
     }
     if (MR::isMsgUpdateBaseMtx(msg)) {
@@ -469,7 +469,7 @@ bool TubeSlider::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiv
         MR::tryDeleteEffect(_90, "共通スリップ坂");
         _90 = nullptr;
         MR::resetSupportTicoAttachRangeTubeSlider();
-        setNerve(&NrvTubeSlider::TubeSliderNrvEnd::sInstance);
+        setNerve(GET_NERVE(TubeSlider, TubeSliderNrvEnd));
         return true;
     }
     return false;
@@ -525,7 +525,7 @@ bool TubeSlider::tryEndSlide() {
     MR::tryDeleteEffect(_90, "共通スリップ坂");
     _90 = nullptr;
     MR::resetSupportTicoAttachRangeTubeSlider();
-    setNerve(&NrvTubeSlider::TubeSliderNrvEnd::sInstance);
+    setNerve(GET_NERVE(TubeSlider, TubeSliderNrvEnd));
     return true;
 }
 
@@ -538,7 +538,7 @@ bool TubeSlider::tryPlayerJump(bool b) {
         MR::tryDeleteEffect(_90, "共通スリップ坂");
         startJump(25.0f);
         MR::startBckPlayerJ("チューブスライダージャンプ");
-        setNerve(&NrvTubeSlider::TubeSliderNrvRideJump::sInstance);
+        setNerve(GET_NERVE(TubeSlider, TubeSliderNrvRideJump));
         return true;
     }
 
@@ -553,7 +553,7 @@ bool TubeSlider::tryPlayerSpin() {
         _10C.add(_A4.scaleInline(22.0f));
         MR::startBckPlayer("Spin", nullptr);
         MR::emitEffect(_90, "SliderSpinLight");
-        setNerve(&NrvTubeSlider::TubeSliderNrvRideSpin::sInstance);
+        setNerve(GET_NERVE(TubeSlider, TubeSliderNrvRideSpin));
         return true;
     }
     return false;
@@ -564,7 +564,7 @@ bool TubeSlider::tryPlayerFall() {
         MR::tryDeleteEffect(_90, "共通スリップ坂");
         MR::startBckPlayerJ("落下");
         startJump(0.0f);
-        setNerve(&NrvTubeSlider::TubeSliderNrvRideJump::sInstance);
+        setNerve(GET_NERVE(TubeSlider, TubeSliderNrvRideJump));
         return true;
     }
     return false;
@@ -578,7 +578,7 @@ void TubeSlider::startDamage() {
     MR::emitEffect(_90, "TubeSlideDamage");
     MR::tryDeleteEffect(_90, "共通スリップ坂");
     startJump(25.0f);
-    setNerve(&NrvTubeSlider::TubeSliderNrvRideDamage::sInstance);
+    setNerve(GET_NERVE(TubeSlider, TubeSliderNrvRideDamage));
 }
 
 void TubeSlider::startJump(f32 power) {
@@ -596,7 +596,7 @@ bool TubeSlider::updateOnGround() {
     if (tryPlayerFall())
         return true;
 
-    if (TubeSliderFunction::isGroundDamage(this) && !isNerve(&NrvTubeSlider::TubeSliderNrvRideDamageLand::sInstance)) {
+    if (TubeSliderFunction::isGroundDamage(this) && !isNerve(GET_NERVE(TubeSlider, TubeSliderNrvRideDamageLand))) {
         startDamage();
         return true;
     }
@@ -607,7 +607,7 @@ bool TubeSlider::updateOnGround() {
 
     // Too much math...
 
-    if (isNerve(&NrvTubeSlider::TubeSliderNrvRide::sInstance) || isNerve(&NrvTubeSlider::TubeSliderNrvRideLand::sInstance)) {
+    if (isNerve(GET_NERVE(TubeSlider, TubeSliderNrvRide)) || isNerve(GET_NERVE(TubeSlider, TubeSliderNrvRideLand))) {
         // MORE MATH
     }
 
@@ -633,7 +633,7 @@ bool TubeSlider::updateOnGround() {
 bool TubeSlider::updatePlayer() {
     TVec3f railDir(MR::getRailDirection(this));
     _E0 += 1.0f;
-    if (isNerve(&NrvTubeSlider::TubeSliderNrvRide::sInstance)) {
+    if (isNerve(GET_NERVE(TubeSlider, TubeSliderNrvRide))) {
         if (TubeSliderFunction::isGroundSlow(this)) {
             _E0 *= 0.95f;
         } else if (TubeSliderFunction::isGroundIce(this)) {
@@ -641,7 +641,7 @@ bool TubeSlider::updatePlayer() {
         } else {
             _E0 *= 0.99f;
         }
-    } else if (isNerve(&NrvTubeSlider::TubeSliderNrvRideDamageLand::sInstance)) {
+    } else if (isNerve(GET_NERVE(TubeSlider, TubeSliderNrvRideDamageLand))) {
         _E0 *= 0.95f;
     } else {
         _E0 *= one;
@@ -686,7 +686,7 @@ bool TubeSlider::updatePlayer() {
         _F0 = MR::getInterpolateValue(0.3f, _F0, 0.0f);
     }
 
-    if (isNerve(&NrvTubeSlider::TubeSliderNrvRide::sInstance)) {
+    if (isNerve(GET_NERVE(TubeSlider, TubeSliderNrvRide))) {
         f32 one = 1.0f;
         one *= _F0;
         f32 clamp = MR::clamp(one, -1.0f, 1.0f);
@@ -710,7 +710,7 @@ bool TubeSlider::updatePlayer() {
             if (_F4 <= 0.0f) {
                 hasHitWall = true;
                 MR::emitEffect(_90, "SliderWallHitL");
-                setNerve(&NrvTubeSlider::TubeSliderNrvRideWallHit::sInstance);
+                setNerve(GET_NERVE(TubeSlider, TubeSliderNrvRideWallHit));
             }
         }
     }
@@ -725,7 +725,7 @@ bool TubeSlider::updatePlayer() {
             if (_F4 <= 0.0f) {
                 hasHitWall = true;
                 MR::emitEffect(_90, "SliderWallHitR");
-                setNerve(&NrvTubeSlider::TubeSliderNrvRideWallHit::sInstance);
+                setNerve(GET_NERVE(TubeSlider, TubeSliderNrvRideWallHit));
             }
         }
     }
