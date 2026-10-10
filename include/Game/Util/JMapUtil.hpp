@@ -1,9 +1,9 @@
 #pragma once
 
-#include "revolution/types.h"
+#include "Game/Util/JMapInfo.hpp"
 #include <JSystem/JGeometry/TMatrix.hpp>
 #include <JSystem/JGeometry/TVec.hpp>
-#include <revolution.h>
+#include <revolution/types.h>
 
 class JMapInfoIter;
 
@@ -98,4 +98,9 @@ namespace MR {
     bool getLinkObjID(const JMapInfoIter&, s32*);
     bool getMapPartsID(const JMapInfoIter&, s32*);
     bool getGeneratorID(const JMapInfoIter&, s32*);
+
+    template < typename T >
+    inline bool getValue(const JMapInfoIter& rIter, const char* pName, T* pOut) {
+        return rIter.getValue< T >(pName, pOut);
+    }
 };  // namespace MR
