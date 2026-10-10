@@ -15,7 +15,7 @@ public:
     s32 getPowerStarNum() const;
     bool getValueString(const char*, s32, const char**) const;
     bool getValueS32(const char*, s32, s32*) const;
-    u32 getValueU32(const char*, s32) const;
+    u32 getScenarioLayers(const char*, s32) const;
     bool isPowerStarTypeHidden(s32) const;
     bool isPowerStarTypeGreen(s32) const;
     s32 getZoneNum() const;

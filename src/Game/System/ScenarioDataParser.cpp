@@ -1,10 +1,8 @@
 #include "Game/System/ScenarioDataParser.hpp"
 #include "Game/System/GalaxyStatusAccessor.hpp"
-#include "Game/Util.hpp"
+#include "Game/Util/FileUtil.hpp"
 #include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/SceneUtil.hpp"
-#include "JSystem/JKernel/JKRArchive.hpp"
-#include "revolution/dvd.h"
 #include <cstring>
 
 ScenarioData::ScenarioData(const char* pName) {
@@ -42,7 +40,7 @@ void ScenarioData::initialize(const char* pFileName) {
 s32 ScenarioData::getNormalPowerStarNum() const {
     s32 num = 0;
 
-    for (s32 i = 1; i <= mScenarioData->getLength(); i++) {
+    for (s32 i = 1; i <= mScenarioData->getNumEntries(); i++) {
         if (!isPowerStarTypeHidden(i) && !isPowerStarTypeGreen(i)) {
             num++;
         }
@@ -51,41 +49,38 @@ s32 ScenarioData::getNormalPowerStarNum() const {
     return num;
 }
 
-// https://decomp.me/scratch/StsJC
 s32 ScenarioData::getPowerStarNum() const {
-    s32 num = 0;
-
-    for (s32 i = 1; i <= mScenarioData->getLength(); i++) {
-        u32 id = 0;
-        getScenarioDataIter(i).getValue< u32 >("PowerStarId", &id);
-
-        if (id != 0) {
-            num++;
+    s32 count = 0;
+    for (s32 scenarioNo = 1; scenarioNo <= mScenarioData->getNumEntries(); scenarioNo++) {
+        s32 powerStarId = 0;
+        getValueS32("PowerStarId", scenarioNo, &powerStarId);
+        if (powerStarId != 0) {
+            count++;
         }
     }
 
-    return num;
+    return count;
 }
 
 bool ScenarioData::getValueString(const char* pKey, s32 idx, const char** pOut) const {
     bool str = getScenarioString(pKey, idx, pOut);
     if (str && MR::isEqualString(*pOut, "")) {
-        *pOut = 0;
+        *pOut = nullptr;
     }
 
     return str;
 }
 
 bool ScenarioData::getValueS32(const char* pKey, s32 idx, s32* pOut) const {
-    return getScenarioDataIter(idx).getValue< u32 >(pKey, (u32*)pOut);
+    return getScenarioDataIter(idx).getValue< u32 >(pKey, reinterpret_cast< u32* >(pOut));
 }
 
-u32 ScenarioData::getValueU32(const char* pKey, s32 idx) const {
+u32 ScenarioData::getScenarioLayers(const char* pKey, s32 idx) const {
     u32 out;
     bool ret = getScenarioDataIter(idx).getValue< u32 >(pKey, &out);
 
     if (ret) {
-        return out * 2;
+        return out << 1;
     }
 
     return 0;
@@ -100,13 +95,7 @@ bool ScenarioData::isPowerStarTypeGreen(s32 idx) const {
 }
 
 s32 ScenarioData::getZoneNum() const {
-    const JMapData* data = mZoneList->mData;
-
-    if (data != nullptr) {
-        return data->_0;
-    }
-
-    return 0;
+    return mZoneList->getNumEntries();
 }
 
 const char* ScenarioData::getZoneName(int idx) const {
@@ -133,36 +122,9 @@ u32 ScenarioData::getWorldNo() const {
     return worldNo;
 }
 
-// https://decomp.me/scratch/Kumo6
 JMapInfoIter ScenarioData::getScenarioDataIter(s32 scenarioNo) const {
-    JMapInfo* scenario = mScenarioData;
-
-    for (s32 i = 0;; i++) {
-        s32 v6 = scenario->mData ? scenario->mData->_0 : 0;
-
-        if (i >= v6) {
-            break;
-        }
-
-        s32 no;
-        mScenarioData->getValue< s32 >(i, "ScenarioNo", &no);
-
-        if (no == scenarioNo) {
-            JMapInfoIter derp(scenario, i);
-            return JMapInfoIter(derp);
-        }
-    }
-
-    s32 v7;
-
-    if (mScenarioData->mData != nullptr) {
-        v7 = mScenarioData->mData->_0;
-    } else {
-        v7 = 0;
-    }
-
-    JMapInfoIter iter(mScenarioData, v7);
-    return JMapInfoIter(iter);
+    JMapInfoIter iter = mScenarioData->findElement< s32 >("ScenarioNo", scenarioNo, 0);
+    return iter;
 }
 
 bool ScenarioData::getScenarioString(const char* pName, s32 idx, const char** pOut) const {
@@ -244,7 +206,7 @@ namespace ScenarioDataFunction {
 
     u32 getCurrentScenarioLayers(const char* pName, s32 idx) {
         const char* stageName = MR::getCurrentStageName();
-        return getScenarioDataParser()->getScenarioData(stageName)->getValueU32(pName, idx);
+        return getScenarioDataParser()->getScenarioData(stageName)->getScenarioLayers(pName, idx);
     }
 };  // namespace ScenarioDataFunction
 
