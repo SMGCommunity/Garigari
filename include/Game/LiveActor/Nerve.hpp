@@ -1,6 +1,6 @@
 #pragma once
 
-#include "LiveActor/Spine.hpp"
+#include "Game/LiveActor/Spine.hpp"
 #include <revolution.h>
 
 /// @brief Used for executing states of a LiveActor.

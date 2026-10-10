@@ -1,6 +1,6 @@
 #pragma once
 
-#include "NameObj/NameObj.hpp"
+#include "Game/NameObj/NameObj.hpp"
 
 class StageSwitchCtrl;
 

@@ -1,8 +1,8 @@
-#include "LiveActor/LiveActorGroupArray.hpp"
-#include "LiveActor/HitSensor.hpp"
-#include "LiveActor/LiveActor.hpp"
-#include "Util.hpp"
-#include "Util/JMapIdInfo.hpp"
+#include "Game/LiveActor/LiveActorGroupArray.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Util.hpp"
+#include "Game/Util/JMapIdInfo.hpp"
 #include <cstdio>
 
 // nonmatching

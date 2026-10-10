@@ -1,6 +1,6 @@
 #pragma once
 
-#include "LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
 #include <revolution.h>
 
 /* FINISHED */

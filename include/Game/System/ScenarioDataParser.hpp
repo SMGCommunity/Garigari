@@ -1,9 +1,9 @@
 #pragma once
 
-#include "NameObj/NameObj.hpp"
-#include "System/GalaxyStatusAccessor.hpp"
-#include "Util/JMapInfo.hpp"
-#include "Util/StringUtil.hpp"
+#include "Game/NameObj/NameObj.hpp"
+#include "Game/System/GalaxyStatusAccessor.hpp"
+#include "Game/Util/JMapInfo.hpp"
+#include "Game/Util/StringUtil.hpp"
 #include <revolution.h>
 
 class ScenarioData {

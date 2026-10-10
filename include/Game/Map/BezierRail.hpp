@@ -1,7 +1,7 @@
 #pragma once
 #pragma once
 
-#include "Util/JMapInfo.hpp"
+#include "Game/Util/JMapInfo.hpp"
 #include <JGeometry.hpp>
 #include <revolution.h>
 

@@ -1,5 +1,5 @@
-#include "Map/RailGraphEdge.hpp"
-#include "Util.hpp"
+#include "Game/Map/RailGraphEdge.hpp"
+#include "Game/Util.hpp"
 
 RailGraphEdge::RailGraphEdge() {
     mDistance = 0.0f;

@@ -1,7 +1,7 @@
-#include "Util/JMapUtil.hpp"
-#include "Util/JMapInfo.hpp"
-#include "Util/SceneUtil.hpp"
-#include "Util/StringUtil.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/JMapInfo.hpp"
+#include "Game/Util/SceneUtil.hpp"
+#include "Game/Util/StringUtil.hpp"
 
 namespace MR {
     bool isValidInfo(const JMapInfoIter& rIter) {

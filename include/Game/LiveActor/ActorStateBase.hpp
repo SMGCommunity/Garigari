@@ -1,7 +1,7 @@
 #pragma once
 
-#include "LiveActor/ActorStateKeeper.hpp"
-#include "System/NerveExecutor.hpp"
+#include "Game/LiveActor/ActorStateKeeper.hpp"
+#include "Game/System/NerveExecutor.hpp"
 
 class ActorStateBaseInterface : public NerveExecutor {
 public:

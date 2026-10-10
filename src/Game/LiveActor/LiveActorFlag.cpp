@@ -1,4 +1,4 @@
-#include "LiveActor/LiveActorFlag.hpp"
+#include "Game/LiveActor/LiveActorFlag.hpp"
 
 LiveActorFlag::LiveActorFlag() {
     mIsDead = true;

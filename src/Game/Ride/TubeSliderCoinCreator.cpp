@@ -1,15 +1,15 @@
-#include "Ride/TubeSliderCoinCreator.hpp"
+#include "Game/Ride/TubeSliderCoinCreator.hpp"
 
-#include "Ride/TubeSlider.hpp"
-#include "Ride/TubeSliderFunction.hpp"
+#include "Game/Ride/TubeSlider.hpp"
+#include "Game/Ride/TubeSliderFunction.hpp"
 
-#include "MapObj/Coin.hpp"
+#include "Game/MapObj/Coin.hpp"
 
-#include "Util/ActorInitUtil.hpp"
-#include "Util/JMapUtil.hpp"
-#include "Util/LiveActorUtil.hpp"
-#include "Util/MathUtil.hpp"
-#include "Util/RailUtil.hpp"
+#include "Game/Util/ActorInitUtil.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/RailUtil.hpp"
 
 namespace {
     // Definitely exists because of the register usage

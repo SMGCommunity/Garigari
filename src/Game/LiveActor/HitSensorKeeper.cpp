@@ -1,7 +1,7 @@
-#include "LiveActor/HitSensorKeeper.hpp"
-#include "LiveActor/HitSensor.hpp"
-#include "LiveActor/HitSensorInfo.hpp"
-#include "Util.hpp"
+#include "Game/LiveActor/HitSensorKeeper.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/HitSensorInfo.hpp"
+#include "Game/Util.hpp"
 #include <cstring>
 
 HitSensorKeeper::HitSensorKeeper(int max) {

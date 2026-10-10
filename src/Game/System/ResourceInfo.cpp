@@ -1,5 +1,5 @@
-#include "System/ResourceInfo.hpp"
-#include "Util.hpp"
+#include "Game/System/ResourceInfo.hpp"
+#include "Game/Util.hpp"
 #include <cstdio>
 #include <cstring>
 

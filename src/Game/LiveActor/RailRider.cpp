@@ -1,7 +1,7 @@
-#include "LiveActor/RailRider.hpp"
-#include "Util/JMapUtil.hpp"
-#include "Util/MathUtil.hpp"
-#include "Util/SceneUtil.hpp"
+#include "Game/LiveActor/RailRider.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/SceneUtil.hpp"
 
 RailRider::RailRider(const JMapInfoIter& rIter) {
     mBezierRail = nullptr;

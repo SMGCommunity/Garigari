@@ -1,7 +1,7 @@
 #pragma once
 
-#include "LiveActor/LiveActorGroup.hpp"
-#include "Util/JMapIdInfo.hpp"
+#include "Game/LiveActor/LiveActorGroup.hpp"
+#include "Game/Util/JMapIdInfo.hpp"
 
 class HitSensor;
 

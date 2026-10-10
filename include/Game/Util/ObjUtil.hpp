@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Util/Functor.hpp"
-#include "Util/JMapInfo.hpp"
+#include "Game/Util/Functor.hpp"
+#include "Game/Util/JMapInfo.hpp"
 #include <JGeometry.hpp>
 
 class NameObj;

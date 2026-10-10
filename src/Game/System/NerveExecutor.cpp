@@ -1,5 +1,5 @@
-#include "System/NerveExecutor.hpp"
-#include "LiveActor/Spine.hpp"
+#include "Game/System/NerveExecutor.hpp"
+#include "Game/LiveActor/Spine.hpp"
 
 NerveExecutor::NerveExecutor(const char*) {
     mSpine = nullptr;

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Liveactor/LiveActor.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
 
 namespace MR {
     const ActionSoundInfo* getActionSoundInfo(const LiveActor* pActor) NO_INLINE;

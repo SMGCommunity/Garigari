@@ -1,5 +1,5 @@
-#include "LiveActor/ActorStateKeeper.hpp"
-#include "LiveActor/ActorStateBase.hpp"
+#include "Game/LiveActor/ActorStateKeeper.hpp"
+#include "Game/LiveActor/ActorStateBase.hpp"
 
 ActorStateKeeper::ActorStateKeeper(int capacity) : mMaxStates(capacity), mNumStates(0), mStates(nullptr), mCurrentState(nullptr) {
     mStates = new State[capacity];

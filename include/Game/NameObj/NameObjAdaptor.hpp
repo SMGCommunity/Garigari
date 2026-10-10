@@ -1,7 +1,7 @@
 #pragma once
 
-#include "NameObj/NameObj.hpp"
-#include "Util/Functor.hpp"
+#include "Game/NameObj/NameObj.hpp"
+#include "Game/Util/Functor.hpp"
 
 class NameObjAdaptor : public NameObj {
 public:

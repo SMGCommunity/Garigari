@@ -1,6 +1,6 @@
-#include "NameObj/NameObjHolder.hpp"
-#include "NameObj/NameObj.hpp"
-#include "Util/ObjUtil.hpp"
+#include "Game/NameObj/NameObjHolder.hpp"
+#include "Game/NameObj/NameObj.hpp"
+#include "Game/Util/ObjUtil.hpp"
 
 NameObjHolder::NameObjHolder(int a1) : mObjs(0), mMaxObjs(0), mObjCount(0), _4C(0) {
     mObjs = new NameObj*[a1];

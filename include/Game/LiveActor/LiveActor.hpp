@@ -1,8 +1,8 @@
 #pragma once
 
-#include "LiveActor/ActorSoundHolder.hpp"
-#include "LiveActor/LiveActorFlag.hpp"
-#include "NameObj/NameObj.hpp"
+#include "Game/LiveActor/ActorSoundHolder.hpp"
+#include "Game/LiveActor/LiveActorFlag.hpp"
+#include "Game/NameObj/NameObj.hpp"
 #include <JGeometry.hpp>
 
 class ActorActionKeeper;

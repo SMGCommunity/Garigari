@@ -1,6 +1,6 @@
-#include "LiveActor/Spine.hpp"
-#include "LiveActor/ActorStateKeeper.hpp"
-#include "LiveActor/Nerve.hpp"
+#include "Game/LiveActor/Spine.hpp"
+#include "Game/LiveActor/ActorStateKeeper.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 
 Spine::Spine(void* pExecutor, const Nerve* pNextNerve, s32 numStates) {
     mExecutor = pExecutor;

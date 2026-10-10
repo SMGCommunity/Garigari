@@ -1,4 +1,4 @@
-#include "Map/RailGraphNode.hpp"
+#include "Game/Map/RailGraphNode.hpp"
 
 RailGraphNode::RailGraphNode() {
     _0.x = 0.0f;

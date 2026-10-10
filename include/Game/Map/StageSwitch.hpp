@@ -1,8 +1,8 @@
 #pragma once
 
-#include "NameObj/NameObj.hpp"
-#include "Util/JMapIdInfo.hpp"
-#include "Util/JMapInfo.hpp"
+#include "Game/NameObj/NameObj.hpp"
+#include "Game/Util/JMapIdInfo.hpp"
+#include "Game/Util/JMapInfo.hpp"
 #include <revolution.h>
 
 #define GLOBAL_SWITCH_ID 1000

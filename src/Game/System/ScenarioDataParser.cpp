@@ -1,9 +1,9 @@
-#include "System/ScenarioDataParser.hpp"
+#include "Game/System/ScenarioDataParser.hpp"
 #include "JKernel/JKRArchive.hpp"
-#include "System/GalaxyStatusAccessor.hpp"
-#include "Util.hpp"
-#include "Util/JMapInfo.hpp"
-#include "Util/SceneUtil.hpp"
+#include "Game/System/GalaxyStatusAccessor.hpp"
+#include "Game/Util.hpp"
+#include "Game/Util/JMapInfo.hpp"
+#include "Game/Util/SceneUtil.hpp"
 #include "revolution/dvd.h"
 #include <cstring>
 

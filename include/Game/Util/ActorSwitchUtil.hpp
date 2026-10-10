@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Util/Functor.hpp"
+#include "Game/Util/Functor.hpp"
 #include <revolution.h>
 
 class JMapInfoIter;

@@ -1,4 +1,4 @@
-#include "NameObj/NameObjAdaptor.hpp"
+#include "Game/NameObj/NameObjAdaptor.hpp"
 
 NameObjAdaptor::NameObjAdaptor(const char* pName) : NameObj(pName) {
     mMovementFunc = 0;
