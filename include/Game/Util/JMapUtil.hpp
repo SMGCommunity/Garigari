@@ -1,7 +1,8 @@
 #pragma once
 
 #include "revolution/types.h"
-#include <JGeometry.hpp>
+#include <JSystem/JGeometry/TMatrix.hpp>
+#include <JSystem/JGeometry/TVec.hpp>
 #include <revolution.h>
 
 class JMapInfoIter;

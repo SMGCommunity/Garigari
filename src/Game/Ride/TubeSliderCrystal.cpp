@@ -15,7 +15,7 @@ namespace NrvTubeSliderCrystal {
 }  // namespace NrvTubeSliderCrystal
 
 TubeSliderCrystal::TubeSliderCrystal(const TVec3f& vec) : LiveActor("クリスタル（チューブスライダー用）") {
-    _90.setPS(vec);
+    _90 = vec;
     mDisplayModel = nullptr;
     mBreakModel = nullptr;
 }

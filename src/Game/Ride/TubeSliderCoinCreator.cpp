@@ -68,7 +68,7 @@ void TubeSliderCoinCreator::init(const JMapInfoIter& rIter) {
             }
             f32 twangle = twistOrSine * f3;
             if (enableSineWave == 1.0f) {
-                twangle = twistOrSine * MR::sin(sinePhaseShift + (f3 * sineCycleDegrees));
+                twangle = twistOrSine * MR::sinDegree(sinePhaseShift + (f3 * sineCycleDegrees));
             }
             TubeSliderFunction::calcTubeVecDegree(sangle + twangle, &vec, mSlider);
         } else {

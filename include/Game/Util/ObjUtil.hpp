@@ -2,7 +2,7 @@
 
 #include "Game/Util/Functor.hpp"
 #include "Game/Util/JMapInfo.hpp"
-#include <JGeometry.hpp>
+#include <JSystem/JGeometry/TVec.hpp>
 
 class NameObj;
 class LiveActor;

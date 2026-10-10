@@ -218,6 +218,7 @@ cflags_game = [
     "-ipa file",
     "-sym on",
     "-i include",
+    "-i libs/JSystem/include",
     "-i libs/RVL_SDK",
     "-i libs/JSystem",
     "-i libs/MSL_C",

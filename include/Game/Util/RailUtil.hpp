@@ -1,6 +1,6 @@
 #pragma once
 
-#include "JGeometry.hpp"
+#include <JSystem/JGeometry/TVec.hpp>
 #include <revolution.h>
 
 class LiveActor;
