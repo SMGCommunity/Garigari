@@ -1,7 +1,8 @@
 #include "Game/Util/JMapUtil.hpp"
-#include "Game/Util/JMapInfo.hpp"
+#include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/SceneUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
+#include <cstdio>
 
 namespace MR {
     bool isValidInfo(const JMapInfoIter& rIter) {
@@ -150,7 +151,36 @@ namespace MR {
         return true;
     }
 
-    // MR::getJMapInfoRotate
+    bool getJMapInfoRotate(const JMapInfoIter& rIter, TVec3f* pOut) {
+        if (!getJMapInfoRotateLocal(rIter, pOut)) {
+            return false;
+        }
+
+        if (isPlacementLocalStage()) {
+            TMtx34f rotateMtx;
+            makeMtxRotate(rotateMtx.toMtxPtr(), *pOut);
+            rotateMtx.concat(getZonePlacementMtx(rIter), rotateMtx);
+
+            // TODO: getEuler but for std?
+            if (-0.001f <= rotateMtx.mMtx[2][0] - 1.0f) {
+                pOut->x = std::atan2(-rotateMtx.mMtx[0][1], rotateMtx.mMtx[1][1]);
+                pOut->y = -1.5707964f;
+                pOut->z = 0.0f;
+            } else if (rotateMtx.mMtx[2][0] + 1.0f <= 0.001f) {
+                pOut->x = std::atan2(rotateMtx.mMtx[0][1], rotateMtx.mMtx[1][1]);
+                pOut->y = 1.5707964f;
+                pOut->z = 0.0f;
+            } else {
+                pOut->x = std::atan2(rotateMtx.mMtx[2][1], rotateMtx.mMtx[2][2]);
+                pOut->z = std::atan2(rotateMtx.mMtx[1][0], rotateMtx.mMtx[0][0]);
+                pOut->y = ::asin(-rotateMtx.mMtx[2][0]);
+            }
+
+            *pOut = *pOut * _180_PI;
+        }
+
+        return true;
+    }
 
     bool getJMapInfoScale(const JMapInfoIter& rIter, TVec3f* pVec) {
         if (!rIter.getValue< f32 >("scale_x", &pVec->x)) {
@@ -168,8 +198,40 @@ namespace MR {
         return true;
     }
 
-    // MR::getJMapInfoMatrixFromRT
-    // MR::getJMapInfoV3f
+    bool getJMapInfoMatrixFromRT(const JMapInfoIter& rIter, TPos3f* pOut) {
+        TVec3f trans;
+        if (!getJMapInfoTrans(rIter, &trans)) {
+            return false;
+        }
+
+        TVec3f rotate;
+        if (!getJMapInfoRotate(rIter, &rotate)) {
+            return false;
+        }
+
+        makeMtxTR(pOut->toMtxPtr(), trans, rotate);
+
+        return true;
+    }
+
+    bool getJMapInfoV3f(const JMapInfoIter& rIter, const char* pName, TVec3f* pOut) {
+        char str[32];
+        sprintf(str, "%sX", pName);
+
+        if (!MR::getValue< f32 >(rIter, str, &pOut->x)) {
+            return false;
+        }
+
+        sprintf(str, "%sY", pName);
+
+        if (!MR::getValue< f32 >(rIter, str, &pOut->y)) {
+            return false;
+        }
+
+        sprintf(str, "%sZ", pName);
+
+        return MR::getValue< f32 >(rIter, str, &pOut->z);
+    }
 
     bool getJMapInfoArg0WithInit(const JMapInfoIter& rIter, s32* pOut) {
         return ::getJMapInfoArg(rIter, "Obj_arg0", pOut);
