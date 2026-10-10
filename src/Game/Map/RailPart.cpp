@@ -1,6 +1,6 @@
 #include "Game/Map/RailPart.hpp"
 #include "Game/Map/BezierRail.hpp"
-#include <JMath.hpp>
+#include <JSystem/JMath.hpp>
 
 RailPart::RailPart() {
     mLinearRailPart = nullptr;
@@ -79,7 +79,7 @@ void LinearRailPart::set(const TVec3f& a1, const TVec3f& a2) {
 f32 LinearRailPart::getNearestParam(const TVec3f& a1, f32 a2) const {
     TVec3f vec(a1);
     vec -= mStartPoint;
-    f32 squareMag = mStopPoint.squareMag();
+    f32 squareMag = mStopPoint.length();
     f32 dot = vec.dot(mStopPoint) / squareMag;
 
     f32 v12 = 0.0f;

@@ -2,7 +2,7 @@
 #pragma once
 
 #include "Game/Util/JMapInfo.hpp"
-#include <JGeometry.hpp>
+#include <JSystem/JGeometry/TVec.hpp>
 #include <revolution.h>
 
 class RailPart;

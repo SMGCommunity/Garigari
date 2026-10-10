@@ -132,7 +132,7 @@ void TubeSlider::tryCalcInfo(TVec3f* a, TVec3f* b, f32* c, TubeSlider* slider, b
     if (a != nullptr)
         a->set(MR::getRailPos(slider));
     if (b != nullptr) {
-        b->set(MR::getPlayerCenterPos()->subInline(MR::getRailPos(slider)));
+        b->set(*MR::getPlayerCenterPos() - MR::getRailPos(slider));
         MR::vecKillElement(*b, MR::getRailDirection(slider), b);
         MR::normalizeOrZero(b);
     }
@@ -229,14 +229,14 @@ void TubeSlider::exeRideAir() {
         }
         if (MR::getSubPadStickX(0) != 0.0f) {
             if (isNerve(GET_NERVE(TubeSlider, TubeSliderNrvRideSpin))) {
-                _10C.sub(fro.scaleInline(MR::getSubPadStickX(0)).scaleInline(0.2f));
+                _10C.sub(fro * MR::getSubPadStickX(0) * 0.2f);
             } else if (isNerve(GET_NERVE(TubeSlider, TubeSliderNrvRideDamage))) {
-                _10C.sub(fro.scaleInline(MR::getSubPadStickX(0)).scaleInline(0.3f));
+                _10C.sub(fro * MR::getSubPadStickX(0) * 0.3f);
             } else {
-                _10C.sub(fro.scaleInline(MR::getSubPadStickX(0)).scaleInline(0.03f));
+                _10C.sub(fro * MR::getSubPadStickX(0) * 0.03f);
             }
         }
-        _10C.sub(_A4.scaleInline(0.88f));
+        _10C.sub(_A4 * 0.88f);
         _100.add(_10C);
         _B0.setXYZDir(fro, _A4, up);
         TVec3f igh(_98);
@@ -325,7 +325,7 @@ void TubeSlider::exeRideSlam() {
         MR::startBckPlayerJ("壁ヒット");
     }
 
-    _10C.sub(_A4.scaleInline(0.88f));
+    _10C.sub(_A4 * 0.88f);
     _100.add(_10C);
 
     TVec3f front(1.0f, 0.0f, 0.0f);
@@ -392,7 +392,7 @@ void TubeSlider::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         if (dotB > 0.0f && dotA < -50.0f && dotA < -30.0f) {
             MR::tryRumblePadMiddle(this, 0);
             MR::shakeCameraNormal();
-            _10C.sub(scratch2.scaleInline(dotB).scaleInline(1.0f + 0.6f));
+            _10C.sub(scratch2 * dotB * (1.0f + 0.6f));
             // Missing mario function
             setNerve(GET_NERVE(TubeSlider, TubeSliderNrvRideSlamCeiling));
             return;
@@ -400,7 +400,7 @@ void TubeSlider::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         if (dotA >= -30.0f && dotA < 50.0f) {
             MR::tryRumblePadMiddle(this, 0);
             MR::shakeCameraNormal();
-            _10C.sub(_98.scaleInline(_10C.dot(_98)).scaleInline(1.0f + 0.2f));
+            _10C.sub(_98 * _10C.dot(_98) * (1.0f + 0.2f));
             // Missing mario function
             setNerve(GET_NERVE(TubeSlider, TubeSliderNrvRideSlamWall));
             return;
@@ -510,11 +510,11 @@ bool TubeSlider::tryEndSlide() {
     _B0.getTrans(vec);
     MR::setPlayerPos(vec);
     TVec3f vec2;
-    _B0.setZDirInline(vec2);
+    _B0.setZDir(vec2);
     MR::setPlayerFrontTargetVec(vec2, 1);
     TVec3f vec3(vec2);
     vec3.scale(20.0f);
-    vec3.add(TVec3f(0.0f, 1.0f, 0.0f).scaleInline(10.0f));
+    vec3.add(TVec3f(0.0f, 1.0f, 0.0f) * 10.0f);
     MR::startBckPlayerJ("チューブスライダージャンプ");
     // Unknown mario function here
     MR::endActorCameraProgrammable(this, -1, true);
@@ -550,7 +550,7 @@ bool TubeSlider::tryPlayerSpin() {
         MR::startLevelSoundPlayer("JumpSpin", -1, -1);
         MR::tryRumblePadMiddle(this, 0);
         MR::vecKillElement(_10C, _A4, &_10C);
-        _10C.add(_A4.scaleInline(22.0f));
+        _10C.add(_A4 * 22.0f);
         MR::startBckPlayer("Spin", nullptr);
         MR::emitEffect(_90, "SliderSpinLight");
         setNerve(GET_NERVE(TubeSlider, TubeSliderNrvRideSpin));
@@ -586,7 +586,7 @@ void TubeSlider::startJump(f32 power) {
     TVec3f b(_98);
     MR::makeAxisUpFront(&a, &b, _A4, b);
     _100.set(*MR::getPlayerPos());
-    _10C.set(_98.scaleInline(_E0).addInline(_A4.scaleInline(power)).subInline(a.scaleInline(_EC).scaleInline(2.0f)));
+    _10C.set(_98 * _E0 + _A4 * power - a * _EC * 2.0f);
 }
 
 bool TubeSlider::updateOnGround() {
@@ -668,8 +668,8 @@ bool TubeSlider::updatePlayer() {
         mtx.mult(upVec, upVec);
         MR::turnVecToVecDegree(&vec3, vec3, upVec, 10.0f, TVec3f((int)0, (int)1, (int)0));
     }
-    vec2.set(mPosition.subInline(vec3.scaleInline(TubeSliderFunction::getRadius(this) - _F4 - _F8)));
-    _11C += _E0 - vec2.subInline(vec).dot(cross);
+    vec2.set(mPosition - (vec3 * (TubeSliderFunction::getRadius(this) - _F4 - _F8)));
+    _11C += _E0 - (vec2 - vec).dot(cross);
     MR::turnVecToVecDegree(&_98, _98, MR::getRailDirection(this), 1.0f, TVec3f((int)0, (int)1, (int)0));
     if (!TubeSliderFunction::isUnknown2(this) && MR::getSubPadStickX(0)) {
         _EC += (0.215f * MR::getSubPadStickX(0));
@@ -781,19 +781,19 @@ void TubeSlider::updateMarioPos() {
     MR::makeAxisUpFront(&front, &up, _A4, up);
     _B0.setXYZDir(front, _A4, up);
     _F8 = MR::lerp(_F8, 0.0f, 0.5f);  // The 0.0f isn't real?
-    _B0.setTrans(mPosition.subInline(_A4.scaleInline(TubeSliderFunction::getRadius(this) - _F4 - _F8)));
+    _B0.setTrans(mPosition - (_A4 * (TubeSliderFunction::getRadius(this) - _F4 - _F8)));
     updateCameraAndShadow(MR::getRailDirection(this));
 }
 
 void TubeSlider::updateCameraAndShadow(const TVec3f& rDir) {
     mShadowDropDir.set(-_A4);
     _B0.getTrans(mShadowDropPos);
-    mShadowDropPos.add(_A4.scaleInline(10.0f));
+    mShadowDropPos.add(_A4 * 10.0f);
     MR::turnVecToVecDegree(&_184, _184, rDir, 0.85f, TVec3f((int)0, (int)1, (int)0));
     MR::vecBlend(_190, _190, &_A4, 0.03f);
     _19C = MR::lerp(_19C, *_1A4, 0.03f);
-    _178 = MR::getPlayerPos()->addInline(_190.scaleInline(_19C));
-    _16C = _178.subInline(_184.scaleInline(550.0f)).addInline(_190.scaleInline(*_1A0));
+    _178 = *MR::getPlayerPos() + (_190 * _19C);
+    _16C = _178 - _184 * 550.0f + _190 * (*_1A0);
     f32 railCoord = MR::getRailCoord(this);
     MR::moveCoordAndTransToNearestRailPos(this, _16C);
     f32 rad = TubeSliderFunction::getRadius(this) - 100.0f;

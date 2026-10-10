@@ -1,7 +1,7 @@
 #include "Game/Util/MtxUtil.hpp"
 #include "revolution/mtx/mtx.h"
-#include <JGeometry.hpp>
-#include <JMath.hpp>
+#include <JSystem/JGeometry/TVec.hpp>
+#include <JSystem/JMath.hpp>
 
 Mtx tmpmtx_sc = {1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f};
 Mtx tmpmtx_rx = {1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f};

@@ -1,11 +1,9 @@
 #pragma once
 
-#include <JGeometry.hpp>
-#include <JMath.hpp>
+#include <JSystem/JGeometry/TVec.hpp>
+#include <JSystem/JMath.hpp>
 #include <cmath>
 #include <revolution.h>
-
-static Vec gZeroVec;
 
 namespace MR {
     void sortSmall(s32, u32*, s32*);

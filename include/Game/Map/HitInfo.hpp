@@ -1,11 +1,11 @@
 #pragma once
 
 #include "Game/Util/JMapInfo.hpp"
-#include <JGeometry.hpp>
+#include <JSystem/JGeometry/TMatrix.hpp>
+#include <JSystem/JGeometry/TVec.hpp>
 
 class CollisionParts;
 class HitSensor;
-
 class Triangle {
 public:
     Triangle();

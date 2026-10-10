@@ -172,7 +172,7 @@ namespace MR {
     }
 
     HitSensor* addBodyMessageSensor(LiveActor* pActor, u32 type) __attribute__((never_inline)) {
-        TVec3f offs(0.0f, 0.0, 0.0f);
+        TVec3f offs(0.0f, 0.0f, 0.0f);
         return pActor->mSensorKeeper->add("Body", type, 0, 0.0f, pActor, offs)->mSensor;
     }
 
@@ -193,12 +193,12 @@ namespace MR {
     }
 
     HitSensor* addMessageSensorReceiver(LiveActor* pActor, const char* pName) {
-        TVec3f offs(0.0f, 0.0, 0.0f);
+        TVec3f offs(0.0f, 0.0f, 0.0f);
         return pActor->mSensorKeeper->add(pName, 0x7F, 0, 0.0f, pActor, offs)->mSensor;
     }
 
     HitSensor* addHitSensorMapObj(LiveActor* pActor, const char* pName) {
-        TVec3f offs(0.0f, 0.0, 0.0f);
+        TVec3f offs(0.0f, 0.0f, 0.0f);
         return pActor->mSensorKeeper->add(pName, 0x40, 0, 0.0f, pActor, offs)->mSensor;
     }
 
@@ -245,7 +245,7 @@ namespace MR {
     }
 
     void setSensorOffset(LiveActor* pActor, const char* pName, const TVec3f& rPos) {
-        pActor->mSensorKeeper->getSensorInfo(pName)->_C.setPS(rPos);
+        pActor->mSensorKeeper->getSensorInfo(pName)->_C = rPos;
     }
 
     f32 getSensorRadius(HitSensor* pSensor) {

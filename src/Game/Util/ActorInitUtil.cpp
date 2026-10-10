@@ -438,11 +438,7 @@ namespace MR {
 
                 for (s32 i = 0; i < sensorNum; i++) {
                     HitSensorInfo* sensorInfo = pActor->mSensorKeeper->getNthSensorInfo(i);
-                    TVec3f sensorScale(sensorInfo->_C);
-                    sensorScale.x *= y;
-                    sensorScale.y *= y;
-                    sensorScale.z *= y;
-                    sensorInfo->_C.setPS(sensorScale);
+                    sensorInfo->_C = sensorInfo->_C * y;
                 }
             }
 
