@@ -99,7 +99,7 @@ Game/Util/GravityUtil.cpp:
 	.text       start:0x8002B180 end:0x8002B7C0
 
 Game/Util/HashUtil.cpp:
-	.text       start:0x8002BD00 end:0x8002BD90
+	.text       start:0x8002B7C0 end:0x8002BD90
 
 Game/Util/JMapUtil.cpp:
 	.text       start:0x8002BD90 end:0x8002D410
