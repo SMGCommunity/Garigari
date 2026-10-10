@@ -1094,6 +1094,7 @@ config.libs = [
             Object(NonMatching, "Game/Util/ActorSensorUtil.cpp"),
             Object(NonMatching, "Game/Util/ActorShadowUtil.cpp"),
             Object(NonMatching, "Game/Util/HashUtil.cpp"),
+            Object(NonMatching, "Game/Util/JMapInfo.cpp"),
             Object(NonMatching, "Game/Util/JMapUtil.cpp"),
             Object(NonMatching, "Game/Util/LiveActorUtil.cpp"),
             Object(NonMatching, "Game/Util/MathUtil.cpp"),

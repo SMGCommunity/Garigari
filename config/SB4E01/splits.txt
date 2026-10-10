@@ -236,6 +236,7 @@ Game/Util/JMapIdInfo.cpp:
 
 Game/Util/JMapInfo.cpp:
 	.text       start:0x80067610 end:0x80067950
+	.data       start:0x80669CF8 end:0x80669D08
 
 Game/Util/JMapLinkInfo.cpp:
 	.text       start:0x80067950 end:0x80067BE0
