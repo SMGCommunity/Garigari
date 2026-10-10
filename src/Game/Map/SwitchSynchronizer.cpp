@@ -1,6 +1,6 @@
-#include "Map/SwitchSynchronizer.hpp"
-#include "Map/StageSwitch.hpp"
-#include "Util.hpp"
+#include "Game/Map/SwitchSynchronizer.hpp"
+#include "Game/Map/StageSwitch.hpp"
+#include "Game/Util.hpp"
 
 SwitchSynchronizer::SwitchSynchronizer(const char* pName) : NameObj(pName) {
     mSwitchCtrl = nullptr;

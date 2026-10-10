@@ -1,13 +1,13 @@
-#include "Ride/TubeSliderCrystal.hpp"
+#include "Game/Ride/TubeSliderCrystal.hpp"
 
-#include "LiveActor/BreakModel.hpp"
-#include "LiveActor/Nerve.hpp"
-#include "MapObj/DummyDisplayModel.hpp"
-#include "Util/ActorInitUtil.hpp"
-#include "Util/ActorMovementUtil.hpp"
-#include "Util/ActorSensorUtil.hpp"
-#include "Util/EventUtil.hpp"
-#include "Util/LiveActorUtil.hpp"
+#include "Game/LiveActor/BreakModel.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/MapObj/DummyDisplayModel.hpp"
+#include "Game/Util/ActorInitUtil.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/EventUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
 
 namespace NrvTubeSliderCrystal {
     NEW_NERVE(TubeSliderCrystalNrvWait, TubeSliderCrystal, Wait);

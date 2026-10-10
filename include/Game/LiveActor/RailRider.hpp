@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Map/BezierRail.hpp"
-#include "Util/JMapInfo.hpp"
+#include "Game/Map/BezierRail.hpp"
+#include "Game/Util/JMapInfo.hpp"
 #include <JGeometry.hpp>
 #include <revolution.h>
 

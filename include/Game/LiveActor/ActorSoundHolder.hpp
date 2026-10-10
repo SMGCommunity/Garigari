@@ -1,6 +1,6 @@
 #pragma once
 
-#include "GameAudio/ActionSoundInfo.hpp"
+#include "Game/GameAudio/ActionSoundInfo.hpp"
 #include <revolution.h>
 
 class ActorSoundHolder {

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Util/JMapLinkInfo.hpp"
+#include "Game/Util/JMapLinkInfo.hpp"
 #include <revolution.h>
 
 class NameObj {

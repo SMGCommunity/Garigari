@@ -1,6 +1,6 @@
-#include "Map/StageSwitch.hpp"
-#include "Scene/SceneObjHolder.hpp"
-#include "Util/JMapInfo.hpp"
+#include "Game/Map/StageSwitch.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
+#include "Game/Util/JMapInfo.hpp"
 
 bool BitFlag128::get(int idx) const {
     u32 flags = mSwitchFlags[idx / 32];

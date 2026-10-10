@@ -1,9 +1,9 @@
-#include "Util/ActorSensorUtil.hpp"
-#include "LiveActor/HitSensor.hpp"
-#include "LiveActor/HitSensorInfo.hpp"
-#include "LiveActor/HitSensorKeeper.hpp"
-#include "LiveActor/LiveActor.hpp"
-#include "Util/JointUtil.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/HitSensorInfo.hpp"
+#include "Game/LiveActor/HitSensorKeeper.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Util/JointUtil.hpp"
 
 namespace MR {
     void setSensorFollowPos(LiveActor* pActor, const char* pSensorName, const TVec3f* pPos) {

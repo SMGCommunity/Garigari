@@ -1,8 +1,8 @@
-#include "NameObj/NameObj.hpp"
-#include "NameObj/NameObjRegister.hpp"
-#include "Scene/SceneNameObjMovementController.hpp"
-#include "Singleton.hpp"
-#include "Util/JMapInfo.hpp"
+#include "Game/NameObj/NameObj.hpp"
+#include "Game/NameObj/NameObjRegister.hpp"
+#include "Game/Scene/SceneNameObjMovementController.hpp"
+#include "Game/Singleton.hpp"
+#include "Game/Util/JMapInfo.hpp"
 
 template <>
 NameObjRegister* SingletonHolder< NameObjRegister >::sInstance = nullptr;

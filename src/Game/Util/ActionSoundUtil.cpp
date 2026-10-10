@@ -1,4 +1,4 @@
-#include "Util/ActionSoundUtil.hpp"
+#include "Game/Util/ActionSoundUtil.hpp"
 
 namespace MR {
     const ActionSoundInfo* getActionSoundInfo(const LiveActor* pActor) NO_INLINE {

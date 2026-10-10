@@ -1,8 +1,8 @@
 #pragma once
 
-#include "NameObj/NameObj.hpp"
-#include "Util/Array.hpp"
-#include "Util/Functor.hpp"
+#include "Game/NameObj/NameObj.hpp"
+#include "Game/Util/Array.hpp"
+#include "Game/Util/Functor.hpp"
 
 typedef void (NameObj::*func)(void);
 typedef void (NameObj::*func_const)(void) const;

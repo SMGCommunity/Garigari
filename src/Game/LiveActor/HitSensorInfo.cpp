@@ -1,7 +1,7 @@
-#include "LiveActor/HitSensorInfo.hpp"
-#include "LiveActor/HitSensor.hpp"
-#include "LiveActor/LiveActor.hpp"
-#include "Util.hpp"
+#include "Game/LiveActor/HitSensorInfo.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Util.hpp"
 
 void HitSensorInfo::setFollowPos(const TVec3f* pFollowPos) {
     mFollowPos = pFollowPos;

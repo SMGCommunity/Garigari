@@ -1,7 +1,7 @@
-#include "LiveActor/HitSensor.hpp"
-#include "LiveActor/LiveActor.hpp"
-#include "LiveActor/SensorGroup.hpp"
-#include "LiveActor/SensorHitChecker.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/SensorGroup.hpp"
+#include "Game/LiveActor/SensorHitChecker.hpp"
 
 // HitSensor::HitSensor
 
