@@ -1,11 +1,12 @@
 Garigari
-[![Build Status]][actions] ![Progress] [![Discord Badge]][discord]
+[![Build Status]][actions] ![SB4E01_Code]![SB4E01_Link] [![Discord Badge]][discord]
 =============
 
 [Build Status]: https://github.com/SMGCommunity/Garigari/actions/workflows/build.yml/badge.svg
 [actions]: https://github.com/SMGCommunity/Garigari/actions/workflows/build.yml
 
-[Progress]: https://decomp.dev/SMGCommunity/Garigari.svg?mode=shield&measure=code&label=Code
+[SB4E01_Code]: https://decomp.dev/SMGCommunity/Garigari/SB4E01.svg?mode=shield&measure=code&label=SB4E01
+[SB4E01_Link]: https://decomp.dev/SMGCommunity/Garigari/SB4E01.svg?mode=shield&measure=complete_code_percent&label=
 
 [Discord Badge]: https://img.shields.io/discord/727908905392275526?color=%237289DA&logo=discord&logoColor=%23FFFFFF
 [discord]: https://discord.gg/ZxEqyYeZbf
@@ -19,7 +20,7 @@ A work-in-progress decompilation of Super Mario Galaxy 2.
 
 This repository does **not** contain any game assets or assembly whatsoever. An existing copy of the game is required.
 
-This project is **not** meant to be an effort to create a PC Port. Please do not ask for any information on a PC port on this repository or in the Discord server.
+This project is **not** meant to be an effort to create a PC port. Join the Discord server to learn more and ask about our work-in-progress PC port "AstroCore".
 
 > [!NOTE]
 > AI may be used for code cleanup, formatting, documentation, and naming assistance. AI-generated decompilation work is not allowed. Pull requests containing obvious AI-generated decompilation output or other AI slop will be rejected. Contributors should be able to explain and justify any decompilation work they submit. This also applies to all tool-generated code. We want to keep this project as human as possible.
