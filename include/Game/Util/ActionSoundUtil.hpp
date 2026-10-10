@@ -1,11 +1,9 @@
 #pragma once
 
-#include <revolution.h>
-
-class LiveActor;
+#include "Liveactor/LiveActor.hpp"
 
 namespace MR {
-    // getActionSoundInfo
-
+    const ActionSoundInfo* getActionSoundInfo(const LiveActor* pActor) NO_INLINE;
+    const ActionSoundInfo* fn_80008370(const LiveActor* pActor) NO_INLINE;
     void startActionSound(const LiveActor* pActor, const char* pName, s32 pitch, s32 velocity, s32 volume);
 };  // namespace MR

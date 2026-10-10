@@ -1,5 +1,6 @@
 #pragma once
 
+#include "LiveActor/ActorSoundHolder.hpp"
 #include "LiveActor/LiveActorFlag.hpp"
 #include "NameObj/NameObj.hpp"
 #include <JGeometry.hpp>
