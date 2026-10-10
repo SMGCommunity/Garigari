@@ -1,8 +1,9 @@
 #pragma once
 
-#include "LiveActor/LiveActorFlag.hpp"
-#include "NameObj/NameObj.hpp"
-#include <JGeometry.hpp>
+#include "Game/LiveActor/ActorSoundHolder.hpp"
+#include "Game/LiveActor/LiveActorFlag.hpp"
+#include "Game/NameObj/NameObj.hpp"
+#include <JSystem/JGeometry/TVec.hpp>
 
 class ActorActionKeeper;
 class ActorLightCtrl;

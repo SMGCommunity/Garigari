@@ -1,4 +1,4 @@
-#include "Util/MathUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
 #include <cmath>
 #include <revolution.h>
 

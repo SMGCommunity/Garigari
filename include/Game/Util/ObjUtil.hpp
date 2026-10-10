@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Util/Functor.hpp"
-#include "Util/JMapInfo.hpp"
-#include <JGeometry.hpp>
+#include "Game/Util/Functor.hpp"
+#include "Game/Util/JMapInfo.hpp"
+#include <JSystem/JGeometry/TVec.hpp>
 
 class NameObj;
 class LiveActor;

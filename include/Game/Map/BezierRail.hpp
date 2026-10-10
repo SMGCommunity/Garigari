@@ -1,8 +1,8 @@
 #pragma once
 #pragma once
 
-#include "Util/JMapInfo.hpp"
-#include <JGeometry.hpp>
+#include "Game/Util/JMapInfo.hpp"
+#include <JSystem/JGeometry/TVec.hpp>
 #include <revolution.h>
 
 class RailPart;

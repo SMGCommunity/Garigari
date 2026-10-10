@@ -1,12 +1,12 @@
-#include "Ride/TubeSliderFunction.hpp"
-#include "Ride/TubeSlider.hpp"
-#include "Ride/TubeSliderCoinCreator.hpp"
-#include "Util/ActorInitUtil.hpp"
-#include "Util/JMapUtil.hpp"
-#include "Util/MathUtil.hpp"
-#include "Util/RailUtil.hpp"
-#include "Util/SceneUtil.hpp"
-#include "Util/StringUtil.hpp"
+#include "Game/Ride/TubeSliderFunction.hpp"
+#include "Game/Ride/TubeSlider.hpp"
+#include "Game/Ride/TubeSliderCoinCreator.hpp"
+#include "Game/Util/ActorInitUtil.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/RailUtil.hpp"
+#include "Game/Util/SceneUtil.hpp"
+#include "Game/Util/StringUtil.hpp"
 
 namespace TubeSliderFunction {
     // TODO: Needs class definitions

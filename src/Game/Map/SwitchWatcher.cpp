@@ -1,7 +1,7 @@
-#include "Map/SwitchWatcher.hpp"
-#include "Map/StageSwitch.hpp"
-#include "Scene/SceneObjHolder.hpp"
-#include "Util/ObjUtil.hpp"
+#include "Game/Map/SwitchWatcher.hpp"
+#include "Game/Map/StageSwitch.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
+#include "Game/Util/ObjUtil.hpp"
 
 #define Listener_A 1
 #define Listener_B 2

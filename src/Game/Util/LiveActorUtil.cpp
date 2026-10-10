@@ -1,5 +1,5 @@
-#include "Util/LiveActorUtil.hpp"
-#include "LiveActor/LodCtrl.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/LiveActor/LodCtrl.hpp"
 
 namespace MR {
     LodCtrl* createLodCtrlNPC(LiveActor* pActor, const JMapInfoIter& rIter) {

@@ -1,8 +1,8 @@
-#include "LiveActor/LiveActor.hpp"
-#include "LiveActor/HitSensor.hpp"
-#include "LiveActor/HitSensorKeeper.hpp"
-#include "LiveActor/Spine.hpp"
-#include "Map/StageSwitch.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/HitSensorKeeper.hpp"
+#include "Game/LiveActor/Spine.hpp"
+#include "Game/Map/StageSwitch.hpp"
 
 void LiveActor::init(const JMapInfoIter&) {
 }

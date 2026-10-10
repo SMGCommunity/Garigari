@@ -1,7 +1,7 @@
-#include "Map/RailGraph.hpp"
-#include "Map/RailGraphEdge.hpp"
-#include "Map/RailGraphIter.hpp"
-#include "Map/RailGraphNode.hpp"
+#include "Game/Map/RailGraph.hpp"
+#include "Game/Map/RailGraphEdge.hpp"
+#include "Game/Map/RailGraphIter.hpp"
+#include "Game/Map/RailGraphNode.hpp"
 
 RailGraph::RailGraph() {
     mNodes = 0;
@@ -26,7 +26,7 @@ s32 RailGraph::addNode(const TVec3f& rVec) {
     _8 = cnt + 1;
 
     RailGraphNode* nodes = &mNodes[cnt];
-    nodes->_0.setPS(node._0);
+    nodes->_0 = node._0;
     nodes->_C = node._C;
     nodes->_10 = node._10;
     return _8 - 1;

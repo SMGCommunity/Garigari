@@ -1,11 +1,13 @@
 #pragma once
 
 #include "revolution/mtx/mtx.h"
-#include <JGeometry.hpp>
+#include <JSystem/JGeometry/TMatrix.hpp>
+#include <JSystem/JGeometry/TVec.hpp>
 #include <revolution.h>
 
 namespace MR {
     void makeMtxRotate(MtxPtr, const TVec3f&);
+    void makeMtxTR(MtxPtr, const TVec3f&, const TVec3f&);
     void setMtxTrans(MtxPtr, f32, f32, f32);
     void addTransMtx(MtxPtr, const TVec3f&);
     void addTransMtxLocal(MtxPtr, const TVec3f&);

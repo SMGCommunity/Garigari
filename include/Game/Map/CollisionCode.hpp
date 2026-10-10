@@ -2,8 +2,8 @@
 
 #include <revolution.h>
 
-#include "Map/HitInfo.hpp"
-#include "Util/JMapInfo.hpp"
+#include "Game/Map/HitInfo.hpp"
+#include "Game/Util/JMapInfo.hpp"
 
 class CodeTable;
 

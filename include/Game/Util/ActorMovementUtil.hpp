@@ -1,12 +1,12 @@
 #pragma once
 
-#include <JGeometry.hpp>
+#include <JSystem/JGeometry/TMatrix.hpp>
+#include <JSystem/JGeometry/TVec.hpp>
 #include <revolution.h>
 
 
 class HitSensor;
 class LiveActor;
-
 namespace MR {
     f32 calcDistance(const HitSensor*, const HitSensor*, TVec3f*);
     f32 calcDistance(const LiveActor*, const TVec3f&);

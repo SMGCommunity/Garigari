@@ -1,6 +1,6 @@
 #pragma once
 
-#include "LiveActor/PartsModel.hpp"
+#include "Game/LiveActor/PartsModel.hpp"
 
 class LodCtrl;
 

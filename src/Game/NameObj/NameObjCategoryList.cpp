@@ -1,5 +1,5 @@
-#include "NameObj/NameObjCategoryList.hpp"
-#include "NameObj/NameObj.hpp"
+#include "Game/NameObj/NameObjCategoryList.hpp"
+#include "Game/NameObj/NameObj.hpp"
 
 void NameObjCategoryList::execute(int idx) {
     NameObjCategoryList::CategoryInfo* inf = &mInfoTable.mArray[idx];

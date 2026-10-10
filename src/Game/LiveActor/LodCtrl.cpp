@@ -1,12 +1,12 @@
-#include "LiveActor/LodCtrl.hpp"
-#include "LiveActor/ActorLightCtrl.hpp"
-#include "LiveActor/ModelObj.hpp"
-#include "Util/ActorMovementUtil.hpp"
-#include "Util/ActorShadowUtil.hpp"
-#include "Util/CameraUtil.hpp"
-#include "Util/FileUtil.hpp"
-#include "Util/LiveActorUtil.hpp"
-#include "Util/ModelUtil.hpp"
+#include "Game/LiveActor/LodCtrl.hpp"
+#include "Game/LiveActor/ActorLightCtrl.hpp"
+#include "Game/LiveActor/ModelObj.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/FileUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ModelUtil.hpp"
 #include <cstdio>
 
 // LodCtrl::LodCtrl

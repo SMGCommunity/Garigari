@@ -1,14 +1,14 @@
-#include "Util/ActorInitUtil.hpp"
-#include "LiveActor/ActorActionKeeper.hpp"
-#include "LiveActor/ActorLightCtrl.hpp"
-#include "LiveActor/Binder.hpp"
-#include "LiveActor/HitSensorInfo.hpp"
-#include "LiveActor/HitSensorKeeper.hpp"
-#include "LiveActor/LiveActor.hpp"
-#include "Util.hpp"
-#include "Util/ActorSwitchUtil.hpp"
-#include "Util/JMapInfo.hpp"
-#include "Util/MtxUtil.hpp"
+#include "Game/Util/ActorInitUtil.hpp"
+#include "Game/LiveActor/ActorActionKeeper.hpp"
+#include "Game/LiveActor/ActorLightCtrl.hpp"
+#include "Game/LiveActor/Binder.hpp"
+#include "Game/LiveActor/HitSensorInfo.hpp"
+#include "Game/LiveActor/HitSensorKeeper.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Util.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/JMapInfo.hpp"
+#include "Game/Util/MtxUtil.hpp"
 #include <cstdio>
 
 namespace MR {
@@ -438,11 +438,7 @@ namespace MR {
 
                 for (s32 i = 0; i < sensorNum; i++) {
                     HitSensorInfo* sensorInfo = pActor->mSensorKeeper->getNthSensorInfo(i);
-                    TVec3f sensorScale(sensorInfo->_C);
-                    sensorScale.x *= y;
-                    sensorScale.y *= y;
-                    sensorScale.z *= y;
-                    sensorInfo->_C.setPS(sensorScale);
+                    sensorInfo->_C = sensorInfo->_C * y;
                 }
             }
 

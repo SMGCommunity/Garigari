@@ -1,9 +1,9 @@
 #pragma once
 
-#include "LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 
 class ActorCameraInfo;
-
 struct TubeSliderInfo {
 public:
     void init(f32);
