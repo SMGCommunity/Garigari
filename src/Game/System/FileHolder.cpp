@@ -72,10 +72,10 @@ void FileHolder::removeIfIsEqualHeap(JKRHeap* pHeap) {
 }
 
 void FileHolder::removeFile(const char* pFilePath) {
-    FileHolderFileEntry* pEntry = findEntry(pFilePath);
-    if (pEntry != nullptr) {
+    FileHolderFileEntry* entry = findEntry(pFilePath);
+    if (entry != nullptr) {
         FileHolderFileEntry** p = mEntries.begin();
-        while (p != mEntries.end() && *p != pEntry) {
+        while (p != mEntries.end() && *p != entry) {
             p++;
         }
 
