@@ -60,8 +60,7 @@ public:
 
     /// @brief Removes the file entry for the given file.
     /// @param pFilePath The path to the file.
-    /// @return The pointer to the removed entry.
-    FileHolderFileEntry** removeFile(const char*);
+    void removeFile(const char*);
 
     /// @brief Finds the file entry for the given file.
     /// @param pFilePath The path to the file.
