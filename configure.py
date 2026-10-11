@@ -1081,6 +1081,7 @@ config.libs = [
     GameLib(
         "System",
         [
+            Object(NonMatching, "Game/System/ArchiveHolder.cpp"),
             Object(NonMatching, "Game/System/FileHolder.cpp"),
             Object(NonMatching, "Game/System/FileLoader.cpp"),
             Object(NonMatching, "Game/System/FileLoaderThread.cpp"),
