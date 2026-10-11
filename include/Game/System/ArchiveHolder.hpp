@@ -44,6 +44,10 @@ public:
     /// @param pHeap The heap to compare.
     void removeIfIsEqualHeap(JKRHeap*);
 
+    /// @brief Removes the entry with the given archive name.
+    /// @param pHeap The name of the archive.
+    void removeArchive(const char*);
+
     /// @brief Finds the entry with the given archive name.
     /// @param pArchiveName The name of the archive.
     /// @return The pointer to the found entry, or `nullptr` if not found.
