@@ -7,7 +7,22 @@
 
 namespace MR {
     void makeMtxRotate(MtxPtr, const TVec3f&);
+    void makeMtxTR(MtxPtr, f32, f32, f32, f32, f32, f32);
     void makeMtxTR(MtxPtr, const TVec3f&, const TVec3f&);
+    void makeMtxSideUp(TPos3f*, const TVec3f&, const TVec3f&);
+    void makeMtxSideUpPos(TPos3f*, const TVec3f&, const TVec3f&, const TVec3f&);
+    void makeMtxSideFront(TPos3f*, const TVec3f&, const TVec3f&);
+    void makeMtxUpSide(TPos3f*, const TVec3f&, const TVec3f&);
+    void makeMtxUpSidePos(TPos3f*, const TVec3f&, const TVec3f&, const TVec3f&);
+    void makeMtxUpFront(TPos3f*, const TVec3f&, const TVec3f&);
+    void makeMtxUpFrontPos(TPos3f*, const TVec3f&, const TVec3f&, const TVec3f&) NO_INLINE;
+    void makeMtxFrontSidePos(TPos3f*, const TVec3f&, const TVec3f&, const TVec3f&);
+    void makeMtxFrontUp(TPos3f*, const TVec3f&, const TVec3f&);
+    void makeMtxFrontUpPos(TPos3f*, const TVec3f&, const TVec3f&, const TVec3f&) NO_INLINE;
+    void makeMtxUpNoSupport(TPos3f*, const TVec3f&);
+    void makeMtxUpNoSupportPos(TPos3f*, const TVec3f&, const TVec3f&);
+    void makeMtxFrontNoSupport(TPos3f*, const TVec3f&);
+    void makeMtxFrontNoSupportPos(TPos3f*, const TVec3f&, const TVec3f&);
     void setMtxTrans(MtxPtr, f32, f32, f32);
     void addTransMtx(MtxPtr, const TVec3f&);
     void addTransMtxLocal(MtxPtr, const TVec3f&);

@@ -117,6 +117,7 @@ namespace MR {
     /// @return The fitted mapped number.
     f32 getEaseInOutValue(f32 x, f32 start, f32 end, f32 max);
 
+    f32 getParabolaValue(f32, f32);
     f32 getScaleWithReactionValueZeroToOne(f32 x, f32 rate, f32 amplitude);
     f32 getConvergeVibrationValue(f32 x, f32 start, f32 end, f32 dampScale, f32 rate);
     f32 getReduceVibrationValue(f32 x, f32 time, f32 base, f32 amplitude, f32 freq);
@@ -157,6 +158,7 @@ namespace MR {
     void makeQuatFromVec(TQuat4f* pQuat, const TVec3f& rFront, const TVec3f& rUp);
     void makeQuatSideUp(TQuat4f* pParam1, const TVec3f& rParam2, const TVec3f& rParam3);
     void makeQuatUpFront(TQuat4f* pQuat, const TVec3f& rUp, const TVec3f& rFront);
+    void makeQuatFrontUp(TQuat4f* pQuat, const TVec3f& rFront, const TVec3f& rUp);
     void makeQuatUpNoSupport(TQuat4f* pQuat, const TVec3f& rUp);
     void blendQuatUpFront(TQuat4f* pDst, const TVec3f& rUp, const TVec3f& rFront, f32 upRate, f32 frontRate);
     void blendQuatUpFront(TQuat4f* pDst, const TQuat4f& rSrc, const TVec3f& rUp, const TVec3f& rFront, f32 upRate, f32 frontRate);
@@ -224,12 +226,12 @@ namespace MR {
     /// @brief Converts a two-dimensional vector into a vector of unit length.
     /// @param[in] rSrc A reference to the two-dimensional vector to evaluate.
     /// @param[out] pDst A pointer to the two-dimensional vector to initialize.
-    void normalize(const TVec2f& rSrc, TVec2f* pDst);
+    void normalize(TVec2f* pDst, const TVec2f& rSrc);
 
     /// @brief Converts a three-dimensional vector into a vector of unit length.
     /// @param[in] rSrc A reference to the three-dimensional vector to evaluate.
     /// @param[out] pDst A pointer to the three-dimensional vector to initialize.
-    void normalize(const TVec3f& rSrc, TVec3f* pDst);
+    void normalize(TVec3f* pDst, const TVec3f& rSrc);
 
     /// @brief Converts a two-dimensional vector into a vector of unit length.
     /// @param[in,out] pVec A pointer to the two-dimensional vector to evaluate and initialize.
@@ -245,7 +247,7 @@ namespace MR {
     /// @param[in] rSrc A reference to the three-dimensional vector to evaluate.
     /// @param[out] pDst A pointer to the three-dimensional vector to initialize.
     /// @return `true` if the vector could not be converted and was initialized with the zero vector, `false` otherwise.
-    bool normalizeOrZero(const TVec3f& rSrc, TVec3f* pDst);
+    bool normalizeOrZero(TVec3f* pDst, const TVec3f& rSrc);
 
     /// @brief Extracts the magnitude and direction from a two-dimensional vector.
     /// @param[out] pScalar A pointer to the magnitude to initialize.
@@ -319,6 +321,13 @@ namespace MR {
     /// @return The result of linear interpolation.
     u8 lerp(u8 start, u8 end, f32 t);
 
+    /// @brief Computes linear interpolation between two floats.
+    /// @param start The starting float.
+    /// @param end The ending float.
+    /// @param t The linear interpolant.
+    /// @return The result of linear interpolation.
+    f32 lerp(f32 start, f32 end, f32 t);
+
     /// @brief Computes clamped linear interpolation between two colors.
     /// @param start The starting color.
     /// @param end The ending color.
@@ -331,11 +340,12 @@ namespace MR {
 
     f32 vecKillElement(const TVec3f& rSrc, const TVec3f& rKillDir, TVec3f* pDst);
     void vecScaleAdd(const TVec3f* pScale, const TVec3f* pAdd, f32 scale);
-    void PSvecBlend(const TVec3f*, const TVec3f*, f32, f32);
-    void vecBlend(const TVec3f&, const TVec3f&, TVec3f*, f32);  // DIFFERENT THAN SMG1
-    void vecBlendNormal(TVec3f*, const TVec3f&, const TVec3f&, f32);
-    bool vecBlendSphere(const TVec3f& rFrom, const TVec3f& rTo, TVec3f* pVec, f32 rate);
+    void PSvecBlend(const TVec3f*, const TVec3f*, f32, f32 rate);
+    void vecBlend(TVec3f* pDst, const TVec3f& rFrom, const TVec3f& rTo, f32 rate);  // DIFFERENT THAN SMG1
+    void vecBlendNormal(TVec3f* pDst, const TVec3f& rFrom, const TVec3f& rTo, f32 rate);
+    bool vecBlendSphere(TVec3f* pDst, const TVec3f& rFrom, const TVec3f& rTo, f32 rate);
     void vecRotAxis(const TVec3f& rFrom, const TVec3f& rTo, const TVec3f& rAxis, TVec3f* pVec, f32 angle);
+    void rotAxisVecRad(const TVec3f&, const TVec3f&, TVec3f*, f32);
 
     /// @brief Computes wrapping linear interpolation between two colors.
     /// @param[out] pDst A pointer to the color to initialize.
