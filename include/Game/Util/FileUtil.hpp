@@ -1,9 +1,9 @@
 #pragma once
 
-#include <JSystem/JKernel/JKRArchive.hpp>
+#include <JSystem/JKernel/JKRMemArchive.hpp>
 
 namespace MR {
-    JKRArchive* mountAsyncArchive(const char*);
+    JKRMemArchive* receiveArchive(const char*);
 
     void makeScenarioArchiveFileName(char*, u32, const char*);
 
