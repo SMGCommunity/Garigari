@@ -6,7 +6,10 @@ class JKRHeap;
 
 class FileRipper {
 public:
-    enum AllocDirection { UNK_0 = 0, UNK_1 = 1, UNK_2 = 2 };
+    enum AllocDirection {
+        ALLOC_DIRECTION_FORWARD = 0,
+        ALLOC_DIRECTION_BACKWARD = 1,
+    };
 
     static void setup(u32, JKRHeap*);
     static s32 checkCompressed(const u8*);

@@ -2,10 +2,16 @@
 
 #include "Game/System/FileHolder.hpp"
 #include "Game/System/OSThreadWrapper.hpp"
+#include <JSystem/JKernel/JKRDvdRipper.hpp>
 
 struct RequestFileInfo {
-    /* 0x00 */ u32 _0;
-    /* 0x04 */ s32 mRequestType;
+    enum RequestType {
+        REQUEST_LOAD = 0,
+        REQUEST_MOUNT = 1,
+    };
+
+    /* 0x00 */ RequestType mType;
+    /* 0x04 */ JKRDvdRipper::EAllocDirection mAllocDirection;
     /* 0x08 */ char mFileName[0x80];
     /* 0x88 */ volatile u32 _88;
     /* 0x8C */ FileHolderFileEntry* mFileEntry;
