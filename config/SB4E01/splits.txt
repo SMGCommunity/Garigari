@@ -4571,7 +4571,7 @@ Game/System/DrawSyncManager.cpp:
 	.sbss       start:0x807D5B70 end:0x807D5B78
 
 Game/System/FileHolder.cpp:
-	.text       start:0x804B1380 end:0x804B1650
+	.text       start:0x804B11F0 end:0x804B1650
 
 Game/System/FileLoader.cpp:
 	.text       start:0x804B16C0 end:0x804B1CC0
