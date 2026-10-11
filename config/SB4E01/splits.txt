@@ -4675,10 +4675,11 @@ Game/System/NerveExecutor.cpp:
 	.data       start:0x806FBE80 end:0x806FBE90
 
 Game/System/OSThreadWrapper.cpp:
-	.text       start:0x804C4D20 end:0x804C4F30
+	.text       start:0x804C4D20 end:0x804C4F40
+	.data       start:0x806FBE90 end:0x806FBEA0
 
 Game/System/Overwrite.cpp:
-	.text       start:0x804C5310 end:0x804C7790
+	.text       start:0x804C4F40 end:0x804C7790
 	.data       start:0x806FBEE8 end:0x806FC020
 	.bss        start:0x8072B8E0 end:0x8072B900
 	.sdata      start:0x807D0454 end:0x807D0468
