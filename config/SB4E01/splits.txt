@@ -4543,7 +4543,7 @@ Game/Speaker/SpkSound.cpp:
 	.ctors      start:0x806449F0 end:0x806449F4
 
 Game/System/ArchiveHolder.cpp:
-	.text       start:0x804ADCA0 end:0x804ADFE0
+	.text       start:0x804ADB70 end:0x804AE050
 
 Game/System/AudSystemWrapper.cpp:
 	.text       start:0x804AE050 end:0x804AE7D0
@@ -4571,7 +4571,7 @@ Game/System/DrawSyncManager.cpp:
 	.sbss       start:0x807D5B70 end:0x807D5B78
 
 Game/System/FileHolder.cpp:
-	.text       start:0x804B11F0 end:0x804B1650
+	.text       start:0x804B11F0 end:0x804B16C0
 
 Game/System/FileLoader.cpp:
 	.text       start:0x804B16C0 end:0x804B1CC0
