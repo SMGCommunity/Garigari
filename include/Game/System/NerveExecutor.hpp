@@ -17,5 +17,5 @@ public:
     bool isNerve(const Nerve*) const;
     s32 getNerveStep() const;
 
-    Spine* mSpine;  // 0x04
+    /* 0x04 */ Spine* mSpine;
 };
