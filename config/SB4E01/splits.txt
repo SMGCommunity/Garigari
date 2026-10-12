@@ -4645,7 +4645,8 @@ Game/System/GameSystemStationedArchiveLoader.cpp:
 	.ctors      start:0x80644A28 end:0x80644A2C
 
 Game/System/HeapMemoryWatcher.cpp:
-	.text       start:0x804BCA60 end:0x804BD040
+	.text       start:0x804BC930 end:0x804BD040
+	.data       start:0x806FB560 end:0x806FB578
 	.sbss       start:0x807D5D00 end:0x807D5D08
 
 Game/System/Language.cpp:
