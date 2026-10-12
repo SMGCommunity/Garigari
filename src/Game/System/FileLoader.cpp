@@ -58,14 +58,6 @@ void FileLoader::requestMountArchive(const char* pName, JKRHeap* pHeap, JKRDvdRi
     }
 }
 
-bool FileLoader::isLoaded(const char* pName) const {
-    return mFileHolder->isExist(pName);
-}
-
-bool FileLoader::isMountedArchive(const char* pName) const {
-    return mArchiveHolder->getArchive(pName) != nullptr;
-}
-
 void* FileLoader::receiveFile(const char* pName) {
     const RequestFileInfo* info = getRequestFileInfoConst(pName);
     if (info != nullptr) {
@@ -117,7 +109,7 @@ bool FileLoader::isNeedToLoad(const char* pName) const {
         return false;
     }
 
-    return !isLoaded(pName);
+    return !mFileHolder->isExist(pName);
 }
 
 const RequestFileInfo* FileLoader::getRequestFileInfoConst(const char* pName) const {
