@@ -14,8 +14,6 @@ public:
 
     void requestLoadToMainRAM(const char*, u8*, JKRHeap*, JKRDvdRipper::EAllocDirection, bool);
     void requestMountArchive(const char*, JKRHeap*, JKRDvdRipper::EAllocDirection, bool);
-    bool isLoaded(const char*) const;
-    bool isMountedArchive(const char*) const;
     void* receiveFile(const char*);
     JKRMemArchive* receiveArchive(const char*);
     void receiveAllRequestedFile();

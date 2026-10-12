@@ -1086,6 +1086,7 @@ config.libs = [
             Object(NonMatching, "Game/System/FileLoader.cpp"),
             Object(NonMatching, "Game/System/FileLoaderThread.cpp"),
             Object(NonMatching, "Game/System/FileRipper.cpp"),
+            Object(NonMatching, "Game/System/FunctionAsyncExecutor.cpp"),
             Object(NonMatching, "Game/System/NerveExecutor.cpp"),
             Object(NonMatching, "Game/System/OSThreadWrapper.cpp"),
             Object(NonMatching, "Game/System/ResourceInfo.cpp"),
