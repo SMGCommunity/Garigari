@@ -4601,7 +4601,8 @@ Game/System/GameSystem.cpp:
 	.data       start:0x806FAD18 end:0x806FAD88
 
 Game/System/GameSystemDataHolder.cpp:
-	.text       start:0x804B6FC0 end:0x804B7220
+	.text       start:0x804B6FC0 end:0x804B7280
+	.data       start:0x806FAD88 end:0x806FAE78
 
 Game/System/GameSystemDimmingWatcher.cpp:
 	.text       start:0x804B7280 end:0x804B7370
