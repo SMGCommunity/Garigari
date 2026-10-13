@@ -21,6 +21,12 @@ namespace MR {
     /// @return The pointer to the null-terminated final component of the path.
     const char* getBasename(const char* pPath);
 
+    /// @brief Copies `num` characters from `pSrc` to `pDst` and terminates the string.
+    /// @param pDst The pointer to the null-terminated character string to copy to.
+    /// @param pSrc The pointer to the null-terminated character string to copy from.
+    /// @param num The number of characters to copy.
+    void extractString(char* pDst, const char* pSrc, u32 num, u32);
+
     /// @brief Compares two character strings for equivalence without regard to case sensitivity.
     /// @param pStr1 The pointer to the left-hand null-terminated character string.
     /// @param pStr2 The pointer to the right-hand null-terminated character string.

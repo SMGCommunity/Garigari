@@ -1,6 +1,6 @@
 #include "Game/System/GameSystemException.hpp"
 #include "Game/System/GameSystem.hpp"
-// #include "Game/System/GameSystemObjHolder.hpp"
+#include "Game/System/GameSystemObjHolder.hpp"
 #include "Game/Util/GamePadUtil.hpp"
 #include "Game/Util/SingletonHolder.hpp"
 #include <JSystem/JUtility/JUTAssert.hpp>
@@ -10,13 +10,16 @@
 #include <JSystem/JUtility/JUTVideo.hpp>
 
 extern "C" {
-    void fn_805B48F0(u32);
+void fn_805B48F0(u32);
 }
 
 void* GameSystemException::sMapFileUsingBuffer;
 
 namespace {
-    bool isBootWPAD(); // TODO
+    bool isBootWPAD() {
+        GameSystemObjHolder* objHolder = SingletonHolder< GameSystem >::get()->mObjHolder;
+        return objHolder != nullptr && objHolder->mWPadHolder != nullptr;
+    }
 
     const u32 cDispExceptionCommand[] = {
         0x0200,  // B Button
@@ -31,26 +34,26 @@ namespace {
 };  // namespace
 
 void GameSystemException::init() {
-    JUTDirectPrint* pDirectPrint = JUTDirectPrint::start();
+    JUTDirectPrint* directPrint = JUTDirectPrint::start();
 
     JUTAssertion::create();
     JUTAssertion::changeDisplayTime(600);
     JUTAssertion::changeDevice(3);
     JUTConsoleManager::createManager(nullptr);
-    JUTException::create(pDirectPrint);
+    JUTException::create(directPrint);
     JUTException::createConsole(new u8[0x24FC], 0x24FC);
     JUTException::setPreUserCallback(GameSystemException::handleException);
     JUTException::sErrorManager->mPrintWaitTime1 = 0;
     JUTException::sErrorManager->mPrintWaitTime0 = 0;
 
-    JUTConsole* pConsole = JUTException::getConsole();
-    pConsole->mPositionX = 0xF;
-    pConsole->mPositionY = 0x30;
-    pConsole = JUTException::getConsole();
-    pConsole->mHeight = 0x16;
+    JUTConsole* console = JUTException::getConsole();
+    console->mPositionX = 0xF;
+    console->mPositionY = 0x30;
+    console = JUTException::getConsole();
+    console->mHeight = 0x16;
 
-    if (pConsole->mHeight > pConsole->mMaxLines) {
-        pConsole->mHeight = pConsole->mMaxLines;
+    if (console->mHeight > console->mMaxLines) {
+        console->mHeight = console->mMaxLines;
     }
 
     GameSystemException::sMapFileUsingBuffer = new u8[0x10];
