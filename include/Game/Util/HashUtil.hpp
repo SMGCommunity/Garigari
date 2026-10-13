@@ -17,12 +17,12 @@ public:
     void swap(const char*, const char*);
 
     /* 0x00 */ char _0;
-    /* 0x04 */ u32* hashCodeArray;
-    /* 0x08 */ u32* valueArray;
+    /* 0x04 */ u32* mHashCodeArray;
+    /* 0x08 */ u32* mValueArray;
     /* 0x0C */ u32* _C;
     /* 0x10 */ u32* _10;
-    /* 0x14 */ u32 currentSize;
-    /* 0x18 */ u32 maxSize;
+    /* 0x14 */ u32 mCurrentSize;
+    /* 0x18 */ u32 mMaxSize;
 };
 
 namespace MR {
