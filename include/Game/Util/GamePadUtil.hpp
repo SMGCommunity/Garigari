@@ -73,7 +73,7 @@ namespace MR {
     void calcWorldStickDirectionXZ(f32*, f32*, s32);
     void calcWorldStickDirectionXZ(TVec3f*, s32);
 
-    s32 getWPadMaxCount();
+    u32 getWPadMaxCount();
     s32 isConnectedWPad(s32);
     s32 isOperatingWPad(s32);
 };  // namespace MR
