@@ -26,37 +26,37 @@ GameSystemDataHolder::GameSystemDataHolder()
 void GameSystemDataHolder::init() {
     JKRMemArchive* archive = MR::receiveArchive("/ObjectData/SystemDataTable.arc");
 
-    attachResource(archive, mHeapSizeExcept, "/HeapSizeExcept.bcsv");
-    attachResource(archive, mGalaxyDataTable, "/GalaxyDataTable.bcsv");
-    attachResource(archive, mMarioFaceShipEventDataTable, "/MarioFaceShipEventDataTable.bcsv");
-    attachResource(archive, mMarioFaceShipEventCastTable, "/MarioFaceShipEventCastTable.bcsv");
-    attachResource(archive, mGalaxyWorldOrderList, "/GalaxyWorldOrderList.bcsv");
-    attachResource(archive, mWorldMapHeapGalaxy, "/WorldMapHeapGalaxy.bcsv");
-    attachResource(archive, mWorldMapHeapResource, "/WorldMapHeapResource.bcsv");
+    ::attachResource(archive, mHeapSizeExcept, "/HeapSizeExcept.bcsv");
+    ::attachResource(archive, mGalaxyDataTable, "/GalaxyDataTable.bcsv");
+    ::attachResource(archive, mMarioFaceShipEventDataTable, "/MarioFaceShipEventDataTable.bcsv");
+    ::attachResource(archive, mMarioFaceShipEventCastTable, "/MarioFaceShipEventCastTable.bcsv");
+    ::attachResource(archive, mGalaxyWorldOrderList, "/GalaxyWorldOrderList.bcsv");
+    ::attachResource(archive, mWorldMapHeapGalaxy, "/WorldMapHeapGalaxy.bcsv");
+    ::attachResource(archive, mWorldMapHeapResource, "/WorldMapHeapResource.bcsv");
 }
 
 namespace GameSystemDataFunction {
     JMapInfo* getHeapSizeExcept() {
-        return SingletonHolder< GameSystem >::get()->mGameSystemDataHolder->mHeapSizeExcept;
+        return SingletonHolder< GameSystem >::get()->mDataHolder->mHeapSizeExcept;
     }
 
     JMapInfo* getMarioFaceShipEventDataTable() {
-        return SingletonHolder< GameSystem >::get()->mGameSystemDataHolder->mMarioFaceShipEventDataTable;
+        return SingletonHolder< GameSystem >::get()->mDataHolder->mMarioFaceShipEventDataTable;
     }
 
     JMapInfo* getMarioFaceShipEventCastTable() {
-        return SingletonHolder< GameSystem >::get()->mGameSystemDataHolder->mMarioFaceShipEventCastTable;
+        return SingletonHolder< GameSystem >::get()->mDataHolder->mMarioFaceShipEventCastTable;
     }
 
     JMapInfo* getGalaxyWorldOrderList() {
-        return SingletonHolder< GameSystem >::get()->mGameSystemDataHolder->mGalaxyWorldOrderList;
+        return SingletonHolder< GameSystem >::get()->mDataHolder->mGalaxyWorldOrderList;
     }
 
     JMapInfo* getWorldMapHeapGalaxy() {
-        return SingletonHolder< GameSystem >::get()->mGameSystemDataHolder->mWorldMapHeapGalaxy;
+        return SingletonHolder< GameSystem >::get()->mDataHolder->mWorldMapHeapGalaxy;
     }
 
     JMapInfo* getWorldMapHeapResource() {
-        return SingletonHolder< GameSystem >::get()->mGameSystemDataHolder->mWorldMapHeapResource;
+        return SingletonHolder< GameSystem >::get()->mDataHolder->mWorldMapHeapResource;
     }
 }  // namespace GameSystemDataFunction

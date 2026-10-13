@@ -4653,7 +4653,9 @@ Game/System/HeapMemoryWatcher.cpp:
 
 Game/System/Language.cpp:
 	.text       start:0x804BD1E0 end:0x804BD3C0
-	.rodata     start:0x8064CF18 end:0x8064CF80
+	.rodata     start:0x8064CEE0 end:0x8064CF80
+	.data       start:0x806FB670 end:0x806FB720
+	.sdata      start:0x807D0408 end:0x807D0420
 
 Game/System/LayoutHolder.cpp:
 	.text       start:0x804BD3C0 end:0x804BDAE0
