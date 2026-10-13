@@ -36,27 +36,27 @@ void GameSystemDataHolder::init() {
 }
 
 namespace GameSystemDataFunction {
-    JMapInfo* getHeapSizeExcept() {
+    const JMapInfo* getHeapSizeExcept() {
         return SingletonHolder< GameSystem >::get()->mDataHolder->mHeapSizeExcept;
     }
 
-    JMapInfo* getMarioFaceShipEventDataTable() {
+    const JMapInfo* getMarioFaceShipEventDataTable() {
         return SingletonHolder< GameSystem >::get()->mDataHolder->mMarioFaceShipEventDataTable;
     }
 
-    JMapInfo* getMarioFaceShipEventCastTable() {
+    const JMapInfo* getMarioFaceShipEventCastTable() {
         return SingletonHolder< GameSystem >::get()->mDataHolder->mMarioFaceShipEventCastTable;
     }
 
-    JMapInfo* getGalaxyWorldOrderList() {
+    const JMapInfo* getGalaxyWorldOrderList() {
         return SingletonHolder< GameSystem >::get()->mDataHolder->mGalaxyWorldOrderList;
     }
 
-    JMapInfo* getWorldMapHeapGalaxy() {
+    const JMapInfo* getWorldMapHeapGalaxy() {
         return SingletonHolder< GameSystem >::get()->mDataHolder->mWorldMapHeapGalaxy;
     }
 
-    JMapInfo* getWorldMapHeapResource() {
+    const JMapInfo* getWorldMapHeapResource() {
         return SingletonHolder< GameSystem >::get()->mDataHolder->mWorldMapHeapResource;
     }
 }  // namespace GameSystemDataFunction

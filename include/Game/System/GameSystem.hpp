@@ -8,6 +8,8 @@ class GameSystemObjHolder;
 
 class GameSystem : public NerveExecutor {
 public:
+    void initGX();
+
     /* 0x08 */ u32 _8;  // unknown type
     /* 0x0C */ u32 _C;  // unknown type
     /* 0x10 */ u32 _10; // unknown type
