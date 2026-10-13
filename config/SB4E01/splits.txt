@@ -4601,7 +4601,8 @@ Game/System/GameSystem.cpp:
 	.data       start:0x806FAD18 end:0x806FAD88
 
 Game/System/GameSystemDataHolder.cpp:
-	.text       start:0x804B6FC0 end:0x804B7220
+	.text       start:0x804B6FC0 end:0x804B7280
+	.data       start:0x806FAD88 end:0x806FAE78
 
 Game/System/GameSystemDimmingWatcher.cpp:
 	.text       start:0x804B7280 end:0x804B7370
@@ -4615,6 +4616,7 @@ Game/System/GameSystemErrorWatcher.cpp:
 Game/System/GameSystemException.cpp:
 	.text       start:0x804B7C50 end:0x804B7E70
 	.rodata     start:0x8064CEB8 end:0x8064CED8
+	.sbss       start:0x807D5C78 end:0x807D5C80
 
 Game/System/GameSystemFontHolder.cpp:
 	.text       start:0x804B7E70 end:0x804B82B0
@@ -4651,7 +4653,9 @@ Game/System/HeapMemoryWatcher.cpp:
 
 Game/System/Language.cpp:
 	.text       start:0x804BD1E0 end:0x804BD3C0
-	.rodata     start:0x8064CF18 end:0x8064CF80
+	.rodata     start:0x8064CEE0 end:0x8064CF80
+	.data       start:0x806FB670 end:0x806FB720
+	.sdata      start:0x807D0408 end:0x807D0420
 
 Game/System/LayoutHolder.cpp:
 	.text       start:0x804BD3C0 end:0x804BDAE0
