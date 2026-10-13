@@ -5,33 +5,35 @@
 #include "Game/Util/SceneUtil.hpp"
 #include <cstring>
 
-ScenarioData::ScenarioData(const char* pName) {
-    _0 = 0;
-    mScenarioData = nullptr;
-    mZoneList = nullptr;
-    mGalaxyInfo = nullptr;
-    const char* base = MR::getBasename(pName);
-    char str[64];
-    MR::removeExtensionString(str, sizeof(str), base);
-    char* name = strstr(str, "Scenario");
+void ScenarioDataParser_DUMMY() {
+    s32 a;
+    JMapInfoIter iter(nullptr, 0);
+    iter.getValue< s32 >(nullptr, &a);
+}
 
-    if (name != nullptr) {
-        *name = 0;
+ScenarioData::ScenarioData(const char* pFilePath) : mGalaxyName(), mScenarioData(), mZoneList(), mGalaxyInfo() {
+    char fileName[64];
+    MR::removeExtensionString(fileName, sizeof(fileName), MR::getBasename(pFilePath));
+
+    const char* pSuffix = "Scenario";
+    char* galaxyName = strstr(fileName, pSuffix);
+
+    if (galaxyName != nullptr) {
+        galaxyName[0] = '\0';
     }
 
-    s32 len = strlen(str) + 1;
-    char* buf = new char[len];
-    _0 = buf;
-    MR::copyString(buf, str, len);
+    s32 galaxyNameSize = strlen(fileName) + 1;
+    mGalaxyName = new char[galaxyNameSize];
+    MR::copyString(mGalaxyName, fileName, galaxyNameSize);
 
     mScenarioData = new JMapInfo();
     mZoneList = new JMapInfo();
     mGalaxyInfo = new JMapInfo();
-    initialize(pName);
+    initialize(pFilePath);
 }
 
 void ScenarioData::initialize(const char* pFileName) {
-    JKRArchive* archive = MR::mountAsyncArchive(pFileName);
+    JKRArchive* archive = MR::receiveArchive(pFileName);
     mScenarioData->attach(archive->getResource("/ScenarioData.bcsv"));
     mZoneList->attach(archive->getResource("/ZoneList.bcsv"));
     mGalaxyInfo->attach(archive->getResource("/GalaxyInfo.bcsv"));
@@ -52,8 +54,8 @@ s32 ScenarioData::getNormalPowerStarNum() const {
 s32 ScenarioData::getPowerStarNum() const {
     s32 count = 0;
     for (s32 scenarioNo = 1; scenarioNo <= mScenarioData->getNumEntries(); scenarioNo++) {
-        s32 powerStarId = 0;
-        getValueS32("PowerStarId", scenarioNo, &powerStarId);
+        u32 powerStarId = 0;
+        getValueU32("PowerStarId", scenarioNo, &powerStarId);
         if (powerStarId != 0) {
             count++;
         }
@@ -71,8 +73,8 @@ bool ScenarioData::getValueString(const char* pKey, s32 idx, const char** pOut) 
     return str;
 }
 
-bool ScenarioData::getValueS32(const char* pKey, s32 idx, s32* pOut) const {
-    return getScenarioDataIter(idx).getValue< u32 >(pKey, reinterpret_cast< u32* >(pOut));
+bool ScenarioData::getValueU32(const char* pKey, s32 idx, u32* pOut) const {
+    return getScenarioDataIter(idx).getValue< u32 >(pKey, pOut);
 }
 
 u32 ScenarioData::getScenarioLayers(const char* pKey, s32 idx) const {
@@ -129,29 +131,29 @@ JMapInfoIter ScenarioData::getScenarioDataIter(s32 scenarioNo) const {
 
 bool ScenarioData::getScenarioString(const char* pName, s32 idx, const char** pOut) const {
     JMapInfoIter iter = getScenarioDataIter(idx);
-    return iter.mInfo->getValue< const char* >(iter.mIndex, pName, pOut);
+    return iter.getValue< const char* >(pName, pOut);
 }
 
 bool ScenarioDataIter::isEnd() const {
-    return mParser->mNumScenarioData <= mCurIdx;
+    return mParser->mScenarioData.size() <= mCur;
 }
 
 void ScenarioDataIter::goNext() {
-    process(mCurIdx + 1);
+    process(mCur + 1);
 }
 
 GalaxyStatusAccessor ScenarioDataIter::makeAccessor() const {
-    return GalaxyStatusAccessor(mParser->mScenarioData[mCurIdx]);
+    return GalaxyStatusAccessor(mParser->mScenarioData[mCur]);
 }
 
 ScenarioDataIter::ScenarioDataIter(ScenarioDataParser* pParser) {
     mParser = pParser;
-    mCurIdx = 0;
+    mCur = 0;
     process(0);
 }
 
 void ScenarioDataIter::process(s32 no) {
-    for (mCurIdx = no; !isEnd() && !isValidWorldNo(mCurIdx); mCurIdx++)
+    for (mCur = no; !isEnd() && !isValidWorldNo(mCur); mCur++)
         ;
 }
 
@@ -161,29 +163,43 @@ bool ScenarioDataIter::isValidWorldNo(s32 no) const {
     return worldNo > 0;
 }
 
-ScenarioDataParser::ScenarioDataParser(const char* pName) : NameObj(pName) {
-    mNumScenarioData = 0;
-    DVDDir stageDir;
-    DVDOpenDir("/StageData", &stageDir);
-    DVDDirEntry entry;
+#pragma push
+#pragma opt_propagation off
+ScenarioDataParser::ScenarioDataParser(const char* pName) : NameObj(pName), mScenarioData() {
+    DVDDir dir;
+    DVDDirEntry dirent;
+    DVDOpenDir("/StageData", &dir);
 
-    while (DVDReadDir(&stageDir, &entry)) {
-        if (entry.isDir) {
-            char buf[256];
-            MR::makeScenarioArchiveFileName(buf, sizeof(buf), entry.name);
-            if (MR::isFileExist(buf, false)) {
-                mScenarioData[mNumScenarioData++] = new ScenarioData(buf);
-            }
+    while (DVDReadDir(&dir, &dirent)) {
+        if (!dirent.isDir) {
+            continue;
         }
+
+        char fileName[256];
+        MR::makeScenarioArchiveFileName(fileName, sizeof(fileName), dirent.name);
+
+        if (!MR::isFileExist(fileName, false)) {
+            continue;
+        }
+
+        ScenarioData* pData = new ScenarioData(fileName);
+
+        u32 index = mScenarioData.mCount;
+        u32 nextCount = index;
+        nextCount++;
+
+        mScenarioData.mArray[index] = pData;
+        mScenarioData.mCount = nextCount;
     }
 
-    DVDCloseDir(&stageDir);
+    DVDCloseDir(&dir);
 }
+#pragma pop
 
 ScenarioData* ScenarioDataParser::getScenarioData(const char* pName) const {
-    for (s32 i = 0; i < mNumScenarioData; i++) {
+    for (s32 i = 0; i < mScenarioData.size(); i++) {
         ScenarioData* data = mScenarioData[i];
-        if (MR::isEqualStringCase(data->_0, pName)) {
+        if (MR::isEqualStringCase(data->mGalaxyName, pName)) {
             return data;
         }
     }
@@ -216,6 +232,3 @@ namespace MR {
     }
 
 };  // namespace MR
-
-ScenarioDataParser::~ScenarioDataParser() {
-}

@@ -1081,7 +1081,15 @@ config.libs = [
     GameLib(
         "System",
         [
+            Object(NonMatching, "Game/System/ArchiveHolder.cpp"),
+            Object(NonMatching, "Game/System/FileHolder.cpp"),
+            Object(NonMatching, "Game/System/FileLoader.cpp"),
+            Object(NonMatching, "Game/System/FileLoaderThread.cpp"),
+            Object(NonMatching, "Game/System/FileRipper.cpp"),
+            Object(NonMatching, "Game/System/FunctionAsyncExecutor.cpp"),
+            Object(NonMatching, "Game/System/HeapMemoryWatcher.cpp"),
             Object(NonMatching, "Game/System/NerveExecutor.cpp"),
+            Object(NonMatching, "Game/System/OSThreadWrapper.cpp"),
             Object(NonMatching, "Game/System/ResourceInfo.cpp"),
             Object(NonMatching, "Game/System/ScenarioDataParser.cpp"),
         ],

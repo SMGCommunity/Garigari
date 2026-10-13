@@ -790,7 +790,7 @@ void TubeSlider::updateCameraAndShadow(const TVec3f& rDir) {
     _B0.getTrans(mShadowDropPos);
     mShadowDropPos.add(_A4 * 10.0f);
     MR::turnVecToVecDegree(&_184, _184, rDir, 0.85f, TVec3f((int)0, (int)1, (int)0));
-    MR::vecBlend(_190, _190, &_A4, 0.03f);
+    MR::vecBlend(&_190, _190, _A4, 0.03f);
     _19C = MR::lerp(_19C, *_1A4, 0.03f);
     _178 = *MR::getPlayerPos() + (_190 * _19C);
     _16C = _178 - _184 * 550.0f + _190 * (*_1A0);

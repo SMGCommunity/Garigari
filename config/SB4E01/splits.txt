@@ -99,7 +99,7 @@ Game/Util/GravityUtil.cpp:
 	.text       start:0x8002B180 end:0x8002B7C0
 
 Game/Util/HashUtil.cpp:
-	.text       start:0x8002BD00 end:0x8002BD90
+	.text       start:0x8002B7C0 end:0x8002BD90
 
 Game/Util/JMapUtil.cpp:
 	.text       start:0x8002BD90 end:0x8002D410
@@ -4543,7 +4543,7 @@ Game/Speaker/SpkSound.cpp:
 	.ctors      start:0x806449F0 end:0x806449F4
 
 Game/System/ArchiveHolder.cpp:
-	.text       start:0x804ADCA0 end:0x804ADFE0
+	.text       start:0x804ADB70 end:0x804AE050
 
 Game/System/AudSystemWrapper.cpp:
 	.text       start:0x804AE050 end:0x804AE7D0
@@ -4571,10 +4571,11 @@ Game/System/DrawSyncManager.cpp:
 	.sbss       start:0x807D5B70 end:0x807D5B78
 
 Game/System/FileHolder.cpp:
-	.text       start:0x804B1380 end:0x804B1650
+	.text       start:0x804B11F0 end:0x804B16C0
 
 Game/System/FileLoader.cpp:
 	.text       start:0x804B16C0 end:0x804B1CC0
+	.sdata      start:0x807D03B8 end:0x807D03C0
 
 Game/System/FileLoaderThread.cpp:
 	.text       start:0x804B1CC0 end:0x804B1F00
@@ -4582,10 +4583,13 @@ Game/System/FileLoaderThread.cpp:
 
 Game/System/FileRipper.cpp:
 	.text       start:0x804B1F00 end:0x804B2640
+	.data       start:0x806FA220 end:0x806FA258
 	.bss        start:0x8072B858 end:0x8072B870
+	.sbss       start:0x807D5B78 end:0x807D5B90
 
 Game/System/FunctionAsyncExecutor.cpp:
-	.text       start:0x804B2930 end:0x804B2E90
+	.text       start:0x804B2640 end:0x804B2EF0
+	.data       start:0x806FA258 end:0x806FA268
 	.bss        start:0x8072B870 end:0x8072B888
 
 Game/System/GameSequenceInGame.cpp:
@@ -4641,7 +4645,8 @@ Game/System/GameSystemStationedArchiveLoader.cpp:
 	.ctors      start:0x80644A28 end:0x80644A2C
 
 Game/System/HeapMemoryWatcher.cpp:
-	.text       start:0x804BCA60 end:0x804BD040
+	.text       start:0x804BC930 end:0x804BD040
+	.data       start:0x806FB560 end:0x806FB578
 	.sbss       start:0x807D5D00 end:0x807D5D08
 
 Game/System/Language.cpp:
@@ -4675,10 +4680,11 @@ Game/System/NerveExecutor.cpp:
 	.data       start:0x806FBE80 end:0x806FBE90
 
 Game/System/OSThreadWrapper.cpp:
-	.text       start:0x804C4D20 end:0x804C4F30
+	.text       start:0x804C4D20 end:0x804C4F40
+	.data       start:0x806FBE90 end:0x806FBEA0
 
 Game/System/Overwrite.cpp:
-	.text       start:0x804C5310 end:0x804C7790
+	.text       start:0x804C4F40 end:0x804C7790
 	.data       start:0x806FBEE8 end:0x806FC020
 	.bss        start:0x8072B8E0 end:0x8072B900
 	.sdata      start:0x807D0454 end:0x807D0468

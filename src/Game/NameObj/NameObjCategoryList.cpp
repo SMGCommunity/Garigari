@@ -2,7 +2,7 @@
 #include "Game/NameObj/NameObj.hpp"
 
 void NameObjCategoryList::execute(int idx) {
-    NameObjCategoryList::CategoryInfo* inf = &mInfoTable.mArray[idx];
+    NameObjCategoryList::CategoryInfo* inf = &mInfoTable.mArr[idx];
 
     if (inf->_8 == 0) {
         return;
@@ -12,27 +12,27 @@ void NameObjCategoryList::execute(int idx) {
         (*inf->mFunc)();
     }
 
-    NameObj** arr = inf->mList.mArray;
+    NameObj** arr = inf->mList.mArr;
 
-    while (arr != &inf->mList.mArray[inf->_8]) {
+    while (arr != &inf->mList.mArr[inf->_8]) {
         (*mDelegator)(*arr);
         arr++;
     }
 }
 
 void NameObjCategoryList::incrementCheck(NameObj* /*unused*/, int index) {
-    mInfoTable.mArray[index].mCheck++;
+    mInfoTable.mArr[index].mCheck++;
 }
 
 void NameObjCategoryList::allocateBuffer() {
     if (_D) {
-        for (s32 i = 0; i < mInfoTable.mMaxItems; i++) {
-            NameObjCategoryList::CategoryInfo* inf = &mInfoTable.mArray[i];
+        for (s32 i = 0; i < mInfoTable.size(); i++) {
+            NameObjCategoryList::CategoryInfo* inf = &mInfoTable.mArr[i];
             u32 size = inf->mCheck;
             NameObj** nameObjArr = new NameObj*[size];
-            MR::AssignableArray< NameObj* >* arr = &mInfoTable.mArray[i].mList;
-            arr->mArray = nameObjArr;
-            arr->mMaxItems = size;
+            MR::AssignableArray< NameObj* >* arr = &mInfoTable.mArr[i].mList;
+            arr->mArr = nameObjArr;
+            arr->mMaxSize = size;
         }
 
         _C = 1;
@@ -40,17 +40,17 @@ void NameObjCategoryList::allocateBuffer() {
 }
 
 void NameObjCategoryList::add(NameObj* pObj, int idx) {
-    NameObjCategoryList::CategoryInfo* inf = &mInfoTable.mArray[idx];
+    NameObjCategoryList::CategoryInfo* inf = &mInfoTable.mArr[idx];
     s32 cnt = inf->_8++;
-    inf->mList.mArray[cnt] = pObj;
+    inf->mList.mArr[cnt] = pObj;
 }
 void NameObjCategoryList::initTable(u32 count, const CategoryListInitialTable* pTable) {
-    mInfoTable.mArray = new CategoryInfo[count];
-    mInfoTable.mMaxItems = count;
+    mInfoTable.mArr = new CategoryInfo[count];
+    mInfoTable.mMaxSize = count;
 
-    NameObjCategoryList::CategoryInfo* curInf = &mInfoTable.mArray[0];
+    NameObjCategoryList::CategoryInfo* curInf = &mInfoTable.mArr[0];
 
-    while ((curInf != &mInfoTable.mArray[mInfoTable.mMaxItems])) {
+    while ((curInf != &mInfoTable.mArr[mInfoTable.mMaxSize])) {
         curInf->mFunc = nullptr;
         curInf++;
     }
@@ -61,13 +61,13 @@ void NameObjCategoryList::initTable(u32 count, const CategoryListInitialTable* p
         if (!_D) {
             u32 size = ent->mCount;
             NameObj** arr = new NameObj*[size];
-            NameObjCategoryList::CategoryInfo* inf = &mInfoTable.mArray[ent->mIndex];
-            inf->mList.mArray = arr;
-            inf->mList.mMaxItems = size;
+            NameObjCategoryList::CategoryInfo* inf = &mInfoTable.mArr[ent->mIndex];
+            inf->mList.mArr = arr;
+            inf->mList.mMaxSize = size;
             _C = 1;
         }
 
-        mInfoTable.mArray[ent->mIndex].mCheck = 0;
+        mInfoTable.mArr[ent->mIndex].mCheck = 0;
 
         ent++;
     }
