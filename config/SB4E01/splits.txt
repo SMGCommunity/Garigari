@@ -4616,6 +4616,7 @@ Game/System/GameSystemErrorWatcher.cpp:
 Game/System/GameSystemException.cpp:
 	.text       start:0x804B7C50 end:0x804B7E70
 	.rodata     start:0x8064CEB8 end:0x8064CED8
+	.sbss       start:0x807D5C78 end:0x807D5C80
 
 Game/System/GameSystemFontHolder.cpp:
 	.text       start:0x804B7E70 end:0x804B82B0
