@@ -18,7 +18,7 @@ public:
     void adjustStationedHeapNapa();
     void adjustStationedHeapGDDR3();
     void setCurrentHeapToStationedHeap();
-    void setCurrentHeapToSystemHeap();
+    void setCurrentHeapToGameHeap();
     void setCurrentHeapToSceneHeap();
     void resetGameHeapNapaAndGDDR3();
     void resetGameHeapNapa();

@@ -1,4 +1,4 @@
-#include "ut/CharStrmReader.h"
+#include "nw4r/ut/CharStrmReader.h"
 
 namespace nw4r {
     namespace ut {

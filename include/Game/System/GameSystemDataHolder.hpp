@@ -18,10 +18,10 @@ public:
 };
 
 namespace GameSystemDataFunction {
-    JMapInfo* getHeapSizeExcept();
-    JMapInfo* getMarioFaceShipEventDataTable();
-    JMapInfo* getMarioFaceShipEventCastTable();
-    JMapInfo* getGalaxyWorldOrderList();
-    JMapInfo* getWorldMapHeapGalaxy();
-    JMapInfo* getWorldMapHeapResource();
+    const JMapInfo* getHeapSizeExcept();
+    const JMapInfo* getMarioFaceShipEventDataTable();
+    const JMapInfo* getMarioFaceShipEventCastTable();
+    const JMapInfo* getGalaxyWorldOrderList();
+    const JMapInfo* getWorldMapHeapGalaxy();
+    const JMapInfo* getWorldMapHeapResource();
 }
