@@ -80,32 +80,35 @@ void HashSortTable::sort() {
             // No hash codes with this upper byte
             indexFirstHashForUpperByte[currentByteValue] = 65535;
             numHashesForUpperByte[currentByteValue] = 0;
-        } else if (hashUpperByte == currentByteValue) {
-            u32 numHashes = 1;  // We now know there is at least 1 hash code with this upper byte.
-            indexFirstHashForUpperByte[currentByteValue] = i;   // Store the index of the first one we found
-            i++;
+            continue;
+        } else if (hashUpperByte != currentByteValue) {
+            continue;
+        }
 
-            /*
-            Keep advancing through mHashCodeArray until we find a hash code whose upper byte is greater than currentByteValue.
-            We'll keep track of how many hash codes we ended up finding with an upper byte equal to currentByteValue.
-            Then, we can move on to the next currentByteValue.
-            */
-            while (i < mCurrentSize) {
-                u32 hashUpperByte = mHashCodeArray[i] >> 24;
+        u32 numHashes = 1;  // We now know there is at least 1 hash code with this upper byte.
+        indexFirstHashForUpperByte[currentByteValue] = i;   // Store the index of the first one we found
+        i++;
 
-                if (hashUpperByte != currentByteValue)
-                    break;
+        /*
+        Keep advancing through mHashCodeArray until we find a hash code whose upper byte is greater than currentByteValue.
+        We'll keep track of how many hash codes we ended up finding with an upper byte equal to currentByteValue.
+        Then, we can move on to the next currentByteValue.
+        */
+        while (i < mCurrentSize) {
+            u32 hashUpperByte = mHashCodeArray[i] >> 24;
 
-                numHashes++;
-                i++;
-            }
-
-            numHashesForUpperByte[currentByteValue] = numHashes;
-
-            if (i == mCurrentSize) {
-                currentByteValue++;
+            if (hashUpperByte != currentByteValue)
                 break;
-            }
+
+            numHashes++;
+            i++;
+        }
+
+        numHashesForUpperByte[currentByteValue] = numHashes;
+
+        if (i == mCurrentSize) {
+            currentByteValue++;
+            break;
         }
     }
 
