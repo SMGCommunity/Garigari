@@ -16,4 +16,4 @@ namespace MR {
     nw4r::ut::Font* getMenuFont96NW4R();
     nw4r::ut::Font* getStaffFontNW4R();
     bool hasPictureFontNW4R();
-}
+}  // namespace MR
