@@ -169,6 +169,20 @@ bool HashSortTable::search(const char * pName1, const char * pName2, u32 * ptr) 
     return search(combinedHashCode, ptr);
 }
 
+void HashSortTable::swap(const char * pName1, const char * pName2) {
+    u32 hashCode1 = MR::getHashCode(pName1);
+    
+    for (u32 i = 0; i < mCurrentSize; i++) {
+        if (hashCode1 == mHashCodeArray[i]) {
+            u32 hashCode2 = MR::getHashCode(pName2);
+            mHashCodeArray[i] = hashCode2;
+            return;
+        }
+    }
+
+    mHashCodeArray[mCurrentSize] = hashCode1;
+}
+
 namespace MR {
     u32 getHashCode(const char* pStr) {
         u32 hash;

@@ -42,7 +42,7 @@ public:
     /// @param A pointer to where the hash code's associated value in the table will be stored. If this pointer is `nullptr`, the value will not be stored anywhere.
     /// @return True if the hash code was found in the table; False otherwise. 
     bool search(const char*, const char*, u32*);
-    // The below functions has an unknown return type; using void for now.
+    /// @brief Given pointers to two key names (name1 and name2), replaces name1's hash in the table with name2's hash. If name1's hash isn't in the table, it will be appended at the end of the list of hash codes.
     void swap(const char*, const char*);
 
     /* 0x00 */ bool hasBeenSorted;              ///< True if this table is sorted in ascending order by the keys' hash codes; False otherwise.
