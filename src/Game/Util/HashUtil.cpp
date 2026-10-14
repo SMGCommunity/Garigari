@@ -124,6 +124,42 @@ void HashSortTable::sort() {
     hasBeenSorted = true;
 }
 
+bool HashSortTable::search(u32 hashCode, u32 * ptr) {
+    u8 upperByte = hashCode >> 24;
+
+    if (ptr != nullptr) {
+        *ptr = 0;
+    }
+
+    u16 totalHashes = numHashesForUpperByte[upperByte]; //< Number of hash codes with the same upper byte as hashCode
+
+    if (totalHashes == 0) {
+        return false;
+    }
+
+    u16 indexFirstHash = indexFirstHashForUpperByte[upperByte]; //< Index of the first hash code with the same upper byte as hashCode
+    u32* pCurrentHash = &mHashCodeArray[indexFirstHash]; //< Address of first hash with same upper byte as hashCode
+
+    // Loop through every hash code with the same upper byte as hashCode
+    for (u32 i = 0; i < totalHashes; i++) {
+        if (*pCurrentHash == hashCode) {
+            if (ptr != nullptr) {
+                *ptr = mValueArray[i + indexFirstHash];
+            }
+
+            return true;
+        }
+
+        if (*pCurrentHash > hashCode) {
+            return false;
+        }
+
+        pCurrentHash++;
+    }
+
+    return false;
+}
+
 namespace MR {
     u32 getHashCode(const char* pStr) {
         u32 hash;

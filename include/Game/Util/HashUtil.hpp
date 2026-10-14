@@ -26,8 +26,12 @@ public:
     bool addOrSkip(u32, u32);
     /// @brief Sorts the key/value pairs in the hash table in ascending order by the keys' hash codes.
     void sort();
+    /// @brief Searches for the given hash code in the table. If the given pointer isn't `nullptr`, changes the value at that pointer to the value associated with the given hash code, or 0 if the hash code is not in the table.
+    /// @param A hash code to search for.
+    /// @param A pointer to where the hash code's associated value in the table will be stored. If this pointer is `nullptr`, the value will not be stored anywhere.
+    /// @return True if the given hash code was found in the table; False otherwise.
+    bool search(u32, u32*);
     // The below functions have unknown return types; using void for now.
-    void search(u32, u32*);
     void search(const char*, u32*);
     void search(const char*, const char*, u32*);
     void swap(const char*, const char*);
