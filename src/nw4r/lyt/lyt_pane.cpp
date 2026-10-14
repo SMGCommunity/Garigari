@@ -59,8 +59,7 @@ namespace nw4r {
             UnbindAnimationSelf(0);
 
             if (mpMaterial != nullptr && !mpMaterial->IsUserAllocated()) {
-                mpMaterial->~Material();
-                Layout::FreeMemory(mpMaterial);
+                Layout::DeleteObj(mpMaterial);
             }
         }
 
