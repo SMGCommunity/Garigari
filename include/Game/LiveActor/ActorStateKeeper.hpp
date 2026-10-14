@@ -1,6 +1,6 @@
 #pragma once
 
-#include <revolution.h>
+#include <revolution/types.h>
 
 class ActorStateBaseInterface;
 class Nerve;
@@ -8,9 +8,9 @@ class Nerve;
 class ActorStateKeeper {
 public:
     struct State {
-        ActorStateBaseInterface* mInterface;  // 0x00
-        const Nerve* mNerve;                  // 0x04
-        const char* mStateName;               // 0x08
+        /* 0x0 */ ActorStateBaseInterface* mInterface;
+        /* 0x4 */ const Nerve* mNerve;
+        /* 0x8 */ const char* mName;
     };
 
     ActorStateKeeper(int);
@@ -22,8 +22,8 @@ public:
     void endState();
     ActorStateKeeper::State* findStateInfo(const Nerve*);
 
-    int mMaxStates;        // 0x00
-    int mNumStates;        // 0x04
-    State* mStates;        // 0x08
-    State* mCurrentState;  // 0x0C
+    /* 0x0 */ s32 mStatesCapacity;
+    /* 0x4 */ s32 mLength;
+    /* 0x8 */ State* mStates;
+    /* 0xC */ State* mCurrentState;
 };

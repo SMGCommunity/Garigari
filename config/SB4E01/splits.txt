@@ -4660,8 +4660,8 @@ Game/System/Language.cpp:
 
 Game/System/LayoutHolder.cpp:
 	.text       start:0x804BD3C0 end:0x804BDAE0
-	.rodata     start:0x8064CF80 end:0x8064CF88
-	.data       start:0x806FB7D0 end:0x806FB800
+	.rodata     start:0x8064CF80 end:0x8064CF90
+	.data       start:0x806FB720 end:0x806FB800
 
 Game/System/MainLoopFramework.cpp:
 	.text       start:0x804BDAE0 end:0x804BEE60
