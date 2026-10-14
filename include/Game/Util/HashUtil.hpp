@@ -19,8 +19,8 @@ public:
     /* 0x00 */ char _0;
     /* 0x04 */ u32* mHashCodeArray;
     /* 0x08 */ u32* mValueArray;
-    /* 0x0C */ u32* _C;
-    /* 0x10 */ u32* _10;
+    /* 0x0C */ u16* indexOfHashForUpperByte;
+    /* 0x10 */ u16* numHashesForUpperByte;
     /* 0x14 */ u32 mCurrentSize;
     /* 0x18 */ u32 mMaxSize;
 };

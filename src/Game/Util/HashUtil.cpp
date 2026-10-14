@@ -1,11 +1,12 @@
 #include "Game/Util/HashUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
 #include <cctype>
 
 HashSortTable::HashSortTable(u32 size) {
     mHashCodeArray = new u32[size];
     mValueArray = new u32[size];
-    _C = new u32[128];
-    _10 = new u32[128];
+    indexOfHashForUpperByte = new u16[256];
+    numHashesForUpperByte = new u16[256];
     mCurrentSize = 0;
     mMaxSize = size;
     _0 = 0;
@@ -38,6 +39,124 @@ bool HashSortTable::addOrSkip(u32 hashCode, u32 valueToAdd) {
     mValueArray[mCurrentSize] = valueToAdd;
     mCurrentSize++;
     return true;
+}
+
+// NON-MATCHING
+// decomp.me: https://decomp.me/scratch/7LVn8
+// cmpwi instruction used instead of cmplwi
+
+void HashSortTable::sort() {
+    if (mCurrentSize == 0)
+        return;
+
+    s32 indexArray[0x400];
+    MR::sortSmall(mCurrentSize, mHashCodeArray, indexArray);
+
+    u32 sortedArray[0x400];
+    for (int i = 0; i < mCurrentSize; i++) {
+        sortedArray[i] = mValueArray[indexArray[i]];
+    }
+
+    for (int i = 0; i < mCurrentSize; i++) {
+        mValueArray[i] = sortedArray[i];
+    }
+
+    u32 i = 0;
+    u32 currentByteValue;
+
+    for (currentByteValue = 0; currentByteValue < (u32)0x100; currentByteValue++) {
+        u32 hashUpperByte = mHashCodeArray[i] >> 24;
+
+        if (hashUpperByte > currentByteValue) {
+            indexOfHashForUpperByte[currentByteValue] = 65535;
+            numHashesForUpperByte[currentByteValue] = 0;
+        } else if (hashUpperByte == currentByteValue) {
+            u32 r10 = 1;
+            indexOfHashForUpperByte[currentByteValue] = i;
+            i++;
+
+            while (i < mCurrentSize) {
+                u32 hashUpperByte = mHashCodeArray[i] >> 24;
+
+                if (hashUpperByte != currentByteValue)
+                    break;
+
+                r10++;
+                i++;
+            }
+
+            numHashesForUpperByte[currentByteValue] = r10;
+
+            if (i == mCurrentSize) {
+                currentByteValue++;
+                break;
+            }
+        }
+    }
+
+    for (int i = currentByteValue; i < 256; i++) {
+        indexOfHashForUpperByte[i] = 65535;
+        numHashesForUpperByte[i] = 0;
+    }
+
+    _0 = 1;
+    
+    /*if (mCurrentSize == 0) {
+        return;
+    }
+
+    s32 originalIndices[0x400];
+    MR::sortSmall(mCurrentSize, mHashCodeArray, originalIndices);
+    u32 swapArray[0x400];
+
+    for (int i = 0; i < mCurrentSize; i++) {
+        swapArray[i] = mValueArray[originalIndices[i]];
+    }
+
+    for (int i = 0; i < mCurrentSize; i++) {
+        mValueArray[i] = swapArray[i];
+    }
+
+    u32 counter2 = 0;
+    u32 counter;
+
+    for (counter = 0; counter < 0x100; counter++) {
+        u32 upperByte = mHashCodeArray[counter2] >> 24;
+
+        if (upperByte > counter) {
+            indexOfHashForUpperByte[counter] = 0xFFFF;
+            numHashesForUpperByte[counter] = 0;
+        } else if (upperByte == counter) {
+            indexOfHashForUpperByte[counter] = counter2;
+            counter2++;
+            u32 counter3 = 1;
+
+            while (counter2 < mCurrentSize) {
+                u32 upperByte = mHashCodeArray[counter2] >> 24;
+
+                if (upperByte != counter) {
+                    break;
+                }
+
+                counter3++;
+                counter2++;
+            }
+
+            numHashesForUpperByte[counter] = counter3;
+
+            if (counter2 == mCurrentSize) {
+                counter++;
+                break;
+            }
+        }
+    }
+
+    for (u32 i = counter; i < 0x100; i++) {
+        indexOfHashForUpperByte[i] = 0xFFFF;
+        numHashesForUpperByte[i] = 0;
+    }
+
+    _0 = true;*/
 }
 
 namespace MR {
