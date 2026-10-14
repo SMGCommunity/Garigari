@@ -45,7 +45,7 @@ public:
     /// @brief Given pointers to two key names (name1 and name2), replaces name1's hash in the table with name2's hash. If name1's hash isn't in the table, it will be appended at the end of the list of hash codes.
     void swap(const char*, const char*);
 
-    /* 0x00 */ bool hasBeenSorted;              ///< True if this table is sorted in ascending order by the keys' hash codes; False otherwise.
+    /* 0x00 */ bool mHasBeenSorted;              ///< True if this table is sorted in ascending order by the keys' hash codes; False otherwise.
     /* 0x04 */ u32* mHashCodeArray;             ///< An array containing the hash codes of all the names in the name/value pairs.
     /* 0x08 */ u32* mValueArray;                ///< An array containing all the values in the name/value pairs. For any i, mHashCodeArray[i] and mValueArray[i] form a pair.
     /* 0x0C */ u16* indexFirstHashForUpperByte; ///< For any byte i (0-255), indexFirstHashForUpperByte[i] is the index of the first hash code in mHashCodeArray whose upper byte is i. If no such hash code exists, indexFirstHashForUpperByte[i] = 65535.

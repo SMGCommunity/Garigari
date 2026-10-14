@@ -9,7 +9,7 @@ HashSortTable::HashSortTable(u32 size) {
     numHashesForUpperByte = new u16[256];
     mCurrentSize = 0;
     mMaxSize = size;
-    hasBeenSorted = false;
+    mHasBeenSorted = false;
 }
 
 bool HashSortTable::add(const char* pName, u32 value, bool skip) {
@@ -121,7 +121,7 @@ void HashSortTable::sort() {
         numHashesForUpperByte[i] = 0;
     }
 
-    hasBeenSorted = true;
+    mHasBeenSorted = true;
 }
 
 bool HashSortTable::search(u32 hashCode, u32 * ptr) {
