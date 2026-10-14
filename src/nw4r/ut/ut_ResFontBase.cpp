@@ -3,7 +3,7 @@
 namespace nw4r {
     namespace ut {
         namespace detail {
-            ResFontBase::ResFontBase() : mResource(nullptr), mFontInfo(nullptr) {
+            ResFontBase::ResFontBase() : mResource(), mFontInfo(), _18(), _1A(-1) {
             }
 
             ResFontBase::~ResFontBase() {

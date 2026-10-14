@@ -267,7 +267,7 @@ namespace nw4r {
         f32 SinFIdx(f32 fidx) {
             f32 abs_fidx = FAbs(fidx);
 
-            while (abs_fidx >= 65536.0f) {
+            while (abs_fidx > 65536.0f) {
                 abs_fidx -= 65536.0f;
             }
 
@@ -282,7 +282,7 @@ namespace nw4r {
         f32 CosFIdx(f32 fidx) {
             f32 abs_fidx = FAbs(fidx);
 
-            while (abs_fidx >= 65536.0f) {
+            while (abs_fidx > 65536.0f) {
                 abs_fidx -= 65536.0f;
             }
 

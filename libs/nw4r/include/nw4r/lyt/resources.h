@@ -197,16 +197,30 @@ namespace nw4r {
             struct Window : Pane {
                 InflationLRTB inflation;
                 u8 frameNum;
-                u8 padding1;
-                u8 padding2;
-                u8 padding3;
+                u8 padding[3];
                 u32 contentOffset;
                 u32 frameOffsetTableOffset;
             };
 
             struct Bounding : Pane {};
 
+            struct ExtUserData {
+                const char* GetName() const {
+                    return nameOffset != 0 ? detail::ConvertOffsToPtr< const char >(this, nameOffset) : nullptr;
+                }
+
+                u32 nameOffset;
+                u32 dataOffset;
+                u16 entryNum;
+                u8 type;
+                u8 padding;
+            };
+
             struct ExtUserDataList {
+                const ExtUserData* GetExtUserDataArray() const {
+                    return detail::ConvertOffsToPtr< ExtUserData >(this, sizeof(*this));
+                }
+
                 DataBlockHeader blockHeader;
                 detail::ResU16 num;
                 u8 padding[2];
