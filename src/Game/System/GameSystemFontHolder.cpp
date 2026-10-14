@@ -7,9 +7,8 @@
 #include <cstdio>
 #include <nw4r/ut/ResFont.h>
 
-
 GameSystemFontHolder::GameSystemFontHolder()
-    : _0(), _4(), mEmbeddedMessageFont(), mMessageFont(), mPictureFont(), mMenuFont64(), mNumberFont(), mMenuFont96(), mStaffFont() {
+    : mArchiveData(), mArchive(), mEmbeddedMessageFont(), mMessageFont(), mPictureFont(), mMenuFont64(), mNumberFont(), mMenuFont96(), mStaffFont() {
 }
 
 nw4r::ut::Font* GameSystemFontHolder::getMessageFont() const {
@@ -30,11 +29,11 @@ void GameSystemFontHolder::createFontFromEmbeddedData() {
     const char* languagePrefix = MR::getCurrentLanguagePrefix();
     snprintf(embeddedFontPath, sizeof(embeddedFontPath), "LocalizeData/%s/LayoutData/EmbeddedFont.arc", languagePrefix);
 
-    _0 = static_cast< u8* >(MR::decompressFileFromArchive(pArchive, embeddedFontPath, pHeap, -32));
-    _4 = new (pHeap, 0) JKRMemArchive();
-    _4->mountFixed(_0, JKR_MEM_BREAK_FLAG_0);
+    mArchiveData = static_cast< u8* >(MR::decompressFileFromArchive(pArchive, embeddedFontPath, pHeap, -32));
+    mArchive = new (pHeap, 0) JKRMemArchive();
+    mArchive->mountFixed(mArchiveData, JKR_MEM_BREAK_FLAG_0);
     mEmbeddedMessageFont = new (pHeap, -4) nw4r::ut::ResFont();
-    mEmbeddedMessageFont->SetResource(_4->getResource("MessageFont26.brfnt"));
+    mEmbeddedMessageFont->SetResource(mArchive->getResource("MessageFont26.brfnt"));
 }
 
 namespace {
@@ -71,10 +70,10 @@ void GameSystemFontHolder::createFontFromFile() {
         mEmbeddedMessageFont->RemoveResource();
 
         delete mEmbeddedMessageFont;
-        delete _4;
-        delete[] _0;
+        delete mArchive;
+        delete[] mArchiveData;
 
         mEmbeddedMessageFont = nullptr;
-        _0 = nullptr;
+        mArchiveData = nullptr;
     }
 }
