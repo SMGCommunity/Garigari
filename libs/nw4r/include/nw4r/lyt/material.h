@@ -8,6 +8,7 @@
 
 namespace nw4r {
     namespace lyt {
+        class AnimResource;
         class TexMap;
 
         namespace detail {
@@ -45,7 +46,9 @@ namespace nw4r {
             virtual void UnbindAllAnimation();
             virtual void Animate();
             virtual AnimationLink* FindAnimationLink(AnimTransform*);
+            virtual AnimationLink* FindAnimationLink(const AnimResource&);
             virtual void SetAnimationEnable(AnimTransform*, bool);
+            virtual void SetAnimationEnable(const AnimResource&, bool);
 
             void Init();
             void InitBitGXNums(detail::BitGXNums*);

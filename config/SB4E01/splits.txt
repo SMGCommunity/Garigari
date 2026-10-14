@@ -4620,6 +4620,7 @@ Game/System/GameSystemException.cpp:
 
 Game/System/GameSystemFontHolder.cpp:
 	.text       start:0x804B7E70 end:0x804B82B0
+	.data       start:0x806FAF38 end:0x806FB028
 
 Game/System/GameSystemFrameControl.cpp:
 	.text       start:0x804B82B0 end:0x804B8350
@@ -5939,10 +5940,11 @@ nw4r/ut/ut_TagProcessorBase.cpp:
 
 nw4r/ut/ut_Font.cpp:
 	.text       start:0x8059E0C0 end:0x8059E170 align:16
+	.data       start:0x8070C180 end:0x8070C1B0
 
 nw4r/ut/ut_ResFontBase.cpp:
 	.text       start:0x8059E170 end:0x8059E950 align:16
-	.data       start:0x8070C21C end:0x8070C278
+	.data       start:0x8070C1B0 end:0x8070C278
 
 nw4r/ut/ut_ResFont.cpp:
 	.text       start:0x8059E950 end:0x8059EC60 align:16
@@ -5965,12 +5967,15 @@ nw4r/db/db_assert.cpp:
 
 nw4r/math/math_triangular.cpp:
 	.text       start:0x805A6C60 end:0x805A6D50 align:16
+	.sdata2     start:0x807E2618 end:0x807E2620
 
 nw4r/math/math_types.cpp:
 	.text       start:0x805A6D50 end:0x805A6DE0 align:16
 
 nw4r/lyt/lyt_init.cpp:
 	.text       start:0x805A6DE0 end:0x805A6E40 align:16
+	.data       start:0x8070C358 end:0x8070C3A0
+	.sdata      start:0x807D0918 end:0x807D0920
 
 nw4r/lyt/lyt_pane.cpp:
 	.text       start:0x805A6E40 end:0x805A7E60 align:16

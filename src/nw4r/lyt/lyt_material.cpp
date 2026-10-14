@@ -998,8 +998,20 @@ namespace nw4r {
             return detail::FindAnimationLink(&mAnimList, pAnimTrans);
         }
 
+        AnimationLink* Material::FindAnimationLink(const AnimResource& rAnimResource) {
+            return detail::FindAnimationLink(&mAnimList, rAnimResource);
+        }
+
         void Material::SetAnimationEnable(AnimTransform* pAnimTrans, bool enable) {
             AnimationLink* pAnimLink = FindAnimationLink(pAnimTrans);
+
+            if (pAnimLink != NULL) {
+                pAnimLink->SetEnable(enable);
+            }
+        }
+
+        void Material::SetAnimationEnable(const AnimResource& rAnimResource, bool enable) {
+            AnimationLink* pAnimLink = FindAnimationLink(rAnimResource);
 
             if (pAnimLink != NULL) {
                 pAnimLink->SetEnable(enable);

@@ -1093,6 +1093,7 @@ config.libs = [
             Object(NonMatching, "Game/System/GameSystemDataHolder.cpp"),
             Object(NonMatching, "Game/System/GameSystemDimmingWatcher.cpp"),
             Object(NonMatching, "Game/System/GameSystemException.cpp"),
+            Object(NonMatching, "Game/System/GameSystemFontHolder.cpp"),
             Object(NonMatching, "Game/System/GameSystemFrameControl.cpp"),
             Object(NonMatching, "Game/System/HeapMemoryWatcher.cpp"),
             Object(NonMatching, "Game/System/Language.cpp"),
@@ -1699,7 +1700,7 @@ config.libs = [
             Object(Matching, "nw4r/ut/ut_binaryFileFormat.cpp"),
             Object(Matching, "nw4r/ut/ut_CharStrmReader.cpp"),
             Object(NonMatching, "nw4r/ut/ut_TagProcessorBase.cpp"),
-            Object(NonMatching, "nw4r/ut/ut_Font.cpp"),
+            Object(Matching, "nw4r/ut/ut_Font.cpp"),
             Object(NonMatching, "nw4r/ut/ut_ResFontBase.cpp"),
             Object(NonMatching, "nw4r/ut/ut_ResFont.cpp"),
             Object(NonMatching, "nw4r/ut/ut_CharWriter.cpp"),
@@ -1723,7 +1724,7 @@ config.libs = [
     NWLib(
         "libnw4r_lyt",
         [
-            Object(NonMatching, "nw4r/lyt/lyt_init.cpp"),
+            Object(Matching, "nw4r/lyt/lyt_init.cpp"),
             Object(NonMatching, "nw4r/lyt/lyt_pane.cpp"),
             Object(NonMatching, "nw4r/lyt/lyt_group.cpp"),
             Object(NonMatching, "nw4r/lyt/lyt_layout.cpp"),
