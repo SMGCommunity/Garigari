@@ -1,6 +1,5 @@
 #include "Game/Util/HashUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
-#include <cctype>
 
 HashSortTable::HashSortTable(u32 size) {
     mHashCodeArray = new u32[size];
@@ -40,10 +39,6 @@ bool HashSortTable::addOrSkip(u32 hashCode, u32 valueToAdd) {
     mCurrentSize++;
     return true;
 }
-
-// NON-MATCHING
-// decomp.me: https://decomp.me/scratch/7LVn8
-// cmpwi instruction used instead of cmplwi
 
 void HashSortTable::sort() {
     if (mCurrentSize == 0)
@@ -94,89 +89,10 @@ void HashSortTable::sort() {
         }
     }
 
-    for (int i = currentByteValue; i < 256; i++) {
+    for (u32 i = currentByteValue; i < 256; i++) {
         indexOfHashForUpperByte[i] = 65535;
         numHashesForUpperByte[i] = 0;
     }
 
     _0 = 1;
-    
-    /*if (mCurrentSize == 0) {
-        return;
-    }
-
-    s32 originalIndices[0x400];
-    MR::sortSmall(mCurrentSize, mHashCodeArray, originalIndices);
-    u32 swapArray[0x400];
-
-    for (int i = 0; i < mCurrentSize; i++) {
-        swapArray[i] = mValueArray[originalIndices[i]];
-    }
-
-    for (int i = 0; i < mCurrentSize; i++) {
-        mValueArray[i] = swapArray[i];
-    }
-
-    u32 counter2 = 0;
-    u32 counter;
-
-    for (counter = 0; counter < 0x100; counter++) {
-        u32 upperByte = mHashCodeArray[counter2] >> 24;
-
-        if (upperByte > counter) {
-            indexOfHashForUpperByte[counter] = 0xFFFF;
-            numHashesForUpperByte[counter] = 0;
-        } else if (upperByte == counter) {
-            indexOfHashForUpperByte[counter] = counter2;
-            counter2++;
-            u32 counter3 = 1;
-
-            while (counter2 < mCurrentSize) {
-                u32 upperByte = mHashCodeArray[counter2] >> 24;
-
-                if (upperByte != counter) {
-                    break;
-                }
-
-                counter3++;
-                counter2++;
-            }
-
-            numHashesForUpperByte[counter] = counter3;
-
-            if (counter2 == mCurrentSize) {
-                counter++;
-                break;
-            }
-        }
-    }
-
-    for (u32 i = counter; i < 0x100; i++) {
-        indexOfHashForUpperByte[i] = 0xFFFF;
-        numHashesForUpperByte[i] = 0;
-    }
-
-    _0 = true;*/
-}
-
-namespace MR {
-    u32 getHashCode(const char* pStr) {
-        u32 hash;
-
-        for (hash = 0; *pStr != '\0'; pStr++) {
-            hash = *pStr + hash * 31;
-        }
-
-        return hash;
-    }
-
-    u32 getHashCodeLower(const char* pStr) {
-        u32 hash;
-
-        for (hash = 0; *pStr != '\0'; pStr++) {
-            hash = tolower(*pStr) + hash * 31;
-        }
-
-        return hash;
-    }
 }  // namespace MR
