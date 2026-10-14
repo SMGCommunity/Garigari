@@ -5,8 +5,8 @@
 HashSortTable::HashSortTable(u32 size) {
     mHashCodeArray = new u32[size];
     mValueArray = new u32[size];
-    indexFirstHashForUpperByte = new u16[256];
-    numHashesForUpperByte = new u16[256];
+    mIndexFirstHashForUpperByte = new u16[256];
+    mNumHashesForUpperByte = new u16[256];
     mCurrentSize = 0;
     mMaxSize = size;
     mHasBeenSorted = false;
@@ -78,15 +78,15 @@ void HashSortTable::sort() {
         */
         if (hashUpperByte > currentByteValue) {
             // No hash codes with this upper byte
-            indexFirstHashForUpperByte[currentByteValue] = 65535;
-            numHashesForUpperByte[currentByteValue] = 0;
+            mIndexFirstHashForUpperByte[currentByteValue] = 65535;
+            mNumHashesForUpperByte[currentByteValue] = 0;
             continue;
         } else if (hashUpperByte != currentByteValue) {
             continue;
         }
 
-        u32 numHashes = 1;                                 // We now know there is at least 1 hash code with this upper byte.
-        indexFirstHashForUpperByte[currentByteValue] = i;  // Store the index of the first one we found
+        u32 numHashes = 1;                                  // We now know there is at least 1 hash code with this upper byte.
+        mIndexFirstHashForUpperByte[currentByteValue] = i;  // Store the index of the first one we found
         i++;
 
         /*
@@ -104,7 +104,7 @@ void HashSortTable::sort() {
             i++;
         }
 
-        numHashesForUpperByte[currentByteValue] = numHashes;
+        mNumHashesForUpperByte[currentByteValue] = numHashes;
 
         if (i == mCurrentSize) {
             currentByteValue++;
@@ -117,8 +117,8 @@ void HashSortTable::sort() {
     then there are zero hash codes whose upper bytes match any of the remaining possible bytes.
     */
     for (u32 i = currentByteValue; i < 256; i++) {
-        indexFirstHashForUpperByte[i] = 65535;
-        numHashesForUpperByte[i] = 0;
+        mIndexFirstHashForUpperByte[i] = 65535;
+        mNumHashesForUpperByte[i] = 0;
     }
 
     mHasBeenSorted = true;
@@ -131,14 +131,14 @@ bool HashSortTable::search(u32 hashCode, u32* ptr) {
         *ptr = 0;
     }
 
-    u16 totalHashes = numHashesForUpperByte[upperByte];  //< Number of hash codes with the same upper byte as hashCode
+    u16 totalHashes = mNumHashesForUpperByte[upperByte];  //< Number of hash codes with the same upper byte as hashCode
 
     if (totalHashes == 0) {
         return false;
     }
 
-    u16 indexFirstHash = indexFirstHashForUpperByte[upperByte];  //< Index of the first hash code with the same upper byte as hashCode
-    u32* pCurrentHash = &mHashCodeArray[indexFirstHash];         //< Address of first hash with same upper byte as hashCode
+    u16 indexFirstHash = mIndexFirstHashForUpperByte[upperByte];  //< Index of the first hash code with the same upper byte as hashCode
+    u32* pCurrentHash = &mHashCodeArray[indexFirstHash];          //< Address of first hash with same upper byte as hashCode
 
     // Loop through every hash code with the same upper byte as hashCode
     for (u32 i = 0; i < totalHashes; i++) {
