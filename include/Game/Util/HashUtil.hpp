@@ -32,10 +32,15 @@ public:
     /// @return True if the given hash code was found in the table; False otherwise.
     bool search(u32, u32*);
     /// @brief Searches for the given key (name) in the table. If the given pointer isn't `nullptr`, changes the value at that pointer to the value associated with the given key, or 0 if the key is not in the table.
-    /// @param A key name (string) to search for.
+    /// @param A pointer to a key name (string) to search for.
     /// @param A pointer to where the key's associated value in the table will be stored. If this pointer is `nullptr`, the value will not be stored anywhere.
     /// @return True if the given key was found in the table; False otherwise.
     bool search(const char*, u32*);
+    /// @brief Given two strings, adds their hash codes together and searches for the sum in the table. If the given pointer isn't `nullptr`, changes the value at that pointer to the value associated with the given hash code, or 0 if the hash code is not in the table.
+    /// @param A pointer to a string.
+    /// @param A pointer to a string.
+    /// @param A pointer to where the hash code's associated value in the table will be stored. If this pointer is `nullptr`, the value will not be stored anywhere.
+    /// @return True if the hash code was found in the table; False otherwise. 
     bool search(const char*, const char*, u32*);
     // The below functions has an unknown return type; using void for now.
     void swap(const char*, const char*);

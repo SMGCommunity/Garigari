@@ -164,6 +164,11 @@ bool HashSortTable::search(const char * pName, u32 * ptr) {
     return search(MR::getHashCode(pName), ptr);
 }
 
+bool HashSortTable::search(const char * pName1, const char * pName2, u32 * ptr) {
+    u32 combinedHashCode = MR::getHashCode(pName1) + MR::getHashCode(pName2);
+    return search(combinedHashCode, ptr);
+}
+
 namespace MR {
     u32 getHashCode(const char* pStr) {
         u32 hash;
