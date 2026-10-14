@@ -270,8 +270,8 @@ namespace nw4r {
             }
         }
 
-        void Pane::BindAnimation(AnimTransform* pAnimTrans, bool recursive) {
-            pAnimTrans->Bind(this, recursive);
+        void Pane::BindAnimation(AnimTransform* pAnimTrans, bool recursive, bool a3) {
+            pAnimTrans->Bind(this, recursive, a3);
         }
 
         void Pane::UnbindAnimation(AnimTransform* pAnimTrans, bool recursive) {

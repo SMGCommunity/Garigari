@@ -26,8 +26,8 @@ namespace nw4r {
             virtual ~AnimTransform();
             virtual void SetResource(const res::AnimationBlock*, ResourceAccessor*) = 0;
             virtual void SetResource(const res::AnimationBlock*, ResourceAccessor*, u16) = 0;
-            virtual void Bind(Pane*, bool) = 0;
-            virtual void Bind(Material*) = 0;
+            virtual void Bind(Pane*, bool, bool) = 0;
+            virtual void Bind(Material*, bool) = 0;
             virtual void Animate(u32, Pane*) = 0;
             virtual void Animate(u32, Material*) = 0;
 
@@ -49,13 +49,13 @@ namespace nw4r {
             virtual ~AnimTransformBasic();
             virtual void SetResource(const res::AnimationBlock*, ResourceAccessor*);
             virtual void SetResource(const res::AnimationBlock*, ResourceAccessor*, u16);
-            virtual void Bind(Pane*, bool);
-            virtual void Bind(Material*);
+            virtual void Bind(Pane*, bool, bool);
+            virtual void Bind(Material*, bool);
             virtual void Animate(u32, Pane*);
             virtual void Animate(u32, Material*);
 
             template < typename T >
-            AnimationLink* Bind(T* target, AnimationLink* link, u16 idx);
+            AnimationLink* Bind(T* target, AnimationLink* link, u16 idx, bool enable);
             AnimationLink* FindUnbindLink(AnimationLink* link) const;
             void** mpFileResAry;
             AnimationLink* mAnimLinkAry;
