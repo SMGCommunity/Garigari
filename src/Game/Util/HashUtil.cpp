@@ -53,7 +53,7 @@ void HashSortTable::sort() {
     MR::sortSmall(mCurrentSize, mHashCodeArray, indexArray);
 
     /*
-    The values in mValueArray will be transferred here (in the order indicated in indexArray) 
+    The values in mValueArray will be transferred here (in the order indicated in indexArray)
     before being copied back into mValueArray.
     */
     u32 sortedArray[0x400];
@@ -65,7 +65,7 @@ void HashSortTable::sort() {
         mValueArray[i] = sortedArray[i];
     }
 
-    u32 i = 0; //< Index in mHashCodeArray
+    u32 i = 0;  //< Index in mHashCodeArray
     u32 currentByteValue;
 
     // Cycle through every possible byte (0 through 255)
@@ -85,8 +85,8 @@ void HashSortTable::sort() {
             continue;
         }
 
-        u32 numHashes = 1;  // We now know there is at least 1 hash code with this upper byte.
-        indexFirstHashForUpperByte[currentByteValue] = i;   // Store the index of the first one we found
+        u32 numHashes = 1;                                 // We now know there is at least 1 hash code with this upper byte.
+        indexFirstHashForUpperByte[currentByteValue] = i;  // Store the index of the first one we found
         i++;
 
         /*
@@ -124,21 +124,21 @@ void HashSortTable::sort() {
     mHasBeenSorted = true;
 }
 
-bool HashSortTable::search(u32 hashCode, u32 * ptr) {
+bool HashSortTable::search(u32 hashCode, u32* ptr) {
     u8 upperByte = hashCode >> 24;
 
     if (ptr != nullptr) {
         *ptr = 0;
     }
 
-    u16 totalHashes = numHashesForUpperByte[upperByte]; //< Number of hash codes with the same upper byte as hashCode
+    u16 totalHashes = numHashesForUpperByte[upperByte];  //< Number of hash codes with the same upper byte as hashCode
 
     if (totalHashes == 0) {
         return false;
     }
 
-    u16 indexFirstHash = indexFirstHashForUpperByte[upperByte]; //< Index of the first hash code with the same upper byte as hashCode
-    u32* pCurrentHash = &mHashCodeArray[indexFirstHash]; //< Address of first hash with same upper byte as hashCode
+    u16 indexFirstHash = indexFirstHashForUpperByte[upperByte];  //< Index of the first hash code with the same upper byte as hashCode
+    u32* pCurrentHash = &mHashCodeArray[indexFirstHash];         //< Address of first hash with same upper byte as hashCode
 
     // Loop through every hash code with the same upper byte as hashCode
     for (u32 i = 0; i < totalHashes; i++) {
@@ -160,18 +160,18 @@ bool HashSortTable::search(u32 hashCode, u32 * ptr) {
     return false;
 }
 
-bool HashSortTable::search(const char * pName, u32 * ptr) {
+bool HashSortTable::search(const char* pName, u32* ptr) {
     return search(MR::getHashCode(pName), ptr);
 }
 
-bool HashSortTable::search(const char * pName1, const char * pName2, u32 * ptr) {
+bool HashSortTable::search(const char* pName1, const char* pName2, u32* ptr) {
     u32 combinedHashCode = MR::getHashCode(pName1) + MR::getHashCode(pName2);
     return search(combinedHashCode, ptr);
 }
 
-void HashSortTable::swap(const char * pName1, const char * pName2) {
+void HashSortTable::swap(const char* pName1, const char* pName2) {
     u32 hashCode1 = MR::getHashCode(pName1);
-    
+
     for (u32 i = 0; i < mCurrentSize; i++) {
         if (hashCode1 == mHashCodeArray[i]) {
             u32 hashCode2 = MR::getHashCode(pName2);
