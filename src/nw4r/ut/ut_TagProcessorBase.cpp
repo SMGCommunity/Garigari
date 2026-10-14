@@ -1,5 +1,5 @@
-#include "ut/TagProcessorBase.h"
-#include "ut/CharWriter.h"
+#include "nw4r/ut/TagProcessorBase.h"
+#include "nw4r/ut/CharWriter.h"
 
 namespace nw4r {
     namespace ut {

@@ -93,7 +93,7 @@ void HeapMemoryWatcher::setCurrentHeapToStationedHeap() {
     MR::becomeCurrentHeap(mStationedHeapNapa);
 }
 
-void HeapMemoryWatcher::setCurrentHeapToSystemHeap() {
+void HeapMemoryWatcher::setCurrentHeapToGameHeap() {
     MR::becomeCurrentHeap(JKRHeap::sSystemHeap);
 }
 
