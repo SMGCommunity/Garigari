@@ -57,7 +57,7 @@ namespace nw4r {
             virtual void SetVtxColorElement(u32, u8);
             virtual Pane* FindPaneByName(const char*, bool);
             virtual Material* FindMaterialByName(const char*, bool);
-            virtual void BindAnimation(AnimTransform*, bool);
+            virtual void BindAnimation(AnimTransform*, bool, bool);
             virtual void UnbindAnimation(AnimTransform*, bool);
             virtual void UnbindAllAnimation(bool);
             virtual void UnbindAnimationSelf(AnimTransform*);
@@ -118,6 +118,10 @@ namespace nw4r {
                 return detail::TestBit(mFlag, 0);
             }
 
+            void SetExtUserDataList(const res::ExtUserDataList *pBlock) {
+                mpExtUserDataList = pBlock;
+            }
+
             Pane* mpParent;
             PaneList mChildList;
             AnimationList mAnimList;
@@ -128,6 +132,7 @@ namespace nw4r {
             Size mSize;
             math::MTX34 mMtx;
             math::MTX34 mGlbMtx;
+            const res::ExtUserDataList* mpExtUserDataList;
             u8 mAlpha;
             u8 mGlbAlpha;
             u8 mBasePosition;
