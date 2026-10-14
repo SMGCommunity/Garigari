@@ -2,7 +2,7 @@
 #include "Game/System/GameSystem.hpp"
 #include "Game/System/GameSystemFontHolder.hpp"
 #include "Game/Util/SingletonHolder.hpp"
-#include "revolution/types.h"
+#include <revolution/types.h>
 #include <nw4r/ut/ResFont.h>
 
 nw4r::ut::Font* MR::getFontOnCurrentLanguage() {
