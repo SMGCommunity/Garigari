@@ -20,8 +20,8 @@ public:
     void createFontFromEmbeddedData();
     void createFontFromFile();
 
-    /* 0x00 */ u8* _0;
-    /* 0x04 */ JKRMemArchive* _4;
+    /* 0x00 */ u8* mArchiveData;
+    /* 0x04 */ JKRMemArchive* mArchive;
     /* 0x08 */ nw4r::ut::ResFont* mEmbeddedMessageFont;
     /* 0x0C */ nw4r::ut::ResFont* mMessageFont;
     /* 0x10 */ nw4r::ut::ResFont* mPictureFont;
