@@ -160,6 +160,10 @@ bool HashSortTable::search(u32 hashCode, u32 * ptr) {
     return false;
 }
 
+bool HashSortTable::search(const char * pName, u32 * ptr) {
+    return search(MR::getHashCode(pName), ptr);
+}
+
 namespace MR {
     u32 getHashCode(const char* pStr) {
         u32 hash;

@@ -31,9 +31,13 @@ public:
     /// @param A pointer to where the hash code's associated value in the table will be stored. If this pointer is `nullptr`, the value will not be stored anywhere.
     /// @return True if the given hash code was found in the table; False otherwise.
     bool search(u32, u32*);
-    // The below functions have unknown return types; using void for now.
-    void search(const char*, u32*);
-    void search(const char*, const char*, u32*);
+    /// @brief Searches for the given key (name) in the table. If the given pointer isn't `nullptr`, changes the value at that pointer to the value associated with the given key, or 0 if the key is not in the table.
+    /// @param A key name (string) to search for.
+    /// @param A pointer to where the key's associated value in the table will be stored. If this pointer is `nullptr`, the value will not be stored anywhere.
+    /// @return True if the given key was found in the table; False otherwise.
+    bool search(const char*, u32*);
+    bool search(const char*, const char*, u32*);
+    // The below functions has an unknown return type; using void for now.
     void swap(const char*, const char*);
 
     /* 0x00 */ bool hasBeenSorted;              ///< True if this table is sorted in ascending order by the keys' hash codes; False otherwise.
