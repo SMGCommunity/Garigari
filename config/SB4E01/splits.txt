@@ -4168,7 +4168,8 @@ Game/Screen/FullScreenBlur.cpp:
 
 Game/Screen/GalaxyCometScreenFilter.cpp:
 	.text       start:0x8046F470 end:0x8046F5D0
-	.data       start:0x806F37E8 end:0x806F3820
+	.rodata     start:0x8064C9E0 end:0x8064C9E8
+	.data       start:0x806F37B0 end:0x806F3820
 
 Game/Screen/GalaxyConfirmLayout.cpp:
 	.text       start:0x8046F5D0 end:0x8046FD90
@@ -4214,7 +4215,10 @@ Game/Screen/HomeButtonLayout.cpp:
 Game/Screen/IconAButton.cpp:
 	.text       start:0x804755D0 end:0x80475BC0
 	.ctors      start:0x806448FC end:0x80644900
-	.data       start:0x806F4458 end:0x806F44C0
+	.data       start:0x806F43F8 end:0x806F44C0
+	.sdata      start:0x807D0210 end:0x807D0218
+	.sbss       start:0x807D55E0 end:0x807D55F0
+	.sdata2     start:0x807E1448 end:0x807E1450
 
 Game/Screen/ImageEffectDirector.cpp:
 	.text       start:0x80475F10 end:0x80476760
@@ -4372,7 +4376,7 @@ Game/Screen/ReplaceTagProcessor.cpp:
 
 Game/Screen/SaveIcon.cpp:
 	.text       start:0x8048CF20 end:0x8048D070
-	.data       start:0x806F6C30 end:0x806F6C68
+	.data       start:0x806F6BF8 end:0x806F6C68
 
 Game/Screen/ScenarioSelectLayout.cpp:
 	.text       start:0x8048D240 end:0x8048F920
