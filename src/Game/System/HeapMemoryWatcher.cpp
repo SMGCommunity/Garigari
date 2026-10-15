@@ -1,7 +1,7 @@
 #include "Game/System/HeapMemoryWatcher.hpp"
 #include "Game/Util/MemoryUtil.hpp"
-#include "JSystem/JKernel/JKRHeap.hpp"
-#include "revolution/aralt.h"
+#include <JSystem/JKernel/JKRHeap.hpp>
+#include <revolution/aralt.h>
 #include <JSystem/JKernel/JKRExpHeap.hpp>
 #include <JSystem/JKernel/JKRSolidHeap.hpp>
 #include <revolution/os.h>
@@ -93,7 +93,7 @@ void HeapMemoryWatcher::setCurrentHeapToStationedHeap() {
     MR::becomeCurrentHeap(mStationedHeapNapa);
 }
 
-void HeapMemoryWatcher::setCurrentHeapToSystemHeap() {
+void HeapMemoryWatcher::setCurrentHeapToGameHeap() {
     MR::becomeCurrentHeap(JKRHeap::sSystemHeap);
 }
 

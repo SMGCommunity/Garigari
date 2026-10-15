@@ -265,25 +265,25 @@ namespace nw4r {
             }
         }
 
-        void AnimTransformBasic::Bind(Pane* pPane, bool bRecursive) {
+        void AnimTransformBasic::Bind(Pane* pPane, bool recursive, bool enable) {
             AnimationLink* pCrAnimLink = 0;
 
             const u32* const animContOffsets = detail::ConvertOffsToPtr< u32 >(mpRes, mpRes->animContOffsetsOffset);
             for (u16 i = 0; i < mpRes->animContNum; ++i) {
                 const res::AnimationContent& animCont = *detail::ConvertOffsToPtr< res::AnimationContent >(mpRes, animContOffsets[i]);
                 if (animCont.type == ANIMCONTENTTYPE_PANE) {
-                    if (Pane* const pFindPane = pPane->FindPaneByName(animCont.name, bRecursive)) {
+                    if (Pane* const pFindPane = pPane->FindPaneByName(animCont.name, recursive)) {
                         if (!IsBindAnimation(pFindPane, this)) {
-                            pCrAnimLink = Bind(pFindPane, pCrAnimLink, i);
+                            pCrAnimLink = Bind(pFindPane, pCrAnimLink, i, enable);
                             if (!pCrAnimLink) {
                                 break;
                             }
                         }
                     }
                 } else {
-                    if (Material* const pFindMat = pPane->FindMaterialByName(animCont.name, bRecursive)) {
+                    if (Material* const pFindMat = pPane->FindMaterialByName(animCont.name, recursive)) {
                         if (!IsBindAnimation(pFindMat, this)) {
-                            pCrAnimLink = Bind(pFindMat, pCrAnimLink, i);
+                            pCrAnimLink = Bind(pFindMat, pCrAnimLink, i, enable);
                             if (!pCrAnimLink) {
                                 break;
                             }
@@ -293,7 +293,7 @@ namespace nw4r {
             }
         }
 
-        void AnimTransformBasic::Bind(Material* pMaterial) {
+        void AnimTransformBasic::Bind(Material* pMaterial, bool enable) {
             AnimationLink* pCrAnimLink = 0;
 
             const u32* const animContOffsets = detail::ConvertOffsToPtr< u32 >(mpRes, mpRes->animContOffsetsOffset);
@@ -302,7 +302,7 @@ namespace nw4r {
                 if (animCont.type == ANIMCONTENTTYPE_MATERIAL) {
                     if (detail::EqualsMaterialName(pMaterial->GetName(), animCont.name)) {
                         if (!IsBindAnimation(pMaterial, this)) {
-                            pCrAnimLink = Bind(pMaterial, pCrAnimLink, i);
+                            pCrAnimLink = Bind(pMaterial, pCrAnimLink, i, enable);
                             if (!pCrAnimLink) {
                                 break;
                             }
@@ -313,13 +313,14 @@ namespace nw4r {
         }
 
         template < typename T >
-        AnimationLink* AnimTransformBasic::Bind(T* pTarget, AnimationLink* pAnimLink, u16 idx) {
+        AnimationLink* AnimTransformBasic::Bind(T* pTarget, AnimationLink* pAnimLink, u16 idx, bool enable) {
             pAnimLink = FindUnbindLink(pAnimLink);
             if (!pAnimLink) {
                 return 0;
             }
 
             pAnimLink->Set(this, idx);
+            pAnimLink->SetEnable(enable);
             pTarget->AddAnimationLink(pAnimLink);
 
             return ++pAnimLink;

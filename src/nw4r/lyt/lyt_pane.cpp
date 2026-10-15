@@ -4,6 +4,7 @@
 #include "nw4r/lyt/layout.h"
 #include "nw4r/lyt/material.h"
 #include "nw4r/lyt/pane.h"
+#include "nw4r/lyt/resources.h"
 #include "nw4r/math/triangular.h"
 #include <cstdio>
 
@@ -50,16 +51,14 @@ namespace nw4r {
                 PaneList::Iterator currIt = it++;
                 mChildList.Erase(currIt);
                 if (!currIt->IsUserAllocated()) {
-                    currIt->~Pane();
-                    Layout::FreeMemory(&*currIt);
+                    Layout::DeleteObj(&*currIt);
                 }
             }
 
             UnbindAnimationSelf(0);
 
-            if (mpMaterial && !mpMaterial->IsUserAllocated()) {
-                mpMaterial->~Material();
-                Layout::FreeMemory(mpMaterial);
+            if (mpMaterial != nullptr && !mpMaterial->IsUserAllocated()) {
+                Layout::DeleteObj(mpMaterial);
             }
         }
 
@@ -67,6 +66,7 @@ namespace nw4r {
             mpParent = NULL;
             mpMaterial = NULL;
             mbUserAllocated = false;
+            mpExtUserDataList = nullptr;
         }
 
         void Pane::SetName(const char* pName) {
@@ -140,7 +140,7 @@ namespace nw4r {
 
             if (recursive) {
                 for (PaneList::Iterator it = mChildList.GetBeginIter(); it != mChildList.GetEndIter(); ++it) {
-                    if (Pane* pPane = it->FindPaneByName(pName, true)) {
+                    if (Pane* pPane = it->FindPaneByName(pName, recursive)) {
                         return pPane;
                     }
                 }
@@ -156,7 +156,7 @@ namespace nw4r {
 
             if (recursive) {
                 for (PaneList::Iterator it = mChildList.GetBeginIter(); it != mChildList.GetEndIter(); ++it) {
-                    if (Material* pMat = it->FindMaterialByName(pName, true)) {
+                    if (Material* pMat = it->FindMaterialByName(pName, recursive)) {
                         return pMat;
                     }
                 }
@@ -270,8 +270,8 @@ namespace nw4r {
             }
         }
 
-        void Pane::BindAnimation(AnimTransform* pAnimTrans, bool recursive) {
-            pAnimTrans->Bind(this, recursive);
+        void Pane::BindAnimation(AnimTransform* pAnimTrans, bool recursive, bool a3) {
+            pAnimTrans->Bind(this, recursive, a3);
         }
 
         void Pane::UnbindAnimation(AnimTransform* pAnimTrans, bool recursive) {
@@ -304,20 +304,44 @@ namespace nw4r {
             return detail::FindAnimationLink(&mAnimList, pAnimTrans);
         }
 
-        void Pane::SetAnimationEnable(AnimTransform* pAnimTrans, bool enable, bool recursive) {
-            AnimationLink* pAnimLink = FindAnimationLinkSelf(pAnimTrans);
+        AnimationLink* Pane::FindAnimationLinkSelf(const AnimResource& rAnimResource) {
+            return detail::FindAnimationLink(&mAnimList, rAnimResource);
+        }
 
-            if (pAnimLink != NULL) {
-                pAnimLink->SetEnable(enable);
+        void Pane::SetAnimationEnable(AnimTransform* pAnimTrans, bool enable, bool recursive) {
+            AnimationLink* animLink = FindAnimationLinkSelf(pAnimTrans);
+
+            if (animLink != NULL) {
+                animLink->SetEnable(enable);
             }
 
-            if (mpMaterial != NULL) {
-                mpMaterial->SetAnimationEnable(pAnimTrans, enable);
+            u8 materialNum = GetMaterialNum();
+            for (u8 i = 0; i < materialNum; i++) {
+                GetMaterial(i)->SetAnimationEnable(pAnimTrans, enable);
             }
 
             if (recursive) {
                 for (PaneList::Iterator it = mChildList.GetBeginIter(); it != mChildList.GetEndIter(); ++it) {
                     it->SetAnimationEnable(pAnimTrans, enable, recursive);
+                }
+            }
+        }
+
+        void Pane::SetAnimationEnable(const AnimResource& rAnimResource, bool enable, bool recursive) {
+            AnimationLink* animLink = FindAnimationLinkSelf(rAnimResource);
+
+            if (animLink != NULL) {
+                animLink->SetEnable(enable);
+            }
+
+            u8 materialNum = GetMaterialNum();
+            for (u8 i = 0; i < materialNum; i++) {
+                GetMaterial(i)->SetAnimationEnable(rAnimResource, enable);
+            }
+
+            if (recursive) {
+                for (PaneList::Iterator it = mChildList.GetBeginIter(); it != mChildList.GetEndIter(); ++it) {
+                    it->SetAnimationEnable(rAnimResource, enable, recursive);
                 }
             }
         }
@@ -328,17 +352,7 @@ namespace nw4r {
 
             if (rInfo.IsMultipleViewMtxOnDraw()) {
                 math::MTX34Mult(&mtx, &rInfo.GetViewMtx(), &mGlbMtx);
-
-                if (rInfo.IsYAxisUp()) {
-                    ReverseYAxis(&mtx);
-                }
-
                 pMtx = &mtx;
-            } else if (rInfo.IsYAxisUp()) {
-                math::MTX34Copy(&mtx, &mGlbMtx);
-                pMtx = &mtx;
-
-                ReverseYAxis(&mtx);
             } else {
                 pMtx = &mGlbMtx;
             }
@@ -376,12 +390,12 @@ namespace nw4r {
             }
 
             case 1: {
-                base.y = -mSize.height / 2;
+                base.y = mSize.height / 2;
                 break;
             }
 
             case 2: {
-                base.y = -mSize.height;
+                base.y = mSize.height;
                 break;
             }
             }
@@ -389,9 +403,40 @@ namespace nw4r {
             return base;
         }
 
+        u8 Pane::GetMaterialNum() const {
+            return mpMaterial == nullptr ? 0 : 1;
+        }
+
         Material* Pane::GetMaterial() const {
             return mpMaterial;
         }
 
+        Material* Pane::GetMaterial(u8 idx) const {
+            if (idx == 0) {
+                return GetMaterial();
+            }
+
+            return nullptr;
+        }
+
+        const res::ExtUserData* Pane::GetExtUserDataList() const {
+            return mpExtUserDataList != nullptr ? mpExtUserDataList->GetExtUserDataArray() : nullptr;
+        }
+
+        const res::ExtUserData* Pane::FindExtUserDataByName(const char* pName) {
+            const res::ExtUserData* userData = GetExtUserDataList();
+
+            if (userData == nullptr) {
+                return nullptr;
+            }
+
+            for (s32 i = 0; i < mpExtUserDataList->num; i++, userData++) {
+                if (strcmp(pName, userData->GetName()) == 0) {
+                    return userData;
+                }
+            }
+
+            return nullptr;
+        }
     };  // namespace lyt
 };  // namespace nw4r

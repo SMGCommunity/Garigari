@@ -1,56 +1,39 @@
 #include "Game/System/ResourceInfo.hpp"
-#include "Game/Util.hpp"
+#include "Game/Util/HashUtil.hpp"
 #include <cstdio>
 #include <cstring>
+#include <size_t.h>
 
 ResFileInfo::ResFileInfo() {
-    mName = nullptr;
-    mHash = 0;
-    mRes = nullptr;
+    mName = 0;
+    mHashCode = 0;
+    mResource = 0;
     _8 = 0;
     _4 = 0;
     _C = 0;
 }
 
-void ResFileInfo::setName(const char* pName, bool stripExt) {
-    size_t len = strlen(pName) + 1;
-    mName = new char[len];
-    snprintf(mName, len, "%s", pName);
-
-    if (stripExt) {
-        char* out = strrchr(mName, '.');
-
-        if (out != nullptr) {
-            out[0] = 0;
-        }
-    }
-
-    mHash = MR::getHashCodeLower(mName);
+ResTable::ResTable() : mFileInfoTable(), mCount() {
 }
 
-ResTable::ResTable() {
-    mResArray = nullptr;
-    mResourceNum = 0;
-}
-
-void ResTable::newFileInfoTable(u32 num) {
-    mResArray = new ResFileInfo[num];
+void ResTable::newFileInfoTable(u32 count) {
+    mFileInfoTable = new ResFileInfo[count];
 }
 
 ResFileInfo* ResTable::add(const char* pName, void* pRes, bool stripExt) {
-    ResFileInfo* info = &mResArray[mResourceNum];
-    info->mRes = pRes;
-    info->setName(pName, stripExt);
-    mResourceNum++;
-    return info;
+    ResFileInfo* curInfo = &mFileInfoTable[mCount];
+    curInfo->mResource = pRes;
+    curInfo->setName(pName, stripExt);
+    mCount++;
+    return curInfo;
 }
 
 const char* ResTable::getResName(u32 idx) const {
-    return mResArray[idx].mName;
+    return mFileInfoTable[idx].mName;
 }
 
 void* ResTable::getRes(u32 idx) const {
-    return mResArray[idx].mRes;
+    return mFileInfoTable[idx].mResource;
 }
 
 void* ResTable::getRes(const char* pName) const {
@@ -58,38 +41,37 @@ void* ResTable::getRes(const char* pName) const {
 }
 
 ResFileInfo* ResTable::findFileInfo(const char* pName) const {
-    int idx = getResIndex(pName);
-
-    if (idx != -1) {
-        return &mResArray[idx];
+    int resIdx = getResIndex(pName);
+    if (resIdx != -1) {
+        return &mFileInfoTable[resIdx];
     }
 
-    return nullptr;
+    return 0;
 }
 
 ResFileInfo* ResTable::getFileInfo(u32 idx) const {
-    return &mResArray[idx];
+    return &mFileInfoTable[idx];
 }
 
-bool ResTable::isExistRes(const char* pName) const {
-    return getResIndex(pName) != -1;
+bool ResTable::isExistRes(const char* pRes) const {
+    return getResIndex(pRes) != -1;
 }
 
 void* ResTable::findRes(const char* pName) const {
     int idx = getResIndex(pName);
 
     if (idx != -1) {
-        return mResArray[idx].mRes;
+        return mFileInfoTable[idx].mResource;
     }
 
-    return nullptr;
+    return 0;
 }
 
 int ResTable::getResIndex(const char* pName) const {
     u32 hash = MR::getHashCodeLower(pName);
 
-    for (u32 i = 0; i < mResourceNum; i++) {
-        u32 curHash = mResArray[i].mHash;
+    for (int i = 0; i < mCount; i++) {
+        u32 curHash = mFileInfoTable[i].mHashCode;
 
         if (curHash == hash) {
             return i;
@@ -100,9 +82,9 @@ int ResTable::getResIndex(const char* pName) const {
 }
 
 const char* ResTable::findResName(const void* pRes) const {
-    for (u32 i = 0; i < mResourceNum; i++) {
-        ResFileInfo* inf = &mResArray[i];
-        if (pRes == inf->mRes) {
+    for (int i = 0; i < mCount; i++) {
+        ResFileInfo* inf = &mFileInfoTable[i];
+        if (pRes == inf->mResource) {
             return inf->mName;
         }
     }
@@ -110,6 +92,23 @@ const char* ResTable::findResName(const void* pRes) const {
     return 0;
 }
 
-const char* ResTable::getResName(const void* pRes) const {
-    return findResName(pRes);
+const char* ResTable::getResName(const void* pResource) const {
+    return findResName(pResource);
+}
+
+void ResFileInfo::setName(const char* pName, bool stripExt) {
+    size_t len = strlen(pName) + 1;
+    mName = new char[len];
+
+    snprintf(mName, len, "%s", pName);
+
+    if (stripExt) {
+        char* out = strrchr(mName, '.');
+
+        if (out) {
+            out[0] = 0;
+        }
+    }
+
+    mHashCode = MR::getHashCodeLower(mName);
 }

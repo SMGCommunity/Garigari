@@ -10,7 +10,7 @@
 #include <JSystem/JUtility/JUTVideo.hpp>
 
 extern "C" {
-void fn_805B48F0(u32);
+void OSCancelAlarms(u32);
 }
 
 void* GameSystemException::sMapFileUsingBuffer;
@@ -60,7 +60,7 @@ void GameSystemException::init() {
 }
 
 void GameSystemException::handleException(OSError error, OSContext* pContext, u32 dsisr, u32 dar) {
-    fn_805B48F0(0x22B);
+    OSCancelAlarms(0x22B);
 
     if (JUTVideo::getManager() == nullptr) {
         JUTException::sConsole->mOutput = 2;

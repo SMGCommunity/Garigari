@@ -8,6 +8,7 @@
 
 namespace nw4r {
     namespace lyt {
+        class AnimResource;
         class TexMap;
 
         namespace detail {
@@ -45,7 +46,9 @@ namespace nw4r {
             virtual void UnbindAllAnimation();
             virtual void Animate();
             virtual AnimationLink* FindAnimationLink(AnimTransform*);
+            virtual AnimationLink* FindAnimationLink(const AnimResource&);
             virtual void SetAnimationEnable(AnimTransform*, bool);
+            virtual void SetAnimationEnable(const AnimResource&, bool);
 
             void Init();
             void InitBitGXNums(detail::BitGXNums*);
@@ -89,7 +92,7 @@ namespace nw4r {
 
             void SetTexCoordGenNum(u8 num);
             void SetTexture(u8 texMapIdx, const TexMap& texMap) {
-                NW4R_ASSERT_AT(135, texMapIdx < mGXMemNum.texMap);
+                NW4R_ASSERT_AT(136, texMapIdx < mGXMemNum.texMap);
                 GetTexMapAry()[texMapIdx].Set(texMap);
             }
 
@@ -118,7 +121,7 @@ namespace nw4r {
             }
 
             const TexMap& GetTexture(u8 texMapIdx) const {
-                NW4R_ASSERT_AT(120, texMapIdx < mGXMemNum.texMap);
+                NW4R_ASSERT_AT(121, texMapIdx < mGXMemNum.texMap);
                 return GetTexMapAry()[texMapIdx];
             }
 
