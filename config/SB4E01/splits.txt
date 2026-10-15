@@ -4249,23 +4249,32 @@ Game/Screen/InformationObserver.cpp:
 Game/Screen/LayoutActor.cpp:
 	.text       start:0x8047A220 end:0x8047A840
 	.data       start:0x806F4C38 end:0x806F4C70
+	.sdata2     start:0x807E14B8 end:0x807E14C0
 
 Game/Screen/LayoutActorFlag.cpp:
 	.text       start:0x8047A840 end:0x8047A860
 
 Game/Screen/LayoutCoreUtil.cpp:
-	.text       start:0x8047A9B0 end:0x8047B270
+	.text       start:0x8047A860 end:0x8047B4E0
+	.data       start:0x806F4C70 end:0x806F4D70
+	.sdata      start:0x807D0230 end:0x807D0240
+	.sdata2     start:0x807E14C0 end:0x807E14E0
 
 Game/Screen/LayoutGroupCtrl.cpp:
 	.text       start:0x8047B4E0 end:0x8047B820
+	.data       start:0x806F4D70 end:0x806F4DA0
+	.sdata2     start:0x807E14E0 end:0x807E14E8
 
 Game/Screen/LayoutManager.cpp:
 	.text       start:0x8047B8A0 end:0x8047D7F0
 	.rodata     start:0x8064CA30 end:0x8064CA38
-	.data       start:0x806F4DCC end:0x806F4DE8
+	.data       start:0x806F4DA0 end:0x806F4E18
+	.sdata      start:0x807D0240 end:0x807D0248
+	.sdata2     start:0x807E14E8 end:0x807E1500
 
 Game/Screen/LayoutPaneCtrl.cpp:
 	.text       start:0x8047E710 end:0x8047ED30
+	.sdata2     start:0x807E1500 end:0x807E1508
 
 Game/Screen/LensFlare.cpp:
 	.text       start:0x8047FCD0 end:0x8047FF20
@@ -4701,7 +4710,8 @@ Game/System/PlayResultInStageHolder.cpp:
 	.text       start:0x804C8BF0 end:0x804C9500
 
 Game/System/RenderMode.cpp:
-	.text       start:0x804C9810 end:0x804C9960
+	.text       start:0x804C9810 end:0x804C99C0
+	.rodata     start:0x8064CFC0 end:0x8064D218
 
 Game/System/ResourceHolder.cpp:
 	.text       start:0x804C99C0 end:0x804CA650

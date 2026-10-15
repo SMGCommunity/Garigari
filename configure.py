@@ -1087,6 +1087,17 @@ config.libs = [
         ],
     ),
     GameLib(
+        "Screen",
+        [
+            Object(NonMatching, "Game/Screen/LayoutActor.cpp"),
+            Object(NonMatching, "Game/Screen/LayoutActorFlag.cpp"),
+            Object(NonMatching, "Game/Screen/LayoutCoreUtil.cpp", extra_cflags=["-DNW4R_DEBUG"]),
+            Object(NonMatching, "Game/Screen/LayoutGroupCtrl.cpp", extra_cflags=["-DNW4R_DEBUG"]),
+            Object(NonMatching, "Game/Screen/LayoutManager.cpp", extra_cflags=["-DNW4R_DEBUG"]),
+            Object(NonMatching, "Game/Screen/LayoutPaneCtrl.cpp", extra_cflags=["-DNW4R_DEBUG"]),
+        ],
+    ),
+    GameLib(
         "System",
         [
             Object(NonMatching, "Game/System/ArchiveHolder.cpp"),
@@ -1107,6 +1118,7 @@ config.libs = [
             Object(NonMatching, "Game/System/MainLoopFramework.cpp"),
             Object(NonMatching, "Game/System/NerveExecutor.cpp"),
             Object(NonMatching, "Game/System/OSThreadWrapper.cpp"),
+            Object(NonMatching, "Game/System/RenderMode.cpp"),
             Object(NonMatching, "Game/System/ResourceInfo.cpp"),
             Object(NonMatching, "Game/System/ScenarioDataParser.cpp"),
         ],

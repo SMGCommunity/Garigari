@@ -16,4 +16,5 @@ namespace MR {
     nw4r::ut::Font* getMenuFont96NW4R();
     nw4r::ut::Font* getStaffFontNW4R();
     bool hasPictureFontNW4R();
+    bool isScreen16Per9();
 }  // namespace MR
