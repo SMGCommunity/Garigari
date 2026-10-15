@@ -695,8 +695,7 @@ void OSSleepTicks(OSTime tick) {
     }
 
     OSCreateAlarm(&sleepAlarm);
-    OSSetAlarmTag(&sleepAlarm, (u32)current);
-    OSSetAlarmUserData(&sleepAlarm, (void*)current);
+    __OSSetInternalAlarmUserData(&sleepAlarm, current);
     OSSetAlarm(&sleepAlarm, tick, SleepAlarmHandler);
     OSSuspendThread(current);
     OSCancelAlarm(&sleepAlarm);

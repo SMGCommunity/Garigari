@@ -32,7 +32,7 @@ bool LiveActor::isNerve(const Nerve* pNerve) const {
 }
 
 s32 LiveActor::getNerveStep() const {
-    return mSpine->mCurrentStep;
+    return mSpine->mStep;
 }
 
 HitSensor* LiveActor::getSensor(const char* pSensorName) const {

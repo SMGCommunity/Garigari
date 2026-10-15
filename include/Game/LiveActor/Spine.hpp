@@ -7,16 +7,20 @@ class ActorStateKeeper;
 
 class Spine {
 public:
-    Spine(void*, const Nerve*, s32);
+    Spine(void* pExecutor, const Nerve* pNerve, s32 numStates = 0);
 
     void update();
     void setNerve(const Nerve*);
     const Nerve* getCurrentNerve() const;
     void changeNerve();
 
-    void* mExecutor;                 // 0x00
-    const Nerve* mCurrentNerve;      // 0x04
-    const Nerve* mNextNerve;         // 0x08
-    s32 mCurrentStep;                // 0x0C
-    ActorStateKeeper* mStateKeeper;  // 0x10
+    bool isCurrentNerve(const Nerve* pNerve) const {
+        return getCurrentNerve() == pNerve;
+    }
+
+    /* 0x00 */ void* mExecutor;
+    /* 0x04 */ const Nerve* mCurrNerve;
+    /* 0x08 */ const Nerve* mNextNerve;
+    /* 0x0C */ s32 mStep;
+    /* 0x10 */ ActorStateKeeper* mStateKeeper;
 };

@@ -133,12 +133,8 @@ namespace nw4r {
 
         const ut::Rect TextBox::GetTextDrawRect(const DrawInfo& drawInfo) const {
             ut::WideTextWriter writer;
-            ut::Rect rect = GetTextDrawRect(&writer);
-            if (drawInfo.IsYAxisUp()) {
-                rect.top = -rect.top;
-                rect.bottom = -rect.bottom;
-            }
-            return rect;
+
+            return GetTextDrawRect(&writer);
         }
 
         void TextBox::DrawSelf(const DrawInfo& drawInfo) {

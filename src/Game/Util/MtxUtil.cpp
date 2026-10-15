@@ -1,5 +1,5 @@
 #include "Game/Util/MtxUtil.hpp"
-#include "revolution/mtx/mtx.h"
+#include <revolution/mtx/mtx.h>
 #include <JSystem/JGeometry/TVec.hpp>
 #include <JSystem/JMath.hpp>
 

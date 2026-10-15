@@ -25,10 +25,10 @@ public:
     void requestResume();
     void syncWithFlags();
 
-    const char* mName;       // 0x04
-    vu16 mFlags;             // 0x08
-    s16 mExecutorIdx;        // 0x0A
-    JMapLinkInfo mLinkInfo;  // 0x0C
+    /* 0x04 */ const char* mName;
+    /* 0x08 */ vu16 mFlags;
+    /* 0x0A */ s16 mExecutorIdx;
+    /* 0x0C */ JMapLinkInfo mLinkInfo;
 };
 
 namespace NameObjFunction {

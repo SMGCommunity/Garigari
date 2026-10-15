@@ -1,9 +1,9 @@
 #pragma once
 
-#include "revolution/mtx/mtx.h"
 #include <JSystem/JGeometry/TMatrix.hpp>
 #include <JSystem/JGeometry/TVec.hpp>
 #include <revolution.h>
+#include <revolution/mtx/mtx.h>
 
 namespace MR {
     void makeMtxRotate(MtxPtr, const TVec3f&);

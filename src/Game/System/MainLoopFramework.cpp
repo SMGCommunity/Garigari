@@ -2,8 +2,8 @@
 #include "Game/System/DrawSyncManager.hpp"
 #include "Game/Util/BothDirList.hpp"
 #include "Game/Util/SchedulerUtil.hpp"
-#include "revolution/gx/GXManage.h"
-#include "revolution/os.h"
+#include <revolution/gx/GXManage.h>
+#include <revolution/os.h>
 #include <JSystem/J2DGraph/J2DOrthoGraph.hpp>
 #include <JSystem/JUtility/JUTAssert.hpp>
 #include <JSystem/JUtility/JUTConsole.hpp>
