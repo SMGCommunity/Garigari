@@ -4249,23 +4249,32 @@ Game/Screen/InformationObserver.cpp:
 Game/Screen/LayoutActor.cpp:
 	.text       start:0x8047A220 end:0x8047A840
 	.data       start:0x806F4C38 end:0x806F4C70
+	.sdata2     start:0x807E14B8 end:0x807E14C0
 
 Game/Screen/LayoutActorFlag.cpp:
 	.text       start:0x8047A840 end:0x8047A860
 
 Game/Screen/LayoutCoreUtil.cpp:
-	.text       start:0x8047A9B0 end:0x8047B270
+	.text       start:0x8047A860 end:0x8047B4E0
+	.data       start:0x806F4C70 end:0x806F4D70
+	.sdata      start:0x807D0230 end:0x807D0240
+	.sdata2     start:0x807E14C0 end:0x807E14E0
 
 Game/Screen/LayoutGroupCtrl.cpp:
 	.text       start:0x8047B4E0 end:0x8047B820
+	.data       start:0x806F4D70 end:0x806F4DA0
+	.sdata2     start:0x807E14E0 end:0x807E14E8
 
 Game/Screen/LayoutManager.cpp:
 	.text       start:0x8047B8A0 end:0x8047D7F0
 	.rodata     start:0x8064CA30 end:0x8064CA38
-	.data       start:0x806F4DCC end:0x806F4DE8
+	.data       start:0x806F4DA0 end:0x806F4E18
+	.sdata      start:0x807D0240 end:0x807D0248
+	.sdata2     start:0x807E14E8 end:0x807E1500
 
 Game/Screen/LayoutPaneCtrl.cpp:
 	.text       start:0x8047E710 end:0x8047ED30
+	.sdata2     start:0x807E1500 end:0x807E1508
 
 Game/Screen/LensFlare.cpp:
 	.text       start:0x8047FCD0 end:0x8047FF20
@@ -4620,6 +4629,7 @@ Game/System/GameSystemException.cpp:
 
 Game/System/GameSystemFontHolder.cpp:
 	.text       start:0x804B7E70 end:0x804B82B0
+	.data       start:0x806FAF38 end:0x806FB028
 
 Game/System/GameSystemFrameControl.cpp:
 	.text       start:0x804B82B0 end:0x804B8350
@@ -4659,8 +4669,8 @@ Game/System/Language.cpp:
 
 Game/System/LayoutHolder.cpp:
 	.text       start:0x804BD3C0 end:0x804BDAE0
-	.rodata     start:0x8064CF80 end:0x8064CF88
-	.data       start:0x806FB7D0 end:0x806FB800
+	.rodata     start:0x8064CF80 end:0x8064CF90
+	.data       start:0x806FB720 end:0x806FB800
 
 Game/System/MainLoopFramework.cpp:
 	.text       start:0x804BDAE0 end:0x804BEE60
@@ -4700,7 +4710,8 @@ Game/System/PlayResultInStageHolder.cpp:
 	.text       start:0x804C8BF0 end:0x804C9500
 
 Game/System/RenderMode.cpp:
-	.text       start:0x804C9810 end:0x804C9960
+	.text       start:0x804C9810 end:0x804C99C0
+	.rodata     start:0x8064CFC0 end:0x8064D218
 
 Game/System/ResourceHolder.cpp:
 	.text       start:0x804C99C0 end:0x804CA650
@@ -5939,10 +5950,11 @@ nw4r/ut/ut_TagProcessorBase.cpp:
 
 nw4r/ut/ut_Font.cpp:
 	.text       start:0x8059E0C0 end:0x8059E170 align:16
+	.data       start:0x8070C180 end:0x8070C1B0
 
 nw4r/ut/ut_ResFontBase.cpp:
 	.text       start:0x8059E170 end:0x8059E950 align:16
-	.data       start:0x8070C21C end:0x8070C278
+	.data       start:0x8070C1B0 end:0x8070C278
 
 nw4r/ut/ut_ResFont.cpp:
 	.text       start:0x8059E950 end:0x8059EC60 align:16
@@ -5965,12 +5977,15 @@ nw4r/db/db_assert.cpp:
 
 nw4r/math/math_triangular.cpp:
 	.text       start:0x805A6C60 end:0x805A6D50 align:16
+	.sdata2     start:0x807E2618 end:0x807E2620
 
 nw4r/math/math_types.cpp:
 	.text       start:0x805A6D50 end:0x805A6DE0 align:16
 
 nw4r/lyt/lyt_init.cpp:
 	.text       start:0x805A6DE0 end:0x805A6E40 align:16
+	.data       start:0x8070C358 end:0x8070C3A0
+	.sdata      start:0x807D0918 end:0x807D0920
 
 nw4r/lyt/lyt_pane.cpp:
 	.text       start:0x805A6E40 end:0x805A7E60 align:16

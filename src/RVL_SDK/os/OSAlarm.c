@@ -232,8 +232,35 @@ asm void DecrementerExceptionHandler(register __OSException exception, register 
     b DecrementerExceptionCallback
 } 
 
-void OSSetAlarmTag(OSAlarm* alarm, u32 tag) {
-    alarm->tag = tag;
+void OSCancelAlarms(u32 tag) {
+    BOOL enabled;
+    OSAlarm* alarm;
+    OSAlarm* next;
+
+    if (tag == 0 || tag == -1) {
+        return;
+    }
+
+    enabled = OSDisableInterrupts();
+
+    alarm = AlarmQueue.head;
+    next = (alarm) ? alarm->next : NULL;
+
+    while (alarm != NULL) {
+        if (alarm->tag == tag) {
+            OSCancelAlarm(alarm);
+        }
+
+        alarm = next;
+        next = alarm ? alarm->next : NULL;
+    }
+
+    OSRestoreInterrupts(enabled);
+}
+
+void __OSSetInternalAlarmUserData(OSAlarm* alarm, void* userData) {
+    alarm->userData = userData;
+    alarm->tag = -1;
 }
 
 static BOOL OnReset(BOOL final, u32 event) {
