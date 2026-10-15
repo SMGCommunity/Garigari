@@ -31,4 +31,9 @@ namespace MR {
     /// @param pSrc The pointer to the memory to copy from.
     /// @param size The number of bytes to copy.
     void copyMemory(void* pDst, const void* pSrc, u32 size);
+
+    /// @brief Fills `size` bytes at `pDst` with `0`.
+    /// @param pDst The pointer to the memory to fill.
+    /// @param size The number of bytes to fill.
+    void zeroMemory(void* pDst, u32 size);
 };  // namespace MR

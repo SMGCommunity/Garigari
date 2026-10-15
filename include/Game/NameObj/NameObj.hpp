@@ -51,14 +51,13 @@ public:
     void requestResume();
     void syncWithFlags();
 
-    /* 0x04 */ const char* mName;  ///< A string to identify the NameObj.
-    /* 0x08 */ u16 mFlag;          ///< Flags in relation to movement.
-    /* 0x0A */ s16 mExecutorIdx;   ///< The index into the NameObjExecuteInfo array.
+    /* 0x04 */ const char* mName;
+    /* 0x08 */ vu16 mFlags;
+    /* 0x0A */ s16 mExecutorIdx;
+    /* 0x0C */ JMapLinkInfo mLinkInfo;
 };
 
-/// @brief Contains static functions to begin and end movement in a NameObj.
-class NameObjFunction {
-public:
-    static void requestMovementOn(NameObj*);
-    static void requestMovementOff(NameObj*);
-};
+namespace NameObjFunction {
+    void requestMovementOn(NameObj*);
+    void requestMovementOff(NameObj*);
+};  // namespace NameObjFunction

@@ -36,7 +36,7 @@ namespace nw4r {
             virtual u16 SetString(const wchar_t*, u16 dstIdx = 0);
             virtual u16 SetString(const wchar_t*, u16, u16);
 
-            const ut::Rect GetTextDrawRect(ut::TextWriterBase< wchar_t >*) const;
+            const ut::Rect GetTextDrawRect(ut::TextWriterBase< wchar_t >*) const NO_INLINE;
             void SetTextColor(ut::Color, ut::Color);
             void SetFont(const ut::Font*);
             u16 GetStringBufferLength() const;

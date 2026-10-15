@@ -1,5 +1,5 @@
-#include "lyt/group.h"
-#include "lyt/layout.h"
+#include "nw4r/lyt/group.h"
+#include "nw4r/lyt/layout.h"
 #include <cstring>
 
 namespace nw4r {

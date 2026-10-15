@@ -1,6 +1,6 @@
 #pragma once
 
-#include <revolution.h>
+#include <revolution/types.h>
 
 class ResFileInfo {
 public:
@@ -8,12 +8,16 @@ public:
 
     void setName(const char*, bool);
 
-    void* mRes;  // 0x00
-    u32 _4;
-    u32 _8;
-    u32 _C;
-    char* mName;  // 0x10
-    s32 mHash;    // 0x14
+    inline bool isEqualHashCode(u32 hash) const {
+        return mHashCode == hash;
+    }
+
+    /* 0x00 */ void* mResource;
+    /* 0x04 */ u32 _4;
+    /* 0x08 */ void* _8;
+    /* 0x0C */ u32 _C;
+    /* 0x10 */ char* mName;
+    /* 0x14 */ u32 mHashCode;
 };
 
 class ResTable {
@@ -28,11 +32,13 @@ public:
     ResFileInfo* findFileInfo(const char*) const;
     ResFileInfo* getFileInfo(u32) const;
     bool isExistRes(const char*) const;
-    void* findRes(const char*) const;
     int getResIndex(const char*) const;
     const char* findResName(const void*) const;
     const char* getResName(const void*) const;
 
-    ResFileInfo* mResArray;  // 0x00
-    s32 mResourceNum;        // 0x04
+    /* 0x0 */ ResFileInfo* mFileInfoTable;
+    /* 0x4 */ u32 mCount;
+
+private:
+    void* findRes(const char*) const;
 };

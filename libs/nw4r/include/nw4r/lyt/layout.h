@@ -45,9 +45,13 @@ namespace nw4r {
         public:
             Layout();
 
-            static void* AllocMemory(u32 size) { return MEMAllocFromAllocator(mspAllocator, size); }
+            static void* AllocMemory(u32 size) {
+                return MEMAllocFromAllocator(mspAllocator, size);
+            }
 
-            static void FreeMemory(void* mem) { MEMFreeToAllocator(mspAllocator, mem); }
+            static void FreeMemory(void* mem) {
+                MEMFreeToAllocator(mspAllocator, mem);
+            }
 
             virtual ~Layout();
             virtual bool Build(const void*, ResourceAccessor*);
@@ -57,6 +61,7 @@ namespace nw4r {
             virtual void BindAnimation(AnimTransform*);
             virtual void UnbindAnimation(AnimTransform*);
             virtual void UnbindAllAnimation();
+            virtual bool BindAnimationAuto(const AnimResource&, ResourceAccessor*);
             virtual void SetAnimationEnable(AnimTransform*, bool);
             virtual void CalculateMtx(const DrawInfo&);
             virtual void Draw(const DrawInfo&);
@@ -67,7 +72,9 @@ namespace nw4r {
 
             static Pane* BuildPaneObj(s32, const void*, const ResBlockSet&);
 
-            GroupContainer* GetGroupContainer() const { return mpGroupContainer; }
+            GroupContainer* GetGroupContainer() const {
+                return mpGroupContainer;
+            }
 
             static MEMAllocator* mspAllocator;
 
