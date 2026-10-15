@@ -1,12 +1,23 @@
 #pragma once
 
-#include "Game/Camera/CameraTargetArg.hpp"
-#include "Game/LiveActor/ActorCameraInfo.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
-#include <JSystem/JGeometry/TVec.hpp>
-#include <revolution.h>
+#include "Game/Util/ActorCameraUtil.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
+
+class LiveActor;
+class ActorCameraInfo;
+class CameraTargetArg;
+class NameObj;
+class JMapInfoIter;
 
 namespace MR {
+    bool calcScreenPosition(TVec2f*, const TVec3f&);
+    bool calcScreenPosition(TVec3f*, const TVec3f&);
+    bool calcNormalizedScreenPosition(TVec3f*, const TVec3f&);
+    bool calcNormalizedScreenPositionFromView(TVec3f*, const TVec3f&);
+    bool calcWorldPositionFromScreen(TVec3f*, const TVec2f&, f32);
+    bool calcWorldPositionFromCenterScreen(TVec3f*, const TVec2f&, f32);
+    bool calcWorldRayDirectionFromScreen(TVec3f*, const TVec2f&);
+
     f32 calcCameraDistanceZ(const TVec3f&);
 
     void declareEventCamera(ActorCameraInfo*, const char*);
@@ -23,4 +34,7 @@ namespace MR {
     s32 getAnimCameraFrame(const ActorCameraInfo*, const char*);
     bool isAnimCameraEnd(const ActorCameraInfo*, const char*);
     s32 getEventCameraFrames(const ActorCameraInfo*, const char*);
+
+    void declareEventCameraAnim(const ActorCameraInfo*, const char*, void*);
+    void endMultiActorCameraAtLanding(const LiveActor* pActor, const ActorCameraInfo* pInfo, const char*, s32);
 };  // namespace MR
