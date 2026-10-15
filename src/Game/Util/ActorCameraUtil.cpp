@@ -3,8 +3,11 @@
 #include "Game/LiveActor/ActorCameraInfo.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/System/ResourceHolder.hpp"
-#include "Game/Util.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
 #include <cstdio>
 
 namespace {
@@ -27,7 +30,13 @@ namespace {
 
 namespace MR {
     void initAnimCamera(const LiveActor* pActor, const ActorCameraInfo* pInfo, const char* pEventName) {
-        initAnimCamera(pActor, pInfo, pEventName, MR::getResourceHolder(pActor));
+        char actorEventName[128];
+        snprintf(actorEventName, sizeof(actorEventName), "%s%s", pActor->getName(), pEventName);
+
+        char animName[64];
+        snprintf(animName, sizeof(animName), "%s.canm", pEventName);
+
+        declareEventCameraAnim(pInfo, actorEventName, getResourceHolder(pActor)->mFileInfoTable->getRes(animName));
     }
 
     ActorCameraInfo* createActorCameraInfo(const JMapInfoIter& rIter) {
@@ -141,7 +150,7 @@ namespace MR {
         return false;
     }
 
-    void startAnimCameraTargetPlayer(const LiveActor* pActor, const ActorCameraInfo* pInfo, const char* pEventName, s32 frame, bool b, f32 speed) {
+    void startAnimCameraTargetPlayer(const LiveActor* pActor, const ActorCameraInfo* pInfo, const char* pEventName, s32 frame, f32 speed) {
         CameraTargetArg targetArg;
         setCameraTargetToPlayer(&targetArg);
 
@@ -194,9 +203,9 @@ namespace MR {
         return false;
     }
 
-    /* bool endActorCameraAtLanding(const LiveActor* pActor, const ActorCameraInfo* pInfo, s32 frame) {
+    bool endActorCameraAtLanding(const LiveActor* pActor, const ActorCameraInfo* pInfo, s32 frame) {
         return endMultiActorCameraAtLanding(pActor, pInfo, nullptr, frame);
-    } */
+    }
 
     bool endMultiActorCameraAtLanding(const LiveActor* pActor, const ActorCameraInfo* pInfo, const char* pEventName, s32 frame) {
         if (pInfo->mCameraSetID >= 0) {
@@ -216,7 +225,7 @@ namespace MR {
         return false;
     }
 
-    void endActorCameraProgrammable(const LiveActor* pActor, s32 frame, bool resetView) {
+    bool endActorCameraProgrammable(const LiveActor* pActor, s32 frame, bool resetView) {
         endGlobalEventCamera(pActor->getName(), frame, resetView);
     }
 
@@ -246,6 +255,16 @@ namespace MR {
 
     void setProgrammableCameraParamFovy(const LiveActor* pActor, f32 fovy) {
         setProgrammableCameraParamFovy(pActor->getName(), fovy);
+    }
+
+    void initAnimCamera(const LiveActor* pActor, const ActorCameraInfo* pInfo, const char* pArcName, const char* pEventName) {
+        char actorEventName[128];
+        snprintf(actorEventName, sizeof(actorEventName), "%s%s", pActor->getName(), pEventName);
+
+        char animName[64];
+        snprintf(animName, sizeof(animName), "%s.canm", pEventName);
+
+        declareEventCameraAnim(pInfo, actorEventName, loadResourceFromArc(pArcName, animName));
     }
 
     void endAnimCamera(const LiveActor* pActor, const ActorCameraInfo* pInfo, const char* pEventName, s32 frame, bool resetView) {

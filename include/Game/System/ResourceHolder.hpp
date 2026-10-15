@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Game/Animation/BckCtrl.hpp"
 #include "Game/System/ResourceInfo.hpp"
 #include <JSystem/JKernel/JKRArchive.hpp>
 #include <JSystem/JKernel/JKRFileFinder.hpp>
@@ -7,7 +8,6 @@
 
 class MaterialAnmBuffer;
 class J3DModelData;
-class BckCtrl;
 
 typedef const char* ArchiveName;
 
