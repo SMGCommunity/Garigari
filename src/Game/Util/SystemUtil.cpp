@@ -1,9 +1,10 @@
 #include "Game/Util/SystemUtil.hpp"
 #include "Game/System/GameSystem.hpp"
 #include "Game/System/GameSystemFontHolder.hpp"
+#include "Game/System/RenderMode.hpp"
 #include "Game/Util/SingletonHolder.hpp"
-#include <revolution/types.h>
 #include <nw4r/ut/ResFont.h>
+#include <revolution/types.h>
 
 nw4r::ut::Font* MR::getFontOnCurrentLanguage() {
     return SingletonHolder< GameSystem >::get()->mFontHolder->getMessageFont();
@@ -31,4 +32,8 @@ nw4r::ut::Font* MR::getStaffFontNW4R() {
 
 bool MR::hasPictureFontNW4R() {
     return SingletonHolder< GameSystem >::get()->mFontHolder->mPictureFont != nullptr;
+}
+
+bool MR::isScreen16Per9() {
+    return MR::isAspectRatioFlag16Per9();
 }

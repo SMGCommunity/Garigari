@@ -45,6 +45,8 @@ namespace nw4r {
             const u32 RESOURCETYPE_FONT = 'font';
             const u32 RESOURCETYPE_ARCHIVEFONT = 'fnta';
 
+            const s32 EXTUSERDATATYPE_FLOAT = 2;
+
             struct BinaryFileHeader {
                 char signature[4];
                 u16 byteOrder;
@@ -207,6 +209,15 @@ namespace nw4r {
             struct ExtUserData {
                 const char* GetName() const {
                     return nameOffset != 0 ? detail::ConvertOffsToPtr< const char >(this, nameOffset) : nullptr;
+                }
+
+                s32 GetType() const {
+                    return type;
+                }
+
+                template <typename T>
+                T GetValue(u32 index) const {
+                    return detail::ConvertOffsToPtr< T >(this, dataOffset)[index];
                 }
 
                 u32 nameOffset;
