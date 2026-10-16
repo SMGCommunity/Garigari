@@ -5,8 +5,10 @@
 
 class ActorStateBaseInterface : public NerveExecutor {
 public:
-    ActorStateBaseInterface(const char* pName) : NerveExecutor(pName) {
+    ActorStateBaseInterface(const char* pName) : NerveExecutor(pName), mIsDead(true) {
     }
+
+    virtual ~ActorStateBaseInterface() {}
 
     virtual void init() {
     }
