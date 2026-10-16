@@ -651,7 +651,9 @@ config.libs = [
                 extra_cflags=["-ipa file", "-sym on"],
             ),
             Object(
-                NonMatching, "JSystem/J3DGraphBase/J3DSys.cpp", extra_cflags=["-ipa file"]
+                NonMatching,
+                "JSystem/J3DGraphBase/J3DSys.cpp",
+                extra_cflags=["-ipa file"],
             ),
             Object(
                 NonMatching,
@@ -939,7 +941,9 @@ config.libs = [
             Object(NonMatching, "JSystem/JParticle/JPAFieldBlock.cpp"),
             Object(NonMatching, "JSystem/JParticle/JPAKeyBlock.cpp"),
             Object(
-                NonMatching, "JSystem/JParticle/JPATexture.cpp", extra_cflags=["-ipa off"]
+                NonMatching,
+                "JSystem/JParticle/JPATexture.cpp",
+                extra_cflags=["-ipa off"],
             ),
             Object(Matching, "JSystem/JParticle/JPAResourceLoader.cpp"),
             Object(NonMatching, "JSystem/JParticle/JPAEmitterManager.cpp"),
@@ -1137,6 +1141,7 @@ config.libs = [
     GameLib(
         "Util",
         [
+            Object(NonMatching, "Game/Util/ActorCameraUtil.cpp"),
             Object(NonMatching, "Game/Util/ActionSoundUtil.cpp"),
             Object(NonMatching, "Game/Util/ActorInitUtil.cpp"),
             Object(NonMatching, "Game/Util/ActorSensorUtil.cpp"),
@@ -1808,68 +1813,152 @@ config.libs = [
             Object(Matching, "MSL_C/abort_exit_ppc_eabi.c"),
             Object(Matching, "MSL_C/secure_error.c"),
             Object(Matching, "MSL_C/math_sun.c"),
-            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_acos.c"),
-            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_asin.c"),
-            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_atan2.c"),
-            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_fmod.c"),
+            Object(
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_acos.c"
+            ),
+            Object(
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_asin.c"
+            ),
+            Object(
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_atan2.c"
+            ),
+            Object(
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_fmod.c"
+            ),
             Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_log.c"),
-            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_log10.c"),
+            Object(
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_log10.c"
+            ),
             Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_pow.c"),
-            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_rem_pio2.c"),
+            Object(
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_rem_pio2.c"
+            ),
             Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/k_cos.c"),
-            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/k_rem_pio2.c"),
+            Object(
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/k_rem_pio2.c"
+            ),
             Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/k_sin.c"),
             Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/k_tan.c"),
-            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_atan.c"),
-            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_ceil.c"),
-            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_copysign.c"),
+            Object(
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_atan.c"
+            ),
+            Object(
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_ceil.c"
+            ),
+            Object(
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_copysign.c"
+            ),
             Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_cos.c"),
-            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_floor.c"),
-            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_frexp.c"),
-            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_ldexp.c"),
+            Object(
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_floor.c"
+            ),
+            Object(
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_frexp.c"
+            ),
+            Object(
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_ldexp.c"
+            ),
             Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_sin.c"),
             Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_tan.c"),
-            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/w_acos.c"),
-            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/w_asin.c"),
-            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/w_atan2.c"),
-            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/w_fmod.c"),
-            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/w_log10.c"),
+            Object(
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/w_acos.c"
+            ),
+            Object(
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/w_asin.c"
+            ),
+            Object(
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/w_atan2.c"
+            ),
+            Object(
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/w_fmod.c"
+            ),
+            Object(
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/w_log10.c"
+            ),
             Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/w_pow.c"),
-            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_sqrt.c"),
+            Object(
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_sqrt.c"
+            ),
             Object(Matching, "MSL_C/PPC_EABI/SRC/math_ppc.c"),
-            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/w_sqrt.c"),
+            Object(
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/w_sqrt.c"
+            ),
             Object(Matching, "MSL_C/extras.c"),
         ],
     ),
     TRKLib(
         "MetroTRK",
         [
-            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/exception.s"),
-            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Export/targsupp.s"),
-            Object(Matching, "MetroTRK/gamedev/cust_connection/cc/exi2/GCN/EXI2_GDEV_GCN/main.c"),
-            Object(Matching, "MetroTRK/gamedev/cust_connection/utils/gc/MWCriticalSection_gc.c"),
-            Object(Matching, "MetroTRK/gamedev/cust_connection/utils/common/CircleBuffer.c"),
-            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/flush_cache.c"),
+            Object(
+                Matching,
+                "MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/exception.s",
+            ),
+            Object(
+                Matching,
+                "MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Export/targsupp.s",
+            ),
+            Object(
+                Matching,
+                "MetroTRK/gamedev/cust_connection/cc/exi2/GCN/EXI2_GDEV_GCN/main.c",
+            ),
+            Object(
+                Matching,
+                "MetroTRK/gamedev/cust_connection/utils/gc/MWCriticalSection_gc.c",
+            ),
+            Object(
+                Matching, "MetroTRK/gamedev/cust_connection/utils/common/CircleBuffer.c"
+            ),
+            Object(
+                Matching,
+                "MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/flush_cache.c",
+            ),
             Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/main_TRK.c"),
             Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/mainloop.c"),
             Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/mem_TRK.c"),
             Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/dispatch.c"),
-            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/dolphin_trk.c"),
-            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/dolphin_trk_glue.c", extra_cflags=["-str pool"]),
+            Object(
+                Matching, "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/dolphin_trk.c"
+            ),
+            Object(
+                Matching,
+                "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/dolphin_trk_glue.c",
+                extra_cflags=["-str pool"],
+            ),
             Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/notify.c"),
             Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/nubevent.c"),
             Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/nubinit.c"),
             Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/serpoll.c"),
-            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/string_TRK.c"),
-            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/support.c", extra_cflags=["-str pool"]),
-            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/targcont.c"),
-            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/mpc_7xx_603e.c"),
+            Object(
+                Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/string_TRK.c"
+            ),
+            Object(
+                Matching,
+                "MetroTRK/debugger/embedded/MetroTRK/Portable/support.c",
+                extra_cflags=["-str pool"],
+            ),
+            Object(
+                Matching, "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/targcont.c"
+            ),
+            Object(
+                Matching,
+                "MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/mpc_7xx_603e.c",
+            ),
             Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/msg.c"),
             Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/msgbuf.c"),
-            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/msghndlr.c", extra_cflags=["-str pool"]),
+            Object(
+                Matching,
+                "MetroTRK/debugger/embedded/MetroTRK/Portable/msghndlr.c",
+                extra_cflags=["-str pool"],
+            ),
             Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Export/mslsupp.c"),
-            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/targimpl.c"),
-            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/target_options.c"),
+            Object(
+                Matching,
+                "MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/targimpl.c",
+            ),
+            Object(
+                Matching,
+                "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/target_options.c",
+            ),
         ],
     ),
 ]
