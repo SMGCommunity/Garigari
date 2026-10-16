@@ -139,7 +139,7 @@ namespace MR {
         return false;
     }
 
-    void startAnimCameraTargetPlayer(const LiveActor* pActor, const ActorCameraInfo* pInfo, const char* pEventName, s32 frame, f32 speed) {
+    void startAnimCameraTargetPlayer(const LiveActor* pActor, const ActorCameraInfo* pInfo, const char* pEventName, s32 frame, bool b, f32 speed) {
         CameraTargetArg targetArg;
         setCameraTargetToPlayer(&targetArg);
 
@@ -149,7 +149,7 @@ namespace MR {
         startEventCameraAnim(pInfo, actorEventName, targetArg, frame, speed);
     }
 
-    void startAnimCameraTargetSelf(const LiveActor* pActor, const ActorCameraInfo* pInfo, const char* pEventName, s32 frame, f32 speed) {
+    void startAnimCameraTargetSelf(const LiveActor* pActor, const ActorCameraInfo* pInfo, const char* pEventName, s32 frame, bool b, f32 speed) {
         CameraTargetArg targetArg(pActor);
 
         char actorEventName[128];
@@ -159,7 +159,7 @@ namespace MR {
     }
 
     void startAnimCameraTargetOther(const LiveActor* pActor, const ActorCameraInfo* pInfo, const char* pEventName, const CameraTargetArg& rTargetArg,
-                                    s32 frame, f32 speed) {
+                                    s32 frame, bool b, f32 speed) {
         char actorEventName[128];
         snprintf(actorEventName, sizeof(actorEventName), "%s%s", pActor->getName(), pEventName);
 
@@ -246,28 +246,11 @@ namespace MR {
         setProgrammableCameraParamFovy(pActor->getName(), fovy);
     }
 
-    /* void initAnimCamera(const LiveActor* pActor, const ActorCameraInfo* pInfo, const char* pArcName, const char* pEventName) {
-        char actorEventName[128];
-        snprintf(actorEventName, sizeof(actorEventName), "%s%s", pActor->getName(), pEventName);
-
-        char animName[64];
-        snprintf(animName, sizeof(animName), "%s.canm", pEventName);
-
-        declareEventCameraAnim(pInfo, actorEventName, loadResourceFromArc(pArcName, animName));
-    } */
-
     void endAnimCamera(const LiveActor* pActor, const ActorCameraInfo* pInfo, const char* pEventName, s32 frame, bool resetView) {
         char actorEventName[128];
         snprintf(actorEventName, sizeof(actorEventName), "%s%s", pActor->getName(), pEventName);
 
         endEventCamera(pInfo, actorEventName, resetView, frame);
-    }
-
-    s32 getAnimCameraFrame(const LiveActor* pActor, const ActorCameraInfo* pInfo, const char* pEventName) {
-        char actorEventName[256];
-        snprintf(actorEventName, sizeof(actorEventName), "%s%s", pActor->getName(), pEventName);
-
-        return getAnimCameraFrame(pInfo, actorEventName);
     }
 
     bool isAnimCameraEnd(const LiveActor* pActor, const ActorCameraInfo* pInfo, const char* pEventName) {
