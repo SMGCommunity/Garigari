@@ -1067,6 +1067,13 @@ config.libs = [
         ],
     ),
     GameLib(
+        "MapObj",
+        [
+            Object(NonMatching, "Game/MapObj/ActorStateDemoAppearance.cpp"),
+            Object(NonMatching, "Game/MapObj/TicoCoin.cpp"),
+        ],
+    ),
+    GameLib(
         "NameObj",
         [
             Object(NonMatching, "Game/NameObj/MovementOnOffGroupHolder.cpp"),
@@ -1093,12 +1100,16 @@ config.libs = [
     GameLib(
         "Screen",
         [
+            Object(NonMatching, "Game/Screen/CometMedalCounter.cpp"),
+            Object(NonMatching, "Game/Screen/GalaxyCometScreenFilter.cpp"),
+            Object(NonMatching, "Game/Screen/IconAButton.cpp"),
             Object(NonMatching, "Game/Screen/LayoutActor.cpp"),
             Object(NonMatching, "Game/Screen/LayoutActorFlag.cpp"),
             Object(NonMatching, "Game/Screen/LayoutCoreUtil.cpp", extra_cflags=["-DNW4R_DEBUG"]),
             Object(NonMatching, "Game/Screen/LayoutGroupCtrl.cpp", extra_cflags=["-DNW4R_DEBUG"]),
             Object(NonMatching, "Game/Screen/LayoutManager.cpp", extra_cflags=["-DNW4R_DEBUG"]),
             Object(NonMatching, "Game/Screen/LayoutPaneCtrl.cpp", extra_cflags=["-DNW4R_DEBUG"]),
+            Object(NonMatching, "Game/Screen/SaveIcon.cpp"),
         ],
     ),
     GameLib(
