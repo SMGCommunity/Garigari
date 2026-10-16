@@ -25,9 +25,9 @@ public:
     bool isWait() const;
 
     /* 0x2C */ u32 _2C; // unknown type
-    /* 0x30 */ CounterLayoutAppearer* _30;
+    /* 0x30 */ CounterLayoutAppearer* mAppearer;
     /* 0x34 */ f32 _34;
     /* 0x38 */ f32 _38;
     /* 0x3C */ bool mIsCollected;
-    /* 0x3C */ bool _3D;
+    /* 0x3C */ bool mIsHidden;
 };

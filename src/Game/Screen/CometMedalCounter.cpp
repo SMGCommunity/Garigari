@@ -9,7 +9,6 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SceneUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
 
 namespace NrvCometMedalCounter {
     NEW_NERVE(CometMedalCounterNrvHidden, CometMedalCounter, Hidden);
@@ -19,12 +18,12 @@ namespace NrvCometMedalCounter {
     NEW_NERVE(CometMedalCounterNrvDisappear, CometMedalCounter, Disappear);
 }  // namespace NrvCometMedalCounter
 
-CometMedalCounter::CometMedalCounter() : LayoutActor("コメットメダルカウンター", true), _2C(), _30(), _34(), _38(), mIsCollected(), _3D() {
+CometMedalCounter::CometMedalCounter() : LayoutActor("コメットメダルカウンター", true), _2C(), mAppearer(), _34(), _38(), mIsCollected(), mIsHidden() {
 }
 
 void CometMedalCounter::init(const JMapInfoIter& rIter) {
     initLayoutManager("CometMedalCounter", 3);
-    _30 = new CounterLayoutAppearer(this, TVec2f(-50.0f, 0.0f));
+    mAppearer = new CounterLayoutAppearer(this, TVec2f(-50.0f, 0.0f));
     MR::connectToSceneLayout(this);
     initNerve(GET_NERVE(CometMedalCounter, CometMedalCounterNrvHidden));
 
@@ -45,10 +44,10 @@ void CometMedalCounter::appear() {
         return;
     }
 
-    _30->reset();
+    mAppearer->reset();
     setNerve(GET_NERVE(CometMedalCounter, CometMedalCounterNrvHidden));
     LayoutActor::appear();
-    _3D = false;
+    mIsHidden = false;
     MR::requestMovementOn(this);
 }
 
@@ -71,11 +70,11 @@ void CometMedalCounter::forceAppear(bool a1) {
         setNerve(GET_NERVE(CometMedalCounter, CometMedalCounterNrvAppear));
     }
 
-    _3D = true;
+    mIsHidden = true;
 }
 
 void CometMedalCounter::disappear() {
-    _3D = false;
+    mIsHidden = false;
     setNerve(GET_NERVE(CometMedalCounter, CometMedalCounterNrvDisappear));
 }
 
@@ -90,7 +89,7 @@ bool CometMedalCounter::isWait() const {
 }
 
 void CometMedalCounter::control() {
-    _30->update();
+    mAppearer->update();
 
     if (!mIsCollected && GameSequenceFunction::isCollectTicoCoinInStage() && !isNerve(GET_NERVE(CometMedalCounter, CometMedalCounterNrvFlash)) &&
         !isNerve(GET_NERVE(CometMedalCounter, CometMedalCounterNrvAppear))) {
@@ -121,17 +120,17 @@ void CometMedalCounter::exeHidden() {
 void CometMedalCounter::exeAppear() {
     if (MR::isFirstStep(this)) {
         MR::showLayout(this);
-        _30->appear(TVec2f(0.0f, 0.0f));
+        mAppearer->appear(TVec2f(0.0f, 0.0f));
         MR::startAnim(this, "Wait", 1);
     }
 
-    if (_30->isAppeared()) {
+    if (mAppearer->isAppeared()) {
         setNerve(GET_NERVE(CometMedalCounter, CometMedalCounterNrvWait));
     }
 }
 
 void CometMedalCounter::exeWait() {
-    if (!_3D && mIsCollected && CounterLayoutController::isWaitToDisappearCounter(this)) {
+    if (!mIsHidden && mIsCollected && CounterLayoutController::isWaitToDisappearCounter(this)) {
         setNerve(GET_NERVE(CometMedalCounter, CometMedalCounterNrvDisappear));
     }
 }
@@ -150,10 +149,10 @@ void CometMedalCounter::exeFlash() {
 
 void CometMedalCounter::exeDisappear() {
     if (MR::isFirstStep(this)) {
-        _30->disappear();
+        mAppearer->disappear();
     }
 
-    if (_30->isDisappeared()) {
+    if (mAppearer->isDisappeared()) {
         setNerve(GET_NERVE(CometMedalCounter, CometMedalCounterNrvHidden));
     }
 }

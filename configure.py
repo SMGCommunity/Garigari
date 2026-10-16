@@ -1063,6 +1063,12 @@ config.libs = [
         ],
     ),
     GameLib(
+        "MapObj",
+        [
+            Object(NonMatching, "Game/MapObj/TicoCoin.cpp"),
+        ],
+    ),
+    GameLib(
         "NameObj",
         [
             Object(NonMatching, "Game/NameObj/MovementOnOffGroupHolder.cpp"),

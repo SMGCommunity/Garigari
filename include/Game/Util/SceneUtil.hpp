@@ -18,6 +18,7 @@ namespace MR {
     bool isEqualSceneName(const char*);
     bool isEqualStageName(const char*);
     bool isValidZoneName(const char*);
+    bool isStageJungleGliderGalaxyExplainDemo();
 
     bool isPlacementLocalStage();
 
