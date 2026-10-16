@@ -1089,6 +1089,7 @@ config.libs = [
     GameLib(
         "Screen",
         [
+            Object(NonMatching, "Game/Screen/CometMedalCounter.cpp"),
             Object(NonMatching, "Game/Screen/GalaxyCometScreenFilter.cpp"),
             Object(NonMatching, "Game/Screen/IconAButton.cpp"),
             Object(NonMatching, "Game/Screen/LayoutActor.cpp"),

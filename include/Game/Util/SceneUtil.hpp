@@ -30,4 +30,7 @@ namespace MR {
     s32 getChildObjNum(const JMapInfoIter&);
     void getChildObjName(const char**, const JMapInfoIter&, int);
     void initChildObj(NameObj*, const JMapInfoIter&, int);
+
+    s32 getCurrentStagePowerStarNum();
+    bool isProductGameScene();
 };  // namespace MR

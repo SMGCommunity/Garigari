@@ -65,6 +65,9 @@ namespace MR {
     bool isGreaterEqualStep(const LayoutActor*, s32);
     bool isIntervalStep(const LayoutActor*, s32);
     bool isDead(const LayoutActor*);
+    bool isHiddenLayout(const LayoutActor*);
+    void showLayout(LayoutActor*);
+    void hideLayout(LayoutActor*);
     bool isStopAnimFrame(const LayoutActor*);
     bool isExecuteCalcAnimLayout(const LayoutActor*);
     bool isExecuteDrawLayout(const LayoutActor*);

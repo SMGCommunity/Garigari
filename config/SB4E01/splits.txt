@@ -4101,7 +4101,11 @@ Game/Screen/CoinCounter.cpp:
 	.sbss       start:0x807D5470 end:0x807D5480
 
 Game/Screen/CometMedalCounter.cpp:
-	.text       start:0x80464A80 end:0x804650B0
+	.text       start:0x80464A80 end:0x804651D0
+	.ctors      start:0x806448AC end:0x806448B0
+	.data       start:0x806F20B0 end:0x806F2188
+	.sbss       start:0x807D5480 end:0x807D5498
+	.sdata2     start:0x807E12E8 end:0x807E12F8
 
 Game/Screen/CopyFilterNegater.cpp:
 	.text       start:0x804651D0 end:0x80465290
