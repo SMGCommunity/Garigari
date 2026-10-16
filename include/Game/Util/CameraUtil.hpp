@@ -20,13 +20,13 @@ namespace MR {
 
     f32 calcCameraDistanceZ(const TVec3f&);
 
-    void declareEventCamera(ActorCameraInfo*, const char*);
+    void declareEventCamera(const ActorCameraInfo*, const char*);
     void declareEventCameraProgrammable(const char*);
     void startEventCamera(const ActorCameraInfo*, const char*, const CameraTargetArg&, s32);
     void startEventCameraAnim(const ActorCameraInfo*, const char*, const CameraTargetArg&, s32, f32);
     void startGlobalEventCameraNoTarget(const char*, s32);
     void endEventCamera(const ActorCameraInfo*, const char*, bool, s32);
-    void endEventCameraAtLanding(const ActorCameraInfo*, const char*, f32);
+    void endEventCameraAtLanding(const ActorCameraInfo*, const char*, s32);
     void endGlobalEventCamera(const char*, s32, bool);
     bool isEventCameraActive(const ActorCameraInfo*, const char*);
     void setProgrammableCameraParam(const char*, const TVec3f&, const TVec3f&, const TVec3f&, bool);
@@ -36,5 +36,5 @@ namespace MR {
     s32 getEventCameraFrames(const ActorCameraInfo*, const char*);
 
     void declareEventCameraAnim(const ActorCameraInfo*, const char*, void*);
-    void endMultiActorCameraAtLanding(const LiveActor* pActor, const ActorCameraInfo* pInfo, const char*, s32);
+    bool endMultiActorCameraAtLanding(const LiveActor* pActor, const ActorCameraInfo* pInfo, const char*, s32);
 };  // namespace MR
