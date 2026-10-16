@@ -2515,6 +2515,12 @@ Game/Map/WaterPlant.cpp:
 	.data       start:0x8069A8A0 end:0x8069A9E0
 	.bss        start:0x807298D8 end:0x807298E8
 
+Game/MapObj/ActorStateDemoAppearance.cpp:
+	.text       start:0x8026DAD0 end:0x8026DE50
+	.ctors      start:0x806442DC end:0x806442E0
+	.data       start:0x8069AA88 end:0x8069AAF8
+	.sbss       start:0x807D36C0 end:0x807D36C8
+
 Game/MapObj/AirBubble.cpp:
 	.text       start:0x8026E320 end:0x8026EEB0
 	.ctors      start:0x806442E4 end:0x806442E8
