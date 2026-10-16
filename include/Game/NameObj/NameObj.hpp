@@ -1,60 +1,38 @@
 #pragma once
 
-#include "Game/Util/Functor.hpp"
-#include "Game/Util/JMapInfo.hpp"
-#include <revolution/types.h>
+#include "Game/Util/JMapLinkInfo.hpp"
+#include <revolution.h>
 
-/// @brief The most basic form of an object.
 class NameObj {
 public:
-    /// @brief Creates a new `NameObj`.
-    /// @param pName A pointer to the null-terminated name of the object.
-    NameObj(const char* pName);
+    NameObj(const char*);
 
-    /// @brief Destroys the `NameObj`.
-    /* 0x08 */ virtual ~NameObj();
+    virtual ~NameObj();
+    virtual void init(const JMapInfoIter&);
+    virtual void initAfterPlacement();
+    virtual void movement();
+    virtual void draw() const;
+    virtual void calcAnim();
+    virtual void calcViewAndEntry();
+    virtual void startMovement();
+    virtual void endMovement();
 
-    /// @brief Intializes the `NameObj` while being placed into a scene.
-    /// @param rIter A reference to an iterator over a `JMapInfo`.
-    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
-
-    /// @brief Intializes the `NameObj` after being placed into a scene.
-    /* 0x10 */ virtual void initAfterPlacement();
-
-    /* 0x14 */ virtual void movement();
-
-    /// @brief Draws the `NameObj` to the screen.
-    /* 0x18 */ virtual void draw() const;
-
-    /* 0x1C */ virtual void calcAnim();
-    /* 0x20 */ virtual void calcViewAndEntry();
-
-    /// @brief Initializes the `NameObj` without an iterator over a `JMapInfo`.
     void initWithoutIter();
-
-    /// @brief Updates the name of the `NameObj`.
-    /// @param pName A pointer to the new null-terminated name of the object.
-    void setName(const char* pName);
-
-    /// @brief Returns the name of the `NameObj`.
-    /// @return A pointer to the null-terminated name of the object.
-    const char* getName() const {
-        return mName;
-    }
-
-    u16 getFlag() const {
-        return mFlag;
-    }
-
+    void setName(const char*);
+    void setLinkedInfo(const JMapInfoIter&);
     void executeMovement();
     void requestSuspend();
     void requestResume();
     void syncWithFlags();
 
-    /* 0x04 */ const char* mName;
-    /* 0x08 */ vu16 mFlags;
-    /* 0x0A */ s16 mExecutorIdx;
-    /* 0x0C */ JMapLinkInfo mLinkInfo;
+    const char* getName() const {
+        return mName;
+    }
+
+    const char* mName;       // 0x04
+    vu16 mFlags;             // 0x08
+    s16 mExecutorIdx;        // 0x0A
+    JMapLinkInfo mLinkInfo;  // 0x0C
 };
 
 namespace NameObjFunction {
