@@ -19,7 +19,7 @@ public:
     /// overwritten.
     /// @param hash The hash code of the name to be used as the key.
     /// @param value An unsigned long to be used as the value.
-    /// @return True on success.
+    /// @return True, always.
     bool add(u32 hash, u32 value);
 
     /// @brief Adds the given hash/value pair to the `HashSortTable`. If the given hash already exists in the table, the table will be unchanged and
