@@ -11,8 +11,10 @@ public:
     /// @brief Adds the given key/value pair to the `HashSortTable`.
     /// @param pName A name to be used as the key.
     /// @param value An unsigned long to be used as the value.
-    /// @param skip True if this key/value pair is added using `addOrSkip(u32, u32)`; False if using `add(u32, u32)` instead.
-    /// @returns True on success.
+    /// @param skip True if this key/value pair should only be added if the name isn't already in the table; False if this key/value pair
+    /// should be added regardless.
+    /// @returns True if the given key/value pair was successfully added to the table. If `skip` is True, this function returns True IFF the
+    /// name doesn't already exist in the table; if `skip` is False, this function always returns True.
     bool add(const char* pName, u32 value, bool skip);
 
     /// @brief Adds the given hash/value pair to the `HashSortTable`. If the given hash already exists in the table, its associated value will be
