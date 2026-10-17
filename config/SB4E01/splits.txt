@@ -3173,6 +3173,7 @@ Game/MapObj/TimeAttackClock.cpp:
 	.ctors      start:0x8064462C end:0x80644630
 	.data       start:0x806B06F8 end:0x806B0818
 	.sdata      start:0x807CFE48 end:0x807CFE50
+	.sbss       start:0x807D45F0 end:0x807D45F8
 	.sdata2     start:0x807DEC08 end:0x807DEC10
 
 Game/MapObj/TreasureBoxCracked.cpp:
@@ -4390,6 +4391,9 @@ Game/Screen/PlayerMissLeft.cpp:
 Game/Screen/PopUpAddTimeAttackTime.cpp:
 	.text       start:0x80489740 end:0x80489B20
 	.ctors      start:0x80644944 end:0x80644948
+	.data       start:0x806F6458 end:0x806F64C8
+	.sbss       start:0x807D5778 end:0x807D5780
+	.sdata2     start:0x807E1608 end:0x807E1610
 
 Game/Screen/PurpleCoinCounter.cpp:
 	.text       start:0x8048BBE0 end:0x8048C080

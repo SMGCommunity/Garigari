@@ -22,5 +22,5 @@ public:
     /* 0x90 */ TPos3f _90;
     /* 0xC0 */ TPos3f _C0;
     /* 0xF0 */ PopUpAddTimeAttackTime* mTimePopup;
-    /* 0xF4 */ u32 mTimeToAdd;
+    /* 0xF4 */ s32 mTimeToAdd;
 };

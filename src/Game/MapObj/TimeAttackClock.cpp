@@ -65,42 +65,42 @@ void TimeAttackClock::calcAndSetBaseMtx() {
 }
 
 void TimeAttackClock::exeWait() {
-    if(MR::isFirstStep(this)) {
+    if (MR::isFirstStep(this)) {
         MR::startAction(this, "Wait");
     }
 }
 
 void TimeAttackClock::exeCollect() {
-    if(MR::isFirstStep(this)) {
+    if (MR::isFirstStep(this)) {
         MR::startAction(this, "Get");
     }
 
-    if(MR::isStep(this, 1)) {
+    if (MR::isStep(this, 1)) {
         kill();
     }
 }
 
 void TimeAttackClock::addTimer() {
-    char* messageID;
+    char messageID[0x20];
     MR::getLayoutMessageID(messageID, "CollectCounter", "AddTimer");
-    MR::getGameMessageDirect(messageID);
-    //two member functions of PopUpAddTimeAttackTime
+    mTimePopup->show(MR::getGameMessageDirect(messageID));
+    mTimePopup->setTextBoxArgNumber(mTimeToAdd / 60);
     MR::startActionSound(this, "Caught");
     MR::addCometTimer(mTimeToAdd);
     setNerve(GET_NERVE(TimeAttackClock, TimeAttackClockNrvCollect));
 }
 
 void TimeAttackClock::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
-    if(!isNerve(GET_NERVE(TimeAttackClock, TimeAttackClockNrvWait))) {
+    if (!isNerve(GET_NERVE(TimeAttackClock, TimeAttackClockNrvWait))) {
         return;
     }
 
-    if(MR::isSensorYoshi(pReceiver)) {
+    if (MR::isSensorYoshi(pReceiver)) {
         MR::sendMsgPush(pReceiver, pSender);
         return;
     }
 
-    if(MR::isSensorPlayer(pReceiver)) {
+    if (MR::isSensorPlayer(pReceiver)) {
         addTimer();
     }
 }

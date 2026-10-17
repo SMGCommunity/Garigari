@@ -8,4 +8,5 @@ namespace MR {
     void registerDemoSimpleCastAll(LiveActor*);
     bool tryStartDemo(LiveActor*, const char*);
     void endDemo(NameObj*, const char*);
+    bool isDemoActive();
 };  // namespace MR
