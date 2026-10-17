@@ -311,7 +311,7 @@ void AreaFormCylinder::init(const JMapInfoIter& rIter) {
 }
 
 namespace MR {
-    AreaForm* createAreaForm(AreaForm::Type formType) {
+    AreaForm* createAreaForm(int formType) {
         AreaForm* newAreaForm = nullptr;
 
         // probably an enum

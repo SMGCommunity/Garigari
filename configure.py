@@ -1039,6 +1039,7 @@ config.libs = [
         "AreaObj",
         [
             Object(NonMatching, "Game/AreaObj/AreaForm.cpp"),
+            Object(NonMatching, "Game/AreaObj/AreaObj.cpp"),
         ]
     ),
     GameLib(
