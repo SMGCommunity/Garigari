@@ -2515,6 +2515,12 @@ Game/Map/WaterPlant.cpp:
 	.data       start:0x8069A8A0 end:0x8069A9E0
 	.bss        start:0x807298D8 end:0x807298E8
 
+Game/MapObj/ActorStateDemoAppearance.cpp:
+	.text       start:0x8026DAD0 end:0x8026DE50
+	.ctors      start:0x806442DC end:0x806442E0
+	.data       start:0x8069AA88 end:0x8069AAF8
+	.sbss       start:0x807D36C0 end:0x807D36C8
+
 Game/MapObj/AirBubble.cpp:
 	.text       start:0x8026E320 end:0x8026EEB0
 	.ctors      start:0x806442E4 end:0x806442E8
@@ -3153,6 +3159,14 @@ Game/MapObj/SuperSpinDriver.cpp:
 	.text       start:0x8031DF20 end:0x803211D0
 	.ctors      start:0x80644618 end:0x8064461C
 	.data       start:0x806B00A8 end:0x806B01F8
+
+Game/MapObj/TicoCoin.cpp:
+	.text       start:0x80322D20 end:0x803231E0
+	.ctors      start:0x80644628 end:0x8064462C
+	.data       start:0x806B0618 end:0x806B06F8
+	.sdata      start:0x807CFE40 end:0x807CFE48
+	.sbss       start:0x807D45E0 end:0x807D45F0
+	.sdata2     start:0x807DEC00 end:0x807DEC08
 
 Game/MapObj/TimeAttackClock.cpp:
 	.text       start:0x803231E0 end:0x80323680
@@ -4101,7 +4115,11 @@ Game/Screen/CoinCounter.cpp:
 	.sbss       start:0x807D5470 end:0x807D5480
 
 Game/Screen/CometMedalCounter.cpp:
-	.text       start:0x80464A80 end:0x804650B0
+	.text       start:0x80464A80 end:0x804651D0
+	.ctors      start:0x806448AC end:0x806448B0
+	.data       start:0x806F20B0 end:0x806F2188
+	.sbss       start:0x807D5480 end:0x807D5498
+	.sdata2     start:0x807E12E8 end:0x807E12F8
 
 Game/Screen/CopyFilterNegater.cpp:
 	.text       start:0x804651D0 end:0x80465290
@@ -4168,7 +4186,8 @@ Game/Screen/FullScreenBlur.cpp:
 
 Game/Screen/GalaxyCometScreenFilter.cpp:
 	.text       start:0x8046F470 end:0x8046F5D0
-	.data       start:0x806F37E8 end:0x806F3820
+	.rodata     start:0x8064C9E0 end:0x8064C9E8
+	.data       start:0x806F37B0 end:0x806F3820
 
 Game/Screen/GalaxyConfirmLayout.cpp:
 	.text       start:0x8046F5D0 end:0x8046FD90
@@ -4214,7 +4233,10 @@ Game/Screen/HomeButtonLayout.cpp:
 Game/Screen/IconAButton.cpp:
 	.text       start:0x804755D0 end:0x80475BC0
 	.ctors      start:0x806448FC end:0x80644900
-	.data       start:0x806F4458 end:0x806F44C0
+	.data       start:0x806F43F8 end:0x806F44C0
+	.sdata      start:0x807D0210 end:0x807D0218
+	.sbss       start:0x807D55E0 end:0x807D55F0
+	.sdata2     start:0x807E1448 end:0x807E1450
 
 Game/Screen/ImageEffectDirector.cpp:
 	.text       start:0x80475F10 end:0x80476760
@@ -4372,7 +4394,7 @@ Game/Screen/ReplaceTagProcessor.cpp:
 
 Game/Screen/SaveIcon.cpp:
 	.text       start:0x8048CF20 end:0x8048D070
-	.data       start:0x806F6C30 end:0x806F6C68
+	.data       start:0x806F6BF8 end:0x806F6C68
 
 Game/Screen/ScenarioSelectLayout.cpp:
 	.text       start:0x8048D240 end:0x8048F920
