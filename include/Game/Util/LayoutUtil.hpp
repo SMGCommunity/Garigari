@@ -24,6 +24,9 @@ namespace MR {
     LayoutHolder* createAndAddLayoutHolder(const char*);
     LayoutHolder* createAndAddLayoutHolderRawData(const char*);
     void setTextBoxGameMessageRecursive(LayoutActor*, const char*, const char*);
+    void setTextBoxMessageRecursive(LayoutActor*, const char*, const wchar_t*);
+    void setTextBoxNumberRecursive(LayoutActor*, const char*, s32);
+    void setTextBoxArgNumberRecursive(LayoutActor*, const char*, s32, s32);
     void showPane(LayoutActor*, const char*);
     void showPaneRecursive(LayoutActor*, const char*);
     void hidePane(LayoutActor*, const char*);
