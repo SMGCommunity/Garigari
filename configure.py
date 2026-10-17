@@ -1036,6 +1036,12 @@ config.libs = [
         ],
     },
     GameLib(
+        "AreaObj",
+        [
+            Object(NonMatching, "Game/AreaObj/AreaForm.cpp"),
+        ]
+    ),
+    GameLib(
         "LiveActor",
         [
             Object(NonMatching, "Game/LiveActor/ActorStateKeeper.cpp"),

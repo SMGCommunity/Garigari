@@ -6,6 +6,7 @@
 #include <revolution/mtx/mtx.h>
 
 namespace MR {
+    void makeMtxRotate(MtxPtr, f32, f32, f32);
     void makeMtxRotate(MtxPtr, const TVec3f&);
     void makeMtxTR(MtxPtr, f32, f32, f32, f32, f32, f32);
     void makeMtxTR(MtxPtr, const TVec3f&, const TVec3f&);
