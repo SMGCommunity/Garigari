@@ -1036,6 +1036,13 @@ config.libs = [
         ],
     },
     GameLib(
+        "AreaObj",
+        [
+            Object(NonMatching, "Game/AreaObj/AreaForm.cpp"),
+            Object(NonMatching, "Game/AreaObj/AreaObj.cpp"),
+        ]
+    ),
+    GameLib(
         "LiveActor",
         [
             Object(NonMatching, "Game/LiveActor/ActorStateKeeper.cpp"),
@@ -1071,6 +1078,7 @@ config.libs = [
         [
             Object(NonMatching, "Game/MapObj/ActorStateDemoAppearance.cpp"),
             Object(NonMatching, "Game/MapObj/TicoCoin.cpp"),
+            Object(NonMatching, "Game/MapObj/TimeAttackClock.cpp", extra_cflags=["-sym off"]),
         ],
     ),
     GameLib(
@@ -1109,6 +1117,7 @@ config.libs = [
             Object(NonMatching, "Game/Screen/LayoutGroupCtrl.cpp", extra_cflags=["-DNW4R_DEBUG"]),
             Object(NonMatching, "Game/Screen/LayoutManager.cpp", extra_cflags=["-DNW4R_DEBUG"]),
             Object(NonMatching, "Game/Screen/LayoutPaneCtrl.cpp", extra_cflags=["-DNW4R_DEBUG"]),
+            Object(NonMatching, "Game/Screen/PopUpAddTimeAttackTime.cpp"),
             Object(NonMatching, "Game/Screen/SaveIcon.cpp"),
         ],
     ),
