@@ -1071,6 +1071,7 @@ config.libs = [
         [
             Object(NonMatching, "Game/MapObj/ActorStateDemoAppearance.cpp"),
             Object(NonMatching, "Game/MapObj/TicoCoin.cpp"),
+            Object(NonMatching, "Game/MapObj/TimeAttackClock.cpp"),
         ],
     ),
     GameLib(
