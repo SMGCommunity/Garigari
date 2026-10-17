@@ -112,5 +112,5 @@ public:
 };
 
 namespace MR {
-    AreaForm* createAreaForm(AreaForm::Type formType);
+    AreaForm* createAreaForm(int formType);
 }
