@@ -308,8 +308,13 @@ Game/Effect/SyncBckEffectChecker.cpp:
 Game/Effect/SyncBckEffectInfo.cpp:
 	.text       start:0x8006F750 end:0x8006F7E0
 
+Game/AreaObj/AreaForm.cpp:
+	.text       start:0x8006F810 end:0x80070730
+	.data       start:0x80669F98 end:0x80669FE8
+	.sdata2     start:0x807D72D8 end:0x807D7300
+
 Game/AreaObj/AreaObj.cpp:
-	.text       start:0x80070650 end:0x80071060
+	.text       start:0x80070730 end:0x80071060
 	.data       start:0x80669FE8 end:0x8066A088
 
 Game/AreaObj/AreaObjContainer.cpp:
