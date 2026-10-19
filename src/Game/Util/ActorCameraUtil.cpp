@@ -146,7 +146,7 @@ namespace MR {
         char actorEventName[128];
         snprintf(actorEventName, sizeof(actorEventName), "%s%s", pActor->getName(), pEventName);
 
-        startEventCameraAnim(pInfo, actorEventName, targetArg, frame, speed);
+        startEventCameraAnim(pInfo, actorEventName, targetArg, frame, b, speed);
     }
 
     void startAnimCameraTargetSelf(const LiveActor* pActor, const ActorCameraInfo* pInfo, const char* pEventName, s32 frame, bool b, f32 speed) {
@@ -155,7 +155,7 @@ namespace MR {
         char actorEventName[128];
         snprintf(actorEventName, sizeof(actorEventName), "%s%s", pActor->getName(), pEventName);
 
-        startEventCameraAnim(pInfo, actorEventName, targetArg, frame, speed);
+        startEventCameraAnim(pInfo, actorEventName, targetArg, frame, b, speed);
     }
 
     void startAnimCameraTargetOther(const LiveActor* pActor, const ActorCameraInfo* pInfo, const char* pEventName, const CameraTargetArg& rTargetArg,
@@ -163,7 +163,7 @@ namespace MR {
         char actorEventName[128];
         snprintf(actorEventName, sizeof(actorEventName), "%s%s", pActor->getName(), pEventName);
 
-        startEventCameraAnim(pInfo, actorEventName, rTargetArg, frame, speed);
+        startEventCameraAnim(pInfo, actorEventName, rTargetArg, frame, b, speed);
     }
 
     void startActorCameraProgrammable(const LiveActor* pActor, s32 frame) {
