@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Game/LiveActor/ClippingDirector.hpp"
 #include <JSystem/JGeometry/TMatrix.hpp>
 #include <JSystem/JGeometry/TVec.hpp>
 #include <revolution.h>
@@ -52,7 +53,7 @@ namespace MR {
     bool isValidCalcViewAndEntry(const LiveActor* pActor);
     bool isValidDraw(const LiveActor* pActor);
     void calcAnimDirect(LiveActor* pActor);
-
+    
     void setClippingTypeSphere(LiveActor* pActor, f32 clippingRadius);
     void setClippingTypeSphere(LiveActor* pActor, f32 clippingRadius, const TVec3f* pClippingPos);
     void setClippingTypeSphereContainsModelBoundingBox(LiveActor* pActor, f32 radiusExtension);
@@ -272,6 +273,7 @@ namespace MR {
     CollisionParts* tryCreateCollisionWaterSurface(LiveActor* pActor, HitSensor* pBodySensor);
 
     f32 getCollisionBoundingSphereRange(const LiveActor* pActor);
+    void calcModelBoundingRadius(float* outRadius, const LiveActor* actor);
     bool isValidCollisionParts(LiveActor* pActor);
     void validateCollisionParts(LiveActor* pActor);
     void validateCollisionParts(CollisionParts* pCollisionParts);
