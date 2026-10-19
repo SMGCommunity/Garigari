@@ -26,7 +26,7 @@ namespace MR {
 }
 
 // NON_MATCHING
-// decomp.me: https://decomp.me/scratch/6d1My
+// decomp.me: https://decomp.me/scratch/Z9ynu
 LiveActor::LiveActor(const char* pName) : NameObj(pName) {
     f32 f2 = lbl_807DC484;
     f32 f1 = lbl_807DC480;
