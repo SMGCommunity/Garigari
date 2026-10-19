@@ -2391,14 +2391,16 @@ Game/Map/NamePosHolder.cpp:
 	.data       start:0x80697FEC end:0x80698018
 
 Game/Map/OceanSphere.cpp:
-	.text       start:0x8025CC10 end:0x8025F390
+	.text       start:0x8025C450 end:0x8025F390
 	.ctors      start:0x806442B8 end:0x806442BC
-	.data       start:0x806980D0 end:0x80698160
+	.data       start:0x80698018 end:0x80698160
 	.bss        start:0x807298B0 end:0x807298D8
 	.sbss       start:0x807D3610 end:0x807D3618
+	.sdata2     start:0x807DC8C0 end:0x807DC908
 
 Game/Map/OceanSpherePoint.cpp:
-	.text       start:0x8025F430 end:0x8025F540
+	.text       start:0x8025F390 end:0x8025F540
+	.sdata2     start:0x807DC908 end:0x807DC918
 
 Game/Map/PlanetMap.cpp:
 	.text       start:0x8025FA40 end:0x80260930

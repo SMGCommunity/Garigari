@@ -1063,6 +1063,8 @@ config.libs = [
         [
             Object(NonMatching, "Game/Map/CollisionCode.cpp"),
             Object(NonMatching, "Game/Map/KCollision.cpp"),
+            Object(NonMatching, "Game/Map/OceanSphere.cpp"),
+            Object(NonMatching, "Game/Map/OceanSpherePoint.cpp"),
             Object(NonMatching, "Game/Map/RailGraph.cpp"),
             Object(NonMatching, "Game/Map/RailGraphEdge.cpp"),
             Object(NonMatching, "Game/Map/RailGraphIter.cpp"),

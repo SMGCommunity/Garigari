@@ -14,6 +14,8 @@ class BenefitItemOneUp;
 class BenefitItemLifeUp;
 class StageSwitchCtrl;
 class Color8;
+class JUTTexture;
+
 typedef struct _GXColor GXColor;
 
 namespace MR {
@@ -249,4 +251,10 @@ namespace MR {
     bool findLinkNamePos(const NameObj* pLinkedObj, const char* pPosName, MtxPtr pMtx);
     bool tryFindLinkNamePos(const NameObj* pLinkedObj, const char* pPosName, TVec3f* pPosition, TVec3f* pRotation);
     bool tryFindLinkNamePos(const NameObj* pLinkedObj, const char* pPosName, MtxPtr pMtx);
+
+
+    // TODO: Position properly
+    // These functions got changed for SMG2
+    JUTTexture* loadTexFromArc(LiveActor*, const char*);
+    JUTTexture* loadTexFromArc(LiveActor*, const char*, const char*);
 };  // namespace MR
