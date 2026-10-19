@@ -22,6 +22,7 @@ public:
 namespace MR {
     LiveActorGroup* getAllLiveActorGroup();
     ClippingDirector* getClippingDirector();
+    void onSwitchDead(LiveActor *pActor); // Return type unknown!
 }
 
 // NON_MATCHING
@@ -73,7 +74,14 @@ void LiveActor::appear() {
 }
 
 // LiveActor::makeActorAppeared
-// LiveActor::kill
+
+void LiveActor::kill() {
+    makeActorDead();
+    if (mSwitchCtrl != nullptr && mSwitchCtrl->isValidSwitchDead() && mSwitchCtrl->_10) {
+        MR::onSwitchDead(this);
+    }
+}
+
 // LiveActor::makeActorDead
 // LiveActor::movement
 // LiveActor::calcAnim
