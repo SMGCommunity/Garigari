@@ -23,7 +23,7 @@ namespace MR {
     void declareEventCamera(const ActorCameraInfo*, const char*);
     void declareEventCameraProgrammable(const char*);
     void startEventCamera(const ActorCameraInfo*, const char*, const CameraTargetArg&, s32);
-    void startEventCameraAnim(const ActorCameraInfo*, const char*, const CameraTargetArg&, s32, bool, f32);
+    void startEventCameraAnim(const ActorCameraInfo*, const char*, const CameraTargetArg&, s32, f32, bool);
     void startGlobalEventCameraNoTarget(const char*, s32);
     void endEventCamera(const ActorCameraInfo*, const char*, bool, s32);
     void endEventCameraAtLanding(const ActorCameraInfo*, const char*, s32);
