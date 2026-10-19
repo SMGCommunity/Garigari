@@ -45,7 +45,7 @@ void TimeAttackClock::init(const JMapInfoIter& rIter) {
     mTimePopup->initWithoutIter();
 
     if (MR::isValidSwitchAppear(this)) {
-        MR::listenStageSwitchOnAppear(this, MR::Functor_Inline(this, &TimeAttackClock::appear));
+        MR::listenStageSwitchOnAppear(this, MR::Functor(this, &TimeAttackClock::appear));
         makeActorDead();
     } else {
         makeActorAppeared();
