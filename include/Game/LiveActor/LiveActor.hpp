@@ -11,9 +11,15 @@ public:
     void reset();
 };
 class ActorSoundHolder;
-class Binder;
+class Binder {
+public:
+    void clear();
+};
 class CollisionParts;
-class EffectKeeper;
+class EffectKeeper {
+public:
+    void clear();
+};
 class HitSensorKeeper;
 class ModelManager;
 class ResourceHolder;

@@ -29,10 +29,13 @@ namespace MR {
 
     // Used in LiveActor::kill()
     void onSwitchDead(LiveActor* pActor);
+
+    // Used in LiveActor::makeActorDead()
+    void removeFromClippingTarget(LiveActor *pActor);
+    void disconnectToDrawTemporarily(NameObj *pObj);
+    void disconnectToSceneTemporarily(NameObj *pObj);
 }  // namespace MR
 
-// NON_MATCHING
-// decomp.me: https://decomp.me/scratch/Z9ynu
 LiveActor::LiveActor(const char* pName)
     : NameObj(pName), mPosition(0.0f, 0.0f, 0.0f), mRotation(0.0f, 0.0f, 0.0f), mScale(1.0f, 1.0f, 1.0f), mVelocity(0.0f, 0.0f, 0.0f),
       mGravity(0.0f, -1.0f, 0.0f), mActionKeeper(), mModelManager(), mSpine(), mSensorKeeper(), mBinder(), mRailRider(), mEffectKeeper(),
@@ -84,7 +87,35 @@ void LiveActor::kill() {
     }
 }
 
-// LiveActor::makeActorDead
+void LiveActor::makeActorDead() {
+    mVelocity.z = 0.0f;
+    mVelocity.y = 0.0f;
+    mVelocity.x = 0.0f;
+    MR::clearHitSensors(this);
+
+    if (mSensorKeeper != nullptr) {
+        mSensorKeeper->invalidateBySystem();
+    }
+
+    if (mBinder != nullptr) {
+        mBinder->clear();
+    }
+
+    if (mEffectKeeper != nullptr) {
+        mEffectKeeper->clear();
+    }
+
+    if (mCollisionParts != nullptr) {
+        MR::invalidateCollisionParts(this);
+    }
+
+    mFlags.mIsDead = true;
+
+    MR::removeFromClippingTarget(this);
+    MR::disconnectToSceneTemporarily(this);
+    MR::disconnectToDrawTemporarily(this);
+}
+
 // LiveActor::movement
 // LiveActor::calcAnim
 // LiveActor::calcAnmMtx
