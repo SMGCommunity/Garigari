@@ -6,7 +6,10 @@
 #include <JSystem/JGeometry/TVec.hpp>
 
 class ActorActionKeeper;
-class ActorLightCtrl;
+class ActorLightCtrl {
+public:
+    void reset();
+};
 class ActorSoundHolder;
 class Binder;
 class CollisionParts;

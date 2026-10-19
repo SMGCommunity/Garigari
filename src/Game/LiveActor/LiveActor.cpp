@@ -6,13 +6,10 @@
 #include "Game/LiveActor/Spine.hpp"
 #include "Game/Map/StageSwitch.hpp"
 #include "Game/NameObj/NameObj.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
 
 #include <revolution/types.h>
-
-// sdata stuff??
-f32 lbl_807DC480;
-f32 lbl_807DC484;
-f32 lbl_807DC488;
 
 // classes and functions from God knows where
 class ClippingDirector {
@@ -20,48 +17,26 @@ public:
     void registerActor(LiveActor*);
 };
 namespace MR {
+    // Used in LiveActor::LiveActor(const char*)
     LiveActorGroup* getAllLiveActorGroup();
     ClippingDirector* getClippingDirector();
-    void onSwitchDead(LiveActor *pActor); // Return type unknown!
-}
+
+    // Used in LiveActor::makeActorAppeared()
+    void addToClippingTarget(LiveActor *pActor);
+    void connectToDrawTemporarily(NameObj *pObj);
+    void connectToSceneTemporarily(NameObj *pObj);
+    void resetPosition(LiveActor *pActor);
+
+    // Used in LiveActor::kill()
+    void onSwitchDead(LiveActor* pActor);
+}  // namespace MR
 
 // NON_MATCHING
 // decomp.me: https://decomp.me/scratch/Z9ynu
-LiveActor::LiveActor(const char* pName) : NameObj(pName) {
-    f32 f2 = lbl_807DC484;
-    f32 f1 = lbl_807DC480;
-    f32 f0 = lbl_807DC488;
-
-    mPosition.x = f2;
-    mPosition.y = f2;
-    mPosition.z = f2;
-    mRotation.x = f2;
-    mRotation.y = f2;
-    mRotation.z = f2;
-    mScale.x = f1;
-    mScale.y = f1;
-    mScale.z = f1;
-    mVelocity.x = f2;
-    mVelocity.y = f2;
-    mVelocity.z = f2;
-    mGravity.x = f2;
-    mGravity.y = f0;
-    mGravity.z = f2;
-    mActionKeeper = nullptr;
-    mModelManager = nullptr;
-    mSpine = nullptr;
-    mSensorKeeper = nullptr;
-    mBinder = nullptr;
-    mRailRider = nullptr;
-    mEffectKeeper = nullptr;
-    mSoundHolder = nullptr;
-    LiveActorFlag r3;
-    mShadowList = nullptr;
-    mCollisionParts = nullptr;
-    mSwitchCtrl = nullptr;
-    mPointerTarget = nullptr;
-    mLightCtrl = nullptr;
-
+LiveActor::LiveActor(const char* pName)
+    : NameObj(pName), mPosition(0.0f, 0.0f, 0.0f), mRotation(0.0f, 0.0f, 0.0f), mScale(1.0f, 1.0f, 1.0f), mVelocity(0.0f, 0.0f, 0.0f),
+      mGravity(0.0f, -1.0f, 0.0f), mActionKeeper(), mModelManager(), mSpine(), mSensorKeeper(), mBinder(), mRailRider(), mEffectKeeper(),
+      mSoundHolder(), mShadowList(), mCollisionParts(), mSwitchCtrl(), mPointerTarget(), mLightCtrl() {
     MR::getAllLiveActorGroup()->registerActor(this);
     MR::getClippingDirector()->registerActor(this);
 }
@@ -73,7 +48,34 @@ void LiveActor::appear() {
     makeActorAppeared();
 }
 
-// LiveActor::makeActorAppeared
+void LiveActor::makeActorAppeared() {
+    if (mSensorKeeper != nullptr) {
+        mSensorKeeper->validateBySystem();
+    }
+
+    mFlags.mIsDead = false;
+
+    if (MR::isClipped(this)) {
+        endClipped();
+    }
+
+    if (mCollisionParts != nullptr) {
+        MR::validateCollisionParts(this);
+    }
+
+    MR::resetPosition(this);
+
+    if (mLightCtrl != nullptr) {
+        mLightCtrl->reset();
+    }
+
+    MR::tryUpdateHitSensorsAll(this);
+    MR::addToClippingTarget(this);
+    MR::connectToSceneTemporarily(this);
+    if(!MR::isNoEntryDrawBuffer(this)) {
+        MR::connectToDrawTemporarily(this);
+    }
+}
 
 void LiveActor::kill() {
     makeActorDead();
