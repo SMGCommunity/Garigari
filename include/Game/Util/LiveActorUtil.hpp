@@ -55,7 +55,7 @@ namespace MR {
     bool isValidCalcViewAndEntry(const LiveActor* pActor);
     bool isValidDraw(const LiveActor* pActor);
     void calcAnimDirect(LiveActor* pActor);
-    
+
     void setClippingTypeSphere(LiveActor* pActor, f32 clippingRadius);
     void setClippingTypeSphere(LiveActor* pActor, f32 clippingRadius, const TVec3f* pClippingPos);
     void setClippingTypeSphereContainsModelBoundingBox(LiveActor* pActor, f32 radiusExtension);
