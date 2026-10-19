@@ -62,7 +62,7 @@ public:
     void initBinder(f32, f32, u32);
     void initRailRider(const JMapInfoIter&);
     void initEffectKeeper(s32, const char*, bool);
-    void initSound(s32, const char*, const TVec3f*, const TVec3f&);
+    void initSound(s32 a1, const char* a2, const TVec3f* a3 = nullptr, const TVec3f& a4 = TVec3f(0.0f));
     void initShadowControllerList(u32);
     void initActorCollisionParts(const char*, HitSensor*, ResourceHolder*, MtxPtr, bool, bool);
     void initStageSwitch(const JMapInfoIter&);
