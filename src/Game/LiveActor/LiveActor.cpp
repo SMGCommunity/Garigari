@@ -22,18 +22,22 @@ namespace MR {
     ClippingDirector* getClippingDirector();
 
     // Used in LiveActor::makeActorAppeared()
-    void addToClippingTarget(LiveActor *pActor);
-    void connectToDrawTemporarily(NameObj *pObj);
-    void connectToSceneTemporarily(NameObj *pObj);
-    void resetPosition(LiveActor *pActor);
+    void addToClippingTarget(LiveActor* pActor);
+    void connectToDrawTemporarily(NameObj* pObj);
+    void connectToSceneTemporarily(NameObj* pObj);
+    void resetPosition(LiveActor* pActor);
 
     // Used in LiveActor::kill()
     void onSwitchDead(LiveActor* pActor);
 
     // Used in LiveActor::makeActorDead()
-    void removeFromClippingTarget(LiveActor *pActor);
-    void disconnectToDrawTemporarily(NameObj *pObj);
-    void disconnectToSceneTemporarily(NameObj *pObj);
+    void removeFromClippingTarget(LiveActor* pActor);
+    void disconnectToDrawTemporarily(NameObj* pObj);
+    void disconnectToSceneTemporarily(NameObj* pObj);
+
+    // Used in LiveActor::movement()
+    void actorSoundMovement(LiveActor* pActor);
+    void requestCalcActorShadow(LiveActor* pActor);
 }  // namespace MR
 
 LiveActor::LiveActor(const char* pName)
@@ -75,7 +79,7 @@ void LiveActor::makeActorAppeared() {
     MR::tryUpdateHitSensorsAll(this);
     MR::addToClippingTarget(this);
     MR::connectToSceneTemporarily(this);
-    if(!MR::isNoEntryDrawBuffer(this)) {
+    if (!MR::isNoEntryDrawBuffer(this)) {
         MR::connectToDrawTemporarily(this);
     }
 }
@@ -116,7 +120,57 @@ void LiveActor::makeActorDead() {
     MR::disconnectToDrawTemporarily(this);
 }
 
-// LiveActor::movement
+void LiveActor::movement() {
+    if (mModelManager != nullptr && !mFlags.mIsNotReleasedAnimFrame) {
+        mModelManager->update();
+
+        if (mActionKeeper != nullptr) {
+            mActionKeeper->updateAnimKeeper();
+        }
+    }
+
+    if (MR::isCalcGravity(this)) {
+        MR::calcGravity(this);
+    }
+
+    if (mSensorKeeper != nullptr) {
+        mSensorKeeper->doObjCol();
+    }
+
+    if (mFlags.mIsDead)
+        return;
+
+    if (mSpine != nullptr) {
+        mSpine->update();
+    }
+
+    if (mFlags.mIsDead)
+        return;
+
+    control();
+
+    if (mFlags.mIsDead)
+        return;
+
+    updateBinder();
+
+    if (mActionKeeper != nullptr) {
+        mActionKeeper->update();
+    }
+
+    if (mEffectKeeper != nullptr) {
+        mEffectKeeper->update();
+    }
+
+    if (mLightCtrl != nullptr) {
+        MR::updateLightCtrl(this);
+    }
+
+    MR::tryUpdateHitSensorsAll(this);
+    MR::actorSoundMovement(this);
+    MR::requestCalcActorShadow(this);
+}
+
 // LiveActor::calcAnim
 // LiveActor::calcAnmMtx
 // J3DModel::setBaseScale

@@ -5,7 +5,11 @@
 #include "Game/NameObj/NameObj.hpp"
 #include <JSystem/JGeometry/TVec.hpp>
 
-class ActorActionKeeper;
+class ActorActionKeeper {
+public:
+    void update();
+    void updateAnimKeeper();
+};
 class ActorLightCtrl {
 public:
     void reset();
@@ -19,9 +23,13 @@ class CollisionParts;
 class EffectKeeper {
 public:
     void clear();
+    void update();
 };
 class HitSensorKeeper;
-class ModelManager;
+class ModelManager {
+public:
+    void update();
+};
 class ResourceHolder;
 class RailRider;
 class ShadowControllerList;
@@ -75,6 +83,7 @@ public:
     void initShadowControllerList(u32);
     void initActorCollisionParts(const char*, HitSensor*, ResourceHolder*, MtxPtr, bool, bool);
     void initStageSwitch(const JMapInfoIter&);
+    void updateBinder();
 
     TVec3f mPosition;                   // 0x14
     TVec3f mRotation;                   // 0x20
