@@ -20126,7 +20126,7 @@ updateMtx__13PlanetGravityFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q2
 updateIdentityMtx__13PlanetGravityFv = .text:0x80227480; // type:function size:0x48
 __ct__20PlanetGravityManagerFPCc = .text:0x802274D0; // type:function size:0x44
 init__20PlanetGravityManagerFRC12JMapInfoIter = .text:0x80227520; // type:function size:0x4
-calcTotalGravityVector__20PlanetGravityManagerCFPQ29JGeometry8TVec3<f>P11GravityInfoRCQ29JGeometry8TVec3<f>UlUlPC7NameObj = .text:0x80227530; // type:function size:0x1E0
+calcTotalGravityVector__20PlanetGravityManagerCFPQ29JGeometry8TVec3<f>P11GravityInfoRCQ29JGeometry8TVec3<f>UlPC7NameObj = .text:0x80227530; // type:function size:0x1E0
 registerGravity__20PlanetGravityManagerFP13PlanetGravity = .text:0x80227710; // type:function size:0x68
 __dt__20PlanetGravityManagerFv = .text:0x80227780; // type:function size:0x58
 __ct__12PointGravityFv = .text:0x802277E0; // type:function size:0x64

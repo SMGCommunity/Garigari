@@ -1991,18 +1991,22 @@ Game/Gravity/GravityCreator.cpp:
 
 Game/Gravity/GravityInfo.cpp:
 	.text       start:0x80226A50 end:0x80226AB0
+	.sdata2     start:0x807DC2C0 end:0x807DC2C8
 
 Game/Gravity/ParallelGravity.cpp:
 	.text       start:0x80226AB0 end:0x80226E10
 	.data       start:0x80694630 end:0x80694640
+	.sdata2     start:0x807DC2C8 end:0x807DC2E0
 
 Game/Gravity/PlanetGravity.cpp:
 	.text       start:0x80227180 end:0x802274D0
 	.data       start:0x80694640 end:0x80694650
+	.sdata2     start:0x807DC2E0 end:0x807DC2F0
 
 Game/Gravity/PlanetGravityManager.cpp:
 	.text       start:0x802274D0 end:0x802277E0
 	.data       start:0x80694650 end:0x80694680
+	.sdata2     start:0x807DC2F0 end:0x807DC300
 
 Game/Gravity/PointGravity.cpp:
 	.text       start:0x802277E0 end:0x80227850

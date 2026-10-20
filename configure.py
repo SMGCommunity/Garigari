@@ -1043,6 +1043,14 @@ config.libs = [
         ]
     ),
     GameLib(
+        "Gravity",
+        [
+            Object(NonMatching, "Game/Gravity/GravityInfo.cpp"),
+            Object(NonMatching, "Game/Gravity/PlanetGravity.cpp"),
+            Object(NonMatching, "Game/Gravity/PlanetGravityManager.cpp"),
+        ]
+    ),
+    GameLib(
         "LiveActor",
         [
             Object(NonMatching, "Game/LiveActor/ActorStateKeeper.cpp"),
