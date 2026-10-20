@@ -1,44 +1,27 @@
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/ActorActionKeeper.hpp"
+#include "Game/LiveActor/ActorLightCtrl.hpp"
+#include "Game/LiveActor/AllLiveActorGroup.hpp"
+#include "Game/LiveActor/Binder.hpp"
+#include "Game/LiveActor/ClippingDirector.hpp"
+#include "Game/LiveActor/EffectKeeper.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/HitSensorKeeper.hpp"
 #include "Game/LiveActor/LiveActorFlag.hpp"
 #include "Game/LiveActor/LiveActorGroup.hpp"
+#include "Game/LiveActor/ModelManager.hpp"
+#include "Game/LiveActor/ShadowController.hpp"
 #include "Game/LiveActor/Spine.hpp"
 #include "Game/Map/StageSwitch.hpp"
 #include "Game/NameObj/NameObj.hpp"
+#include "Game/NameObj/NameObjExecuteHolder.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 #include <revolution/types.h>
-
-// classes and functions from God knows where
-class ClippingDirector {
-public:
-    void registerActor(LiveActor*);
-};
-namespace MR {
-    // Used in LiveActor::LiveActor(const char*)
-    LiveActorGroup* getAllLiveActorGroup();
-    ClippingDirector* getClippingDirector();
-
-    // Used in LiveActor::makeActorAppeared()
-    void addToClippingTarget(LiveActor* pActor);
-    void connectToDrawTemporarily(NameObj* pObj);
-    void connectToSceneTemporarily(NameObj* pObj);
-    void resetPosition(LiveActor* pActor);
-
-    // Used in LiveActor::kill()
-    void onSwitchDead(LiveActor* pActor);
-
-    // Used in LiveActor::makeActorDead()
-    void removeFromClippingTarget(LiveActor* pActor);
-    void disconnectToDrawTemporarily(NameObj* pObj);
-    void disconnectToSceneTemporarily(NameObj* pObj);
-
-    // Used in LiveActor::movement()
-    void actorSoundMovement(LiveActor* pActor);
-    void requestCalcActorShadow(LiveActor* pActor);
-}  // namespace MR
 
 LiveActor::LiveActor(const char* pName)
     : NameObj(pName), mPosition(0.0f, 0.0f, 0.0f), mRotation(0.0f, 0.0f, 0.0f), mScale(1.0f, 1.0f, 1.0f), mVelocity(0.0f, 0.0f, 0.0f),

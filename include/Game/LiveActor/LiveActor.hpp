@@ -1,43 +1,28 @@
 #pragma once
 
-#include "Game/LiveActor/ActorSoundHolder.hpp"
 #include "Game/LiveActor/LiveActorFlag.hpp"
 #include "Game/NameObj/NameObj.hpp"
 #include <JSystem/JGeometry/TVec.hpp>
 
-class ActorActionKeeper {
-public:
-    void update();
-    void updateAnimKeeper();
-};
-class ActorLightCtrl {
-public:
-    void reset();
-};
-class ActorSoundHolder;
-class Binder {
-public:
-    void clear();
-};
-class CollisionParts;
-class EffectKeeper {
-public:
-    void clear();
-    void update();
-};
-class HitSensorKeeper;
-class ModelManager {
-public:
-    void update();
-};
-class ResourceHolder;
-class RailRider;
-class ShadowControllerList;
+class ActorActionKeeper;
+class ModelManager;
 class Spine;
+class HitSensorKeeper;
+class Binder;
+class RailRider;
+class EffectKeeper;
+class ActorSoundHolder;
+class LiveActorFlag;
+class ShadowControllerList;
+class CollisionParts;
 class StageSwitchCtrl;
+class StarPointerTarget;
+class ActorLightCtrl;
+class ShadowControllerList;
 class StarPointerTarget;
 class HitSensor;
 class Nerve;
+class ResourceHolder;
 
 class LiveActor : public NameObj {
 public:
