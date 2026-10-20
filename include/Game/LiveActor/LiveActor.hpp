@@ -52,6 +52,7 @@ public:
     virtual bool receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
     virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
+    void calcAnmMtx();
     void setNerve(const Nerve*);
     bool isNerve(const Nerve*) const;
     s32 getNerveStep() const;

@@ -1,9 +1,10 @@
 #pragma once
 
+#include <JSystem/J3DGraphAnimator/J3DModel.hpp>
+
 class ResourceHolder;
 class J3DModel;
 class J3DModelData;
-class J3DMdlFlag;
 class XanimePlayer;
 
 class ModelManager {

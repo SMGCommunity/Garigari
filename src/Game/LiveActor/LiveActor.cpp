@@ -19,8 +19,10 @@
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ModelUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
+#include <JSystem/J3DGraphAnimator/J3DModel.hpp>
 #include <revolution/types.h>
 
 LiveActor::LiveActor(const char* pName)
@@ -154,9 +156,36 @@ void LiveActor::movement() {
     MR::requestCalcActorShadow(this);
 }
 
-// LiveActor::calcAnim
-// LiveActor::calcAnmMtx
-// J3DModel::setBaseScale
+void LiveActor::calcAnim() {
+    if (!mFlags.mIsOnCalcAnim) {
+        calcAnmMtx();
+
+        if (mCollisionParts != nullptr) {
+            MR::setCollisionMtx(this);
+        }
+    }
+}
+
+// NON_MATCHING
+// decomp.me: https://decomp.me/scratch/YJeEP
+// J3DModel::setBaseScale() is being inlined, even though it shouldn't be. Probably has something to do with the function being overridden in this
+// file.
+void LiveActor::calcAnmMtx() {
+    if (mModelManager != nullptr) {
+        MR::getJ3DModel(this)->setBaseScale(mScale);
+
+        calcAndSetBaseMtx();
+
+        mModelManager->calcAnim();
+    }
+}
+
+// void J3DModel::setBaseScale(const Vec& rScale) override {
+//     mBaseScale.x = rScale.x;
+//     mBaseScale.y = rScale.y;
+//     mBaseScale.z = rScale.z;
+// }
+
 // LiveActor::calcViewAndEntry
 // LiveActor::receiveMessage
 // LiveActor::calcAndSetBaseMtx
