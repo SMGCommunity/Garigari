@@ -10,7 +10,7 @@ public:
     ClippingDirector();
 
     void joinToGroupClipping(LiveActor*, const JMapInfoIter&, int);
-    
+
     ClippingActorHolder* mActorHolder;
 };
 

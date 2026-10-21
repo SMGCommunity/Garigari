@@ -13,7 +13,7 @@ public:
 
     void invalidateClipping(LiveActor*);
     void validateClipping(LiveActor*);
-    void setTypeToSphere(LiveActor*, f32, const JGeometry::TVec3<float>*);
+    void setTypeToSphere(LiveActor*, f32, const JGeometry::TVec3< float >*);
     void setFarClipLevel(LiveActor*, s32);
     ClippingActorInfo* find(const LiveActor*) const;
 };
