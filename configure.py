@@ -1101,7 +1101,7 @@ config.libs = [
             Object(NonMatching, "Game/NameObj/NameObjGroup.cpp"),
             Object(NonMatching, "Game/NameObj/NameObjFactory.cpp"),
             Object(NonMatching, "Game/NameObj/NameObjFinder.cpp"),
-            Object(NonMatching, "Game/NameObj/NameObjHolder.cpp"),
+            Object(Matching, "Game/NameObj/NameObjHolder.cpp"),
             Object(NonMatching, "Game/NameObj/NameObjRegister.cpp"),
         ],
     ),
