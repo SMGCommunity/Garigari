@@ -344,7 +344,7 @@ namespace MR {
         return pSensor->mHostActor;
     }
 
-    bool isEqualSensor(const HitSensor* pSensor, LiveActor* pActor, const char* pName) {
+    bool isEqualSensor(const HitSensor* pSensor, const LiveActor* pActor, const char* pName) {
         return pSensor == pActor->getSensor(pName);
     }
 
