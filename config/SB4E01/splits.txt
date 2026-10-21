@@ -3710,8 +3710,8 @@ Game/GameAudio/AudTamakoroBgmCtrl.cpp:
 
 Game/Gravity/BarrelGravity.cpp:
 	.text       start:0x80222AD0 end:0x80222BB0
-	.sdata2		start:0x807DC240 end:0x807DC258
 	.data       start:0x806942E0 end:0x806942F0
+	.sdata2     start:0x807DC240 end:0x807DC258
 
 Game/Gravity/ConeGravity.cpp:
 	.text       start:0x80222E70 end:0x802234E0
@@ -5179,7 +5179,7 @@ Game/MapObj/SmallStone.cpp:
 Game/MapObj/SnowMan.cpp:
 	.text       start:0x80302C70 end:0x803035A0
 	.ctors      start:0x806445B8 end:0x806445BC
-	.data       start:0x806AD908 end:0x806AD9E8
+	.data       start:0x806AD890 end:0x806AD9E8
 	.sbss       start:0x807D43C8 end:0x807D43E8
 	.sdata2     start:0x807DE6A8 end:0x807DE6B8
 
