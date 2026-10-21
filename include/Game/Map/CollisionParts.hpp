@@ -1,6 +1,6 @@
 #pragma once
 
-#include <JSystem/JGeometry.hpp>
+#include <JSystem/JGeometry/TMatrix.hpp>
 #include <revolution.h>
 
 class CollisionZone;
@@ -57,7 +57,6 @@ public:
     /* 0xCE */ bool _CE;
     /* 0xCF */ bool _CF;
     /* 0xD0 */ bool _D0;
-    /* 0xD1 */ u8 _D1[3];
     /* 0xD4 */ s32 _D4;
     /* 0xD8 */ f32 _D8;
     /* 0xDC */ f32 _DC;

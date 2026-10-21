@@ -7,26 +7,24 @@ class AnimScaleParam {
 public:
     AnimScaleParam();
 
-    f32 _0;
-    f32 _4;
-    f32 _8;
-    f32 _C;
-    f32 _10;
-    f32 _14;
-    f32 _18;
-    f32 _1C;
-    f32 _20;
-    f32 _24;
-    f32 _28;
-    u32 _2C;
-    f32 _30;
+    /* 0x00 */ f32 _0;
+    /* 0x04 */ f32 _4;
+    /* 0x08 */ f32 _8;
+    /* 0x0C */ f32 _C;
+    /* 0x10 */ f32 _10;
+    /* 0x14 */ f32 _14;
+    /* 0x18 */ f32 _18;
+    /* 0x1C */ f32 _1C;
+    /* 0x20 */ f32 _20;
+    /* 0x24 */ f32 _24;
+    /* 0x28 */ f32 _28;
+    /* 0x2C */ u32 _2C;
+    /* 0x30 */ f32 _30;
 };
 
 class AnimScaleController : public NerveExecutor {
 public:
     AnimScaleController(AnimScaleParam*);
-
-    virtual ~AnimScaleController();
 
     void update();
     void updateScale(f32, f32);
@@ -50,7 +48,7 @@ public:
     void exeHitReaction();
     void exeCrush();
 
-    AnimScaleParam* _8;
-    TVec3f _C;
-    f32 _18;
+    /* 0x08 */ AnimScaleParam* _8;
+    /* 0x0C */ TVec3f _C;
+    /* 0x18 */ f32 _18;
 };

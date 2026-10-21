@@ -18,6 +18,7 @@ public:
 
     void damageHead();
     void damageBody();
+
     void exeMeltHead();
     void exeMeltBody();
     void exeDownHead();

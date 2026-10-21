@@ -123,8 +123,7 @@ void SnowMan::exeDownBody() {
 
 void SnowMan::calcAndSetBaseMtx() {
     LiveActor::calcAndSetBaseMtx();
-    TVec3f scale = mAnimScaleCtrl->_C * mScale;
-    MR::setBaseScale(this, scale);
+    MR::setBaseScale(this, mAnimScaleCtrl->_C * mScale);
 }
 
 void SnowMan::control() {
