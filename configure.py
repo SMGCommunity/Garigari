@@ -1043,6 +1043,14 @@ config.libs = [
         ]
     ),
     GameLib(
+        "Gravity",
+        [
+            Object(NonMatching, "Game/Gravity/GravityInfo.cpp"),
+            Object(NonMatching, "Game/Gravity/PlanetGravity.cpp"),
+            Object(NonMatching, "Game/Gravity/PlanetGravityManager.cpp"),
+        ]
+    ),
+    GameLib(
         "LiveActor",
         [
             Object(NonMatching, "Game/LiveActor/ActorStateKeeper.cpp"),
@@ -1093,7 +1101,7 @@ config.libs = [
             Object(NonMatching, "Game/NameObj/NameObjGroup.cpp"),
             Object(NonMatching, "Game/NameObj/NameObjFactory.cpp"),
             Object(NonMatching, "Game/NameObj/NameObjFinder.cpp"),
-            Object(NonMatching, "Game/NameObj/NameObjHolder.cpp"),
+            Object(Matching, "Game/NameObj/NameObjHolder.cpp"),
             Object(NonMatching, "Game/NameObj/NameObjRegister.cpp"),
         ],
     ),
@@ -1105,6 +1113,14 @@ config.libs = [
             Object(NonMatching, "Game/Ride/TubeSliderCrystal.cpp"),
             Object(NonMatching, "Game/Ride/TubeSliderDamageObjCreator.cpp"),
             Object(NonMatching, "Game/Ride/TubeSliderFunction.cpp"),
+        ],
+    ),
+    GameLib(
+        "Scene",
+        [
+            Object(Matching, "Game/Scene/Scene.cpp"),
+            Object(NonMatching, "Game/Scene/LogoScene.cpp"),
+            Object(NonMatching, "Game/Scene/IntermissionScene.cpp", extra_cflags=["-sym off"]),
         ],
     ),
     GameLib(
@@ -1158,6 +1174,7 @@ config.libs = [
             Object(NonMatching, "Game/Util/ActorSensorUtil.cpp"),
             Object(NonMatching, "Game/Util/ActorShadowUtil.cpp"),
             Object(NonMatching, "Game/Util/BothDirList.cpp"),
+            Object(NonMatching, "Game/Util/GravityUtil.cpp"),
             Object(NonMatching, "Game/Util/HashUtil.cpp"),
             Object(NonMatching, "Game/Util/JMapInfo.cpp"),
             Object(NonMatching, "Game/Util/JMapUtil.cpp"),
