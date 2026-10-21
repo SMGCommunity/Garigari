@@ -1076,6 +1076,7 @@ config.libs = [
         "MapObj",
         [
             Object(NonMatching, "Game/MapObj/ActorStateDemoAppearance.cpp"),
+            Object(NonMatching, "Game/MapObj/SnowMan.cpp"),
             Object(NonMatching, "Game/MapObj/TicoCoin.cpp"),
             Object(NonMatching, "Game/MapObj/TimeAttackClock.cpp", extra_cflags=["-sym off"]),
         ],

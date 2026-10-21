@@ -94,7 +94,7 @@ namespace MR {
     s32 getSensorNum(const LiveActor* pActor);
     HitSensor* getSensor(LiveActor* pActor, int index);
     LiveActor* getSensorHost(const HitSensor* pSensor);
-    bool isEqualSensor(const HitSensor* pOtherSensor, const LiveActor* pActor, const char* pSensorName);
+    bool isEqualSensor(const HitSensor* pOtherSensor, LiveActor* pActor, const char* pSensorName);
 
     bool isSensorPlayer(const HitSensor* pSensor);
     bool isSensorYoshi(const HitSensor* pSensor);
