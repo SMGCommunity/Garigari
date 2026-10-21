@@ -6,6 +6,14 @@
 class LiveActor;
 class HitSensor;
 
+enum {
+    ACTMES_PLAYER_ATTACK_START = 0x0,
+    ACTMES_PLAYER_ATTACK_END = 0x26,
+    ACTMES_PUSH = 0x33,
+    ACTMES_ENEMY_ATTACK_START = 0x59,
+    ACTMES_ENEMY_ATTACK_END = 0x75,
+};
+
 namespace MR {
     void setSensorFollowPos(LiveActor* pActor, const char* pSensorName, const TVec3f* rFollowPos);
     void setSensorFollowMtx(LiveActor* pActor, const char* pSensorName, MtxPtr pFollowMtx);

@@ -18,9 +18,13 @@
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ModelUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
+#include "JSystem/JGeometry/TMatrix.hpp"
+#include "revolution/mtx.h"
 
 #include <JSystem/J3DGraphAnimator/J3DModel.hpp>
 #include <revolution/types.h>
@@ -180,16 +184,47 @@ void LiveActor::calcAnmMtx() {
     }
 }
 
-// void J3DModel::setBaseScale(const Vec& rScale) override {
-//     mBaseScale.x = rScale.x;
-//     mBaseScale.y = rScale.y;
-//     mBaseScale.z = rScale.z;
-// }
+void LiveActor::calcViewAndEntry() {
+    if (!mFlags.mIsNoCalcView && mModelManager != nullptr && !mFlags.mIsNoCalcView) {
+        mModelManager->calcView();
+    }
+}
 
-// LiveActor::calcViewAndEntry
-// LiveActor::receiveMessage
-// LiveActor::calcAndSetBaseMtx
-// LiveActor::getTakingMtx
+// NON_MATCHING
+// decomp.me: https://decomp.me/scratch/rl7mO
+// compiler optimizing for isMsgEnemyAttack comparison
+bool LiveActor::receiveMessage(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
+    if (msg == ACTMES_PUSH) {
+        return receiveMsgPush(pSender, pReceiver);
+    }
+
+    bool isMsgPlayerAttack = msg != ACTMES_PLAYER_ATTACK_START && msg < ACTMES_PLAYER_ATTACK_END;
+
+    if (isMsgPlayerAttack) {
+        return receiveMsgPlayerAttack(msg, pSender, pReceiver);
+    }
+
+    bool isMsgEnemyAttack = msg > ACTMES_ENEMY_ATTACK_START && msg < ACTMES_ENEMY_ATTACK_END;
+
+    if (isMsgEnemyAttack) {
+        return receiveMsgEnemyAttack(msg, pSender, pReceiver);
+    }
+
+    return receiveOtherMsg(msg, pSender, pReceiver);
+}
+
+// NON_MATCHING
+// decomp.me: https://decomp.me/scratch/dXLyo
+// This function won't even compile because for some reason, clang thinks HitSensor doesn't have an mHost field.
+void LiveActor::calcAndSetBaseMtx() {
+    if (MR::getTaken(this) != nullptr) {
+        // MR::getTaken(this)->mHost->getBaseMtx();
+    }
+}
+
+MtxPtr LiveActor::getTakingMtx() const {
+    return getBaseMtx();
+}
 
 void LiveActor::setNerve(const Nerve* pNerve) {
     mSpine->setNerve(pNerve);
@@ -211,10 +246,64 @@ HitSensor* LiveActor::getSensor(const char* pSensorName) const {
     return nullptr;
 }
 
-// LiveActor::getBaseMtx
-// LiveActor::startClipped
-// LiveActor::endClipped
-// LiveActor::initModelManagerWithAnm
+MtxPtr LiveActor::getBaseMtx() const {
+    if (MR::getJ3DModel(this) != nullptr) {
+        return MR::getJ3DModel(this)->mBaseTransformMtx;
+    }
+
+    return nullptr;
+}
+
+void LiveActor::startClipped() {
+    mFlags.mIsClipped = true;
+
+    if (getSensorKeeper() != nullptr) {
+        mSensorKeeper->invalidateBySystem();
+    }
+
+    if (mEffectKeeper != nullptr) {
+        mEffectKeeper->stopEmitterOnClipped();
+    }
+
+    MR::disconnectToSceneTemporarily(this);
+
+    if (!MR::isNoEntryDrawBuffer(this)) {
+        MR::disconnectToDrawTemporarily(this);
+    }
+}
+
+void LiveActor::endClipped() {
+    mFlags.mIsClipped = false;
+
+    if (getSensorKeeper() != nullptr) {
+        mSensorKeeper->validateBySystem();
+        MR::updateHitSensorsAll(this);
+    }
+
+    if (mEffectKeeper != nullptr) {
+        mEffectKeeper->playEmitterOffClipped();
+    }
+
+    MR::connectToSceneTemporarily(this);
+    if (!MR::isNoEntryDrawBuffer(this)) {
+        MR::connectToDrawTemporarily(this);
+    }
+}
+
+void LiveActor::initModelManagerWithAnm(const char* pStr1, const char* pStr2, const char* pStr3, bool param4) {
+    u32* array = new u32[11];
+
+    if (array != nullptr) {
+        const TProj3f& rProjMtx = MR::getCameraProjectionMtx();
+        /*
+        Call the ModelManager constructor with r3 = array and r4 = rProjMtx
+        Problem is, the ModelManager constructor is unnamed. Currently, objdiff calls it __ct__12ModelManagerFPA4_C.
+        I assume this translates to C++ as, array[0] = *(ModelManager(rProjMtx))
+        Or maybe, array isn't actually an array at all: it's a pointer to a new ModelManager!
+        We still need to configure the ModelManager constructor
+        */
+    }
+}
 
 void LiveActor::initNerve(const Nerve* pNerve, s32 numStates) {
     mSpine = new Spine(this, pNerve, numStates);

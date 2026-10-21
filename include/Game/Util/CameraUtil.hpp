@@ -37,4 +37,6 @@ namespace MR {
 
     void declareEventCameraAnim(const ActorCameraInfo*, const char*, void*);
     bool endMultiActorCameraAtLanding(const LiveActor* pActor, const ActorCameraInfo* pInfo, const char*, s32);
+
+    const TProj3f& getCameraProjectionMtx();
 };  // namespace MR

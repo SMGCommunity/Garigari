@@ -30,18 +30,18 @@ public:
     /// @param pName A pointer to the null-terminated name of the actor.
     LiveActor(const char* pName);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void movement();
-    virtual void calcAnim();
-    virtual void calcViewAndEntry();
-    virtual void appear();
-    virtual void makeActorAppeared();
-    virtual void kill();
-    virtual void makeActorDead();
-    virtual bool receiveMessage(u32, HitSensor*, HitSensor*);
-    virtual MtxPtr getBaseMtx() const;
-    virtual MtxPtr getTakingMtx() const;
-    virtual void startClipped();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x14 */ virtual void movement();
+    /* 0x1C */ virtual void calcAnim();
+    /* 0x20 */ virtual void calcViewAndEntry();
+    /* 0x2C */ virtual void appear();
+    /* 0x30 */ virtual void makeActorAppeared();
+    /* 0x34 */ virtual void kill();
+    /* 0x38 */ virtual void makeActorDead();
+    /* 0x3C */ virtual bool receiveMessage(u32, HitSensor*, HitSensor*);
+    /* 0x40 */ virtual MtxPtr getBaseMtx() const;
+    /* 0x44 */ virtual MtxPtr getTakingMtx() const;
+    /* 0x48 */ virtual void startClipped();
     virtual void endClipped();
     virtual void control();
     virtual void calcAndSetBaseMtx();
@@ -51,6 +51,10 @@ public:
     virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
     virtual bool receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
     virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+
+    HitSensorKeeper* getSensorKeeper() const {
+        return mSensorKeeper;
+    }
 
     void calcAnmMtx();
     void setNerve(const Nerve*);
