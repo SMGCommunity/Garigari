@@ -97,6 +97,9 @@ Game/Util/GamePadUtil.cpp:
 
 Game/Util/GravityUtil.cpp:
 	.text       start:0x8002B180 end:0x8002B7C0
+	.rodata     start:0x806451E0 end:0x806451E8
+	.data       start:0x8065DDF8 end:0x8065DE68
+	.sdata2     start:0x807D6EE0 end:0x807D6EE8
 
 Game/Util/HashUtil.cpp:
 	.text       start:0x8002B7C0 end:0x8002BD90

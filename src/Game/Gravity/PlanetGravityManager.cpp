@@ -11,8 +11,7 @@ void PlanetGravityManager::init(const JMapInfoIter& rIter) {
 
 // FIXME: this function has been kicking my ass
 // something strange going on with the loop thats different from Petari
-bool PlanetGravityManager::calcTotalGravityVector(TVec3f* pTotalGravity, GravityInfo* pInfo, const TVec3f& rPos, u32 gravityType,
-                                                  const NameObj* pRequester) const {
+bool PlanetGravityManager::calcTotalGravityVector(TVec3f* pTotalGravity, GravityInfo* pInfo, const TVec3f& rPos, u32 gravityType, u32 host, const NameObj* pObj) const {
     TVec3f vec;
     vec.zero();
 
@@ -36,7 +35,7 @@ bool PlanetGravityManager::calcTotalGravityVector(TVec3f* pTotalGravity, Gravity
             continue;
         }
 
-        if (pRequester == pGravity->mHost) {
+        if (host == (u32)pGravity->mHost) {
             continue;
         }
 
