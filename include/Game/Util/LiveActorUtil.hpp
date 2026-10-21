@@ -101,8 +101,7 @@ namespace MR {
     void initMirrorReflection(LiveActor* pActor);
     void setMirrorReflectionInfoFromMtxYUp(const TPos3f& rMtx);
     void setMirrorReflectionInfoFromModel(LiveActor* pActor);
-
-    // changeModelDataTexAll
+    void changeModelDataTexAll(LiveActor*, const char*, const ResTIMG&);
 
     void initJointTransform(const LiveActor* pActor);
     // getJointTransform
