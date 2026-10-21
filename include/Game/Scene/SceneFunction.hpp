@@ -123,6 +123,7 @@ namespace MR {
         /* 0x26 */ DrawBufferType_0x26,
         /* 0x27 */ DrawBufferType_MirrorMapObj,
         /* 0x28 */ DrawBufferType_0x28,
+        /* 0x29 */ DrawBufferType_0x29,
     };
 
     // TODO: Tweaked from Petari, might not be correct

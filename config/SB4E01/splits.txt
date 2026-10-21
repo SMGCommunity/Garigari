@@ -97,6 +97,9 @@ Game/Util/GamePadUtil.cpp:
 
 Game/Util/GravityUtil.cpp:
 	.text       start:0x8002B180 end:0x8002B7C0
+	.rodata     start:0x806451E0 end:0x806451E8
+	.data       start:0x8065DDF8 end:0x8065DE68
+	.sdata2     start:0x807D6EE0 end:0x807D6EE8
 
 Game/Util/HashUtil.cpp:
 	.text       start:0x8002B7C0 end:0x8002BD90
@@ -1991,18 +1994,22 @@ Game/Gravity/GravityCreator.cpp:
 
 Game/Gravity/GravityInfo.cpp:
 	.text       start:0x80226A50 end:0x80226AB0
+	.sdata2     start:0x807DC2C0 end:0x807DC2C8
 
 Game/Gravity/ParallelGravity.cpp:
 	.text       start:0x80226AB0 end:0x80226E10
 	.data       start:0x80694630 end:0x80694640
+	.sdata2     start:0x807DC2C8 end:0x807DC2E0
 
 Game/Gravity/PlanetGravity.cpp:
 	.text       start:0x80227180 end:0x802274D0
 	.data       start:0x80694640 end:0x80694650
+	.sdata2     start:0x807DC2E0 end:0x807DC2F0
 
 Game/Gravity/PlanetGravityManager.cpp:
 	.text       start:0x802274D0 end:0x802277E0
 	.data       start:0x80694650 end:0x80694680
+	.sdata2     start:0x807DC2F0 end:0x807DC300
 
 Game/Gravity/PointGravity.cpp:
 	.text       start:0x802277E0 end:0x80227850
@@ -3364,6 +3371,7 @@ Game/NameObj/NameObjExecuteHolder.cpp:
 
 Game/NameObj/NameObjFactory.cpp:
 	.text       start:0x8033B190 end:0x803431F0
+	.rodata     start:0x80649970 end:0x8064B8D0
 	.data       start:0x806B34A8 end:0x806B79A0
 
 Game/NameObj/NameObjFinder.cpp:
@@ -4008,12 +4016,15 @@ Game/Scene/GameSceneScenarioOpeningCameraState.cpp:
 
 Game/Scene/IntermissionScene.cpp:
 	.text       start:0x804534B0 end:0x80453750
-	.data       start:0x806EFBC8 end:0x806EFBE8
+	.rodata     start:0x8064C078 end:0x8064C080
+	.data       start:0x806EFBB0 end:0x806EFBE8
+	.sdata2     start:0x807E1238 end:0x807E1240
 
 Game/Scene/LogoScene.cpp:
 	.text       start:0x80453750 end:0x80453DC0
 	.ctors      start:0x8064487C end:0x80644880
-	.data       start:0x806EFC30 end:0x806EFC50
+	.data       start:0x806EFBE8 end:0x806EFCB0
+	.sbss       start:0x807D5340 end:0x807D5358
 
 Game/Scene/MultiSceneActor.cpp:
 	.text       start:0x80454D80 end:0x80455160
