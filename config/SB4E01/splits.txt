@@ -4015,7 +4015,9 @@ Game/Scene/GameSceneScenarioOpeningCameraState.cpp:
 
 Game/Scene/IntermissionScene.cpp:
 	.text       start:0x804534B0 end:0x80453750
-	.data       start:0x806EFBC8 end:0x806EFBE8
+	.rodata     start:0x8064C078 end:0x8064C080
+	.data       start:0x806EFBB0 end:0x806EFBE8
+	.sdata2     start:0x807E1238 end:0x807E1240
 
 Game/Scene/LogoScene.cpp:
 	.text       start:0x80453750 end:0x80453DC0
