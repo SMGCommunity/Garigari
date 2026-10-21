@@ -4020,7 +4020,8 @@ Game/Scene/IntermissionScene.cpp:
 Game/Scene/LogoScene.cpp:
 	.text       start:0x80453750 end:0x80453DC0
 	.ctors      start:0x8064487C end:0x80644880
-	.data       start:0x806EFC30 end:0x806EFC50
+	.data       start:0x806EFBE8 end:0x806EFCB0
+	.sbss       start:0x807D5340 end:0x807D5358
 
 Game/Scene/MultiSceneActor.cpp:
 	.text       start:0x80454D80 end:0x80455160

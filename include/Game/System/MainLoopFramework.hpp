@@ -56,6 +56,22 @@ public:
     static u32 frameToTick(f32);
     static void setForOSResetSystem();
 
+    static void setUseVFilterOff() NO_INLINE {
+        getManager()->mUseVFilter = false;
+    }
+
+    static void setUseAlphaOff() NO_INLINE {
+        getManager()->mUseAlpha = false;
+    }
+
+    static void setUseVFilterOn() NO_INLINE {
+        getManager()->mUseVFilter = true;
+    }
+    
+    static void setUseAlphaOn() NO_INLINE {
+        getManager()->mUseAlpha = true;
+    }
+
     /* 0x00 */ Color8 mClearColor;
     /* 0x04 */ u32 mClearZ;
     /* 0x08 */ u16 mDispCopyGamma;

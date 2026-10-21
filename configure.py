@@ -1119,6 +1119,7 @@ config.libs = [
         "Scene",
         [
             Object(Matching, "Game/Scene/Scene.cpp"),
+            Object(NonMatching, "Game/Scene/LogoScene.cpp"),
         ],
     ),
     GameLib(

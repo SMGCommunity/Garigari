@@ -2,6 +2,8 @@
 
 #define SceneObj_StageSwitchContainer 0xA
 #define SceneObj_SwitchWatcherHolder 0xB
+#define SceneObj_18 0x18
+#define SceneObj_19 0x19
 #define SceneObj_PlanetGravityManager 0x3B
 
 class NameObj;
