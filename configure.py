@@ -1187,6 +1187,7 @@ config.libs = [
             Object(NonMatching, "Game/Util/MathUtil.cpp"),
             Object(NonMatching, "Game/Util/MtxUtil.cpp"),
             Object(NonMatching, "Game/Util/SchedulerUtil.cpp"),
+            Object(NonMatching, "Game/Util/SpringValue.cpp"),
             Object(NonMatching, "Game/Util/SystemUtil.cpp"),
             Object(NonMatching, "Game/Util/TriggerChecker.cpp"),
         ],
