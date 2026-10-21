@@ -11,8 +11,8 @@ void ConeGravity::setLocalMatrix(const TPos3f& rMtx) {
     updateIdentityMtx();
 }
 
-void ConeGravity::setEnableBottom(bool isEnable) {
-    mEnableBottom = isEnable;
+void ConeGravity::setEnableBottom(bool isBottom) {
+    mEnableBottom = isBottom;
 }
 
 void ConeGravity::setTopCutRate(f32 rate) {

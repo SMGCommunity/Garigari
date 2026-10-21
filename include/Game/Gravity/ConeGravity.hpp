@@ -10,8 +10,8 @@ public:
     virtual bool calcOwnGravityVector(TVec3f* pDest, f32* pScalar, const TVec3f& rPosition) const;
 
     void setLocalMatrix(const TPos3f& rMtx);
-    void setEnableBottom(bool val);
-    void setTopCutRate(f32 val);
+    void setEnableBottom(bool isBottom);
+    void setTopCutRate(f32 rate);
 
     // The x column represents the radius vector. The y column represents the central axis vector,
     // point from the center of the base of the cone to the apex. The translation column represents

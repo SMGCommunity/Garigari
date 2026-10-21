@@ -13,10 +13,10 @@ public:
     void setLocalPosition(const TVec3f& rLocalPos);
     void setLocalDirection(const TVec3f& rLocalDir);
     void setSideDirection(const TVec3f& rSideDir);
-    void setRadius(f32 val);
-    void setValidDegee(f32 val);
-    void setBothSide(bool val);
-    void setEnableEdgeGravity(bool val);
+    void setRadius(f32 radius);
+    void setValidDegee(f32 validDegree);
+    void setBothSide(bool isBothSide);
+    void setEnableEdgeGravity(bool isEdgeGravity);
 
     // Position
     /* 0x28 */ TVec3f mLocalPosition;
