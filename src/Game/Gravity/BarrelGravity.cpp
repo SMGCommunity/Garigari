@@ -5,12 +5,12 @@ BarrelGravity::BarrelGravity()
       _5C(1000.0f), _60(500.0f), mThreshold(1.0f) {
 }
 
-void BarrelGravity::setLocalPosition(const TVec3f& rPos) {
-    mLocalPos.set(rPos);
+void BarrelGravity::setLocalPosition(const TVec3f& rPosition) {
+    mLocalPos.set(rPosition);
 }
 
-void BarrelGravity::setUpDirection(const TVec3f& rDir) {
-    mUpDir.set(rDir);
+void BarrelGravity::setUpDirection(const TVec3f& rDirection) {
+    mUpDir.set(rDirection);
 }
 
 void BarrelGravity::setRadius(f32 radius) {

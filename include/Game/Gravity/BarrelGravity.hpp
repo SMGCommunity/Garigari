@@ -5,14 +5,14 @@
 class BarrelGravity : public PlanetGravity {
     BarrelGravity();
 
-    virtual void updateMtx(const TPos3f&);
-    virtual bool calcOwnGravityVector(TVec3f*, f32*, const TVec3f&) const;
+    virtual void updateMtx(const TPos3f& rMtx);
+    virtual bool calcOwnGravityVector(TVec3f* pDest, f32* pScalar, const TVec3f& rPosition) const;
 
-    void setLocalPosition(const TVec3f&);
-    void setUpDirection(const TVec3f&);
-    void setRadius(f32);
-    void setUnusedArg0(f32);
-    void setInwardsThreshold(f32);
+    void setLocalPosition(const TVec3f& rPosition);
+    void setUpDirection(const TVec3f& rDirection);
+    void setRadius(f32 radius);
+    void setUnusedArg0(f32 arg0);
+    void setInwardsThreshold(f32 threshold);
 
     /* 0x28 */ TVec3f mLocalPos;
     /* 0x34 */ TVec3f _34;
