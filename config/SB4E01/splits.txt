@@ -3371,6 +3371,7 @@ Game/NameObj/NameObjExecuteHolder.cpp:
 
 Game/NameObj/NameObjFactory.cpp:
 	.text       start:0x8033B190 end:0x803431F0
+	.rodata     start:0x80649970 end:0x8064B8D0
 	.data       start:0x806B34A8 end:0x806B79A0
 
 Game/NameObj/NameObjFinder.cpp:
