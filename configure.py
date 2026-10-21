@@ -1047,6 +1047,7 @@ config.libs = [
         [
             Object(NonMatching, "Game/Gravity/BarrelGravity.cpp"),
             Object(NonMatching, "Game/Gravity/ConeGravity.cpp"),
+            Object(NonMatching, "Game/Gravity/CubeGravity.cpp"),
             Object(NonMatching, "Game/Gravity/GravityInfo.cpp"),
             Object(NonMatching, "Game/Gravity/PlanetGravity.cpp"),
             Object(NonMatching, "Game/Gravity/PlanetGravityManager.cpp"),
