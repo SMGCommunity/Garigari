@@ -2,6 +2,7 @@
 
 #define SceneObj_StageSwitchContainer 0xA
 #define SceneObj_SwitchWatcherHolder 0xB
+#define SceneObj_PlanetGravityManager 0x3B
 
 class NameObj;
 
@@ -21,7 +22,7 @@ namespace MR {
     bool isExistSceneObj(int);
 
     template < class T >
-    inline T getSceneObj(int objID) {
-        return reinterpret_cast< T >(MR::getSceneObjHolder()->getObj(objID));
+    inline T* getSceneObj(int objID) {
+        return reinterpret_cast< T* >(MR::getSceneObjHolder()->getObj(objID));
     }
 };  // namespace MR
