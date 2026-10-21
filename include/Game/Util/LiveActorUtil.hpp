@@ -47,6 +47,8 @@ namespace MR {
     void copyTransRotate(const LiveActor* pToActor, LiveActor* pFromActor);
     void rotateAroundActor(TVec3f& rRotated, const TVec3f& rRotateOffset, const LiveActor* pActor);
 
+    void initDefaultPos(LiveActor*, const JMapInfoIter&);
+
     bool isValidMovement(const LiveActor* pActor);
     bool isValidCalcAnim(const LiveActor* pActor);
     bool isValidCalcViewAndEntry(const LiveActor* pActor);

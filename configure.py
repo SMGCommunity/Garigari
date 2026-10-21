@@ -1039,6 +1039,17 @@ config.libs = [
         "AreaObj",
         [
             Object(NonMatching, "Game/AreaObj/AreaForm.cpp"),
+            Object(NonMatching, "Game/AreaObj/AreaObj.cpp"),
+        ]
+    ),
+    GameLib(
+        "Gravity",
+        [
+            Object(NonMatching, "Game/Gravity/BarrelGravity.cpp"),
+            Object(NonMatching, "Game/Gravity/ConeGravity.cpp"),
+            Object(NonMatching, "Game/Gravity/GravityInfo.cpp"),
+            Object(NonMatching, "Game/Gravity/PlanetGravity.cpp"),
+            Object(NonMatching, "Game/Gravity/PlanetGravityManager.cpp"),
         ]
     ),
     GameLib(
@@ -1062,6 +1073,8 @@ config.libs = [
         [
             Object(NonMatching, "Game/Map/CollisionCode.cpp"),
             Object(NonMatching, "Game/Map/KCollision.cpp"),
+            Object(NonMatching, "Game/Map/OceanSphere.cpp"),
+            Object(NonMatching, "Game/Map/OceanSpherePoint.cpp"),
             Object(NonMatching, "Game/Map/RailGraph.cpp"),
             Object(NonMatching, "Game/Map/RailGraphEdge.cpp"),
             Object(NonMatching, "Game/Map/RailGraphIter.cpp"),
@@ -1091,7 +1104,7 @@ config.libs = [
             Object(NonMatching, "Game/NameObj/NameObjGroup.cpp"),
             Object(NonMatching, "Game/NameObj/NameObjFactory.cpp"),
             Object(NonMatching, "Game/NameObj/NameObjFinder.cpp"),
-            Object(NonMatching, "Game/NameObj/NameObjHolder.cpp"),
+            Object(Matching, "Game/NameObj/NameObjHolder.cpp"),
             Object(NonMatching, "Game/NameObj/NameObjRegister.cpp"),
         ],
     ),
@@ -1103,6 +1116,14 @@ config.libs = [
             Object(NonMatching, "Game/Ride/TubeSliderCrystal.cpp"),
             Object(NonMatching, "Game/Ride/TubeSliderDamageObjCreator.cpp"),
             Object(NonMatching, "Game/Ride/TubeSliderFunction.cpp"),
+        ],
+    ),
+    GameLib(
+        "Scene",
+        [
+            Object(Matching, "Game/Scene/Scene.cpp"),
+            Object(NonMatching, "Game/Scene/LogoScene.cpp"),
+            Object(NonMatching, "Game/Scene/IntermissionScene.cpp", extra_cflags=["-sym off"]),
         ],
     ),
     GameLib(
@@ -1156,6 +1177,7 @@ config.libs = [
             Object(NonMatching, "Game/Util/ActorSensorUtil.cpp"),
             Object(NonMatching, "Game/Util/ActorShadowUtil.cpp"),
             Object(NonMatching, "Game/Util/BothDirList.cpp"),
+            Object(NonMatching, "Game/Util/GravityUtil.cpp"),
             Object(NonMatching, "Game/Util/HashUtil.cpp"),
             Object(NonMatching, "Game/Util/JMapInfo.cpp"),
             Object(NonMatching, "Game/Util/JMapUtil.cpp"),
