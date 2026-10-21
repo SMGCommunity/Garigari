@@ -1,10 +1,11 @@
 #include "Game/Util/LiveActorUtil.hpp"
+#include "Game/LiveActor/Binder.hpp"
 #include "Game/LiveActor/ClippingActorHolder.hpp"
 #include "Game/LiveActor/ClippingDirector.hpp"
 #include "Game/LiveActor/DisplayListMaker.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/LiveActor/MirrorCamera.hpp"
 #include "Game/LiveActor/LodCtrl.hpp"
+#include "Game/LiveActor/MirrorCamera.hpp"
 #include "Game/LiveActor/ModelManager.hpp"
 #include "Game/System/ResourceInfo.hpp"
 #include "Game/Util/ActorAnimUtil.hpp"
@@ -14,6 +15,7 @@
 #include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
+#include "Game/Util/MapUtil.hpp"
 #include "JSystem/J3DGraphAnimator/J3DModel.hpp"
 #include "JSystem/J3DGraphBase/J3DStruct.hpp"
 #include "JSystem/JGeometry/TMatrix.hpp"
@@ -296,7 +298,7 @@ namespace MR {
 
         return nullptr;
     }
-    
+
     void initMirrorReflection(LiveActor* pActor) {
         initDLMakerChangeTex(pActor, "MirrorTex");
         pActor->mModelManager->newDifferedDLBuffer();
@@ -588,7 +590,7 @@ namespace MR {
     }
 
     bool isFirstStep(const LiveActor* pActor) {
-        return isStep(pActor, 0);
+        return MR::isStep(pActor, 0);
     }
 
     bool isLessStep(const LiveActor* pActor, s32 step) {
@@ -659,8 +661,18 @@ namespace MR {
         return getEaseInValue(calcNerveRate(pActor, stepMin, stepMax), valueStart, valueEnd, 1.0f);
     }
 
-    f32 calcNerveEaseOutValue(const LiveActor* pActor, s32 stepMax, f32 valueStart, f32 valueEnd) {
-        return getEaseOutValue(calcNerveRate(pActor, stepMax), valueStart, valueEnd, 1.0f);
+    f32 calcNerveEaseOutValue(const LiveActor* pActor, s32 maxValue, f32 min, f32 max) {
+        return getEaseOutValue(calcNerveRate(pActor, maxValue), min, max, 1.0f);
+    }
+
+    f32 calcNerveEaseOutValue(const LiveActor* pActor, s32 minStep, s32 maxValue, f32 min, f32 max) {
+        f32 nerveStep = pActor->getNerveStep();
+
+        f32 normalizedNerveStep = normalize(nerveStep, minStep, maxValue);
+
+        f32 clampedNerveStep = clamp(normalizedNerveStep, 0.0f, 1.0f);
+
+        return getEaseOutValue(clampedNerveStep, min, max, 1.0f);
     }
 
     f32 calcNerveEaseInOutValue(const LiveActor* pActor, s32 stepMax, f32 valueStart, f32 valueEnd) {
@@ -671,6 +683,14 @@ namespace MR {
         return getEaseInOutValue(calcNerveRate(pActor, stepMin, stepMax), valueStart, valueEnd, 1.0f);
     }
 
+    f32 calcNerveParabolaValue(const LiveActor* pActor, s32 step) {
+        f32 nerveStep = pActor->getNerveStep();
+
+        f32 parabolaValue = getParabolaValue(nerveStep, step);
+
+        return clamp(parabolaValue, 0.0f, 1.0f);
+    }
+
     void setNerveAtStep(LiveActor* pActor, const Nerve* pNerve, s32 step) {
         if (pActor->getNerveStep() == step) {
             pActor->setNerve(pNerve);
@@ -678,7 +698,7 @@ namespace MR {
     }
 
     void setNerveAtBckStopped(LiveActor* pActor, const Nerve* pNerve) {
-        if (pActor->mModelManager->isBckStopped()) {
+        if (isBckStopped(pActor)) {
             pActor->setNerve(pNerve);
         }
     }
@@ -691,6 +711,35 @@ namespace MR {
         pActor->setNerve(pNerve);
 
         return true;
+    }
+
+    bool isOnGround(const LiveActor* pActor) {
+        Binder* binder = pActor->mBinder;
+
+        if (binder == nullptr) {
+            return false;
+        }
+
+        if (!binder->isBindedGround()) {
+            return false;
+        }
+
+        const TVec3f* normal = binder->mGroundInfo.mParentTriangle.getNormal(0);
+        return !(0.0f < pActor->mVelocity.dot(*normal));
+    }
+
+    bool isOnGroundCos(const LiveActor* pActor, f32 cos) {
+        bool isGround = false;
+
+        if (isOnGround(pActor)) {
+            const TVec3f* normal = pActor->mBinder->mGroundInfo.mParentTriangle.getNormal(0);
+
+            if (MR::isFloorPolygonCos(*normal, pActor->mGravity, cos)) {
+                isGround = true;
+            }
+        }
+
+        return isGround;
     }
 
     bool isExistBinder(const LiveActor* pActor) {
