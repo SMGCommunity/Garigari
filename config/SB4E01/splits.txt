@@ -3710,7 +3710,8 @@ Game/GameAudio/AudTamakoroBgmCtrl.cpp:
 
 Game/Gravity/BarrelGravity.cpp:
 	.text       start:0x80222AD0 end:0x80222BB0
-	.sdata2     start:0x807DC240 end:0x807DC250
+	.sdata2		start:0x807DC240 end:0x807DC258
+	.data       start:0x806942E0 end:0x806942F0
 
 Game/Gravity/ConeGravity.cpp:
 	.text       start:0x80222E70 end:0x802234E0
