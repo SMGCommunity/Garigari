@@ -14,7 +14,6 @@
 #include "Game/Util/ModelUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
-
 namespace NrvSnowMan {
     NEW_NERVE(SnowManNrvWait, SnowMan, Wait);
     NEW_NERVE(SnowManNrvWaitBody, SnowMan, WaitBody);
