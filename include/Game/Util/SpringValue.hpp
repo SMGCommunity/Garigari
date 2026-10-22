@@ -10,7 +10,11 @@ public:
     void setParam(f32, f32, f32, f32, f32);
     f32 update();
 
-    void reset();
+    // I refuse to believe this isn't header defined, as it's in two different TUs between SMG1 and SMG2
+    void reset() {
+        mSpringValue = mRestValue;
+        mVelocity = 0.0f;
+    }
 
     f32 mRestValue;
     f32 mSpringValue;

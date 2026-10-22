@@ -2,6 +2,7 @@
 
 #include <JSystem/JGeometry/TMatrix.hpp>
 #include <JSystem/JGeometry/TVec.hpp>
+#include <JSystem/JGeometry/TQuat.hpp>
 #include <revolution.h>
 
 
@@ -74,18 +75,16 @@ namespace MR {
     void calcActorAxis(TVec3f*, TVec3f*, TVec3f*, const LiveActor*);
     void calcActorAxisY(TVec3f*, const LiveActor*);
     void calcActorAxisZ(TVec3f*, const LiveActor*);
-    // TODO: Needs TQuat4
-    // void faceToVector(TQuat4f*, TVec3f, f32);
+    void faceToVector(TQuat4f*, TVec3f, f32);
     void faceToVector(MtxPtr, TVec3f, f32);
     void faceToPoint(MtxPtr, TVec3f, f32);
 
-    // TODO: Needs TQuat4
-    // void makeQuatFromRotate(TQuat4f*, const LiveActor*);
-    // void makeQuatAndFrontFromRotate(TQuat4f*, TVec3f*, const LiveActor*);
+     void makeQuatFromRotate(TQuat4f*, const LiveActor*);
+    void makeQuatAndFrontFromRotate(TQuat4f*, TVec3f*, const LiveActor*);
 
-    // void turnQuatUpToGravity(TQuat4f*, const TQuat4f&, const LiveActor*);
+    void turnQuatUpToGravity(TQuat4f*, const TQuat4f&, const LiveActor*);
 
-    // void blendQuatFromGroundAndFront(TQuat4f*, const LiveActor*, const TVec3f&, f32, f32);
+    void blendQuatFromGroundAndFront(TQuat4f*, const LiveActor*, const TVec3f&, f32, f32);
 
     void resetPosition(LiveActor*);
     void resetPosition(LiveActor*, const TVec3f&);

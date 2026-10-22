@@ -77,14 +77,14 @@ namespace MR {
     void startRemixSound(s32, s32, f32);
     s32 getRemixMelodyNoteNum(s32);
     void limitedSound(const char*, s32) NO_INLINE;
-    JAISoundHandle* startStageBGM(const char*, bool);
-    JAISoundHandle* startStageBGMFromStageName(const char*, const char*, s32);
+    //JAISoundHandle* startStageBGM(const char*, bool);
+    //JAISoundHandle* startStageBGMFromStageName(const char*, const char*, s32);
     void stopStageBGM(u32);
     void unlockStageBGM();
     void setNextStageBGM(const char*);
     void moveVolumeStageBGM(f32, u32);
     void moveVolumeStageBGMForNoteFairy(f32, u32);
-    JAISoundHandle* startLastStageBGM();
+    //JAISoundHandle* startLastStageBGM();
     bool isPlayingStageBgm();
     bool isPlayingStageBgmID(u32);
     bool isPlayingStageBgmName(const char*);
@@ -93,7 +93,7 @@ namespace MR {
     bool isPreparedStageBgm();
     void setStageBGMState(s32, u32);
     void setStageBGMStateBit(u32);
-    JAISoundHandle* startSubBGM(const char*, bool);
+    //JAISoundHandle* startSubBGM(const char*, bool);
     void stopSubBGM(u32);
     void moveVolumeSubBGM(f32, u32);
     bool isPlayingSubBgmID(u32);
@@ -124,7 +124,7 @@ namespace MR {
     void start2PAttackAssistSound();
     void limitedStarPieceHitSound();
     void startCurrentStageBGM();
-    JAISoundHandle* startBossBGM(s32);
-    JAISoundHandle* startEventBGM(s32);
-    JAISoundHandle* startAfterBossBGM();
+    //JAISoundHandle* startBossBGM(s32);
+    //JAISoundHandle* startEventBGM(s32);
+    //JAISoundHandle* startAfterBossBGM();
 };  // namespace MR
