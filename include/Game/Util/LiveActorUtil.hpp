@@ -74,8 +74,7 @@ namespace MR {
 
     void setBaseTRMtx(LiveActor* pActor, MtxPtr pTRMtx);
     void setBaseTRMtx(LiveActor* pActor, const TPos3f& rMtx);
-    // TODO: Need Quaternion
-    // void setBaseTRMtx(LiveActor* pActor, const TQuat4f& rQuat);
+    void setBaseTRMtx(LiveActor* pActor, const TQuat4f& rQuat);
     // setBaseTRMtx operating on some unknown struct
     void setBaseScale(LiveActor* pActor, const TVec3f& rScale);
 

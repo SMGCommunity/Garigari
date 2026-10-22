@@ -1114,6 +1114,13 @@ config.libs = [
         ],
     ),
     GameLib(
+        "NPC",
+        [
+            Object(NonMatching, "Game/NPC/CollectTico.cpp"),
+            Object(NonMatching, "Game/NPC/StrayTico.cpp"),
+        ],
+    ),
+    GameLib(
         "Ride",
         [
             Object(NonMatching, "Game/Ride/TubeSlider.cpp"),
