@@ -32,14 +32,12 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
 #include "Game/Util/TriangleFilter.hpp"
-#include "JSystem/J3DGraphAnimator/J3DModel.hpp"
-#include "JSystem/J3DGraphBase/J3DStruct.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "revolution/mtx.h"
-#include "revolution/types.h"
+#include <JSystem/J3DGraphAnimator/J3DModel.hpp>
+#include <JSystem/JGeometry/TMatrix.hpp>
+#include <JSystem/JGeometry/TVec.hpp>
+#include <revolution/mtx.h>
+#include <revolution/types.h>
 #include <cstdio>
-#include <new>
 
 namespace {
     CollisionParts* createCollisionParts(ResourceHolder* pResHolder, const char* pName, HitSensor* pSensor, const TPos3f& rMtx,
@@ -70,6 +68,21 @@ namespace {
         }
 
         return parts;
+    }
+
+    void calcCollisionMtx(TPos3f* pMtx, const LiveActor* pActor) NO_INLINE {
+        pMtx->set(pActor->getBaseMtx());
+
+        f32 scale = pActor->mScale.x;
+        pMtx->mMtx[0][0] *= scale;
+        pMtx->mMtx[0][1] *= scale;
+        pMtx->mMtx[0][2] *= scale;
+        pMtx->mMtx[1][0] *= scale;
+        pMtx->mMtx[1][1] *= scale;
+        pMtx->mMtx[1][2] *= scale;
+        pMtx->mMtx[2][0] *= scale;
+        pMtx->mMtx[2][1] *= scale;
+        pMtx->mMtx[2][2] *= scale;
     }
 
     bool isShowModel(LiveActor* pActor) NO_INLINE {
@@ -188,9 +201,6 @@ namespace {
 };  // namespace
 
 namespace MR {
-    void setClippingTypeSphere(LiveActor* pActor, f32 clippingRadius, const TVec3f* pClippingPos);
-    void setClippingTypeSphereContainsModelBoundingBox(LiveActor* pActor, f32 radiusExtension);
-
     void setPosition(LiveActor* pActor, const JGeometry::TVec3< float >& rPosition) {
         pActor->mPosition.set(rPosition);
     }
@@ -257,14 +267,6 @@ namespace MR {
             return false;
 
         return true;
-    }
-
-    void onCalcAnim(LiveActor* pActor) {
-        pActor->mFlags.mIsOnCalcAnim = false;
-    }
-
-    void offCalcAnim(LiveActor* pActor) {
-        pActor->mFlags.mIsOnCalcAnim = true;
     }
 
     bool isValidCalcViewAndEntry(const LiveActor* pActor) {
@@ -465,6 +467,14 @@ namespace MR {
         rMtx.getYDir(up);
         rMtx.getTrans(pos);
         MR::getMirrorCamera()->setMirrorMapInfo(up, pos);
+    }
+
+    void initJointTransform(const LiveActor* pActor) {
+        pActor->mModelManager->initJointTransform();
+    }
+
+    XjointTransform* getJointTransform(const LiveActor* pActor, const char* pName) {
+        return pActor->mModelManager->getJointTransform(pName);
     }
 
     bool isExistAnim(const LiveActor* pActor, const char* pName) {
@@ -728,14 +738,6 @@ namespace MR {
 
     void updateMaterial(LiveActor* pActor) {
         pActor->mModelManager->updateDL(true);
-    }
-
-    void initJointTransform(const LiveActor* pActor) {
-        pActor->mModelManager->initJointTransform();
-    }
-
-    XjointTransform* getJointTransform(const LiveActor* pActor, const char* pName) {
-        return pActor->mModelManager->getJointTransform(pName);
     }
 
     bool isStep(const LiveActor* pActor, s32 step) {
@@ -1205,6 +1207,142 @@ namespace MR {
         return pActor->mBinder != nullptr;
     }
 
+    void onEntryDrawBuffer(LiveActor* pActor) {
+        if (!isNoEntryDrawBuffer(pActor)) {
+            return;
+        }
+
+        if (!isDead(pActor) && !pActor->mFlags.mIsClipped) {
+            connectToDrawTemporarily(pActor);
+        }
+
+        pActor->mFlags.mIsNoEntryDrawBuffer = false;
+    }
+
+    void offEntryDrawBuffer(LiveActor* pActor) {
+        if (isNoEntryDrawBuffer(pActor)) {
+            return;
+        }
+
+        if (!isDead(pActor) && !pActor->mFlags.mIsClipped) {
+            disconnectToDrawTemporarily(pActor);
+        }
+
+        pActor->mFlags.mIsNoEntryDrawBuffer = true;
+    }
+
+    bool isDead(const LiveActor* pActor) {
+        return pActor->mFlags.mIsDead;
+    }
+
+    bool isHiddenModel(const LiveActor* pActor) {
+        return pActor->mFlags.mIsNoEntryDrawBuffer;
+    }
+
+    void showModel(LiveActor* pActor) {
+        if (isNoCalcAnim(pActor)) {
+            onCalcAnim(pActor);
+        }
+
+        if (isNoCalcView(pActor)) {
+            pActor->mFlags.mIsNoCalcView = false;
+        }
+
+        if (isNoEntryDrawBuffer(pActor)) {
+            onEntryDrawBuffer(pActor);
+        }
+    }
+
+    void showModelAndEffects(LiveActor* pActor) {
+        if (!pActor->mFlags.mIsNoEntryDrawBuffer) {
+            return;
+        }
+
+        showModel(pActor);
+        onCalcEmitter(pActor);
+        onDrawEffect(pActor);
+    }
+
+    void hideModel(LiveActor* pActor) {
+        if (!isNoCalcAnim(pActor)) {
+            offCalcAnim(pActor);
+        }
+
+        if (!isNoCalcView(pActor)) {
+            pActor->mFlags.mIsNoCalcView = true;
+        }
+
+        if (!isNoEntryDrawBuffer(pActor)) {
+            offEntryDrawBuffer(pActor);
+        }
+    }
+
+    void hideModelAndEffects(LiveActor* pActor) {
+        if (pActor->mFlags.mIsNoEntryDrawBuffer) {
+            return;
+        }
+
+        hideModel(pActor);
+        offCalcEmitter(pActor);
+        offDrawEffect(pActor);
+    }
+
+    void hideModelAndOnCalcAnim(LiveActor* pActor) {
+        hideModel(pActor);
+        onCalcAnim(pActor);
+    }
+
+    void showModelIfHidden(LiveActor* pActor) {
+        if (isHiddenModel(pActor)) {
+            showModel(pActor);
+        }
+    }
+
+    void hideModelIfShown(LiveActor* pActor) {
+        if (isHiddenModel(pActor)) {
+            return;
+        }
+
+        hideModel(pActor);
+    }
+
+    void hideModelAndOnCalcAnimIfShown(LiveActor* pActor) {
+        if (isHiddenModel(pActor)) {
+            return;
+        }
+
+        hideModel(pActor);
+        onCalcAnim(pActor);
+    }
+
+    bool isStopAnimFrame(LiveActor* pActor) {
+        return pActor->mFlags.mIsNotReleasedAnimFrame;
+    }
+
+    void stopAnimFrame(LiveActor* pActor) {
+        pActor->mFlags.mIsNotReleasedAnimFrame = true;
+    }
+
+    void releaseAnimFrame(LiveActor* pActor) {
+        pActor->mFlags.mIsNotReleasedAnimFrame = false;
+    }
+
+    bool isNoCalcAnim(const LiveActor* pActor) {
+        return pActor->mFlags.mIsOnCalcAnim;
+    }
+
+    void onCalcAnim(LiveActor* pActor) {
+        pActor->mFlags.mIsOnCalcAnim = false;
+    }
+
+    void offCalcAnim(LiveActor* pActor) {
+        pActor->mFlags.mIsOnCalcAnim = true;
+    }
+
+    bool isNoCalcView(const LiveActor* pActor) {
+        return pActor->mFlags.mIsNoCalcView;
+    }
+
     bool isNoEntryDrawBuffer(const LiveActor* pActor) {
         return pActor->mFlags.mIsNoEntryDrawBuffer;
     }
@@ -1294,11 +1432,6 @@ namespace MR {
         pGroup->add(pActor, 0);
     }
 
-    void addToAttributeGroupReflectSpinningBox(const LiveActor* pActor) {
-        GroupCheckManager* pGroup = MR::getSceneObj< GroupCheckManager >(SceneObj_GroupCheckManager);
-        pGroup->add(pActor, 1);
-    }
-
     bool isExistInAttributeGroupSearchTurtle(const LiveActor* pActor) {
         GroupCheckManager* pGroup = MR::getSceneObj< GroupCheckManager >(SceneObj_GroupCheckManager);
         return pGroup->isExist(pActor, 0);
@@ -1362,160 +1495,6 @@ namespace MR {
         return initMultiFur(pActor, 0);
     }
 
-    CollisionParts* createCollisionPartsFromLiveActor(LiveActor* pActor, const char* pName, HitSensor* pSensor, CollisionScaleType scaleType) {
-        TPos3f mtx;
-        makeMtxTRS(mtx, pActor);
-        return ::createCollisionParts(getResourceHolder(pActor), pName, pSensor, mtx, scaleType, 0);
-    }
-
-    CollisionParts* createCollisionPartsFromLiveActor(LiveActor* pActor, const char* pName, HitSensor* pSensor, MtxPtr pMtx,
-                                                      CollisionScaleType scaleType) {
-        TPos3f mtx;
-        mtx.set(pMtx);
-        CollisionParts* pParts = ::createCollisionParts(getResourceHolder(pActor), pName, pSensor, mtx, scaleType, 0);
-        pParts->_0 = reinterpret_cast< TPos3f* >(pMtx);
-        return pParts;
-    }
-
-    CollisionParts* createCollisionPartsFromResourceHolder(ResourceHolder* pResHolder, const char* pName, HitSensor* pSensor, const TPos3f& rMtx, TPos3f* pMatrix,
-                                                           CollisionScaleType scaleType) {
-        CollisionParts* collisionParts = ::createCollisionParts(pResHolder, pName, pSensor, rMtx, scaleType, 0);
-
-        if(pMatrix != nullptr) {
-            collisionParts->_0 = pMatrix;
-        }
-
-        return collisionParts;
-    }
-
-    bool isDead(const LiveActor* pActor) {
-        return pActor->mFlags.mIsDead;
-    }
-
-    bool isHiddenModel(const LiveActor* pActor) {
-        return pActor->mFlags.mIsNoEntryDrawBuffer;
-    }
-
-    bool isNoCalcAnim(const LiveActor* pActor) {
-        return pActor->mFlags.mIsOnCalcAnim;
-    }
-
-    bool isNoCalcView(const LiveActor* pActor) {
-        return pActor->mFlags.mIsNoCalcView;
-    }
-
-    void showModel(LiveActor* pActor) {
-        if (isNoCalcAnim(pActor)) {
-            onCalcAnim(pActor);
-        }
-
-        if (isNoCalcView(pActor)) {
-            pActor->mFlags.mIsNoCalcView = false;
-        }
-
-        if (isNoEntryDrawBuffer(pActor)) {
-            onEntryDrawBuffer(pActor);
-        }
-    }
-
-    void showModelAndEffects(LiveActor* pActor) {
-        if (!pActor->mFlags.mIsNoEntryDrawBuffer) {
-            return;
-        }
-
-        showModel(pActor);
-        onCalcEmitter(pActor);
-        onDrawEffect(pActor);
-    }
-
-    void hideModelAndEffects(LiveActor* pActor) {
-        if (pActor->mFlags.mIsNoEntryDrawBuffer) {
-            return;
-        }
-
-        hideModel(pActor);
-        offCalcEmitter(pActor);
-        offDrawEffect(pActor);
-    }
-
-    void hideModel(LiveActor* pActor) {
-        if (!isNoCalcAnim(pActor)) {
-            offCalcAnim(pActor);
-        }
-
-        if (!isNoCalcView(pActor)) {
-            pActor->mFlags.mIsNoCalcView = true;
-        }
-
-        if (!isNoEntryDrawBuffer(pActor)) {
-            offEntryDrawBuffer(pActor);
-        }
-    }
-
-    void onEntryDrawBuffer(LiveActor* pActor) {
-        if (!isNoEntryDrawBuffer(pActor)) {
-            return;
-        }
-
-        if (!isDead(pActor) && !pActor->mFlags.mIsClipped) {
-            connectToDrawTemporarily(pActor);
-        }
-
-        pActor->mFlags.mIsNoEntryDrawBuffer = false;
-    }
-
-    void offEntryDrawBuffer(LiveActor* pActor) {
-        if (isNoEntryDrawBuffer(pActor)) {
-            return;
-        }
-
-        if (!isDead(pActor) && !pActor->mFlags.mIsClipped) {
-            disconnectToDrawTemporarily(pActor);
-        }
-
-        pActor->mFlags.mIsNoEntryDrawBuffer = true;
-    }
-
-    void hideModelAndOnCalcAnim(LiveActor* pActor) {
-        hideModel(pActor);
-        onCalcAnim(pActor);
-    }
-
-    void showModelIfHidden(LiveActor* pActor) {
-        if (isHiddenModel(pActor)) {
-            showModel(pActor);
-        }
-    }
-
-    void hideModelIfShown(LiveActor* pActor) {
-        if (isHiddenModel(pActor)) {
-            return;
-        }
-
-        hideModel(pActor);
-    }
-
-    void hideModelAndOnCalcAnimIfShown(LiveActor* pActor) {
-        if (isHiddenModel(pActor)) {
-            return;
-        }
-
-        hideModel(pActor);
-        onCalcAnim(pActor);
-    }
-
-    bool isStopAnimFrame(LiveActor* pActor) {
-        return pActor->mFlags.mIsNotReleasedAnimFrame;
-    }
-
-    void stopAnimFrame(LiveActor* pActor) {
-        pActor->mFlags.mIsNotReleasedAnimFrame = true;
-    }
-
-    void releaseAnimFrame(LiveActor* pActor) {
-        pActor->mFlags.mIsNotReleasedAnimFrame = false;
-    }
-
     void initCollisionParts(LiveActor* pActor, const char* pName, HitSensor* pSensor, MtxPtr pMtx) {
         pActor->initActorCollisionParts(pName, pSensor, nullptr, pMtx, false, false);
     }
@@ -1532,8 +1511,199 @@ namespace MR {
         pActor->initActorCollisionParts(pName, pSensor, pResHolder, pMtx, false, false);
     }
 
+    CollisionParts* createCollisionPartsFromLiveActor(LiveActor* pActor, const char* pName, HitSensor* pSensor, CollisionScaleType scaleType) {
+        TPos3f mtx;
+        makeMtxTRS(mtx, pActor);
+        return ::createCollisionParts(getResourceHolder(pActor), pName, pSensor, mtx, scaleType, 0);
+    }
+
+    CollisionParts* createCollisionPartsFromLiveActor(LiveActor* pActor, const char* pName, HitSensor* pSensor, MtxPtr pMtx,
+                                                      CollisionScaleType scaleType) {
+        TPos3f mtx;
+        mtx.set(pMtx);
+        CollisionParts* pParts = ::createCollisionParts(getResourceHolder(pActor), pName, pSensor, mtx, scaleType, 0);
+        pParts->_0 = reinterpret_cast< TPos3f* >(pMtx);
+        return pParts;
+    }
+
+    CollisionParts* createCollisionPartsFromResourceHolder(ResourceHolder* pResHolder, const char* pName, HitSensor* pSensor, const TPos3f& rMtx,
+                                                           TPos3f* pMatrix, CollisionScaleType scaleType) {
+        CollisionParts* collisionParts = ::createCollisionParts(pResHolder, pName, pSensor, rMtx, scaleType, 0);
+
+        if (pMatrix != nullptr) {
+            collisionParts->_0 = pMatrix;
+        }
+
+        return collisionParts;
+    }
+
+    CollisionParts* createDashYoshiStepCollisionPartsFromResourceHolder(ResourceHolder* pResHolder, const char* pName, HitSensor* pSensor,
+                                                                        MtxPtr pMtx, CollisionScaleType scaleType) {
+        TPos3f mtx;
+        mtx.set(pMtx);
+
+        CollisionParts* pParts = ::createCollisionParts(pResHolder, pName, pSensor, mtx, scaleType, 4);
+        pParts->_0 = reinterpret_cast< TPos3f* >(pMtx);
+        return pParts;
+    }
+
+    CollisionParts* tryCreateCollisionMoveLimit(LiveActor* pActor, HitSensor* pBodySensor) {
+        const char* pName = "MoveLimit";
+        char kcl[0x80];
+
+        snprintf(kcl, sizeof(kcl), "%s.kcl", pName);
+
+        if (!getResourceHolder(pActor)->mFileInfoTable->isExistRes(kcl)) {
+            return nullptr;
+        }
+
+        const char* pCollisionName = "MoveLimit";
+
+        TPos3f mtx;
+        makeMtxTRS(mtx, pActor);
+
+        CollisionParts* pParts = ::createCollisionParts(getResourceHolder(pActor), pCollisionName, pBodySensor, mtx, CollisionScaleType_Default, 3);
+
+        if (pParts != nullptr) {
+            validateCollisionParts(pParts);
+        }
+
+        return pParts;
+    }
+
+    CollisionParts* tryCreateCollisionWaterSurface(LiveActor* pActor, HitSensor* pBodySensor) {
+        const char* pName = "WaterSurface";
+        char kcl[0x80];
+
+        snprintf(kcl, sizeof(kcl), "%s.kcl", pName);
+
+        if (!getResourceHolder(pActor)->mFileInfoTable->isExistRes(kcl)) {
+            return nullptr;
+        }
+
+        const char* pCollisionName = "WaterSurface";
+
+        TPos3f mtx;
+        makeMtxTRS(mtx, pActor);
+
+        CollisionParts* pParts = ::createCollisionParts(getResourceHolder(pActor), pCollisionName, pBodySensor, mtx, CollisionScaleType_Default, 2);
+
+        if (pParts != nullptr) {
+            validateCollisionParts(pParts);
+        }
+
+        return pParts;
+    }
+
+    f32 getCollisionBoundingSphereRange(LiveActor* pActor) {
+        return pActor->mCollisionParts->_D8;
+    }
+
+    bool isValidCollisionParts(LiveActor* pActor) {
+        return pActor->mCollisionParts->_CC;
+    }
+
+    void validateCollisionParts(LiveActor* pActor) {
+        validateCollisionParts(pActor->mCollisionParts);
+        CollisionParts* pParts = pActor->mCollisionParts;
+
+        if (pParts->_0 != nullptr) {
+            pParts->updateBoundingSphereRange();
+        } else {
+            pParts->updateBoundingSphereRange(pActor->mScale);
+        }
+
+        resetAllCollisionMtx(pActor);
+    }
+
+    void validateCollisionParts(CollisionParts* pParts) {
+        if (!pParts->_CC) {
+            pParts->addToBelongZone();
+        }
+
+        pParts->_CC = true;
+    }
+
     void invalidateCollisionParts(LiveActor* pActor) {
         invalidateCollisionParts(pActor->mCollisionParts);
+    }
+
+    void invalidateCollisionParts(CollisionParts* pParts) {
+        if (pParts->_CC) {
+            pParts->removeFromBelongZone();
+        }
+
+        pParts->_CC = false;
+    }
+
+    void onUpdateCollisionParts(LiveActor* pActor) {
+        CollisionParts* pParts = pActor->mCollisionParts;
+
+        if (!pParts->_CC) {
+            validateCollisionParts(pActor);
+        }
+
+        pActor->mCollisionParts->_CD = true;
+    }
+
+    void onUpdateCollisionPartsOnetimeImmediately(LiveActor* pActor) {
+        CollisionParts* pParts = pActor->mCollisionParts;
+
+        if (!pParts->_CC) {
+            validateCollisionParts(pActor);
+        }
+
+        pParts = pActor->mCollisionParts;
+        pParts->_CE = true;
+        makeMtxTR(pActor->getBaseMtx(), pActor);
+        setCollisionMtx(pActor, pActor->mCollisionParts);
+        pParts->updateMtx();
+    }
+
+    void offUpdateCollisionParts(LiveActor* pActor) {
+        CollisionParts* pParts = pActor->mCollisionParts;
+
+        if (!pParts->_CC) {
+            validateCollisionParts(pActor);
+        }
+
+        pActor->mCollisionParts->_CD = false;
+    }
+
+    void resetAllCollisionMtx(LiveActor* pActor) {
+        CollisionParts* pParts = pActor->mCollisionParts;
+
+        if (pParts->_0 != nullptr) {
+            pParts->resetAllMtx();
+            return;
+        }
+
+        TPos3f mtx;
+        ::calcCollisionMtx(&mtx, pActor);
+        pParts->resetAllMtx(mtx);
+    }
+
+    void setCollisionMtx(LiveActor* pActor) {
+        setCollisionMtx(pActor, getCollisionParts(pActor));
+    }
+
+    void setCollisionMtx(LiveActor* pActor, CollisionParts* pParts) {
+        if (!pParts->_CC) {
+            return;
+        }
+
+        if (pParts->_0 != nullptr) {
+            pParts->setMtx();
+            return;
+        }
+
+        TPos3f mtx;
+        ::calcCollisionMtx(&mtx, pActor);
+        pParts->setMtx(mtx);
+    }
+
+    bool isExistCollisionParts(const LiveActor* pActor) {
+        return pActor->mCollisionParts != nullptr;
     }
 
     void stopSceneAtStep(const LiveActor* pActor, s32 step, s32 sceneStep) {
@@ -1581,15 +1751,8 @@ namespace MR {
         }
     }
 
-    void setCollisionMtx(LiveActor* pActor) {
-        setCollisionMtx(pActor, getCollisionParts(pActor));
-    }
-
     CollisionParts* getCollisionParts(const LiveActor* pActor) {
         return pActor->mCollisionParts;
     }
 
-    bool isExistCollisionParts(const LiveActor* pActor) {
-        return pActor->mCollisionParts != nullptr;
-    }
 };  // namespace MR

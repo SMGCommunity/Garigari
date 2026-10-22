@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Game/LiveActor/ClippingDirector.hpp"
-#include "revolution/types.h"
+#include <revolution/types.h>
 #include <JSystem/JGeometry/TMatrix.hpp>
 #include <JSystem/JGeometry/TVec.hpp>
 #include <revolution.h>
