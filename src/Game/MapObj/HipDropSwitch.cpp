@@ -3,6 +3,8 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/CollisionParts.hpp"
 #include "Game/MapObj/MapObjConnector.hpp"
+#include "Game/Util/ActionSoundUtil.hpp"
+#include "Game/Util/ActorAnimUtil.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
@@ -133,7 +135,7 @@ bool HipDropSwitch::trySwitchDown() {
 }
 
 bool HipDropSwitch::tryOn() {
-    if (MR::isGreaterStep(this, ::sOnSomethingAcc) /*&& MR::isActionEnd()(this)*/) { // TODO: isActionEnd comes from a currently unknown TU
+    if (MR::isGreaterStep(this, ::sOnSomethingAcc) && MR::isActionEnd(this)) {
         setNerve(GET_NERVE(HipDropSwitch, HipDropSwitchNrvOn));
         return true;
     }
@@ -155,20 +157,14 @@ void HipDropSwitch::exeOff() {
         _D0 = false;
         MR::validateClipping(this);
         MR::offSwitchA(this);
-        // TODO: MR::StartAction
-        //MR::startBck(this, "Wait");
-        //MR::startBrk(this, "Off");
+        MR::startAction(this, "Wait");
+        MR::startBrk(this, "Off");
         mSpringValue->reset();
-    }
-
-    if (false) {
-        _D2 = true;
     }
 
     if (!_D1 && _D2) {
         mSpringValue->mVelocity += -10.0f;
-        // TODO: MR::startActionSound
-        //MR::startSound(this, "SE_OJ_PNC_KINOKO_BOUND");
+        MR::startActionSound(this, "Land");
     }
 
     mSpringValue->update();
@@ -184,9 +180,8 @@ void HipDropSwitch::exeSwitchDown() {
     }
 
     if (MR::isStep(this, ::sOnSomethingAcc)) {
-        // TODO: MR::StartAction
-        //MR::startBck(this, "On");
-        //MR::startBrk(this, "On");
+        MR::startAction(this, "On");
+        MR::startBrk(this, "On");
     }
 
     if (tryOn()) {
@@ -198,8 +193,7 @@ void HipDropSwitch::exeOn() {
     if (MR::isFirstStep(this)) {
         MR::validateClipping(this);
         MR::onSwitchA(this);
-        // TODO: MR::startActionSound
-        //MR::startSound(this, "SE_OJ_HIPDROP_SWITCH_ON");
+        MR::startActionSound(this, "OjHipdropSwitchOn");
         MR::shakeCameraNormal();
     }
 }

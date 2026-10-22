@@ -4,6 +4,8 @@
 #include "Game/MapObj/MapObjConnector.hpp"
 #include "Game/Screen/SwitchingScreenEffect.hpp"
 #include "Game/Screen/TimeStopScreenEffect.hpp"
+#include "Game/Util/ActionSoundUtil.hpp"
+#include "Game/Util/ActorAnimUtil.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorInitUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
@@ -177,16 +179,13 @@ bool HipDropTimerSwitch::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor*
 void HipDropTimerSwitch::exeOff() {
     if (MR::isFirstStep(this)) {
         MR::validateClipping(this);
-        // TODO: MR::startAction
-        //MR::startBck(this, "Wait");
-        //MR::startBrk(this, "Off");
+        MR::startAction(this, "Wait");
         mSpring->reset();
     }
 
     if (!mWasLightPressed && mIsLightPressed) {
         mSpring->mVelocity += -10.0f;
-        // TODO: MR::startActionSound
-        //MR::startSound(this, "SE_OJ_PNC_KINOKO_BOUND");
+        MR::startActionSound(this, "Land");
     }
 
     mSpring->update();
@@ -194,12 +193,10 @@ void HipDropTimerSwitch::exeOff() {
 
 void HipDropTimerSwitch::exeSwitchDown() {
     if (MR::isStep(this, 0)) {
-        // TODO: MR::startAction
-        //MR::startBck(this, "On");
-        //MR::startBrk(this, "On");
+        MR::startAction(this, "OnNormal");
     }
 
-    if (MR::isGreaterStep(this, 0) /*&& MR::isBckStopped(this)*/) { // TODO: MR::isActionEnd
+    if (MR::isGreaterStep(this, 0) && MR::isActionEnd(this)) {
         MR::onSwitchA(this);
         setNerve(GET_NERVE(HipDropTimerSwitch, HipDropTimerSwitchNrvOn));
     }
@@ -208,8 +205,7 @@ void HipDropTimerSwitch::exeSwitchDown() {
 void HipDropTimerSwitch::exeOn() {
     if (MR::isFirstStep(this)) {
 
-        // TODO: MR::startActionSound
-        //MR::startSound(this, "SE_OJ_HIPDROP_SWITCH_ON");
+        MR::startActionSound(this, "OjHipdropSwitchOn");
         MR::shakeCameraNormal();
 
         switch (mScreenEffectType) {
@@ -231,9 +227,7 @@ void HipDropTimerSwitch::exeOn() {
 
 void HipDropTimerSwitch::exeSwitchUp() {
     if (MR::isFirstStep(this)) {
-        // TODO: MR::startAction
-        //MR::startBck(this, "Off");
-        //MR::startBrk(this, "Off");
+        MR::startAction(this, "OffNormal");
 
         switch (mScreenEffectType) {
         case 1:
@@ -245,7 +239,7 @@ void HipDropTimerSwitch::exeSwitchUp() {
         }
     }
 
-    if (/*MR::isBckStopped(this)*/ true) { // TODO: MR::isActionEend
+    if (MR::isActionEnd(this)) {
         setNerve(GET_NERVE(HipDropTimerSwitch, HipDropTimerSwitchNrvOff));
         MR::offSwitchA(this);
     }
@@ -253,16 +247,16 @@ void HipDropTimerSwitch::exeSwitchUp() {
 
 void HipDropTimerSwitch::exeSyncOn() {
     if (MR::isFirstStep(this)) {
-        //TODO: MR::startAction
+        MR::startAction(this, "SyncOn");
     }
 }
 
 void HipDropTimerSwitch::exeSyncOff() {
     if (MR::isFirstStep(this)) {
-        // TODO: MR::startAction
+        MR::startAction(this, "SyncOff");
     }
 
-    if (/*MR::isActionEnd*/ true) { // TODO: MR::isActionEnd
+    if (MR::isActionEnd(this)) {
         setNerve(GET_NERVE(HipDropTimerSwitch, HipDropTimerSwitchNrvOff));
     }
 }
