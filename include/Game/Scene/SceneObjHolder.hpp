@@ -8,6 +8,11 @@
 
 class NameObj;
 
+enum SceneObj {
+    SceneObj_LiveActorGroupArray = 0x0E,
+    SceneObj_GroupCheckManager = 0x66
+};
+
 class SceneObjHolder {
 public:
     SceneObjHolder();
