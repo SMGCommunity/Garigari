@@ -55,7 +55,8 @@ namespace MR {
     bool isLeftSideFromPlayer(const LiveActor*);
     bool isInSightConePlayer(const LiveActor*, const TVec3f&, f32, f32);
     bool isInSightFanPlayer(const LiveActor*, const TVec3f&, f32, f32, f32);
-    bool isOnPlayer(const LiveActor*);
+    bool isOnPlayer(const HitSensor*);
+    bool isActorOnPlayer(const LiveActor*);
     bool isPlayerExistSide(const LiveActor*, f32, f32);
     bool isPlayerExistUp(const LiveActor*, f32, f32);
     bool isPlayerExistDown(const LiveActor*, f32, f32);
