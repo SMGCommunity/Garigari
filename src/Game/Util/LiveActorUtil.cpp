@@ -3,49 +3,204 @@
 #include "Game/LiveActor/ClippingActorHolder.hpp"
 #include "Game/LiveActor/ClippingDirector.hpp"
 #include "Game/LiveActor/DisplayListMaker.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/LiveActorGroup.hpp"
+#include "Game/LiveActor/LiveActorGroupArray.hpp"
 #include "Game/LiveActor/LodCtrl.hpp"
 #include "Game/LiveActor/MirrorCamera.hpp"
 #include "Game/LiveActor/ModelManager.hpp"
+#include "Game/Map/CollisionParts.hpp"
+#include "Game/NameObj/NameObjExecuteHolder.hpp"
+#include "Game/NameObj/NameObjFinder.hpp"
+#include "Game/Player/GroupChecker.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
+#include "Game/System/ResourceHolder.hpp"
 #include "Game/System/ResourceInfo.hpp"
 #include "Game/Util/ActorAnimUtil.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/CollisionPartsFilter.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/FurMulti.hpp"
+#include "Game/Util/GravityUtil.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/MapUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ModelUtil.hpp"
 #include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
-#include "Game/Util/MapUtil.hpp"
-#include "JSystem/J3DGraphAnimator/J3DModel.hpp"
-#include "JSystem/J3DGraphBase/J3DStruct.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "revolution/mtx.h"
-#include "revolution/types.h"
+#include "Game/Util/TriangleFilter.hpp"
+#include <JSystem/J3DGraphAnimator/J3DModel.hpp>
+#include <JSystem/JGeometry/TMatrix.hpp>
+#include <JSystem/JGeometry/TVec.hpp>
+#include <revolution/mtx.h>
+#include <revolution/types.h>
+#include <cstdio>
+
+namespace {
+    CollisionParts* createCollisionParts(ResourceHolder* pResHolder, const char* pName, HitSensor* pSensor, const TPos3f& rMtx,
+                                         MR::CollisionScaleType scaleType, s32 unk) {
+        CollisionParts* parts = new CollisionParts();
+        char kcl[0x80];
+        snprintf(kcl, sizeof(kcl), "%s.kcl", pName);
+        char pa[0x80];
+        snprintf(pa, sizeof(pa), "%s.pa", pName);
+        void* kclRes;
+        void* paRes = nullptr;
+        kclRes = pResHolder->mFileInfoTable->getRes(kcl);
+
+        if (pResHolder->mFileInfoTable->isExistRes(pa)) {
+            paRes = pResHolder->mFileInfoTable->getRes(pa);
+        }
+
+        switch (scaleType) {
+        case MR::CollisionScaleType_AutoEqualScale:
+            parts->initWithAutoEqualScale(rMtx, pSensor, kclRes, paRes, unk, false);
+            break;
+        case MR::CollisionScaleType_NotUsingScale:
+            parts->initWithNotUsingScale(rMtx, pSensor, kclRes, paRes, unk, false);
+            break;
+        case MR::CollisionScaleType_Default:
+            parts->init(rMtx, pSensor, kclRes, paRes, unk, false);
+            break;
+        }
+
+        return parts;
+    }
+
+    void calcCollisionMtx(TPos3f* pMtx, const LiveActor* pActor) NO_INLINE {
+        pMtx->set(pActor->getBaseMtx());
+
+        f32 scale = pActor->mScale.x;
+        pMtx->mMtx[0][0] *= scale;
+        pMtx->mMtx[0][1] *= scale;
+        pMtx->mMtx[0][2] *= scale;
+        pMtx->mMtx[1][0] *= scale;
+        pMtx->mMtx[1][1] *= scale;
+        pMtx->mMtx[1][2] *= scale;
+        pMtx->mMtx[2][0] *= scale;
+        pMtx->mMtx[2][1] *= scale;
+        pMtx->mMtx[2][2] *= scale;
+    }
+
+    bool isShowModel(LiveActor* pActor) NO_INLINE {
+        return !pActor->mFlags.mIsNoEntryDrawBuffer;
+    }
+
+    void callFuncAllGroupMember(const NameObj* pActor, void (*pFunc)(NameObj*)) NO_INLINE {
+        LiveActorGroupArray* pGroupArray = MR::getSceneObj< LiveActorGroupArray >(SceneObj_LiveActorGroupArray);
+        LiveActorGroup* pGroup = pGroupArray->getLiveActorGroup(static_cast< const LiveActor* >(pActor));
+
+        if (pGroup == nullptr) {
+            return;
+        }
+
+        for (s32 i = 0; i < pGroup->getObjectCount(); i++) {
+            LiveActor* pMember = pGroup->getActor(i);
+
+            if (pMember == pActor) {
+                continue;
+            }
+
+            pFunc(pMember);
+        }
+    }
+
+    void callFuncAllGroupMember(const LiveActor* pActor, void (*pFunc)(LiveActor*)) NO_INLINE {
+        LiveActorGroupArray* pGroupArray = MR::getSceneObj< LiveActorGroupArray >(SceneObj_LiveActorGroupArray);
+        LiveActorGroup* pGroup = pGroupArray->getLiveActorGroup(pActor);
+
+        if (pGroup == nullptr) {
+            return;
+        }
+
+        for (s32 i = 0; i < pGroup->getObjectCount(); i++) {
+            LiveActor* pMember = pGroup->getActor(i);
+
+            if (pMember == pActor) {
+                continue;
+            }
+
+            pFunc(pMember);
+        }
+    }
+
+    void callMethodAllGroupMember(const LiveActor* pActor, void (LiveActor::*pMethod)()) NO_INLINE {
+        LiveActorGroupArray* pGroupArray = MR::getSceneObj< LiveActorGroupArray >(SceneObj_LiveActorGroupArray);
+        LiveActorGroup* pGroup = pGroupArray->getLiveActorGroup(pActor);
+
+        if (pGroup == nullptr) {
+            return;
+        }
+
+        for (s32 i = 0; i < pGroup->getObjectCount(); i++) {
+            LiveActor* pMember = pGroup->getActor(i);
+
+            if (pMember == pActor) {
+                continue;
+            }
+
+            (pMember->*pMethod)();
+        }
+    }
+
+    template < typename T >
+    s32 countGroupMember(const LiveActor* pActor, T pPred) NO_INLINE;
+
+    template <>
+    s32 countGroupMember< bool (*)(LiveActor*) >(const LiveActor* pActor, bool (*pPred)(LiveActor*)) NO_INLINE {
+        LiveActorGroupArray* pGroupArray = MR::getSceneObj< LiveActorGroupArray >(SceneObj_LiveActorGroupArray);
+        LiveActorGroup* pGroup = pGroupArray->getLiveActorGroup(pActor);
+        s32 count = 0;
+
+        if (pGroup == nullptr) {
+            return 0;
+        }
+
+        for (s32 i = 0; i < pGroup->getObjectCount(); i++) {
+            LiveActor* pMember = pGroup->getActor(i);
+
+            if (pMember == pActor) {
+                continue;
+            }
+
+            if (pPred(pMember)) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    template <>
+    s32 countGroupMember< bool (*)(const LiveActor*) >(const LiveActor* pActor, bool (*pPred)(const LiveActor*)) NO_INLINE {
+        LiveActorGroupArray* pGroupArray = MR::getSceneObj< LiveActorGroupArray >(SceneObj_LiveActorGroupArray);
+        LiveActorGroup* pGroup = pGroupArray->getLiveActorGroup(pActor);
+        s32 count = 0;
+
+        if (pGroup == nullptr) {
+            return 0;
+        }
+
+        for (s32 i = 0; i < pGroup->getObjectCount(); i++) {
+            LiveActor* pMember = pGroup->getActor(i);
+
+            if (pMember == pActor) {
+                continue;
+            }
+
+            if (pPred(pMember)) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+};  // namespace
 
 namespace MR {
-    LodCtrl* createLodCtrlNPC(LiveActor* pActor, const JMapInfoIter& rIter) {
-        LodCtrl* ctrl = new LodCtrl(pActor, rIter);
-        ctrl->createLodModel(0x11, 0x27, -1);
-        ctrl->syncMaterialAnimation();
-        ctrl->syncJointAnimation();
-        ctrl->initLightCtrl();
-        ctrl->offSyncShadowHost();
-        ctrl->mDistCameraCalc = true;
-        return ctrl;
-    }
-
-    LodCtrl* createLodCtrlPlanet(LiveActor* pActor, const JMapInfoIter& rIter, f32 farClip, s32 calcAnim) {
-        LodCtrl* ctrl = new LodCtrl(pActor, rIter);
-        ctrl->createLodModel(6, calcAnim, 1);
-        ctrl->setDistanceToMiddleAndLow(5000.0f, 10000.0f);
-        ctrl->setFarClipping(farClip);
-        return ctrl;
-    }
-
-    void setClippingTypeSphere(LiveActor* pActor, f32 clippingRadius, const TVec3f* pClippingPos);
-    void setClippingTypeSphereContainsModelBoundingBox(LiveActor* pActor, f32 radiusExtension);
-
     void setPosition(LiveActor* pActor, const JGeometry::TVec3< float >& rPosition) {
         pActor->mPosition.set(rPosition);
     }
@@ -314,6 +469,14 @@ namespace MR {
         MR::getMirrorCamera()->setMirrorMapInfo(up, pos);
     }
 
+    void initJointTransform(const LiveActor* pActor) {
+        pActor->mModelManager->initJointTransform();
+    }
+
+    XjointTransform* getJointTransform(const LiveActor* pActor, const char* pName) {
+        return pActor->mModelManager->getJointTransform(pName);
+    }
+
     bool isExistAnim(const LiveActor* pActor, const char* pName) {
         if (isExistBck(pActor, pName)) {
             return true;
@@ -577,14 +740,6 @@ namespace MR {
         pActor->mModelManager->updateDL(true);
     }
 
-    void initJointTransform(const LiveActor* pActor) {
-        pActor->mModelManager->initJointTransform();
-    }
-
-    XjointTransform* getJointTransform(const LiveActor* pActor, const char* pName) {
-        return pActor->mModelManager->getJointTransform(pName);
-    }
-
     bool isStep(const LiveActor* pActor, s32 step) {
         return pActor->getNerveStep() == step;
     }
@@ -742,8 +897,394 @@ namespace MR {
         return isGround;
     }
 
+    bool isBindedGround(const LiveActor* pActor) {
+        Binder* binder = pActor->mBinder;
+
+        if (binder == nullptr) {
+            return false;
+        }
+
+        return binder->isBindedGround();
+    }
+
+    bool isBindedGround(const LiveActor* pActor, HitSensor* pSensor) {
+        if (isBindedGround(pActor)) {
+            return pSensor == MR::getGroundSensor(pActor);
+        }
+
+        return false;
+    }
+
+    bool isBindedWall(const LiveActor* pActor) {
+        Binder* binder = pActor->mBinder;
+
+        if (binder == nullptr) {
+            return false;
+        }
+
+        return binder->isBindedWall();
+    }
+
+    bool isBindedWall(const LiveActor* pActor, HitSensor* pSensor) {
+        if (isBindedWall(pActor)) {
+            return pSensor == MR::getWallSensor(pActor);
+        }
+
+        return false;
+    }
+
+    bool isBindedWallOfMap(const LiveActor* pActor) {
+        bool isMap = false;
+
+        if (isBindedWall(pActor)) {
+            const CollisionParts* parts = pActor->mBinder->mWallInfo.mParentTriangle.mParts;
+
+            if (parts->mKeeperIndex == 0) {
+                isMap = true;
+            }
+        }
+
+        return isMap;
+    }
+
+    bool isBindedWallOfMoveLimit(const LiveActor* pActor) {
+        bool isMoveLimit = false;
+
+        if (isBindedWall(pActor)) {
+            const CollisionParts* parts = pActor->mBinder->mWallInfo.mParentTriangle.mParts;
+
+            if (parts->mKeeperIndex == 3) {
+                isMoveLimit = true;
+            }
+        }
+
+        return isMoveLimit;
+    }
+
+    bool isBindedRoof(const LiveActor* pActor) {
+        if (pActor->mBinder == nullptr) {
+            return false;
+        }
+
+        return pActor->mBinder->isBindedRoof();
+    }
+
+    bool isBinded(const LiveActor* pActor) {
+        if (isBindedGround(pActor) || isBindedRoof(pActor) || isBindedWall(pActor)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    bool isPressedRoofAndGround(const LiveActor* pActor) {
+        if (!isBindedRoof(pActor) || !isBindedGround(pActor)) {
+            return false;
+        }
+
+        if (MR::isSensorPressObj(MR::getGroundSensor(pActor)) || MR::isSensorPressObj(MR::getRoofSensor(pActor))) {
+            const Binder* binder = pActor->mBinder;
+            const HitInfo* pRoofInfo = &binder->mRoofInfo;
+            const HitInfo* pGroundInfo = &binder->mGroundInfo;
+
+            TVec3f roofPower;
+            TVec3f groundPower;
+            pRoofInfo->mParentTriangle.calcForceMovePower(&roofPower, pRoofInfo->mHitPos);
+            pGroundInfo->mParentTriangle.calcForceMovePower(&groundPower, pGroundInfo->mHitPos);
+
+            if (0.0f < (roofPower - groundPower).dot(pActor->mGravity)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    bool isPressedBetweenWalls(const LiveActor* pActor) {
+        if (!isBindedWall(pActor)) {
+            return false;
+        }
+
+        s32 planeNum = pActor->mBinder->mPlaneNum;
+
+        for (s32 i = 0; i < planeNum - 1; i++) {
+            const HitInfo* plane1 = pActor->mBinder->getPlane(i);
+
+            if (!MR::isWallPolygon(*plane1->mParentTriangle.getFaceNormal(), pActor->mGravity)) {
+                continue;
+            }
+
+            TVec3f power1;
+            plane1->mParentTriangle.calcForceMovePower(&power1, plane1->mHitPos);
+
+            for (s32 j = i + 1; j < planeNum; j++) {
+                const HitInfo* plane2 = pActor->mBinder->getPlane(j);
+
+                if (!MR::isWallPolygon(*plane2->mParentTriangle.getFaceNormal(), pActor->mGravity)) {
+                    continue;
+                }
+
+                if (0.0f <= plane1->mParentTriangle.getFaceNormal()->dot(*plane2->mParentTriangle.getFaceNormal())) {
+                    continue;
+                }
+
+                TVec3f power2;
+                plane2->mParentTriangle.calcForceMovePower(&power2, plane2->mHitPos);
+
+                TVec3f diffHit(plane1->mHitPos);
+                diffHit.sub(plane2->mHitPos);
+
+                TVec3f diffPower(power2);
+                diffPower.sub(power1);
+
+                if (0.0f < diffPower.dot(diffHit)) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    const TVec3f& getGroundNormal(const LiveActor* pActor) {
+        return *pActor->mBinder->mGroundInfo.mParentTriangle.getNormal(0);
+    }
+
+    const TVec3f& getWallNormal(const LiveActor* pActor) {
+        return *pActor->mBinder->mWallInfo.mParentTriangle.getNormal(0);
+    }
+
+    const TVec3f& getRoofNormal(const LiveActor* pActor) {
+        return *pActor->mBinder->mRoofInfo.mParentTriangle.getNormal(0);
+    }
+
+    const TVec3f& getBindedNormal(const LiveActor* pActor) {
+        if (isBindedGround(pActor)) {
+            return getGroundNormal(pActor);
+        }
+
+        if (isBindedWall(pActor)) {
+            return getWallNormal(pActor);
+        }
+
+        if (isBindedRoof(pActor)) {
+            return getRoofNormal(pActor);
+        }
+
+        return getGroundNormal(pActor);
+    }
+
+    const TVec3f& getBindedHitPos(const LiveActor* pActor) {
+        if (isBindedGround(pActor)) {
+            return getGroundHitPos(pActor);
+        }
+
+        if (isBindedWall(pActor)) {
+            return getWallHitPos(pActor);
+        }
+
+        if (isBindedRoof(pActor)) {
+            return getRoofHitPos(pActor);
+        }
+
+        return getGroundHitPos(pActor);
+    }
+
+    const TVec3f& getGroundHitPos(const LiveActor* pActor) {
+        return pActor->mBinder->mGroundInfo.mHitPos;
+    }
+
+    const TVec3f& getWallHitPos(const LiveActor* pActor) {
+        return pActor->mBinder->mWallInfo.mHitPos;
+    }
+
+    const TVec3f& getRoofHitPos(const LiveActor* pActor) {
+        return pActor->mBinder->mRoofInfo.mHitPos;
+    }
+
+    void calcWallNormalHorizontal(TVec3f* pVec, const LiveActor* pActor) {
+        const TVec3f normal = getWallNormal(pActor);
+        const TVec3f* grav = &pActor->mGravity;
+        pVec->killElement(normal, *grav);
+    }
+
+    f32 calcHitPowerToGround(const LiveActor* pActor) {
+        if (!isBindedGround(pActor)) {
+            return 0.0f;
+        }
+
+        f32 dot = pActor->mVelocity.dot(getGroundNormal(pActor));
+
+        if (-dot > 0.0f) {
+            return -dot;
+        }
+
+        return 0.0f;
+    }
+
+    f32 calcHitPowerToWall(const LiveActor* pActor) {
+        if (!isBindedWall(pActor)) {
+            return 0.0f;
+        }
+
+        f32 dot = pActor->mVelocity.dot(getWallNormal(pActor));
+
+        if (-dot > 0.0f) {
+            return -dot;
+        }
+
+        return 0.0f;
+    }
+
+    u32 getBindedPlaneNum(const LiveActor* pActor) {
+        return pActor->mBinder->mPlaneNum;
+    }
+
+    const TVec3f* getBindedPlaneNormal(const LiveActor* pActor, int planeIndex) {
+        return pActor->mBinder->getPlane(planeIndex)->mParentTriangle.getNormal(0);
+    }
+
+    HitSensor* getBindedPlaneSensor(const LiveActor* pActor, int planeIndex) {
+        return pActor->mBinder->getPlane(planeIndex)->mParentTriangle.mSensor;
+    }
+
+    const TVec3f& getBindedFixReactionVector(const LiveActor* pActor) {
+        return pActor->mBinder->mFixReactionVector;
+    }
+
+    void setBinderOffsetVec(LiveActor* pActor, const TVec3f* pVec, bool b) {
+        Binder* binder = pActor->mBinder;
+        binder->mOffsetVec = pVec;
+        binder->_1EC._4 = b;
+    }
+
+    void setBinderRadius(LiveActor* pActor, f32 radius) {
+        pActor->mBinder->mRadius = radius;
+    }
+
+    void scaleBinderRadius(LiveActor* pActor, f32 scale) {
+        pActor->mBinder->mRadius = scale * pActor->mBinder->mRadius;
+    }
+
+    f32 getBinderRadius(const LiveActor* pActor) {
+        return pActor->mBinder->mRadius;
+    }
+
+    void setBinderIgnoreMovingCollision(LiveActor* pActor) {
+        s8* pFlags = (s8*)&pActor->mBinder->_1EC;
+        s32 flags = *pFlags;
+        flags &= 0xFFFFFF7F;
+        *pFlags = flags;
+    }
+
+    void validateExCollisionParts(LiveActor* pActor) {
+        *(u8*)&pActor->mBinder->_1EC |= 0x20;
+    }
+
+    void invalidateExCollisionParts(LiveActor* pActor) {
+        *(u8*)&pActor->mBinder->_1EC &= ~0x20;
+    }
+
+    void setBinderCollisionPartsFilter(LiveActor* pActor, CollisionPartsFilterBase* pFilter) {
+        pActor->mBinder->setCollisionPartsFilter(pFilter);
+    }
+
+    void setBinderExceptSensorType(LiveActor* pActor, u32 exceptSensorType) {
+        CollisionPartsFilterSensorType* pFilter = new CollisionPartsFilterSensorType(exceptSensorType);
+        pActor->mBinder->setCollisionPartsFilter(pFilter);
+    }
+
+    void setBinderExceptActor(LiveActor* pActor, const LiveActor* pExcept) {
+        CollisionPartsFilterActor* pFilter = new CollisionPartsFilterActor(pExcept);
+        pActor->mBinder->setCollisionPartsFilter(pFilter);
+    }
+
+    void setBindTriangleFilter(LiveActor* pActor, TriangleFilterBase* pTriangleFilter) {
+        pActor->mBinder->setTriangleFilter(pTriangleFilter);
+    }
+
     bool isExistBinder(const LiveActor* pActor) {
         return pActor->mBinder != nullptr;
+    }
+
+    void onEntryDrawBuffer(LiveActor* pActor) {
+        if (!isNoEntryDrawBuffer(pActor)) {
+            return;
+        }
+
+        if (!isDead(pActor) && !pActor->mFlags.mIsClipped) {
+            connectToDrawTemporarily(pActor);
+        }
+
+        pActor->mFlags.mIsNoEntryDrawBuffer = false;
+    }
+
+    void offEntryDrawBuffer(LiveActor* pActor) {
+        if (isNoEntryDrawBuffer(pActor)) {
+            return;
+        }
+
+        if (!isDead(pActor) && !pActor->mFlags.mIsClipped) {
+            disconnectToDrawTemporarily(pActor);
+        }
+
+        pActor->mFlags.mIsNoEntryDrawBuffer = true;
+    }
+
+    bool isDead(const LiveActor* pActor) {
+        return pActor->mFlags.mIsDead;
+    }
+
+    bool isHiddenModel(const LiveActor* pActor) {
+        return pActor->mFlags.mIsNoEntryDrawBuffer;
+    }
+
+    void showModel(LiveActor* pActor) {
+        if (isNoCalcAnim(pActor)) {
+            onCalcAnim(pActor);
+        }
+
+        if (isNoCalcView(pActor)) {
+            pActor->mFlags.mIsNoCalcView = false;
+        }
+
+        if (isNoEntryDrawBuffer(pActor)) {
+            onEntryDrawBuffer(pActor);
+        }
+    }
+
+    void showModelAndEffects(LiveActor* pActor) {
+        if (!pActor->mFlags.mIsNoEntryDrawBuffer) {
+            return;
+        }
+
+        showModel(pActor);
+        onCalcEmitter(pActor);
+        onDrawEffect(pActor);
+    }
+
+    void hideModel(LiveActor* pActor) {
+        if (!isNoCalcAnim(pActor)) {
+            offCalcAnim(pActor);
+        }
+
+        if (!isNoCalcView(pActor)) {
+            pActor->mFlags.mIsNoCalcView = true;
+        }
+
+        if (!isNoEntryDrawBuffer(pActor)) {
+            offEntryDrawBuffer(pActor);
+        }
+    }
+
+    void hideModelAndEffects(LiveActor* pActor) {
+        if (pActor->mFlags.mIsNoEntryDrawBuffer) {
+            return;
+        }
+
+        hideModel(pActor);
+        offCalcEmitter(pActor);
+        offDrawEffect(pActor);
     }
 
     void hideModelAndOnCalcAnim(LiveActor* pActor) {
@@ -774,6 +1315,186 @@ namespace MR {
         onCalcAnim(pActor);
     }
 
+    bool isStopAnimFrame(LiveActor* pActor) {
+        return pActor->mFlags.mIsNotReleasedAnimFrame;
+    }
+
+    void stopAnimFrame(LiveActor* pActor) {
+        pActor->mFlags.mIsNotReleasedAnimFrame = true;
+    }
+
+    void releaseAnimFrame(LiveActor* pActor) {
+        pActor->mFlags.mIsNotReleasedAnimFrame = false;
+    }
+
+    bool isNoCalcAnim(const LiveActor* pActor) {
+        return pActor->mFlags.mIsOnCalcAnim;
+    }
+
+    void onCalcAnim(LiveActor* pActor) {
+        pActor->mFlags.mIsOnCalcAnim = false;
+    }
+
+    void offCalcAnim(LiveActor* pActor) {
+        pActor->mFlags.mIsOnCalcAnim = true;
+    }
+
+    bool isNoCalcView(const LiveActor* pActor) {
+        return pActor->mFlags.mIsNoCalcView;
+    }
+
+    bool isNoEntryDrawBuffer(const LiveActor* pActor) {
+        return pActor->mFlags.mIsNoEntryDrawBuffer;
+    }
+
+    bool isNoBind(const LiveActor* pActor) {
+        return pActor->mFlags.mIsOnBind;
+    }
+
+    void onBind(LiveActor* pActor) {
+        pActor->mFlags.mIsOnBind = false;
+    }
+
+    void offBind(LiveActor* pActor) {
+        pActor->mFlags.mIsOnBind = true;
+    }
+
+    bool isCalcGravity(const LiveActor* pActor) {
+        return pActor->mFlags.mIsCalcGravity;
+    }
+
+    void onCalcGravity(LiveActor* pActor) {
+        if (!pActor->mFlags.mIsDead)
+            calcGravity(pActor);
+        pActor->mFlags.mIsCalcGravity = true;
+    }
+
+    void offCalcGravity(LiveActor* pActor) {
+        pActor->mFlags.mIsCalcGravity = false;
+    }
+
+    LiveActorGroup* joinToGroup(LiveActor* pActor, const char* pGroupName) {
+        LiveActorGroup* pGroup = (LiveActorGroup*)NameObjFinder::find(pGroupName);
+        pGroup->registerActor(pActor);
+        return pGroup;
+    }
+
+    LiveActorGroup* joinToGroupArray(LiveActor* pActor, const JMapInfoIter& rIter, const char* pName, s32 maxCount) {
+        if (!rIter.isValid()) {
+            return nullptr;
+        }
+
+        s32 groupId;
+
+        if (getJMapInfoGroupID(rIter, &groupId)) {
+            LiveActorGroupArray* pGroupArray = MR::getSceneObj< LiveActorGroupArray >(SceneObj_LiveActorGroupArray);
+            return (MsgSharedGroup*)pGroupArray->tryCreateGroupForLiveActor(pActor, rIter, pName, maxCount);
+        }
+
+        return nullptr;
+    }
+
+    LiveActorGroup* getGroupFromArray(const LiveActor* pActor) {
+        LiveActorGroupArray* pGroupArray = MR::getSceneObj< LiveActorGroupArray >(SceneObj_LiveActorGroupArray);
+        return pGroupArray->getLiveActorGroup(pActor);
+    }
+
+    void callMakeActorDeadAllGroupMember(const LiveActor* pActor) {
+        callMethodAllGroupMember(pActor, &LiveActor::makeActorDead);
+    }
+
+    void callKillAllGroupMember(const LiveActor* pActor) {
+        callMethodAllGroupMember(pActor, &LiveActor::kill);
+    }
+
+    void callMakeActorAppearedAllGroupMember(const LiveActor* pActor) {
+        callMethodAllGroupMember(pActor, &LiveActor::makeActorAppeared);
+    }
+
+    void callAppearAllGroupMember(const LiveActor* pActor) {
+        callMethodAllGroupMember(pActor, &LiveActor::appear);
+    }
+
+    void callRequestMovementOnAllGroupMember(const LiveActor* pActor) {
+        callFuncAllGroupMember(static_cast< const NameObj* >(pActor), requestMovementOn);
+    }
+
+    void callInvalidateClippingAllGroupMember(const LiveActor* pActor) {
+        callFuncAllGroupMember(pActor, invalidateClipping);
+    }
+
+    void callValidateClippingAllGroupMember(const LiveActor* pActor) {
+        ::callFuncAllGroupMember(pActor, validateClipping);
+    }
+
+    void addToAttributeGroupSearchTurtle(const LiveActor* pActor) {
+        GroupCheckManager* pGroup = MR::getSceneObj< GroupCheckManager >(SceneObj_GroupCheckManager);
+        pGroup->add(pActor, 0);
+    }
+
+    bool isExistInAttributeGroupSearchTurtle(const LiveActor* pActor) {
+        GroupCheckManager* pGroup = MR::getSceneObj< GroupCheckManager >(SceneObj_GroupCheckManager);
+        return pGroup->isExist(pActor, 0);
+    }
+
+    bool isExistInAttributeGroupReflectSpinningBox(const LiveActor* pActor) {
+        GroupCheckManager* pGroup = MR::getSceneObj< GroupCheckManager >(SceneObj_GroupCheckManager);
+        return pGroup->isExist(pActor, 1);
+    }
+
+    void calcGravity(LiveActor* pActor) {
+        TVec3f gravity;
+        calcGravityVector(pActor, pActor->mPosition, &gravity, nullptr, 0);
+
+        if (!isNearZero(gravity)) {
+            pActor->mGravity.set(gravity);
+        }
+    }
+
+    void calcGravity(LiveActor* pActor, const TVec3f& rPos) {
+        TVec3f gravity;
+        calcGravityVector(pActor, rPos, &gravity, nullptr, 0);
+
+        if (!isNearZero(gravity)) {
+            pActor->mGravity.set(gravity);
+        }
+    }
+
+    void calcGravityOrZero(LiveActor* pActor) {
+        calcGravityOrZero(pActor, pActor->mPosition);
+    }
+
+    void calcGravityOrZero(LiveActor* pActor, const TVec3f& rPos) {
+        TVec3f gravity;
+        calcGravityVectorOrZero(pActor, rPos, &gravity, nullptr, 0);
+
+        if (!isNearZero(gravity)) {
+            pActor->mGravity.set(gravity);
+            return;
+        }
+
+        if (isBindedGround(pActor)) {
+            const TVec3f* normal = pActor->mBinder->mGroundInfo.mParentTriangle.getNormal(0);
+            pActor->mGravity.set(-*normal);
+        }
+    }
+
+    FurMulti* initFur(LiveActor* pActor) {
+        return initMultiFur(pActor, -1);
+    }
+
+    FurMulti* initFurEnemy(LiveActor* pActor) {
+        return initMultiFur(pActor, 1);
+    }
+
+    FurMulti* initFurPlanet(LiveActor* pActor) {
+        return initMultiFur(pActor, 3);
+    }
+
+    FurMulti* initFurPlayer(LiveActor* pActor) {
+        return initMultiFur(pActor, 0);
+    }
+
     void initCollisionParts(LiveActor* pActor, const char* pName, HitSensor* pSensor, MtxPtr pMtx) {
         pActor->initActorCollisionParts(pName, pSensor, nullptr, pMtx, false, false);
     }
@@ -790,8 +1511,199 @@ namespace MR {
         pActor->initActorCollisionParts(pName, pSensor, pResHolder, pMtx, false, false);
     }
 
+    CollisionParts* createCollisionPartsFromLiveActor(LiveActor* pActor, const char* pName, HitSensor* pSensor, CollisionScaleType scaleType) {
+        TPos3f mtx;
+        makeMtxTRS(mtx, pActor);
+        return ::createCollisionParts(getResourceHolder(pActor), pName, pSensor, mtx, scaleType, 0);
+    }
+
+    CollisionParts* createCollisionPartsFromLiveActor(LiveActor* pActor, const char* pName, HitSensor* pSensor, MtxPtr pMtx,
+                                                      CollisionScaleType scaleType) {
+        TPos3f mtx;
+        mtx.set(pMtx);
+        CollisionParts* pParts = ::createCollisionParts(getResourceHolder(pActor), pName, pSensor, mtx, scaleType, 0);
+        pParts->_0 = reinterpret_cast< TPos3f* >(pMtx);
+        return pParts;
+    }
+
+    CollisionParts* createCollisionPartsFromResourceHolder(ResourceHolder* pResHolder, const char* pName, HitSensor* pSensor, const TPos3f& rMtx,
+                                                           TPos3f* pMatrix, CollisionScaleType scaleType) {
+        CollisionParts* collisionParts = ::createCollisionParts(pResHolder, pName, pSensor, rMtx, scaleType, 0);
+
+        if (pMatrix != nullptr) {
+            collisionParts->_0 = pMatrix;
+        }
+
+        return collisionParts;
+    }
+
+    CollisionParts* createDashYoshiStepCollisionPartsFromResourceHolder(ResourceHolder* pResHolder, const char* pName, HitSensor* pSensor,
+                                                                        MtxPtr pMtx, CollisionScaleType scaleType) {
+        TPos3f mtx;
+        mtx.set(pMtx);
+
+        CollisionParts* pParts = ::createCollisionParts(pResHolder, pName, pSensor, mtx, scaleType, 4);
+        pParts->_0 = reinterpret_cast< TPos3f* >(pMtx);
+        return pParts;
+    }
+
+    CollisionParts* tryCreateCollisionMoveLimit(LiveActor* pActor, HitSensor* pBodySensor) {
+        const char* pName = "MoveLimit";
+        char kcl[0x80];
+
+        snprintf(kcl, sizeof(kcl), "%s.kcl", pName);
+
+        if (!getResourceHolder(pActor)->mFileInfoTable->isExistRes(kcl)) {
+            return nullptr;
+        }
+
+        const char* pCollisionName = "MoveLimit";
+
+        TPos3f mtx;
+        makeMtxTRS(mtx, pActor);
+
+        CollisionParts* pParts = ::createCollisionParts(getResourceHolder(pActor), pCollisionName, pBodySensor, mtx, CollisionScaleType_Default, 3);
+
+        if (pParts != nullptr) {
+            validateCollisionParts(pParts);
+        }
+
+        return pParts;
+    }
+
+    CollisionParts* tryCreateCollisionWaterSurface(LiveActor* pActor, HitSensor* pBodySensor) {
+        const char* pName = "WaterSurface";
+        char kcl[0x80];
+
+        snprintf(kcl, sizeof(kcl), "%s.kcl", pName);
+
+        if (!getResourceHolder(pActor)->mFileInfoTable->isExistRes(kcl)) {
+            return nullptr;
+        }
+
+        const char* pCollisionName = "WaterSurface";
+
+        TPos3f mtx;
+        makeMtxTRS(mtx, pActor);
+
+        CollisionParts* pParts = ::createCollisionParts(getResourceHolder(pActor), pCollisionName, pBodySensor, mtx, CollisionScaleType_Default, 2);
+
+        if (pParts != nullptr) {
+            validateCollisionParts(pParts);
+        }
+
+        return pParts;
+    }
+
+    f32 getCollisionBoundingSphereRange(LiveActor* pActor) {
+        return pActor->mCollisionParts->_D8;
+    }
+
+    bool isValidCollisionParts(LiveActor* pActor) {
+        return pActor->mCollisionParts->_CC;
+    }
+
+    void validateCollisionParts(LiveActor* pActor) {
+        validateCollisionParts(pActor->mCollisionParts);
+        CollisionParts* pParts = pActor->mCollisionParts;
+
+        if (pParts->_0 != nullptr) {
+            pParts->updateBoundingSphereRange();
+        } else {
+            pParts->updateBoundingSphereRange(pActor->mScale);
+        }
+
+        resetAllCollisionMtx(pActor);
+    }
+
+    void validateCollisionParts(CollisionParts* pParts) {
+        if (!pParts->_CC) {
+            pParts->addToBelongZone();
+        }
+
+        pParts->_CC = true;
+    }
+
     void invalidateCollisionParts(LiveActor* pActor) {
         invalidateCollisionParts(pActor->mCollisionParts);
+    }
+
+    void invalidateCollisionParts(CollisionParts* pParts) {
+        if (pParts->_CC) {
+            pParts->removeFromBelongZone();
+        }
+
+        pParts->_CC = false;
+    }
+
+    void onUpdateCollisionParts(LiveActor* pActor) {
+        CollisionParts* pParts = pActor->mCollisionParts;
+
+        if (!pParts->_CC) {
+            validateCollisionParts(pActor);
+        }
+
+        pActor->mCollisionParts->_CD = true;
+    }
+
+    void onUpdateCollisionPartsOnetimeImmediately(LiveActor* pActor) {
+        CollisionParts* pParts = pActor->mCollisionParts;
+
+        if (!pParts->_CC) {
+            validateCollisionParts(pActor);
+        }
+
+        pParts = pActor->mCollisionParts;
+        pParts->_CE = true;
+        makeMtxTR(pActor->getBaseMtx(), pActor);
+        setCollisionMtx(pActor, pActor->mCollisionParts);
+        pParts->updateMtx();
+    }
+
+    void offUpdateCollisionParts(LiveActor* pActor) {
+        CollisionParts* pParts = pActor->mCollisionParts;
+
+        if (!pParts->_CC) {
+            validateCollisionParts(pActor);
+        }
+
+        pActor->mCollisionParts->_CD = false;
+    }
+
+    void resetAllCollisionMtx(LiveActor* pActor) {
+        CollisionParts* pParts = pActor->mCollisionParts;
+
+        if (pParts->_0 != nullptr) {
+            pParts->resetAllMtx();
+            return;
+        }
+
+        TPos3f mtx;
+        ::calcCollisionMtx(&mtx, pActor);
+        pParts->resetAllMtx(mtx);
+    }
+
+    void setCollisionMtx(LiveActor* pActor) {
+        setCollisionMtx(pActor, getCollisionParts(pActor));
+    }
+
+    void setCollisionMtx(LiveActor* pActor, CollisionParts* pParts) {
+        if (!pParts->_CC) {
+            return;
+        }
+
+        if (pParts->_0 != nullptr) {
+            pParts->setMtx();
+            return;
+        }
+
+        TPos3f mtx;
+        ::calcCollisionMtx(&mtx, pActor);
+        pParts->setMtx(mtx);
+    }
+
+    bool isExistCollisionParts(const LiveActor* pActor) {
+        return pActor->mCollisionParts != nullptr;
     }
 
     void stopSceneAtStep(const LiveActor* pActor, s32 step, s32 sceneStep) {
@@ -839,15 +1751,8 @@ namespace MR {
         }
     }
 
-    void setCollisionMtx(LiveActor* pActor) {
-        setCollisionMtx(pActor, getCollisionParts(pActor));
-    }
-
     CollisionParts* getCollisionParts(const LiveActor* pActor) {
         return pActor->mCollisionParts;
     }
 
-    bool isExistCollisionParts(const LiveActor* pActor) {
-        return pActor->mCollisionParts != nullptr;
-    }
 };  // namespace MR
