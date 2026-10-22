@@ -200,6 +200,7 @@ void HipDropTimerSwitch::exeSwitchDown() {
     }
 
     if (MR::isGreaterStep(this, 0) /*&& MR::isBckStopped(this)*/) { // TODO: MR::isActionEnd
+        MR::onSwitchA(this);
         setNerve(GET_NERVE(HipDropTimerSwitch, HipDropTimerSwitchNrvOn));
     }
 }
