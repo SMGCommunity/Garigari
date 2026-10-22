@@ -1,15 +1,12 @@
-import regex
+from get_symbol import get_symbol
 
 SYMBOLS_PATH = "config/SB4E01/symbols.txt"
 GHIDRA_SYMBOLS_PATH = "ghidra_symbols.txt"
 
-symbol_match = r"(?P<symbol>.+?)\s=\s(?P<section>.+?)\b:(?P<address>0x[0-9a-fA-F]+?)\b; // type:\b(?P<type>[a-zA-Z]+?)\b\ssize:\b(?P<size>0x[0-9a-fA-F]+?)\b(?P<other>.*)"
-symbol_regex = regex.compile(symbol_match)
-
 
 with open(SYMBOLS_PATH, "r") as rf, open(GHIDRA_SYMBOLS_PATH, "w") as wf:
     for line in rf:
-        if (symbol := symbol_regex.match(line.rstrip())) is None:
+        if (symbol := get_symbol(line)) is None:
             continue
 
         symbol_name = symbol.group("symbol")
