@@ -614,20 +614,15 @@ bool TubeSlider::updateOnGround() {
     // ActionSound I can't interpret
 
     if (TubeSliderFunction::isGroundWood(this)) {
-        // MR::startActionSound "SlipWood"
-        return false;
-    }
-
-    if (TubeSliderFunction::isGroundIce(this)) {
-        // MR::startActionSound "SlipIce"
-        return false;
-    }
-
-    if (TubeSliderFunction::isGroundNormal(this)) {
+        MR::startActionSound(this, "SlipWood");
+    } else if (TubeSliderFunction::isGroundIce(this)) {
+        MR::startActionSound(this, "SlipIce");
+    } else if (!TubeSliderFunction::isGroundNormal(this)) {
         TubeSliderFunction::isGroundNormal2(this);
-        // MR::startActionSound "SlipNormal"
-        return false;
+        MR::startActionSound(this, "SlipNormal");
     }
+
+    return false;
 }
 
 bool TubeSlider::updatePlayer() {

@@ -41,4 +41,9 @@ namespace MR {
     // TODO: position properly
     bool isStartPosCameraEnd();
     const TPos3f& getCameraViewMtx();
+    bool isActiveLauncherCamera();
+    bool isActiveLauncherFlightCamera();
+    TVec3f getCamXdir();
+    TVec3f getCamYdir();
+    TVec3f getCamZdir();
 };  // namespace MR
