@@ -1,7 +1,6 @@
 # IDE folders
 .idea/
 .vs/
-CppProperties.json
 
 # Caches
 __pycache__

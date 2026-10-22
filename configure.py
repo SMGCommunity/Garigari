@@ -1045,6 +1045,11 @@ config.libs = [
     GameLib(
         "Gravity",
         [
+            Object(NonMatching, "Game/Gravity/BarrelGravity.cpp"),
+            Object(NonMatching, "Game/Gravity/ConeGravity.cpp"),
+            Object(NonMatching, "Game/Gravity/CubeGravity.cpp"),
+            Object(NonMatching, "Game/Gravity/DiskGravity.cpp"),
+            Object(NonMatching, "Game/Gravity/DiskTorusGravity.cpp"),
             Object(NonMatching, "Game/Gravity/GravityInfo.cpp"),
             Object(NonMatching, "Game/Gravity/PlanetGravity.cpp"),
             Object(NonMatching, "Game/Gravity/PlanetGravityManager.cpp"),
@@ -1087,6 +1092,9 @@ config.libs = [
         "MapObj",
         [
             Object(NonMatching, "Game/MapObj/ActorStateDemoAppearance.cpp"),
+            Object(NonMatching, "Game/MapObj/HipDropSwitch.cpp", extra_cflags=["-sym off"]),
+            Object(NonMatching, "Game/MapObj/HipDropTimerSwitch.cpp", extra_cflags=["-sym off"]),
+            Object(NonMatching, "Game/MapObj/SnowMan.cpp"),
             Object(NonMatching, "Game/MapObj/TicoCoin.cpp"),
             Object(NonMatching, "Game/MapObj/TimeAttackClock.cpp", extra_cflags=["-sym off"]),
         ],
@@ -1103,6 +1111,13 @@ config.libs = [
             Object(NonMatching, "Game/NameObj/NameObjFinder.cpp"),
             Object(Matching, "Game/NameObj/NameObjHolder.cpp"),
             Object(NonMatching, "Game/NameObj/NameObjRegister.cpp"),
+        ],
+    ),
+    GameLib(
+        "NPC",
+        [
+            Object(NonMatching, "Game/NPC/CollectTico.cpp"),
+            Object(NonMatching, "Game/NPC/StrayTico.cpp"),
         ],
     ),
     GameLib(
@@ -1182,6 +1197,7 @@ config.libs = [
             Object(NonMatching, "Game/Util/MathUtil.cpp"),
             Object(NonMatching, "Game/Util/MtxUtil.cpp"),
             Object(NonMatching, "Game/Util/SchedulerUtil.cpp"),
+            Object(NonMatching, "Game/Util/SpringValue.cpp"),
             Object(NonMatching, "Game/Util/SystemUtil.cpp"),
             Object(NonMatching, "Game/Util/TriggerChecker.cpp"),
         ],

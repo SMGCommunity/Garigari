@@ -9,4 +9,5 @@ namespace MR {
     void syncMaterialAnimation(LiveActor*, const LiveActor*);
     J3DModel* getJ3DModel(const LiveActor*);
     J3DModelData* getJ3DModelData(const char*);
+    void hideMaterial(const LiveActor*, const char*);
 };  // namespace MR
