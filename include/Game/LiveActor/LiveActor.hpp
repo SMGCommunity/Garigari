@@ -67,23 +67,23 @@ public:
     void initActorCollisionParts(const char*, HitSensor*, ResourceHolder*, MtxPtr, bool, bool);
     void initStageSwitch(const JMapInfoIter&);
 
-    TVec3f mPosition;                   // 0x14
-    TVec3f mRotation;                   // 0x20
-    TVec3f mScale;                      // 0x2C
-    TVec3f mVelocity;                   // 0x38
-    TVec3f mGravity;                    // 0x44
-    ActorActionKeeper* mActionKeeper;   // 0x50
-    ModelManager* mModelManager;        // 0x54
-    Spine* mSpine;                      // 0x58
-    HitSensorKeeper* mSensorKeeper;     // 0x5C
-    Binder* mBinder;                    // 0x60
-    RailRider* mRailRider;              // 0x64
-    EffectKeeper* mEffectKeeper;        // 0x68
-    ActorSoundHolder* mSoundHolder;     // 0x6C
-    LiveActorFlag mFlags;               // 0x70
-    ShadowControllerList* mShadowList;  // 0x7C
-    CollisionParts* mCollisionParts;    // 0x80
-    StageSwitchCtrl* mSwitchCtrl;       // 0x84
-    StarPointerTarget* mPointerTarget;  // 0x88
-    ActorLightCtrl* mLightCtrl;         // 0x8C
+    /* 0x14 */ TVec3f mPosition;
+    /* 0x20 */ TVec3f mRotation;
+    /* 0x2C */ TVec3f mScale;
+    /* 0x38 */ TVec3f mVelocity;
+    /* 0x44 */ TVec3f mGravity;
+    /* 0x50 */ ActorActionKeeper* mActionKeeper;
+    /* 0x54 */ ModelManager* mModelManager;
+    /* 0x58 */ Spine* mSpine;
+    /* 0x5C */ HitSensorKeeper* mSensorKeeper;
+    /* 0x60 */ Binder* mBinder;
+    /* 0x64 */ RailRider* mRailRider;
+    /* 0x68 */ EffectKeeper* mEffectKeeper;
+    /* 0x6C */ ActorSoundHolder* mSoundHolder;
+    /* 0x70 */ LiveActorFlag mFlags;
+    /* 0x7C */ ShadowControllerList* mShadowList;
+    /* 0x80 */ CollisionParts* mCollisionParts;
+    /* 0x84 */ StageSwitchCtrl* mSwitchCtrl;
+    /* 0x88 */ StarPointerTarget* mPointerTarget;
+    /* 0x8C */ ActorLightCtrl* mLightCtrl;
 };

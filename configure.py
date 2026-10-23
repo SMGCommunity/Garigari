@@ -1202,6 +1202,12 @@ config.libs = [
             Object(NonMatching, "Game/Util/TriggerChecker.cpp"),
         ],
     ),
+    GameLib(
+            "World",
+            [
+                Object(NonMatching, "Game/World/MiniRoutePoint.cpp"),
+            ],
+        ),
     RVLLib(
         "gd",
         [

@@ -9782,6 +9782,11 @@ Game/World/MiniPlayerRocket.cpp:
 	.sbss       start:0x807D5E88 end:0x807D5E90
 	.sdata2     start:0x807E1AD0 end:0x807E1B10
 
+Game/World/MiniRoutePoint.cpp:
+	.text       start:0x804E53B0 end:0x804E58D0
+	.data       start:0x80701548 end:0x80701640
+	.sdata2     start:0x807E1B10 end:0x807E1B30
+
 Game/World/MiniStarCheckPoint.cpp:
 	.text       start:0x804E58D0 end:0x804E6260
 	.ctors      start:0x80644A70 end:0x80644A74
