@@ -1135,6 +1135,7 @@ config.libs = [
         "Scene",
         [
             Object(Matching, "Game/Scene/Scene.cpp"),
+            Object(NonMatching, "Game/Scene/SceneObjHolder.cpp"),
             Object(NonMatching, "Game/Scene/LogoScene.cpp"),
             Object(NonMatching, "Game/Scene/IntermissionScene.cpp", extra_cflags=["-sym off"]),
         ],
