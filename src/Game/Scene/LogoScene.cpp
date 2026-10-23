@@ -30,8 +30,8 @@ void LogoScene::init() {
     SceneFunction::createHioBasicNode(this);
     SceneFunction::initForNameObj();
 
-    MR::createSceneObj(SceneObj_18);
-    MR::createSceneObj(SceneObj_19);
+    MR::createSceneObj(SceneObj_CameraContext);
+    MR::createSceneObj(SceneObj_NameObjGroup);
 
     initLayout();
 }
