@@ -1050,6 +1050,8 @@ config.libs = [
             Object(NonMatching, "Game/Gravity/CubeGravity.cpp"),
             Object(NonMatching, "Game/Gravity/DiskGravity.cpp"),
             Object(NonMatching, "Game/Gravity/DiskTorusGravity.cpp"),
+            Object(NonMatching, "Game/Gravity/GlobalGravityObj.cpp"),
+            Object(NonMatching, "Game/Gravity/GravityCreator.cpp"),
             Object(NonMatching, "Game/Gravity/GravityInfo.cpp"),
             Object(NonMatching, "Game/Gravity/ParallelGravity.cpp"),
             Object(NonMatching, "Game/Gravity/PlanetGravity.cpp"),

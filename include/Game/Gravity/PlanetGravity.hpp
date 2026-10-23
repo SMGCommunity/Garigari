@@ -36,7 +36,7 @@ public:
     void updateIdentityMtx();
 
     inline bool isValid() const {
-        return mActivated && _23 && mAppeared;
+        return mActivated && mValidFollower && mAppeared;
     }
 
     /* 0x04 */ f32 mRange;
@@ -48,8 +48,8 @@ public:
     /* 0x1C */ s32 mGravityPower;  // gravity power type
     /* 0x20 */ bool mActivated;    // corresponding GlobalGravityObj has switch activated?
     /* 0x21 */ bool mIsInverse;    // invert gravity vector?
-    /* 0x22 */ bool mValidFollower;
-    /* 0x23 */ bool _23;
+    /* 0x22 */ bool _22;
+    /* 0x23 */ bool mValidFollower;
     /* 0x24 */ bool mIsRegistered;  // is registered by PlanetGravityManager?
     /* 0x25 */ bool mAppeared;      // corresponding GlobalGravityObj has appeared?
 };
