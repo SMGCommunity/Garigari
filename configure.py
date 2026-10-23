@@ -1093,6 +1093,7 @@ config.libs = [
         "MapObj",
         [
             Object(NonMatching, "Game/MapObj/ActorStateDemoAppearance.cpp"),
+            Object(NonMatching, "Game/MapObj/CollectTicoHolder.cpp", extra_cflags=["-sym off"]),
             Object(NonMatching, "Game/MapObj/HipDropSwitch.cpp", extra_cflags=["-sym off"]),
             Object(NonMatching, "Game/MapObj/HipDropTimerSwitch.cpp", extra_cflags=["-sym off"]),
             Object(NonMatching, "Game/MapObj/SnowMan.cpp"),
