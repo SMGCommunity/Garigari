@@ -3,7 +3,7 @@
 
 PlanetGravity::PlanetGravity()
     : mRange(-1.0f), mDistant(), mPriority(), mGravityId(-1), mHost(this), mGravityType(GRAVITY_TYPE_NORMAL), mGravityPower(GRAVITY_POWER_NORMAL),
-      mActivated(true), mIsInverse(false), mValidFollower(false), _23(true), mIsRegistered(false), mAppeared(true) {
+      mActivated(true), mIsInverse(false), _22(false), mValidFollower(true), mIsRegistered(false), mAppeared(true) {
 }
 
 void PlanetGravity::setPriority(s32 priority) {
@@ -12,7 +12,7 @@ void PlanetGravity::setPriority(s32 priority) {
 
 bool PlanetGravity::calcGravity(TVec3f* pDest, const TVec3f& rPos) const {
     f32 radius = 0.0f;
-    TVec3f gravity(0.0f);
+    TVec3f gravity(0.0f, 0.0f, 0.0f);
 
     if (!calcOwnGravityVector(&gravity, &radius, rPos)) {
         return false;
@@ -30,7 +30,7 @@ bool PlanetGravity::calcGravity(TVec3f* pDest, const TVec3f& rPos) const {
         gravity = -gravity;
     }
 
-    if (mValidFollower) {
+    if (_22) {
         // FIXME: shouldn't inline
         gravity.set(0.0f, 0.0f, 0.0f);
     }

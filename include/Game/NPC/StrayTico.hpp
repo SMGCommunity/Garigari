@@ -21,7 +21,7 @@ public:
     virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
     void initSensor();
-    void setShadowDrop(const char*);
+    void setShadowDrop();
     void initShadow() NO_INLINE;
     void startGlad();
     void launch(const TPos3f&);

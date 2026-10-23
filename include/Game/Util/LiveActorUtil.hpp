@@ -43,8 +43,8 @@ namespace MR {
     void setScale(LiveActor* pActor, const TVec3f&);
     void setScale(LiveActor* pActor, f32, f32, f32);
     void setScale(LiveActor* pActor, f32);
-    void copyTransRotateScale(const LiveActor* pToActor, LiveActor* pFromActor);
-    void copyTransRotate(const LiveActor* pToActor, LiveActor* pFromActor);
+    void copyTransRotateScale(const LiveActor* pFromActor, LiveActor* pToActor);
+    void copyTransRotate(const LiveActor* pFromActor, LiveActor* pToActor);
     void rotateAroundActor(TVec3f& rRotated, const TVec3f& rRotateOffset, const LiveActor* pActor);
 
     void initDefaultPos(LiveActor*, const JMapInfoIter&);

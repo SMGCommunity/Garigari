@@ -1,6 +1,8 @@
 #include "Game/NPC/CollectTico.hpp"
 #include "Game/LiveActor/Nerve.hpp"
+#include "Game/MapObj/CollectTicoHolder.hpp"
 #include "Game/NPC/StrayTico.hpp"
+#include "Game/Util/ActionSoundUtil.hpp"
 #include "Game/Util/ActorCameraUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
@@ -20,12 +22,6 @@ namespace NrvCollectTico {
     NEW_NERVE(CollectTicoNrvFlash, CollectTico, Flash);
     NEW_NERVE(CollectTicoNrvAppearPowerStar, CollectTico, AppearPowerStar);
 };  // namespace NrvCollectTico
-
-// TODO: These do not belong here, however, these are new to SMG2, so it is currently unknown what TU they belong to.
-namespace MR {
-    void registerCollectTico(CollectTico*);
-    void launchRescuedStrayTico(const TPos3f&);
-}
 
 
 CollectTico::CollectTico(const char* pName) : LiveActor(pName), mCameraInfo(nullptr), mStrayTicos(), mTicoNum(0), _A8(), mHasCamera(false), mCompleteHere(false) {
@@ -79,10 +75,10 @@ void CollectTico::exeCompleteDemo() {
             MR::setPosition(this, _98);
             MR::calcGravity(this);
 
-            _98.scaleAdd(300.0f, -mGravity, mPosition); // TODO: This gives suspicious results...
+            _98.scaleAdd(300.0f, -mGravity, _98);
             MR::setPosition(this, _98);
         } else {
-            // TODO: LiveActorUtil -> MR::rotateAroundActor
+            MR::rotateAroundActor(mGravity, TVec3f(0.0f, -1.0f, 0.0f), this); // TODO: In order for Data to match, this -1 needs to occur earlier in the file. I don't know how to make that work though...
             _98.set(mPosition);
         }
 
@@ -94,8 +90,7 @@ void CollectTico::exeCompleteDemo() {
         if (mHasCamera)
             MR::startMultiActorCameraTargetSelf(this, mCameraInfo, "集めデモカメラ", -1);
     }
-    // TODO: MR::startActionSound
-    //MR::startActionSound(this, "SmLvStrayticoComplete");
+    MR::startActionSound(this, "SmLvStrayticoComplete");
     bool needFlash = true;
     for (s32 i = 0; i < mTicoNum; i++) {
         if (!mStrayTicos[i]->isCompleteDemoEnd()) {
@@ -112,8 +107,7 @@ void CollectTico::exeCompleteDemo() {
 void CollectTico::exeFlash() {
     if (MR::isFirstStep(this)) {
         MR::emitEffect(this, "CollectTicoLight");
-        // TODO: MR::startActionSound
-        //MR::startSound(this, "SE_SM_STRAYTICO_FUSION");
+        MR::startActionSound(this, "SmStrayticoFusion");
     }
 
     if (MR::isStep(this, 10)) {
