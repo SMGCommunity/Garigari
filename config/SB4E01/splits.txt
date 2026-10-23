@@ -4231,7 +4231,7 @@ Game/Gravity/PlanetGravityManager.cpp:
 Game/Gravity/PointGravity.cpp:
 	.text       start:0x802277E0 end:0x80227990
 	.data       start:0x80694680 end:0x80694690
-	.sdata2     start:0x807DC300 end:0x807DC308
+	.sdata2     start:0x807DC2F8 end:0x807DC308
 
 Game/Gravity/SegmentGravity.cpp:
 	.text       start:0x80227990 end:0x80228090
