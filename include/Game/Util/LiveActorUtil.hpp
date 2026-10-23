@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Game/LiveActor/ClippingDirector.hpp"
+#include <revolution/types.h>
 #include <JSystem/JGeometry/TMatrix.hpp>
 #include <JSystem/JGeometry/TVec.hpp>
 #include <revolution.h>
@@ -99,8 +101,7 @@ namespace MR {
     void initMirrorReflection(LiveActor* pActor);
     void setMirrorReflectionInfoFromMtxYUp(const TPos3f& rMtx);
     void setMirrorReflectionInfoFromModel(LiveActor* pActor);
-
-    // changeModelDataTexAll
+    void changeModelDataTexAll(LiveActor*, const char*, const ResTIMG&);
 
     void initJointTransform(const LiveActor* pActor);
     // getJointTransform
@@ -266,13 +267,14 @@ namespace MR {
     CollisionParts* createCollisionPartsFromLiveActor(LiveActor* pActor, const char* pCollisionName, HitSensor* pBodySensor, MtxPtr pMtx,
                                                       CollisionScaleType collisionScaleType);
     CollisionParts* createCollisionPartsFromResourceHolder(ResourceHolder* pResourceHolder, const char* pCollisionName, HitSensor* pBodySensor,
-                                                           const TMtx34f& rMtx, CollisionScaleType collisionScaleType);
+                                                           const TMtx34f& rMtx, TPos3f* pMatrix, CollisionScaleType collisionScaleType);
     CollisionParts* createDashYoshiStepCollisionPartsFromResourceHolder(ResourceHolder* pResourceHolder, const char* pCollisionName,
                                                                         HitSensor* pBodySensor, MtxPtr pMtx, CollisionScaleType collisionScaleType);
     CollisionParts* tryCreateCollisionMoveLimit(LiveActor* pActor, HitSensor* pBodySensor);
     CollisionParts* tryCreateCollisionWaterSurface(LiveActor* pActor, HitSensor* pBodySensor);
 
     f32 getCollisionBoundingSphereRange(const LiveActor* pActor);
+    void calcModelBoundingRadius(float* outRadius, const LiveActor* actor);
     bool isValidCollisionParts(LiveActor* pActor);
     void validateCollisionParts(LiveActor* pActor);
     void validateCollisionParts(CollisionParts* pCollisionParts);

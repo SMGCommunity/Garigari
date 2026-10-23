@@ -1,6 +1,8 @@
 #pragma once
 
+#include "Game/LiveActor/HitSensor.hpp"
 #include <JSystem/JGeometry/TMatrix.hpp>
+#include <revolution.h>
 
 class CollisionZone;
 class HitInfo;
