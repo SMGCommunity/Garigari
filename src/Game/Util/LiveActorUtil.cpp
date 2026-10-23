@@ -1706,6 +1706,10 @@ namespace MR {
         return pActor->mCollisionParts != nullptr;
     }
 
+    u32 getCollisionSensortType(const CollisionParts *pCollisionParts) {
+        return pCollisionParts->mHitSensor->mType;
+    }
+
     void stopSceneAtStep(const LiveActor* pActor, s32 step, s32 sceneStep) {
         if (isStep(pActor, step)) {
             stopScene(sceneStep);
