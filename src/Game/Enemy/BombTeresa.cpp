@@ -53,7 +53,7 @@ namespace NrvBombTeresa {
 };  // namespace NrvBombTeresa
 
 BombTeresa::BombTeresa(const char* pName)
-    : LiveActor(pName), mJointDelegator(), mJointDelegator2(), mScaleController(), mBindStarPointer(), _A0(0.0f, 0.0f, 0.0f, 1.0f), _B0(0, 0, 1),
+    : LiveActor(pName), mRootTongueDelegator(), mEndTongueDelegator(), mScaleController(), mBindStarPointer(), _A0(0.0f, 0.0f, 0.0f, 1.0f), _B0(0, 0, 1),
       _BC(0, 0, 0), _C8(0, 0, 0), _D4(0, 0, 0), _E0(), _E4(), _E8(), _EC(), _F0(), mDisableRespawning(), _F2(true), _F3() {
 }
 
@@ -90,8 +90,8 @@ void BombTeresa::initAfterPlacement() {
 }
 
 void BombTeresa::initTongue() {
-    mJointDelegator = MR::createJointDelegator< BombTeresa >(this, this, nullptr, &BombTeresa::rootTongueMtxCallBack, "Tongue1");
-    mJointDelegator2 = MR::createJointDelegatorWithNullChildFunc(this, &BombTeresa::endTongueMtxCallBack, "Tongue2");
+    mRootTongueDelegator = MR::createJointDelegator< BombTeresa >(this, this, nullptr, &BombTeresa::rootTongueMtxCallBack, "Tongue1");
+    mEndTongueDelegator = MR::createJointDelegatorWithNullChildFunc(this, &BombTeresa::endTongueMtxCallBack, "Tongue2");
 }
 
 void BombTeresa::makeActorAppeared() {
@@ -123,8 +123,8 @@ void BombTeresa::control() {
 void BombTeresa::calcAndSetBaseMtx() {
     MR::setBaseTRMtx(this, _A0);
     MR::updateBaseScale(this, mScaleController);
-    mJointDelegator->registerCallBack();
-    mJointDelegator2->registerCallBack();
+    mRootTongueDelegator->registerCallBack();
+    mEndTongueDelegator->registerCallBack();
 }
 
 void BombTeresa::updateNormalVelocity() {

@@ -77,8 +77,8 @@ public:
         return !MR::isNearPlayer(this, dist);
     }
 
-    /* 0x90 */ JointControlDelegator< BombTeresa >* mJointDelegator;
-    /* 0x94 */ JointControlDelegator< BombTeresa >* mJointDelegator2;
+    /* 0x90 */ JointControlDelegator< BombTeresa >* mRootTongueDelegator;
+    /* 0x94 */ JointControlDelegator< BombTeresa >* mEndTongueDelegator;
     /* 0x98 */ AnimScaleController* mScaleController;
     /* 0x9C */ WalkerStateBindStarPointer* mBindStarPointer;
     /* 0xA0 */ TQuat4f _A0;
