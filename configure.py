@@ -1058,6 +1058,7 @@ config.libs = [
     GameLib(
         "LiveActor",
         [
+            Object(NonMatching, "Game/LiveActor/ActorStateBase.cpp"),
             Object(NonMatching, "Game/LiveActor/ActorStateKeeper.cpp"),
             Object(NonMatching, "Game/LiveActor/HitSensor.cpp"),
             Object(NonMatching, "Game/LiveActor/HitSensorInfo.cpp"),

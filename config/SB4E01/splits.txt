@@ -4284,6 +4284,9 @@ Game/LiveActor/ActorLightCtrl.cpp:
 Game/LiveActor/ActorSoundHolder.cpp:
 	.text       start:0x8022CD70 end:0x8022CE50
 
+Game/LiveActor/ActorStateBase.cpp:
+	.text       start:0x8022CEE0 end:0x8022CF40
+
 Game/LiveActor/ActorStateKeeper.cpp:
 	.text       start:0x8022CF40 end:0x8022D140
 
