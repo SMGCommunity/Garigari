@@ -75,10 +75,10 @@ void CollectTico::exeCompleteDemo() {
             MR::setPosition(this, _98);
             MR::calcGravity(this);
 
-            _98.scaleAdd(300.0f, -mGravity, mPosition); // TODO: This gives suspicious results...
+            _98.scaleAdd(300.0f, -mGravity, _98);
             MR::setPosition(this, _98);
         } else {
-            MR::rotateAroundActor(mGravity, TVec3f(0.0f, -1.0f, 0.0f), this);
+            MR::rotateAroundActor(mGravity, TVec3f(0.0f, -1.0f, 0.0f), this); // TODO: In order for Data to match, this -1 needs to occur earlier in the file. I don't know how to make that work though...
             _98.set(mPosition);
         }
 
