@@ -1060,6 +1060,7 @@ config.libs = [
         [
             Object(NonMatching, "Game/LiveActor/ActorStateBase.cpp"),
             Object(NonMatching, "Game/LiveActor/ActorStateKeeper.cpp"),
+            Object(NonMatching, "Game/LiveActor/BreakModel.cpp"),
             Object(NonMatching, "Game/LiveActor/HitSensor.cpp"),
             Object(NonMatching, "Game/LiveActor/HitSensorInfo.cpp"),
             Object(NonMatching, "Game/LiveActor/HitSensorKeeper.cpp"),
