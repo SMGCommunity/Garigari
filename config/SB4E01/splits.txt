@@ -4239,8 +4239,9 @@ Game/Gravity/SegmentGravity.cpp:
 	.sdata2     start:0x807DC308 end:0x807DC330
 
 Game/Gravity/WireGravity.cpp:
-	.text       start:0x80228090 end:0x80228150
+	.text       start:0x80228090 end:0x80228320
 	.data       start:0x806946A0 end:0x806946B0
+	.sdata2     start:0x807DC330 end:0x807DC338
 
 Game/LiveActor/ActorAnimKeeper.cpp:
 	.text       start:0x80228320 end:0x80228D20

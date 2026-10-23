@@ -1055,6 +1055,7 @@ config.libs = [
             Object(NonMatching, "Game/Gravity/PlanetGravityManager.cpp"),
             Object(NonMatching, "Game/Gravity/PointGravity.cpp"),
             Object(NonMatching, "Game/Gravity/SegmentGravity.cpp"),
+            Object(NonMatching, "Game/Gravity/WireGravity.cpp"),
         ]
     ),
     GameLib(
