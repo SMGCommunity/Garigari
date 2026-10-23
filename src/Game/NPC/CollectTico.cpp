@@ -2,6 +2,7 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/CollectTicoHolder.hpp"
 #include "Game/NPC/StrayTico.hpp"
+#include "Game/Util/ActionSoundUtil.hpp"
 #include "Game/Util/ActorCameraUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
@@ -77,7 +78,7 @@ void CollectTico::exeCompleteDemo() {
             _98.scaleAdd(300.0f, -mGravity, mPosition); // TODO: This gives suspicious results...
             MR::setPosition(this, _98);
         } else {
-            // TODO: LiveActorUtil -> MR::rotateAroundActor
+            MR::rotateAroundActor(mGravity, TVec3f(0.0f, -1.0f, 0.0f), this);
             _98.set(mPosition);
         }
 
@@ -89,8 +90,7 @@ void CollectTico::exeCompleteDemo() {
         if (mHasCamera)
             MR::startMultiActorCameraTargetSelf(this, mCameraInfo, "集めデモカメラ", -1);
     }
-    // TODO: MR::startActionSound
-    //MR::startActionSound(this, "SmLvStrayticoComplete");
+    MR::startActionSound(this, "SmLvStrayticoComplete");
     bool needFlash = true;
     for (s32 i = 0; i < mTicoNum; i++) {
         if (!mStrayTicos[i]->isCompleteDemoEnd()) {
@@ -107,8 +107,7 @@ void CollectTico::exeCompleteDemo() {
 void CollectTico::exeFlash() {
     if (MR::isFirstStep(this)) {
         MR::emitEffect(this, "CollectTicoLight");
-        // TODO: MR::startActionSound
-        //MR::startSound(this, "SE_SM_STRAYTICO_FUSION");
+        MR::startActionSound(this, "SmStrayticoFusion");
     }
 
     if (MR::isStep(this, 10)) {
