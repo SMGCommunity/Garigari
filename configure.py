@@ -1058,7 +1058,9 @@ config.libs = [
     GameLib(
         "LiveActor",
         [
+            Object(NonMatching, "Game/LiveActor/ActorStateBase.cpp"),
             Object(NonMatching, "Game/LiveActor/ActorStateKeeper.cpp"),
+            Object(NonMatching, "Game/LiveActor/BreakModel.cpp"),
             Object(NonMatching, "Game/LiveActor/HitSensor.cpp"),
             Object(NonMatching, "Game/LiveActor/HitSensorInfo.cpp"),
             Object(NonMatching, "Game/LiveActor/HitSensorKeeper.cpp"),
@@ -1092,6 +1094,7 @@ config.libs = [
         "MapObj",
         [
             Object(NonMatching, "Game/MapObj/ActorStateDemoAppearance.cpp"),
+            Object(NonMatching, "Game/MapObj/CollectTicoHolder.cpp", extra_cflags=["-sym off"]),
             Object(NonMatching, "Game/MapObj/HipDropSwitch.cpp", extra_cflags=["-sym off"]),
             Object(NonMatching, "Game/MapObj/HipDropTimerSwitch.cpp", extra_cflags=["-sym off"]),
             Object(NonMatching, "Game/MapObj/SnowMan.cpp"),
@@ -1134,6 +1137,7 @@ config.libs = [
         "Scene",
         [
             Object(Matching, "Game/Scene/Scene.cpp"),
+            Object(NonMatching, "Game/Scene/SceneObjHolder.cpp"),
             Object(NonMatching, "Game/Scene/LogoScene.cpp"),
             Object(NonMatching, "Game/Scene/IntermissionScene.cpp", extra_cflags=["-sym off"]),
         ],
@@ -1202,6 +1206,12 @@ config.libs = [
             Object(NonMatching, "Game/Util/TriggerChecker.cpp"),
         ],
     ),
+    GameLib(
+            "World",
+            [
+                Object(NonMatching, "Game/World/MiniRoutePoint.cpp"),
+            ],
+        ),
     RVLLib(
         "gd",
         [
