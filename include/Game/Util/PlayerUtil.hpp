@@ -1,6 +1,6 @@
 #pragma once
 
-#include <JSystem/JGeometry/TVec.hpp>
+#include <JSystem/JGeometry/TMatrix.hpp>
 #include <revolution.h>
 
 class BckCtrlData;
@@ -214,7 +214,7 @@ namespace MR {
 
     MarioActor* getPlayerDemoActor();
 
-    void calcPlayerJointMtx(MtxPtr, const char*);
+    void calcPlayerJointMtx(TPos3f*, const char*);
     void concatWithPlayerJointMtx(MtxPtr, const char*);
 
     void pushPlayer(const TVec3f&);

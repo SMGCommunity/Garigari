@@ -6,6 +6,11 @@
 class LiveActor;
 class HitSensor;
 
+enum {
+    ACTMES_BOMB_TERESA_TONGUE_TOUCH = 0x4F,
+    ACTMES_DISPERSE_BOMB_TERESA = 0xA2,
+};
+
 namespace MR {
     void setSensorFollowPos(LiveActor* pActor, const char* pSensorName, const TVec3f* rFollowPos);
     void setSensorFollowMtx(LiveActor* pActor, const char* pSensorName, MtxPtr pFollowMtx);
