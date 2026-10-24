@@ -10,7 +10,6 @@ namespace NrvMiniComet {
 };
 
 MiniComet::MiniComet(const char* pName) : LiveActor("コメット（ワールドマップ）"), mName(pName) {
-
 }
 
 void MiniComet::init(const JMapInfoIter& rIter) {

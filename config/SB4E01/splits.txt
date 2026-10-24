@@ -10054,7 +10054,7 @@ Game/World/MapDemoStateWait.cpp:
 	.data       start:0x80700CD0 end:0x80700D10
 	.sbss       start:0x807D5E40 end:0x807D5E48
 
-Game/World/MapDemoStateGrandGalaxyMapNews.cpp:
+Game/World/MapDemoStateNews.cpp:
 	.text       start:0x804E2830 end:0x804E2F00
 	.ctors      start:0x80644A5C end:0x80644A60
 	.data       start:0x80700D10 end:0x80700EE8
