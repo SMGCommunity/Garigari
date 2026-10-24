@@ -9796,7 +9796,7 @@ Game/World/SequenceManager.cpp:
 	.sbss       start:0x807D5E10 end:0x807D5E28
 	.sdata2     start:0x807E1A28 end:0x807E1A30
 
-Game/World/MapStateDemo.cpp:
+Game/World/MapDemoEnterState.cpp:
 	.text       start:0x804E0B40 end:0x804E0EB0
 	.ctors      start:0x80644A4C end:0x80644A50
 	.rodata     start:0x8064E1A0 end:0x8064E1A8
