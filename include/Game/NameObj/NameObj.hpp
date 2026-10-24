@@ -25,6 +25,10 @@ public:
     void requestResume();
     void syncWithFlags();
 
+    const char* getName() const {
+        return mName;
+    }
+
     /* 0x04 */ const char* mName;
     /* 0x08 */ vu16 mFlags;
     /* 0x0A */ s16 mExecutorIdx;

@@ -1,8 +1,7 @@
 #pragma once
 
-#include <revolution.h>
-
-class JKRHeap;
+#include "Inline.hpp"
+#include <JSystem/JKernel/JKRHeap.hpp>
 
 namespace MR {
     class FunctorBase {
@@ -25,7 +24,7 @@ namespace MR {
         }
 
         virtual FunctorBase* clone(JKRHeap* pHeap) const {
-            return new (pHeap, 0x16) FunctorV0M(*this);
+            return new (pHeap, 0) FunctorV0M(*this);
         };
 
         T mCaller;
@@ -49,7 +48,7 @@ namespace MR {
         }
 
         virtual FunctorBase* clone(JKRHeap* pHeap) const {
-            return new (pHeap, 0x16) FunctorV1M(*this);
+            return new (pHeap, 0) FunctorV1M(*this);
         };
 
         T mCaller;
@@ -75,7 +74,7 @@ namespace MR {
         }
 
         virtual FunctorBase* clone(JKRHeap* pHeap) const {
-            return new (pHeap, 0x16) FunctorV2M(*this);
+            return new (pHeap, 0) FunctorV2M(*this);
         };
 
         T mCaller;
@@ -85,34 +84,55 @@ namespace MR {
     };
 
     template < class T >
-    static FunctorV0M< T*, void (T::*)() > Functor(T* a1, void (T::*a2)()) NO_INLINE {
-        return FunctorV0M< T*, void (T::*)() >(a1, a2);
+    FunctorV0M< T*, void (T::*)() > Functor(T* pObject, void (T::*pFunction)()) {
+        return FunctorV0M< T*, void (T::*)() >(pObject, pFunction);
     }
 
     template < class T >
-    inline static FunctorV0M< T*, void (T::*)() > Functor_Inline(T* a1, void (T::*a2)()) {
-        return FunctorV0M< T*, void (T::*)() >(a1, a2);
+    static FunctorV0M< const T*, void (T::*)() const > Functor(const T* pObject, void (T::*pFunction)() const) {
+        return FunctorV0M< const T*, void (T::*)() const >(pObject, pFunction);
     }
 
     template < class T, typename U >
-    static FunctorV1M< T*, void (T::*)(U), U > Functor(T* a1, void (T::*a2)(U), U arg_0) {
-        return FunctorV1M< T*, void (T::*)(U), U >(a1, a2, arg_0);
+    static FunctorV1M< T*, void (T::*)(U), U > Functor(T* pObject, void (T::*pFunction)(U), U arg_0) {
+        return FunctorV1M< T*, void (T::*)(U), U >(pObject, pFunction, arg_0);
+    }
+
+    template < class T, typename U >
+    static FunctorV1M< const T*, void (T::*)(U), U > Functor(const T* pObject, void (T::*pFunction)(U) const, U arg_0) {
+        return FunctorV1M< const T*, void (T::*)(U) const, U >(pObject, pFunction, arg_0);
     }
 
     template < class T, typename U, typename V >
-    static FunctorV2M< T*, void (T::*)(U, V), U, V > Functor(T* a1, void (T::*a2)(U, V), U arg_0, V arg_1) {
-        return FunctorV2M< T*, void (T::*)(U, V), U, V >(a1, a2, arg_0, arg_1);
+    static FunctorV2M< T*, void (T::*)(U, V), U, V > Functor(T* pObject, void (T::*pFunction)(U, V), U arg_0, V arg_1) {
+        return FunctorV2M< T*, void (T::*)(U, V), U, V >(pObject, pFunction, arg_0, arg_1);
+    }
+
+    template < class T, typename U, typename V >
+    static FunctorV2M< const T*, void (T::*)(U, V) const, U, V > Functor(const T* pObject, void (T::*pFunction)(U, V) const, U arg_0, V arg_1) {
+        return FunctorV2M< const T*, void (T::*)(U, V) const, U, V >(pObject, pFunction, arg_0, arg_1);
     }
 
     class FunctorV0F : public FunctorBase {
     public:
-        inline FunctorV0F(void (*func)(void)) {
-            mFunc = reinterpret_cast< void* >(func);
+        inline FunctorV0F(void (*pFunction)(void)) {
+            mFunc = pFunction;
         };
 
-        virtual void operator()() const;
-        virtual FunctorBase* clone(JKRHeap*) const;
+        inline FunctorV0F() {
+        }
 
-        void* mFunc;  // 0x4
+        virtual void operator()() const {
+            (*mFunc)();
+        }
+        virtual FunctorBase* clone(JKRHeap* pHeap) const {
+            return new (pHeap, 0) FunctorV0F(*this);
+        }
+
+        /* 0x04 */ void (*mFunc)();
     };
+
+    static FunctorV0F Functor(void (*pFunction)()) {
+        return FunctorV0F(pFunction);
+    }
 };  // namespace MR

@@ -651,7 +651,9 @@ config.libs = [
                 extra_cflags=["-ipa file", "-sym on"],
             ),
             Object(
-                NonMatching, "JSystem/J3DGraphBase/J3DSys.cpp", extra_cflags=["-ipa file"]
+                NonMatching,
+                "JSystem/J3DGraphBase/J3DSys.cpp",
+                extra_cflags=["-ipa file"],
             ),
             Object(
                 NonMatching,
@@ -939,7 +941,9 @@ config.libs = [
             Object(NonMatching, "JSystem/JParticle/JPAFieldBlock.cpp"),
             Object(NonMatching, "JSystem/JParticle/JPAKeyBlock.cpp"),
             Object(
-                NonMatching, "JSystem/JParticle/JPATexture.cpp", extra_cflags=["-ipa off"]
+                NonMatching,
+                "JSystem/JParticle/JPATexture.cpp",
+                extra_cflags=["-ipa off"],
             ),
             Object(Matching, "JSystem/JParticle/JPAResourceLoader.cpp"),
             Object(NonMatching, "JSystem/JParticle/JPAEmitterManager.cpp"),
@@ -1032,9 +1036,44 @@ config.libs = [
         ],
     },
     GameLib(
+        "AreaObj",
+        [
+            Object(NonMatching, "Game/AreaObj/AreaForm.cpp"),
+            Object(NonMatching, "Game/AreaObj/AreaObj.cpp"),
+        ]
+    ),
+    GameLib(
+        "Enemy",
+        [
+            Object(NonMatching, "Game/Enemy/BombTeresa.cpp"),
+        ]
+    ),
+    GameLib(
+        "Gravity",
+        [
+            Object(NonMatching, "Game/Gravity/BarrelGravity.cpp"),
+            Object(NonMatching, "Game/Gravity/ConeGravity.cpp"),
+            Object(NonMatching, "Game/Gravity/CubeGravity.cpp"),
+            Object(NonMatching, "Game/Gravity/DiskGravity.cpp"),
+            Object(NonMatching, "Game/Gravity/DiskTorusGravity.cpp"),
+            Object(NonMatching, "Game/Gravity/GlobalGravityObj.cpp"),
+            Object(NonMatching, "Game/Gravity/GravityFollower.cpp"),
+            Object(NonMatching, "Game/Gravity/GravityCreator.cpp"),
+            Object(NonMatching, "Game/Gravity/GravityInfo.cpp"),
+            Object(NonMatching, "Game/Gravity/ParallelGravity.cpp"),
+            Object(NonMatching, "Game/Gravity/PlanetGravity.cpp"),
+            Object(NonMatching, "Game/Gravity/PlanetGravityManager.cpp"),
+            Object(NonMatching, "Game/Gravity/PointGravity.cpp"),
+            Object(NonMatching, "Game/Gravity/SegmentGravity.cpp"),
+            Object(NonMatching, "Game/Gravity/WireGravity.cpp"),
+        ]
+    ),
+    GameLib(
         "LiveActor",
         [
+            Object(NonMatching, "Game/LiveActor/ActorStateBase.cpp"),
             Object(NonMatching, "Game/LiveActor/ActorStateKeeper.cpp"),
+            Object(NonMatching, "Game/LiveActor/BreakModel.cpp"),
             Object(NonMatching, "Game/LiveActor/HitSensor.cpp"),
             Object(NonMatching, "Game/LiveActor/HitSensorInfo.cpp"),
             Object(NonMatching, "Game/LiveActor/HitSensorKeeper.cpp"),
@@ -1052,6 +1091,8 @@ config.libs = [
         [
             Object(NonMatching, "Game/Map/CollisionCode.cpp"),
             Object(NonMatching, "Game/Map/KCollision.cpp"),
+            Object(NonMatching, "Game/Map/OceanSphere.cpp"),
+            Object(NonMatching, "Game/Map/OceanSpherePoint.cpp"),
             Object(NonMatching, "Game/Map/RailGraph.cpp"),
             Object(NonMatching, "Game/Map/RailGraphEdge.cpp"),
             Object(NonMatching, "Game/Map/RailGraphIter.cpp"),
@@ -1060,6 +1101,18 @@ config.libs = [
             Object(NonMatching, "Game/Map/StageSwitch.cpp"),
             Object(NonMatching, "Game/Map/SwitchSynchronizer.cpp"),
             Object(NonMatching, "Game/Map/SwitchWatcher.cpp"),
+        ],
+    ),
+    GameLib(
+        "MapObj",
+        [
+            Object(NonMatching, "Game/MapObj/ActorStateDemoAppearance.cpp"),
+            Object(NonMatching, "Game/MapObj/CollectTicoHolder.cpp", extra_cflags=["-sym off"]),
+            Object(NonMatching, "Game/MapObj/HipDropSwitch.cpp", extra_cflags=["-sym off"]),
+            Object(NonMatching, "Game/MapObj/HipDropTimerSwitch.cpp", extra_cflags=["-sym off"]),
+            Object(NonMatching, "Game/MapObj/SnowMan.cpp"),
+            Object(NonMatching, "Game/MapObj/TicoCoin.cpp"),
+            Object(NonMatching, "Game/MapObj/TimeAttackClock.cpp", extra_cflags=["-sym off"]),
         ],
     ),
     GameLib(
@@ -1072,8 +1125,15 @@ config.libs = [
             Object(NonMatching, "Game/NameObj/NameObjGroup.cpp"),
             Object(NonMatching, "Game/NameObj/NameObjFactory.cpp"),
             Object(NonMatching, "Game/NameObj/NameObjFinder.cpp"),
-            Object(NonMatching, "Game/NameObj/NameObjHolder.cpp"),
+            Object(Matching, "Game/NameObj/NameObjHolder.cpp"),
             Object(NonMatching, "Game/NameObj/NameObjRegister.cpp"),
+        ],
+    ),
+    GameLib(
+        "NPC",
+        [
+            Object(NonMatching, "Game/NPC/CollectTico.cpp"),
+            Object(NonMatching, "Game/NPC/StrayTico.cpp"),
         ],
     ),
     GameLib(
@@ -1087,14 +1147,28 @@ config.libs = [
         ],
     ),
     GameLib(
+        "Scene",
+        [
+            Object(Matching, "Game/Scene/Scene.cpp"),
+            Object(NonMatching, "Game/Scene/SceneObjHolder.cpp"),
+            Object(NonMatching, "Game/Scene/LogoScene.cpp"),
+            Object(NonMatching, "Game/Scene/IntermissionScene.cpp", extra_cflags=["-sym off"]),
+        ],
+    ),
+    GameLib(
         "Screen",
         [
+            Object(NonMatching, "Game/Screen/CometMedalCounter.cpp"),
+            Object(NonMatching, "Game/Screen/GalaxyCometScreenFilter.cpp"),
+            Object(NonMatching, "Game/Screen/IconAButton.cpp"),
             Object(NonMatching, "Game/Screen/LayoutActor.cpp"),
             Object(NonMatching, "Game/Screen/LayoutActorFlag.cpp"),
             Object(NonMatching, "Game/Screen/LayoutCoreUtil.cpp", extra_cflags=["-DNW4R_DEBUG"]),
             Object(NonMatching, "Game/Screen/LayoutGroupCtrl.cpp", extra_cflags=["-DNW4R_DEBUG"]),
             Object(NonMatching, "Game/Screen/LayoutManager.cpp", extra_cflags=["-DNW4R_DEBUG"]),
             Object(NonMatching, "Game/Screen/LayoutPaneCtrl.cpp", extra_cflags=["-DNW4R_DEBUG"]),
+            Object(NonMatching, "Game/Screen/PopUpAddTimeAttackTime.cpp"),
+            Object(NonMatching, "Game/Screen/SaveIcon.cpp"),
         ],
     ),
     GameLib(
@@ -1126,11 +1200,14 @@ config.libs = [
     GameLib(
         "Util",
         [
+            Object(NonMatching, "Game/Util/ActorCameraUtil.cpp"),
             Object(NonMatching, "Game/Util/ActionSoundUtil.cpp"),
             Object(NonMatching, "Game/Util/ActorInitUtil.cpp"),
             Object(NonMatching, "Game/Util/ActorSensorUtil.cpp"),
             Object(NonMatching, "Game/Util/ActorShadowUtil.cpp"),
+            Object(NonMatching, "Game/Util/BaseMatrixFollowTargetHolder.cpp"),
             Object(NonMatching, "Game/Util/BothDirList.cpp"),
+            Object(NonMatching, "Game/Util/GravityUtil.cpp"),
             Object(NonMatching, "Game/Util/HashUtil.cpp"),
             Object(NonMatching, "Game/Util/JMapInfo.cpp"),
             Object(NonMatching, "Game/Util/JMapUtil.cpp"),
@@ -1138,10 +1215,27 @@ config.libs = [
             Object(NonMatching, "Game/Util/MathUtil.cpp"),
             Object(NonMatching, "Game/Util/MtxUtil.cpp"),
             Object(NonMatching, "Game/Util/SchedulerUtil.cpp"),
+            Object(NonMatching, "Game/Util/SpringValue.cpp"),
             Object(NonMatching, "Game/Util/SystemUtil.cpp"),
             Object(NonMatching, "Game/Util/TriggerChecker.cpp"),
         ],
     ),
+    GameLib(
+            "World",
+            [
+                Object(NonMatching, "Game/World/GrandGalaxyMap.cpp"),
+                Object(NonMatching, "Game/World/GrandGalaxyMapIcon.cpp"),
+                Object(NonMatching, "Game/World/GrandGalaxyMapIconHolder.cpp"),
+                Object(NonMatching, "Game/World/SequenceManager.cpp"),
+                Object(NonMatching, "Game/World/MapDemoStateEnter.cpp"),
+                Object(NonMatching, "Game/World/MapDemoStateMove.cpp"),
+                Object(NonMatching, "Game/World/MapDemoStateWait.cpp"),
+                Object(NonMatching, "Game/World/MapDemoStateNews.cpp"),
+                Object(NonMatching, "Game/World/MapDemoStateWarp.cpp"),
+                Object(NonMatching, "Game/World/MiniComet.cpp"),
+                Object(NonMatching, "Game/World/MiniRoutePoint.cpp"),
+            ],
+        ),
     RVLLib(
         "gd",
         [
@@ -1797,68 +1891,152 @@ config.libs = [
             Object(Matching, "MSL_C/abort_exit_ppc_eabi.c"),
             Object(Matching, "MSL_C/secure_error.c"),
             Object(Matching, "MSL_C/math_sun.c"),
-            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_acos.c"),
-            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_asin.c"),
-            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_atan2.c"),
-            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_fmod.c"),
+            Object(
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_acos.c"
+            ),
+            Object(
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_asin.c"
+            ),
+            Object(
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_atan2.c"
+            ),
+            Object(
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_fmod.c"
+            ),
             Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_log.c"),
-            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_log10.c"),
+            Object(
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_log10.c"
+            ),
             Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_pow.c"),
-            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_rem_pio2.c"),
+            Object(
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_rem_pio2.c"
+            ),
             Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/k_cos.c"),
-            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/k_rem_pio2.c"),
+            Object(
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/k_rem_pio2.c"
+            ),
             Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/k_sin.c"),
             Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/k_tan.c"),
-            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_atan.c"),
-            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_ceil.c"),
-            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_copysign.c"),
+            Object(
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_atan.c"
+            ),
+            Object(
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_ceil.c"
+            ),
+            Object(
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_copysign.c"
+            ),
             Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_cos.c"),
-            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_floor.c"),
-            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_frexp.c"),
-            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_ldexp.c"),
+            Object(
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_floor.c"
+            ),
+            Object(
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_frexp.c"
+            ),
+            Object(
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_ldexp.c"
+            ),
             Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_sin.c"),
             Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_tan.c"),
-            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/w_acos.c"),
-            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/w_asin.c"),
-            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/w_atan2.c"),
-            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/w_fmod.c"),
-            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/w_log10.c"),
+            Object(
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/w_acos.c"
+            ),
+            Object(
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/w_asin.c"
+            ),
+            Object(
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/w_atan2.c"
+            ),
+            Object(
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/w_fmod.c"
+            ),
+            Object(
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/w_log10.c"
+            ),
             Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/w_pow.c"),
-            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_sqrt.c"),
+            Object(
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_sqrt.c"
+            ),
             Object(Matching, "MSL_C/PPC_EABI/SRC/math_ppc.c"),
-            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/w_sqrt.c"),
+            Object(
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/w_sqrt.c"
+            ),
             Object(Matching, "MSL_C/extras.c"),
         ],
     ),
     TRKLib(
         "MetroTRK",
         [
-            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/exception.s"),
-            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Export/targsupp.s"),
-            Object(Matching, "MetroTRK/gamedev/cust_connection/cc/exi2/GCN/EXI2_GDEV_GCN/main.c"),
-            Object(Matching, "MetroTRK/gamedev/cust_connection/utils/gc/MWCriticalSection_gc.c"),
-            Object(Matching, "MetroTRK/gamedev/cust_connection/utils/common/CircleBuffer.c"),
-            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/flush_cache.c"),
+            Object(
+                Matching,
+                "MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/exception.s",
+            ),
+            Object(
+                Matching,
+                "MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Export/targsupp.s",
+            ),
+            Object(
+                Matching,
+                "MetroTRK/gamedev/cust_connection/cc/exi2/GCN/EXI2_GDEV_GCN/main.c",
+            ),
+            Object(
+                Matching,
+                "MetroTRK/gamedev/cust_connection/utils/gc/MWCriticalSection_gc.c",
+            ),
+            Object(
+                Matching, "MetroTRK/gamedev/cust_connection/utils/common/CircleBuffer.c"
+            ),
+            Object(
+                Matching,
+                "MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/flush_cache.c",
+            ),
             Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/main_TRK.c"),
             Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/mainloop.c"),
             Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/mem_TRK.c"),
             Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/dispatch.c"),
-            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/dolphin_trk.c"),
-            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/dolphin_trk_glue.c", extra_cflags=["-str pool"]),
+            Object(
+                Matching, "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/dolphin_trk.c"
+            ),
+            Object(
+                Matching,
+                "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/dolphin_trk_glue.c",
+                extra_cflags=["-str pool"],
+            ),
             Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/notify.c"),
             Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/nubevent.c"),
             Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/nubinit.c"),
             Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/serpoll.c"),
-            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/string_TRK.c"),
-            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/support.c", extra_cflags=["-str pool"]),
-            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/targcont.c"),
-            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/mpc_7xx_603e.c"),
+            Object(
+                Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/string_TRK.c"
+            ),
+            Object(
+                Matching,
+                "MetroTRK/debugger/embedded/MetroTRK/Portable/support.c",
+                extra_cflags=["-str pool"],
+            ),
+            Object(
+                Matching, "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/targcont.c"
+            ),
+            Object(
+                Matching,
+                "MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/mpc_7xx_603e.c",
+            ),
             Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/msg.c"),
             Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/msgbuf.c"),
-            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/msghndlr.c", extra_cflags=["-str pool"]),
+            Object(
+                Matching,
+                "MetroTRK/debugger/embedded/MetroTRK/Portable/msghndlr.c",
+                extra_cflags=["-str pool"],
+            ),
             Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Export/mslsupp.c"),
-            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/targimpl.c"),
-            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/target_options.c"),
+            Object(
+                Matching,
+                "MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/targimpl.c",
+            ),
+            Object(
+                Matching,
+                "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/target_options.c",
+            ),
         ],
     ),
 ]

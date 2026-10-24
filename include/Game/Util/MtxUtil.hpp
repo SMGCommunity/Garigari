@@ -6,7 +6,10 @@
 #include <revolution/mtx/mtx.h>
 
 namespace MR {
+    void makeMtxRotate(MtxPtr, f32, f32, f32);
     void makeMtxRotate(MtxPtr, const TVec3f&);
+    void preScaleMtx(MtxPtr, const TVec3f&);
+    void makeMtxTRS(MtxPtr, const TVec3f&, const TVec3f&, const TVec3f&);
     void makeMtxTR(MtxPtr, f32, f32, f32, f32, f32, f32);
     void makeMtxTR(MtxPtr, const TVec3f&, const TVec3f&);
     void makeMtxSideUp(TPos3f*, const TVec3f&, const TVec3f&);
@@ -34,6 +37,7 @@ namespace MR {
     void extractMtxZDir(MtxPtr, TVec3f*);
     void extractMtxXYZDir(MtxPtr, TVec3f*, TVec3f*, TVec3f*);
     void extractMtxTrans(MtxPtr, TVec3f*);
+    void preScaleMtx(MtxPtr, const TVec3f&);
 
     template < typename T >
     f32 sqrt(f32);
@@ -49,4 +53,5 @@ namespace MR {
     MtxPtr tmpMtxRotZDeg(f32);
     void orderRotateMtx(s16, const TVec3f&, MtxPtr);
     void inverseConcatMtx(MtxPtr, MtxPtr, TMtx34f*);
+    void turnMtxToXDirRate(TPos3f*, const TVec3f&, f32);
 };  // namespace MR
