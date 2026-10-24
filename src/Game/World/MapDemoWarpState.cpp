@@ -1,4 +1,4 @@
-#include "Game/World/MapDemoWarpState.hpp"
+#include "Game/World/MapDemoStateWarp.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/System/GameDataFunction.hpp"
 #include "Game/Util/BgmUtil.hpp"
@@ -12,29 +12,29 @@ EXTERN_UNKNOWN_FUNC(void, 80059240, void)
 EXTERN_UNKNOWN_FUNC(void, 804D65C0, s32)
 EXTERN_UNKNOWN_FUNC(void, 804D72A0, u32)
 
-namespace NrvMapDemoWarpState {
-    NEW_NERVE(MapDemoWarpStateNrvWait, MapDemoWarpState, Wait);
+namespace NrvMapDemoStateWarp {
+    NEW_NERVE(MapDemoStateWarpNrvWait, MapDemoStateWarp, Wait);
 };
 
-MapDemoWarpState::MapDemoWarpState(GrandGalaxyMap* pHost)
+MapDemoStateWarp::MapDemoStateWarp(GrandGalaxyMap* pHost)
     : ActorStateBase< GrandGalaxyMap >("State[ワールドワープ]", pHost), mWarpWorldId(-1), _14(-1), mZoom() {
 }
 
-void MapDemoWarpState::init() {
-    initNerve(GET_NERVE(MapDemoWarpState, MapDemoWarpStateNrvWait));
+void MapDemoStateWarp::init() {
+    initNerve(GET_NERVE(MapDemoStateWarp, MapDemoStateWarpNrvWait));
     mIsDead = true;
 }
 
-void MapDemoWarpState::appear() {
+void MapDemoStateWarp::appear() {
     mIsDead = false;
-    setNerve(GET_NERVE(MapDemoWarpState, MapDemoWarpStateNrvWait));
+    setNerve(GET_NERVE(MapDemoStateWarp, MapDemoStateWarpNrvWait));
 
     fn_80059240();
 
     mZoom = MR::getFovy();
 }
 
-void MapDemoWarpState::exeWait() {
+void MapDemoStateWarp::exeWait() {
     if (MR::isFirstStep(this) && GameDataFunction::getCurrentWorldId() != mWarpWorldId) {
         MR::stopStageBGM(30);
         MR::stopSubBGM(0);

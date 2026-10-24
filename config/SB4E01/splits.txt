@@ -9796,7 +9796,7 @@ Game/World/SequenceManager.cpp:
 	.sbss       start:0x807D5E10 end:0x807D5E28
 	.sdata2     start:0x807E1A28 end:0x807E1A30
 
-Game/World/MapDemoEnterState.cpp:
+Game/World/MapDemoStateEnter.cpp:
 	.text       start:0x804E0B40 end:0x804E0EB0
 	.ctors      start:0x80644A4C end:0x80644A50
 	.rodata     start:0x8064E1A0 end:0x8064E1A8
@@ -9823,12 +9823,12 @@ Game/World/MapStateWait.cpp:
 	.sbss       start:0x807D5E40 end:0x807D5E48
 
 Game/World/MapStateGrandGalaxyMapNews.cpp:
-	.text       start:0x804E28A0 end:0x804E2F00
+	.text       start:0x804E2830 end:0x804E2F00
 	.ctors      start:0x80644A5C end:0x80644A60
 	.sbss       start:0x807D5E48 end:0x807D5E58
 	.sdata2     start:0x807E1A70 end:0x807E1A78
 
-Game/World/MapDemoWarpState.cpp:
+Game/World/MapDemoStateWarp.cpp:
 	.text       start:0x804E2F00 end:0x804E31D0
 	.ctors      start:0x80644A60 end:0x80644A64
 	.rodata     start:0x8064E1A8 end:0x8064E1B0

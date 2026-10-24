@@ -4,9 +4,9 @@
 
 class GrandGalaxyMap;
 
-class MapDemoEnterState : public ActorStateBase< GrandGalaxyMap > {
+class MapDemoStateEnter : public ActorStateBase< GrandGalaxyMap > {
 public:
-    MapDemoEnterState(GrandGalaxyMap*);
+    MapDemoStateEnter(GrandGalaxyMap*);
 
     virtual void init();
     virtual void appear();
