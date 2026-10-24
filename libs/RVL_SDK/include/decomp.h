@@ -12,4 +12,6 @@
 
 #define unk_t unk4_t
 
+#define EXTERN_UNKNOWN_FUNC(ret, addr, ...) extern "C" ret fn_ ## addr (__VA_ARGS__);
+
 #endif  // DECOMP_H

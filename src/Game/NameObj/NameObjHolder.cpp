@@ -1,27 +1,40 @@
 #include "Game/NameObj/NameObjHolder.hpp"
 #include "Game/NameObj/NameObj.hpp"
+#include "Game/Util/HashUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
+#include <algorithm>
 
-NameObjHolder::NameObjHolder(int a1) : mObjs(0), mMaxObjs(0), mObjCount(0), _4C(0) {
-    mObjs = new NameObj*[a1];
-    mMaxObjs = a1;
+namespace {
+    struct equal_fullname {
+        equal_fullname(const char* pName) : mHash(MR::getHashCode(pName)), mName(pName) {
+        }
+
+        bool operator()(const NameObj* pObj) const {
+            return strcmp(pObj->getName(), mName) == 0;
+        }
+
+        /* 0x00 */ u32 mHash;
+        /* 0x04 */ const char* mName;
+    };
+};
+
+NameObjHolder::NameObjHolder(s32 num) {
+    mObjArray1.init(num);
 }
 
 void NameObjHolder::add(NameObj* pObj) {
-    u32 count = mObjCount;
-    mObjCount = count + 1;
-    mObjs[count] = pObj;
+    mObjArray1.push_back(pObj);
 }
 
 void NameObjHolder::suspendAllObj() {
-    for (s32 i = 0; i < mObjCount; i++) {
-        MR::requestMovementOff(mObjs[i]);
+    for (s32 i = 0; i < mObjArray1.size(); i++) {
+        MR::requestMovementOff(mObjArray1[i]);
     }
 }
 
 void NameObjHolder::resumeAllObj() {
-    for (s32 i = 0; i < mObjCount; i++) {
-        MR::requestMovementOn(mObjs[i]);
+    for (s32 i = 0; i < mObjArray1.size(); i++) {
+        MR::requestMovementOn(mObjArray1[i]);
     }
 }
 
@@ -29,22 +42,35 @@ void NameObjHolder::syncWithFlags() {
     callMethodAllObj(&NameObj::syncWithFlags);
 }
 
-/*
 void NameObjHolder::callMethodAllObj(func functionPtr) {
-    func function = functionPtr;
-
-    NameObj** start = mObjs;
-    NameObj** end = &mObjs[mObjCount];
-    function = functionPtr;
-
-    while (start != end) {
-        (*start->*function)();
-        start++;
-    }
+    std::for_each(mObjArray1.begin(), mObjArray1.end(), std::mem_func(functionPtr));
 }
-*/
 
 void NameObjHolder::clearArray() {
-    mObjCount = 0;
-    _4C = 0;
+    mObjArray1.clear();
+    mObjArray2.clear();
+}
+
+NameObj* NameObjHolder::find(const char* pName) {
+    NameObj** objIter = std::find_if(mObjArray2.begin(), mObjArray2.end(), equal_fullname(pName));
+
+    if (objIter != mObjArray2.end()) {
+        NameObj* pObj = *objIter;
+        mObjArray2.erase(objIter);
+        mObjArray2.insert(mObjArray2.begin(), pObj);
+        return pObj;
+    }
+
+    NameObj** pFound = std::find_if(mObjArray1.begin(), mObjArray1.end(), equal_fullname(pName));
+    if (pFound == mObjArray1.end()) {
+        return nullptr;
+    }
+
+    NameObj* pObj = *pFound;
+    if (mObjArray2.size() >= mObjArray2.capacity()) {
+        mObjArray2.pop_back();
+    }
+
+    mObjArray2.insert(mObjArray2.begin(), pObj);
+    return pObj;
 }
