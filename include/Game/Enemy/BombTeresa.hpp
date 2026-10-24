@@ -90,7 +90,7 @@ public:
     /* 0xE4 */ f32 _E4;
     /* 0xE8 */ f32 _E8;
     /* 0xEC */ s32 mDriftCycleTimer;
-    /* 0xF0 */ bool mReleaseDrift;
+    /* 0xF0 */ bool mDoReleaseDrift;
     /* 0xF1 */ bool mDisableRespawning;
     /* 0xF2 */ bool _F2;
     /* 0xF3 */ bool mIsFromPolta;  ///< Is the actor spawned from Bouldergeist?

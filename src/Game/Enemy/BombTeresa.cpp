@@ -54,7 +54,7 @@ namespace NrvBombTeresa {
 
 BombTeresa::BombTeresa(const char* pName)
     : LiveActor(pName), mRootTongueDelegator(), mEndTongueDelegator(), mScaleController(), mBindStarPointer(), _A0(0.0f, 0.0f, 0.0f, 1.0f), _B0(0, 0, 1),
-      _BC(0, 0, 0), _C8(0, 0, 0), mResetPosition(0, 0, 0), _E0(), _E4(), _E8(), mDriftCycleTimer(), mReleaseDrift(), mDisableRespawning(), _F2(true), mIsFromPolta() {
+      _BC(0, 0, 0), _C8(0, 0, 0), mResetPosition(0, 0, 0), _E0(), _E4(), _E8(), mDriftCycleTimer(), mDoReleaseDrift(), mDisableRespawning(), _F2(true), mIsFromPolta() {
 }
 
 void BombTeresa::init(const JMapInfoIter& rIter) {
@@ -334,7 +334,7 @@ bool BombTeresa::tryAbortDrift() {
 }
 
 bool BombTeresa::tryDriftRelease() {
-    if (mReleaseDrift) {
+    if (mDoReleaseDrift) {
         setNerve(GET_NERVE(BombTeresa, BombTeresaNrvDriftRelease));
         return true;
     }
@@ -575,7 +575,7 @@ void BombTeresa::exeDrift() {
         MR::startActionSound(this, "EmBombtereTongueCatch");
         _F2 = MR::isLeftSideFromPlayer(this) == false;
         mDriftCycleTimer = 40;
-        mReleaseDrift = false;
+        mDoReleaseDrift = false;
         _E4 = 7.0f;
         _E8 = 7.0f;
         _E0 = 1.0f;
@@ -617,7 +617,7 @@ void BombTeresa::exeDrift() {
             _E4 += 20.0f;
             _E8 += 20.0f;
             if (MR::isGreaterStep(this, 190)) {
-                mReleaseDrift = true;
+                mDoReleaseDrift = true;
             }
         }
     }
