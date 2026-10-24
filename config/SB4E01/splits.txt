@@ -9938,27 +9938,28 @@ Game/World/MapDemoStateEnter.cpp:
 	.sbss       start:0x807D5E28 end:0x807D5E30
 	.sdata2     start:0x807E1A30 end:0x807E1A38
 
-Game/World/MapStateInit.cpp:
+Game/World/MapDemoStateInit.cpp:
 	.text       start:0x804E0F10 end:0x804E1130
 	.ctors      start:0x80644A50 end:0x80644A54
 	.sbss       start:0x807D5E30 end:0x807D5E38
 	.sdata2     start:0x807E1A38 end:0x807E1A48
 
-Game/World/MapStateMove.cpp:
+Game/World/MapDemoStateMove.cpp:
 	.text       start:0x804E11D0 end:0x804E2550
 	.ctors      start:0x80644A54 end:0x80644A58
 	.sdata      start:0x807D04D8 end:0x807D04E0
 	.sbss       start:0x807D5E38 end:0x807D5E40
 	.sdata2     start:0x807E1A48 end:0x807E1A70
 
-Game/World/MapStateWait.cpp:
+Game/World/MapDemoStateWait.cpp:
 	.text       start:0x804E25C0 end:0x804E2830
 	.ctors      start:0x80644A58 end:0x80644A5C
 	.sbss       start:0x807D5E40 end:0x807D5E48
 
-Game/World/MapStateGrandGalaxyMapNews.cpp:
+Game/World/MapDemoStateGrandGalaxyMapNews.cpp:
 	.text       start:0x804E2830 end:0x804E2F00
 	.ctors      start:0x80644A5C end:0x80644A60
+	.data       start:0x80700D10 end:0x80700EE8
 	.sbss       start:0x807D5E48 end:0x807D5E58
 	.sdata2     start:0x807E1A70 end:0x807E1A78
 
