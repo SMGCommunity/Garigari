@@ -1043,6 +1043,12 @@ config.libs = [
         ]
     ),
     GameLib(
+        "Enemy",
+        [
+            Object(NonMatching, "Game/Enemy/BombTeresa.cpp"),
+        ]
+    ),
+    GameLib(
         "Gravity",
         [
             Object(NonMatching, "Game/Gravity/BarrelGravity.cpp"),
