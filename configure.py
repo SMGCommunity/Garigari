@@ -1043,9 +1043,37 @@ config.libs = [
         ]
     ),
     GameLib(
+        "Enemy",
+        [
+            Object(NonMatching, "Game/Enemy/BombTeresa.cpp"),
+        ]
+    ),
+    GameLib(
+        "Gravity",
+        [
+            Object(NonMatching, "Game/Gravity/BarrelGravity.cpp"),
+            Object(NonMatching, "Game/Gravity/ConeGravity.cpp"),
+            Object(NonMatching, "Game/Gravity/CubeGravity.cpp"),
+            Object(NonMatching, "Game/Gravity/DiskGravity.cpp"),
+            Object(NonMatching, "Game/Gravity/DiskTorusGravity.cpp"),
+            Object(NonMatching, "Game/Gravity/GlobalGravityObj.cpp"),
+            Object(NonMatching, "Game/Gravity/GravityFollower.cpp"),
+            Object(NonMatching, "Game/Gravity/GravityCreator.cpp"),
+            Object(NonMatching, "Game/Gravity/GravityInfo.cpp"),
+            Object(NonMatching, "Game/Gravity/ParallelGravity.cpp"),
+            Object(NonMatching, "Game/Gravity/PlanetGravity.cpp"),
+            Object(NonMatching, "Game/Gravity/PlanetGravityManager.cpp"),
+            Object(NonMatching, "Game/Gravity/PointGravity.cpp"),
+            Object(NonMatching, "Game/Gravity/SegmentGravity.cpp"),
+            Object(NonMatching, "Game/Gravity/WireGravity.cpp"),
+        ]
+    ),
+    GameLib(
         "LiveActor",
         [
+            Object(NonMatching, "Game/LiveActor/ActorStateBase.cpp"),
             Object(NonMatching, "Game/LiveActor/ActorStateKeeper.cpp"),
+            Object(NonMatching, "Game/LiveActor/BreakModel.cpp"),
             Object(NonMatching, "Game/LiveActor/HitSensor.cpp"),
             Object(NonMatching, "Game/LiveActor/HitSensorInfo.cpp"),
             Object(NonMatching, "Game/LiveActor/HitSensorKeeper.cpp"),
@@ -1063,6 +1091,8 @@ config.libs = [
         [
             Object(NonMatching, "Game/Map/CollisionCode.cpp"),
             Object(NonMatching, "Game/Map/KCollision.cpp"),
+            Object(NonMatching, "Game/Map/OceanSphere.cpp"),
+            Object(NonMatching, "Game/Map/OceanSpherePoint.cpp"),
             Object(NonMatching, "Game/Map/RailGraph.cpp"),
             Object(NonMatching, "Game/Map/RailGraphEdge.cpp"),
             Object(NonMatching, "Game/Map/RailGraphIter.cpp"),
@@ -1077,6 +1107,10 @@ config.libs = [
         "MapObj",
         [
             Object(NonMatching, "Game/MapObj/ActorStateDemoAppearance.cpp"),
+            Object(NonMatching, "Game/MapObj/CollectTicoHolder.cpp", extra_cflags=["-sym off"]),
+            Object(NonMatching, "Game/MapObj/HipDropSwitch.cpp", extra_cflags=["-sym off"]),
+            Object(NonMatching, "Game/MapObj/HipDropTimerSwitch.cpp", extra_cflags=["-sym off"]),
+            Object(NonMatching, "Game/MapObj/SnowMan.cpp"),
             Object(NonMatching, "Game/MapObj/TicoCoin.cpp"),
             Object(NonMatching, "Game/MapObj/TimeAttackClock.cpp", extra_cflags=["-sym off"]),
         ],
@@ -1091,8 +1125,15 @@ config.libs = [
             Object(NonMatching, "Game/NameObj/NameObjGroup.cpp"),
             Object(NonMatching, "Game/NameObj/NameObjFactory.cpp"),
             Object(NonMatching, "Game/NameObj/NameObjFinder.cpp"),
-            Object(NonMatching, "Game/NameObj/NameObjHolder.cpp"),
+            Object(Matching, "Game/NameObj/NameObjHolder.cpp"),
             Object(NonMatching, "Game/NameObj/NameObjRegister.cpp"),
+        ],
+    ),
+    GameLib(
+        "NPC",
+        [
+            Object(NonMatching, "Game/NPC/CollectTico.cpp"),
+            Object(NonMatching, "Game/NPC/StrayTico.cpp"),
         ],
     ),
     GameLib(
@@ -1103,6 +1144,15 @@ config.libs = [
             Object(NonMatching, "Game/Ride/TubeSliderCrystal.cpp"),
             Object(NonMatching, "Game/Ride/TubeSliderDamageObjCreator.cpp"),
             Object(NonMatching, "Game/Ride/TubeSliderFunction.cpp"),
+        ],
+    ),
+    GameLib(
+        "Scene",
+        [
+            Object(Matching, "Game/Scene/Scene.cpp"),
+            Object(NonMatching, "Game/Scene/SceneObjHolder.cpp"),
+            Object(NonMatching, "Game/Scene/LogoScene.cpp"),
+            Object(NonMatching, "Game/Scene/IntermissionScene.cpp", extra_cflags=["-sym off"]),
         ],
     ),
     GameLib(
@@ -1155,7 +1205,9 @@ config.libs = [
             Object(NonMatching, "Game/Util/ActorInitUtil.cpp"),
             Object(NonMatching, "Game/Util/ActorSensorUtil.cpp"),
             Object(NonMatching, "Game/Util/ActorShadowUtil.cpp"),
+            Object(NonMatching, "Game/Util/BaseMatrixFollowTargetHolder.cpp"),
             Object(NonMatching, "Game/Util/BothDirList.cpp"),
+            Object(NonMatching, "Game/Util/GravityUtil.cpp"),
             Object(NonMatching, "Game/Util/HashUtil.cpp"),
             Object(NonMatching, "Game/Util/JMapInfo.cpp"),
             Object(NonMatching, "Game/Util/JMapUtil.cpp"),
@@ -1163,10 +1215,27 @@ config.libs = [
             Object(NonMatching, "Game/Util/MathUtil.cpp"),
             Object(NonMatching, "Game/Util/MtxUtil.cpp"),
             Object(NonMatching, "Game/Util/SchedulerUtil.cpp"),
+            Object(NonMatching, "Game/Util/SpringValue.cpp"),
             Object(NonMatching, "Game/Util/SystemUtil.cpp"),
             Object(NonMatching, "Game/Util/TriggerChecker.cpp"),
         ],
     ),
+    GameLib(
+            "World",
+            [
+                Object(NonMatching, "Game/World/GrandGalaxyMap.cpp"),
+                Object(NonMatching, "Game/World/GrandGalaxyMapIcon.cpp"),
+                Object(NonMatching, "Game/World/GrandGalaxyMapIconHolder.cpp"),
+                Object(NonMatching, "Game/World/SequenceManager.cpp"),
+                Object(NonMatching, "Game/World/MapDemoStateEnter.cpp"),
+                Object(NonMatching, "Game/World/MapDemoStateMove.cpp"),
+                Object(NonMatching, "Game/World/MapDemoStateWait.cpp"),
+                Object(NonMatching, "Game/World/MapDemoStateNews.cpp"),
+                Object(NonMatching, "Game/World/MapDemoStateWarp.cpp"),
+                Object(NonMatching, "Game/World/MiniComet.cpp"),
+                Object(NonMatching, "Game/World/MiniRoutePoint.cpp"),
+            ],
+        ),
     RVLLib(
         "gd",
         [

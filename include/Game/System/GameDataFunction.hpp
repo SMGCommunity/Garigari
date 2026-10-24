@@ -8,4 +8,8 @@ class JMapInfoIter;
 
 namespace GameDataFunction {
     bool isOnGalaxyFlagTicoCoin(const char* pStageName);
+    void onGameEventFlag(const char*);
+    bool isOnGameEventFlag(const char*);
+    s32 getPlayerGameOverNum();
+    s32 getCurrentWorldId();
 }
