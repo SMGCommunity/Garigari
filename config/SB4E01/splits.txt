@@ -9828,10 +9828,11 @@ Game/World/MapStateGrandGalaxyMapNews.cpp:
 	.sbss       start:0x807D5E48 end:0x807D5E58
 	.sdata2     start:0x807E1A70 end:0x807E1A78
 
-Game/World/MapStateWarp.cpp:
+Game/World/MapDemoWarpState.cpp:
 	.text       start:0x804E2F00 end:0x804E31D0
 	.ctors      start:0x80644A60 end:0x80644A64
 	.rodata     start:0x8064E1A8 end:0x8064E1B0
+	.data       start:0x80700EE8 end:0x80700F30
 	.sbss       start:0x807D5E58 end:0x807D5E60
 	.sdata2     start:0x807E1A78 end:0x807E1A88
 
