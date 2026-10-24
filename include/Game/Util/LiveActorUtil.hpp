@@ -69,7 +69,7 @@ namespace MR {
         ClippingDistance_100m = 6,
         ClippingDistance_50m = 7
     };
-    
+
     void setClippingFar50m(LiveActor* pActor);
     void setClippingFar100m(LiveActor* pActor);
     void setClippingFar200m(LiveActor* pActor);
@@ -284,7 +284,7 @@ namespace MR {
     CollisionParts* tryCreateCollisionWaterSurface(LiveActor* pActor, HitSensor* pBodySensor);
 
     f32 getCollisionBoundingSphereRange(const LiveActor* pActor);
-    void calcModelBoundingRadius(f32* outRadius, const LiveActor* actor);
+    void calcModelBoundingRadius(f32* outRadius, const LiveActor* pActor);
     bool isValidCollisionParts(LiveActor* pActor);
     void validateCollisionParts(LiveActor* pActor);
     void validateCollisionParts(CollisionParts* pCollisionParts);
