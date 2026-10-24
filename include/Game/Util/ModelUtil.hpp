@@ -1,5 +1,7 @@
 #pragma once
 
+#include <revolution/types.h>
+
 class LiveActor;
 
 namespace MR {
@@ -7,4 +9,6 @@ namespace MR {
 
     void syncMaterialAnimation(LiveActor*, const LiveActor*);
     void hideMaterial(const LiveActor*, const char*);
+    
+    void calcModelBoundingRadius(f32*, const LiveActor*);
 };  // namespace MR

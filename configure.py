@@ -1217,6 +1217,10 @@ config.libs = [
     GameLib(
             "World",
             [
+                Object(NonMatching, "Game/World/GrandGalaxyMap.cpp"),
+                Object(NonMatching, "Game/World/GrandGalaxyMapIcon.cpp"),
+                Object(NonMatching, "Game/World/GrandGalaxyMapIconHolder.cpp"),
+                Object(NonMatching, "Game/World/SequenceManager.cpp"),
                 Object(NonMatching, "Game/World/MiniRoutePoint.cpp"),
             ],
         ),
