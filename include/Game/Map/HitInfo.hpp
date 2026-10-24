@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/Util/JMapInfo.hpp"
+#include <Game/Util/JMapInfo.hpp>
 #include <JSystem/JGeometry/TMatrix.hpp>
 #include <JSystem/JGeometry/TVec.hpp>
 
@@ -48,9 +48,9 @@ public:
     bool isCollisionAtCorner() const;
 
     /* 0x00 */ Triangle mParentTriangle;
-    /* 0x60 */ u8 _60[0x1];
+    /* 0x60 */ u8 _60;
     /* 0x64 */ TVec3f mHitPos;
     /* 0x70 */ TVec3f _70;
     /* 0x7C */ TVec3f _7C;
-    /* 0x88 */ u8 _88[0x4];
+    /* 0x88 */ u8 _88;
 };

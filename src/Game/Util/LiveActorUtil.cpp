@@ -1700,7 +1700,7 @@ namespace MR {
         return pActor->mCollisionParts != nullptr;
     }
 
-    u32 getCollisionSensortType(const CollisionParts* pCollisionParts) {
+    u32 getCollisionSensorType(const CollisionParts* pCollisionParts) {
         return pCollisionParts->mHitSensor->mType;
     }
 

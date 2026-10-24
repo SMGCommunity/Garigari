@@ -38,9 +38,9 @@ public:
     /* 0x030 */ TVec3f mFixReactionVector;
     /* 0x03C */ HitInfo mGroundInfo;
     /* 0x0C8 */ f32 _C8;
-    /* 0x0D4 */ HitInfo mWallInfo;
-    /* 0x160 */ f32 _158;
-    /* 0x164 */ HitInfo mRoofInfo;
+    /* 0x0CC */ HitInfo mWallInfo;
+    /* 0x158 */ f32 _158;
+    /* 0x15C */ HitInfo mRoofInfo;
     /* 0x1E8 */ f32 _1E8;
     /* 0x1EC */ struct {
         u8 _0 : 1;

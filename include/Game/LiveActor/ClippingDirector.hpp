@@ -11,8 +11,8 @@ public:
 
     void joinToGroupClipping(LiveActor*, const JMapInfoIter&, int);
 
-    u8 _0[0x3];
-    /* 0x03 */  ClippingActorHolder* mActorHolder;
+    u8 _0[0x4];
+    /* 0x04 */ ClippingActorHolder* mActorHolder;
 };
 
 namespace MR {

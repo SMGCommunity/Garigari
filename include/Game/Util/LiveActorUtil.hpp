@@ -300,7 +300,7 @@ namespace MR {
     void setCollisionMtx(LiveActor* pActor, CollisionParts* pCollisionParts);
     CollisionParts* getCollisionParts(LiveActor* pActor);
     bool isExistCollisionParts(const LiveActor* pActor);
-    u32 getCollisionSensortType(const CollisionParts* pCollisionParts);
+    u32 getCollisionSensorType(const CollisionParts* pCollisionParts);
 
     DemoObj* createDemoObj(const char* pName, const char* pModelName, MtxPtr pMtx);
     DemoObj* createDemoObjWithAnimArc(const char* pName, const char* pModelName, const char* pAnimArcName, MtxPtr pMtx);
