@@ -310,17 +310,6 @@ namespace MR {
         clippingDirector->mActorHolder->setTypeToSphere(pActor, expandedRadius, nullptr);
     }
 
-    enum ClippingDistance {
-        ClippingDistance_Max = 0,
-        ClippingDistance_600m = 1,
-        ClippingDistance_500m = 2,
-        ClippingDistance_400m = 3,
-        ClippingDistance_300m = 4,
-        ClippingDistance_200m = 5,
-        ClippingDistance_100m = 6,
-        ClippingDistance_50m = 7
-    };
-
     void setClippingFar50m(LiveActor* pActor) {
         MR::getClippingDirector()->mActorHolder->setFarClipLevel(pActor, ClippingDistance_50m);
     }

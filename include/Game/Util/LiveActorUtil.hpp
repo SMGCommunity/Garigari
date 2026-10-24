@@ -58,6 +58,18 @@ namespace MR {
     void setClippingTypeSphere(LiveActor* pActor, f32 clippingRadius);
     void setClippingTypeSphere(LiveActor* pActor, f32 clippingRadius, const TVec3f* pClippingPos);
     void setClippingTypeSphereContainsModelBoundingBox(LiveActor* pActor, f32 radiusExtension);
+
+    enum ClippingDistance {
+        ClippingDistance_Max = 0,
+        ClippingDistance_600m = 1,
+        ClippingDistance_500m = 2,
+        ClippingDistance_400m = 3,
+        ClippingDistance_300m = 4,
+        ClippingDistance_200m = 5,
+        ClippingDistance_100m = 6,
+        ClippingDistance_50m = 7
+    };
+    
     void setClippingFar50m(LiveActor* pActor);
     void setClippingFar100m(LiveActor* pActor);
     void setClippingFar200m(LiveActor* pActor);
