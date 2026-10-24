@@ -9790,16 +9790,17 @@ Game/World/GrandGalaxyMapIconHolder.cpp:
 	.sdata2     start:0x807E1A18 end:0x807E1A28
 
 Game/World/SequenceManager.cpp:
-	.text       start:0x804E0440 end:0x804E0BA0
+	.text       start:0x804E0440 end:0x804E0B40
 	.ctors      start:0x80644A48 end:0x80644A4C
-	.data       start:0x80700AB8 end:0x80700B38
+	.data       start:0x80700AB8 end:0x80700B98
 	.sbss       start:0x807D5E10 end:0x807D5E28
 	.sdata2     start:0x807E1A28 end:0x807E1A30
 
 Game/World/MapStateDemo.cpp:
-	.text       start:0x804E0BA0 end:0x804E0EB0
+	.text       start:0x804E0B40 end:0x804E0EB0
 	.ctors      start:0x80644A4C end:0x80644A50
 	.rodata     start:0x8064E1A0 end:0x8064E1A8
+	.data       start:0x80700B98 end:0x80700BF0
 	.sbss       start:0x807D5E28 end:0x807D5E30
 	.sdata2     start:0x807E1A30 end:0x807E1A38
 

@@ -22,4 +22,10 @@ namespace MR {
     /// @return True if the state was updated and nerve transition occurred, false otherwise.
     /// @note Only transitions to the next nerve if the state indicates it should update.
     bool updateActorStateAndNextNerve(LiveActor* pActor, const Nerve* pNextNerve);
+    
+    /// @brief Updates the current active state of a nerve executor.
+    /// @param pExecutor The nerve executor whose current state should be updated.
+    /// @return true if the current state was active and processed, false if no active state.
+    /// @note Uses the executor's state keeper to update whichever state is currently active.
+    bool updateActorState(NerveExecutor* pExecutor);
 };  // namespace MR
