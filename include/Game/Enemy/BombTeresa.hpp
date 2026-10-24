@@ -85,12 +85,12 @@ public:
     /* 0xB0 */ TVec3f _B0;
     /* 0xBC */ TVec3f _BC;
     /* 0xC8 */ TVec3f _C8;
-    /* 0xD4 */ TVec3f _D4;
+    /* 0xD4 */ TVec3f mResetPosition;
     /* 0xE0 */ f32 _E0;
     /* 0xE4 */ f32 _E4;
     /* 0xE8 */ f32 _E8;
-    /* 0xEC */ s32 _EC;
-    /* 0xF0 */ bool mCanReleaseDrift;
+    /* 0xEC */ s32 mDriftCycleTimer;
+    /* 0xF0 */ bool mReleaseDrift;
     /* 0xF1 */ bool mDisableRespawning;
     /* 0xF2 */ bool _F2;
     /* 0xF3 */ bool mIsFromPolta;  ///< Is the actor spawned from Bouldergeist?

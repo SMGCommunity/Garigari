@@ -54,14 +54,14 @@ namespace NrvBombTeresa {
 
 BombTeresa::BombTeresa(const char* pName)
     : LiveActor(pName), mRootTongueDelegator(), mEndTongueDelegator(), mScaleController(), mBindStarPointer(), _A0(0.0f, 0.0f, 0.0f, 1.0f), _B0(0, 0, 1),
-      _BC(0, 0, 0), _C8(0, 0, 0), _D4(0, 0, 0), _E0(), _E4(), _E8(), _EC(), mCanReleaseDrift(), mDisableRespawning(), _F2(true), mIsFromPolta() {
+      _BC(0, 0, 0), _C8(0, 0, 0), mResetPosition(0, 0, 0), _E0(), _E4(), _E8(), mDriftCycleTimer(), mReleaseDrift(), mDisableRespawning(), _F2(true), mIsFromPolta() {
 }
 
 void BombTeresa::init(const JMapInfoIter& rIter) {
     MR::initActor(this, rIter, "BombTeresa", false);
     MR::setSensorFollowPos(this, "tungue", &_C8);
     MR::makeQuatAndFrontFromRotate(&_A0, &_B0, this);
-    _D4 = mPosition;
+    mResetPosition = mPosition;
 
     if (MR::isValidInfo(rIter)) {
         bool enableRespawing;
@@ -334,7 +334,7 @@ bool BombTeresa::tryAbortDrift() {
 }
 
 bool BombTeresa::tryDriftRelease() {
-    if (mCanReleaseDrift) {
+    if (mReleaseDrift) {
         setNerve(GET_NERVE(BombTeresa, BombTeresaNrvDriftRelease));
         return true;
     }
@@ -574,8 +574,8 @@ void BombTeresa::exeDrift() {
         MR::emitEffect(this, "SpinBlur");
         MR::startActionSound(this, "EmBombtereTongueCatch");
         _F2 = MR::isLeftSideFromPlayer(this) == false;
-        _EC = 40;
-        mCanReleaseDrift = false;
+        mDriftCycleTimer = 40;
+        mReleaseDrift = false;
         _E4 = 7.0f;
         _E8 = 7.0f;
         _E0 = 1.0f;
@@ -609,14 +609,15 @@ void BombTeresa::exeDrift() {
 
     MR::vecBlend(&_C8, _C8, v13, MR::calcNerveEaseInRate(this, 15));
     MR::turnDirectionToTarget(this, &_B0, *MR::getPlayerPos(), 0.0f);
-    if (_EC <= 0) {
+
+    if (mDriftCycleTimer <= 0) {
         if (MR::isPadSwing(WPAD_CHAN0)) {
             MR::tryRumblePadMiddle(this, WPAD_CHAN0);
-            _EC = 40;
+            mDriftCycleTimer = 40;
             _E4 += 20.0f;
             _E8 += 20.0f;
             if (MR::isGreaterStep(this, 190)) {
-                mCanReleaseDrift = true;
+                mReleaseDrift = true;
             }
         }
     }
@@ -638,7 +639,7 @@ void BombTeresa::exeDrift() {
         _E4 *= 0.992f;
     }
 
-    _EC--;
+    mDriftCycleTimer--;
     if (!tryExplosion() && !tryDriftRelease() && tryAbortDrift()) {
         return;
     }
@@ -722,7 +723,7 @@ void BombTeresa::exeDisperse() {
 void BombTeresa::exeReadyRestart() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "Hide");
-        MR::resetPosition(this, _D4);
+        MR::resetPosition(this, mResetPosition);
         MR::makeQuatAndFrontFromRotate(&_A0, &_B0, this);
         MR::zeroVelocity(this);
     }
@@ -841,10 +842,10 @@ bool BombTeresa::appearShadow(const TVec3f& rPosition, const TVec3f& rVelocity) 
 }
 
 void BombTeresa::addTeresaSpinPullVelocity(f32 arg0) {
-    TVec3f PlayerCenterPos = TVec3f(*MR::getPlayerCenterPos());
-    MR::addVelocityClockwiseToTarget(this, PlayerCenterPos, _E4);
-    MR::addVelocityMoveToTarget(this, PlayerCenterPos, 0.0f, _E8, 0.0f, 150.0f);
-    MR::addVelocityKeepHeight(this, PlayerCenterPos, arg0, 3.0f, 100.0f);
+    TVec3f playerCenterPos = TVec3f(*MR::getPlayerCenterPos());
+    MR::addVelocityClockwiseToTarget(this, playerCenterPos, _E4);
+    MR::addVelocityMoveToTarget(this, playerCenterPos, 0.0f, _E8, 0.0f, 150.0f);
+    MR::addVelocityKeepHeight(this, playerCenterPos, arg0, 3.0f, 100.0f);
 }
 
 bool BombTeresa::requestDisperse() {
