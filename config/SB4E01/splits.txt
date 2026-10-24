@@ -4200,14 +4200,17 @@ Game/Gravity/DiskTorusGravity.cpp:
 
 Game/Gravity/GlobalGravityObj.cpp:
 	.text       start:0x80224CB0 end:0x80225790
-	.data       start:0x80694408 end:0x80694610
+	.data       start:0x80694408 end:0x80694478
 
 Game/Gravity/GravityFollower.cpp:
 	.text       start:0x80225790 end:0x80225920
+	.data       start:0x80694478 end:0x80694488
 
 Game/Gravity/GravityCreator.cpp:
-	.text       start:0x80225920 end:0x80225AC0
-	.data       start:0x80694610 end:0x80694630
+	.text       start:0x80225920 end:0x80226A50
+	.rodata     start:0x806489F0 end:0x80648A00
+	.data       start:0x80694488 end:0x80694630
+	.sdata2     start:0x807DC2B0 end:0x807DC2C0
 
 Game/Gravity/GravityInfo.cpp:
 	.text       start:0x80226A50 end:0x80226AB0
@@ -4226,12 +4229,12 @@ Game/Gravity/PlanetGravity.cpp:
 Game/Gravity/PlanetGravityManager.cpp:
 	.text       start:0x802274D0 end:0x802277E0
 	.data       start:0x80694650 end:0x80694680
-	.sdata2     start:0x807DC2F0 end:0x807DC300
+	.sdata2     start:0x807DC2F0 end:0x807DC2F8
 
 Game/Gravity/PointGravity.cpp:
 	.text       start:0x802277E0 end:0x80227990
 	.data       start:0x80694680 end:0x80694690
-	.sdata2     start:0x807DC300 end:0x807DC308
+	.sdata2     start:0x807DC2F8 end:0x807DC308
 
 Game/Gravity/SegmentGravity.cpp:
 	.text       start:0x80227990 end:0x80228090
@@ -4239,8 +4242,9 @@ Game/Gravity/SegmentGravity.cpp:
 	.sdata2     start:0x807DC308 end:0x807DC330
 
 Game/Gravity/WireGravity.cpp:
-	.text       start:0x80228090 end:0x80228150
+	.text       start:0x80228090 end:0x80228320
 	.data       start:0x806946A0 end:0x806946B0
+	.sdata2     start:0x807DC330 end:0x807DC338
 
 Game/LiveActor/ActorAnimKeeper.cpp:
 	.text       start:0x80228320 end:0x80228D20
@@ -9768,22 +9772,35 @@ Game/System/UserFile.cpp:
 	.text       start:0x804DEFE0 end:0x804DF2B0
 
 Game/World/GrandGalaxyMap.cpp:
-	.text       start:0x804DFA30 end:0x804E0440
-	.ctors      start:0x80644A44 end:0x80644A48
+	.text       start:0x804DFA30 end:0x804DFEB0
+	.data       start:0x80700960 end:0x80700988
+
+Game/World/GrandGalaxyMapIcon.cpp:
+	.text       start:0x804DFEB0 end:0x804E01C0
 	.rodata     start:0x8064E198 end:0x8064E1A0
+	.data       start:0x80700988 end:0x80700A38
+	.sdata2     start:0x807E19F8 end:0x807E1A18
+
+Game/World/GrandGalaxyMapIconHolder.cpp:
+	.text       start:0x804E01C0 end:0x804E0440
+	.ctors      start:0x80644A44 end:0x80644A48
+	.data       start:0x80700A38 end:0x80700AB8
 	.bss        start:0x8072B900 end:0x8072B910
-	.sdata2     start:0x807E19F8 end:0x807E1A28
+	.sdata      start:0x807D04D0 end:0x807D04D8
+	.sdata2     start:0x807E1A18 end:0x807E1A28
 
 Game/World/SequenceManager.cpp:
-	.text       start:0x804E04A0 end:0x804E0BA0
+	.text       start:0x804E0440 end:0x804E0B40
 	.ctors      start:0x80644A48 end:0x80644A4C
+	.data       start:0x80700AB8 end:0x80700B98
 	.sbss       start:0x807D5E10 end:0x807D5E28
 	.sdata2     start:0x807E1A28 end:0x807E1A30
 
 Game/World/MapStateDemo.cpp:
-	.text       start:0x804E0BA0 end:0x804E0EB0
+	.text       start:0x804E0B40 end:0x804E0EB0
 	.ctors      start:0x80644A4C end:0x80644A50
 	.rodata     start:0x8064E1A0 end:0x8064E1A8
+	.data       start:0x80700B98 end:0x80700BF0
 	.sbss       start:0x807D5E28 end:0x807D5E30
 	.sdata2     start:0x807E1A30 end:0x807E1A38
 

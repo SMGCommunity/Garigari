@@ -3,6 +3,7 @@
 #include "Game/Gravity/PlanetGravity.hpp"
 
 class BarrelGravity : public PlanetGravity {
+public:
     BarrelGravity();
 
     virtual void updateMtx(const TPos3f& rMtx);

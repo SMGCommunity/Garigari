@@ -1050,9 +1050,16 @@ config.libs = [
             Object(NonMatching, "Game/Gravity/CubeGravity.cpp"),
             Object(NonMatching, "Game/Gravity/DiskGravity.cpp"),
             Object(NonMatching, "Game/Gravity/DiskTorusGravity.cpp"),
+            Object(NonMatching, "Game/Gravity/GlobalGravityObj.cpp"),
+            Object(NonMatching, "Game/Gravity/GravityFollower.cpp"),
+            Object(NonMatching, "Game/Gravity/GravityCreator.cpp"),
             Object(NonMatching, "Game/Gravity/GravityInfo.cpp"),
+            Object(NonMatching, "Game/Gravity/ParallelGravity.cpp"),
             Object(NonMatching, "Game/Gravity/PlanetGravity.cpp"),
             Object(NonMatching, "Game/Gravity/PlanetGravityManager.cpp"),
+            Object(NonMatching, "Game/Gravity/PointGravity.cpp"),
+            Object(NonMatching, "Game/Gravity/SegmentGravity.cpp"),
+            Object(NonMatching, "Game/Gravity/WireGravity.cpp"),
         ]
     ),
     GameLib(
@@ -1192,6 +1199,7 @@ config.libs = [
             Object(NonMatching, "Game/Util/ActorInitUtil.cpp"),
             Object(NonMatching, "Game/Util/ActorSensorUtil.cpp"),
             Object(NonMatching, "Game/Util/ActorShadowUtil.cpp"),
+            Object(NonMatching, "Game/Util/BaseMatrixFollowTargetHolder.cpp"),
             Object(NonMatching, "Game/Util/BothDirList.cpp"),
             Object(NonMatching, "Game/Util/GravityUtil.cpp"),
             Object(NonMatching, "Game/Util/HashUtil.cpp"),
@@ -1209,6 +1217,11 @@ config.libs = [
     GameLib(
             "World",
             [
+                Object(NonMatching, "Game/World/GrandGalaxyMap.cpp"),
+                Object(NonMatching, "Game/World/GrandGalaxyMapIcon.cpp"),
+                Object(NonMatching, "Game/World/GrandGalaxyMapIconHolder.cpp"),
+                Object(NonMatching, "Game/World/SequenceManager.cpp"),
+                Object(NonMatching, "Game/World/MapStateDemo.cpp"),
                 Object(NonMatching, "Game/World/MiniRoutePoint.cpp"),
             ],
         ),

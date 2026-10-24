@@ -12,4 +12,6 @@ namespace MR {
         return JUTVideo::getManager()->getEfbHeight();
     }
     const ResTIMG* getScreenResTIMG();
+
+    void openSystemWipeWhiteFade(s32 frame = -1);
 };  // namespace MR

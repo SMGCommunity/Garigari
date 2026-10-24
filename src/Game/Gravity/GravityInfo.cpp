@@ -1,6 +1,6 @@
 #include "Game/Gravity/GravityInfo.hpp"
 
-GravityInfo::GravityInfo() : mGravityVector(0.0f), mLargestPriority(-1), mGravityInstance() {
+GravityInfo::GravityInfo() : mGravityVector(0.0f, 0.0f, 0.0f), mLargestPriority(-1), mGravityInstance() {
 }
 
 void GravityInfo::init() {

@@ -1,6 +1,8 @@
 #pragma once
 
 #include "JSystem/J3DGraphAnimator/J3DModel.hpp"
+#include <revolution/types.h>
+
 class LiveActor;
 
 namespace MR {
@@ -10,4 +12,6 @@ namespace MR {
     J3DModel* getJ3DModel(const LiveActor*);
     J3DModelData* getJ3DModelData(const char*);
     void hideMaterial(const LiveActor*, const char*);
+    
+    void calcModelBoundingRadius(f32*, const LiveActor*);
 };  // namespace MR

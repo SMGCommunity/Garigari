@@ -6,10 +6,10 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include <decomp.h>
 
-EXTERN_UNKNOWN_FUNC(80008450, const LiveActor*, const char*, s32, s32, s32);
-EXTERN_UNKNOWN_FUNC(804E8C40, const LiveActor*);
-EXTERN_UNKNOWN_FUNC(804E8C50, const LiveActor*, f32, f32);
-EXTERN_UNKNOWN_FUNC(804E8C80, const LiveActor*, f32, f32);
+EXTERN_UNKNOWN_FUNC(bool, 80008450, const LiveActor*, const char*, s32, s32, s32);
+EXTERN_UNKNOWN_FUNC(bool, 804E8C40, const LiveActor*);
+EXTERN_UNKNOWN_FUNC(bool, 804E8C50, const LiveActor*, f32, f32);
+EXTERN_UNKNOWN_FUNC(bool, 804E8C80, const LiveActor*, f32, f32);
 
 namespace {
     static const f32 cShadowDropDistance = -700.0f;

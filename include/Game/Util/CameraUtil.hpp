@@ -20,6 +20,9 @@ namespace MR {
 
     f32 calcCameraDistanceZ(const TVec3f&);
 
+    f32 getFovy();
+    void setFovy(f32);
+
     void declareEventCamera(const ActorCameraInfo*, const char*);
     void declareEventCameraProgrammable(const char*);
     void startEventCamera(const ActorCameraInfo*, const char*, const CameraTargetArg&, s32);
