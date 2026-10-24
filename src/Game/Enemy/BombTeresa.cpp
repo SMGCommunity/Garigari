@@ -53,14 +53,14 @@ namespace NrvBombTeresa {
 };  // namespace NrvBombTeresa
 
 BombTeresa::BombTeresa(const char* pName)
-    : LiveActor(pName), mRootTongueDelegator(), mEndTongueDelegator(), mScaleController(), mBindStarPointer(), _A0(0.0f, 0.0f, 0.0f, 1.0f), _B0(0, 0, 1),
-      _BC(0, 0, 0), _C8(0, 0, 0), mResetPosition(0, 0, 0), _E0(), _E4(), _E8(), mDriftCycleTimer(), mDoReleaseDrift(), mDisableRespawning(), _F2(true), mIsFromPolta() {
+    : LiveActor(pName), mRootTongueDelegator(), mEndTongueDelegator(), mScaleController(), mBindStarPointer(), mBaseMtx(0.0f, 0.0f, 0.0f, 1.0f), mFront(0, 0, 1),
+      _BC(0, 0, 0), mTonguePosition(0, 0, 0), mResetPosition(0, 0, 0), _E0(), _E4(), _E8(), mDriftCycleTimer(), mDoReleaseDrift(), mDisableRespawning(), _F2(true), mIsFromPolta() {
 }
 
 void BombTeresa::init(const JMapInfoIter& rIter) {
     MR::initActor(this, rIter, "BombTeresa", false);
-    MR::setSensorFollowPos(this, "tungue", &_C8);
-    MR::makeQuatAndFrontFromRotate(&_A0, &_B0, this);
+    MR::setSensorFollowPos(this, "tungue", &mTonguePosition);
+    MR::makeQuatAndFrontFromRotate(&mBaseMtx, &mFront, this);
     mResetPosition = mPosition;
 
     if (MR::isValidInfo(rIter)) {
@@ -101,7 +101,7 @@ void BombTeresa::makeActorAppeared() {
     MR::invalidateClipping(this);
     MR::startBrk(this, "Normal");
     mScale.set(1.0f, 1.0f, 1.0f);
-    _C8 = mPosition;
+    mTonguePosition = mPosition;
     _E0 = 0.0f;
     setNerve(GET_NERVE(BombTeresa, BombTeresaNrvAppear));
 }
@@ -121,7 +121,7 @@ void BombTeresa::control() {
 }
 
 void BombTeresa::calcAndSetBaseMtx() {
-    MR::setBaseTRMtx(this, _A0);
+    MR::setBaseTRMtx(this, mBaseMtx);
     MR::updateBaseScale(this, mScaleController);
     mRootTongueDelegator->registerCallBack();
     mEndTongueDelegator->registerCallBack();
@@ -131,14 +131,14 @@ void BombTeresa::updateNormalVelocity() {
     MR::addVelocityKeepHeightUseShadow(this, 150.0f, 0.4f, 40.0f, nullptr);
     MR::attenuateVelocity(this, 0.9f);
     MR::reboundVelocityFromCollision(this, 0.0f, 0.0f, 1.0f);
-    MR::blendQuatUpFront(&_A0, -mGravity, _B0, 0.1f, 0.6f);
+    MR::blendQuatUpFront(&mBaseMtx, -mGravity, mFront, 0.1f, 0.6f);
 }
 
 void BombTeresa::updateDriftReleaseVelocity() {
     MR::addVelocityKeepHeightUseShadow(this, 150.0f, 0.4f, 40.0f, nullptr);
     MR::attenuateVelocity(this, 0.9f);
     MR::reboundVelocityFromCollision(this, 0.0f, 0.0f, 1.0f);
-    MR::blendQuatUpFront(&_A0, -mGravity, _B0, 0.1f, 0.6f);
+    MR::blendQuatUpFront(&mBaseMtx, -mGravity, mFront, 0.1f, 0.6f);
 }
 
 bool BombTeresa::rootTongueMtxCallBack(TPos3f* pMtx, const JointControllerInfo& rInfo) {
@@ -173,7 +173,7 @@ bool BombTeresa::endTongueMtxCallBack(TPos3f* pMtx, const JointControllerInfo& r
     TVec3f side;
     pMtx->getTrans(pos);
     MR::copyJointPos(this, "Tongue1", &tonguePos);
-    MR::vecBlend(&pos, pos, _C8, _E0);
+    MR::vecBlend(&pos, pos, mTonguePosition, _E0);
     pMtx->getXDir(side);
     TVec3f dir = pos - tonguePos;
     if (MR::normalizeOrZero(&dir)) {
@@ -316,7 +316,7 @@ bool BombTeresa::tryCheseEnd() {
 }
 
 bool BombTeresa::tryDirectTackle() {
-    if (!MR::isPlayerDamaging() && MR::isNearPlayer(this, 900.0f) && MR::isFaceToPlayerHorizontalDegree(this, _B0, 30.0f)) {
+    if (!MR::isPlayerDamaging() && MR::isNearPlayer(this, 900.0f) && MR::isFaceToPlayerHorizontalDegree(this, mFront, 30.0f)) {
         setNerve(GET_NERVE(BombTeresa, BombTeresaNrvDirectTackleSign));
         return true;
     }
@@ -325,7 +325,7 @@ bool BombTeresa::tryDirectTackle() {
 }
 
 bool BombTeresa::tryAbortDrift() {
-    if (MR::isExistMapCollision(mPosition, _C8 - mPosition)) {
+    if (MR::isExistMapCollision(mPosition, mTonguePosition - mPosition)) {
         setNerve(GET_NERVE(BombTeresa, BombTeresaNrvAttackTongueFailed));
         return true;
     }
@@ -388,7 +388,7 @@ void BombTeresa::exeAppear() {
         _E0 = 0.0f;
     }
 
-    _C8 = mPosition;
+    mTonguePosition = mPosition;
     updateNormalVelocity();
     if (MR::isActionEnd(this)) {
         setNerve(GET_NERVE(BombTeresa, BombTeresaNrvWait));
@@ -414,9 +414,9 @@ void BombTeresa::exeShadowAppear() {
     }
 
     MR::attenuateVelocity(this, v2);
-    MR::turnDirectionToPlayerDegree(this, &_B0, 3.0f);
-    _C8 = mPosition;
-    MR::blendQuatUpFront(&_A0, -mGravity, _B0, 0.1f, 0.6f);
+    MR::turnDirectionToPlayerDegree(this, &mFront, 3.0f);
+    mTonguePosition = mPosition;
+    MR::blendQuatUpFront(&mBaseMtx, -mGravity, mFront, 0.1f, 0.6f);
     if (MR::isGreaterStep(this, 120)) {
         MR::deleteEffect(this, "Shadow");
         setNerve(GET_NERVE(BombTeresa, BombTeresaNrvAppear));
@@ -433,7 +433,7 @@ void BombTeresa::exeBallAppear() {
         _E0 = 0.0f;
     }
 
-    _C8 = mPosition;
+    mTonguePosition = mPosition;
     MR::addVelocityToGravity(this, 1.0f);
     bool v2 = MR::reboundVelocityFromCollision(this, 0.95f, 2.0f, 1.0f);
     MR::attenuateVelocity(this, 0.99f);
@@ -442,15 +442,15 @@ void BombTeresa::exeBallAppear() {
     }
 
     if (MR::isLessStep(this, 160)) {
-        MR::rotateQuatRollBall(&_A0, mVelocity, -mGravity, 70.0f);
-        _A0.getZDir(_B0);
+        MR::rotateQuatRollBall(&mBaseMtx, mVelocity, -mGravity, 70.0f);
+        mBaseMtx.getZDir(mFront);
     } else {
-        _B0.orthogonalize(mGravity);
-        if (MR::normalizeOrZero(&_B0)) {
-            MR::makeAxisVerticalZX(&_B0, mGravity);
+        mFront.orthogonalize(mGravity);
+        if (MR::normalizeOrZero(&mFront)) {
+            MR::makeAxisVerticalZX(&mFront, mGravity);
         }
 
-        MR::blendQuatUpFront(&_A0, -mGravity, _B0, 0.1f, 0.1f);
+        MR::blendQuatUpFront(&mBaseMtx, -mGravity, mFront, 0.1f, 0.1f);
     }
 
     if (MR::isGreaterStep(this, 70)) {
@@ -470,7 +470,7 @@ void BombTeresa::exeWait() {
         _E0 = 0.0f;
     }
 
-    _C8 = mPosition;
+    mTonguePosition = mPosition;
     updateNormalVelocity();
     if (MR::isInDeath(this, TVec3f(0.0f, 0.0f, 0.0f))) {
         tryRevival();
@@ -490,10 +490,10 @@ void BombTeresa::exeWander() {
         _E0 = 0.0f;
     }
 
-    _C8 = mPosition;
+    mTonguePosition = mPosition;
 
-    MR::rotateDirectionGravityDegree(this, &_B0, getNerveStep() % 600 < 400 ? 0.5f : -0.5f);
-    MR::addVelocityMoveToDirection(this, _B0, 0.5f);
+    MR::rotateDirectionGravityDegree(this, &mFront, getNerveStep() % 600 < 400 ? 0.5f : -0.5f);
+    MR::addVelocityMoveToDirection(this, mFront, 0.5f);
     updateNormalVelocity();
     if (MR::isInDeath(this, TVec3f(0.0f, 0.0f, 0.0f))) {
         tryRevival();
@@ -509,9 +509,9 @@ void BombTeresa::exeChase() {
         _E0 = 0.0f;
     }
 
-    MR::turnDirectionToPlayerDegree(this, &_B0, 1.4f);
-    MR::addVelocityMoveToDirection(this, _B0, (0.9f * MR::calcNerveRate(this, 60)));
-    _C8 = mPosition;
+    MR::turnDirectionToPlayerDegree(this, &mFront, 1.4f);
+    MR::addVelocityMoveToDirection(this, mFront, (0.9f * MR::calcNerveRate(this, 60)));
+    mTonguePosition = mPosition;
     updateNormalVelocity();
     if (!tryCheseEnd() && tryDirectTackle()) {
         return;
@@ -538,10 +538,10 @@ void BombTeresa::exeDirectTackleSign() {
         _E0 = 0.0f;
     }
 
-    MR::turnDirectionToPlayerDegree(this, &_B0, 10.0f);
+    MR::turnDirectionToPlayerDegree(this, &mFront, 10.0f);
     MR::addVelocityKeepHeight(this, *MR::getPlayerCenterPos(), 100.0f, 0.6f, 100.0f);
     updateNormalVelocity();
-    _C8 = mPosition;
+    mTonguePosition = mPosition;
     if (MR::isActionEnd(this)) {
         setNerve(GET_NERVE(BombTeresa, BombTeresaNrvDirectTackle));
     }
@@ -554,11 +554,11 @@ void BombTeresa::exeDirectTackle() {
     }
 
     MR::startActionSound(this, "EmLvBombtereTackle");
-    MR::turnDirectionToPlayerDegree(this, &_B0, 0.8f);
-    MR::addVelocityMoveToDirection(this, _B0, (1.5f * MR::calcNerveRate(this, 50)));
+    MR::turnDirectionToPlayerDegree(this, &mFront, 0.8f);
+    MR::addVelocityMoveToDirection(this, mFront, (1.5f * MR::calcNerveRate(this, 50)));
     MR::addVelocityKeepHeight(this, *MR::getPlayerCenterPos(), 100.0f, 0.6f, 100.0f);
     updateNormalVelocity();
-    _C8 = mPosition;
+    mTonguePosition = mPosition;
     if (MR::isGreaterStep(this, 120)) {
         setNerve(GET_NERVE(BombTeresa, BombTeresaNrvWander));
     }
@@ -566,7 +566,7 @@ void BombTeresa::exeDirectTackle() {
 
 void BombTeresa::exeDrift() {
     TVec3f v14;
-    TPos3f v16;
+    TPos3f handRMtx;
     TVec3f v15;
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "Spin");
@@ -581,7 +581,7 @@ void BombTeresa::exeDrift() {
         _E0 = 1.0f;
     }
 
-    v14.cross(mGravity, _B0);
+    v14.cross(mGravity, mFront);
     v15.cross(mGravity, *MR::getPlayerPos() - MR::getCamPos());
 
     if (MR::isNearZero(v14)) {
@@ -598,17 +598,17 @@ void BombTeresa::exeDrift() {
         MR::startActionSound(this, "EmLvBombtereSwing");
     }
 
-    MR::calcPlayerJointMtx(&v16, "HandR");
+    MR::calcPlayerJointMtx(&handRMtx, "HandR");
     TVec3f v13;
-    v16.getTrans(v13);
+    handRMtx.getTrans(v13);
     TVec3f v12;
-    v16.getZDir(v12);
+    handRMtx.getZDir(v12);
     if (!MR::normalizeOrZero(&v12)) {
         v13.scaleAdd(20.0f, v12, v13);
     }
 
-    MR::vecBlend(&_C8, _C8, v13, MR::calcNerveEaseInRate(this, 15));
-    MR::turnDirectionToTarget(this, &_B0, *MR::getPlayerPos(), 0.0f);
+    MR::vecBlend(&mTonguePosition, mTonguePosition, v13, MR::calcNerveEaseInRate(this, 15));
+    MR::turnDirectionToTarget(this, &mFront, *MR::getPlayerPos(), 0.0f);
 
     if (mDriftCycleTimer <= 0) {
         if (MR::isPadSwing(WPAD_CHAN0)) {
@@ -681,7 +681,7 @@ void BombTeresa::exeExplosion() {
         MR::zeroVelocity(this);
     }
 
-    _C8 = mPosition;
+    mTonguePosition = mPosition;
     if (MR::isGreaterStep(this, 20)) {
         tryRevival();
     }
@@ -693,7 +693,7 @@ void BombTeresa::exeShock() {
         _E0 = 0.0f;
     }
 
-    _C8 = mPosition;
+    mTonguePosition = mPosition;
     MR::attenuateVelocity(this, 0.98f);
     if (MR::isGreaterStep(this, 20)) {
         MR::deleteEffect(this, "SpinBlur");
@@ -714,7 +714,7 @@ void BombTeresa::exeDisperse() {
         MR::zeroVelocity(this);
     }
 
-    _C8 = mPosition;
+    mTonguePosition = mPosition;
     if (MR::isGreaterStep(this, 40)) {
         tryRevival();
     }
@@ -724,11 +724,11 @@ void BombTeresa::exeReadyRestart() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "Hide");
         MR::resetPosition(this, mResetPosition);
-        MR::makeQuatAndFrontFromRotate(&_A0, &_B0, this);
+        MR::makeQuatAndFrontFromRotate(&mBaseMtx, &mFront, this);
         MR::zeroVelocity(this);
     }
 
-    _C8 = mPosition;
+    mTonguePosition = mPosition;
     if (MR::isGreaterStep(this, 120)) {
         setNerve(GET_NERVE(BombTeresa, BombTeresaNrvAppear));
     }

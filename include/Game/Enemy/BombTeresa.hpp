@@ -81,10 +81,10 @@ public:
     /* 0x94 */ JointControlDelegator< BombTeresa >* mEndTongueDelegator;
     /* 0x98 */ AnimScaleController* mScaleController;
     /* 0x9C */ WalkerStateBindStarPointer* mBindStarPointer;
-    /* 0xA0 */ TQuat4f _A0;
-    /* 0xB0 */ TVec3f _B0;
+    /* 0xA0 */ TQuat4f mBaseMtx;
+    /* 0xB0 */ TVec3f mFront;
     /* 0xBC */ TVec3f _BC;
-    /* 0xC8 */ TVec3f _C8;
+    /* 0xC8 */ TVec3f mTonguePosition;
     /* 0xD4 */ TVec3f mResetPosition;
     /* 0xE0 */ f32 _E0;
     /* 0xE4 */ f32 _E4;
