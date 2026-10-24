@@ -1,5 +1,6 @@
 #pragma once
 
+#include "JSystem/JGeometry/TVec.hpp"
 #include <JSystem/J3DGraphAnimator/J3DModel.hpp>
 #include <revolution/types.h>
 
@@ -43,5 +44,6 @@ public:
     void initJointTransform();
     XjointTransform* getJointTransform(const char*);
 
-    DisplayListMaker* mDisplayListMaker;
+    u8 _pad[0x28];
+    /* 0x28 */ DisplayListMaker* mDisplayListMaker;
 };

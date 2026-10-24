@@ -1,7 +1,5 @@
 #pragma once
 
-#include "Game/LiveActor/ClippingDirector.hpp"
-#include <revolution/types.h>
 #include <JSystem/JGeometry/TMatrix.hpp>
 #include <JSystem/JGeometry/TVec.hpp>
 #include <revolution.h>
@@ -274,7 +272,7 @@ namespace MR {
     CollisionParts* tryCreateCollisionWaterSurface(LiveActor* pActor, HitSensor* pBodySensor);
 
     f32 getCollisionBoundingSphereRange(const LiveActor* pActor);
-    void calcModelBoundingRadius(float* outRadius, const LiveActor* actor);
+    void calcModelBoundingRadius(f32* outRadius, const LiveActor* actor);
     bool isValidCollisionParts(LiveActor* pActor);
     void validateCollisionParts(LiveActor* pActor);
     void validateCollisionParts(CollisionParts* pCollisionParts);

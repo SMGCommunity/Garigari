@@ -5,7 +5,7 @@
 
 class CollisionPartsFilterBase {
 public:
-    inline CollisionPartsFilterBase() {
+    CollisionPartsFilterBase() {
     }
 
     virtual bool isInvalidParts(const CollisionParts*) const = 0;
@@ -13,8 +13,8 @@ public:
 
 class CollisionPartsFilterSensorType : public CollisionPartsFilterBase {
 public:
-    inline CollisionPartsFilterSensorType(u32 pSensorType) {
-        mSensorType = pSensorType;
+    CollisionPartsFilterSensorType(u32 pSensorType)
+        : mSensorType(pSensorType) {
     }
 
     virtual bool isInvalidParts(const CollisionParts* pParts) const;
@@ -24,7 +24,8 @@ public:
 
 class CollisionPartsFilterActor : public CollisionPartsFilterBase {
 public:
-    inline CollisionPartsFilterActor(const LiveActor* pActor) : mActor(pActor) {
+    CollisionPartsFilterActor(const LiveActor* pActor)
+        : mActor(pActor) {
     }
 
     virtual bool isInvalidParts(const CollisionParts* pParts) const;

@@ -70,19 +70,12 @@ namespace {
         return parts;
     }
 
-    void calcCollisionMtx(TPos3f* pMtx, const LiveActor* pActor) NO_INLINE {
+    void calcCollisionMtx(TPos3f* pMtx, const LiveActor* pActor, bool b) NO_INLINE {
         pMtx->set(pActor->getBaseMtx());
 
         f32 scale = pActor->mScale.x;
-        pMtx->mMtx[0][0] *= scale;
-        pMtx->mMtx[0][1] *= scale;
-        pMtx->mMtx[0][2] *= scale;
-        pMtx->mMtx[1][0] *= scale;
-        pMtx->mMtx[1][1] *= scale;
-        pMtx->mMtx[1][2] *= scale;
-        pMtx->mMtx[2][0] *= scale;
-        pMtx->mMtx[2][1] *= scale;
-        pMtx->mMtx[2][2] *= scale;
+
+        pMtx->scaleInline(scale);
     }
 
     bool isShowModel(LiveActor* pActor) NO_INLINE {
@@ -201,7 +194,7 @@ namespace {
 };  // namespace
 
 namespace MR {
-    void setPosition(LiveActor* pActor, const JGeometry::TVec3< float >& rPosition) {
+    void setPosition(LiveActor* pActor, const TVec3f& rPosition) {
         pActor->mPosition.set(rPosition);
     }
 
@@ -209,7 +202,7 @@ namespace MR {
         pActor->mPosition.set(x, y, z);
     }
 
-    void setRotation(LiveActor* pActor, const JGeometry::TVec3< float >& rRotation) {
+    void setRotation(LiveActor* pActor, const TVec3f& rRotation) {
         pActor->mRotation.set(rRotation);
     }
 
@@ -223,7 +216,7 @@ namespace MR {
         pActor->mRotation.z = rRotation;
     }
 
-    void setScale(LiveActor* pActor, const JGeometry::TVec3< float >& rScale) {
+    void setScale(LiveActor* pActor, const TVec3f& rScale) {
         pActor->mScale.set(rScale);
     }
 
@@ -301,7 +294,7 @@ namespace MR {
         clippingDirector->mActorHolder->setTypeToSphere(pActor, clippingRadius, nullptr);
     }
 
-    void setClippingTypeSphere(LiveActor* pActor, f32 clippingRadius, const JGeometry::TVec3< float >* pClippingPos) {
+    void setClippingTypeSphere(LiveActor* pActor, f32 clippingRadius, const TVec3f* pClippingPos) {
         ClippingDirector* clippingDirector = MR::getClippingDirector();
 
         clippingDirector->mActorHolder->setTypeToSphere(pActor, clippingRadius, pClippingPos);
@@ -1622,6 +1615,7 @@ namespace MR {
         }
 
         pParts->_CC = true;
+        pParts->_CD = true;
     }
 
     void invalidateCollisionParts(LiveActor* pActor) {
@@ -1643,7 +1637,7 @@ namespace MR {
             validateCollisionParts(pActor);
         }
 
-        pActor->mCollisionParts->_CD = true;
+        pActor->mCollisionParts->_CE = true;
     }
 
     void onUpdateCollisionPartsOnetimeImmediately(LiveActor* pActor) {
@@ -1654,7 +1648,7 @@ namespace MR {
         }
 
         pParts = pActor->mCollisionParts;
-        pParts->_CE = true;
+        pParts->_CF = true;
         makeMtxTR(pActor->getBaseMtx(), pActor);
         setCollisionMtx(pActor, pActor->mCollisionParts);
         pParts->updateMtx();
@@ -1667,7 +1661,7 @@ namespace MR {
             validateCollisionParts(pActor);
         }
 
-        pActor->mCollisionParts->_CD = false;
+        pActor->mCollisionParts->_CE = false;
     }
 
     void resetAllCollisionMtx(LiveActor* pActor) {
@@ -1679,7 +1673,7 @@ namespace MR {
         }
 
         TPos3f mtx;
-        ::calcCollisionMtx(&mtx, pActor);
+        ::calcCollisionMtx(&mtx, pActor, false);
         pParts->resetAllMtx(mtx);
     }
 
@@ -1698,7 +1692,7 @@ namespace MR {
         }
 
         TPos3f mtx;
-        ::calcCollisionMtx(&mtx, pActor);
+        ::calcCollisionMtx(&mtx, pActor, false);
         pParts->setMtx(mtx);
     }
 
