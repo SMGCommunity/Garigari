@@ -4,19 +4,17 @@
 
 class LiveActor;
 
-class NameObjExecuteInfo {
+struct NameObjExecuteInfo {
     friend class NameObjExecuteHolder;
 
-public:
     NameObjExecuteInfo();
 };
 
-class NameObjExecuteHolder : public NameObj {
-public:
+struct NameObjExecuteHolder : NameObj {
     NameObjExecuteHolder(int);
 };
 
 namespace MR {
     void connectToDrawTemporarily(NameObj*);
     void disconnectToDrawTemporarily(NameObj*);
-};  // namespace MR
+}  // namespace MR

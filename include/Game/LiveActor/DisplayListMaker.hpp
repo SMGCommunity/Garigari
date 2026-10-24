@@ -1,7 +1,5 @@
 #pragma once
 
-#include <revolution/types.h>
-
 class J3DModel;
 class MirrorReflectionMtxSetter;
 class ResourceHolder;

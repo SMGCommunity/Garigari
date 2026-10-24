@@ -70,19 +70,17 @@ namespace {
         return parts;
     }
 
-    void calcCollisionMtx(TPos3f* pMtx, const LiveActor* pActor, bool b) NO_INLINE {
+    void calcCollisionMtx(TPos3f* pMtx, const LiveActor* pActor, bool b) {
         pMtx->set(pActor->getBaseMtx());
 
-        f32 scale = pActor->mScale.x;
-
-        pMtx->scaleInline(scale);
+        pMtx->scaleInline(pActor->mScale.x);
     }
 
-    bool isShowModel(LiveActor* pActor) NO_INLINE {
+    bool isShowModel(LiveActor* pActor) {
         return !pActor->mFlags.mIsNoEntryDrawBuffer;
     }
 
-    void callFuncAllGroupMember(const NameObj* pActor, void (*pFunc)(NameObj*)) NO_INLINE {
+    void callFuncAllGroupMember(const NameObj* pActor, void (*pFunc)(NameObj*)) {
         LiveActorGroupArray* pGroupArray = MR::getSceneObj< LiveActorGroupArray >(SceneObj_LiveActorGroupArray);
         LiveActorGroup* pGroup = pGroupArray->getLiveActorGroup(static_cast< const LiveActor* >(pActor));
 
@@ -101,7 +99,7 @@ namespace {
         }
     }
 
-    void callFuncAllGroupMember(const LiveActor* pActor, void (*pFunc)(LiveActor*)) NO_INLINE {
+    void callFuncAllGroupMember(const LiveActor* pActor, void (*pFunc)(LiveActor*)) {
         LiveActorGroupArray* pGroupArray = MR::getSceneObj< LiveActorGroupArray >(SceneObj_LiveActorGroupArray);
         LiveActorGroup* pGroup = pGroupArray->getLiveActorGroup(pActor);
 
@@ -120,7 +118,7 @@ namespace {
         }
     }
 
-    void callMethodAllGroupMember(const LiveActor* pActor, void (LiveActor::*pMethod)()) NO_INLINE {
+    void callMethodAllGroupMember(const LiveActor* pActor, void (LiveActor::*pMethod)()) {
         LiveActorGroupArray* pGroupArray = MR::getSceneObj< LiveActorGroupArray >(SceneObj_LiveActorGroupArray);
         LiveActorGroup* pGroup = pGroupArray->getLiveActorGroup(pActor);
 
@@ -140,10 +138,10 @@ namespace {
     }
 
     template < typename T >
-    s32 countGroupMember(const LiveActor* pActor, T pPred) NO_INLINE;
+    s32 countGroupMember(const LiveActor* pActor, T pPred);
 
     template <>
-    s32 countGroupMember< bool (*)(LiveActor*) >(const LiveActor* pActor, bool (*pPred)(LiveActor*)) NO_INLINE {
+    s32 countGroupMember< bool (*)(LiveActor*) >(const LiveActor* pActor, bool (*pPred)(LiveActor*)) {
         LiveActorGroupArray* pGroupArray = MR::getSceneObj< LiveActorGroupArray >(SceneObj_LiveActorGroupArray);
         LiveActorGroup* pGroup = pGroupArray->getLiveActorGroup(pActor);
         s32 count = 0;
@@ -168,7 +166,7 @@ namespace {
     }
 
     template <>
-    s32 countGroupMember< bool (*)(const LiveActor*) >(const LiveActor* pActor, bool (*pPred)(const LiveActor*)) NO_INLINE {
+    s32 countGroupMember< bool (*)(const LiveActor*) >(const LiveActor* pActor, bool (*pPred)(const LiveActor*)) {
         LiveActorGroupArray* pGroupArray = MR::getSceneObj< LiveActorGroupArray >(SceneObj_LiveActorGroupArray);
         LiveActorGroup* pGroup = pGroupArray->getLiveActorGroup(pActor);
         s32 count = 0;
@@ -249,29 +247,33 @@ namespace MR {
     }
 
     bool isValidMovement(const LiveActor* pActor) {
-        if (pActor->mFlags.mIsDead || pActor->mFlags.mIsClipped)
+        if (pActor->mFlags.mIsDead || pActor->mFlags.mIsClipped) {
             return false;
+        }
 
         return true;
     }
 
     bool isValidCalcAnim(const LiveActor* pActor) {
-        if (pActor->mFlags.mIsDead || pActor->mFlags.mIsClipped || pActor->mFlags.mIsOnCalcAnim)
+        if (pActor->mFlags.mIsDead || pActor->mFlags.mIsClipped || pActor->mFlags.mIsOnCalcAnim) {
             return false;
+        }
 
         return true;
     }
 
     bool isValidCalcViewAndEntry(const LiveActor* pActor) {
-        if (pActor->mFlags.mIsDead || pActor->mFlags.mIsClipped)
+        if (pActor->mFlags.mIsDead || pActor->mFlags.mIsClipped) {
             return false;
+        }
 
         return true;
     }
 
     bool isValidDraw(const LiveActor* pActor) {
-        if (pActor->mFlags.mIsDead || pActor->mFlags.mIsClipped || pActor->mFlags.mIsNoEntryDrawBuffer)
+        if (pActor->mFlags.mIsDead || pActor->mFlags.mIsClipped || pActor->mFlags.mIsNoEntryDrawBuffer) {
             return false;
+        }
 
         return true;
     }
@@ -289,15 +291,11 @@ namespace MR {
     }
 
     void setClippingTypeSphere(LiveActor* pActor, f32 clippingRadius) {
-        ClippingDirector* clippingDirector = MR::getClippingDirector();
-
-        clippingDirector->mActorHolder->setTypeToSphere(pActor, clippingRadius, nullptr);
+        MR::getClippingDirector()->mActorHolder->setTypeToSphere(pActor, clippingRadius, nullptr);
     }
 
     void setClippingTypeSphere(LiveActor* pActor, f32 clippingRadius, const TVec3f* pClippingPos) {
-        ClippingDirector* clippingDirector = MR::getClippingDirector();
-
-        clippingDirector->mActorHolder->setTypeToSphere(pActor, clippingRadius, pClippingPos);
+        MR::getClippingDirector()->mActorHolder->setTypeToSphere(pActor, clippingRadius, pClippingPos);
     }
 
     void setClippingTypeSphereContainsModelBoundingBox(LiveActor* pActor, f32 radiusExtension) {
@@ -305,9 +303,8 @@ namespace MR {
         MR::calcModelBoundingRadius(&modelBoundingRadius, pActor);
 
         f32 expandedRadius = modelBoundingRadius + radiusExtension;
-        ClippingDirector* clippingDirector = MR::getClippingDirector();
 
-        clippingDirector->mActorHolder->setTypeToSphere(pActor, expandedRadius, nullptr);
+        MR::getClippingDirector()->mActorHolder->setTypeToSphere(pActor, expandedRadius, nullptr);
     }
 
     void setClippingFar50m(LiveActor* pActor) {
@@ -376,8 +373,9 @@ namespace MR {
     }
 
     void validateClipping(LiveActor* pActor) {
-        if (pActor->mFlags.mIsClippingInvalid)
+        if (pActor->mFlags.mIsClippingInvalid) {
             MR::getClippingDirector()->mActorHolder->validateClipping(pActor);
+        }
     }
 
     void invalidateClipping(LiveActor* pActor) {
@@ -392,9 +390,7 @@ namespace MR {
     }
 
     bool changeShowModelFlagSyncNearClipping(LiveActor* pActor, f32 nearDistance) {
-        bool nearClip = MR::isJudgedToNearClip(pActor->mPosition, nearDistance);
-
-        if (nearClip) {
+        if (MR::isJudgedToNearClip(pActor->mPosition, nearDistance)) {
             MR::hideModelAndOnCalcAnimIfShown(pActor);
             return false;
         }
@@ -1367,7 +1363,7 @@ namespace MR {
     }
 
     LiveActorGroup* joinToGroup(LiveActor* pActor, const char* pGroupName) {
-        LiveActorGroup* pGroup = (LiveActorGroup*)NameObjFinder::find(pGroupName);
+        LiveActorGroup* pGroup = static_cast< LiveActorGroup* >(NameObjFinder::find(pGroupName));
         pGroup->registerActor(pActor);
         return pGroup;
     }

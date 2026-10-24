@@ -1,8 +1,11 @@
 #pragma once
 
 #include "Game/Map/HitInfo.hpp"
-#include "Game/Util/LiveActorUtil.hpp"
 #include <revolution.h>
+
+class TriangleFilterBase;
+class CollisionPartsFilterBase;
+class CollisionParts;
 
 class Binder {
 public:

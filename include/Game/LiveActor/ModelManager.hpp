@@ -1,8 +1,6 @@
 #pragma once
 
-#include <JSystem/J3DGraphAnimator/J3DModel.hpp>
 #include <revolution/types.h>
-
 class DisplayListMaker;
 class ResourceHolder;
 class XjointTransform;

@@ -1,7 +1,8 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.hpp"
-#include "Game/Map/CollisionParts.hpp"
+#include <revolution/types.h>
+class LiveActor;
+class CollisionParts;
 
 class CollisionPartsFilterBase {
 public:
@@ -13,8 +14,7 @@ public:
 
 class CollisionPartsFilterSensorType : public CollisionPartsFilterBase {
 public:
-    CollisionPartsFilterSensorType(u32 pSensorType)
-        : mSensorType(pSensorType) {
+    CollisionPartsFilterSensorType(u32 pSensorType) : mSensorType(pSensorType) {
     }
 
     virtual bool isInvalidParts(const CollisionParts* pParts) const;
@@ -24,8 +24,7 @@ public:
 
 class CollisionPartsFilterActor : public CollisionPartsFilterBase {
 public:
-    CollisionPartsFilterActor(const LiveActor* pActor)
-        : mActor(pActor) {
+    CollisionPartsFilterActor(const LiveActor* pActor) : mActor(pActor) {
     }
 
     virtual bool isInvalidParts(const CollisionParts* pParts) const;
