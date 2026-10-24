@@ -54,7 +54,7 @@ namespace NrvBombTeresa {
 
 BombTeresa::BombTeresa(const char* pName)
     : LiveActor(pName), mRootTongueDelegator(), mEndTongueDelegator(), mScaleController(), mBindStarPointer(), _A0(0.0f, 0.0f, 0.0f, 1.0f), _B0(0, 0, 1),
-      _BC(0, 0, 0), _C8(0, 0, 0), _D4(0, 0, 0), _E0(), _E4(), _E8(), _EC(), _F0(), mDisableRespawning(), _F2(true), _F3() {
+      _BC(0, 0, 0), _C8(0, 0, 0), _D4(0, 0, 0), _E0(), _E4(), _E8(), _EC(), mCanReleaseDrift(), mDisableRespawning(), _F2(true), mIsFromPolta() {
 }
 
 void BombTeresa::init(const JMapInfoIter& rIter) {
@@ -334,7 +334,7 @@ bool BombTeresa::tryAbortDrift() {
 }
 
 bool BombTeresa::tryDriftRelease() {
-    if (_F0) {
+    if (mCanReleaseDrift) {
         setNerve(GET_NERVE(BombTeresa, BombTeresaNrvDriftRelease));
         return true;
     }
@@ -476,7 +476,7 @@ void BombTeresa::exeWait() {
         tryRevival();
     } else if (MR::isNearPlayerAnyTime(this, 1800.0f)) {
         setNerve(GET_NERVE(BombTeresa, BombTeresaNrvChase));
-    } else if (_F3) {
+    } else if (mIsFromPolta) {
         if (MR::isGreaterStep(this, 60)) {
             setNerve(GET_NERVE(BombTeresa, BombTeresaNrvWander));
         }
@@ -575,7 +575,7 @@ void BombTeresa::exeDrift() {
         MR::startActionSound(this, "EmBombtereTongueCatch");
         _F2 = MR::isLeftSideFromPlayer(this) == false;
         _EC = 40;
-        _F0 = false;
+        mCanReleaseDrift = false;
         _E4 = 7.0f;
         _E8 = 7.0f;
         _E0 = 1.0f;
@@ -616,7 +616,7 @@ void BombTeresa::exeDrift() {
             _E4 += 20.0f;
             _E8 += 20.0f;
             if (MR::isGreaterStep(this, 190)) {
-                _F0 = true;
+                mCanReleaseDrift = true;
             }
         }
     }
