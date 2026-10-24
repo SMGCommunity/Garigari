@@ -41,7 +41,7 @@ void MapDemoStateWait::kill() {
     mIsDead = true;
 }
 
-void MapDemoStateWait::fn_804E2680() {
+void MapDemoStateWait::exeNerve1() {
     if (_10 > 0) {
         fn_804E1E10(mHost);
     }
