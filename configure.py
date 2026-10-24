@@ -1222,6 +1222,7 @@ config.libs = [
                 Object(NonMatching, "Game/World/GrandGalaxyMapIconHolder.cpp"),
                 Object(NonMatching, "Game/World/SequenceManager.cpp"),
                 Object(NonMatching, "Game/World/MapDemoStateEnter.cpp"),
+                Object(NonMatching, "Game/World/MapDemoStateWait.cpp"),
                 Object(NonMatching, "Game/World/MapDemoStateGrandGalaxyMapNews.cpp"),
                 Object(NonMatching, "Game/World/MapDemoStateWarp.cpp"),
                 Object(NonMatching, "Game/World/MiniComet.cpp"),
