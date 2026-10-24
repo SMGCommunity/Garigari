@@ -291,17 +291,11 @@ void LiveActor::endClipped() {
 }
 
 void LiveActor::initModelManagerWithAnm(const char* pStr1, const char* pStr2, const char* pStr3, bool param4) {
-    u32* array = new u32[11];
+    ModelManager** array = new ModelManager*[11];
 
     if (array != nullptr) {
         const TProj3f& rProjMtx = MR::getCameraProjectionMtx();
-        /*
-        Call the ModelManager constructor with r3 = array and r4 = rProjMtx
-        Problem is, the ModelManager constructor is unnamed. Currently, objdiff calls it __ct__12ModelManagerFPA4_C.
-        I assume this translates to C++ as, array[0] = *(ModelManager(rProjMtx))
-        Or maybe, array isn't actually an array at all: it's a pointer to a new ModelManager!
-        We still need to configure the ModelManager constructor
-        */
+        array[0] = new ModelManager(rProjMtx);
     }
 }
 

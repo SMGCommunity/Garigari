@@ -1,5 +1,6 @@
 #pragma once
 
+#include <JSystem/JGeometry/TMatrix.hpp>
 #include <JSystem/J3DGraphAnimator/J3DModel.hpp>
 
 class ResourceHolder;
@@ -9,6 +10,8 @@ class XanimePlayer;
 
 class ModelManager {
 public:
+    ModelManager(const TProj3f&);
+
     void init(const char*, const char*, bool);
     void update();
     void calcAnim();
