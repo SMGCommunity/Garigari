@@ -310,36 +310,47 @@ namespace MR {
         clippingDirector->mActorHolder->setTypeToSphere(pActor, expandedRadius, nullptr);
     }
 
+    enum ClippingDistance {
+        ClippingDistance_Max = 0,
+        ClippingDistance_600m = 1,
+        ClippingDistance_500m = 2,
+        ClippingDistance_400m = 3,
+        ClippingDistance_300m = 4,
+        ClippingDistance_200m = 5,
+        ClippingDistance_100m = 6,
+        ClippingDistance_50m = 7
+    };
+
     void setClippingFar50m(LiveActor* pActor) {
-        MR::getClippingDirector()->mActorHolder->setFarClipLevel(pActor, 7);
+        MR::getClippingDirector()->mActorHolder->setFarClipLevel(pActor, ClippingDistance_50m);
     }
 
     void setClippingFar100m(LiveActor* pActor) {
-        MR::getClippingDirector()->mActorHolder->setFarClipLevel(pActor, 6);
+        MR::getClippingDirector()->mActorHolder->setFarClipLevel(pActor, ClippingDistance_100m);
     }
 
     void setClippingFar200m(LiveActor* pActor) {
-        MR::getClippingDirector()->mActorHolder->setFarClipLevel(pActor, 5);
+        MR::getClippingDirector()->mActorHolder->setFarClipLevel(pActor, ClippingDistance_200m);
     }
 
     void setClippingFar300m(LiveActor* pActor) {
-        MR::getClippingDirector()->mActorHolder->setFarClipLevel(pActor, 4);
+        MR::getClippingDirector()->mActorHolder->setFarClipLevel(pActor, ClippingDistance_300m);
     }
 
     void setClippingFar400m(LiveActor* pActor) {
-        MR::getClippingDirector()->mActorHolder->setFarClipLevel(pActor, 3);
+        MR::getClippingDirector()->mActorHolder->setFarClipLevel(pActor, ClippingDistance_400m);
     }
 
     void setClippingFar500m(LiveActor* pActor) {
-        MR::getClippingDirector()->mActorHolder->setFarClipLevel(pActor, 2);
+        MR::getClippingDirector()->mActorHolder->setFarClipLevel(pActor, ClippingDistance_500m);
     }
 
     void setClippingFar600m(LiveActor* pActor) {
-        MR::getClippingDirector()->mActorHolder->setFarClipLevel(pActor, 1);
+        MR::getClippingDirector()->mActorHolder->setFarClipLevel(pActor, ClippingDistance_600m);
     }
 
     void setClippingFarMax(LiveActor* pActor) {
-        MR::getClippingDirector()->mActorHolder->setFarClipLevel(pActor, 0);
+        MR::getClippingDirector()->mActorHolder->setFarClipLevel(pActor, ClippingDistance_Max);
     }
 
     void setClippingFar(LiveActor* pActor, f32 farDistance) {
@@ -1700,7 +1711,7 @@ namespace MR {
         return pActor->mCollisionParts != nullptr;
     }
 
-    u32 getCollisionSensortType(const CollisionParts *pCollisionParts) {
+    u32 getCollisionSensortType(const CollisionParts* pCollisionParts) {
         return pCollisionParts->mHitSensor->mType;
     }
 
