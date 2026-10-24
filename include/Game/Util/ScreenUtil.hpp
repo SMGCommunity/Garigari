@@ -14,4 +14,5 @@ namespace MR {
     const ResTIMG* getScreenResTIMG();
 
     void openSystemWipeWhiteFade(s32 frame = -1);
+    void deactivateDefaultGameLayout();
 };  // namespace MR

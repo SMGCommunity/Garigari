@@ -46,6 +46,7 @@ namespace MR {
     const TPos3f& getCameraViewMtx();
     bool isActiveLauncherCamera();
     bool isActiveLauncherFlightCamera();
+    const TVec3f getCamPos();
     TVec3f getCamXdir();
     TVec3f getCamYdir();
     TVec3f getCamZdir();
