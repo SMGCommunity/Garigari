@@ -3,6 +3,8 @@
 #include "Game/System/NerveExecutor.hpp"
 #include <JSystem/JGeometry.hpp>
 
+class LiveActor;
+
 class AnimScaleParam {
 public:
     AnimScaleParam();
@@ -52,3 +54,8 @@ public:
     /* 0x0C */ TVec3f _C;
     /* 0x18 */ f32 _18;
 };
+
+// TODO: Is this here or in a standard util header? The function itself seems to be situated in the AnimScaleController TU
+namespace MR {
+    void updateBaseScale(LiveActor* pActor, AnimScaleController* pScaleController);
+} // namespace MR
