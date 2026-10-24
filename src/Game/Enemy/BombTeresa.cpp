@@ -66,7 +66,7 @@ void BombTeresa::init(const JMapInfoIter& rIter) {
     if (MR::isValidInfo(rIter)) {
         bool enableRespawing;
         MR::getJMapInfoArg1WithInit(rIter, &enableRespawing);
-        mDisableRespawning = !enableRespawing;  // Feels like a quick dev patch lolll
+        mDisableRespawning = !enableRespawing;
     }
 
     initTongue();

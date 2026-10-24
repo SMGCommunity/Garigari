@@ -14,8 +14,6 @@ class BombTeresa : public LiveActor {
 public:
     BombTeresa(const char*);
 
-    virtual ~BombTeresa() {
-    }
     virtual void init(const JMapInfoIter&);
     virtual void initAfterPlacement();
     virtual void makeActorAppeared();
