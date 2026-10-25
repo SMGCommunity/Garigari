@@ -1332,7 +1332,7 @@ namespace MR {
             f32 element = MR::vecKillElement(vec, up, &vec);
             vec.setLength(radius - 200.0f);
 
-            vec.add(up*element);
+            vec += up*element;
             *pOut = center + vec;
         }
     }
