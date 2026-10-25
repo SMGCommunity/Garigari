@@ -1280,7 +1280,7 @@ namespace MR {
     }
 
 
-    void fn_800140B0(TVec3f* pOut, const TVec3f& a2, const TVec3f& position, f32) {
+    void fn_800140B0(TVec3f* pOut, const TVec3f& a2, const TVec3f& position, f32 a4) {
         AreaObj* pArea = MR::getAreaObj("PlaneModeCube", position);
         if (!pArea) {
             return;
@@ -1302,16 +1302,10 @@ namespace MR {
             vec.negate();
         }
 
+        
         TQuat4f quat;
-        if (front.cross(vec).length() > 0.0000038146973f) {
-            quat.set(0.0f, 0.0f, 0.0f, 1.0f);
-        }
-        else {
-            // What is going on here...
-        }
-
-        // Holy mathematics
-        // pOut.set should be here
+        quat.setRotate(front, vec, a4 / 90.0f);
+        quat.transform(front, *pOut);
     }
 
 };  // namespace MR
