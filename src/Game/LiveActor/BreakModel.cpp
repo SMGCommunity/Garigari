@@ -5,7 +5,6 @@
 #include "Game/Util/ActorInitUtil.hpp"
 #include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
-#include "revolution/types.h"
 
 namespace NrvBreakModel {
     NEW_NERVE(BreakModelNrvWait, BreakModel, Wait);

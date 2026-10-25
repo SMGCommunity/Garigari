@@ -1,4 +1,4 @@
-#include "revolution/types.h"
+#include <revolution/types.h>
 
 namespace MR {
     bool isMsgKoopaCastAttackRockStart(u32);
