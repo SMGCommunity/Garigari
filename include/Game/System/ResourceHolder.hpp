@@ -90,4 +90,5 @@ public:
     /* 0x44 */ JKRArchive* mArchive;
     /* 0x48 */ JKRHeap* mHeap;
     /* 0x4C */ u32 mTotalResourceSize;
+    /* 0x50 */ const char* _50;
 };

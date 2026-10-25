@@ -1,8 +1,9 @@
 #pragma once
 
-#include "revolution/mtx.h"
+#include "revolution/types.h"
 #include <JSystem/JGeometry/TVec.hpp>
 #include <revolution.h>
+#include <revolution/mtx.h>
 
 class ResourceHolder;
 class LiveActor;
@@ -14,7 +15,7 @@ class Triangle;
 class EffectKeeper {
 public:
     EffectKeeper(const char*, ResourceHolder*, int, const char*);
-    
+
     void init(LiveActor*);
     void initAfterPlacementForAttributeEffect(MtxPtr);
     void setBinder(const Binder*);
@@ -55,4 +56,18 @@ public:
     void updateFloorCode();
     void updateFloorCode(Triangle*);
     bool isTypeAttributeEffect(const char*) const;
+
+    /* 0x00 */ const char* _0;
+    /* 0x04 */ const char* _4;
+    /* 0x08 */ ResourceHolder* mResourceHolder;
+    /* 0x0C */ u32* _C;
+    /* 0x10 */ int mSize_C;
+    /* 0x14 */ u32 _14;
+    /* 0x18 */ u32 _18;
+    /* 0x1C */ u32 _1C;
+    /* 0x20 */ u32 _20;
+    /* 0x24 */ u32 _24;
+    /* 0x28 */ u32 _28;
+    /* 0x2C */ u32 _2C;
+    /* 0x30 */ bool _30;
 };
