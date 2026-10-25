@@ -10,8 +10,10 @@ namespace MR {
     void makeMtxRotate(MtxPtr, const TVec3f&);
     void preScaleMtx(MtxPtr, const TVec3f&);
     void makeMtxTRS(MtxPtr, const TVec3f&, const TVec3f&, const TVec3f&);
+    void makeMtxTRS(MtxPtr, f32, f32, f32, f32, f32, f32, f32, f32, f32);
     void makeMtxTR(MtxPtr, f32, f32, f32, f32, f32, f32);
     void makeMtxTR(MtxPtr, const TVec3f&, const TVec3f&);
+    void makeMtxTransRotateY(MtxPtr, f32, f32, f32, f32);
     void makeMtxSideUp(TPos3f*, const TVec3f&, const TVec3f&);
     void makeMtxSideUpPos(TPos3f*, const TVec3f&, const TVec3f&, const TVec3f&);
     void makeMtxSideFront(TPos3f*, const TVec3f&, const TVec3f&);
