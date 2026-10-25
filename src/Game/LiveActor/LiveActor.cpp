@@ -1,6 +1,7 @@
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/ActorActionKeeper.hpp"
 #include "Game/LiveActor/ActorLightCtrl.hpp"
+#include "Game/LiveActor/ActorSoundHolder.hpp"
 #include "Game/LiveActor/AllLiveActorGroup.hpp"
 #include "Game/LiveActor/Binder.hpp"
 #include "Game/LiveActor/ClippingDirector.hpp"
@@ -27,6 +28,7 @@
 #include "revolution/mtx.h"
 
 #include <JSystem/J3DGraphAnimator/J3DModel.hpp>
+#include <JSystem/JGeometry/TVec.hpp>
 #include <revolution/types.h>
 
 LiveActor::LiveActor(const char* pName)
@@ -293,7 +295,6 @@ void LiveActor::endClipped() {
 // NON_MATCHING
 // decomp.me: https://decomp.me/scratch/sEGTv
 // The original assembly calls calcAndSetBaseMtx() as a normal function, not a virtual one. I don't know how to replicate this.
-// Also, when the new ModelManager is being created, only 1 byte is allocated in memory, but the original assembly allocates 0x2c bytes.
 void LiveActor::initModelManagerWithAnm(const char* pStr1, const char* pStr2, const char* pStr3, bool param4) {
     mModelManager = new ModelManager(MR::getCameraProjectionMtx());
     mModelManager->init(pStr1, pStr2, param4);
@@ -338,7 +339,13 @@ void LiveActor::initEffectKeeper(s32 param1, const char* pName, bool param3) {
     }
 }
 
-// LiveActor::initSound
+// NON_MATCHING
+// decomp.me: https://decomp.me/scratch/ZpWj9
+// I think the TVec3f constructor is being inlined for whatever reason.
+void LiveActor::initSound(s32 a1, const char* a2, const TVec3f* a3, const TVec3f& a4) {
+    mSoundHolder = new ActorSoundHolder(this, a1, a2, a3, TVec3f(a4));
+}
+
 // LiveActor::initShadowControllerList
 // LiveActor::initActorCollisionParts
 
