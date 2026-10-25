@@ -12601,6 +12601,13 @@ RVL_SDK/bte/sdp_utils.c:
 	.rodata     start:0x8065B6D0 end:0x8065B6E0
 	.data       start:0x80727690 end:0x80727788
 
+RVL_SDK/os/init/__ppc_eabi_init.cpp:
+	.init       start:0x80004360 end:0x800043C4
+
+Runtime/__mem.c:
+	.init       start:0x800043C4 end:0x80004744
+	.text       start:0x8062DAB4 end:0x8062DAD0
+
 Runtime/__va_arg.c:
 	.text       start:0x8062DAD0 end:0x8062DB98
 
@@ -12631,6 +12638,10 @@ Runtime/__init_cpp_exceptions.cpp:
 Runtime/Gecko_ExceptionPPC.cpp:
 	.text       start:0x8062E96C end:0x8062E9E0
 	.bss        start:0x807CC978 end:0x807CCAF8
+
+Runtime/GCN_mem_alloc.c:
+	.text       start:0x8062E9E0 end:0x8062EA98
+	.rodata     start:0x8065B708 end:0x8065B778
 
 MSL_C/alloc.c:
 	.text       start:0x8062EA98 end:0x8062EFAC
@@ -12987,12 +12998,6 @@ NDEV/DebuggerDriver.c:
 
 NDEV/exi2.c:
 	.text       start:0x8064358C end:0x80643D18
-
-RVL_SDK/os/init/__ppc_eabi_init.cpp:
-	.init       start:0x80004360 end:0x800043C4
-
-Runtime/__mem.c:
-	.init       start:0x800043C4 end:0x80004744
 
 MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/exception.s:
 	.init       start:0x80004744 end:0x80006678
