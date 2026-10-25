@@ -47,7 +47,7 @@ public:
     void offDraw();
     void onCalcEmitter();
     void offCalcEmitter();
-    void enablesort();
+    void enableSort();
     void finalizeSort();
     bool isRegisteredEmitter(const char*) const;
     void checkExistenceAttributeEffect();

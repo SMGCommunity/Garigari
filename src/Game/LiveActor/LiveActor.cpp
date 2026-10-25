@@ -324,7 +324,23 @@ void LiveActor::initRailRider(const JMapInfoIter& rIter) {
     mRailRider = new RailRider(rIter);
 }
 
-// LiveActor::initEffectKeeper
+// NON_MATCHING
+// decomp.me: https://decomp.me/scratch/lITeM
+// operator new allocates wrong amount of data
+void LiveActor::initEffectKeeper(s32 param1, const char* pName, bool param3) {
+    mEffectKeeper = new EffectKeeper(getName(), MR::getModelResourceHolder(this), param1, pName);
+
+    if (param3) {
+        mEffectKeeper->enableSort();
+    }
+
+    mEffectKeeper->init(this);
+
+    if (mBinder != nullptr) {
+        mEffectKeeper->setBinder(mBinder);
+    }
+}
+
 // LiveActor::initSound
 // LiveActor::initShadowControllerList
 // LiveActor::initActorCollisionParts
