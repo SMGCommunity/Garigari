@@ -64,4 +64,16 @@ public:
     void initVisibilityAnm();
     void calc();
     void changeBckSetting(const char*, const char*, XanimePlayer*);
+
+    /* 0x00 */ u32 _0;
+    /* 0x04 */ u32 _4;
+    /* 0x08 */ u32 _8;
+    /* 0x0C */ u32 _C;
+    /* 0x10 */ u32 _10;
+    /* 0x14 */ u32 _14;
+    /* 0x18 */ u32 _18;
+    /* 0x1C */ u32 _1C;
+    /* 0x20 */ const TProj3f& mProj;
+    /* 0x24 */ u32 _24;
+    /* 0x28 */ u32 _28;
 };
