@@ -67,6 +67,14 @@ public:
     void initActorCollisionParts(const char*, HitSensor*, ResourceHolder*, MtxPtr, bool, bool);
     void initStageSwitch(const JMapInfoIter&);
 
+    const TVec3f* getGravity() const {
+        return &mGravity;
+    }
+
+    const TVec3f* getVelocity() const {
+        return &mVelocity;
+    }
+
     /* 0x14 */ TVec3f mPosition;
     /* 0x20 */ TVec3f mRotation;
     /* 0x2C */ TVec3f mScale;

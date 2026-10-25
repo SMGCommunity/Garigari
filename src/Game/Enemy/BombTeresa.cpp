@@ -22,13 +22,7 @@
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
-
 void BombTeresa_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)0.5f;
-    (void)3.0f;
-    (void)2.0f;
     (void)0.1f;
     (void)0.6f;
 }
@@ -53,8 +47,9 @@ namespace NrvBombTeresa {
 };  // namespace NrvBombTeresa
 
 BombTeresa::BombTeresa(const char* pName)
-    : LiveActor(pName), mRootTongueDelegator(), mEndTongueDelegator(), mScaleController(), mBindStarPointer(), mBaseMtx(0.0f, 0.0f, 0.0f, 1.0f), mFront(0, 0, 1),
-      _BC(0, 0, 0), mTonguePosition(0, 0, 0), mResetPosition(0, 0, 0), _E0(), _E4(), _E8(), mDriftCycleTimer(), mDoReleaseDrift(), mDisableRespawning(), _F2(true), mIsFromPolta() {
+    : LiveActor(pName), mRootTongueDelegator(), mEndTongueDelegator(), mScaleController(), mBindStarPointer(), mBaseMtx(0.0f, 0.0f, 0.0f, 1.0f),
+      mFront(0, 0, 1), _BC(0, 0, 0), mTonguePosition(0, 0, 0), mResetPosition(0, 0, 0), _E0(), _E4(), _E8(), mDriftCycleTimer(), mDoReleaseDrift(),
+      mDisableRespawning(), _F2(true), mIsFromPolta() {
 }
 
 void BombTeresa::init(const JMapInfoIter& rIter) {
