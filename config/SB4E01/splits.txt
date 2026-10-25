@@ -29,21 +29,17 @@ Game/Util/ActorCameraUtil.cpp:
 	.sdata2     start:0x807D6CD8 end:0x807D6CE0
 
 Game/Util/ActorInitUtil.cpp:
-	.text       start:0x8000BF70 end:0x8000D620 align:16
+	.text       start:0x8000BF70 end:0x8000D750 align:16
 	.rodata     start:0x80644BD0 end:0x80645110
 	.data       start:0x8065C7C8 end:0x8065CFB8
 	.sdata      start:0x807CF320 end:0x807CF330
 	.sdata2     start:0x807D6CE0 end:0x807D6CF0
 
-Game/Util/ActorMoveParamUtil.cpp:
-	.text       start:0x8000D8C0 end:0x8000DAD0 align:16
-	.rodata     start:0x80645110 end:0x80645138
-	.sdata2     start:0x807D6D50 end:0x807D6D60
-
 Game/Util/ActorMovementUtil.cpp:
-	.text       start:0x8000DAD0 end:0x80014680 align:16
-	.rodata     start:0x80645138 end:0x80645148
+	.text       start:0x8000D750 end:0x80014680 align:16
+	.rodata     start:0x80645110 end:0x80645148
 	.data       start:0x8065CFB8 end:0x8065CFE0
+	.sdata2     start:0x807D6CF0 end:0x807D6D60
 
 Game/Util/ActorSensorUtil.cpp:
 	.text       start:0x80014680 end:0x800171F0 align:16
@@ -55,6 +51,10 @@ Game/Util/ActorShadowUtil.cpp:
 	.data       start:0x8065CFE8 end:0x8065D278
 	.sdata      start:0x807CF330 end:0x807CF338
 	.sdata2     start:0x807D6D68 end:0x807D6D88
+
+Game/Util/ActorSoundUtil.cpp:
+	.text       start:0x80019D60 end:0x80019ED0 align:16
+	.sdata2     start:0x807D6D88 end:0x807D6D90
 
 Game/Util/ActorStateUtil.cpp:
 	.text       start:0x80019ED0 end:0x8001A2C0 align:16
@@ -82,6 +82,11 @@ Game/Util/ChildUtil.cpp:
 Game/Util/CSSoundUtil.cpp:
 	.text       start:0x8001EDD0 end:0x8001F0C0 align:16
 	.sbss       start:0x807D0D88 end:0x807D0D90
+
+Game/Util/DataUtil.cpp:
+	.text       start:0x8001F0C0 end:0x8001F360 align:16
+	.data       start:0x8065D658 end:0x8065D6B8
+	.sdata      start:0x807CF348 end:0x807CF350
 
 Game/Util/DemoUtil.cpp:
 	.text       start:0x8001F360 end:0x80021280 align:16
@@ -116,14 +121,14 @@ Game/Util/FileUtil.cpp:
 	.sbss       start:0x807D0D98 end:0x807D0DA0
 
 Game/Util/FootPrint.cpp:
-	.text       start:0x80025E80 end:0x80026A60 align:16
+	.text       start:0x80025E80 end:0x80026B60 align:16
 	.rodata     start:0x80645188 end:0x80645190
 	.data       start:0x8065DA50 end:0x8065DB00
 	.sdata      start:0x807CF368 end:0x807CF378
 	.sdata2     start:0x807D6E28 end:0x807D6E50
 
 Game/Util/FurCtrl.cpp:
-	.text       start:0x80026BC0 end:0x80027B80 align:16
+	.text       start:0x80026B60 end:0x80027B80 align:16
 	.rodata     start:0x80645190 end:0x806451A0
 	.data       start:0x8065DB00 end:0x8065DD38
 	.sdata2     start:0x807D6E50 end:0x807D6E58
@@ -134,12 +139,14 @@ Game/Util/FurDrawer.cpp:
 	.sdata2     start:0x807D6E58 end:0x807D6EB8
 
 Game/Util/FurMulti.cpp:
-	.text       start:0x800288B0 end:0x80029170 align:16
-	.data       start:0x8065DD38 end:0x8065DDE0
-	.sdata      start:0x807CF378 end:0x807CF380
+	.text       start:0x800288B0 end:0x80029DC0 align:16
+	.rodata     start:0x806451B0 end:0x806451E0
+	.data       start:0x8065DD38 end:0x8065DDF8
+	.sdata      start:0x807CF378 end:0x807CF388
+	.sdata2     start:0x807D6EB8 end:0x807D6ED0
 
 Game/Util/GamePadUtil.cpp:
-	.text       start:0x80029E90 end:0x8002B150 align:16
+	.text       start:0x80029DC0 end:0x8002B180 align:16
 	.sdata2     start:0x807D6ED0 end:0x807D6EE0
 
 Game/Util/GravityUtil.cpp:
@@ -169,7 +176,7 @@ Game/Util/LayoutUtil.cpp:
 	.sdata2     start:0x807D6F08 end:0x807D6F18
 
 Game/Util/LightUtil.cpp:
-	.text       start:0x80030E70 end:0x80030F90 align:16
+	.text       start:0x80030E70 end:0x80031170 align:16
 
 Game/Util/LiveActorUtil.cpp:
 	.text       start:0x80031170 end:0x80037160 align:16
@@ -201,8 +208,12 @@ Game/Util/MemoryUtil.cpp:
 	.sbss       start:0x807D0DA8 end:0x807D0DB0
 
 Game/Util/MessageUtil.cpp:
-	.text       start:0x80041380 end:0x80041BE0 align:16
+	.text       start:0x80041380 end:0x80042230 align:16
 	.data       start:0x8065E590 end:0x8065E628
+
+Game/Util/MeUtil.cpp:
+	.text       start:0x80042230 end:0x80042330 align:16
+	.sbss       start:0x807D0DB0 end:0x807D0DB8
 
 Game/Util/ModelUtil.cpp:
 	.text       start:0x80042330 end:0x800447A0 align:16
@@ -222,6 +233,9 @@ Game/Util/NerveUtil.cpp:
 	.text       start:0x80047A50 end:0x80048580 align:16
 	.rodata     start:0x80645260 end:0x80645268
 	.sdata2     start:0x807D7068 end:0x807D7070
+
+Game/Util/N_UNK1.cpp:
+	.text       start:0x80048580 end:0x800485F0 align:16
 
 Game/Util/NPCUtil.cpp:
 	.text       start:0x800485F0 end:0x8004AA20 align:16
@@ -245,7 +259,7 @@ Game/Util/ParabolicPath.cpp:
 	.sdata2     start:0x807D70D8 end:0x807D70E8
 
 Game/Util/PlayerUtil.cpp:
-	.text       start:0x8004EFA0 end:0x80051910 align:16
+	.text       start:0x8004EFA0 end:0x80051970 align:16
 	.data       start:0x8065EE40 end:0x80669148
 	.sdata      start:0x807CF410 end:0x807CF418
 	.sdata2     start:0x807D70E8 end:0x807D7108
@@ -260,11 +274,20 @@ Game/Util/RailUtil.cpp:
 	.data       start:0x80669148 end:0x80669228
 	.sdata2     start:0x807D7118 end:0x807D7128
 
+Game/Util/UTIL_UNK1.cpp:
+	.text       start:0x80054650 end:0x80056470 align:16
+	.rodata     start:0x80645278 end:0x80645280
+	.data       start:0x80669228 end:0x80669240
+	.sdata2     start:0x807D7128 end:0x807D7158
+
 Game/Util/SceneUtil.cpp:
 	.text       start:0x80056470 end:0x800583F0 align:16
 	.ctors      start:0x80643D30 end:0x80643D34
 	.data       start:0x80669240 end:0x806696F0
 	.bss        start:0x807286F0 end:0x807286F8
+
+Game/Util/SchedulerUtil.cpp:
+	.text       start:0x800583F0 end:0x80058490 align:16
 
 Game/Util/ScreenUtil.cpp:
 	.text       start:0x80058490 end:0x8005A430 align:16
@@ -275,8 +298,12 @@ Game/Util/ScreenUtil.cpp:
 Game/Util/SequenceUtil.cpp:
 	.text       start:0x8005A430 end:0x8005A4E0 align:16
 
+Game/Util/ShareUtil.cpp:
+	.text       start:0x8005A4E0 end:0x8005A5B0 align:16
+	.data       start:0x80669760 end:0x806697A0
+
 Game/Util/SoundUtil.cpp:
-	.text       start:0x8005A5B0 end:0x8005BBE0 align:16
+	.text       start:0x8005A5B0 end:0x8005BCA0 align:16
 	.data       start:0x806697A0 end:0x80669910
 	.sdata2     start:0x807D7168 end:0x807D7178
 
@@ -608,14 +635,24 @@ Game/AudioLib/AudSystem.cpp:
 	.data       start:0x8066B290 end:0x8066B520
 	.bss        start:0x80728758 end:0x807287C8
 	.sbss       start:0x807D0E10 end:0x807D0E30
-	.sdata2     start:0x807D7390 end:0x807D7438
+	.sdata2     start:0x807D7390 end:0x807D73C0
+
+Game/AudioLib/AudParams.cpp:
+	.rodata     start:0x806457A8 end:0x80645B68
+	.sdata2     start:0x807D73C0 end:0x807D7490
 
 Game/AudioLib/AudSystemVolumeController.cpp:
 	.text       start:0x8007BEA0 end:0x8007C1C0 align:16
-	.rodata     start:0x806457A8 end:0x80645B68
+
+Game/AudioLib/AudAudience.cpp:
+	.text       start:0x8007C1C0 end:0x8007C2E0 align:16
+	.rodata     start:0x80645B68 end:0x80645B70
+	.data       start:0x8066B520 end:0x8066B540
+	.sdata2     start:0x807D7490 end:0x807D7498
 
 Game/AudioLib/AudSoundInfo.cpp:
-	.text       start:0x8007C370 end:0x8007C850 align:16
+	.text       start:0x8007C2E0 end:0x8007C850 align:16
+	.rodata     start:0x80645B70 end:0x80645D80
 	.sbss       start:0x807D0E30 end:0x807D0E38
 
 Game/AudioLib/AudWrap.cpp:
@@ -672,7 +709,7 @@ Game/AudioLib/AudBgmRhythmStrategy.cpp:
 	.bss        start:0x807287F8 end:0x80728810
 
 Game/AudioLib/AudBgmSetting.cpp:
-	.text       start:0x80083890 end:0x80083DE0 align:16
+	.text       start:0x80083890 end:0x80083E50 align:16
 	.rodata     start:0x80645DA0 end:0x80646C88
 	.data       start:0x8066B890 end:0x8066B930
 	.sdata      start:0x807CF460 end:0x807CF468
@@ -693,6 +730,9 @@ Game/AudioLib/AudFader.cpp:
 	.text       start:0x80084520 end:0x80084600 align:16
 	.rodata     start:0x80646CB0 end:0x80646CB8
 	.sdata2     start:0x807D7588 end:0x807D7590
+
+Game/AudioLib/AudLimitedSound.cpp:
+	.text       start:0x80084600 end:0x800846B0 align:16
 
 Game/AudioLib/AudMeNameConverter.cpp:
 	.text       start:0x800846B0 end:0x800848E0 align:16
@@ -725,6 +765,9 @@ Game/AudioLib/AudSeStrategy.cpp:
 	.data       start:0x8066BD90 end:0x8066BDB8
 	.bss        start:0x80728840 end:0x80728850
 
+Game/AudioLib/AudS_UNK1.cpp:
+	.text       start:0x80085CF0 end:0x80085EF0 align:16
+
 Game/AudioLib/AudSoundNameConverter.cpp:
 	.text       start:0x80085EF0 end:0x80086580 align:16
 	.data       start:0x8066BDB8 end:0x8066BE00
@@ -752,14 +795,22 @@ Game/AudioLib/AudUtil.cpp:
 	.sdata2     start:0x807D75B8 end:0x807D75C0
 
 Game/AudioLib/OverwriteJAudio.cpp:
-	.text       start:0x800886A0 end:0x80089240 align:16
+	.text       start:0x80087190 end:0x80089240 align:16
 	.ctors      start:0x80643D5C end:0x80643D60
+	.data       start:0x8066BE00 end:0x8066BE70
 	.bss        start:0x807288D0 end:0x807288F0
-	.sbss       start:0x807D0E60 end:0x807D0E68
+	.sdata      start:0x807CF4C0 end:0x807CF4C8
+	.sbss       start:0x807D0E58 end:0x807D0E68
 	.sdata2     start:0x807D75C0 end:0x807D75D0
 
 Game/AudioLib/CSSoundNameConverter.cpp:
 	.text       start:0x80089240 end:0x80089470 align:16
+
+Game/AudioLib/AUDIOLIB_UNK1.cpp:
+	.text       start:0x80089470 end:0x8008A560 align:16
+	.data       start:0x8066BE70 end:0x8066C098
+	.sdata      start:0x807CF4C8 end:0x807CF4E0
+	.sdata2     start:0x807D75D0 end:0x807D75D8
 
 Game/Boss/BattanKing.cpp:
 	.text       start:0x8008A560 end:0x8008E100 align:16
