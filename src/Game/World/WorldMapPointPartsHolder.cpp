@@ -5,7 +5,6 @@
 #include "Game/Util/StringUtil.hpp"
 #include "Game/World/MiniEarthenPipe.hpp"
 #include "Game/World/MiniWorldWarpPoint.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
 #include <decomp.h>
 
 EXTERN_UNKNOWN_FUNC_NO_ARGS(u32, 804E82A0)

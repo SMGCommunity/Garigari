@@ -3,8 +3,8 @@
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/MtxUtil.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
-#include "revolution/types.h"
+#include <JSystem/JGeometry/TMatrix.hpp>
+#include <revolution/types.h>
 #include <cmath>
 
 AreaFormCube::AreaFormCube(int a1) {
