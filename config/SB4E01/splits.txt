@@ -10193,15 +10193,12 @@ Game/World/MiniTicoMaster.cpp:
 	.sbss       start:0x807D5EA8 end:0x807D5EB8
 	.sdata2     start:0x807E1B78 end:0x807E1BB0
 
+Game/World/MiniWorldWarpPoint.cpp:
+	.text       start:0x804E74D0 end:0x804E7740 align:16
+	.data       start:0x80701B88 end:0x80701C58
+
 Game/World/MiniWorldMapModel.cpp:
 	.text       start:0x804E7740 end:0x804E7790 align:16
-
-Game/World/MiniWorldWarpPoint.cpp:
-	.text       start:0x804E7E50 end:0x804E8250 align:16
-	.ctors      start:0x80644A7C end:0x80644A80
-	.data       start:0x80701BE8 end:0x80701C58
-	.bss        start:0x8072B968 end:0x8072B980
-	.sdata2     start:0x807E1BB0 end:0x807E1BC0
 
 Game/World/WORLD_UNK1.cpp:
 	.text       start:0x804E8310 end:0x804E90A0 align:16
@@ -10221,8 +10218,8 @@ Game/World/WORLD_UNK2.cpp:
 	.sbss       start:0x807D5EB8 end:0x807D5ED0
 	.sdata2     start:0x807E1BE8 end:0x807E1C48
 
-Game/World/WORLD_UNK3.cpp:
-	.text       start:0x804EE0E0 end:0x804EE100 align:16
+Game/World/WorldMapPointPartsHolder.cpp:
+	.text       start:0x804ECCD0 end:0x804EE100
 	.ctors      start:0x80644A88 end:0x80644A8C
 	.bss        start:0x8072BA10 end:0x8072BA20
 	.sdata2     start:0x807E1C70 end:0x807E1C78
