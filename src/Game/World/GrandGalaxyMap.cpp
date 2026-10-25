@@ -1,6 +1,6 @@
 #include "Game/World/GrandGalaxyMap.hpp"
 #include "Game/World/SequenceManager.hpp"
-#include "decomp.h"
+#include <decomp.h>
 
 EXTERN_UNKNOWN_FUNC(u32, 804E8950, void*)
 EXTERN_UNKNOWN_FUNC(void, 804F3AE0, void*)
