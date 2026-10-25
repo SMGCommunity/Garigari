@@ -1,5 +1,5 @@
 #include "Game/World/GrandGalaxyMap.hpp"
-#include "Game/World/SequenceManager.hpp"
+#include "Game/World/MapDemoManager.hpp"
 #include <decomp.h>
 
 EXTERN_UNKNOWN_FUNC(u32, 804E8950, void*)
@@ -26,8 +26,8 @@ void GrandGalaxyMap::fn_804DFB90(bool a1) {
     _8 = new GrandGalaxyMapInfoHolder();
     _8->fn_804DFA40(fn_804E8950(_10));
 
-    _C = new SequenceManager(this);
-    _C->fn_804E04A0(a1);
+    _C = new MapDemoManager(this);
+    _C->init(a1);
 
     fn_804DFC70();
 }

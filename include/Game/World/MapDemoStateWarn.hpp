@@ -5,9 +5,9 @@
 class GrandGalaxyMap;
 class TalkMessageCtrl;
 
-class MapDemoStateNews : public ActorStateBase< GrandGalaxyMap > {
+class MapDemoStateWarn : public ActorStateBase< GrandGalaxyMap > {
 public:
-    MapDemoStateNews(GrandGalaxyMap*);
+    MapDemoStateWarn(GrandGalaxyMap*);
 
     virtual void init();
     virtual void appear();

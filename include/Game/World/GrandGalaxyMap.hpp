@@ -2,7 +2,7 @@
 
 #include "Game/System/NerveExecutor.hpp"
 
-class SequenceManager;
+class MapDemoManager;
 
 class GrandGalaxyMapInfoHolder {  // Maybe?
 public:
@@ -28,7 +28,7 @@ public:
     void* fn_804DFD30();     // Some getter
 
     /* 0x08 */ GrandGalaxyMapInfoHolder* _8;
-    /* 0x0C */ SequenceManager* _C;
+    /* 0x0C */ MapDemoManager* _C;
     /* 0x10 */ void* _10;  // Unknown
     /* 0x14 */ bool _14;   // Unknown
     /* 0x15 */ bool _15;   // Unknown
