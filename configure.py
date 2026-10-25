@@ -2798,6 +2798,8 @@ config.libs = [
                 Object(NonMatching, "Game/World/MapDemoStateNews.cpp"),
                 Object(NonMatching, "Game/World/MapDemoStateWarp.cpp"),
                 Object(NonMatching, "Game/World/MiniComet.cpp"),
+                Object(NonMatching, "Game/World/MiniEarthenPipe.cpp"),
+                Object(NonMatching, "Game/World/MiniGreenComet.cpp"),
                 Object(NonMatching, "Game/World/MiniRoutePoint.cpp"),
             ],
         ),
