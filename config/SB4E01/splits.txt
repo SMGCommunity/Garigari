@@ -2160,6 +2160,9 @@ Game/Camera/CamKarikariEffector.cpp:
 	.rodata     start:0x80647918 end:0x80647920
 	.sdata2     start:0x807D8CF0 end:0x807D8D20
 
+Game/Camera/CamPoseSphereInterpolator.cpp:
+	.text       start:0x8010C770 end:0x8010C8B0 align:16
+
 Game/Camera/CamTranslatorAnim.cpp:
 	.text       start:0x8010C8B0 end:0x8010C8F0 align:16
 	.data       start:0x8067BBD8 end:0x8067BBE8
@@ -2349,6 +2352,10 @@ Game/Camera/CamTranslatorWonderPlanet.cpp:
 	.text       start:0x8010E1C0 end:0x8010E220 align:16
 	.data       start:0x8067BE78 end:0x8067BE88
 
+Game/Camera/CamYoshiEffector.cpp:
+	.text       start:0x8010E220 end:0x8010E450 align:16
+	.sdata2     start:0x807D8DF8 end:0x807D8E10
+
 Game/Camera/Camera.cpp:
 	.text       start:0x8010E450 end:0x8010E740 align:16
 	.data       start:0x8067BE88 end:0x8067BF00
@@ -2368,6 +2375,11 @@ Game/Camera/CameraBlackHole.cpp:
 	.text       start:0x8010FA20 end:0x8010FDF0 align:16
 	.data       start:0x8067C010 end:0x8067C078
 	.sdata2     start:0x807D8E38 end:0x807D8E50
+
+Game/Camera/CameraCalc.cpp:
+	.text       start:0x8010FDF0 end:0x80110380 align:16
+	.rodata     start:0x80647928 end:0x80647938
+	.sdata2     start:0x807D8E50 end:0x807D8E68
 
 Game/Camera/CameraCharmedFix.cpp:
 	.text       start:0x80110380 end:0x801107F0 align:16
@@ -2413,15 +2425,12 @@ Game/Camera/CameraDead.cpp:
 	.data       start:0x8067C308 end:0x8067C370
 	.sdata2     start:0x807D8F60 end:0x807D8F70
 
-Game/Camera/CameraPoseParam.cpp:
-	.text       start:0x80113880 end:0x80113A00 align:16
-	.sbss       start:0x807D1D68 end:0x807D1D70
-
 Game/Camera/CameraDirector.cpp:
-	.text       start:0x80113A00 end:0x80115E50 align:16
+	.text       start:0x80113540 end:0x80115E50 align:16
 	.rodata     start:0x80647948 end:0x80647950
 	.data       start:0x8067C370 end:0x8067C500
 	.sdata      start:0x807CF680 end:0x807CF690
+	.sbss       start:0x807D1D68 end:0x807D1D70
 	.sdata2     start:0x807D8F70 end:0x807D8FA0
 
 Game/Camera/CameraFix.cpp:
@@ -2569,11 +2578,18 @@ Game/Camera/CameraParamChunkHolder.cpp:
 	.sdata2     start:0x807D9360 end:0x807D9390
 
 Game/Camera/CameraParamChunkID.cpp:
-	.text       start:0x80126840 end:0x80126DF0 align:16
+	.text       start:0x80126840 end:0x80126E00 align:16
 	.data       start:0x8067DDC0 end:0x8067DDF8
 
 Game/Camera/CameraParamString.cpp:
 	.text       start:0x80126E00 end:0x80126EA0 align:16
+
+Game/Camera/CameraPolygonCodeUtil.cpp:
+	.text       start:0x80126EA0 end:0x80126F60 align:16
+
+Game/Camera/CameraPoseParam.cpp:
+	.text       start:0x80126F60 end:0x80126FD0 align:16
+	.sdata2     start:0x807D9390 end:0x807D93A0
 
 Game/Camera/CameraRaceFollow.cpp:
 	.text       start:0x80126FD0 end:0x801275E0 align:16
@@ -2613,6 +2629,10 @@ Game/Camera/CameraRotChecker.cpp:
 	.ctors      start:0x80644014 end:0x80644018
 	.sbss       start:0x807D1D78 end:0x807D1D80
 	.sdata2     start:0x807D9410 end:0x807D9428
+
+Game/Camera/Camera_UNK1.cpp:
+	.text       start:0x80129070 end:0x80129510 align:16
+	.sdata2     start:0x807D9428 end:0x807D9438
 
 Game/Camera/CameraShakePatternImpl.cpp:
 	.text       start:0x80129510 end:0x80129870 align:16
@@ -2678,6 +2698,10 @@ Game/Camera/CameraTargetObj.cpp:
 	.bss        start:0x80728E80 end:0x80728E90
 	.sdata2     start:0x807D9560 end:0x807D9578
 
+Game/Camera/CameraTestObj.cpp:
+	.text       start:0x8012CF60 end:0x8012CFB0 align:16
+	.sdata2     start:0x807D9578 end:0x807D9580
+
 Game/Camera/CameraTower.cpp:
 	.text       start:0x8012CFB0 end:0x8012DD30 align:16
 	.ctors      start:0x8064401C end:0x80644020
@@ -2739,6 +2763,10 @@ Game/Camera/CameraWonderPlanet.cpp:
 	.text       start:0x801324F0 end:0x80132D10 align:16
 	.data       start:0x8067E938 end:0x8067E9A0
 	.sdata2     start:0x807D9750 end:0x807D9770
+
+Game/Camera/DotCamParams.cpp:
+	.text       start:0x80132D10 end:0x80133170 align:16
+	.data       start:0x8067E9A0 end:0x8067EA10
 
 Game/Camera/GameCameraCreator.cpp:
 	.text       start:0x80133170 end:0x80133400 align:16
@@ -4232,6 +4260,13 @@ Game/Enemy/WanwanSearch.cpp:
 	.sbss       start:0x807D3488 end:0x807D34A0
 	.sdata2     start:0x807DC1A0 end:0x807DC1E0
 
+Game/GameAudio/AudActionSound.cpp:
+	.text       start:0x8021F080 end:0x80220B80 align:16
+	.rodata     start:0x806488C8 end:0x806488D0
+	.data       start:0x80694058 end:0x80694198
+	.sdata      start:0x807CF9C0 end:0x807CF9C8
+	.sdata2     start:0x807DC1E0 end:0x807DC208
+
 Game/GameAudio/AudBgmConductor.cpp:
 	.text       start:0x80220B80 end:0x80221440 align:16
 	.data       start:0x80694198 end:0x80694218
@@ -4258,6 +4293,9 @@ Game/GameAudio/AudTamakoroBgmCtrl.cpp:
 	.data       start:0x806942C0 end:0x806942D0
 	.sdata      start:0x807CF9C8 end:0x807CF9F0
 	.sdata2     start:0x807DC238 end:0x807DC240
+
+Game/GameAudio/Aud_UNK1.cpp:
+	.text       start:0x80222860 end:0x80222AD0 align:16
 
 Game/Gravity/BarrelGravity.cpp:
 	.text       start:0x80222AD0 end:0x80222E70 align:16
@@ -10198,10 +10236,19 @@ Game/World/MiniWorldWarpPoint.cpp:
 	.data       start:0x80701B88 end:0x80701C58
 
 Game/World/MiniWorldMapModel.cpp:
-	.text       start:0x804E7740 end:0x804E7790 align:16
+	.text       start:0x804E7740 end:0x804E7AC0 align:16
+	.data       start:0x80701C58 end:0x80701CE0
+	.sdata      start:0x807D0500 end:0x807D0508
+
+Game/World/WORLD_UNK0.cpp:
+	.text       start:0x804E7AC0 end:0x804E8250 align:16
+	.ctors      start:0x80644A7C end:0x80644A80
+	.data       start:0x80701CE0 end:0x80701DE0
+	.bss        start:0x8072B968 end:0x8072B980
+	.sdata2     start:0x807E1BB0 end:0x807E1BC0
 
 Game/World/WORLD_UNK1.cpp:
-	.text       start:0x804E8310 end:0x804E90A0 align:16
+	.text       start:0x804E8250 end:0x804E90A0 align:16
 	.ctors      start:0x80644A80 end:0x80644A84
 	.data       start:0x80701DE0 end:0x80701F38
 	.bss        start:0x8072B980 end:0x8072B9E0
@@ -10221,7 +10268,9 @@ Game/World/WORLD_UNK2.cpp:
 Game/World/WorldMapPointPartsHolder.cpp:
 	.text       start:0x804ECCD0 end:0x804EE100
 	.ctors      start:0x80644A88 end:0x80644A8C
+	.data       start:0x807024D8 end:0x80702588
 	.bss        start:0x8072BA10 end:0x8072BA20
+	.sdata      start:0x807D0528 end:0x807D0530
 	.sdata2     start:0x807E1C70 end:0x807E1C78
 
 Game/World/WorldMapResultCommand.cpp:
@@ -11320,7 +11369,7 @@ RVL_SDK/vf/d_common.c:
 	.bss        start:0x8077B450 end:0x8077B658
 
 RVL_SDK/vf/nand_drv.c:
-	.text       start:0x805817D0 end:0x805833F0
+	.text       start:0x805817D0 end:0x80583400
 	.rodata     start:0x80658E10 end:0x80658E30
 	.bss        start:0x8077B658 end:0x8077B7F8
 	.sbss       start:0x807D6448 end:0x807D6450
@@ -11460,7 +11509,7 @@ JSystem/JAudio2/JASBNKParser.cpp:
 	.sdata2     start:0x807E2488 end:0x807E2498
 
 JSystem/JAudio2/JASWaveArcLoader.cpp:
-	.text       start:0x8058EA50 end:0x8058EAE0 align:16
+	.text       start:0x8058EA50 end:0x8058EFE0 align:16
 	.data       start:0x80709CD0 end:0x80709CE8
 	.sbss       start:0x807D64C8 end:0x807D64D0
 
@@ -11506,7 +11555,7 @@ JSystem/JAudio2/JASDSPChannel.cpp:
 	.sdata2     start:0x807E2510 end:0x807E2518
 
 JSystem/JAudio2/JASDSPInterface.cpp:
-	.text       start:0x80592010 end:0x80592670 align:16
+	.text       start:0x80592010 end:0x80592680 align:16
 	.data       start:0x80709DE0 end:0x80709E00
 	.sdata      start:0x807D08D8 end:0x807D08E0
 	.sbss       start:0x807D6518 end:0x807D6528
@@ -11520,6 +11569,25 @@ JSystem/JAudio2/JASDriverIF.cpp:
 JSystem/JAudio2/JASSoundParams.cpp:
 	.text       start:0x80592870 end:0x805928E0 align:16
 	.sdata2     start:0x807E2518 end:0x807E2520
+
+JSystem/JAudio2/dspproc.cpp:
+	.text       start:0x805928E0 end:0x80592BA0 align:16
+	.sdata      start:0x807D08E8 end:0x807D08F0
+	.sbss       start:0x807D6528 end:0x807D6530
+	.sdata2     start:0x807E2520 end:0x807E2528
+
+JSystem/JAudio2/dsptask.cpp:
+	.text       start:0x80592BA0 end:0x80592F60 align:16
+	.bss        start:0x8077C160 end:0x8077C1C0
+	.sbss       start:0x807D6530 end:0x807D6538
+
+JSystem/JAudio2/osdsp.cpp:
+	.text       start:0x80592F60 end:0x80592FE0 align:16
+	.sbss       start:0x807D6538 end:0x807D6540
+
+JSystem/JAudio2/osdsp_task.cpp:
+	.text       start:0x80592FE0 end:0x805934D0 align:16
+	.bss        start:0x8077E240 end:0x8077E258
 
 JSystem/JAudio2/JAIAudible.cpp:
 	.text       start:0x805934D0 end:0x80593510 align:16
@@ -11549,7 +11617,7 @@ JSystem/JAudio2/JAISeq.cpp:
 	.sdata2     start:0x807E2548 end:0x807E2548
 
 JSystem/JAudio2/JAISeqDataMgr.cpp:
-	.text       start:0x80595B20 end:0x80595B60 align:16
+	.text       start:0x80595AE0 end:0x80595B60 align:16
 
 JSystem/JAudio2/JAISeqMgr.cpp:
 	.text       start:0x80595B60 end:0x805963D0 align:16
@@ -11558,27 +11626,26 @@ JSystem/JAudio2/JAISeqMgr.cpp:
 	.bss        start:0x8077E2A0 end:0x8077E2C0
 	.sbss       start:0x807D6550 end:0x807D6558
 
-JSystem/JAudio2/JAISoundParams.cpp:
-	.text       start:0x80596440 end:0x805964C0 align:16
-	.sdata2     start:0x807E2548 end:0x807E2550
-
 JSystem/JAudio2/JAISound.cpp:
-	.text       start:0x805964C0 end:0x805968A0 align:16
+	.text       start:0x805963D0 end:0x805968A0 align:16
 	.data       start:0x8070BE08 end:0x8070BE78
-	.sdata2     start:0x807E2550 end:0x807E2558
+	.sdata2     start:0x807E2548 end:0x807E2558
 
 JSystem/JAudio2/JAISoundChild.cpp:
 	.text       start:0x805968A0 end:0x805969C0 align:16
 
 JSystem/JAudio2/JAISoundHandles.cpp:
-	.text       start:0x805969C0 end:0x80596A60 align:16
+	.text       start:0x805969C0 end:0x80596B00 align:16
 
 JSystem/JAudio2/JAISoundInfo.cpp:
 	.text       start:0x80596B00 end:0x80596BE0 align:16
 	.data       start:0x8070BE78 end:0x8070BEA0
 
+JSystem/JAudio2/JAISoundParams.cpp:
+	.text       start:0x80596BE0 end:0x80596CB0 align:16
+
 JSystem/JAudio2/JAISoundStarter.cpp:
-	.text       start:0x80596CB0 end:0x80596D90 align:16
+	.text       start:0x80596CB0 end:0x80596E70 align:16
 	.data       start:0x8070BEA0 end:0x8070BEB0
 
 JSystem/JAudio2/JAIStream.cpp:
@@ -11589,7 +11656,7 @@ JSystem/JAudio2/JAIStream.cpp:
 	.sdata2     start:0x807E2558 end:0x807E2560
 
 JSystem/JAudio2/JAIStreamDataMgr.cpp:
-	.text       start:0x80597820 end:0x80597860 align:16
+	.text       start:0x80597820 end:0x805978A0 align:16
 
 JSystem/JAudio2/JAIStreamMgr.cpp:
 	.text       start:0x805978A0 end:0x80597EC0 align:16
@@ -11598,10 +11665,11 @@ JSystem/JAudio2/JAIStreamMgr.cpp:
 	.sbss       start:0x807D6558 end:0x807D6560
 
 JSystem/JAudio2/JAUAudience.cpp:
-	.text       start:0x80597F30 end:0x80598400 align:16
+	.text       start:0x80597EC0 end:0x80598400 align:16
 	.ctors      start:0x80644B6C end:0x80644B70
 	.bss        start:0x8077E2F0 end:0x8077E398
 	.sbss       start:0x807D6560 end:0x807D6568
+	.sdata2     start:0x807E2560 end:0x807E2590
 
 JSystem/JAudio2/JAUAudioArcInterpreter.cpp:
 	.text       start:0x80598400 end:0x805988A0 align:16
@@ -11612,12 +11680,13 @@ JSystem/JAudio2/JAUAudioArcLoader.cpp:
 	.data       start:0x8070BF38 end:0x8070BF80
 
 JSystem/JAudio2/JAUBankTable.cpp:
-	.text       start:0x80598B60 end:0x80598B90 align:16
+	.text       start:0x80598B50 end:0x80598B90 align:16
 
 JSystem/JAudio2/JAUInitializer.cpp:
-	.text       start:0x80598CB0 end:0x80598E20 align:16
+	.text       start:0x80598B90 end:0x80598E20 align:16
 	.ctors      start:0x80644B70 end:0x80644B74
 	.bss        start:0x8077E398 end:0x8077E440
+	.sdata2     start:0x807E2590 end:0x807E2598
 
 JSystem/JAudio2/JAUSectionHeap.cpp:
 	.text       start:0x80598E20 end:0x8059AAC0 align:16
@@ -11646,7 +11715,9 @@ JSystem/JAudio2/JAUSoundObject.cpp:
 	.data       start:0x8070C080 end:0x8070C0A8
 
 JSystem/JAudio2/JAUSoundTable.cpp:
-	.text       start:0x8059C390 end:0x8059C640 align:16
+	.text       start:0x8059C390 end:0x8059C8F0 align:16
+	.data       start:0x8070C0A8 end:0x8070C0B8
+	.sdata      start:0x807D08F8 end:0x807D0900
 
 JSystem/JAudio2/JAUStdSoundInfo.cpp:
 	.text       start:0x8059C8F0 end:0x8059CDE0 align:16
@@ -11654,7 +11725,7 @@ JSystem/JAudio2/JAUStdSoundInfo.cpp:
 	.sdata2     start:0x807E25B0 end:0x807E25C0
 
 JSystem/JAudio2/JAUStreamFileTable.cpp:
-	.text       start:0x8059CDE0 end:0x8059CEC0 align:16
+	.text       start:0x8059CDE0 end:0x8059CF20 align:16
 
 RVL_SDK/aralt/aralt.c:
 	.text       start:0x8059CF20 end:0x8059D360
@@ -11663,7 +11734,7 @@ RVL_SDK/aralt/aralt.c:
 	.sbss       start:0x807D6570 end:0x807D65A8
 
 nw4r/ut/ut_LinkList.cpp:
-	.text       start:0x8059D480 end:0x8059D5C0 align:16
+	.text       start:0x8059D360 end:0x8059D5C0 align:16
 
 nw4r/ut/ut_binaryFileFormat.cpp:
 	.text       start:0x8059D5C0 end:0x8059D634 align:16
