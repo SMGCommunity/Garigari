@@ -17,7 +17,7 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
-#include "decomp.h"
+#include <decomp.h>
 
 EXTERN_UNKNOWN_FUNC(void, 800CAF80, TVec3f*, const TVec3f&)
 EXTERN_UNKNOWN_FUNC(void, 800CAFE0, TVec3f*, const TVec3f&)
