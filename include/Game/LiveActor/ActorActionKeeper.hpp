@@ -18,9 +18,10 @@ public:
     ActorActionKeeper(LiveActor*, ActorAnimKeeper*, ActionFlagCtrl*, ActorPadAndCameraCtrl*, ActorHitReactionCtrl*, ActorItemGenerator*, ActorParam*,
                       ActionScreenBlurCtrl*, ActionFootPrintCtrl*, ActionBgmCtrl*);
 
-    void tryCreate(LiveActor*, const char*);
     void initFlagCtrl();
     void startAction(const char*);
     void updateAnimKeeper();
     void update();
+
+    static ActorActionKeeper* tryCreate(LiveActor*, const char*);
 };

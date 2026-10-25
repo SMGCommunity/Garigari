@@ -23,7 +23,6 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ModelUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
 #include "revolution/mtx.h"
 
 #include <JSystem/J3DGraphAnimator/J3DModel.hpp>
@@ -289,14 +288,17 @@ void LiveActor::endClipped() {
         MR::connectToDrawTemporarily(this);
     }
 }
-
+// NON_MATCHING
+// decomp.me: https://decomp.me/scratch/sEGTv
+// The original assembly calls calcAndSetBaseMtx() as a normal function, not a virtual one. I don't know how to replicate this.
+// Also, when the new ModelManager is being created, only 1 byte is allocated in memory, but the original assembly allocates 0x2c bytes.
 void LiveActor::initModelManagerWithAnm(const char* pStr1, const char* pStr2, const char* pStr3, bool param4) {
-    ModelManager** array = new ModelManager*[11];
-
-    if (array != nullptr) {
-        const TProj3f& rProjMtx = MR::getCameraProjectionMtx();
-        array[0] = new ModelManager(rProjMtx);
-    }
+    mModelManager = new ModelManager(MR::getCameraProjectionMtx());
+    mModelManager->init(pStr1, pStr2, param4);
+    MR::getJ3DModel(this)->setBaseScale(mScale);
+    calcAndSetBaseMtx();
+    MR::calcJ3DModel(this);
+    mActionKeeper = ActorActionKeeper::tryCreate(this, pStr3);
 }
 
 void LiveActor::initNerve(const Nerve* pNerve, s32 numStates) {
