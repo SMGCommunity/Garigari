@@ -3054,14 +3054,14 @@ Game/Enemy/AttackRockFinal.cpp:
 	.sbss       start:0x807D1F68 end:0x807D1F80
 	.sdata2     start:0x807D9A28 end:0x807D9A88
 
-Game/Enemy/AttackRock80153940.cpp:
+Game/Enemy/AttackRockStateFloat.cpp:
 	.text       start:0x80152F70 end:0x80153A00 align:16
 	.ctors      start:0x80644078 end:0x8064407C
 	.data       start:0x806825F0 end:0x806826E0
 	.sbss       start:0x807D1F80 end:0x807D1F90
 	.sdata2     start:0x807D9A88 end:0x807D9AA8
 
-Game/Enemy/AttackRock80154530.cpp:
+Game/Enemy/AttackRockStateKoopaFall.cpp:
 	.text       start:0x80153A00 end:0x801545D0 align:16
 	.ctors      start:0x8064407C end:0x80644080
 	.data       start:0x806826E0 end:0x806827D0
@@ -3069,11 +3069,14 @@ Game/Enemy/AttackRock80154530.cpp:
 	.sdata2     start:0x807D9AA8 end:0x807D9AE8
 
 Game/Enemy/AttackRockTutorial.cpp:
-	.text       start:0x801545D0 end:0x801556B0 align:16
+	.text       start:0x801545D0 end:0x801552A0
 	.ctors      start:0x80644080 end:0x80644084
 	.data       start:0x806827D0 end:0x80682948
 	.sbss       start:0x807D1FA0 end:0x807D1FB8
 	.sdata2     start:0x807D9AE8 end:0x807D9B18
+
+Game/Enemy/AttackRockUtil.cpp:
+	.text       start:0x801552A0 end:0x801556B0
 
 Game/Enemy/BakuBaku.cpp:
 	.text       start:0x801556B0 end:0x801560F0 align:16
