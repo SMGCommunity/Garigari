@@ -42,15 +42,15 @@ public:
     /* 0x40 */ virtual MtxPtr getBaseMtx() const;
     /* 0x44 */ virtual MtxPtr getTakingMtx() const;
     /* 0x48 */ virtual void startClipped();
-    virtual void endClipped();
-    virtual void control();
-    virtual void calcAndSetBaseMtx();
-    virtual void updateHitSensor(HitSensor*);
-    virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
-    virtual bool receiveMsgPush(HitSensor*, HitSensor*);
-    virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
-    virtual bool receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
-    virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x4C */ virtual void endClipped();
+    /* 0x50 */ virtual void control();
+    /* 0x54 */ virtual void calcAndSetBaseMtx();
+    /* 0x58 */ virtual void updateHitSensor(HitSensor*);
+    /* 0x5C */ virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x60 */ virtual bool receiveMsgPush(HitSensor*, HitSensor*);
+    /* 0x64 */ virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x68 */ virtual bool receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x6C */ virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
     HitSensorKeeper* getSensorKeeper() const {
         return mSensorKeeper;

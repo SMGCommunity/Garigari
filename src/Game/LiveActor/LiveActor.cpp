@@ -10,6 +10,7 @@
 #include "Game/LiveActor/LiveActorFlag.hpp"
 #include "Game/LiveActor/LiveActorGroup.hpp"
 #include "Game/LiveActor/ModelManager.hpp"
+#include "Game/LiveActor/RailRider.hpp"
 #include "Game/LiveActor/ShadowController.hpp"
 #include "Game/LiveActor/Spine.hpp"
 #include "Game/Map/StageSwitch.hpp"
@@ -288,6 +289,7 @@ void LiveActor::endClipped() {
         MR::connectToDrawTemporarily(this);
     }
 }
+
 // NON_MATCHING
 // decomp.me: https://decomp.me/scratch/sEGTv
 // The original assembly calls calcAndSetBaseMtx() as a normal function, not a virtual one. I don't know how to replicate this.
@@ -309,8 +311,19 @@ void LiveActor::initHitSensor(s32 numSensors) {
     mSensorKeeper = new HitSensorKeeper(numSensors);
 }
 
-// LiveActor::initBinder
-// LiveActor::initRailRider
+void LiveActor::initBinder(f32 radius, f32 offsetY, u32 planeNum) {
+    mBinder = new Binder(getBaseMtx(), &mPosition, &mGravity, radius, offsetY, planeNum);
+    MR::onBind(this);
+
+    if (mEffectKeeper != nullptr) {
+        mEffectKeeper->setBinder(mBinder);
+    }
+}
+
+void LiveActor::initRailRider(const JMapInfoIter& rIter) {
+    mRailRider = new RailRider(rIter);
+}
+
 // LiveActor::initEffectKeeper
 // LiveActor::initSound
 // LiveActor::initShadowControllerList
