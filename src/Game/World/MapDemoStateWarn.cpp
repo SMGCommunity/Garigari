@@ -1,4 +1,4 @@
-#include "Game/World/MapDemoStateGrandGalaxyMapNews.hpp"
+#include "Game/World/MapDemoStateWarn.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/System/GameDataFunction.hpp"
@@ -21,14 +21,14 @@ EXTERN_UNKNOWN_FUNC(void, 804E15D0, GrandGalaxyMap*)
 EXTERN_UNKNOWN_FUNC(bool, 804E15E0, GrandGalaxyMap*)
 EXTERN_UNKNOWN_FUNC(bool, 804E15F0, GrandGalaxyMap*)
 
-namespace NrvMapDemoStateGrandGalaxyMapNews {
-    NEW_NERVE(MapDemoStateGrandGalaxyMapNewsNrv1, MapDemoStateGrandGalaxyMapNews, Nerve1);  // TODO: better name
-    NEW_NERVE(MapDemoStateGrandGalaxyMapNewsNrv2, MapDemoStateGrandGalaxyMapNews, Nerve2);  // TODO: better name
-    NEW_NERVE(MapDemoStateGrandGalaxyMapNewsNrv3, MapDemoStateGrandGalaxyMapNews, Nerve3);  // TODO: better name
-    NEW_NERVE(MapDemoStateGrandGalaxyMapNewsNrv4, MapDemoStateGrandGalaxyMapNews, Nerve4);  // TODO: better name
-};  // namespace NrvMapDemoStateGrandGalaxyMapNews
+namespace NrvMapDemoStateWarn {
+    NEW_NERVE(MapDemoStateWarnNrv1, MapDemoStateWarn, Nerve1);  // TODO: better name
+    NEW_NERVE(MapDemoStateWarnNrv2, MapDemoStateWarn, Nerve2);  // TODO: better name
+    NEW_NERVE(MapDemoStateWarnNrv3, MapDemoStateWarn, Nerve3);  // TODO: better name
+    NEW_NERVE(MapDemoStateWarnNrv4, MapDemoStateWarn, Nerve4);  // TODO: better name
+};  // namespace NrvMapDemoStateWarn
 
-MapDemoStateGrandGalaxyMapNews::MapDemoStateGrandGalaxyMapNews(GrandGalaxyMap* pHost)
+MapDemoStateWarn::MapDemoStateWarn(GrandGalaxyMap* pHost)
     : ActorStateBase< GrandGalaxyMap >("State[グランドギャラクシーニュース]", pHost), mWorldId(-1), mTalkMessageCtrlArray() {
 }
 
@@ -43,8 +43,8 @@ namespace {
     };
 };  // namespace
 
-void MapDemoStateGrandGalaxyMapNews::init() {
-    initNerve(GET_NERVE(MapDemoStateGrandGalaxyMapNews, MapDemoStateGrandGalaxyMapNewsNrv2));
+void MapDemoStateWarn::init() {
+    initNerve(GET_NERVE(MapDemoStateWarn, MapDemoStateWarnNrv2));
 
     mTalkMessageCtrlArray = new TalkMessageCtrl*[6];
 
@@ -55,15 +55,15 @@ void MapDemoStateGrandGalaxyMapNews::init() {
     mIsDead = true;
 }
 
-void MapDemoStateGrandGalaxyMapNews::appear() {
+void MapDemoStateWarn::appear() {
     mIsDead = false;
 
-    setNerve(GET_NERVE(MapDemoStateGrandGalaxyMapNews, MapDemoStateGrandGalaxyMapNewsNrv1));
+    setNerve(GET_NERVE(MapDemoStateWarn, MapDemoStateWarnNrv1));
 
     fn_804DFE90(mHost);
 }
 
-void MapDemoStateGrandGalaxyMapNews::kill() {
+void MapDemoStateWarn::kill() {
     fn_804DFEA0(mHost);
 
     MR::deactivateDefaultGameLayout();
@@ -71,8 +71,8 @@ void MapDemoStateGrandGalaxyMapNews::kill() {
     mIsDead = true;
 }
 
-bool MapDemoStateGrandGalaxyMapNews::fn_804E29D0() {
-    s32 val = fn_804D3F80();
+bool MapDemoStateWarn::fn_804E29D0() {
+    s32 lastUnlockedWorld = fn_804D3F80();
 
     if (!GameDataFunction::isOnGameEventFlag("グランドギャラクシーマップ初プレイ")) {
         mWorldId = 0;
@@ -80,27 +80,27 @@ bool MapDemoStateGrandGalaxyMapNews::fn_804E29D0() {
     }
 
     if (fn_804D75E0() && GameDataFunction::getPlayerGameOverNum() % 3 == 0) {
-        if (val == 2 && !GameDataFunction::isOnGameEventFlag("ワールド2ゲームオーバーによる誘導")) {
+        if (lastUnlockedWorld == 2 && !GameDataFunction::isOnGameEventFlag("ワールド2ゲームオーバーによる誘導")) {
             mWorldId = 1;
             return true;
         }
 
-        if (val == 3 && !GameDataFunction::isOnGameEventFlag("ワールド3ゲームオーバーによる誘導")) {
+        if (lastUnlockedWorld == 3 && !GameDataFunction::isOnGameEventFlag("ワールド3ゲームオーバーによる誘導")) {
             mWorldId = 2;
             return true;
         }
 
-        if (val == 4 && !GameDataFunction::isOnGameEventFlag("ワールド4ゲームオーバーによる誘導")) {
+        if (lastUnlockedWorld == 4 && !GameDataFunction::isOnGameEventFlag("ワールド4ゲームオーバーによる誘導")) {
             mWorldId = 3;
             return true;
         }
 
-        if (val == 5 && !GameDataFunction::isOnGameEventFlag("ワールド5ゲームオーバーによる誘導")) {
+        if (lastUnlockedWorld == 5 && !GameDataFunction::isOnGameEventFlag("ワールド5ゲームオーバーによる誘導")) {
             mWorldId = 4;
             return true;
         }
 
-        if (val == 6 && !GameDataFunction::isOnGameEventFlag("ワールド6ゲームオーバーによる誘導")) {
+        if (lastUnlockedWorld == 6 && !GameDataFunction::isOnGameEventFlag("ワールド6ゲームオーバーによる誘導")) {
             mWorldId = 5;
             return true;
         }
@@ -109,17 +109,17 @@ bool MapDemoStateGrandGalaxyMapNews::fn_804E29D0() {
     return false;
 }
 
-void MapDemoStateGrandGalaxyMapNews::exeNerve1() {
+void MapDemoStateWarn::exeNerve1() {
     if (MR::isFirstStep(this)) {
         fn_804E15B0(mHost);
     }
 
     if (!fn_804E15E0(mHost)) {
-        setNerve(GET_NERVE(MapDemoStateGrandGalaxyMapNews, MapDemoStateGrandGalaxyMapNewsNrv3));
+        setNerve(GET_NERVE(MapDemoStateWarn, MapDemoStateWarnNrv3));
     }
 }
 
-void MapDemoStateGrandGalaxyMapNews::exeNerve2() {
+void MapDemoStateWarn::exeNerve2() {
     if (MR::isFirstStep(this)) {
         fn_804E15C0(mHost);
     }
@@ -129,7 +129,7 @@ void MapDemoStateGrandGalaxyMapNews::exeNerve2() {
     }
 }
 
-void MapDemoStateGrandGalaxyMapNews::exeNerve3() {
+void MapDemoStateWarn::exeNerve3() {
     if (MR::isFirstStep(this)) {
         fn_804E15D0(mHost);
     }
@@ -139,26 +139,28 @@ void MapDemoStateGrandGalaxyMapNews::exeNerve3() {
     }
 }
 
-void MapDemoStateGrandGalaxyMapNews::exeNerve4() {
+void MapDemoStateWarn::exeNerve4() {
     if (MR::isGreaterEqualStep(this, 60)) {
-        setNerve(GET_NERVE(MapDemoStateGrandGalaxyMapNews, MapDemoStateGrandGalaxyMapNewsNrv2));
+        setNerve(GET_NERVE(MapDemoStateWarn, MapDemoStateWarnNrv2));
     }
 }
 
-void MapDemoStateGrandGalaxyMapNews::fn_804E2C40() {
+void MapDemoStateWarn::fn_804E2C40() {
     if (mWorldId == 0) {
-        setNerve(GET_NERVE(MapDemoStateGrandGalaxyMapNews, MapDemoStateGrandGalaxyMapNewsNrv3));
+        setNerve(GET_NERVE(MapDemoStateWarn, MapDemoStateWarnNrv3));
         return;
-    } else if (mWorldId >= 1 && mWorldId <= 5) {
+    }
+
+    if (mWorldId >= 1 && mWorldId <= 5) {
         // FIXME
-        setNerve(GET_NERVE(MapDemoStateGrandGalaxyMapNews, MapDemoStateGrandGalaxyMapNewsNrv3));
+        setNerve(GET_NERVE(MapDemoStateWarn, MapDemoStateWarnNrv3));
         return;
     }
 
     kill();
 }
 
-void MapDemoStateGrandGalaxyMapNews::fn_804E2C80() {
+void MapDemoStateWarn::fn_804E2C80() {
     fn_804D75B0();
 
     if (mWorldId == 0) {
@@ -186,12 +188,12 @@ void MapDemoStateGrandGalaxyMapNews::fn_804E2C80() {
     }
 }
 
-void MapDemoStateGrandGalaxyMapNews::fn_804E2D40() {
+void MapDemoStateWarn::fn_804E2D40() {
     fn_804E2C80();
 
     if (fn_804E29D0()) {
         fn_804E2C40();
     } else {
-        setNerve(GET_NERVE(MapDemoStateGrandGalaxyMapNews, MapDemoStateGrandGalaxyMapNewsNrv4));
+        setNerve(GET_NERVE(MapDemoStateWarn, MapDemoStateWarnNrv4));
     }
 }

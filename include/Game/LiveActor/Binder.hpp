@@ -1,18 +1,37 @@
 #pragma once
 
 #include "Game/Map/HitInfo.hpp"
-#include <revolution.h>
+#include "Game/Util/TriangleFilter.hpp"
 
-class TriangleFilterBase;
 class CollisionPartsFilterBase;
-class CollisionParts;
 
 class Binder {
 public:
+    Binder(MtxPtr, const TVec3f*, const TVec3f*, f32, f32, u32);
+
     void setTriangleFilter(TriangleFilterBase*);
     void setCollisionPartsFilter(CollisionPartsFilterBase*);
 
+    void setExCollisionParts(CollisionParts* pParts) {
+        mExCollisionParts = pParts;
+        if (pParts == nullptr) {
+            _1EC._2 = false;
+        } else {
+            _1EC._2 = true;
+        }
+    }
+
+    void clear();
     const HitInfo* getPlane(int) const;
+    u32 copyPlaneArrayAndSortingSensor(HitInfo**, u32);
+    static bool compSensor(const HitInfo*, const HitInfo*);
+    const TVec3f bind(const TVec3f&);
+    void moveAlongHittedPlanes(TVec3f*, TVec3f*, TVec3f*, const TVec3f&, const TVec3f&, HitInfo*, u32, bool*);
+    u32 findBindedPos(TVec3f*, TVec3f*, bool*, HitInfo*, u32, bool, bool);
+    bool moveWithCollisionParts(TVec3f*, TVec3f*);
+    u32 storeCurrentHitInfo(HitInfo*, u32, bool);
+    void obtainMomentFixReaction(HitInfo*, u32, TVec3f*, u32);
+    void storeContactPlane(HitInfo*, u32);
 
     inline bool isBindedGround() const {
         return 0.0f <= _C8;

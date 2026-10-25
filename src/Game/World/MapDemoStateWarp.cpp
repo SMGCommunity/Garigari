@@ -7,7 +7,6 @@
 #include "Game/Util/NerveUtil.hpp"
 #include <decomp.h>
 
-
 EXTERN_UNKNOWN_FUNC(void, 80059240, void)
 EXTERN_UNKNOWN_FUNC(void, 804D65C0, s32)
 EXTERN_UNKNOWN_FUNC(void, 804D72A0, u32)

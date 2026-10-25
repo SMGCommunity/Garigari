@@ -43,7 +43,7 @@ void MapDemoStateEnter::exeZoom() {
         mFovy = MR::getFovy();
     }
 
-    // FIXME: float shenanigans
+    // FIXME: float shenanigans, possibly calcNerveRate inline
     MR::setFovy(MR::getEaseOutValue(static_cast< f32 >(getNerveStep()) / 20.0f, 0.01f, mFovy, 1.0f));
 
     if (MR::isStep(this, 20)) {
