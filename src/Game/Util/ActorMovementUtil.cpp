@@ -96,7 +96,6 @@ namespace MR {
         return stack_8.length();
     }
 
-
     bool isNear(const HitSensor* pSensorA, const HitSensor* pSensorB, f32 distance) {
         f32 squaredDistance = pSensorA->mOffset.squared(pSensorB->mOffset);
 
@@ -1279,4 +1278,40 @@ namespace MR {
         moveAndTurnToDirection(pActor, &stack_14, stack_8, a3, a4, a5, a6);
         ::calcRotate(pActor, stack_14, a6);
     }
+
+
+    void fn_800140B0(TVec3f* pOut, const TVec3f& a2, const TVec3f& position, f32) {
+        AreaObj* pArea = MR::getAreaObj("PlaneModeCube", position);
+        if (!pArea) {
+            return;
+        }
+
+        TVec3f center(0.0f, 0.0f, 0.0f), front(0.0f, 0.0f, 0.0f);
+        MR::getAreaCenterPos(&center, pArea);
+        MR::getAreaFrontVec(&front, pArea, center);
+        if (front.dot(MR::getCamZdir()) > 0.0f) {
+            front.negate();
+        }
+
+        TVec3f vec;
+        if (MR::normalizeOrZero(&vec, a2)) {
+            return;
+        }
+
+        if (vec.dot(front) < 0.0f) {
+            vec.negate();
+        }
+
+        TQuat4f quat;
+        if (front.cross(vec).length() > 0.0000038146973f) {
+            quat.set(0.0f, 0.0f, 0.0f, 1.0f);
+        }
+        else {
+            // What is going on here...
+        }
+
+        // Holy mathematics
+        // pOut.set should be here
+    }
+
 };  // namespace MR
