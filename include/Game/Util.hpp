@@ -9,6 +9,7 @@
 #include "Game/Util/ActorShadowUtil.hpp"
 #include "Game/Util/ActorStateUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/AreaObjUtil.hpp"
 #include "Game/Util/Array.hpp"
 #include "Game/Util/BgmUtil.hpp"
 #include "Game/Util/BothDirList.hpp"

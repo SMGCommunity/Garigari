@@ -21,5 +21,5 @@ public:
     virtual void init(const JMapInfoIter&);
     virtual void calcAndSetBaseMtx();
 
-    MtxPtr mBaseMtx;  // 0x90
+    /* 0x90 */ MtxPtr mBaseMtx;
 };

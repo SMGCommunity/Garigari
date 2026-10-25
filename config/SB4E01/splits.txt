@@ -10083,6 +10083,7 @@ Game/World/MiniEarthenPipe.cpp:
 Game/World/MiniGreenComet.cpp:
 	.text       start:0x804E34E0 end:0x804E3880 align:16
 	.data       start:0x80701070 end:0x807011E0
+	.sdata      start:0x807D04E0 end:0x807D04E8
 	.sdata2     start:0x807E1A98 end:0x807E1AA0
 
 Game/World/MiniMeister.cpp:
