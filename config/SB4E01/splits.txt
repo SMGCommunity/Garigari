@@ -349,6 +349,13 @@ Game/Util/CollisionPartsFilter.cpp:
 	.text       start:0x80063800 end:0x80063850 align:16
 	.data       start:0x80669CA0 end:0x80669CD0
 
+Game/Util/DirectDraw.cpp:
+	.text       start:0x800638C0 end:0x80065A30 align:16
+	.rodata     start:0x80645298 end:0x806452A8
+	.bss        start:0x80728700 end:0x80728758
+	.sbss       start:0x807D0DE0 end:0x807D0DE8
+	.sdata2     start:0x807D71E0 end:0x807D7208
+
 Game/Util/DirectDrawUtil.cpp:
 	.text       start:0x80065A30 end:0x80065DF0 align:16
 	.sbss       start:0x807D0DE8 end:0x807D0DF8
@@ -3049,9 +3056,9 @@ Game/Effect/MultiEmitter.cpp:
 	.sdata2     start:0x807D9918 end:0x807D9920
 
 Game/Effect/MultiEmitterCallBack.cpp:
-	.text       start:0x8014A070 end:0x8014A390 align:16
-	.data       start:0x806819C8 end:0x806819E8
-	.sdata2     start:0x807D9920 end:0x807D9928
+	.text       start:0x8014A070 end:0x8014CDF0 align:16
+	.data       start:0x80681958 end:0x80681A08
+	.sdata2     start:0x807D9920 end:0x807D9948
 
 Game/Effect/MultiEmitterParticleCallBack.cpp:
 	.text       start:0x8014CDF0 end:0x8014CE80 align:16
@@ -4411,6 +4418,18 @@ Game/LiveActor/ActorActionKeeper.cpp:
 
 Game/LiveActor/ActorCameraInfo.cpp:
 	.text       start:0x8022AB70 end:0x8022AC00 align:16
+
+Game/LiveActor/ActorHitReaction.cpp:
+	.text       start:0x8022AC00 end:0x8022B0E0 align:16
+	.data       start:0x806949F8 end:0x80694AC0
+	.sdata      start:0x807CFA40 end:0x807CFA58
+	.sdata2     start:0x807DC360 end:0x807DC368
+
+Game/LiveActor/ActorItemGenerator.cpp:
+	.text       start:0x8022B0E0 end:0x8022B4B0 align:16
+	.rodata     start:0x80648A08 end:0x80648A68
+	.data       start:0x80694AC0 end:0x80694BF8
+	.sdata      start:0x807CFA58 end:0x807CFA78
 
 Game/LiveActor/ActorJointCtrl.cpp:
 	.text       start:0x8022BCA0 end:0x8022BF50 align:16
@@ -8086,6 +8105,11 @@ Game/Player/MarioClimb.cpp:
 	.text       start:0x803E2410 end:0x803E2620 align:16
 	.data       start:0x806DC5D8 end:0x806DC650
 	.sdata2     start:0x807DFEB8 end:0x807DFEC0
+
+Game/Player/MarioConst.cpp:
+	.text       start:0x803E2620 end:0x803E4290 align:16
+	.data       start:0x806DC650 end:0x806DC690
+	.bss        start:0x80729C68 end:0x8072B3F0
 
 Game/Player/MarioDamage.cpp:
 	.text       start:0x803E4290 end:0x803E6610 align:16
