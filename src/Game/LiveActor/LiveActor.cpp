@@ -346,7 +346,12 @@ void LiveActor::initSound(s32 a1, const char* a2, const TVec3f* a3, const TVec3f
     mSoundHolder = new ActorSoundHolder(this, a1, a2, a3, TVec3f(a4));
 }
 
-// LiveActor::initShadowControllerList
+// NON_MATCHING
+// Wrong amount of memory is allocated for ShadowControllerList constructor call
+void LiveActor::initShadowControllerList(u32 param) {
+    mShadowList = new ShadowControllerList(this, param);
+}
+
 // LiveActor::initActorCollisionParts
 
 void LiveActor::initStageSwitch(const JMapInfoIter& rIter) {
