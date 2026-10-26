@@ -458,7 +458,7 @@ config.linker_version = "GC/3.0a5"
 def GameLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     return {
         "lib": lib_name,
-        "mw_version": "Wii/1.0",
+        "mw_version": "Wii/1.3",
         "cflags": cflags_game,
         "progress_category": "game",
         "objects": objects,
