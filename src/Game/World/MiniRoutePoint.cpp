@@ -1,12 +1,12 @@
 #include "Game/World/MiniRoutePoint.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Util/ActionSoundUtil.hpp"
 #include "Game/Util/ActorAnimUtil.hpp"
 #include "Game/Util/ActorInitUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include <decomp.h>
 
-EXTERN_UNKNOWN_FUNC(bool, 80008450, const LiveActor*, const char*, s32, s32, s32);
 EXTERN_UNKNOWN_FUNC(bool, 804E8C40, const LiveActor*);
 EXTERN_UNKNOWN_FUNC(bool, 804E8C50, const LiveActor*, f32, f32);
 EXTERN_UNKNOWN_FUNC(bool, 804E8C80, const LiveActor*, f32, f32);
@@ -90,17 +90,17 @@ bool MiniRoutePoint::isOpen() const {
 }
 
 bool MiniRoutePoint::startSoundRoadExtend() {
-    fn_80008450(this, "RoadExtend", -1, -1, -1);
+    MR::startActionSoundState1(this, "RoadExtend", -1, -1, -1);
     return true;
 }
 
 bool MiniRoutePoint::startSoundPointOn() {
-    fn_80008450(this, "PointOn", -1, -1, -1);
+    MR::startActionSoundState1(this, "PointOn", -1, -1, -1);
     return true;
 }
 
 bool MiniRoutePoint::startSoundPointOff() {
-    fn_80008450(this, "PointOff", -1, -1, -1);
+    MR::startActionSoundState1(this, "PointOff", -1, -1, -1);
     return true;
 }
 
