@@ -78,18 +78,28 @@ void WorldMapPointPartsHolder::init() {
             part->mActor->initWithoutIter();
         } else if (::isStarRoadWarpPoint(part->mPartsTypeName)) {
             // TODO
+            MR::setPosition(part->mActor, fn_804F2550(mObjHolder, part->mPointIndex));
+            part->mActor->initWithoutIter();
         } else if (::isStarCheckPoint(part->mPartsTypeName)) {
             // TODO
+            MR::setPosition(part->mActor, fn_804F2550(mObjHolder, part->mPointIndex));
+            part->mActor->initWithoutIter();
         } else if (::isStarPieceMine(part->mPartsTypeName)) {
             // TODO
+            MR::setPosition(part->mActor, fn_804F2550(mObjHolder, part->mPointIndex));
+            part->mActor->initWithoutIter();
         } else if (::isEarthenPipe(part->mPartsTypeName)) {
             part->mActor = new MiniEarthenPipe();
             MR::setPosition(part->mActor, fn_804F2550(mObjHolder, part->mPointIndex));
             part->mActor->initWithoutIter();
         } else if (::isTicoRouteCreator(part->mPartsTypeName)) {
             // TODO
+            MR::setPosition(part->mActor, fn_804F2550(mObjHolder, part->mPointIndex));
+            part->mActor->initWithoutIter();
         } else {
             // TODO
+            MR::setPosition(part->mActor, fn_804F2550(mObjHolder, part->mPointIndex));
+            part->mActor->initWithoutIter();
         }
 
         MR::setClippingFarMax(part->mActor);
@@ -99,4 +109,16 @@ void WorldMapPointPartsHolder::init() {
             MR::invalidateClipping(part->mActor);
         }
     }
+}
+
+WorldMapPointPart* WorldMapPointPartsHolder::findPointPart(s32 pointIndex) {
+    for (s32 i = 0; i < mPointPartsNum; i++) {
+        WorldMapPointPart* part = &mPointParts[i];
+
+        if (part->mPointIndex == pointIndex) {
+            return part;
+        }
+    }
+
+    return nullptr;
 }
