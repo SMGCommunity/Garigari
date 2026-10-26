@@ -25,10 +25,11 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ModelUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
-#include "revolution/mtx.h"
+#include "JSystem/JGeometry/TMatrix.hpp"
 
 #include <JSystem/J3DGraphAnimator/J3DModel.hpp>
 #include <JSystem/JGeometry/TVec.hpp>
+#include <revolution/mtx.h>
 #include <revolution/types.h>
 
 LiveActor::LiveActor(const char* pName)
@@ -346,13 +347,54 @@ void LiveActor::initSound(s32 a1, const char* a2, const TVec3f* a3, const TVec3f
     mSoundHolder = new ActorSoundHolder(this, a1, a2, a3, TVec3f(a4));
 }
 
-// NON_MATCHING
-// Wrong amount of memory is allocated for ShadowControllerList constructor call
-void LiveActor::initShadowControllerList(u32 param) {
-    mShadowList = new ShadowControllerList(this, param);
+void LiveActor::initShadowControllerList(u32 size) {
+    mShadowList = new ShadowControllerList(this, size);
 }
 
-// LiveActor::initActorCollisionParts
+// NON_MATCHING
+// decomp.me: https://decomp.me/scratch/zmNS7
+// pMtx is not being saved to a non-volatile register.
+// In the original assembly code, when MR::createCollisionPartsFromResourceHolder is called, six parameters are passed in:
+// * pResourceHolder
+// * pCollisionName
+// * pBodySensor
+// * The address 8 bytes into the stack (likely the local variable mtx)
+// * pMtx
+// * collisionScaleType
+// However, the actual MR::createCollisionPartsFromResourceHolder() has only five parameters. In order to get the code to compile (and in order to
+// match with Petari), pMtx is not passed into the function in the below C++ code. This is what causes pMtx to remain solely in a volatile register.
+void LiveActor::initActorCollisionParts(const char* pCollisionName, HitSensor* pBodySensor, ResourceHolder* pResourceHolder, MtxPtr pMtx,
+                                        bool autoEqualScale, bool notUsingScale) {
+    MR::CollisionScaleType collisionScaleType;
+
+    if (notUsingScale) {
+        collisionScaleType = MR::CollisionScaleType_NotUsingScale;
+    } else {
+        collisionScaleType = MR::CollisionScaleType_Default;
+
+        if (autoEqualScale) {
+            collisionScaleType = MR::CollisionScaleType_AutoEqualScale;
+        }
+    }
+
+    if (pResourceHolder != nullptr) {
+        TPos3f mtx;
+
+        if (pMtx != nullptr) {
+            mtx.set(pMtx);
+        } else {
+            MR::makeMtxTRS(mtx.toMtxPtr(), this);
+        }
+
+        mCollisionParts = MR::createCollisionPartsFromResourceHolder(pResourceHolder, pCollisionName, pBodySensor, mtx, collisionScaleType);
+    } else if (pMtx == nullptr) {
+        mCollisionParts = MR::createCollisionPartsFromLiveActor(this, pCollisionName, pBodySensor, collisionScaleType);
+    } else {
+        mCollisionParts = MR::createCollisionPartsFromLiveActor(this, pCollisionName, pBodySensor, pMtx, collisionScaleType);
+    }
+
+    MR::invalidateCollisionParts(this);
+}
 
 void LiveActor::initStageSwitch(const JMapInfoIter& rIter) {
     mSwitchCtrl = MR::createStageSwitchCtrl(this, rIter);

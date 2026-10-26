@@ -266,7 +266,7 @@ namespace MR {
     CollisionParts* createCollisionPartsFromLiveActor(LiveActor* pActor, const char* pCollisionName, HitSensor* pBodySensor, MtxPtr pMtx,
                                                       CollisionScaleType collisionScaleType);
     CollisionParts* createCollisionPartsFromResourceHolder(ResourceHolder* pResourceHolder, const char* pCollisionName, HitSensor* pBodySensor,
-                                                           const TMtx34f& rMtx, CollisionScaleType collisionScaleType);
+                                                           const TPos3f& rMtx, CollisionScaleType collisionScaleType);
     CollisionParts* createDashYoshiStepCollisionPartsFromResourceHolder(ResourceHolder* pResourceHolder, const char* pCollisionName,
                                                                         HitSensor* pBodySensor, MtxPtr pMtx, CollisionScaleType collisionScaleType);
     CollisionParts* tryCreateCollisionMoveLimit(LiveActor* pActor, HitSensor* pBodySensor);
