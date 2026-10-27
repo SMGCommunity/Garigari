@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Inline.hpp"
+#include <Inline.hpp>
 
 class NameObj;
 

@@ -17,7 +17,6 @@
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MessageUtil.hpp"
-#include "revolution/types.h"
 
 namespace NrvTimeAttackClock {
     NEW_NERVE(TimeAttackClockNrvWait, TimeAttackClock, Wait);

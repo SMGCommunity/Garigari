@@ -114,6 +114,7 @@ namespace MR {
     void recoverSoundVolumeSetting(u32);
     void setAudioEffectType(s32, s32);
     void startCSSound(const char*, const char*, s32);
+    void startCSSound(const char*, const char*, s32, s32, f32);
     void startCSSound2P(const char*, const char*);
     void startSpinHitSound(const LiveActor*);
     void startBlowHitSound(const LiveActor*);
