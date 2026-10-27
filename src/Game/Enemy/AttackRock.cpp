@@ -1,4 +1,5 @@
 #include "Game/Enemy/AttackRock.hpp"
+#include "Game/Enemy/AttackRockUtil.hpp"
 #include "Game/Enemy/ATTACK_ROCK_TEMP.hpp"
 #include "Game/LiveActor/BreakModel.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
@@ -59,11 +60,11 @@ AttackRock::AttackRock(const char* pName)
 void AttackRock::init(const JMapInfoIter& rIter) {
     MR::initActor(this, rIter, "AttackRock", true);
     MR::makeQuatFromRotate(&_F0, this);
-    _118 = fn_80155660(this);
+    _118 = AttackRockUtil::createProjMapEffectMtxSetter(this);
     MR::setEffectHostMtx(this, "Attack", _C0);
     fn_800CB710(getSensor("Body"));
     MR::addBaseMatrixFollowTarget(this, rIter, nullptr, MR::createBaseMatrixFollowValidateDelegator(this, &AttackRock::isValidFollow));
-    fn_801552A0(this);
+    AttackRockUtil::initAttackRockBinder(this);
     MR::excludeCalcShadowToMyCollision(this, nullptr);
     mBreakModel = MR::createBreakModel(this, getBaseMtx());
     mDemoObj = MR::createDemoObj("盛り土モデル", "AttackRockHill", nullptr);
@@ -99,12 +100,12 @@ void AttackRock::control() {
         }
     }
 
-    fn_801554D0(_C0, this);
+    AttackRockUtil::updateEffectMtx(&_C0, this);
 }
 
 void AttackRock::calcAndSetBaseMtx() {
     MR::setBaseTRMtx(this, _F0);
-    fn_80155540(_118, _100, mPosition);
+    AttackRockUtil::updateProjMapEffectMtx(_118, _100, mPosition);
 }
 
 void AttackRock::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
@@ -151,7 +152,7 @@ void AttackRock::setBreak() {
 
 bool AttackRock::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgPlayerHipDropFloor(msg) && isNerve(GET_NERVE(AttackRock, AttackRockFloat)) && fn_80153400(_120)) {
-        fn_80155360(mVelocity, _100, pSender, pReceiver, 120.0f);
+        AttackRockUtil::startAttack(&mVelocity, _100, pSender, pReceiver, 120.0f);
         setNerve(GET_NERVE(AttackRock, AttackRockAttack));
         return true;
     }

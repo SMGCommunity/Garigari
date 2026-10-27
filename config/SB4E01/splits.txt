@@ -3148,7 +3148,7 @@ Game/Enemy/AttackRock.cpp:
 	.sdata2     start:0x807D9A00 end:0x807D9A28
 
 Game/Enemy/AttackRockFinal.cpp:
-	.text       start:0x80151AA0 end:0x80152F70 align:16
+	.text       start:0x80151AA0 end:0x801528E0 align:16
 	.ctors      start:0x80644074 end:0x80644078
 	.rodata     start:0x80647FA0 end:0x80647FA8
 	.data       start:0x80682468 end:0x806825F0
@@ -3156,7 +3156,7 @@ Game/Enemy/AttackRockFinal.cpp:
 	.sdata2     start:0x807D9A28 end:0x807D9A88
 
 Game/Enemy/AttackRockStateFloat.cpp:
-	.text       start:0x80152F70 end:0x80153A00 align:16
+	.text       start:0x801528E0 end:0x80153A00 align:16
 	.ctors      start:0x80644078 end:0x8064407C
 	.data       start:0x806825F0 end:0x806826E0
 	.sbss       start:0x807D1F80 end:0x807D1F90
@@ -3174,10 +3174,11 @@ Game/Enemy/AttackRockTutorial.cpp:
 	.ctors      start:0x80644080 end:0x80644084
 	.data       start:0x806827D0 end:0x80682948
 	.sbss       start:0x807D1FA0 end:0x807D1FB8
-	.sdata2     start:0x807D9AE8 end:0x807D9B18
+	.sdata2     start:0x807D9AE8 end:0x807D9B00
 
 Game/Enemy/AttackRockUtil.cpp:
 	.text       start:0x801552A0 end:0x801556B0
+	.sdata2     start:0x807D9B00 end:0x807D9B18
 
 Game/Enemy/BakuBaku.cpp:
 	.text       start:0x801556B0 end:0x801560F0 align:16

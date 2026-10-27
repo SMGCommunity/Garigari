@@ -56,4 +56,5 @@ namespace MR {
     void orderRotateMtx(s16, const TVec3f&, MtxPtr);
     void inverseConcatMtx(MtxPtr, MtxPtr, TMtx34f*);
     void turnMtxToXDirRate(TPos3f*, const TVec3f&, f32);
+    void turnMtxToYDirRate(TPos3f*, const TVec3f&, f32);
 };  // namespace MR
