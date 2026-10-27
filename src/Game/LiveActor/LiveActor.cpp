@@ -412,4 +412,15 @@ void LiveActor::initActorLightCtrl() {
 void LiveActor::attackSensor(HitSensor*, HitSensor*) {
 }
 
-// LiveActor::updateBinder
+void LiveActor::updateBinder() {
+    if (mBinder == nullptr) {
+        mPosition += mVelocity;
+    } else {
+        if (mFlags.mIsOnBind) {
+            mPosition += mVelocity;
+            mBinder->clear();
+        } else {
+            mPosition += mBinder->bind(mVelocity);
+        }
+    }
+}
