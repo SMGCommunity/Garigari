@@ -30,6 +30,7 @@
 
 #include <JSystem/J3DGraphAnimator/J3DModel.hpp>
 #include <JSystem/JGeometry/TVec.hpp>
+#include <cstddef>
 #include <revolution/mtx.h>
 #include <revolution/types.h>
 
@@ -217,12 +218,20 @@ bool LiveActor::receiveMessage(u32 msg, HitSensor* pSender, HitSensor* pReceiver
     return receiveOtherMsg(msg, pSender, pReceiver);
 }
 
-// NON_MATCHING
-// decomp.me: https://decomp.me/scratch/dXLyo
-// This function won't even compile because for some reason, clang thinks HitSensor doesn't have an mHost field.
 void LiveActor::calcAndSetBaseMtx() {
     if (MR::getTaken(this) != nullptr) {
-        // MR::getTaken(this)->mHost->getBaseMtx();
+        MtxPtr takingMtx = MR::getTaken(this)->mHostActor->getTakingMtx();
+        MR::setBaseTRMtx(this, takingMtx);
+    } else {
+        TPos3f mtx;
+
+        if (mRotation.x == 0.0f && mRotation.z == 0.0f) {
+            MR::makeMtxTransRotateY(mtx, this);
+        } else {
+            MR::makeMtxTR(mtx, this);
+        }
+
+        MR::setBaseTRMtx(this, mtx);
     }
 }
 
