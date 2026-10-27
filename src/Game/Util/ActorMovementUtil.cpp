@@ -12,7 +12,7 @@
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/RailUtil.hpp"
-#include "math_types.hpp"
+#include <math_types.hpp>
 #include <JSystem/JGeometry.hpp>
 #include <JSystem/JGeometry/TUtil.hpp>
 #include <JSystem/JMath/JMATrigonometric.hpp>
@@ -95,7 +95,6 @@ namespace MR {
 
         return stack_8.length();
     }
-
 
     bool isNear(const HitSensor* pSensorA, const HitSensor* pSensorB, f32 distance) {
         f32 squaredDistance = pSensorA->mOffset.squared(pSensorB->mOffset);
@@ -1278,5 +1277,83 @@ namespace MR {
         calcMovingDirectionAlongRailH(pActor, &stack_8, pActor->mPosition, a2, pA7);
         moveAndTurnToDirection(pActor, &stack_14, stack_8, a3, a4, a5, a6);
         ::calcRotate(pActor, stack_14, a6);
+    }
+
+
+    void fn_800140B0(TVec3f* pOut, const TVec3f& a2, const TVec3f& rPos, f32 a4) {
+        AreaObj* pArea = MR::getAreaObj("PlaneModeCube", rPos);
+        if (!pArea) {
+            return;
+        }
+
+        TVec3f center(0.0f, 0.0f, 0.0f), front(0.0f, 0.0f, 0.0f);
+        MR::getAreaCenterPos(&center, pArea);
+        MR::getAreaFrontVec(&front, pArea, center);
+        if (front.dot(MR::getCamZdir()) > 0.0f) {
+            front.negate();
+        }
+
+        TVec3f vec;
+        if (MR::normalizeOrZero(&vec, a2)) {
+            return;
+        }
+
+        if (vec.dot(front) < 0.0f) {
+            vec.negate();
+        }
+
+        
+        TQuat4f quat;
+        quat.setRotate(front, vec, a4 / 90.0f);
+        quat.transform(front, *pOut);
+    }
+
+    void fn_80014360(TVec3f* pOut, LiveActor* pActor, f32 a4) {
+        MR::calcVecToTargetPosH(pOut, pActor, *MR::getPlayerPos(), nullptr);
+        fn_800140B0(pOut, *pOut, pActor->mPosition, a4);
+    }
+
+
+    void fn_800143D0(TVec3f* pOut) {
+        if (AreaObj* pAreaPlaneMode = MR::getAreaObj("PlaneModeCube", *pOut)) {
+            TVec3f center(0.0f, 0.0f, 0.0f), front(0.0f, 0.0f, 0.0f);
+            MR::getAreaCenterPos(&center, pAreaPlaneMode);
+            MR::getAreaFrontVec(&front, pAreaPlaneMode, center);
+            MR::vecKillElement(*pOut, front, pOut);
+
+            *pOut += front * front.dot(center);
+        } else if (AreaObj* pAreaTowerMode = MR::getAreaObj("TowerModeCylinder", *pOut)) {
+            TVec3f center(0.0f, 0.0f, 0.0f), up(0.0f, 0.0f, 0.0f);
+            MR::calcCylinderCenterPos(&center, pAreaTowerMode);
+            MR::calcCylinderUpVec(&up, pAreaTowerMode);
+            f32 radius = MR::getCylinderRadius(pAreaTowerMode);
+
+            TVec3f vec(*pOut - center);
+            f32 element = MR::vecKillElement(vec, up, &vec);
+            vec.setLength(radius - 200.0f);
+
+            vec += up*element;
+            *pOut = center + vec;
+        }
+    }
+
+    void fn_800145C0(LiveActor* pActor) {
+        fn_800143D0(&pActor->mPosition);
+    }
+
+    void fn_800145D0(TVec3f* pOut, const TVec3f& rPos) {
+        AreaObj* pArea = MR::getAreaObj("PlaneModeCube", rPos);
+        if (!pArea) {
+            return;
+        }
+
+        TVec3f center(0.0f, 0.0f, 0.0f), front(0.0f, 0.0f, 0.0f);
+        MR::getAreaCenterPos(&center, pArea);
+        MR::getAreaFrontVec(&front, pArea, center);
+        MR::vecKillElement(*pOut, front, pOut);
+    }
+
+    void fn_80014670(LiveActor* pActor) {
+        fn_800145D0(&pActor->mVelocity, pActor->mPosition);
     }
 };  // namespace MR

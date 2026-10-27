@@ -71,7 +71,7 @@ void HipDropTimerSwitch::init(const JMapInfoIter& rIter) {
         break;
     }
 
-    MR::listenStageSwitchOnOffA(this, MR::Functor(this, &listenSwitchOnA), MR::Functor(this, &listenSwitchOffA));
+    MR::listenStageSwitchOnOffA(this, MR::Functor(this, &HipDropTimerSwitch::listenSwitchOnA), MR::Functor(this, &HipDropTimerSwitch::listenSwitchOffA));
 
     MR::useStageSwitchSyncAppear(this, rIter);
 }
