@@ -17,6 +17,7 @@
 #include "Game/Map/StageSwitch.hpp"
 #include "Game/NameObj/NameObj.hpp"
 #include "Game/NameObj/NameObjExecuteHolder.hpp"
+#include "Game/Screen/StarPointerTarget.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
@@ -400,8 +401,13 @@ void LiveActor::initStageSwitch(const JMapInfoIter& rIter) {
     mSwitchCtrl = MR::createStageSwitchCtrl(this, rIter);
 }
 
-// LiveActor::initActorStarPointerTarget
-// LiveActor::initActorLightCtrl
+void LiveActor::initActorStarPointerTarget(f32 num, const TVec3f* pVec, MtxPtr pMtx, TVec3f vec) {
+    mPointerTarget = new StarPointerTarget(num, pVec, pMtx, TVec3f(vec));
+}
+
+void LiveActor::initActorLightCtrl() {
+    mLightCtrl = new ActorLightCtrl(this);
+}
 
 void LiveActor::attackSensor(HitSensor*, HitSensor*) {
 }

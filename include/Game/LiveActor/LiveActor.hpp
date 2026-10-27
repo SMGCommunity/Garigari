@@ -2,6 +2,7 @@
 
 #include "Game/LiveActor/LiveActorFlag.hpp"
 #include "Game/NameObj/NameObj.hpp"
+#include "revolution/mtx.h"
 #include <JSystem/JGeometry/TVec.hpp>
 
 class ActorActionKeeper;
@@ -73,6 +74,8 @@ public:
     void initShadowControllerList(u32);
     void initActorCollisionParts(const char*, HitSensor*, ResourceHolder*, MtxPtr, bool, bool);
     void initStageSwitch(const JMapInfoIter&);
+    void initActorStarPointerTarget(f32, const TVec3f*, MtxPtr, TVec3f);
+    void initActorLightCtrl();
     void updateBinder();
 
     const TVec3f* getGravity() const {
