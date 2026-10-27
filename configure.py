@@ -2400,7 +2400,7 @@ config.libs = [
             Object(NonMatching, "Game/World/MiniStarWorldPoint.cpp"),
             Object(NonMatching, "Game/World/MiniTicoMaster.cpp"),
             Object(Matching, "Game/World/MiniWorldWarpPoint.cpp"),
-            Object(NonMatching, "Game/World/MiniWorldMapModel.cpp"),
+            Object(Matching, "Game/World/WorldMapModel.cpp"),
             Object(NonMatching, "Game/World/WORLD_UNK0.cpp"),
             Object(NonMatching, "Game/World/WORLD_UNK1.cpp"),
             Object(NonMatching, "Game/World/WORLD_UNK2.cpp"),
