@@ -1505,7 +1505,7 @@ config.libs = [
             Object(NonMatching, "Game/MapObj/BallRail.cpp"),
             Object(NonMatching, "Game/MapObj/BeeFlowerHover.cpp"),
             Object(NonMatching, "Game/MapObj/BeeJumpBall.cpp"),
-            Object(NonMatching, "Game/MapObj/BendSwanpPlanet.cpp"),
+            Object(Matching, "Game/MapObj/BendSwanpPlanet.cpp"),
             Object(NonMatching, "Game/MapObj/BenefitItemInvincible.cpp"),
             Object(NonMatching, "Game/MapObj/BenefitItemLifeUp.cpp"),
             Object(NonMatching, "Game/MapObj/BenefitItemObj.cpp"),

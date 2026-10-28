@@ -307,7 +307,7 @@ namespace MR {
     ModelObj* createModelObjNPC(const char* pName, const char* pModelName, MtxPtr pMtx);
     ModelObj* createModelObjBloomModel(const char* pName, const char* pModelName, MtxPtr pMtx, bool);
 
-    CollisionObj* createCollisionObj(LiveActor* pHost, const char* pCollisionName, bool noInitBodySensor, MtxPtr pMtx);
+    CollisionObj* createCollisionObj(LiveActor* pHost, const char* pCollisionName, HitSensor* pSensor, MtxPtr pMtx);
 
     BreakModel* createBreakModel(LiveActor* pHost, MtxPtr pMtx);
     BreakModel* tryCreateBreakModel(LiveActor* pHost, MtxPtr pMtx);
