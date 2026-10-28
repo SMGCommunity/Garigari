@@ -79,7 +79,7 @@ public:
     /* 0x20 */ TVec3f mRotation;
     /* 0x2C */ TVec3f mScale;
     /* 0x38 */ TVec3f mVelocity;
-/* 0x44 */ TVec3f mGravity;
+    /* 0x44 */ TVec3f mGravity;
     /* 0x50 */ ActorActionKeeper* mActionKeeper;
     /* 0x54 */ ModelManager* mModelManager;
     /* 0x58 */ Spine* mSpine;
