@@ -14,12 +14,14 @@ public:
     virtual void calcAndSetBaseMtx();
 
     void exeWait();
-    void exeWaitDelay();
+    void exeWaitRail();
     void exeAttackSign();
     void exeAttack();
 
+    void calcRailPos();
+
     /* 0x90 */ SupportTicoStop* mSupportTicoStop;
     /* 0x94 */ TVec3f mFrontVec;
-    /* 0xA0 */ u32 mMovementSpeed; ///< Default is 250.
+    /* 0xA0 */ s32 mMovementSpeed; ///< Default is 250.
     /* 0xA4 */ s32 mFirstFlipDelay; ///< The delay for the first flip which can be edited via Obj Arg 0.
 };
