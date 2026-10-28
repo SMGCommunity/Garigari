@@ -1684,7 +1684,7 @@ config.libs = [
             Object(NonMatching, "Game/MapObj/PullTargetDrawer.cpp"),
             Object(NonMatching, "Game/MapObj/PunchBox.cpp"),
             Object(NonMatching, "Game/MapObj/PunchingKinoko.cpp"),
-            Object(NonMatching, "Game/MapObj/PurpleCoinCompleteWatcher.cpp"),
+            Object(Matching, "Game/MapObj/PurpleCoinCompleteWatcher.cpp"),
             Object(NonMatching, "Game/MapObj/PurpleCoinHolder.cpp"),
             Object(NonMatching, "Game/MapObj/QuestionCoin.cpp"),
             Object(NonMatching, "Game/MapObj/QuicksandPlanet.cpp"),
