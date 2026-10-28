@@ -1643,7 +1643,7 @@ config.libs = [
             Object(NonMatching, "Game/MapObj/MagmaMeteorParts.cpp"),
             Object(NonMatching, "Game/MapObj/MagmaSeaWave.cpp"),
             Object(NonMatching, "Game/MapObj/ManholeCover.cpp"),
-            Object(NonMatching, "Game/MapObj/MarioFacePlanet.cpp"),
+            Object(Matching, "Game/MapObj/MarioFacePlanet.cpp"),
             Object(NonMatching, "Game/MapObj/MarioFacePlanetPrevious.cpp"),
             Object(NonMatching, "Game/MapObj/MarioFaceShipAttentionConversationExecutor.cpp"),
             Object(NonMatching, "Game/MapObj/MarioFaceShipNpcHolder.cpp"),

@@ -6156,9 +6156,9 @@ Game/MapObj/ManholeCover.cpp:
 	.sdata2     start:0x807DDC28 end:0x807DDC30
 
 Game/MapObj/MarioFacePlanet.cpp:
-	.text       start:0x802C7670 end:0x802C78A0 align:16
+	.text       start:0x802C7670 end:0x802C78B0 align:16
 	.ctors      start:0x806444B8 end:0x806444BC
-	.data       start:0x806A5560 end:0x806A55F0
+	.data       start:0x806A5560 end:0x806A5600
 	.sbss       start:0x807D3EF0 end:0x807D3EF8
 
 Game/MapObj/MarioFacePlanetPrevious.cpp:
