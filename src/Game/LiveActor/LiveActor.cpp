@@ -303,14 +303,11 @@ void LiveActor::endClipped() {
     }
 }
 
-// NON_MATCHING
-// decomp.me: https://decomp.me/scratch/sEGTv
-// The original assembly calls calcAndSetBaseMtx() as a normal function, not a virtual one. I don't know how to replicate this.
 void LiveActor::initModelManagerWithAnm(const char* pStr1, const char* pStr2, const char* pStr3, bool param4) {
     mModelManager = new ModelManager(MR::getCameraProjectionMtx());
     mModelManager->init(pStr1, pStr2, param4);
     MR::getJ3DModel(this)->setBaseScale(mScale);
-    calcAndSetBaseMtx();
+    LiveActor::calcAndSetBaseMtx();
     MR::calcJ3DModel(this);
     mActionKeeper = ActorActionKeeper::tryCreate(this, pStr3);
 }
@@ -351,8 +348,9 @@ void LiveActor::initEffectKeeper(s32 param1, const char* pName, bool param3) {
 }
 
 // NON_MATCHING
-// decomp.me: https://decomp.me/scratch/ZpWj9
-// I think the TVec3f constructor is being inlined for whatever reason.
+// decomp.me: https://decomp.me/scratch/rKHjj
+// Wrong amount of bytes is being allocated for the new ActorSoundHolder.
+// Will need to adjust ActorSoundHolder.hpp to fix this.
 void LiveActor::initSound(s32 a1, const char* a2, const TVec3f* a3, const TVec3f& a4) {
     mSoundHolder = new ActorSoundHolder(this, a1, a2, a3, TVec3f(a4));
 }
@@ -362,7 +360,7 @@ void LiveActor::initShadowControllerList(u32 size) {
 }
 
 // NON_MATCHING
-// decomp.me: https://decomp.me/scratch/zmNS7
+// decomp.me: https://decomp.me/scratch/uVs99
 // pMtx is not being saved to a non-volatile register.
 // In the original assembly code, when MR::createCollisionPartsFromResourceHolder is called, six parameters are passed in:
 // * pResourceHolder
