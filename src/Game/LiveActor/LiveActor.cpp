@@ -346,10 +346,6 @@ void LiveActor::initEffectKeeper(s32 param1, const char* pName, bool param3) {
     }
 }
 
-// NON_MATCHING
-// decomp.me: https://decomp.me/scratch/rKHjj
-// Wrong amount of bytes is being allocated for the new ActorSoundHolder.
-// Will need to adjust ActorSoundHolder.hpp to fix this.
 void LiveActor::initSound(s32 a1, const char* a2, const TVec3f* a3, const TVec3f& a4) {
     mSoundHolder = new ActorSoundHolder(this, a1, a2, a3, TVec3f(a4));
 }

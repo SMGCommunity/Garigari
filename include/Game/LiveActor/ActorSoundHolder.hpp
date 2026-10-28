@@ -12,4 +12,7 @@ public:
 
     /* 0x00 */ u8 _0[4];
     /* 0x04 */ ActionSoundInfo* mActionSoundInfo;
+    /* 0x08 */ u32 _8;
+    /* 0x0C */ u32 _C;
+    /* 0x10 */ u32 _10;
 };
