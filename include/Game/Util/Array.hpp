@@ -99,6 +99,13 @@ namespace MR {
             return &mArr[0] - 1;
         }
 
+        /// @brief Returns an index of an element in the array.
+        /// @param num The pointer to the element.
+        /// @return The index of the element.
+        s32 index_of(T* elem) {
+            return elem - begin();
+        }
+
         /// @brief The pointer to the array of elements.
         /* 0x0 */ T* mArr;
 
@@ -172,7 +179,10 @@ namespace MR {
             }
         }
 
-        inline int indexOf(T* pItem) const {
+        /// @brief Returns an index of an element in the array.
+        /// @param num The pointer to the element.
+        /// @return The index of the element.
+        inline int index_of(T* pItem) const {
             return pItem - begin();
         }
 

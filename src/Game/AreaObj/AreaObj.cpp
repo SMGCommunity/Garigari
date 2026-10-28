@@ -7,7 +7,7 @@
 #include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
-#include "revolution/types.h"
+#include <revolution/types.h>
 #include <algorithm>
 #include <functional.hpp>
 

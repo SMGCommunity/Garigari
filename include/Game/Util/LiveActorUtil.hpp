@@ -242,6 +242,7 @@ namespace MR {
     void offCalcGravity(LiveActor* pActor);
 
     // various ActorActionKeeper functions
+    void startHitReaction(LiveActor* pActor, const char* pName);
 
     LiveActorGroup* joinToGroup(LiveActor* pActor, const char* pGroupName);
     LiveActorGroup* joinToGroupArray(LiveActor* pActor, const JMapInfoIter& rIter, const char* pGroupName, s32 size);
@@ -318,7 +319,7 @@ namespace MR {
     ModelObj* createModelObjNPC(const char* pName, const char* pModelName, MtxPtr pMtx);
     ModelObj* createModelObjBloomModel(const char* pName, const char* pModelName, MtxPtr pMtx, bool);
 
-    CollisionObj* createCollisionObj(LiveActor* pHost, const char* pCollisionName, bool noInitBodySensor, MtxPtr pMtx);
+    CollisionObj* createCollisionObj(LiveActor* pHost, const char* pCollisionName, HitSensor* pSensor, MtxPtr pMtx);
 
     BreakModel* createBreakModel(LiveActor* pHost, MtxPtr pMtx);
     BreakModel* tryCreateBreakModel(LiveActor* pHost, MtxPtr pMtx);

@@ -12,7 +12,7 @@
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/RailUtil.hpp"
-#include "math_types.hpp"
+#include <math_types.hpp>
 #include <JSystem/JGeometry.hpp>
 #include <JSystem/JGeometry/TUtil.hpp>
 #include <JSystem/JMath/JMATrigonometric.hpp>
@@ -1332,7 +1332,7 @@ namespace MR {
             f32 element = MR::vecKillElement(vec, up, &vec);
             vec.setLength(radius - 200.0f);
 
-            vec.add(up*element);
+            vec += up*element;
             *pOut = center + vec;
         }
     }

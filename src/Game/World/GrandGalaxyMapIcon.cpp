@@ -7,7 +7,7 @@
 #include "Game/Util/ModelUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
-#include "decomp.h"
+#include <decomp.h>
 #include <cstdio>
 
 EXTERN_UNKNOWN_FUNC(void, 804E8B10, void*)

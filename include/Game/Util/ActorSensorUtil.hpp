@@ -8,6 +8,7 @@ class HitSensor;
 
 enum {
     ACTMES_BOMB_TERESA_TONGUE_TOUCH = 0x4F,
+    ACTMES_GLI_BIRD_TOUCH = 0x55,
     ACTMES_DISPERSE_BOMB_TERESA = 0xA2,
 };
 
