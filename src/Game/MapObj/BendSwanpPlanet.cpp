@@ -23,7 +23,7 @@ namespace {
         "BendSwanpPlanetPartsB",
         "BendSwanpPlanetPartsC",
     };
-};
+};  // namespace
 
 BendSwanpPlanet::BendSwanpPlanet(const char* pName) : LiveActor(pName), mCollisionObjs() {
 }
@@ -37,13 +37,13 @@ void BendSwanpPlanet::init(const JMapInfoIter& rIter) {
     MR::setClippingTypeSphere(this, boundingRadius);
     MR::setClippingFarMax(this);
 
-    mCollisionObjs = new CollisionObj*[ARRAY_SIZE(cCollisionNames)];
+    mCollisionObjs = new CollisionObj*[ARRAY_SIZE(::cCollisionNames)];
 
-    for (s32 i = 0; i < ARRAY_SIZE(cCollisionNames); i++) {
+    for (s32 i = 0; i < ARRAY_SIZE(::cCollisionNames); i++) {
         char jointName[256];
-        snprintf(jointName, sizeof(jointName), "Collision[%s]", cCollisionNames[i]);
+        snprintf(jointName, sizeof(jointName), "Collision[%s]", ::cCollisionNames[i]);
 
-        mCollisionObjs[i] = MR::createCollisionObj(this, cCollisionNames[i], getSensor(nullptr), MR::getJointMtx(this, cCollisionNames[i]));
+        mCollisionObjs[i] = MR::createCollisionObj(this, ::cCollisionNames[i], getSensor(nullptr), MR::getJointMtx(this, cCollisionNames[i]));
         MR::validateCollisionParts(mCollisionObjs[i]);
     }
 
