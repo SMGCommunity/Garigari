@@ -7,7 +7,7 @@
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
-#include "revolution/wpad.h"
+#include <revolution/wpad.h>
 
 namespace NrvStarPieceSpotEruption {
     NEW_NERVE(StarPieceSpotEruptionNrvRest, StarPieceSpotEruption, Rest);
@@ -51,7 +51,7 @@ void StarPieceSpotEruption::init(const JMapInfoIter& rIter) {
 
 void StarPieceSpotEruption::exeEruption() {
     if (MR::isFirstStep(this)) {
-        emit();
+        erupt();
     }
 }
 
@@ -65,7 +65,7 @@ void StarPieceSpotEruption::exeRest() {
     }
 }
 
-void StarPieceSpotEruption::emit() {
+void StarPieceSpotEruption::erupt() {
     MR::shakeCameraStrong();
     MR::tryRumblePadStrong(this, WPAD_CHAN0);
 

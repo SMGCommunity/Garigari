@@ -11,7 +11,7 @@ public:
     void exeEruption();
     void exeRest();
 
-    void emit();
+    void erupt();
 
     /* 0x90 */ f32 mEruptVelocity;
     /* 0x94 */ f32 mEruptRange;
