@@ -1,10 +1,11 @@
 #pragma once
 
-#include <revolution/gx/GXStruct.h>
-#include <revolution/types.h>
 #include <RFL_MiddleDatabase.h>
 #include <RFL_Model.h>
 #include <RFL_Types.h>
+#include <revolution/gx/GXStruct.h>
+#include <revolution/types.h>
+
 
 class MiiFaceRecipe {
 public:
