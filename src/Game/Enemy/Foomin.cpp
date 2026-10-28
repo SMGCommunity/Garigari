@@ -13,7 +13,6 @@
 #include "Game/Util/RailUtil.hpp"
 #include "decomp.h"
 
-
 EXTERN_UNKNOWN_FUNC(void, 80052450, LiveActor*, f32, f32, f32)
 
 namespace NrvFoomin {
