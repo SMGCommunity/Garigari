@@ -231,6 +231,7 @@ namespace MR {
     void offCalcGravity(LiveActor* pActor);
 
     // various ActorActionKeeper functions
+    void startHitReaction(LiveActor* pActor, const char* pName);
 
     LiveActorGroup* joinToGroup(LiveActor* pActor, const char* pGroupName);
     LiveActorGroup* joinToGroupArray(LiveActor* pActor, const JMapInfoIter& rIter, const char* pGroupName, s32 size);
