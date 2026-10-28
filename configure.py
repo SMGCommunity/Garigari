@@ -1587,7 +1587,7 @@ config.libs = [
             Object(NonMatching, "Game/MapObj/FireRing.cpp"),
             Object(NonMatching, "Game/MapObj/FireRingBall.cpp"),
             Object(NonMatching, "Game/MapObj/FlipPanel.cpp"),
-            Object(NonMatching, "Game/MapObj/FlowerBlossomRellayPlanet.cpp"),
+            Object(Matching, "Game/MapObj/FlowerBlossomRellayPlanet.cpp"),
             Object(NonMatching, "Game/MapObj/Fountain.cpp"),
             Object(NonMatching, "Game/MapObj/FountainBig.cpp"),
             Object(NonMatching, "Game/MapObj/GCapture.cpp"),
