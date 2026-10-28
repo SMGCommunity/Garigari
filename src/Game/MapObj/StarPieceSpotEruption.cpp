@@ -7,6 +7,7 @@
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
+#include "revolution/wpad.h"
 
 namespace NrvStarPieceSpotEruption {
     NEW_NERVE(StarPieceSpotEruptionNrvRest, StarPieceSpotEruption, Rest);
@@ -20,7 +21,7 @@ void StarPieceSpotEruption_FORCE_MATCH_SDATA2() {
     (void)3000.0f;
 }
 
-StarPieceSpotEruption::StarPieceSpotEruption(const char* pName) : LiveActor(pName), mEmitHeight(150.0f), mEmitRadius(30.0f) {
+StarPieceSpotEruption::StarPieceSpotEruption(const char* pName) : LiveActor(pName), mEruptVelocity(150.0f), mEruptRange(30.0f) {
 }
 
 void StarPieceSpotEruption::init(const JMapInfoIter& rIter) {
@@ -28,8 +29,8 @@ void StarPieceSpotEruption::init(const JMapInfoIter& rIter) {
 
     s32 numStarPiece = 20;
     MR::getJMapInfoArg0NoInit(rIter, &numStarPiece);
-    MR::getJMapInfoArg1NoInit(rIter, &mEmitHeight);
-    MR::getJMapInfoArg2NoInit(rIter, &mEmitRadius);
+    MR::getJMapInfoArg1NoInit(rIter, &mEruptVelocity);
+    MR::getJMapInfoArg2NoInit(rIter, &mEruptRange);
 
     MR::declareStarPiece(this, numStarPiece);
 
@@ -66,10 +67,10 @@ void StarPieceSpotEruption::exeRest() {
 
 void StarPieceSpotEruption::emit() {
     MR::shakeCameraStrong();
-    MR::tryRumblePadStrong(this, 0);
+    MR::tryRumblePadStrong(this, WPAD_CHAN0);
 
     s32 numStarPiece = MR::getDeclareRemnantStarPieceCount(this);
-    MR::appearStarPiece(this, mPosition, numStarPiece, mEmitRadius, mEmitHeight, false);
+    MR::appearStarPiece(this, mPosition, numStarPiece, mEruptRange, mEruptVelocity, false);
 
     MR::deleteEffect(this, "Rest");
     MR::emitEffect(this, "Eruption");

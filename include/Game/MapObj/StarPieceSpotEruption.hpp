@@ -13,6 +13,6 @@ public:
 
     void emit();
 
-    /* 0x90 */ f32 mEmitHeight;
-    /* 0x94 */ f32 mEmitRadius;
+    /* 0x90 */ f32 mEruptVelocity;
+    /* 0x94 */ f32 mEruptRange;
 };
