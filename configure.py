@@ -1626,7 +1626,7 @@ config.libs = [
             Object(NonMatching, "Game/MapObj/JumpStandAuto.cpp"),
             Object(NonMatching, "Game/MapObj/KeySwitch.cpp"),
             Object(NonMatching, "Game/MapObj/KoopaJrCastleCloudStep.cpp"),
-            Object(NonMatching, "Game/MapObj/KoopaJrCastleGate.cpp"),
+            Object(Matching, "Game/MapObj/KoopaJrCastleGate.cpp"),
             Object(NonMatching, "Game/MapObj/KoopaStatueVomit.cpp"),
             Object(NonMatching, "Game/MapObj/LavaFloater.cpp"),
             Object(NonMatching, "Game/MapObj/LavaGeyser.cpp"),
