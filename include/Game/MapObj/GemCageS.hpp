@@ -6,10 +6,7 @@ class BreakModel;
 
 class GemCageS : public LiveActor {
 public:
-    enum ITEM_TYPE {
-        ITEM_TYPE_STAR_PIECE = 0,
-        ITEM_TYPE_COIN = 1
-    };
+    enum ITEM_TYPE { ITEM_TYPE_STAR_PIECE = 0, ITEM_TYPE_COIN = 1 };
 
     GemCageS(const char* pName);
 

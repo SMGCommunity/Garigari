@@ -1,15 +1,15 @@
 #include "Game/MapObj/GemCageS.hpp"
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/LiveActor/BreakModel.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/ActionSoundUtil.hpp"
+#include "Game/Util/ActorAnimUtil.hpp"
 #include "Game/Util/ActorInitUtil.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
-#include "Game/Util/ActorSensorUtil.hpp"
-#include "Game/Util/ActorAnimUtil.hpp"
-#include "Game/Util/ActorMovementUtil.hpp"
-#include "Game/Util/ActionSoundUtil.hpp"
-#include "Game/Util/ActorSwitchUtil.hpp"
 
 namespace NrvGemCageS {
     NEW_NERVE(GemCageSNrvWait, GemCageS, Wait);
@@ -17,7 +17,6 @@ namespace NrvGemCageS {
 };  // namespace NrvGemCageS
 
 GemCageS::GemCageS(const char* pName) : LiveActor(pName), mBreakModel(), mItemType(-1), mIsRockCage() {
-
 }
 
 void GemCageS::init(const JMapInfoIter& rIter) {
@@ -30,7 +29,7 @@ void GemCageS::init(const JMapInfoIter& rIter) {
 
     MR::getJMapInfoArg0NoInit(rIter, &mItemType);
 
-    switch(mItemType) {
+    switch (mItemType) {
     case ITEM_TYPE_STAR_PIECE:
         MR::declareStarPiece(this, 5);
         break;
@@ -55,7 +54,7 @@ bool GemCageS::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pR
 
         return false;
     }
-    
+
     if (!mIsRockCage && MR::isMsgPlayerHitAll(msg)) {
         setNerve(GET_NERVE(GemCageS, GemCageSNrvBreak));
         return true;
@@ -74,12 +73,10 @@ bool GemCageS::appearItem() {
     if (mItemType == ITEM_TYPE_STAR_PIECE) {
         MR::appearStarPiece(this, mPosition, 5, 10.0f, 40.0f, false);
         return true;
-    }
-    else if (mItemType == ITEM_TYPE_COIN) {
+    } else if (mItemType == ITEM_TYPE_COIN) {
         MR::appearCoinPop(this, mPosition, 1);
         return true;
-    }
-    else {
+    } else {
         return false;
     }
 }
@@ -90,8 +87,8 @@ void GemCageS::exeWait() {
         MR::startBvaAndSetFrameAndStop(this, pAnimName, 0.0f);
     }
 
-    TVec3f unused;
-    MR::calcUpVec(&unused, this);
+    TVec3f upVec;
+    MR::calcUpVec(&upVec, this);
 }
 
 void GemCageS::exeBreak() {
