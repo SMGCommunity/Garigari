@@ -30,7 +30,6 @@
 
 #include <JSystem/J3DGraphAnimator/J3DModel.hpp>
 #include <JSystem/JGeometry/TVec.hpp>
-#include <cstddef>
 #include <revolution/mtx.h>
 #include <revolution/types.h>
 

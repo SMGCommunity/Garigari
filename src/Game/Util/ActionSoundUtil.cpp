@@ -1,5 +1,8 @@
 #include "Game/Util/ActionSoundUtil.hpp"
 
+#include "Game/GameAudio/ActionSoundInfo.hpp"
+#include "Game/LiveActor/ActorSoundHolder.hpp"
+
 namespace MR {
     const ActionSoundInfo* getActionSoundInfo(const LiveActor* pActor) {
         const ActorSoundHolder* soundHolder = pActor->mSoundHolder;

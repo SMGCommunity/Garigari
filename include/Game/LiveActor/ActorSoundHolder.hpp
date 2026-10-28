@@ -1,10 +1,10 @@
 #pragma once
 
-#include "Game/GameAudio/ActionSoundInfo.hpp"
 #include <JSystem/JGeometry/TVec.hpp>
 #include <revolution.h>
 
 class LiveActor;
+class ActionSoundInfo;
 
 class ActorSoundHolder {
 public:
