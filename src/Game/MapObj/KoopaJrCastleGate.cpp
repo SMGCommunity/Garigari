@@ -34,7 +34,7 @@ void KoopaJrCastleGate::exeWait() {
         if (MR::isValidSwitchA(this) && MR::isOnSwitchA(this)) {
             MR::invalidateClipping(this);
 
-            setNerve(GET_NERVE(KoopaJrCastleGate, KoopaJrCastleGateNrvMove));
+            setNerve(GET_NERVE(KoopaJrCastleGate, KoopaJrCastleGateNrvMoveFast));
         }
     }
 }
