@@ -69,6 +69,10 @@ public:
     void updateMtxUseBaseMtx();
     void updateMtxUseBaseMtxWithLocalOffset(const TVec3f&);
 
+    void setEffectMtx(TPos3f& mtx) {
+        mEffectMtx.set(mtx);
+    }
+
     /* 0x0C */ UpdateEffectMtxInfo* mUpdatingMtxInfo;
     /* 0x10 */ s32 mNumUpdatingMtx;
     /* 0x14 */ TPos3f mEffectMtx;
