@@ -7,7 +7,8 @@ namespace NrvCactus {
     NEW_NERVE(CactusNrvWait, Cactus, Wait);
 };  // namespace NrvCactus
 
-Cactus::Cactus(const char* pName) : LiveActor(pName) { }
+Cactus::Cactus(const char* pName) : LiveActor(pName) {
+}
 
 void Cactus::init(const JMapInfoIter& rIter) {
     MR::initActor(this, rIter, false);
@@ -25,4 +26,5 @@ bool Cactus::isNerveWait() const {
     return isNerve(GET_NERVE(Cactus, CactusNrvWait));
 }
 
-inline void Cactus::exeWait() { }
+inline void Cactus::exeWait() {
+}

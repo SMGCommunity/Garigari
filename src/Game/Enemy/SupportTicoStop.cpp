@@ -11,9 +11,10 @@ namespace NrvSupportTicoStop {
     NEW_NERVE(SupportTicoStopNrvDoNothing, SupportTicoStop, DoNothing);
     NEW_NERVE(SupportTicoStopNrvTouch, SupportTicoStop, Touch);
     NEW_NERVE(SupportTicoStopNrvEndTouch, SupportTicoStop, EndTouch);
-}; // namespace NrvSupportTicoStop
+};  // namespace NrvSupportTicoStop
 
-SupportTicoStop::SupportTicoStop(LiveActor* pHost, AnimScaleController* pScaleController) : NerveExecutor("スターポインタ停止"), mHost(pHost), mScaleController(pScaleController), _10(), _14(), _15(), mUsePointerTouch() {
+SupportTicoStop::SupportTicoStop(LiveActor* pHost, AnimScaleController* pScaleController)
+    : NerveExecutor("スターポインタ停止"), mHost(pHost), mScaleController(pScaleController), _10(), _14(), _15(), mUsePointerTouch() {
     initNerve(GET_NERVE(SupportTicoStop, SupportTicoStopNrvDoNothing));
 
     if (MR::isExistEffectKeeper(pHost) && !MR::isRegisteredEffect(pHost, "Touch")) {

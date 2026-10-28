@@ -3,6 +3,7 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/ActorAnimUtil.hpp"
 #include "Game/Util/ActorInitUtil.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/JMapUtil.hpp"
@@ -10,8 +11,8 @@
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/RailUtil.hpp"
-#include "Game/Util/ActorMovementUtil.hpp"
 #include "decomp.h"
+
 
 EXTERN_UNKNOWN_FUNC(void, 80052450, LiveActor*, f32, f32, f32)
 
@@ -20,10 +21,10 @@ namespace NrvFoomin {
     NEW_NERVE(FoominNrvWaitRail, Foomin, WaitRail);
     NEW_NERVE(FoominNrvAttackSign, Foomin, AttackSign);
     NEW_NERVE(FoominNrvAttack, Foomin, Attack);
-}; // namespace nrvFoomin
+};  // namespace NrvFoomin
 
-
-Foomin::Foomin(const char* pName) : LiveActor(pName), mSupportTicoStop(), mFrontVec(0.0f, 0.0f, 1.0f), mMovementSpeed(250), mFirstFlipDelay() {}
+Foomin::Foomin(const char* pName) : LiveActor(pName), mSupportTicoStop(), mFrontVec(0.0f, 0.0f, 1.0f), mMovementSpeed(250), mFirstFlipDelay() {
+}
 
 void Foomin::init(const JMapInfoIter& rIter) {
     MR::initActor(this, rIter, "Foomin", false);
@@ -107,7 +108,9 @@ void Foomin::exeAttackSign() {
         MR::startAction(this, "AttackSign");
         MR::invalidateClipping(this);
     }
-    if (mSupportTicoStop->tryAttachTouch()) { return; }
+    if (mSupportTicoStop->tryAttachTouch()) {
+        return;
+    }
 
     calcRailPos();
 
@@ -116,6 +119,8 @@ void Foomin::exeAttackSign() {
     }
 }
 
+// Stack problems
+// https://decomp.me/scratch/b2Eu7
 void Foomin::exeAttack() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "Attack");
@@ -130,7 +135,6 @@ void Foomin::exeAttack() {
         TVec3f stack_2C = -mGravity;
 
         TVec3f playerJumpVel(stack_2C);
-
 
         playerJumpVel.add(stack_20);
 
@@ -154,16 +158,12 @@ void Foomin::exeAttack() {
     }
 }
 
-
 void Foomin::calcAndSetBaseMtx() {
     MR::calcAndSetBaseTRMtxFromGravityAndZAxis(this, mFrontVec);
 }
 
-
 void Foomin::calcRailPos() {
-
     if (MR::isExistRail(this)) {
-
         f32 movementRate = 0.01f * mMovementSpeed;
 
         fn_80052450(this, movementRate, 0.2f * movementRate, 100.0f);
