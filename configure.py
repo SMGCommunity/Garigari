@@ -2207,6 +2207,7 @@ config.libs = [
             Object(NonMatching, "Game/Screen/PlayerLeft.cpp"),
             Object(NonMatching, "Game/Screen/PlayerMissLeft.cpp"),
             Object(NonMatching, "Game/Screen/PopUpAddTimeAttackTime.cpp"),
+            Object(NonMatching, "Game/Screen/PostFog.cpp"),
             Object(NonMatching, "Game/Screen/PostManLetter.cpp"),
             Object(NonMatching, "Game/Screen/PurpleCoinCounter.cpp"),
             Object(NonMatching, "Game/Screen/RaceLayout.cpp"),

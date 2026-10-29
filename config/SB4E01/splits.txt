@@ -9390,14 +9390,20 @@ Game/Screen/PopUpAddTimeAttackTime.cpp:
 	.sbss       start:0x807D5778 end:0x807D5780
 	.sdata2     start:0x807E1608 end:0x807E1610
 
+Game/Screen/PostFog.cpp:
+	.text       start:0x80489B20 end:0x8048A520 align:16
+	.rodata     start:0x8064CA98 end:0x8064CAA8
+	.data       start:0x806F64C8 end:0x806F6508
+	.sdata2     start:0x807E1610 end:0x807E1640
+
 Game/Screen/PostManLetter.cpp:
-	.text       start:0x80489B20 end:0x8048BBE0 align:16
+	.text       start:0x8048A520 end:0x8048BBE0 align:16
 	.ctors      start:0x80644948 end:0x8064494C
-	.rodata     start:0x8064CA98 end:0x8064CAB0
-	.data       start:0x806F64C8 end:0x806F69D0
+	.rodata     start:0x8064CAA8 end:0x8064CAB0
+	.data       start:0x806F6508 end:0x806F69D0
 	.sdata      start:0x807D0268 end:0x807D0278
 	.sbss       start:0x807D5780 end:0x807D5798
-	.sdata2     start:0x807E1610 end:0x807E1668
+	.sdata2     start:0x807E1640 end:0x807E1668
 
 Game/Screen/PurpleCoinCounter.cpp:
 	.text       start:0x8048BBE0 end:0x8048C080 align:16
