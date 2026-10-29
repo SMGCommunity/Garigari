@@ -1385,8 +1385,6 @@ namespace {
     };
 };  // namespace
 
-namespace MR {
-    const StationedFileInfo* getStationedFileInfoTable() {
-        return cStationedFileInfo;
-    }
-};  // namespace MR
+const MR::StationedFileInfo* MR::getStationedFileInfoTable() {
+    return ::cStationedFileInfo;
+}
