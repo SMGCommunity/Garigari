@@ -1803,7 +1803,7 @@ config.libs = [
             Object(NonMatching, "Game/MapObj/LavaHomeVolcanoFlow.cpp"),
             Object(NonMatching, "Game/MapObj/MapPartsBreaker.cpp"),
             Object(NonMatching, "Game/MapObj/MapPartsFloatingForce.cpp"),
-            Object(NonMatching, "Game/MapObj/MapPartsFunction.cpp"),
+            Object(Matching, "Game/MapObj/MapPartsFunction.cpp"),
             Object(NonMatching, "Game/MapObj/MapPartsRailGuideDrawer.cpp"),
             Object(NonMatching, "Game/MapObj/MapPartsRailGuideHolder.cpp"),
             Object(NonMatching, "Game/MapObj/MapPartsRailGuidePoint.cpp"),
