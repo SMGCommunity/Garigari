@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Game/System/NerveExecutor.hpp"
-#include <JSystem/JGeometry.hpp>
 
 class LiveActor;
 class AnimScaleController;
@@ -19,6 +18,9 @@ public:
 
     bool isTouching() const;
 
+    inline void resetTouchBools() {
+        _15 = _14 = false;
+    }
     /* 0x08 */ LiveActor* mHost;
     /* 0x0C */ AnimScaleController* mScaleController;
     /* 0x10 */ s32 _10;

@@ -22,7 +22,7 @@ namespace NrvFoomin {
     NEW_NERVE(FoominNrvAttack, Foomin, Attack);
 };  // namespace NrvFoomin
 
-Foomin::Foomin(const char* pName) : LiveActor(pName), mSupportTicoStop(), mFrontVec(0.0f, 0.0f, 1.0f), mMovementSpeed(250), mFirstFlipDelay() {
+Foomin::Foomin(const char* pName) : LiveActor(pName), mSupportTicoStop(), mFront(0.0f, 0.0f, 1.0f), mMovementSpeed(250), mFirstFlipDelay() {
 }
 
 void Foomin::init(const JMapInfoIter& rIter) {
@@ -31,12 +31,11 @@ void Foomin::init(const JMapInfoIter& rIter) {
         MR::moveCoordAndTransToNearestRailPos(this);
     }
 
-    MR::calcFrontVec(&mFrontVec, this);
+    MR::calcFrontVec(&mFront, this);
 
     mSupportTicoStop = new SupportTicoStop(this, nullptr);
 
     s32 firstFlipDelayArg = 0;
-
     MR::getJMapInfoArg0NoInit(rIter, &firstFlipDelayArg);
 
     if (firstFlipDelayArg >= 0) {
@@ -44,7 +43,6 @@ void Foomin::init(const JMapInfoIter& rIter) {
     }
 
     s32 movementSpeedArg = -1;
-
     MR::getJMapInfoArg1NoInit(rIter, &movementSpeedArg);
 
     if (movementSpeedArg >= 0) {
@@ -107,6 +105,7 @@ void Foomin::exeAttackSign() {
         MR::startAction(this, "AttackSign");
         MR::invalidateClipping(this);
     }
+
     if (mSupportTicoStop->tryAttachTouch()) {
         return;
     }
@@ -118,8 +117,6 @@ void Foomin::exeAttackSign() {
     }
 }
 
-// Stack problems
-// https://decomp.me/scratch/b2Eu7
 void Foomin::exeAttack() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "Attack");
@@ -129,22 +126,13 @@ void Foomin::exeAttack() {
         TVec3f frontVec(0.0f);
         MR::calcFrontVec(&frontVec, this);
 
-        TVec3f stack_20 = -frontVec * -0.5f;
-
-        TVec3f stack_2C = -mGravity;
-
-        TVec3f playerJumpVel(stack_2C);
-
-        playerJumpVel.add(stack_20);
+        TVec3f playerJumpVel = -mGravity + -frontVec * -0.5f;
 
         MR::normalize(&playerJumpVel);
-
         MR::forceJumpPlayer(playerJumpVel * 35.0f);
 
         MR::startBckPlayer("Blow", nullptr);
-
         MR::startLevelSoundPlayer("Thrown", -1, -1);
-
         MR::emitEffect(this, "Shrink");
         MR::invalidateCollisionParts(this);
     }
@@ -158,13 +146,12 @@ void Foomin::exeAttack() {
 }
 
 void Foomin::calcAndSetBaseMtx() {
-    MR::calcAndSetBaseTRMtxFromGravityAndZAxis(this, mFrontVec);
+    MR::calcAndSetBaseTRMtxFromGravityAndZAxis(this, mFront);
 }
 
 void Foomin::calcRailPos() {
     if (MR::isExistRail(this)) {
         f32 movementRate = 0.01f * mMovementSpeed;
-
         fn_80052450(this, movementRate, 0.2f * movementRate, 100.0f);
     }
 }

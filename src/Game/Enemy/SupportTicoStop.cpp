@@ -29,6 +29,7 @@ bool SupportTicoStop::tryAttachTouch() {
             _14 = true;
             setNerve(GET_NERVE(SupportTicoStop, SupportTicoStopNrvTouch));
         }
+
         return true;
     }
 
@@ -69,7 +70,9 @@ void SupportTicoStop::exeTouch() {
             mScaleController->startDpdHitVibration();
         }
     }
-    _15 = _14 = false;
+
+    resetTouchBools();
+
     MR::startDPDFreezeLevelSound(mHost);
     MR::zeroVelocity(mHost);
 
@@ -85,7 +88,7 @@ void SupportTicoStop::exeTouch() {
 }
 
 void SupportTicoStop::exeDoNothing() {
-    _15 = _14 = false;
+    resetTouchBools();
 }
 
 void SupportTicoStop::exeEndTouch() {
@@ -103,7 +106,7 @@ void SupportTicoStop::exeEndTouch() {
             MR::setBckRate(mHost, 1.0f);
         }
     } else {
-        _15 = _14 = false;
+        resetTouchBools();
     }
 
     setNerve(GET_NERVE(SupportTicoStop, SupportTicoStopNrvDoNothing));

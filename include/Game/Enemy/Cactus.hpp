@@ -9,7 +9,7 @@ public:
     virtual void init(const JMapInfoIter&);
     virtual void attackSensor(HitSensor*, HitSensor*);
 
-    inline void exeWait();
+    void exeWait();
 
     bool isNerveWait() const NO_INLINE;
 };

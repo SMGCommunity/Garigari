@@ -26,5 +26,5 @@ bool Cactus::isNerveWait() const {
     return isNerve(GET_NERVE(Cactus, CactusNrvWait));
 }
 
-inline void Cactus::exeWait() {
+void Cactus::exeWait() {
 }
