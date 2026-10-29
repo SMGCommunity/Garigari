@@ -1,14 +1,11 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-
 #include <revolution/mtx.h>
 
-class FileSelectModel : LiveActor {
+class FileSelectModel : public LiveActor {
 public:
     FileSelectModel(const char*, MtxPtr, const char*);
-
-    ~FileSelectModel();
 
     void calcAnim();
     void open();
@@ -21,12 +18,11 @@ public:
     void emitCopy();
     void emitCompleteEffect();
     void deleteCompleteEffect();
+    void exeOpen();
     void exeBlinkOnce();
     void exeBlink();
-    void calcAndSetBaseMtx();
-
-    void exeOpen();
     void exeClose();
+    void calcAndSetBaseMtx();
 
     /* 0x90 */ MtxPtr _90;
 };

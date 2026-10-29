@@ -1,5 +1,4 @@
 #include "Game/Map/FileSelectModel.hpp"
-
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/ActorAnimUtil.hpp"
@@ -72,6 +71,12 @@ void FileSelectModel::deleteCompleteEffect() {
     MR::deleteEffect(this, "Complete");
 }
 
+void FileSelectModel::exeOpen() {
+    if (MR::isFirstStep(this)) {
+        MR::startAction(this, "normal");
+    }
+}
+
 void FileSelectModel::exeBlinkOnce() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "blink");
@@ -92,22 +97,13 @@ void FileSelectModel::exeBlink() {
     }
 }
 
-void FileSelectModel::calcAndSetBaseMtx() {
-    mPosition.setTrans(_90);
-    MR::setBaseTRMtx(this, _90);
-}
-
-FileSelectModel::~FileSelectModel() {
-}
-
 void FileSelectModel::exeClose() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "close");
     }
 }
 
-void FileSelectModel::exeOpen() {
-    if (MR::isFirstStep(this)) {
-        MR::startAction(this, "normal");
-    }
+void FileSelectModel::calcAndSetBaseMtx() {
+    mPosition.setTrans(_90);
+    MR::setBaseTRMtx(this, _90);
 }
