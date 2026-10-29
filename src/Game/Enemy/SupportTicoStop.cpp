@@ -58,6 +58,7 @@ void SupportTicoStop::exeTouch() {
     if (getNerveStep() == 0) {
         MR::startDPDHitSound();
         _10 = 0;
+
         if (MR::isExistEffectKeeper(mHost)) {
             MR::emitEffect(mHost, mUsePointerTouch ? "PointerTouch" : "Touch");
         }
@@ -98,6 +99,7 @@ void SupportTicoStop::exeEndTouch() {
         if (mScaleController != nullptr) {
             mScaleController->startAnim();
         }
+
         if (MR::isExistEffectKeeper(mHost)) {
             MR::deleteEffect(mHost, mUsePointerTouch ? "PointerTouch" : "Touch");
         }
