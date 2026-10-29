@@ -1762,7 +1762,7 @@ config.libs = [
             Object(NonMatching, "Game/MapObj/StemFruit.cpp"),
             Object(NonMatching, "Game/MapObj/Sun.cpp"),
             Object(NonMatching, "Game/MapObj/SuperSpinDriver.cpp"),
-            Object(NonMatching, "Game/MapObj/SupportFlushPoint.cpp"),
+            Object(Matching, "Game/MapObj/SupportFlushPoint.cpp"),
             Object(NonMatching, "Game/MapObj/SupportPlayDirector.cpp"),
             Object(NonMatching, "Game/MapObj/SwingActionWatcher.cpp"),
             Object(NonMatching, "Game/MapObj/SwitchFreezePlanet.cpp"),
