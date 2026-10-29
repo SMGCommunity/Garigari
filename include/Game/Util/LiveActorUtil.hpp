@@ -321,6 +321,18 @@ namespace MR {
     ModelObj* createIndirectPlanetModel(LiveActor* pHost, MtxPtr pMtx);
     ModelObj* createIndirectModel(LiveActor* pHost, MtxPtr pMtx);
 
+    enum DrawBufferDistance {
+        DrawBufferDistance_MapObj2 = -0x1,
+        DrawBufferDistance_MapOnj = 0x9,
+        DrawBufferDistance_MapObjStrongLight = 0xb,
+        DrawBufferDistance_NoSilhouettedMapObjStrongLight = 0xe,
+        DrawBufferDistance_Enemy = 0x13,
+        DrawBufferDistance_NPC = 0x11,
+        DrawBufferDistance_IndirectNpc = 0x1c,
+        DrawBufferDistance_EnemyAndFix = 0x13,
+        DrawBufferDistance_NpcAndFix = 0x11
+    };
+
     PartsModel* createPartsModelMapObj2(LiveActor* pHost, const char* pName, const char* pModelName, MtxPtr pMtx);  // effectively the same as below
     PartsModel* createPartsModelMapObj(LiveActor* pHost, const char* pName, const char* pModelName, MtxPtr pMtx);
     PartsModel* createPartsModelMapObjStrongLight(LiveActor* pHost, const char* pName, const char* pModelName, MtxPtr pMtx);
@@ -329,7 +341,7 @@ namespace MR {
     PartsModel* createPartsModelNpc(LiveActor* pHost, const char* pName, const char* pModelName, MtxPtr pMtx);
     PartsModel* createPartsModelIndirectNpc(LiveActor* pHost, const char* pName, const char* pModelName, MtxPtr pMtx);
     PartsModel* createPartsModelEnemyAndFix(LiveActor* pHost, const char* pName, const char* pModelName, MtxPtr pMtx);
-    PartsModel* createPartsModelNpcAndFix(LiveActor* pHost, const char* pName, const char* pModelName, MtxPtr pMtx);
+    PartsModel* createPartsModelNpcAndFix(LiveActor* pHost, const char* pName, const char* pModelName, MtxPtr pMtx, const char* pJointName);
 
     RailObj* createRailObj(const char* pName, LiveActor* pHost, const JMapInfoIter& rIter);
 
@@ -351,4 +363,6 @@ namespace MR {
 
     HitSensor* getBodySensor(LiveActor* pActor);
     void setBodySensorType(LiveActor* pActor, u32 sensorType);
+
+    void initMapPartsClipping(LiveActor*, const JMapInfoIter&, JGeometry::TVec3< float >*, bool);
 };  // namespace MR
