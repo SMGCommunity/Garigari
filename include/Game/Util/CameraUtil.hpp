@@ -31,6 +31,7 @@ namespace MR {
     void endEventCamera(const ActorCameraInfo*, const char*, bool, s32);
     void endEventCameraAtLanding(const ActorCameraInfo*, const char*, s32);
     void endGlobalEventCamera(const char*, s32, bool);
+    bool isEventCameraActive();
     bool isEventCameraActive(const ActorCameraInfo*, const char*);
     void setProgrammableCameraParam(const char*, const TVec3f&, const TVec3f&, const TVec3f&, bool);
     void setProgrammableCameraParamFovy(const char*, f32);
