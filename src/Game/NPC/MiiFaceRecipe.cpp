@@ -24,9 +24,10 @@ void MiiFaceRecipe::initFaceModel(RFLCharModel* pCharModel, void* pWork) const {
     RFLInitCharModel(pCharModel, mDataSource, mDatabase, mIndex, pWork, mResolution, mExpressionFlags);
 }
 
-// NON_MATCHING
-// decomp.me: https://decomp.me/scratch/KNT2F
 RFLErrcode MiiFaceRecipe::makeIcon(void* pBuffer, int width, int height, _GXColor bgColor) const {
+    // FIXME
+    // decomp.me: https://decomp.me/scratch/KNT2F
+
     RFLIconSetting iconSetting;
 
     iconSetting.width = width;
