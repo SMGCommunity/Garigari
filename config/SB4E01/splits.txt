@@ -6564,19 +6564,20 @@ Game/MapObj/RisePictureBookPlanet.cpp:
 	.sdata2     start:0x807DE2D8 end:0x807DE2E0
 
 Game/MapObj/Rock.cpp:
-	.text       start:0x802F2650 end:0x802F5290 align:16
+	.text       start:0x802F2650 end:0x802F4F60 align:16
 	.ctors      start:0x80644564 end:0x80644568
 	.rodata     start:0x806496B0 end:0x806496D0
-	.data       start:0x806AB030 end:0x806AB410
+	.data       start:0x806AB030 end:0x806AB370
 	.sdata      start:0x807CFDA8 end:0x807CFDB0
-	.sbss       start:0x807D4268 end:0x807D4288
-	.sdata2     start:0x807DE2E0 end:0x807DE3B8
+	.sbss       start:0x807D4268 end:0x807D4280
+	.sdata2     start:0x807DE2E0 end:0x807DE398
 
 Game/MapObj/RockBreakCage.cpp:
-	.text       start:0x802F5290 end:0x802F5370 align:16
+	.text       start:0x802F4F60 end:0x802F5370 align:16
 	.ctors      start:0x80644568 end:0x8064456C
-	.data       start:0x806AB410 end:0x806AB440
-	.sbss       start:0x807D4288 end:0x807D4290
+	.data       start:0x806AB370 end:0x806AB440
+	.sbss       start:0x807D4280 end:0x807D4290
+	.sdata2     start:0x807DE398 end:0x807DE3AC
 
 Game/MapObj/RockCreator.cpp:
 	.text       start:0x802F5370 end:0x802F5A30 align:16
