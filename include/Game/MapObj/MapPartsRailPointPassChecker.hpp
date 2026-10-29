@@ -1,0 +1,23 @@
+#pragma once
+
+#include "Game/MapObj/MapPartsFunction.hpp"
+
+class MapPartsRailPointPassChecker : public MapPartsFunction {
+public:
+    MapPartsRailPointPassChecker(LiveActor*);
+
+    virtual void movement();
+    virtual bool isWorking() const {
+        return true;
+    };
+    virtual void start();
+    virtual void end() {
+    }
+
+    bool isPassed() const;
+    bool isReachedEnd() const;
+    bool isPassedStartPoint() const;
+    bool isPassedEndPoint() const;
+
+    /* 0x28 */ s32 mRailPointNo;
+};
