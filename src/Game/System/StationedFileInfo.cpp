@@ -372,6 +372,7 @@ namespace {
             MR::StationedFileInfo::LOAD_TYPE_LAYOUT_1,
             "/LayoutData/WipeRing.arc",
         },
+// REGIONAL
 #if 0
 #if (VERSION == SB4W01 || VERSION == SB4K01)
         {
@@ -493,6 +494,7 @@ namespace {
             MR::StationedFileInfo::LOAD_TYPE_MESSAGE,
             "/MessageData/LayoutMessage.arc",
         },
+// REGIONAL
 #if 0
 #if (VERSION == SB4W01 || VERSION == SB4K01)
         {
