@@ -12,6 +12,3 @@ void Sun::init(const JMapInfoIter& rIter) {
     MR::invalidateClipping(this);
     makeActorAppeared();
 }
-
-Sun::~Sun() {
-}
