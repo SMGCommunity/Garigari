@@ -2344,7 +2344,7 @@ config.libs = [
             Object(NonMatching, "Game/System/ShapePacketUserData.cpp"),
             Object(NonMatching, "Game/System/StarPointerOnOffController.cpp"),
             Object(NonMatching, "Game/System/StationedArchiveLoader.cpp"),
-            Object(NonMatching, "Game/System/StationedFileInfo.cpp"),
+            Object(Matching, "Game/System/StationedFileInfo.cpp"),
             Object(NonMatching, "Game/System/WPad.cpp"),
             Object(NonMatching, "Game/System/WPadAcceleration.cpp"),
             Object(NonMatching, "Game/System/WPadButton.cpp"),

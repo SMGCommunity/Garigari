@@ -10134,12 +10134,13 @@ Game/System/StarPointerOnOffController.cpp:
 	.data       start:0x806FC450 end:0x806FC4E0
 
 Game/System/StationedArchiveLoader.cpp:
-	.text       start:0x804CDC30 end:0x804CDE90 align:16
+	.text       start:0x804CDC30 end:0x804CDF70 align:16
 	.data       start:0x806FC4E0 end:0x806FC4F0
 
 Game/System/StationedFileInfo.cpp:
-	.text       start:0x804CDE90 end:0x804CDF80 align:16
+	.text       start:0x804CDF70 end:0x804CDF80 align:16
 	.rodata     start:0x8064D278 end:0x8064DF38
+	.data       start:0x806FC4F0 end:0x806FE740
 
 Game/System/WPad.cpp:
 	.text       start:0x804CDF80 end:0x804CE640 align:16
