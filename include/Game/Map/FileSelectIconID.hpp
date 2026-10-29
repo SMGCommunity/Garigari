@@ -8,22 +8,22 @@ public:
     /// @brief The identifier of a Mario character icon.
     enum EFellowID {
         /// @brief The Mario icon.
-        Mario,
+        /* 0x00 */ EFellowID_Mario,
 
         /// @brief The Luigi icon.
-        Luigi,
+        /* 0x02 */ EFellowID_Luigi,
 
         /// @brief The Yoshi icon.
-        Yoshi,
+        /* 0x04 */ EFellowID_Yoshi,
 
         /// @brief The Toad icon.
-        Kinopio,
+        /* 0x06 */ EFellowID_Kinopio,
 
         /// @brief The Peach icon.
-        Peach,
+        /* 0x08 */ EFellowID_Peach,
 
         /// @brief The Luma icon.
-        Tico,
+        /* 0x0A */ EFellowID_Tico,
     };
 
     /// @brief Creates a new `FileSelectIconID`.
@@ -39,7 +39,7 @@ public:
 
     /// @brief Updates the position of the Mii data in the Mii database.
     /// @param miiIndex The new position of the Mii data.
-    void setMiiIndex(u16);
+    void setMiiIndex(u16 miiIndex);
 
     /// @brief Determines if the icon represents a Mii character.
     /// @return `true` if the icon represents a Mii character, `false` otherwise.
@@ -51,7 +51,7 @@ public:
 
     /// @brief Updates the identifier of the Mario character.
     /// @param fellowID The new identifier of the Mario character.
-    void setFellowID(EFellowID);
+    void setFellowID(EFellowID fellowID);
 
     /// @brief Determines if the icon represents a Mario character.
     /// @return `true` if the icon represents a Mario character, `false` otherwise.
