@@ -16,13 +16,10 @@ namespace NrvRockBreakCage {
     NEW_NERVE(RockBreakCageNrvCrack, RockBreakCage, Crack);
 };  // namespace NrvRockBreakCage
 
-void RockBreakCage_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-    (void)0.0f;
-    (void)2.0f;
-    (void)2.0f;
-    (void)4.0f;
-}
+namespace {
+    const f32 sBreakModelSize = 2;
+    const f32 sBreakModelSizeL = 4;
+};  // namespace
 
 RockBreakCage::RockBreakCage(const char* pName) : LiveActor(pName), mRemainingHits(2), mBreakModel(), mObjectName() {
 }
@@ -54,9 +51,9 @@ bool RockBreakCage::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSenso
             mBreakModel->appear();
 
             if (MR::isEqualString(mObjectName, "RockBreakCageL")) {
-                MR::setScale(mBreakModel, 4.0f);
+                MR::setScale(mBreakModel, ::sBreakModelSizeL);
             } else {
-                MR::setScale(mBreakModel, 2.0f);
+                MR::setScale(mBreakModel, ::sBreakModelSize);
             }
 
             MR::startActionSound(this, "Break");

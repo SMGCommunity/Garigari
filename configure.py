@@ -1703,7 +1703,7 @@ config.libs = [
             Object(NonMatching, "Game/MapObj/RestartObj.cpp"),
             Object(NonMatching, "Game/MapObj/RisePictureBookPlanet.cpp"),
             Object(NonMatching, "Game/MapObj/Rock.cpp"),
-            Object(NonMatching, "Game/MapObj/RockBreakCage.cpp"),
+            Object(Matching, "Game/MapObj/RockBreakCage.cpp"),
             Object(NonMatching, "Game/MapObj/RockCreator.cpp"),
             Object(NonMatching, "Game/MapObj/RockReflector.cpp"),
             Object(NonMatching, "Game/MapObj/RollingWater.cpp"),
