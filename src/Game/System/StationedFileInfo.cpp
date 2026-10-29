@@ -373,14 +373,12 @@ namespace {
             "/LayoutData/WipeRing.arc",
         },
 // REGIONAL
-#if 0
-#if (VERSION == SB4W01 || VERSION == SB4K01)
+#if 0 && (VERSION == SB4W01 || VERSION == SB4K01)
         {
             MR::StationedFileInfo::HEAP_TYPE_GDDR,
             MR::StationedFileInfo::LOAD_TYPE_LAYOUT_1,
             "/LayoutData/TimeUp.arc",
         },
-#endif
 #endif
         {
             MR::StationedFileInfo::HEAP_TYPE_GDDR,
@@ -495,14 +493,12 @@ namespace {
             "/MessageData/LayoutMessage.arc",
         },
 // REGIONAL
-#if 0
-#if (VERSION == SB4W01 || VERSION == SB4K01)
+#if 0 && (VERSION == SB4W01 || VERSION == SB4K01)
         {
             MR::StationedFileInfo::HEAP_TYPE_GDDR,
             MR::StationedFileInfo::LOAD_TYPE_RESOURCE_1,
             "/LayoutData/SaveIconBanner.arc",
         },
-#endif
 #endif
         {
             MR::StationedFileInfo::HEAP_TYPE_GDDR,
