@@ -2412,6 +2412,8 @@ config.libs = [
             Object(NonMatching, "Game/World/WORLD_UNK8.cpp"),
             Object(NonMatching, "Game/World/WORLD_UNK9.cpp"),
             Object(NonMatching, "Game/World/WORLD_UNK10.cpp"),
+            Object(NonMatching, "Game/World/WorldMapObjFunction.cpp"),
+            Object(NonMatching, "Game/World/WorldMapObjHolder.cpp"),
             Object(NonMatching, "Game/World/WORLD_UNK11.cpp"),
             Object(NonMatching, "Game/World/WORLD_UNK12.cpp"),
             Object(NonMatching, "Game/World/WORLD_UNK13.cpp"),
