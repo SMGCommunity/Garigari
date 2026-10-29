@@ -1705,7 +1705,7 @@ config.libs = [
             Object(NonMatching, "Game/MapObj/Rock.cpp"),
             Object(NonMatching, "Game/MapObj/RockBreakCage.cpp"),
             Object(NonMatching, "Game/MapObj/RockCreator.cpp"),
-            Object(NonMatching, "Game/MapObj/RockReflector.cpp"),
+            Object(Matching, "Game/MapObj/RockReflector.cpp"),
             Object(NonMatching, "Game/MapObj/RollingWater.cpp"),
             Object(NonMatching, "Game/MapObj/RollingWaterCreator.cpp"),
             Object(NonMatching, "Game/MapObj/RotateHammerPressure.cpp"),
