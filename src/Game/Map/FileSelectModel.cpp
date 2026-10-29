@@ -20,9 +20,7 @@ FileSelectModel::FileSelectModel(const char* pObjName, MtxPtr pMtx, const char* 
     MR::connectToSceneNpc(this);
     initEffectKeeper(0, nullptr, false);
     MR::initLightCtrl(this);
-    mScale.x = 30.0f;
-    mScale.y = 30.0f;
-    mScale.z = 30.0f;
+    mScale.set(30.0f, 30.0f, 30.0f);
     initNerve(GET_NERVE(FileSelectModel, FileSelectModelNrvOpen));
     MR::invalidateClipping(this);
     makeActorDead();
