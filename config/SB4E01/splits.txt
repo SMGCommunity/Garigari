@@ -906,6 +906,10 @@ Game/Boss/BellyDragon_UNK6.cpp:
 	.data       start:0x8066D210 end:0x8066D260
 	.sbss       start:0x807D0F20 end:0x807D0F28
 
+Game/Boss/BellyDragonShadow.cpp:
+	.text       start:0x80095900 end:0x80096060 align:16
+	.data       start:0x8066D260 end:0x8066D2B8
+
 Game/Boss/BellyDragon_UNK7.cpp:
 	.text       start:0x80096060 end:0x80096960 align:16
 	.ctors      start:0x80643D88 end:0x80643D8C
@@ -1299,17 +1303,21 @@ Game/Boss/DinoPackunBaby.cpp:
 	.sdata2     start:0x807D7FC8 end:0x807D7FF0
 
 Game/Boss/DinoPackunBaby_UNK1.cpp:
-	.text       start:0x800B82E0 end:0x800BAB10 align:16
+	.text       start:0x800B81E0 end:0x800BAB10 align:16
 	.ctors      start:0x80643E48 end:0x80643E4C
-	.data       start:0x80671270 end:0x80671970
+	.data       start:0x80671268 end:0x80671970
 	.sbss       start:0x807D1360 end:0x807D13B0
 	.sdata2     start:0x807D7FF0 end:0x807D8008
 
-Game/Boss/DinoPackunBaby_UNK2.cpp:
+Game/Boss/DinoPackunBabyDemo.cpp:
 	.text       start:0x800BAB10 end:0x800BAF40 align:16
 	.ctors      start:0x80643E4C end:0x80643E50
 	.data       start:0x80671970 end:0x80671A08
 	.sbss       start:0x807D13B0 end:0x807D13B8
+
+Game/Boss/DinoPackunBabyShell.cpp:
+	.text       start:0x800BAF40 end:0x800BB270 align:16
+	.data       start:0x80671A08 end:0x80671AA8
 
 Game/Boss/DinoPackunBaby_UNK3.cpp:
 	.text       start:0x800BB270 end:0x800BB600 align:16
@@ -1453,28 +1461,32 @@ Game/Boss/KoopaJrCastle_UNK4.cpp:
 	.sbss       start:0x807D15B8 end:0x807D15C0
 	.sdata2     start:0x807D83C8 end:0x807D83F0
 
-Game/Boss/KoopaJrCastle_UNK5.cpp:
+Game/Boss/KoopaJrCastleCapsule.cpp:
+	.text       start:0x800D1E30 end:0x800D1F80 align:16
+	.data       start:0x80674AE0 end:0x80674B78
+
+Game/Boss/KoopaJrCastleElectricBazooka.cpp:
 	.text       start:0x800D1F80 end:0x800D2380 align:16
 	.ctors      start:0x80643E90 end:0x80643E94
 	.data       start:0x80674B78 end:0x80674C48
 	.sbss       start:0x807D15C0 end:0x807D15C8
 
-Game/Boss/KoopaJrCastle_UNK6.cpp:
-	.text       start:0x800D2380 end:0x800D3470 align:16
+Game/Boss/KoopaJrCastleFireBar.cpp:
+	.text       start:0x800D2380 end:0x800D3510 align:16
 	.ctors      start:0x80643E94 end:0x80643E98
 	.rodata     start:0x806472C0 end:0x806472D0
 	.data       start:0x80674C48 end:0x80674D50
 	.sbss       start:0x807D15C8 end:0x807D15D8
 	.sdata2     start:0x807D83F0 end:0x807D8430
 
-Game/Boss/KoopaJrCastle_UNK7.cpp:
-	.text       start:0x800D3470 end:0x800D6210 align:16
+Game/Boss/KoopaJrCastleFunction.cpp:
+	.text       start:0x800D3510 end:0x800D6210 align:16
 	.ctors      start:0x80643E98 end:0x80643E9C
 	.data       start:0x80674D50 end:0x80674F98
 	.sbss       start:0x807D15D8 end:0x807D15F8
 	.sdata2     start:0x807D8430 end:0x807D84A0
 
-Game/Boss/KoopaJrCastle_UNK8.cpp:
+Game/Boss/KoopaJrCastleHead.cpp:
 	.text       start:0x800D6210 end:0x800D6CC0 align:16
 	.ctors      start:0x80643E9C end:0x80643EA0
 	.data       start:0x80674F98 end:0x80675120
@@ -1576,61 +1588,75 @@ Game/Boss/KoopaJrRobot_UNK3.cpp:
 	.sbss       start:0x807D1700 end:0x807D1710
 	.sdata2     start:0x807D8560 end:0x807D8578
 
-Game/Boss/KoopaJrRobot_UNK4.cpp:
-	.text       start:0x800DE1E0 end:0x800DF090 align:16
+Game/Boss/KoopaJrRobotPod.cpp:
+	.text       start:0x800DDB50 end:0x800DDE80 align:16
+	.data       start:0x80675E98 end:0x80675F58
+	.sdata2     start:0x807D8578 end:0x807D8598
+
+Game/Boss/KoopaJrRobotRingBeam.cpp:
+	.text       start:0x800DDE80 end:0x800DE1E0 align:16
+	.data       start:0x80675F58 end:0x80675FE0
+
+Game/Boss/KoopaJrRobotState.cpp:
+	.text       start:0x800DE1E0 end:0x800DE770 align:16
+	.data       start:0x80675FE0 end:0x80676048
+	.sdata2     start:0x807D8598 end:0x807D85B0
+
+Game/Boss/KoopaJrRobotStateAttack.cpp:
+	.text       start:0x800DE770 end:0x800DF090 align:16
 	.ctors      start:0x80643ED4 end:0x80643ED8
 	.rodata     start:0x80647380 end:0x80647388
-	.data       start:0x80675FE0 end:0x80676110
+	.data       start:0x80676048 end:0x80676110
 	.bss        start:0x80728C90 end:0x80728CA8
 	.sbss       start:0x807D1710 end:0x807D1728
-	.sdata2     start:0x807D8598 end:0x807D85C8
+	.sdata2     start:0x807D85B0 end:0x807D85C8
 
-Game/Boss/KoopaJrRobot_UNK5.cpp:
+Game/Boss/KoopaJrRobotStateDamage.cpp:
 	.text       start:0x800DF090 end:0x800DF590 align:16
 	.ctors      start:0x80643ED8 end:0x80643EDC
 	.data       start:0x80676110 end:0x80676218
 	.sbss       start:0x807D1728 end:0x807D1740
 
-Game/Boss/KoopaJrRobot_UNK6.cpp:
-	.text       start:0x800DF590 end:0x800DF9E0 align:16
+Game/Boss/KoopaJrRobotStateDemo.cpp:
+	.text       start:0x800DF590 end:0x800DF9F0 align:16
 	.ctors      start:0x80643EDC end:0x80643EE0
 	.data       start:0x80676218 end:0x806762C0
 	.sbss       start:0x807D1740 end:0x807D1748
 	.sdata2     start:0x807D85C8 end:0x807D85E8
 
-Game/Boss/KoopaJrRobot_UNK7.cpp:
-	.text       start:0x800DF9E0 end:0x800DFE30 align:16
+Game/Boss/KoopaJrRobotStateDemoDown.cpp:
+	.text       start:0x800DF9F0 end:0x800DFE30 align:16
 	.ctors      start:0x80643EE0 end:0x80643EE4
 	.data       start:0x806762C0 end:0x80676380
 	.sbss       start:0x807D1748 end:0x807D1758
 	.sdata2     start:0x807D85E8 end:0x807D85F8
 
-Game/Boss/KoopaJrRobot_UNK8.cpp:
+Game/Boss/KoopaJrRobotStateDemoWeakPointHead.cpp:
 	.text       start:0x800DFE30 end:0x800E0220 align:16
 	.ctors      start:0x80643EE4 end:0x80643EE8
 	.data       start:0x80676380 end:0x80676440
 	.sbss       start:0x807D1758 end:0x807D1760
 	.sdata2     start:0x807D8600 end:0x807D8618
 
-Game/Boss/KoopaJrRobot_UNK9.cpp:
+Game/Boss/KoopaJrRobotStatePhase1.cpp:
 	.text       start:0x800E0220 end:0x800E0B50 align:16
 	.ctors      start:0x80643EE8 end:0x80643EEC
 	.data       start:0x80676440 end:0x80676538
 	.sbss       start:0x807D1760 end:0x807D1788
 
-Game/Boss/KoopaJrRobot_UNK10.cpp:
+Game/Boss/KoopaJrRobotStatePhase2.cpp:
 	.text       start:0x800E0B50 end:0x800E1400 align:16
 	.ctors      start:0x80643EEC end:0x80643EF0
 	.data       start:0x80676538 end:0x80676640
 	.sbss       start:0x807D1788 end:0x807D17B0
 
-Game/Boss/KoopaJrRobot_UNK11.cpp:
+Game/Boss/KoopaJrRobotStatePhase3.cpp:
 	.text       start:0x800E1400 end:0x800E1C60 align:16
 	.ctors      start:0x80643EF0 end:0x80643EF4
 	.data       start:0x80676640 end:0x80676758
 	.sbss       start:0x807D17B0 end:0x807D17D8
 
-Game/Boss/KoopaJrRobotBreakableStep.cpp:
+Game/Boss/KoopaJrRobotStepBreakable.cpp:
 	.text       start:0x800E1C60 end:0x800E20A0 align:16
 	.ctors      start:0x80643EF4 end:0x80643EF8
 	.data       start:0x80676758 end:0x80676818
@@ -1645,7 +1671,7 @@ Game/Boss/KoopaJrRobot_UNK12.cpp:
 	.sbss       start:0x807D17E8 end:0x807D17F8
 	.sdata2     start:0x807D8628 end:0x807D8630
 
-Game/Boss/KoopaJrRobot_UNK13.cpp:
+Game/Boss/KoopaPhaseBattle.cpp:
 	.text       start:0x800E28C0 end:0x800E3630 align:16
 	.ctors      start:0x80643EFC end:0x80643F00
 	.data       start:0x80676980 end:0x80676AE0
@@ -1653,7 +1679,7 @@ Game/Boss/KoopaJrRobot_UNK13.cpp:
 	.sbss       start:0x807D17F8 end:0x807D1810
 	.sdata2     start:0x807D8630 end:0x807D8638
 
-Game/Boss/KoopaJrRobot_UNK14.cpp:
+Game/Boss/KoopaPhaseFinalBattle.cpp:
 	.text       start:0x800E3630 end:0x800E3F90 align:16
 	.ctors      start:0x80643F00 end:0x80643F04
 	.data       start:0x80676AE0 end:0x80676C10
@@ -1661,21 +1687,21 @@ Game/Boss/KoopaJrRobot_UNK14.cpp:
 	.sbss       start:0x807D1810 end:0x807D1828
 	.sdata2     start:0x807D8638 end:0x807D8650
 
-Game/Boss/KoopaJrRobot_UNK15.cpp:
+Game/Boss/KoopaPunchRock.cpp:
 	.text       start:0x800E3F90 end:0x800E4380 align:16
 	.ctors      start:0x80643F04 end:0x80643F08
 	.data       start:0x80676C10 end:0x80676CE0
 	.sbss       start:0x807D1828 end:0x807D1838
 	.sdata2     start:0x807D8650 end:0x807D8658
 
-Game/Boss/KoopaJrRobot_UNK16.cpp:
+Game/Boss/KoopaShockWave.cpp:
 	.text       start:0x800E4380 end:0x800E4A00 align:16
 	.ctors      start:0x80643F08 end:0x80643F0C
 	.data       start:0x80676CE0 end:0x80676DA0
 	.sbss       start:0x807D1838 end:0x807D1840
 	.sdata2     start:0x807D8658 end:0x807D8680
 
-Game/Boss/KoopaJrRobot_UNK17.cpp:
+Game/Boss/KoopaShockWaveVertical.cpp:
 	.text       start:0x800E4A00 end:0x800E50A0 align:16
 	.ctors      start:0x80643F0C end:0x80643F10
 	.data       start:0x80676DA0 end:0x80676E60
@@ -1683,13 +1709,13 @@ Game/Boss/KoopaJrRobot_UNK17.cpp:
 	.sbss       start:0x807D1840 end:0x807D1850
 	.sdata2     start:0x807D8680 end:0x807D8698
 
-Game/Boss/KoopaJrRobot_UNK18.cpp:
+Game/Boss/KoopaSealCastle.cpp:
 	.text       start:0x800E50A0 end:0x800E5920 align:16
 	.ctors      start:0x80643F10 end:0x80643F14
 	.data       start:0x80676E60 end:0x80676F38
 	.sbss       start:0x807D1850 end:0x807D1860
 
-Game/Boss/KoopaJrRobot_UNK19.cpp:
+Game/Boss/KoopaSealChain.cpp:
 	.text       start:0x800E5920 end:0x800E5C90 align:16
 	.ctors      start:0x80643F14 end:0x80643F18
 	.data       start:0x80676F38 end:0x80677010
@@ -2085,6 +2111,16 @@ Game/Boss/TwoLegs_UNK2.cpp:
 	.data       start:0x8067B190 end:0x8067B2B8
 	.sbss       start:0x807D1C78 end:0x807D1C88
 	.sdata2     start:0x807D8B70 end:0x807D8B88
+
+Game/Boss/TwoLegs_UNK2_1.cpp:
+	.text       start:0x80105C70 end:0x80106390 align:16
+	.rodata     start:0x806478D8 end:0x806478F0
+	.sdata2     start:0x807D8B88 end:0x807D8BC0
+
+Game/Boss/TwoLegs_UNK2_2.cpp:
+	.text       start:0x80106390 end:0x801068C0 align:16
+	.data       start:0x8067B2B8 end:0x8067B2F8
+	.sdata2     start:0x807D8BC0 end:0x807D8BF8
 
 Game/Boss/TwoLegs_UNK3.cpp:
 	.text       start:0x801068C0 end:0x80106D00 align:16
@@ -6577,13 +6613,14 @@ Game/MapObj/RockBreakCage.cpp:
 	.ctors      start:0x80644568 end:0x8064456C
 	.data       start:0x806AB370 end:0x806AB440
 	.sbss       start:0x807D4280 end:0x807D4290
-	.sdata2     start:0x807DE398 end:0x807DE3AC
+	.sdata2     start:0x807DE398 end:0x807DE3B0
 
 Game/MapObj/RockCreator.cpp:
 	.text       start:0x802F5370 end:0x802F5A30 align:16
 	.ctors      start:0x8064456C end:0x80644570
 	.data       start:0x806AB440 end:0x806AB4F8
 	.sbss       start:0x807D4290 end:0x807D4298
+	.sdata2     start:0x807DE3B0 end:0x807DE3B8
 
 Game/MapObj/RockReflector.cpp:
 	.text       start:0x802F5A30 end:0x802F5CB0 align:16
@@ -7528,6 +7565,14 @@ Game/NPC/MeisterDemoSimple.cpp:
 	.data       start:0x806BA6E0 end:0x806BA830
 	.sbss       start:0x807D49E8 end:0x807D49F0
 
+Game/NPC/Meister_UNK1.cpp:
+	.text       start:0x80353880 end:0x80353E50 align:16
+	.data       start:0x806BA830 end:0x806BA840
+
+Game/NPC/Meister_UNK2.cpp:
+	.text       start:0x80353E50 end:0x80354560 align:16
+	.data       start:0x806BA840 end:0x806BAD38
+
 Game/NPC/NPC_UNK1.cpp:
 	.text       start:0x80354560 end:0x80354580 align:16
 	.ctors      start:0x806446F8 end:0x806446FC
@@ -7627,11 +7672,20 @@ Game/NPC/PichanRacer.cpp:
 	.sdata2     start:0x807DF358 end:0x807DF368
 
 Game/NPC/PlayAttackMan.cpp:
-	.text       start:0x8035A720 end:0x8035AA90 align:16
+	.text       start:0x8035A720 end:0x8035AAA0 align:16
 	.ctors      start:0x8064471C end:0x80644720
-	.data       start:0x806BBF68 end:0x806BC068
+	.data       start:0x806BBF68 end:0x806BC0A8
 	.sbss       start:0x807D4A70 end:0x807D4A78
 	.sdata2     start:0x807DF368 end:0x807DF370
+
+Game/NPC/PostmanFunction.cpp:
+	.text       start:0x8035AAA0 end:0x8035B330 align:16
+	.data       start:0x806BC0A8 end:0x806BC1E8
+	.sdata2     start:0x807DF370 end:0x807DF380
+
+Game/NPC/PostmanSystem.cpp:
+	.text       start:0x8035B330 end:0x8035B9B0 align:16
+	.data       start:0x806BC3E8 end:0x806BC428
 
 Game/NPC/PowerStarEventKeeper.cpp:
 	.text       start:0x8035B9B0 end:0x8035BF10 align:16
@@ -10512,8 +10566,14 @@ Game/World/WORLD_UNK10.cpp:
 	.data       start:0x80702A98 end:0x80702BA0
 	.sbss       start:0x807D5F30 end:0x807D5F58
 
+Game/World/WORLD_UNK10_1.cpp:
+	.text       start:0x804F20A0 end:0x804F24E0 align:16
+	.rodata     start:0x8064E1E0 end:0x8064E1E8
+	.sdata2     start:0x807E1CB0 end:0x807E1CF8
+
 Game/World/WorldMapObjFunction.cpp:
 	.text       start:0x804F24E0 end:0x804F39A0 align:16
+	.data       start:0x80702BA0 end:0x80702BB8
 
 Game/World/WorldMapObjHolder.cpp:
 	.text       start:0x804F39A0 end:0x804F3B80 align:16
