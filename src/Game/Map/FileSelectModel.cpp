@@ -29,6 +29,11 @@ void FileSelectModel::calcAnim() {
     LiveActor::calcAnim();
 }
 
+void FileSelectModel::calcAndSetBaseMtx() {
+    mPosition.setTrans(_90);
+    MR::setBaseTRMtx(this, _90);
+}
+
 void FileSelectModel::open() {
     if (!isNerve(GET_NERVE(FileSelectModel, FileSelectModelNrvOpen))) {
         setNerve(GET_NERVE(FileSelectModel, FileSelectModelNrvOpen));
@@ -101,9 +106,4 @@ void FileSelectModel::exeClose() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "close");
     }
-}
-
-void FileSelectModel::calcAndSetBaseMtx() {
-    mPosition.setTrans(_90);
-    MR::setBaseTRMtx(this, _90);
 }

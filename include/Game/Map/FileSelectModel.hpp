@@ -7,7 +7,9 @@ class FileSelectModel : public LiveActor {
 public:
     FileSelectModel(const char*, MtxPtr, const char*);
 
-    void calcAnim();
+    virtual void calcAnim();
+    virtual void calcAndSetBaseMtx();
+
     void open();
     void blinkOnce();
     void close();
@@ -22,7 +24,6 @@ public:
     void exeBlinkOnce();
     void exeBlink();
     void exeClose();
-    void calcAndSetBaseMtx();
 
     /* 0x90 */ MtxPtr _90;
 };
