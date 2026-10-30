@@ -69,9 +69,7 @@ void BlackHole::init(const JMapInfoIter& rIter) {
 }
 
 void BlackHole::makeActorAppeared() {
-    bool switchAValidAndOn = MR::isValidSwitchA(this) && MR::isOnSwitchA(this);
-
-    if (!switchAValidAndOn) {
+    if (!isSwitchAValidAndOn()) {
         LiveActor::makeActorAppeared();
         _90->makeActorAppeared();
     }
@@ -212,9 +210,7 @@ void BlackHole::exeWait() {
 
     MR::startActionSound(this, "OjLvBlackHole");
 
-    bool shouldKill = MR::isValidSwitchA(this) && MR::isOnSwitchA(this);
-
-    if (shouldKill) {
+    if (isSwitchAValidAndOn()) {
         kill();
     }
 }

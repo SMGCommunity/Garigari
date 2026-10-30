@@ -2,9 +2,10 @@
 
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
-#include "JSystem/JGeometry/TBox.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include <JSystem/JGeometry/TBox.hpp>
+#include <JSystem/JGeometry/TMatrix.hpp>
+#include <JSystem/JGeometry/TVec.hpp>
 
 class ActorCameraInfo;
 
@@ -28,6 +29,10 @@ public:
     void exeWait();
     void exeDemo();
     void exeDisappear();
+
+    inline bool isSwitchAValidAndOn() const {
+        return MR::isValidSwitchA(this) && MR::isOnSwitchA(this);
+    }
 
     /* 0x090 */ ModelObj* _90;
     /* 0x094 */ TVec3f _94;
