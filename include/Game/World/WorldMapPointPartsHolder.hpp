@@ -23,6 +23,10 @@ public:
     WorldMapPointPartsHolder(WorldMapObjHolder* pObjHolder);
 
     void init();
+    void appear();
+    void kill();
+    void makeActorAppeared();
+    void makeActorDead();
     WorldMapPointPart* findPointPart(s32 pointIndex);
 
     /* 0x0 */ WorldMapObjHolder* mObjHolder;

@@ -20,6 +20,8 @@ namespace MR {
 
     f32 calcCameraDistanceZ(const TVec3f&);
 
+    f32 getNearZ();
+    f32 getFarZ();
     f32 getFovy();
     void setFovy(f32);
 

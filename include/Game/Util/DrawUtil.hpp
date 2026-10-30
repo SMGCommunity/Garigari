@@ -17,6 +17,7 @@ namespace MR {
     void drawInit();
     void fillScreen(const GXColor&);
     void clearZBuffer();
+    void loadViewMtxFor2DModel();
     void drawInitFor2DModel();
     void setupDrawForNW4RLayout(f32);
 };
