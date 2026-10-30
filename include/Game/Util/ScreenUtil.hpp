@@ -11,6 +11,10 @@ namespace MR {
     inline s32 getScreenHeight() NO_INLINE {
         return JUTVideo::getManager()->getEfbHeight();
     }
+    s32 getFrameBufferWidth() NO_INLINE;
+    inline s32 getFrameBufferHeight() NO_INLINE {
+        return JUTVideo::getManager()->getEfbHeight();
+    }
     const ResTIMG* getScreenResTIMG();
 
     void openSystemWipeWhiteFade(s32 frame = -1);
