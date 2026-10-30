@@ -22,6 +22,23 @@
 #include <JSystem/JGeometry/TMatrix.hpp>
 #include <math_types.hpp>
 
+const struct {
+    char _pad0[0x1c];
+    char empty[1];
+    char _pad1[0x1b];
+    char nameRange[0xf];
+    char _pad2[1];
+    char nameModel[0xa];
+
+} lbl_8069C5A0 = {
+    "",
+    "",
+    "",
+    "BlackHoleRange",
+    "",
+    "BlackHole"
+};
+
 namespace NrvBlackHole {
     NEW_NERVE(BlackHoleNrvWait, BlackHole, Wait);
     NEW_NERVE(BlackHoleNrvDemo, BlackHole, Demo);
@@ -163,14 +180,8 @@ void BlackHole::initMapToolInfo(const JMapInfoIter& rIter) {
 }
 
 void BlackHole::initModel() {
-    // FIXME
-    // decomp.me: https://decomp.me/scratch/qJWcy
-    // Every time a string from .data is referenced in the target assembly, the current assembly references some @ thingy.
-    // As a result, nothing from .data ever gets loaded into r31, so r31 is used for this instead.
-    // r30 never gets used, which screws up a bunch of stuff at the beginning and end of the function involving the stack.
-
-    MR::initActor(this, "BlackHoleRange", false);
-    _90 = MR::createModelObjMapObj("", "BlackHole", getBaseMtx());
+    MR::initActor(this, lbl_8069C5A0.nameRange, false);
+    _90 = MR::createModelObjMapObj(lbl_8069C5A0.nameModel, lbl_8069C5A0.empty, getBaseMtx());
     _90->makeActorDead();
     updateModelScale(_A0, _A0);
 }
