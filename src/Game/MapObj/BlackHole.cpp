@@ -108,14 +108,6 @@ void BlackHole::calcAndSetBaseMtx() {
     }
 }
 
-bool BlackHole::tryStartDemoCamera() {
-    if (mActorCameraInfo != nullptr) {
-        MR::startActorCameraTargetSelf(this, mActorCameraInfo, -1);
-        return true;
-    }
-    return false;
-}
-
 void BlackHole::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (!isNerve(GET_NERVE(BlackHole, BlackHoleNrvWait))) {
         return;
@@ -136,6 +128,14 @@ void BlackHole::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     }
 
     setNerve(GET_NERVE(BlackHole, BlackHoleNrvDemo));
+}
+
+bool BlackHole::tryStartDemoCamera() {
+    if (mActorCameraInfo != nullptr) {
+        MR::startActorCameraTargetSelf(this, mActorCameraInfo, -1);
+        return true;
+    }
+    return false;
 }
 
 void BlackHole::initMapToolInfo(const JMapInfoIter& rIter) {

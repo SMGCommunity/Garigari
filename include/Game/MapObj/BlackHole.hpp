@@ -17,9 +17,9 @@ public:
     virtual void makeActorDead();
     virtual void kill();
     virtual void calcAndSetBaseMtx();
+    virtual void attackSensor(HitSensor*, HitSensor*);
 
     bool tryStartDemoCamera();
-    void attackSensor(HitSensor*, HitSensor*);
     void initMapToolInfo(const JMapInfoIter&);
     void initModel();
     void initCubeBox();
