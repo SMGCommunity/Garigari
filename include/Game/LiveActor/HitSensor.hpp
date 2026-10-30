@@ -20,7 +20,7 @@ public:
     void addHitSensor(HitSensor*);
 
     u32 mType;                  // 0x0
-    TVec3f mOffset;             // 0x4
+    TVec3f mPosition;           // 0x4
     f32 mRadius;                // 0x10
     u16 mSensorCount;           // 0x14
     u16 mGroupSize;             // 0x16
