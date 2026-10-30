@@ -38311,7 +38311,7 @@ drawTexture__20ImageEffectLocalUtilFP10JUTTexturellUcQ220ImageEffectLocalUtil12E
 sendTextureVertex__20ImageEffectLocalUtilFll = .text:0x80476E10; // type:function size:0x1D0
 blurTexture__20ImageEffectLocalUtilFP10JUTTexturellUlff = .text:0x80476FE0; // type:function size:0x250
 fn_80477230 = .text:0x80477230; // type:function size:0xA58
-createTexture__19ImageEffectResourceFf9_GXTexFmt = .text:0x80477C90; // type:function size:0x10C
+createTexture__19ImageEffectResourceFf9_GXTexFmt14_GXTexWrapMode12_GXTexFilter = .text:0x80477C90; // type:function size:0x10C
 __cl__Q22MR51FunctorV0M<PC11BloomEffect,M11BloomEffectFPCvPCv_v>CFv = .text:0x80477DA0; // type:function size:0x30
 clone__Q22MR51FunctorV0M<PC11BloomEffect,M11BloomEffectFPCvPCv_v>CFP7JKRHeap = .text:0x80477DD0; // type:function size:0x68
 __ct__19ImageEffectResourceFv = .text:0x80477E40; // type:function size:0x84
@@ -38319,7 +38319,7 @@ createBloomTexture__19ImageEffectResourceFv = .text:0x80477ED0; // type:function
 createBlurTexture__19ImageEffectResourceFv = .text:0x80478020; // type:function size:0x70
 createDOFTexture__19ImageEffectResourceFv = .text:0x80478090; // type:function size:0xE4
 createFogTexture__19ImageEffectResourceFv = .text:0x80478180; // type:function size:0x78
-fn_80478200 = .text:0x80478200; // type:function size:0x160
+loadGradientTexture__19ImageEffectResourceFv = .text:0x80478200; // type:function size:0x160
 update__16ImageEffectStateFv = .text:0x80478360; // type:function size:0x190
 forceOff__16ImageEffectStateFv = .text:0x804784F0; // type:function size:0x78
 __ct__Q220ImageEffectStateImpl16StateBloomNormalFP19ImageEffectDirector = .text:0x80478570; // type:function size:0x48

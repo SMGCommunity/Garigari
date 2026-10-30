@@ -13,7 +13,7 @@
 
 EXTERN_UNKNOWN_FUNC(f32, 8001E930, f32, f32, f32, f32, f32);
 
-PostFog::PostFog(const char* pName) : ImageEffectBase(pName), mDepthTexture(), _1C(), mInnerRadius(), mOuterRadius(10000), mA(255), mGradientID(-1) {
+PostFog::PostFog(const char* pName) : ImageEffectBase(pName), mDepthTexture(), _1C(), mInnerRadius(), mOuterRadius(10000), mA(255), mGradientType(-1) {
     MR::connectToSceneImageEffect(this);
     MR::createImageEffectSystemHolder();
     MR::getImageEffectResource()->createFogTexture();
@@ -174,11 +174,11 @@ void PostFog::drawFog(s16 left, s16 top, s16 right, s16 bottom, bool a5) const {
 }
 
 JUTTexture* PostFog::getGradientTexture() const {
-    s32 id = mGradientID;
+    s32 type = mGradientType;
 
-    if (id < 0) {
-        return MR::getImageEffectResource()->_28[0];
+    if (type < 0) {
+        return MR::getImageEffectResource()->mFogGradTexture[0];
     }
 
-    return MR::getImageEffectResource()->_28[id];
+    return MR::getImageEffectResource()->mFogGradTexture[type];
 }

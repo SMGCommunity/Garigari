@@ -22,5 +22,5 @@ public:
     /* 0x29 */ u8 mR;
     /* 0x2A */ u8 mG;
     /* 0x2B */ u8 mB;
-    /* 0x2C */ s32 mGradientID;
+    /* 0x2C */ s32 mGradientType;
 };
