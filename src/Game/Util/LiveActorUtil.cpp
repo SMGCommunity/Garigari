@@ -22,6 +22,7 @@
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/CollisionPartsFilter.hpp"
+#include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/FurMulti.hpp"
 #include "Game/Util/GravityUtil.hpp"
@@ -1699,6 +1700,184 @@ namespace MR {
 
     u32 getCollisionSensorType(const CollisionParts* pCollisionParts) {
         return pCollisionParts->mHitSensor->mType;
+    }
+
+    ModelObj* createModelObj(const char* pName, const char* pModelName, MtxPtr pMtx, int int_0, int int_1) {
+        ModelObj* modelObj = new ModelObj(pName, pModelName, pMtx, int_0, int_1, -2, false);
+
+        modelObj->initWithoutIter();
+
+        return modelObj;
+    }
+
+    DemoObj* createDemoObj(const char* pName, const char* pModelName, MtxPtr pMtx) {
+        DemoObj* demoObj = new DemoObj(pName, pMtx);
+
+        initActor(demoObj, pModelName, false);
+
+        demoObj->initWithoutIter();
+
+        return demoObj;
+    }
+
+    DemoObj* createDemoObjWithAnimArc(const char* pName, const char* pModelName, const char* pAnimArcName, MtxPtr pMtx) {
+        DemoObj* demoObj = new DemoObj(pName, pMtx);
+
+        initActorNoIter(demoObj, pModelName, pAnimArcName, false);
+
+        demoObj->initWithoutIter();
+
+        return demoObj;
+    }
+
+    DemoObj* createDemoObj(const char* pName, const char* pModelName, const char* pFuncName, MtxPtr pMtx) {
+        DemoObj* demoObj = new DemoObj(pName, pMtx);
+
+        initActor(demoObj, pModelName, pFuncName, false);
+
+        demoObj->initWithoutIter();
+
+        return demoObj;
+    }
+
+    DemoObj* createDemoObjWithAnimArc(const char* pName, const char* pModelName, const char* pAnimArcName, const char* pFuncName, MtxPtr pMtx) {
+        DemoObj* demoObj = new DemoObj(pName, pMtx);
+
+        initActorNoIter(demoObj, pModelName, pAnimArcName, pFuncName, false);
+
+        demoObj->initWithoutIter();
+
+        return demoObj;
+    }
+
+    ModelObj* createModelObjMapObjDecoration(const char* pName, const char* pModelName, MtxPtr pMtx) {
+        return createModelObj(pName, pModelName, pMtx, ModelObjInt_MapObjDecoration, -2);
+    }
+
+    ModelObj* createModelObjMapObj(const char* pName, const char* pModelName, MtxPtr pMtx) {
+        return createModelObj(pName, pModelName, pMtx, ModelObjInt_MapObj, -2);
+    }
+
+    ModelObj* createModelObjMapObjStrongLight(const char* pName, const char* pModelName, MtxPtr pMtx) {
+        return createModelObj(pName, pModelName, pMtx, ModelObjInt_MapObjStrongLight, -2);
+    }
+
+    ModelObj* createModelObjNoSilhouettedMapObj(const char* pName, const char* pModelName, MtxPtr pMtx) {
+        return createModelObj(pName, pModelName, pMtx, ModelObjInt_NoSilhouettedMapObj, -2);
+    }
+
+    ModelObj* createModelObjNoSilhouettedMapObjStrongLight(const char* pName, const char* pModelName, MtxPtr pMtx) {
+        return createModelObj(pName, pModelName, pMtx, ModelObjInt_NoSilhouettedMapObjStrongLight, -2);
+    }
+
+    ModelObj* createModelObjIndirectMapObj(const char* pName, const char* pModelName, MtxPtr pMtx) {
+        return createModelObj(pName, pModelName, pMtx, ModelObjInt_IndirectMapObj, -2);
+    }
+
+    ModelObj* createModelObjPlayerDecoration(const char* pName, const char* pModelName, MtxPtr pMtx) {
+        return createModelObj(pName, pModelName, pMtx, ModelObjInt_PlayerDecoration, -2);
+    }
+
+    ModelObj* createModelObjEnemy(const char* pName, const char* pModelName, MtxPtr pMtx) {
+        return createModelObj(pName, pModelName, pMtx, ModelObjInt_Enemy, 42);
+    }
+
+    ModelObj* createModelObjNpc(const char* pName, const char* pModelName, MtxPtr pMtx) {
+        return createModelObj(pName, pModelName, pMtx, ModelObjInt_NPC, -2);
+    }
+
+    ModelObj* createModelObjBloomModel(const char* pName, const char* pModelName, MtxPtr pMtx, bool registerDemo) {
+        ModelObj* modelObj = new ModelObj(pName, pModelName, pMtx, ModelObjInt_BloomModel, -2, -2, false);
+
+        modelObj->initWithoutIter();
+
+        if (registerDemo) {
+            registerDemoSimpleCastAll(modelObj);
+        }
+
+        return modelObj;
+    }
+
+    PartsModel* createPartsModel(LiveActor* pHost, const char* pName, const char* pModelName, MtxPtr pMtx, u32 drawBufferType) {
+        PartsModel* partsModel = new PartsModel(pHost, pName, pModelName, pMtx, drawBufferType, false);
+
+        partsModel->initWithoutIter();
+
+        return partsModel;
+    }
+
+    PartsModel* createPartsModelMapObj2(LiveActor* pHost, const char* pName, const char* pModelName, MtxPtr pMtx) {
+        return createPartsModel(pHost, pName, pModelName, pMtx, DrawBufferDistance_MapObj2);
+    }
+
+    PartsModel* createPartsModelMapObj(LiveActor* pHost, const char* pName, const char* pModelName, MtxPtr pMtx) {
+        return createPartsModel(pHost, pName, pModelName, pMtx, DrawBufferDistance_MapOnj);
+    }
+
+    PartsModel* createPartsModelMapObjStrongLight(LiveActor* pHost, const char* pName, const char* pModelName, MtxPtr pMtx) {
+        return createPartsModel(pHost, pName, pModelName, pMtx, DrawBufferDistance_MapObjStrongLight);
+    }
+
+    PartsModel* createPartsModelNoSilhouettedMapObj(LiveActor* pHost, const char* pName, const char* pModelName, MtxPtr pMtx) {
+        return createPartsModel(pHost, pName, pModelName, pMtx, DrawBufferDistance_NoSilhouettedMapObjStrongLight);
+    }
+
+    PartsModel* createPartsModelEnemy(LiveActor* pHost, const char* pName, const char* pModelName, MtxPtr pMtx) {
+        return createPartsModel(pHost, pName, pModelName, pMtx, DrawBufferDistance_Enemy);
+    }
+
+    PartsModel* createPartsModelNpc(LiveActor* pHost, const char* pName, const char* pModelName, MtxPtr pMtx) {
+        PartsModel* partsModel = new PartsModel(pHost, pName, pModelName, pMtx, DrawBufferDistance_NPC, false);
+
+        partsModel->initWithoutIter();
+
+        partsModel->mCheckHiddenHost = true;
+
+        return partsModel;
+    }
+
+    PartsModel* createPartsModelIndirectNpc(LiveActor* pHost, const char* pName, const char* pModelName, MtxPtr pMtx) {
+        PartsModel* partsModel = new PartsModel(pHost, pName, pModelName, pMtx, DrawBufferDistance_IndirectNpc, false);
+
+        partsModel->initWithoutIter();
+
+        partsModel->mCheckHiddenHost = true;
+
+        return partsModel;
+    }
+
+    PartsModel* createPartsModelEnemyAndFix(LiveActor* pHost, const char* pName, const char* pModelName, MtxPtr pMtx) {
+        PartsModel* partsModel = new PartsModel(pHost, pName, pModelName, pMtx, DrawBufferDistance_EnemyAndFix, false);
+
+        partsModel->initFixedPosition(pHost->mPosition, pHost->mRotation, nullptr);
+
+        partsModel->initWithoutIter();
+
+        return partsModel;
+    }
+
+    PartsModel* createPartsModelEnemyAndFix(LiveActor* pHost, const char* pName, const char* pModelName, MtxPtr pMtx,
+                                            const JGeometry::TVec3< float >& rOffset, const JGeometry::TVec3< float >& rRotate,
+                                            const char* pJointName) {
+        PartsModel* partsModel = new PartsModel(pHost, pName, pModelName, pMtx, DrawBufferDistance_EnemyAndFix, false);
+
+        partsModel->initFixedPosition(rOffset, rRotate, pJointName);
+
+        partsModel->initWithoutIter();
+
+        return partsModel;
+    }
+
+    PartsModel* createPartsModelNpcAndFix(LiveActor* pHost, const char* pName, const char* pModelName, const char* pJointName) {
+        PartsModel* partsModel = new PartsModel(pHost, pName, pModelName, nullptr, DrawBufferDistance_NpcAndFix, false);
+
+        partsModel->initFixedPosition(pJointName);
+
+        partsModel->initWithoutIter();
+
+        partsModel->mCheckHiddenHost = true;
+
+        return partsModel;
     }
 
     void stopSceneAtStep(const LiveActor* pActor, s32 step, s32 sceneStep) {
