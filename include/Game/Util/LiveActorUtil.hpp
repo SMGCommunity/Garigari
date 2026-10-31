@@ -308,6 +308,19 @@ namespace MR {
     DemoObj* createDemoObj(const char* pName, const char* pModelName, const char* pFuncName, MtxPtr pMtx);
     DemoObj* createDemoObjWithAnimArc(const char* pName, const char* pModelName, const char* pAnimArcName, const char* pFuncName, MtxPtr pMtx);
 
+    enum ModelObjInt {
+        ModelObjInt_MapObjDecoration = -2,
+        ModelObjInt_MapObj = 9,
+        ModelObjInt_MapObjStrongLight = 11,
+        ModelObjInt_NoSilhouettedMapObj = 14,
+        ModelObjInt_NoSilhouettedMapObjStrongLight = 16,
+        ModelObjInt_IndirectMapObj = 26,
+        ModelObjInt_PlayerDecoration = 22,
+        ModelObjInt_Enemy = 19,
+        ModelObjInt_NPC = 17,
+        ModelObjInt_BloomModel = 31
+    };
+
     ModelObj* createModelObjMapObjDecoration(const char* pName, const char* pModelName, MtxPtr pMtx);
     ModelObj* createModelObjMapObj(const char* pName, const char* pModelName, MtxPtr pMtx);
     ModelObj* createModelObjMapObjStrongLight(const char* pName, const char* pModelName, MtxPtr pMtx);
