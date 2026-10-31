@@ -78,9 +78,11 @@ void Birikyu::appear() {
 }
 
 void Birikyu::control() {
+    // Requires ActorStateParamScale
 }
 
 void Birikyu::movement() {
+    // Requires ActorStateParamScale
 }
 
 void Birikyu::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
@@ -302,7 +304,6 @@ void BirikyuWithFace::initAfterPlacement() {
 
     if (_D8 == 1) {
         MR::calcGravity(this);
-
         MR::offCalcGravity(this);
     }
 }
