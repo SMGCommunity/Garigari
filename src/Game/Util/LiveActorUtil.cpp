@@ -1754,38 +1754,47 @@ namespace MR {
     }
 
     ModelObj* createModelObjMapObj(const char* pName, const char* pModelName, MtxPtr pMtx) {
+        // TODO: If DrawBufferType is still mismatched, expect this to be fixed when the enum is updated.
         return createModelObj(pName, pModelName, pMtx, DrawBufferType_MapObj, -2);
     }
 
     ModelObj* createModelObjMapObjStrongLight(const char* pName, const char* pModelName, MtxPtr pMtx) {
+        // TODO: If DrawBufferType is still mismatched, expect this to be fixed when the enum is updated.
         return createModelObj(pName, pModelName, pMtx, DrawBufferType_MapObjStrongLight, -2);
     }
 
     ModelObj* createModelObjNoSilhouettedMapObj(const char* pName, const char* pModelName, MtxPtr pMtx) {
+        // TODO: If DrawBufferType is still mismatched, expect this to be fixed when the enum is updated.
         return createModelObj(pName, pModelName, pMtx, DrawBufferType_NoSilhouettedMapObj, -2);
     }
 
     ModelObj* createModelObjNoSilhouettedMapObjStrongLight(const char* pName, const char* pModelName, MtxPtr pMtx) {
+        // TODO: If DrawBufferType is still mismatched, expect this to be fixed when the enum is updated.
         return createModelObj(pName, pModelName, pMtx, DrawBufferType_NoSilhouettedMapObjStrongLight, -2);
     }
 
     ModelObj* createModelObjIndirectMapObj(const char* pName, const char* pModelName, MtxPtr pMtx) {
+        // TODO: If DrawBufferType is still mismatched, expect this to be fixed when the enum is updated.
         return createModelObj(pName, pModelName, pMtx, DrawBufferType_IndirectMapObj, -2);
     }
 
     ModelObj* createModelObjPlayerDecoration(const char* pName, const char* pModelName, MtxPtr pMtx) {
+        // TODO: If DrawBufferType is still mismatched, expect this to be fixed when the enum is updated.
         return createModelObj(pName, pModelName, pMtx, DrawBufferType_PlayerDecoration, -2);
     }
 
     ModelObj* createModelObjEnemy(const char* pName, const char* pModelName, MtxPtr pMtx) {
+        // TODO: If DrawBufferType is still mismatched, expect this to be fixed when the enum is updated.
         return createModelObj(pName, pModelName, pMtx, DrawBufferType_Enemy, MovementType_Enemy);
     }
 
     ModelObj* createModelObjNpc(const char* pName, const char* pModelName, MtxPtr pMtx) {
+        // TODO: If DrawBufferType is still mismatched, expect this to be fixed when the enum is updated.
         return createModelObj(pName, pModelName, pMtx, DrawBufferType_NPC, -2);
     }
 
     ModelObj* createModelObjBloomModel(const char* pName, const char* pModelName, MtxPtr pMtx, bool registerDemo) {
+        // TODO: If DrawBufferType is still mismatched, expect this to be fixed when the enum is updated.
         ModelObj* modelObj = new ModelObj(pName, pModelName, pMtx, DrawBufferType_BloomModel, -2, -2, false);
 
         modelObj->initWithoutIter();
@@ -1810,22 +1819,27 @@ namespace MR {
     }
 
     PartsModel* createPartsModelMapObj(LiveActor* pHost, const char* pName, const char* pModelName, MtxPtr pMtx) {
+        // TODO: If DrawBufferType is still mismatched, expect this to be fixed when the enum is updated.
         return createPartsModel(pHost, pName, pModelName, pMtx, DrawBufferType_MapObj);
     }
 
     PartsModel* createPartsModelMapObjStrongLight(LiveActor* pHost, const char* pName, const char* pModelName, MtxPtr pMtx) {
+        // TODO: If DrawBufferType is still mismatched, expect this to be fixed when the enum is updated.
         return createPartsModel(pHost, pName, pModelName, pMtx, DrawBufferType_NoSilhouettedMapObjStrongLight);
     }
 
     PartsModel* createPartsModelNoSilhouettedMapObj(LiveActor* pHost, const char* pName, const char* pModelName, MtxPtr pMtx) {
+        // TODO: If DrawBufferType is still mismatched, expect this to be fixed when the enum is updated.
         return createPartsModel(pHost, pName, pModelName, pMtx, DrawBufferType_NoSilhouettedMapObj);
     }
 
     PartsModel* createPartsModelEnemy(LiveActor* pHost, const char* pName, const char* pModelName, MtxPtr pMtx) {
+        // TODO: If DrawBufferType is still mismatched, expect this to be fixed when the enum is updated.
         return createPartsModel(pHost, pName, pModelName, pMtx, DrawBufferType_Enemy);
     }
 
     PartsModel* createPartsModelNpc(LiveActor* pHost, const char* pName, const char* pModelName, MtxPtr pMtx) {
+        // TODO: If DrawBufferType is still mismatched, expect this to be fixed when the enum is updated.
         PartsModel* partsModel = new PartsModel(pHost, pName, pModelName, pMtx, DrawBufferType_NPC, false);
 
         partsModel->initWithoutIter();
@@ -1835,6 +1849,7 @@ namespace MR {
     }
 
     PartsModel* createPartsModelIndirectNpc(LiveActor* pHost, const char* pName, const char* pModelName, MtxPtr pMtx) {
+        // TODO: If DrawBufferType is still mismatched, expect this to be fixed when the enum is updated.
         PartsModel* partsModel = new PartsModel(pHost, pName, pModelName, pMtx, DrawBufferType_IndirectNpc, false);
 
         partsModel->initWithoutIter();
@@ -1844,6 +1859,7 @@ namespace MR {
     }
 
     PartsModel* createPartsModelEnemyAndFix(LiveActor* pHost, const char* pName, const char* pModelName, MtxPtr pMtx) {
+        // TODO: If DrawBufferType is still mismatched, expect this to be fixed when the enum is updated.
         PartsModel* partsModel = new PartsModel(pHost, pName, pModelName, pMtx, DrawBufferType_EnemyDecoration, false);
 
         partsModel->initFixedPosition(pHost->mPosition, pHost->mRotation, nullptr);
@@ -1854,6 +1870,7 @@ namespace MR {
 
     PartsModel* createPartsModelEnemyAndFix(LiveActor* pHost, const char* pName, const char* pModelName, MtxPtr pMtx, const TVec3f& rOffset,
                                             const TVec3f& rRotate, const char* pJointName) {
+        // TODO: If DrawBufferType is still mismatched, expect this to be fixed when the enum is updated.
         PartsModel* partsModel = new PartsModel(pHost, pName, pModelName, pMtx, DrawBufferType_Enemy, false);
 
         partsModel->initFixedPosition(rOffset, rRotate, pJointName);
@@ -1863,6 +1880,7 @@ namespace MR {
     }
 
     PartsModel* createPartsModelNpcAndFix(LiveActor* pHost, const char* pName, const char* pModelName, const char* pJointName) {
+        // TODO: If DrawBufferType is still mismatched, expect this to be fixed when the enum is updated.
         PartsModel* partsModel = new PartsModel(pHost, pName, pModelName, nullptr, DrawBufferType_NPC, false);
 
         partsModel->initFixedPosition(pJointName);
