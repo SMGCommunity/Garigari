@@ -13,10 +13,7 @@
 #include "Game/Util/SoundUtil.hpp"
 
 namespace {
-    static const f32 sHitRadiusWithFace = 50.0f;
-    static const f32 sHitRadiusWithoutFace = 120.0f;
     static const s32 sAttackTime = 90;
-    static const f32 sShadowRadiusRatio = 0.8f;
     static const f32 sMoveRadius = 400.0f;
     static const f32 sMoveSpeedDefault = 10.0f;
 };  // namespace
@@ -71,7 +68,7 @@ void Birikyu::initAfterPlacement() {
         MR::normalize(&mUpVec);
         matrix.getZDir(mFrontVec);
         MR::normalize(&mFrontVec);
-        mPosition.set(mOrbitCenter + mFrontVec * ::sMoveRadius);
+        MR::setPosition(this, mOrbitCenter + mFrontVec * ::sMoveRadius);
     }
 }
 
@@ -93,7 +90,7 @@ void Birikyu::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
                 return;
             }
 
-            MR::sendMsgToGroupMember(ACTMES_GROUP_MOVE_STOP, this, getSensor("body"), "body");
+            MR::sendMsgToGroupMember(ACTMES_GROUP_MOVE_STOP, this, getSensor("Body"), "Body");
             setNerve(GET_NERVE(Birikyu, HostTypeNrvAttack));
         } else {
             MR::sendMsgPush(pReceiver, pSender);
@@ -171,7 +168,7 @@ void Birikyu::initRail(const JMapInfoIter& rIter) {
 
 bool Birikyu::tryStopPointing() {
     // if (MR::isStarPointerPointing2PAttachTarget(this)) {
-    MR::sendMsgToGroupMember(ACTMES_GROUP_MOVE_STOP, this, getSensor("body"), "body");
+    MR::sendMsgToGroupMember(ACTMES_GROUP_MOVE_STOP, this, getSensor("Body"), "Body");
     setNerve(GET_NERVE(Birikyu, HostTypeNrvStopPointing));
 
     return true;
@@ -233,8 +230,7 @@ void Birikyu::exeMoveCircle() {
     TVec3f orbitOffset = mFrontVec * ::sMoveRadius;
     rotationMtx.mult(orbitOffset, orbitOffset);
 
-    TVec3f finalOrbitPos = (mOrbitCenter + orbitOffset);
-    mPosition.set(finalOrbitPos);
+    MR::setPosition(this, mOrbitCenter + orbitOffset);
 }
 
 void Birikyu::exeWaitAtEdge() {
@@ -254,10 +250,10 @@ void Birikyu::exeAttack() {
         MR::emitEffect(this, "Hit");
     }
 
-    MR::startLevelSound(this, "SE_OJ_LV_BIRIKYU_MOVE");
+    MR::startActionSound(this, "OjLvBirikyuMove");
 
     if (MR::isStep(this, ::sAttackTime)) {
-        MR::sendMsgToGroupMember(ACTMES_GROUP_MOVE_START, this, getSensor("body"), "body");
+        MR::sendMsgToGroupMember(ACTMES_GROUP_MOVE_START, this, getSensor("Body"), "Body");
         goMove();
     }
 }
@@ -283,7 +279,7 @@ void Birikyu::exeKill() {
     }
 }
 
-BirikyuWithFace::BirikyuWithFace(const char* pName) : Birikyu(pName), _D0() {
+BirikyuWithFace::BirikyuWithFace(const char* pName) : Birikyu(pName), _D4(), _D8() {
 }
 
 void BirikyuWithFace::init(const JMapInfoIter& rIter) {
