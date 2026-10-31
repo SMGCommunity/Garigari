@@ -4997,7 +4997,9 @@ Game/Map/PlanetMapWithoutHighModel.cpp:
 
 Game/Map/ProductMapCreator.cpp:
 	.text       start:0x80261E10 end:0x80263590 align:16
-	.data       start:0x80699140 end:0x806991B8
+	.rodata     start:0x80648EF8 end:0x80649070
+	.data       start:0x80699140 end:0x80699928
+	.sdata      start:0x807CFB70 end:0x807CFB78
 	.sdata2     start:0x807DC950 end:0x807DC978
 
 Game/Map/QuakeEffectGenerator.cpp:
@@ -8130,12 +8132,16 @@ Game/Player/MarioActor.cpp:
 	.sbss       start:0x807D4E38 end:0x807D4E60
 	.sdata2     start:0x807DFBC8 end:0x807DFDA0
 
-Game/Player/CloudMarioHat.cpp:
+Game/Player/MarioActor_UNK1.cpp:
 	.text       start:0x803D9A80 end:0x803DAAE0 align:16
 	.ctors      start:0x806447CC end:0x806447D0
 	.rodata     start:0x8064BD70 end:0x8064BDA8
 	.data       start:0x806C7588 end:0x806C76C0
 	.sdata2     start:0x807DFDA0 end:0x807DFDC8
+
+Game/Player/MarioActor_UNK2.cpp:
+	.text       start:0x803DAAE0 end:0x803DB270 align:16
+	.data       start:0x806C76C0 end:0x806C7780
 
 Game/Player/MarioAnimator.cpp:
 	.text       start:0x803DB270 end:0x803E1940 align:16
@@ -8354,6 +8360,10 @@ Game/Player/MarioSwim.cpp:
 	.sdata      start:0x807D0070 end:0x807D0098
 	.sbss       start:0x807D4EA0 end:0x807D4EB8
 	.sdata2     start:0x807E02B8 end:0x807E0400
+
+Game/Player/MarioTable.cpp:
+	.text       start:0x80403890 end:0x80403CF0 align:16
+	.data       start:0x806DEA98 end:0x806DEAD0
 
 Game/Player/MarioTalk.cpp:
 	.text       start:0x80403CF0 end:0x80403F90 align:16
@@ -8945,6 +8955,10 @@ Game/Scene/StageFileLoader.cpp:
 Game/Scene/StopSceneController.cpp:
 	.text       start:0x8045CFF0 end:0x8045D2D0 align:16
 	.data       start:0x806F1398 end:0x806F1438
+
+Game/Screen/UNK1_Layout.cpp:
+	.text       start:0x8045D2D0 end:0x8045D500 align:16
+	.data       start:0x806F1438 end:0x806F1470
 
 Game/Screen/BackButton.cpp:
 	.text       start:0x8045D500 end:0x8045EC60 align:16
@@ -10322,12 +10336,21 @@ Game/System/GameEventValueChecker.cpp:
 	.rodata     start:0x8064E078 end:0x8064E198
 	.data       start:0x807001A0 end:0x80700660
 
+Game/System/GameDataGalaxyStorage.cpp:
+	.text       start:0x804DCE30 end:0x804DDC50 align:16
+	.data       start:0x80700660 end:0x80700710
+
 Game/System/GameDataPlayerStatus.cpp:
 	.text       start:0x804DDC50 end:0x804DE190 align:16
 	.data       start:0x80700710 end:0x80700798
 
-Game/System/StarPieceAlmsStorage.cpp:
-	.text       start:0x804DE340 end:0x804DE350 align:16
+Game/System/GameDataTicoFatStorage.cpp:
+	.text       start:0x804DE1B0 end:0x804DE5E0 align:16
+	.data       start:0x80700798 end:0x807007E8
+
+Game/System/GameDataWorldMapStorage.cpp:
+	.text       start:0x804DE5E0 end:0x804DE860 align:16
+	.data       start:0x807007E8 end:0x80700838
 
 Game/System/SysConfigFile.cpp:
 	.text       start:0x804DE860 end:0x804DEFE0 align:16
@@ -10509,6 +10532,13 @@ Game/World/WORLD_UNK2.cpp:
 	.sdata      start:0x807D0510 end:0x807D0520
 	.sbss       start:0x807D5EB8 end:0x807D5ED0
 	.sdata2     start:0x807E1BE8 end:0x807E1C48
+
+Game/World/WORLD_UNK3.cpp:
+	.text       start:0x804EB450 end:0x804ECBC0 align:16
+	.rodata     start:0x8064E1D0 end:0x8064E1D8
+	.data       start:0x80702350 end:0x807024D8
+	.sdata      start:0x807D0520 end:0x807D0528
+	.sdata2     start:0x807E1C48 end:0x807E1C70
 
 Game/World/WorldMapPointPartsHolder.cpp:
 	.text       start:0x804ECCD0 end:0x804EE100
@@ -11709,7 +11739,7 @@ JSystem/JAudio2/JASSeqParser.cpp:
 	.text       start:0x80588430 end:0x8058A2F0 align:16
 	.ctors      start:0x80644B3C end:0x80644B40
 	.rodata     start:0x806592C0 end:0x806592D0
-	.data       start:0x80708270 end:0x80709B88
+	.data       start:0x80708270 end:0x80709BA8
 	.sdata      start:0x807D08B8 end:0x807D08C0
 	.sbss       start:0x807D6480 end:0x807D6490
 	.sdata2     start:0x807E2418 end:0x807E2438
@@ -11787,7 +11817,7 @@ JSystem/JAudio2/JASBNKParser.cpp:
 
 JSystem/JAudio2/JASWaveArcLoader.cpp:
 	.text       start:0x8058EA50 end:0x8058EFE0 align:16
-	.data       start:0x80709CD0 end:0x80709CE8
+	.data       start:0x80709CD0 end:0x80709D28
 	.sbss       start:0x807D64C8 end:0x807D64D0
 
 JSystem/JAudio2/JASChannel.cpp:
@@ -12016,6 +12046,7 @@ JSystem/JAudio2/JAUStdSoundInfo.cpp:
 
 JSystem/JAudio2/JAUStreamFileTable.cpp:
 	.text       start:0x8059CDE0 end:0x8059CF20 align:16
+	.data       start:0x8070C108 end:0x8070C118
 
 RVL_SDK/aralt/aralt.c:
 	.text       start:0x8059CF20 end:0x8059D360
