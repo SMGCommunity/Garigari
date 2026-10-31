@@ -308,19 +308,6 @@ namespace MR {
     DemoObj* createDemoObj(const char* pName, const char* pModelName, const char* pFuncName, MtxPtr pMtx);
     DemoObj* createDemoObjWithAnimArc(const char* pName, const char* pModelName, const char* pAnimArcName, const char* pFuncName, MtxPtr pMtx);
 
-    enum ModelObjInt {
-        ModelObjInt_MapObjDecoration = -2,
-        ModelObjInt_MapObj = 9,
-        ModelObjInt_MapObjStrongLight = 11,
-        ModelObjInt_NoSilhouettedMapObj = 14,
-        ModelObjInt_NoSilhouettedMapObjStrongLight = 16,
-        ModelObjInt_IndirectMapObj = 26,
-        ModelObjInt_PlayerDecoration = 22,
-        ModelObjInt_Enemy = 19,
-        ModelObjInt_NPC = 17,
-        ModelObjInt_BloomModel = 31
-    };
-
     ModelObj* createModelObjMapObjDecoration(const char* pName, const char* pModelName, MtxPtr pMtx);
     ModelObj* createModelObjMapObj(const char* pName, const char* pModelName, MtxPtr pMtx);
     ModelObj* createModelObjMapObjStrongLight(const char* pName, const char* pModelName, MtxPtr pMtx);
@@ -345,18 +332,6 @@ namespace MR {
     ModelObj* createIceModel(LiveActor* pHost, MtxPtr pMtx);
     ModelObj* createIndirectPlanetModel(LiveActor* pHost, MtxPtr pMtx);
     ModelObj* createIndirectModel(LiveActor* pHost, MtxPtr pMtx);
-
-    enum DrawBufferDistance {
-        DrawBufferDistance_MapObj2 = -0x1,
-        DrawBufferDistance_MapOnj = 0x9,
-        DrawBufferDistance_MapObjStrongLight = 0xb,
-        DrawBufferDistance_NoSilhouettedMapObjStrongLight = 0xe,
-        DrawBufferDistance_Enemy = 0x13,
-        DrawBufferDistance_NPC = 0x11,
-        DrawBufferDistance_IndirectNpc = 0x1c,
-        DrawBufferDistance_EnemyAndFix = 0x13,
-        DrawBufferDistance_NpcAndFix = 0x11
-    };
 
     PartsModel* createPartsModelMapObj2(LiveActor* pHost, const char* pName, const char* pModelName, MtxPtr pMtx);  // effectively the same as below
     PartsModel* createPartsModelMapObj(LiveActor* pHost, const char* pName, const char* pModelName, MtxPtr pMtx);
@@ -389,5 +364,5 @@ namespace MR {
     HitSensor* getBodySensor(LiveActor* pActor);
     void setBodySensorType(LiveActor* pActor, u32 sensorType);
 
-    void initMapPartsClipping(LiveActor*, const JMapInfoIter&, JGeometry::TVec3< float >*, bool);
+    void initMapPartsClipping(LiveActor*, const JMapInfoIter&, TVec3f*, bool);
 };  // namespace MR
