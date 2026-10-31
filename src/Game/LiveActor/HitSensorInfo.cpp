@@ -49,7 +49,7 @@ void HitSensorInfo::update() {
         }
     }
 
-    mSensor->mOffset.set< f32 >(v20);
+    mSensor->mPosition.set< f32 >(v20);
 }
 
 void HitSensorInfo::doObjCol() {
