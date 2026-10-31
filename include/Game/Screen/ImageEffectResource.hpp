@@ -14,7 +14,9 @@ public:
     void createBlurTexture();
     void createDOFTexture();
     void createFogTexture();
-    JUTTexture* createTexture(f32, GXTexFmt);
+    void loadGradientTexture();
+
+    static JUTTexture* createTexture(f32 scale, GXTexFmt format, GXTexWrapMode wrap, GXTexFilter filter);
 
     /* 0x00 */ JUTTexture* _0;
     /* 0x04 */ JUTTexture* _4;
@@ -26,8 +28,8 @@ public:
     /* 0x1C */ JUTTexture* _1C;
     /* 0x20 */ JUTTexture* _20;
     /* 0x24 */ JUTTexture* _24;
-    /* 0x28 */ JUTTexture** _28;
-    /* 0x2C */ u32 _2C;
-    /* 0x30 */ ResourceHolder* _30;
-    /* 0x34 */ u32 _34;
+    /* 0x28 */ JUTTexture** mFogGradTexture;
+    /* 0x2C */ s32 mFogGradNum;
+    /* 0x30 */ ResourceHolder* mFogGradArc;
+    /* 0x34 */ GXTexFmt _34;
 };
