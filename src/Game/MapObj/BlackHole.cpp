@@ -162,14 +162,8 @@ void BlackHole::initMapToolInfo(const JMapInfoIter& rIter) {
 }
 
 void BlackHole::initModel() {
-    // FIXME
-    // decomp.me: https://decomp.me/scratch/vilNU
-    // The target assembly uses r31 to store a pointer to address 8069c5a0 in .data. Then, each time it references a string like "BlackHoleRange", it
-    // adds some number to 8069c5a0 and stores the sum in a register. By contrast, the current assembly directly loads the strings into the registers.
-    // It never uses r31, so the entire code is screwed up.
-
     MR::initActor(this, "BlackHoleRange", false);
-    mBlackHoleModel = MR::createModelObjMapObj("", "BlackHole", getBaseMtx());
+    mBlackHoleModel = MR::createModelObjMapObj("コアモデル", "BlackHole", getBaseMtx());
     mBlackHoleModel->makeActorDead();
     updateModelScale(mModelScale, mModelScale);
 }
@@ -196,11 +190,6 @@ void BlackHole::updateModelScale(f32 num1, f32 num2) {
 }
 
 void BlackHole::exeWait() {
-    // FIXME
-    // decomp.me: https://decomp.me/scratch/Wzg3j
-    // Every time a string from .data is referenced in the target assembly, the current assembly references some @ thingy.
-    // This somehow results in the current code accessing the wrong address in .data before calling MR::startActionSound.
-
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "BlackHoleRange");
         MR::startBtk(this, "BlackHoleRange");
