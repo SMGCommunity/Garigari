@@ -399,7 +399,7 @@ Game/Util/RumbleCalculator.cpp:
 	.sdata2     start:0x807D7270 end:0x807D7280
 
 Game/Util/SpringValue.cpp:
-	.text       start:0x80068D90 end:0x80068E40 align:16
+	.text       start:0x80068D90 end:0x80068E60 align:16
 	.sdata2     start:0x807D7280 end:0x807D7290
 
 Game/Util/TriangleFilter.cpp:
