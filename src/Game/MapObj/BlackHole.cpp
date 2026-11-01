@@ -1,5 +1,4 @@
 #include "Game/MapObj/BlackHole.hpp"
-
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/ActionSoundUtil.hpp"
@@ -22,23 +21,6 @@
 #include <JSystem/JGeometry/TMatrix.hpp>
 #include <math_types.hpp>
 
-const struct {
-    char _pad0[0x1c];
-    char empty[1];
-    char _pad1[0x1b];
-    char nameRange[0xf];
-    char _pad2[1];
-    char nameModel[0xa];
-
-} lbl_8069C5A0 = {
-    "",
-    "",
-    "",
-    "BlackHoleRange",
-    "",
-    "BlackHole"
-};
-
 namespace NrvBlackHole {
     NEW_NERVE(BlackHoleNrvWait, BlackHole, Wait);
     NEW_NERVE(BlackHoleNrvDemo, BlackHole, Demo);
@@ -46,31 +28,36 @@ namespace NrvBlackHole {
 };  // namespace NrvBlackHole
 
 BlackHole::BlackHole(const char* pName)
-    : LiveActor(pName), _90(), _94(gZeroVec), _A0(1.0f), mHitSensorEyeRadius(500.0f), mCubeBox(), mActorCameraInfo() {
+    : LiveActor(pName), mBlackHoleModel(), _94(gZeroVec), mModelScale(1.0f), mRadius(500.0f), mCubeBox(), mActorCameraInfo() {
     _AC.identity();
     mEffectHostMtx.identity();
 }
 
 void BlackHole::init(const JMapInfoIter& rIter) {
     // FIXME
-    // decomp.me: https://decomp.me/scratch/A5dvE
-    // There seems to be issues with the TVec3f constructor. In particular, when it's first called, it's inlined, even though it shouldn't be.
-    // Also, there are discrepancies with the value 500.0f. The target assembly refers to lbl_807DCD94; the current assembly refers to @5155.
+    // decomp.me: https://decomp.me/scratch/boJyM
+    // For whatever reason, it matches more in objdiff (99.90%) than in decomp.me (99.76%).
+    // For some reason, decomp.me compiles my code differently, resulting in r5 pointing to the wrong stack address before LiveActor::initSound is
+    // called. In objdiff, the only issue is that there are discrepancies with the value 500.0f. The target assembly refers to lbl_807DCD94; the
+    // current assembly refers to @5851.
 
     initMapToolInfo(rIter);
     initModel();
     MR::connectToSceneMapObj(this);
     initHitSensor(1);
-    MR::addHitSensorEye(this, "Body", 4, mHitSensorEyeRadius, TVec3f(0.0f, 0.0f, 0.0f));
+    MR::addHitSensorEye(this, "Body", 16, mRadius, TVec3f(0.0f, 0.0f, 0.0f));
     initEffectKeeper(0, nullptr, false);
     MR::setEffectHostMtx(this, "BlackHoleSuction", mEffectHostMtx);
 
-    f32 clippingRadius = 500.f + MR::max(mHitSensorEyeRadius, 500.f * _A0);
+    f32 clippingRadius = 500.0f + MR::max(mRadius, 500.0f * mModelScale);
     MR::setClippingTypeSphere(this, clippingRadius);
-    MR::setClippingTypeSphere(_90, clippingRadius);
+    MR::setClippingTypeSphere(mBlackHoleModel, clippingRadius);
     MR::setClippingFarMax(this);
-    MR::setClippingFarMax(_90);
-    initSound(4, "BlackHole");
+    MR::setClippingFarMax(mBlackHoleModel);
+
+    TVec3f a4;
+    a4.setAll< f32 >(0.0f);
+    initSound(4, "BlackHole", nullptr, a4);
 
     if (MR::tryRegisterDemoCast(this, rIter)) {
         MR::registerDemoActionNerve(this, GET_NERVE(BlackHole, BlackHoleNrvDisappear), nullptr);
@@ -88,28 +75,23 @@ void BlackHole::init(const JMapInfoIter& rIter) {
 void BlackHole::makeActorAppeared() {
     if (!isSwitchAValidAndOn()) {
         LiveActor::makeActorAppeared();
-        _90->makeActorAppeared();
+        mBlackHoleModel->makeActorAppeared();
     }
 }
 
 void BlackHole::makeActorDead() {
     LiveActor::makeActorDead();
-    if (!MR::isDead(_90)) {
-        _90->makeActorDead();
+    if (!MR::isDead(mBlackHoleModel)) {
+        mBlackHoleModel->makeActorDead();
     }
 }
 
 void BlackHole::kill() {
-    _90->kill();
+    mBlackHoleModel->kill();
     LiveActor::kill();
 }
 
 void BlackHole::calcAndSetBaseMtx() {
-    // FIXME
-    // decomp.me: https://decomp.me/scratch/nH8k8
-    // TVec3f.set() is inlined, even though it shouldn't be.
-    // Also, there is a discrepancy with the value 0.01f. The target assembly refers to lbl_807DCD98; the current assembly refers to @5309.
-
     LiveActor::calcAndSetBaseMtx();
 
     TVec3f dirToCam;
@@ -117,7 +99,7 @@ void BlackHole::calcAndSetBaseMtx() {
     TVec3f camYdir;
     camYdir.set(MR::getCamYdir());
 
-    if (!MR::normalizeOrZero(&dirToCam) && !MR::isSameDirection(dirToCam, camYdir, 0.01f)) {
+    if (!MR::normalizeOrZero(&dirToCam) && !MR::isSameDirection(dirToCam, camYdir)) {
         MR::makeMtxFrontUpPos(&mEffectHostMtx, dirToCam, camYdir, mPosition);
         mEffectHostMtx.scaleInline(mScale.x);
     }
@@ -134,7 +116,7 @@ void BlackHole::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         }
     }
 
-    if (!MR::sendArbitraryMsg(0x81, pReceiver, pSender)) {
+    if (!MR::sendArbitraryMsg(ACTMES_INHALE_BLACK_HOLE, pReceiver, pSender)) {
         return;
     }
 
@@ -162,28 +144,34 @@ void BlackHole::initMapToolInfo(const JMapInfoIter& rIter) {
     }
 
     if (mCubeBox == nullptr) {
-        mHitSensorEyeRadius = 500.0f * mScale.x;
+        mRadius = 500.0f * mScale.x;
     } else {
-        TVec3f size(mScale);
+        TVec3f size = mScale;
         size.scale(500.0f);
-        mHitSensorEyeRadius = size.length();
+        mRadius = size.length();
     }
 
     f32 arg0;
     if (MR::getJMapInfoArg0NoInit(rIter, &arg0)) {
-        _A0 = arg0 / 1000.0f;
+        mModelScale = arg0 / 1000.0f;
     } else if (mCubeBox == nullptr) {
-        _A0 = mScale.x;
+        mModelScale = mScale.x;
     } else {
-        _A0 = 1.0f;
+        mModelScale = 1.0f;
     }
 }
 
 void BlackHole::initModel() {
-    MR::initActor(this, lbl_8069C5A0.nameRange, false);
-    _90 = MR::createModelObjMapObj(lbl_8069C5A0.nameModel, lbl_8069C5A0.empty, getBaseMtx());
-    _90->makeActorDead();
-    updateModelScale(_A0, _A0);
+    // FIXME
+    // decomp.me: https://decomp.me/scratch/vilNU
+    // The target assembly uses r31 to store a pointer to address 8069c5a0 in .data. Then, each time it references a string like "BlackHoleRange", it
+    // adds some number to 8069c5a0 and stores the sum in a register. By contrast, the current assembly directly loads the strings into the registers.
+    // It never uses r31, so the entire code is screwed up.
+
+    MR::initActor(this, "BlackHoleRange", false);
+    mBlackHoleModel = MR::createModelObjMapObj("", "BlackHole", getBaseMtx());
+    mBlackHoleModel->makeActorDead();
+    updateModelScale(mModelScale, mModelScale);
 }
 
 void BlackHole::initCubeBox() {
@@ -203,8 +191,8 @@ bool BlackHole::isInCubeBox(const TVec3f& rVec) const {
 }
 
 void BlackHole::updateModelScale(f32 num1, f32 num2) {
-    mScale.setAll< float >(num1);
-    _90->mScale.setAll< float >(0.5f * num2);
+    mScale.setAll< f32 >(num1);
+    mBlackHoleModel->mScale.setAll< f32 >(0.5f * num2);
 }
 
 void BlackHole::exeWait() {
@@ -216,7 +204,7 @@ void BlackHole::exeWait() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "BlackHoleRange");
         MR::startBtk(this, "BlackHoleRange");
-        MR::startBtk(_90, "BlackHole");
+        MR::startBtk(mBlackHoleModel, "BlackHole");
     }
 
     MR::startActionSound(this, "OjLvBlackHole");
@@ -235,12 +223,12 @@ void BlackHole::exeDisappear() {
         MR::startActionSound(this, "OjLvBlackHoleDisappear");
     }
 
-    f32 easeInValue1 = MR::calcNerveEaseInValue(this, 0x5a, _A0, 0.0f);
-    f32 easeInValue2 = MR::calcNerveEaseInValue(this, 0x1e, 0x5a, _A0, 0.0f);
-    mScale.setAll< float >(easeInValue1);
-    _90->mScale.setAll< float >(0.5f * easeInValue2);
+    f32 easeInValue1 = MR::calcNerveEaseInValue(this, 90, mModelScale, 0.0f);
+    f32 easeInValue2 = MR::calcNerveEaseInValue(this, 30, 90, mModelScale, 0.0f);
+    mScale.setAll< f32 >(easeInValue1);
+    mBlackHoleModel->mScale.setAll< f32 >(0.5f * easeInValue2);
 
-    if (MR::isStep(this, 0x5a)) {
+    if (MR::isStep(this, 90)) {
         kill();
     }
 }

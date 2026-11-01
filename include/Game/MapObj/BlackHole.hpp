@@ -34,10 +34,10 @@ public:
         return MR::isValidSwitchA(this) && MR::isOnSwitchA(this);
     }
 
-    /* 0x090 */ ModelObj* _90;
+    /* 0x090 */ ModelObj* mBlackHoleModel;
     /* 0x094 */ TVec3f _94;
-    /* 0x0A0 */ f32 _A0;
-    /* 0x0A4 */ f32 mHitSensorEyeRadius;
+    /* 0x0A0 */ f32 mModelScale;
+    /* 0x0A4 */ f32 mRadius;
     /* 0x0A8 */ TBox3f* mCubeBox;
     /* 0x0AC */ TPos3f _AC;
     /* 0x0DC */ TPos3f mEffectHostMtx;
