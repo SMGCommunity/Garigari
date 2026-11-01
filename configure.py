@@ -2125,7 +2125,7 @@ config.libs = [
     GameLib(
         "Screen",
         [
-            Object(NonMatching, "Game/Screen/UNK1_Layout.cpp"),
+            Object(Matching, "Game/Screen/ActorLayout.cpp"),
             Object(NonMatching, "Game/Screen/BackButton.cpp"),
             Object(NonMatching, "Game/Screen/BatteryInfo.cpp"),
             Object(NonMatching, "Game/Screen/ImageEffectBase.cpp"),
@@ -2237,7 +2237,7 @@ config.libs = [
             Object(NonMatching, "Game/Screen/ScreenAlphaCapture.cpp"),
             Object(NonMatching, "Game/Screen/ScreenBlurEffect.cpp"),
             Object(NonMatching, "Game/Screen/ScreenPreserver.cpp"),
-            Object(NonMatching, "Game/Screen/SimpleLayout.cpp"),
+            Object(Matching, "Game/Screen/SimpleLayout.cpp"),
             Object(NonMatching, "Game/Screen/StaffRoll.cpp"),
             Object(NonMatching, "Game/Screen/Sta_UNK1.cpp"),
             Object(NonMatching, "Game/Screen/Sta_UNK2.cpp"),
@@ -2415,7 +2415,7 @@ config.libs = [
             Object(NonMatching, "Game/World/MiniRoutePoint.cpp"),
             Object(NonMatching, "Game/World/MiniStarCheckPoint.cpp"),
             Object(NonMatching, "Game/World/MiniStarPieceMine.cpp"),
-            Object(NonMatching, "Game/World/MiniStarWorldPoint.cpp"),
+            Object(Matching, "Game/World/MiniStarWorldPoint.cpp"),
             Object(NonMatching, "Game/World/MiniTicoMaster.cpp"),
             Object(Matching, "Game/World/MiniWorldWarpPoint.cpp"),
             Object(Matching, "Game/World/WorldMapModel.cpp"),

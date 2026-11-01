@@ -1,6 +1,6 @@
 #include "Game/World/MiniStarWorldPoint.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/Screen/LayoutActor.hpp"
+#include "Game/Screen/ActorLayout.hpp"
 #include "Game/System/GalaxyStatusAccessor.hpp"
 #include "Game/System/ScenarioDataParser.hpp"
 #include "Game/Util/ActorInitUtil.hpp"
@@ -15,7 +15,7 @@
 EXTERN_UNKNOWN_FUNC(bool, 804F26A0, WorldMapObjHolder*, s32)
 
 MiniStarWorldPoint::MiniStarWorldPoint(WorldMapObjHolder* pObjHolder, s32 pointIndex, s32 worldNo)
-    : LiveActor("グランドギャラクシーマップ用ワープポイント"), mObjHolder(pObjHolder), mPointIndex(pointIndex), mWorldNo(worldNo), _9C() {
+    : LiveActor("グランドギャラクシーマップ用ワープポイント"), mObjHolder(pObjHolder), mPointIndex(pointIndex), mWorldNo(worldNo), mStateLayout() {
 }
 
 void MiniStarWorldPoint::init(const JMapInfoIter& rIter) {
@@ -27,17 +27,17 @@ void MiniStarWorldPoint::init(const JMapInfoIter& rIter) {
         initEffectKeeper(8, nullptr, false);
     }
 
-    fn_804E6820();
+    initStateLayout();
     MR::setClippingTypeSphereContainsModelBoundingBox(this, 1000.0f);
     MR::registerDemoSimpleCastAll(this);
     makeActorAppeared();
 }
 
-void MiniStarWorldPoint::fn_804E6820() {
-    // TODO: create '_9C' layout
-    MR::registerDemoSimpleCastAll(_9C);
-    MR::hidePaneRecursive(_9C, "MapGalaxyState");
-    MR::showPane(_9C, "MapGalaxyState");
+void MiniStarWorldPoint::initStateLayout() {
+    mStateLayout = new ActorLayout(this, "コンプリートアイコン", "MapGalaxyState", TVec3f(0.0f), 1, -1);
+    MR::registerDemoSimpleCastAll(mStateLayout);
+    MR::hidePaneRecursive(mStateLayout, "MapGalaxyState");
+    MR::showPane(mStateLayout, "MapGalaxyState");
 
     bool isCompletedWithGreen = true;
     bool isCompletedNoGreen = true;
@@ -66,17 +66,17 @@ void MiniStarWorldPoint::fn_804E6820() {
     }
 
     if (isCompletedNoGreen) {
-        MR::showPaneRecursive(_9C, "Crown2");
+        MR::showPaneRecursive(mStateLayout, "Crown2");
     }
     else if (isCompletedWithGreen) {
-        MR::showPaneRecursive(_9C, "Crown1");
+        MR::showPaneRecursive(mStateLayout, "Crown1");
     }
 
-    if (isCompletedNoGreen || isCompletedWithGreen) {
-        _9C->appear();
+    if (isCompletedWithGreen || isCompletedNoGreen) {
+        mStateLayout->appear();
     }
     else {
-        _9C->kill();
+        mStateLayout->kill();
     }
 }
 
