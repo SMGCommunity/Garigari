@@ -403,7 +403,7 @@ Game/Util/SpringValue.cpp:
 	.sdata2     start:0x807D7280 end:0x807D7290
 
 Game/Util/TriangleFilter.cpp:
-	.text       start:0x80068E60 end:0x80068EB0 align:16
+	.text       start:0x80068E60 end:0x80068F80 align:16
 	.data       start:0x80669DE8 end:0x80669E00
 
 Game/Util/TriggerChecker.cpp:
@@ -4136,14 +4136,15 @@ Game/Enemy/Takobo.cpp:
 	.sbss2      start:0x807E3070 end:0x807E3078
 
 Game/Enemy/TakoboInk.cpp:
-	.text       start:0x80205550 end:0x80205A30 align:16
+	.text       start:0x80205550 end:0x80205990 align:16
 	.ctors      start:0x80644230 end:0x80644234
-	.data       start:0x80691EB0 end:0x80691FA8
+	.data       start:0x80691EB0 end:0x80691F60
 	.sbss       start:0x807D3218 end:0x807D3220
 	.sdata2     start:0x807DBC68 end:0x807DBC70
 
 Game/Enemy/TakoboInkHolder.cpp:
-	.text       start:0x80205A90 end:0x80205B10 align:16
+	.text       start:0x80205990 end:0x80205B70 align:16
+	.data       start:0x80691F60 end:0x80691FA8
 
 Game/Enemy/TakoHei.cpp:
 	.text       start:0x80205B70 end:0x80208400 align:16
@@ -8556,7 +8557,7 @@ Game/RhythmLib/AudMeChannelMgr.cpp:
 	.sdata2     start:0x807E0888 end:0x807E0898
 
 Game/RhythmLib/AudMeSeqCtrl.cpp:
-	.text       start:0x80425CA0 end:0x80425EB0 align:16
+	.text       start:0x80425C60 end:0x80425EB0 align:16
 	.ctors      start:0x806447FC end:0x80644800
 	.data       start:0x806EB640 end:0x806EB650
 	.sbss       start:0x807D4FE8 end:0x807D4FF0
@@ -8710,20 +8711,26 @@ Game/Ride/Pole.cpp:
 	.sdata2     start:0x807E0CC8 end:0x807E0D68
 
 Game/Ride/RollingRock.cpp:
-	.text       start:0x8043C5F0 end:0x8043CEB0 align:16
+	.text       start:0x8043C5F0 end:0x8043CCE0 align:16
 	.ctors      start:0x80644840 end:0x80644844
-	.data       start:0x806EDD18 end:0x806EDE48
+	.data       start:0x806EDD18 end:0x806EDDD8
 	.sbss       start:0x807D5160 end:0x807D5168
 	.sdata2     start:0x807E0D68 end:0x807E0D70
 
-Game/Ride/RIDE_UNK1.cpp:
+Game/Ride/RollingRockFunction.cpp:
+	.text       start:0x8043CCE0 end:0x8043D490 align:16
+	.rodata     start:0x8064C010 end:0x8064C030
+	.data       start:0x806EDDD8 end:0x806EDF00
+	.sdata2     start:0x807E0D70 end:0x807E0D80
+
+Game/Ride/RollingRockStateTransform.cpp:
 	.text       start:0x8043D490 end:0x8043DFD0 align:16
 	.ctors      start:0x80644844 end:0x80644848
 	.data       start:0x806EDF00 end:0x806EDF98
 	.sbss       start:0x807D5168 end:0x807D5178
 	.sdata2     start:0x807E0D80 end:0x807E0D88
 
-Game/Ride/RIDE_UNK2.cpp:
+Game/Ride/RollingRockStateRoll.cpp:
 	.text       start:0x8043DFD0 end:0x804404D0 align:16
 	.ctors      start:0x80644848 end:0x8064484C
 	.rodata     start:0x8064C030 end:0x8064C038
@@ -8732,18 +8739,18 @@ Game/Ride/RIDE_UNK2.cpp:
 	.sdata2     start:0x807E0D88 end:0x807E0E10
 
 Game/Ride/SledRopePoint.cpp:
-	.text       start:0x804404D0 end:0x80440620 align:16
+	.text       start:0x804404D0 end:0x80440710 align:16
 	.data       start:0x806EE1E0 end:0x806EE1F0
 	.sdata2     start:0x807E0E10 end:0x807E0E20
 
 Game/Ride/SphereAccelSensorController.cpp:
-	.text       start:0x80440710 end:0x80440B90 align:16
+	.text       start:0x80440710 end:0x80440BB0 align:16
 	.rodata     start:0x8064C038 end:0x8064C040
 	.data       start:0x806EE1F0 end:0x806EE218
 	.sdata2     start:0x807E0E20 end:0x807E0E60
 
 Game/Ride/SphereController.cpp:
-	.text       start:0x80440B90 end:0x80440C20 align:16
+	.text       start:0x80440BB0 end:0x80440C20 align:16
 	.data       start:0x806EE218 end:0x806EE238
 	.sdata2     start:0x807E0E60 end:0x807E0E68
 
@@ -9656,7 +9663,7 @@ Game/Screen/StarPointerLayout.cpp:
 	.sdata2     start:0x807E17E0 end:0x807E1808
 
 Game/Screen/StarPointerTarget.cpp:
-	.text       start:0x8049F350 end:0x8049FD70 align:16
+	.text       start:0x8049F320 end:0x8049FD70 align:16
 	.rodata     start:0x8064CDC8 end:0x8064CDD0
 	.sdata2     start:0x807E1808 end:0x807E1828
 
@@ -10045,11 +10052,11 @@ Game/System/GameSystemFrameControl.cpp:
 	.text       start:0x804B82B0 end:0x804B8350 align:16
 
 Game/System/GameSystemFunction.cpp:
-	.text       start:0x804B8350 end:0x804B8D70 align:16
+	.text       start:0x804B8350 end:0x804B8D90 align:16
 	.data       start:0x806FB028 end:0x806FB030
 
 Game/System/GameSystemObjHolder.cpp:
-	.text       start:0x804B8D90 end:0x804B95C0 align:16
+	.text       start:0x804B8D90 end:0x804B95D0 align:16
 	.data       start:0x806FB030 end:0x806FB0E8
 	.sbss       start:0x807D5C80 end:0x807D5C88
 
