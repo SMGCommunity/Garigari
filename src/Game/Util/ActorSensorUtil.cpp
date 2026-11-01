@@ -4,7 +4,7 @@
 #include "Game/LiveActor/HitSensorKeeper.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Util/JointUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
+#include <JSystem/JGeometry/TVec.hpp>
 
 namespace MR {
     void setSensorFollowPos(LiveActor* pActor, const char* pSensorName, const TVec3f* pPos) {
@@ -411,8 +411,8 @@ namespace MR {
         return pSensor->isType(0x15);
     }
 
-    bool tryGetItem(HitSensor* a1, HitSensor* a2) {
-        return a2->receiveMessage(0x83, a1);
+    bool tryGetItem(HitSensor* pReceiver, HitSensor* pSender) {
+        return pSender->receiveMessage(0x83, pReceiver);
     }
 
     const TVec3f* getSensorPos(const HitSensor* pSensor) {
@@ -433,154 +433,154 @@ namespace MR {
 
     /* ... */
 
-    bool sendArbitraryMsg(u32 msg, HitSensor* a2, HitSensor* a3) {
-        return a3->receiveMessage(msg, a2);
+    bool sendArbitraryMsg(u32 msg, HitSensor* pReceiver, HitSensor* a3) {
+        return a3->receiveMessage(msg, pReceiver);
     }
 
-    bool sendMsgPush(HitSensor* a1, HitSensor* a2) {
-        return a1->receiveMessage(0x33, a2);
+    bool sendMsgPush(HitSensor* pReceiver, HitSensor* pSender) {
+        return pReceiver->receiveMessage(0x33, pSender);
     }
 
-    bool sendMsgReflect(HitSensor* a1, HitSensor* a2) {
-        return a1->receiveMessage(0x48, a2);
+    bool sendMsgReflect(HitSensor* pReceiver, HitSensor* pSender) {
+        return pReceiver->receiveMessage(0x48, pSender);
     }
 
-    bool sendMsgReflectV(HitSensor* a1, HitSensor* a2) {
-        return a1->receiveMessage(0x49, a2);
+    bool sendMsgReflectV(HitSensor* pReceiver, HitSensor* pSender) {
+        return pReceiver->receiveMessage(0x49, pSender);
     }
 
-    bool sendMsgGorogoroReflect(HitSensor* a1, HitSensor* a2) {
-        return a1->receiveMessage(0x58, a2);
+    bool sendMsgGorogoroReflect(HitSensor* pReceiver, HitSensor* pSender) {
+        return pReceiver->receiveMessage(0x58, pSender);
     }
 
-    bool fn_80015E60(HitSensor* a1, HitSensor* a2) {
-        return a1->receiveMessage(0x58, a2);
+    bool fn_80015E60(HitSensor* pReceiver, HitSensor* pSender) {
+        return pReceiver->receiveMessage(0x58, pSender);
     }
 
-    bool sendMsgPlayerTrample(HitSensor* a1, HitSensor* a2) {
-        return a1->receiveMessage(2, a2);
+    bool sendMsgPlayerTrample(HitSensor* pReceiver, HitSensor* pSender) {
+        return pReceiver->receiveMessage(2, pSender);
     }
 
-    bool sendMsgPlayerPunch(HitSensor* a1, HitSensor* a2) {
-        return a1->receiveMessage(1, a2);
+    bool sendMsgPlayerPunch(HitSensor* pReceiver, HitSensor* pSender) {
+        return pReceiver->receiveMessage(1, pSender);
     }
 
-    bool sendMsgInvincibleAttack(HitSensor* a1, HitSensor* a2) {
-        return a1->receiveMessage(0xE, a2);
+    bool sendMsgInvincibleAttack(HitSensor* pReceiver, HitSensor* pSender) {
+        return pReceiver->receiveMessage(0xE, pSender);
     }
 
-    bool sendMsgDrillAttack(HitSensor* a1, HitSensor* a2) {
-        return a1->receiveMessage(0x10, a2);
+    bool sendMsgDrillAttack(HitSensor* pReceiver, HitSensor* pSender) {
+        return pReceiver->receiveMessage(0x10, pSender);
     }
 
-    bool sendMsgRockAttack(HitSensor* a1, HitSensor* a2) {
-        return a1->receiveMessage(0x11, a2);
+    bool sendMsgRockAttack(HitSensor* pReceiver, HitSensor* pSender) {
+        return pReceiver->receiveMessage(0x11, pSender);
     }
 
-    bool sendMsgJump(HitSensor* a1, HitSensor* a2) {
-        return a1->receiveMessage(0x36, a2);
+    bool sendMsgJump(HitSensor* pReceiver, HitSensor* pSender) {
+        return pReceiver->receiveMessage(0x36, pSender);
     }
 
-    bool sendMsgTouchJump(HitSensor* a1, HitSensor* a2) {
-        return a1->receiveMessage(0x37, a2);
+    bool sendMsgTouchJump(HitSensor* pReceiver, HitSensor* pSender) {
+        return pReceiver->receiveMessage(0x37, pSender);
     }
 
-    bool sendMsgTaken(HitSensor* a1, HitSensor* a2) {
-        return a1->receiveMessage(0x2A, a2);
+    bool sendMsgTaken(HitSensor* pReceiver, HitSensor* pSender) {
+        return pReceiver->receiveMessage(0x2A, pSender);
     }
 
-    bool sendMsgAwayJump(HitSensor* a1, HitSensor* a2) {
-        return a1->receiveMessage(0x39, a2);
+    bool sendMsgAwayJump(HitSensor* pReceiver, HitSensor* pSender) {
+        return pReceiver->receiveMessage(0x39, pSender);
     }
 
-    bool sendMsgFireDance(HitSensor* a1, HitSensor* a2) {
-        return a1->receiveMessage(0x57, a2);
+    bool sendMsgFireDance(HitSensor* pReceiver, HitSensor* pSender) {
+        return pReceiver->receiveMessage(0x57, pSender);
     }
 
-    bool fn_80015F00(HitSensor* a1, HitSensor* a2) {
-        return a1->receiveMessage(0x57, a2);
+    bool fn_80015F00(HitSensor* pReceiver, HitSensor* pSender) {
+        return pReceiver->receiveMessage(0x57, pSender);
     }
 
-    bool sendMsgRushEnd(HitSensor* a1, HitSensor* a2) {
-        return a1->receiveMessage(0x98, a2);
+    bool sendMsgRushEnd(HitSensor* pReceiver, HitSensor* pSender) {
+        return pReceiver->receiveMessage(0x98, pSender);
     }
 
-    bool sendMsgIsRushEnable(HitSensor* a1, HitSensor* a2) {
-        return a1->receiveMessage(0x99, a2);
+    bool sendMsgIsRushEnable(HitSensor* pReceiver, HitSensor* pSender) {
+        return pReceiver->receiveMessage(0x99, pSender);
     }
 
     // sendMsgEnemyAttackMsgToDir(unsigned long, HitSensor*, HitSensor*, const JGeometry::TVec3<float>&)
 
-    bool sendMsgEnemyAttackFlipVeryWeak(HitSensor* a1, HitSensor* a2) {
-        return a1->receiveMessage(0x5a, a2);
+    bool sendMsgEnemyAttackFlipVeryWeak(HitSensor* pReceiver, HitSensor* pSender) {
+        return pReceiver->receiveMessage(0x5a, pSender);
     }
 
-    bool sendMsgEnemyAttackFlipWeak(HitSensor* a1, HitSensor* a2) {
-        return a1->receiveMessage(0x5b, a2);
+    bool sendMsgEnemyAttackFlipWeak(HitSensor* pReceiver, HitSensor* pSender) {
+        return pReceiver->receiveMessage(0x5b, pSender);
     }
 
-    bool sendMsgEnemyAttackFlipWeakJump(HitSensor* a1, HitSensor* a2) {
-        return a1->receiveMessage(0x5c, a2);
+    bool sendMsgEnemyAttackFlipWeakJump(HitSensor* pReceiver, HitSensor* pSender) {
+        return pReceiver->receiveMessage(0x5c, pSender);
     }
 
-    bool sendMsgEnemyAttackFlip(HitSensor* a1, HitSensor* a2) {
-        return a1->receiveMessage(0x5e, a2);
+    bool sendMsgEnemyAttackFlip(HitSensor* pReceiver, HitSensor* pSender) {
+        return pReceiver->receiveMessage(0x5e, pSender);
     }
 
     // sendMsgEnemyAttackFlipToDir(HitSensor*, HitSensor*, const JGeometry::TVec3<float>&)
 
-    bool sendMsgEnemyAttackFlipJump(HitSensor* a1, HitSensor* a2) {
-        return a1->receiveMessage(0x5d, a2);
+    bool sendMsgEnemyAttackFlipJump(HitSensor* pReceiver, HitSensor* pSender) {
+        return pReceiver->receiveMessage(0x5d, pSender);
     }
 
-    bool sendMsgEnemyAttackFlipRot(HitSensor* a1, HitSensor* a2) {
-        return a1->receiveMessage(0x5f, a2);
+    bool sendMsgEnemyAttackFlipRot(HitSensor* pReceiver, HitSensor* pSender) {
+        return pReceiver->receiveMessage(0x5f, pSender);
     }
 
     // sendMsgEnemyAttackFlipMaximumToDir(HitSensor*, HitSensor*, const JGeometry::TVec3<float>&)
 
-    bool sendMsgEnemyAttackFire(HitSensor* a1, HitSensor* a2) {
-        return a1->receiveMessage(0x66, a2);
+    bool sendMsgEnemyAttackFire(HitSensor* pReceiver, HitSensor* pSender) {
+        return pReceiver->receiveMessage(0x66, pSender);
     }
 
-    bool sendMsgEnemyAttackFireStrong(HitSensor* a1, HitSensor* a2) {
-        return a1->receiveMessage(0x67, a2);
+    bool sendMsgEnemyAttackFireStrong(HitSensor* pReceiver, HitSensor* pSender) {
+        return pReceiver->receiveMessage(0x67, pSender);
     }
 
-    bool sendMsgEnemyAttackElectric(HitSensor* a1, HitSensor* a2) {
-        return a1->receiveMessage(0x68, a2);
+    bool sendMsgEnemyAttackElectric(HitSensor* pReceiver, HitSensor* pSender) {
+        return pReceiver->receiveMessage(0x68, pSender);
     }
 
-    bool sendMsgEnemyAttackFreeze(HitSensor* a1, HitSensor* a2) {
-        return a1->receiveMessage(0x6b, a2);
+    bool sendMsgEnemyAttackFreeze(HitSensor* pReceiver, HitSensor* pSender) {
+        return pReceiver->receiveMessage(0x6b, pSender);
     }
 
-    bool sendMsgEnemyAttackExplosion(HitSensor* a1, HitSensor* a2) {
-        return a1->receiveMessage(0x64, a2);
+    bool sendMsgEnemyAttackExplosion(HitSensor* pReceiver, HitSensor* pSender) {
+        return pReceiver->receiveMessage(0x64, pSender);
     }
 
-    bool sendMsgEnemyAttackCounterSpin(HitSensor* a1, HitSensor* a2) {
-        return a1->receiveMessage(0x6e, a2);
+    bool sendMsgEnemyAttackCounterSpin(HitSensor* pReceiver, HitSensor* pSender) {
+        return pReceiver->receiveMessage(0x6e, pSender);
     }
 
-    bool sendMsgEnemyAttackCounterHipDrop(HitSensor* a1, HitSensor* a2) {
-        return a1->receiveMessage(0x6f, a2);
+    bool sendMsgEnemyAttackCounterHipDrop(HitSensor* pReceiver, HitSensor* pSender) {
+        return pReceiver->receiveMessage(0x6f, pSender);
     }
 
-    bool sendMsgLockOnStarPieceShoot(HitSensor* a1, HitSensor* a2) {
-        return a1->receiveMessage(0x15, a2);
+    bool sendMsgLockOnStarPieceShoot(HitSensor* pReceiver, HitSensor* pSender) {
+        return pReceiver->receiveMessage(0x15, pSender);
     }
 
-    bool sendMsgStarPieceAttack(HitSensor* a1, HitSensor* a2) {
-        return a1->receiveMessage(0xf, a2);
+    bool sendMsgStarPieceAttack(HitSensor* pReceiver, HitSensor* pSender) {
+        return pReceiver->receiveMessage(0xf, pSender);
     }
 
-    bool sendMsgStarPieceGift(HitSensor* a1, HitSensor* a2, u32 a3) {
-        return a1->receiveMessage(0x15 + a3, a2);
+    bool sendMsgStarPieceGift(HitSensor* pReceiver, HitSensor* pSender, u32 msg) {
+        return pReceiver->receiveMessage(0x15 + msg, pSender);
     }
 
-    bool sendMsgEnemyAttackMaximum(HitSensor* a1, HitSensor* a2) {
-        return a1->receiveMessage(0x63, a2);
+    bool sendMsgEnemyAttackMaximum(HitSensor* pReceiver, HitSensor* pSender) {
+        return pReceiver->receiveMessage(0x63, pSender);
     }
 
     // sendMsgEnemyAttackMaximumToDir(HitSensor*, HitSensor*, const JGeometry::TVec3<float>&)
