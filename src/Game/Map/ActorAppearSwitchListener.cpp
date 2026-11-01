@@ -2,18 +2,18 @@
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 
-ActorAppearSwitchListener::ActorAppearSwitchListener(LiveActor* pActor, bool appearIfDead, bool killIfAlive)
-    : mLiveActor(pActor), mAppearIfDead(appearIfDead), mKillIfAlive(killIfAlive) {
+ActorAppearSwitchListener::ActorAppearSwitchListener(LiveActor* pActor, bool usesOn, bool usesOff)
+    : mActor(pActor), mUsesOn(usesOn), mUsesOff(usesOff) {
 }
 
 void ActorAppearSwitchListener::listenSwitchOnEvent() {
-    if (MR::isDead(mLiveActor) && mAppearIfDead) {
-        mLiveActor->appear();
+    if (MR::isDead(mActor) && mUsesOn) {
+        mActor->appear();
     }
 }
 
 void ActorAppearSwitchListener::listenSwitchOffEvent() {
-    if (!MR::isDead(mLiveActor) && mKillIfAlive) {
-        mLiveActor->kill();
+    if (!MR::isDead(mActor) && mUsesOff) {
+        mActor->kill();
     }
 }
