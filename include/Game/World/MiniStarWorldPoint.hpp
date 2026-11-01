@@ -18,5 +18,5 @@ public:
     /* 0x90 */ WorldMapObjHolder* mObjHolder;
     /* 0x94 */ s32 mPointIndex;
     /* 0x98 */ s32 mWorldNo;
-    /* 0x9C */ ActorLayout* mStateLayout;
+    /* 0x9C */ ActorLayout* mStateIcon;
 };

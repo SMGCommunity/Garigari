@@ -15,7 +15,7 @@
 EXTERN_UNKNOWN_FUNC(bool, 804F26A0, WorldMapObjHolder*, s32)
 
 MiniStarWorldPoint::MiniStarWorldPoint(WorldMapObjHolder* pObjHolder, s32 pointIndex, s32 worldNo)
-    : LiveActor("グランドギャラクシーマップ用ワープポイント"), mObjHolder(pObjHolder), mPointIndex(pointIndex), mWorldNo(worldNo), mStateLayout() {
+    : LiveActor("グランドギャラクシーマップ用ワープポイント"), mObjHolder(pObjHolder), mPointIndex(pointIndex), mWorldNo(worldNo), mStateIcon() {
 }
 
 void MiniStarWorldPoint::init(const JMapInfoIter& rIter) {
@@ -34,10 +34,10 @@ void MiniStarWorldPoint::init(const JMapInfoIter& rIter) {
 }
 
 void MiniStarWorldPoint::initStateLayout() {
-    mStateLayout = new ActorLayout(this, "コンプリートアイコン", "MapGalaxyState", TVec3f(0.0f), 1, -1);
-    MR::registerDemoSimpleCastAll(mStateLayout);
-    MR::hidePaneRecursive(mStateLayout, "MapGalaxyState");
-    MR::showPane(mStateLayout, "MapGalaxyState");
+    mStateIcon = new ActorLayout(this, "コンプリートアイコン", "MapGalaxyState", TVec3f(0.0f), 1, -1);
+    MR::registerDemoSimpleCastAll(mStateIcon);
+    MR::hidePaneRecursive(mStateIcon, "MapGalaxyState");
+    MR::showPane(mStateIcon, "MapGalaxyState");
 
     bool isCompletedWithGreen = true;
     bool isCompletedNoGreen = true;
@@ -66,17 +66,17 @@ void MiniStarWorldPoint::initStateLayout() {
     }
 
     if (isCompletedNoGreen) {
-        MR::showPaneRecursive(mStateLayout, "Crown2");
+        MR::showPaneRecursive(mStateIcon, "Crown2");
     }
     else if (isCompletedWithGreen) {
-        MR::showPaneRecursive(mStateLayout, "Crown1");
+        MR::showPaneRecursive(mStateIcon, "Crown1");
     }
 
     if (isCompletedWithGreen || isCompletedNoGreen) {
-        mStateLayout->appear();
+        mStateIcon->appear();
     }
     else {
-        mStateLayout->kill();
+        mStateIcon->kill();
     }
 }
 
