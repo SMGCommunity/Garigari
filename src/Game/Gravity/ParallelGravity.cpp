@@ -1,6 +1,10 @@
 #include "Game/Gravity/ParallelGravity.hpp"
 #include "Game/Util/MathUtil.hpp"
 
+void ParallelGravity_FORCE_MATCH(const TVec3f& rVector) {
+    TVec3f negated = -rVector;
+}
+
 ParallelGravity::ParallelGravity()
     : PlanetGravity(), mPlanePosition(0, 0, 0), mPlaneUpVec(0.0f, 1.0f, 0.0f), mWorldPlanePosition(0, 0, 0), mWorldPlaneUpVec(0.0f, 1.0f, 0.0f),
       mCylinderHeight(1000.0f), mCylinderRadius(500.0f), mBaseDistance(2000.0f), mRangeType(RangeType_Sphere),
@@ -15,7 +19,6 @@ bool ParallelGravity::calcOwnGravityVector(TVec3f* pDest, f32* pScalar, const TV
     }
 
     if (pDest != nullptr) {
-        // FIXME: needs to not inline
         *pDest = -mWorldPlaneUpVec;
     }
 
@@ -145,7 +148,7 @@ bool ParallelGravity::isInCylinderRange(const TVec3f& rPosition, f32* pScalar) c
     positionOnWorldPlane.killElement2(rPosition - mWorldPlanePosition, mWorldPlaneUpVec);
 
     f32 radius = positionOnWorldPlane.length();
-    
+
     if (radius > mCylinderRadius) {
         return false;
     }
