@@ -4,6 +4,7 @@
 #include "Game/LiveActor/HitSensorKeeper.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Util/JointUtil.hpp"
+#include "JSystem/JGeometry/TVec.hpp"
 
 namespace MR {
     void setSensorFollowPos(LiveActor* pActor, const char* pSensorName, const TVec3f* pPos) {
@@ -422,6 +423,14 @@ namespace MR {
         return &pActor->getSensor(pName)->mOffset;
     }
 
+    const TVec3f* getSensorPos2(const HitSensor* pSensor) {
+        return &pSensor->mOffset;
+    }
+
+    const TVec3f* getSensorPos2(const LiveActor* pActor, const char* pName) {
+        return &pActor->getSensor(pName)->mOffset;
+    }
+
     /* ... */
 
     bool sendArbitraryMsg(u32 msg, HitSensor* a2, HitSensor* a3) {
@@ -438,6 +447,10 @@ namespace MR {
 
     bool sendMsgReflectV(HitSensor* a1, HitSensor* a2) {
         return a1->receiveMessage(0x49, a2);
+    }
+
+    bool sendMsgGorogoroReflect(HitSensor* a1, HitSensor* a2) {
+        return a1->receiveMessage(0x58, a2);
     }
 
     bool fn_80015E60(HitSensor* a1, HitSensor* a2) {
@@ -480,6 +493,10 @@ namespace MR {
         return a1->receiveMessage(0x39, a2);
     }
 
+    bool sendMsgFireDance(HitSensor* a1, HitSensor* a2) {
+        return a1->receiveMessage(0x57, a2);
+    }
+
     bool fn_80015F00(HitSensor* a1, HitSensor* a2) {
         return a1->receiveMessage(0x57, a2);
     }
@@ -491,4 +508,81 @@ namespace MR {
     bool sendMsgIsRushEnable(HitSensor* a1, HitSensor* a2) {
         return a1->receiveMessage(0x99, a2);
     }
+
+    // sendMsgEnemyAttackMsgToDir(unsigned long, HitSensor*, HitSensor*, const JGeometry::TVec3<float>&)
+
+    bool sendMsgEnemyAttackFlipVeryWeak(HitSensor* a1, HitSensor* a2) {
+        return a1->receiveMessage(0x5a, a2);
+    }
+
+    bool sendMsgEnemyAttackFlipWeak(HitSensor* a1, HitSensor* a2) {
+        return a1->receiveMessage(0x5b, a2);
+    }
+
+    bool sendMsgEnemyAttackFlipWeakJump(HitSensor* a1, HitSensor* a2) {
+        return a1->receiveMessage(0x5c, a2);
+    }
+
+    bool sendMsgEnemyAttackFlip(HitSensor* a1, HitSensor* a2) {
+        return a1->receiveMessage(0x5e, a2);
+    }
+
+    // sendMsgEnemyAttackFlipToDir(HitSensor*, HitSensor*, const JGeometry::TVec3<float>&)
+
+    bool sendMsgEnemyAttackFlipJump(HitSensor* a1, HitSensor* a2) {
+        return a1->receiveMessage(0x5d, a2);
+    }
+
+    bool sendMsgEnemyAttackFlipRot(HitSensor* a1, HitSensor* a2) {
+        return a1->receiveMessage(0x5f, a2);
+    }
+
+    // sendMsgEnemyAttackFlipMaximumToDir(HitSensor*, HitSensor*, const JGeometry::TVec3<float>&)
+
+    bool sendMsgEnemyAttackFire(HitSensor* a1, HitSensor* a2) {
+        return a1->receiveMessage(0x66, a2);
+    }
+
+    bool sendMsgEnemyAttackFireStrong(HitSensor* a1, HitSensor* a2) {
+        return a1->receiveMessage(0x67, a2);
+    }
+
+    bool sendMsgEnemyAttackElectric(HitSensor* a1, HitSensor* a2) {
+        return a1->receiveMessage(0x68, a2);
+    }
+
+    bool sendMsgEnemyAttackFreeze(HitSensor* a1, HitSensor* a2) {
+        return a1->receiveMessage(0x6b, a2);
+    }
+
+    bool sendMsgEnemyAttackExplosion(HitSensor* a1, HitSensor* a2) {
+        return a1->receiveMessage(0x64, a2);
+    }
+
+    bool sendMsgEnemyAttackCounterSpin(HitSensor* a1, HitSensor* a2) {
+        return a1->receiveMessage(0x6e, a2);
+    }
+
+    bool sendMsgEnemyAttackCounterHipDrop(HitSensor* a1, HitSensor* a2) {
+        return a1->receiveMessage(0x6f, a2);
+    }
+
+    bool sendMsgLockOnStarPieceShoot(HitSensor* a1, HitSensor* a2) {
+        return a1->receiveMessage(0x15, a2);
+    }
+
+    bool sendMsgStarPieceAttack(HitSensor* a1, HitSensor* a2) {
+        return a1->receiveMessage(0xf, a2);
+    }
+
+    bool sendMsgStarPieceGift(HitSensor* a1, HitSensor* a2, u32 a3) {
+        return a1->receiveMessage(0x15 + a3, a2);
+    }
+
+    bool sendMsgEnemyAttackMaximum(HitSensor* a1, HitSensor* a2) {
+        return a1->receiveMessage(0x63, a2);
+    }
+
+    // sendMsgEnemyAttackMaximumToDir(HitSensor*, HitSensor*, const JGeometry::TVec3<float>&)
+
 };  // namespace MR
