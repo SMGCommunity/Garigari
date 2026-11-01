@@ -653,7 +653,7 @@ config.libs = [
             Object(NonMatching, "Game/Util/JointRumbler.cpp"),
             Object(NonMatching, "Game/Util/PadRecorder.cpp"),
             Object(NonMatching, "Game/Util/RumbleCalculator.cpp"),
-            Object(NonMatching, "Game/Util/SpringValue.cpp"),
+            Object(Matching, "Game/Util/SpringValue.cpp"),
             Object(NonMatching, "Game/Util/TriangleFilter.cpp"),
             Object(NonMatching, "Game/Util/TriggerChecker.cpp"),
             Object(NonMatching, "Game/Util/ValueControl.cpp"),
