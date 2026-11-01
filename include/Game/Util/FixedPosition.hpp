@@ -1,10 +1,7 @@
 #pragma once
 
-#include "JSystem/JGeometry/TMatrix.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 #include <JSystem/JGeometry/TVec.hpp>
-#include <revolution/mtx.h>
-#include <revolution/types.h>
-
 
 class LiveActor;
 

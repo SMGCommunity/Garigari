@@ -3,46 +3,42 @@
 #include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/JointUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
-#include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
-#include "math_types.hpp"
-#include <JSystem/JGeometry/TVec.hpp>
-#include <revolution/types.h>
 
-FixedPosition::FixedPosition(const LiveActor* pActor, const char* pStr, const TVec3f& rVec1, const TVec3f& rVec2) {
-    init(MR::getJointMtx(pActor, pStr), rVec1, rVec2);
+FixedPosition::FixedPosition(const LiveActor* pActor, const char* pJointName, const TVec3f& rLocalTrans, const TVec3f& rLocalRotate) {
+    init(MR::getJointMtx(pActor, pJointName), rLocalTrans, rLocalRotate);
 }
 
-FixedPosition::FixedPosition(const LiveActor* pActor, const TVec3f& rVec1, const TVec3f& rVec2) {
-    init(pActor->getBaseMtx(), rVec1, rVec2);
+FixedPosition::FixedPosition(const LiveActor* pActor, const TVec3f& rLocalTrans, const TVec3f& rLocalRotate) {
+    init(pActor->getBaseMtx(), rLocalTrans, rLocalRotate);
 }
 
-FixedPosition::FixedPosition(MtxPtr pMtx, const TVec3f& rVec1, const TVec3f& rVec2) {
-    init(pMtx, rVec1, rVec2);
+FixedPosition::FixedPosition(MtxPtr pBaseMtx, const TVec3f& rLocalTrans, const TVec3f& rLocalRotate) {
+    init(pBaseMtx, rLocalTrans, rLocalRotate);
 }
 
-FixedPosition::FixedPosition(const LiveActor* pActor1, const char* pStr, const LiveActor* pActor2) {
-    if (pActor2 == nullptr) {
-        pActor2 = pActor1;
+FixedPosition::FixedPosition(const LiveActor* pActor, const char* pResName, const LiveActor* pResActor) {
+    if (pResActor == nullptr) {
+        pResActor = pActor;
     }
 
-    const char* jointName = nullptr;
+    const char* pJointName = nullptr;
     TVec3f trans(0.0f);
     TVec3f rotate(0.0f);
 
-    ResourceHolder* resourceHolder = MR::getResourceHolder(pActor2);
-    const JMapInfo* csvParser = MR::tryCreateCsvParser(resourceHolder, "%s.bcsv", pStr);
+    ResourceHolder* pResourceHolder = MR::getResourceHolder(pResActor);
+    const JMapInfo* pCsvParser = MR::tryCreateCsvParser(pResourceHolder, "%s.bcsv", pResName);
 
-    if (csvParser != nullptr) {
-        MR::getCsvDataStrOrNULL(&jointName, csvParser, "JointName", 0);
-        MR::getCsvDataVec(&trans, csvParser, "Trans", 0);
-        MR::getCsvDataVec(&rotate, csvParser, "Rotate", 0);
+    if (pCsvParser != nullptr) {
+        MR::getCsvDataStrOrNULL(&pJointName, pCsvParser, "JointName", 0);
+        MR::getCsvDataVec(&trans, pCsvParser, "Trans", 0);
+        MR::getCsvDataVec(&rotate, pCsvParser, "Rotate", 0);
     }
 
-    if (jointName == nullptr) {
-        init(pActor1->getBaseMtx(), trans, rotate);
+    if (pJointName == nullptr) {
+        init(pActor->getBaseMtx(), trans, rotate);
     } else {
-        init(MR::getJointMtx(pActor1, jointName), trans, rotate);
+        init(MR::getJointMtx(pActor, pJointName), trans, rotate);
     }
 }
 
@@ -57,7 +53,7 @@ void FixedPosition::calc() {
     mMtx.setTrans(mLocalTrans);
 
     if (mBaseMtx != nullptr) {
-        TMtx34f baseMtx;
+        TPos3f baseMtx;
         baseMtx.set(mBaseMtx);
         mMtx.concat(baseMtx, mMtx);
     }
@@ -72,10 +68,6 @@ void FixedPosition::setBaseMtx(MtxPtr pBaseMtx) {
 }
 
 void FixedPosition::setLocalTrans(const TVec3f& rLocalTrans) {
-    // FIXME
-    // decomp.me: https://decomp.me/scratch/SOjN5
-    // TVec3f::set is being inlined even though it shouldn't be.
-
     mLocalTrans.set(rLocalTrans);
 }
 
