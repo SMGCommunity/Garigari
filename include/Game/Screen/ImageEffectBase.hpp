@@ -29,6 +29,10 @@ public:
         return _12 || _13;
     }
 
+    f32 getIntensity() const {
+        return mIntensity;
+    }
+
     /* 0x12 */ bool _12;
     /* 0x13 */ bool _13;
     /* 0x14 */ f32 mIntensity;

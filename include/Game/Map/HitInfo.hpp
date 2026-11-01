@@ -30,11 +30,11 @@ public:
     TPos3f* getBaseInvMtx() const;
     TPos3f* getPrevBaseMtx() const;
 
-    CollisionParts* mParts;  // 0x0
-    u32 mIdx;                // 0x4
-    HitSensor* mSensor;      // 0x8
-    TVec3f mNormals[4];      // 0xC
-    TVec3f mPos[3];          // 0x3C
+    /* 0x00 */ CollisionParts* mParts;
+    /* 0x04 */ u32 mIdx;
+    /* 0x08 */ HitSensor* mSensor;
+    /* 0x0C */ TVec3f mNormals[4];
+    /* 0x3C */ TVec3f mPos[3];
 };
 
 class HitInfo {
@@ -47,11 +47,10 @@ public:
     bool isCollisionAtEdge() const;
     bool isCollisionAtCorner() const;
 
-    Triangle mParentTriangle;  // 0x0
-    f32 _60;
-    TVec3f _64;
-    TVec3f _70;
-    TVec3f _7C;
-    u8 _88;
-    u8 _89[3];
+    /* 0x00 */ Triangle mParentTriangle;
+    /* 0x60 */ u8 _60;
+    /* 0x64 */ TVec3f mHitPos;
+    /* 0x70 */ TVec3f _70;
+    /* 0x7C */ TVec3f _7C;
+    /* 0x88 */ u8 _88;
 };

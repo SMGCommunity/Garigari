@@ -11,7 +11,7 @@ public:
     virtual void draw() const;
 
     void capture() const;
-    void drawFog(s16 left, s16 top, s16 right, s16 bottom, bool) const NO_INLINE;
+    void drawFog(s16 left, s16 top, s16 right, s16 bottom, bool) const;
     JUTTexture* getGradientTexture() const;
 
     /* 0x18 */ JUTTexture* mDepthTexture;
@@ -22,5 +22,5 @@ public:
     /* 0x29 */ u8 mR;
     /* 0x2A */ u8 mG;
     /* 0x2B */ u8 mB;
-    /* 0x2C */ s32 mGradientID;
+    /* 0x2C */ s32 mGradientType;
 };

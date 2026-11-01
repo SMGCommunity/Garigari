@@ -20,6 +20,8 @@ namespace MR {
     JKRHeap* getCurrentHeap();
     JKRExpHeap* getStationedHeapNapa();
     JKRExpHeap* getStationedHeapGDDR3();
+    JKRSolidHeap* getSceneHeapNapa();
+    JKRSolidHeap* getSceneHeapGDDR3();
     JKRHeap* getHeapNapa(const JKRHeap* pHeap);
     JKRHeap* getHeapGDDR3(const JKRHeap* pHeap);
     void becomeCurrentHeap(JKRHeap* pHeap) NO_INLINE;
