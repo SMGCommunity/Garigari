@@ -31,11 +31,10 @@ bool PlanetGravity::calcGravity(TVec3f* pDest, const TVec3f& rPos) const {
     }
 
     if (_22) {
-        // FIXME: shouldn't inline
-        gravity.set(0.0f, 0.0f, 0.0f);
+        gravity.set< f32 >(0.0f, 0.0f, 0.0f);
     }
 
-    *pDest = gravity;
+    pDest->set(gravity);
 
     return true;
 }
