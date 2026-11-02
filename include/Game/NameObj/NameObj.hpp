@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Game/Util/Functor.hpp"
 #include "Game/Util/JMapLinkInfo.hpp"
 #include <revolution.h>
 
