@@ -29,7 +29,7 @@ SimpleEffectLayout::SimpleEffectLayout(const char* pName, const char* pLayoutNam
     initEffectKeeper(0, nullptr, nullptr);
 }
 
-//CLEAME: DrawType_FileSelect doesn't fit here, should probably one of the Layout drawtypes (DrawType_TalkLayout)
+// CLEANME: DrawType_FileSelect doesn't fit here, should probably one of the Layout drawtypes (DrawType_TalkLayout)
 SimpleTalkTextLayout::SimpleTalkTextLayout(const char* pName, const char* pLayoutName, u32 rootPaneAnimLayerNum)
     : SimpleLayout(pName, pLayoutName, rootPaneAnimLayerNum, MR::DrawType_FileSelect), mFormerText() {
     mFormerText = new TalkTextFormer(this, "Text00");
