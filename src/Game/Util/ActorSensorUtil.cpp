@@ -411,8 +411,8 @@ namespace MR {
         return pSensor->isType(0x15);
     }
 
-    bool tryGetItem(HitSensor* pReceiver, HitSensor* pSender) {
-        return pSender->receiveMessage(0x83, pReceiver);
+    bool tryGetItem(HitSensor* pSender, HitSensor* pReceiver) {
+        pReceiver->receiveMessage(0x83, pSender);
     }
 
     const TVec3f* getSensorPos(const HitSensor* pSensor) {
