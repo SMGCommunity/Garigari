@@ -2274,7 +2274,7 @@ createCollisionParts__27@unnamed@LiveActorUtil_cpp@FP14ResourceHolderPCcP9HitSen
 createCollisionPartsFromLiveActor__2MRFP9LiveActorPCcP9HitSensorQ22MR18CollisionScaleType = .text:0x80035120; // type:function size:0x68
 createCollisionPartsFromLiveActor__2MRFP9LiveActorPCcP9HitSensorPA4_fQ22MR18CollisionScaleType = .text:0x80035190; // type:function size:0x70
 createCollisionPartsFromResourceHolder__2MRFP14ResourceHolderPCcP9HitSensorRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>Q22MR18CollisionScaleType = .text:0x80035200; // type:function size:0x40
-createCollisionPartsFromResourceHolder__2MRFP14ResourceHolderPCcP9HitSensorPA4_fQ22MR18CollisionScaleType = .text:0x80035240; // type:function size:0x6C
+createDashYoshiCollisionPartsFromResourceHolder__2MRFP14ResourceHolderPCcP9HitSensorPA4_fQ22MR18CollisionScaleType = .text:0x80035240; // type:function size:0x6C
 tryCreateCollisionMoveLimit__2MRFP9LiveActorP9HitSensor = .text:0x800352B0; // type:function size:0xBC
 tryCreateCollisionWaterSurface__2MRFP9LiveActorP9HitSensor = .text:0x80035370; // type:function size:0xBC
 getCollisionBoundingSphereRange__2MRFPC9LiveActor = .text:0x80035430; // type:function size:0xC
@@ -38310,7 +38310,7 @@ drawTexture__20ImageEffectLocalUtilFP10JUTTexturellUcQ220ImageEffectLocalUtil12E
 sendTextureVertex__20ImageEffectLocalUtilFll = .text:0x80476E10; // type:function size:0x1D0
 blurTexture__20ImageEffectLocalUtilFP10JUTTexturellUlff = .text:0x80476FE0; // type:function size:0x250
 fn_80477230 = .text:0x80477230; // type:function size:0xA58
-createTexture__19ImageEffectResourceFf9_GXTexFmt = .text:0x80477C90; // type:function size:0x10C
+createTexture__19ImageEffectResourceFf9_GXTexFmt14_GXTexWrapMode12_GXTexFilter = .text:0x80477C90; // type:function size:0x10C
 __cl__Q22MR51FunctorV0M<PC11BloomEffect,M11BloomEffectFPCvPCv_v>CFv = .text:0x80477DA0; // type:function size:0x30
 clone__Q22MR51FunctorV0M<PC11BloomEffect,M11BloomEffectFPCvPCv_v>CFP7JKRHeap = .text:0x80477DD0; // type:function size:0x68
 __ct__19ImageEffectResourceFv = .text:0x80477E40; // type:function size:0x84
