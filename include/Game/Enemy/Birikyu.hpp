@@ -10,10 +10,10 @@ public:
     virtual void init(const JMapInfoIter&);
     virtual void initAfterPlacement();
     virtual void appear();
-    virtual void control();
     virtual void movement();
     virtual void startClipped();
     virtual void endClipped();
+    virtual void control();
     virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
     virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
     virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
@@ -24,6 +24,7 @@ public:
     void goMove();
     void endStopPointing();
     bool isMoving() const;
+
     void exeMove();
     void exeMoveCircle();
     void exeWaitAtEdge();
@@ -32,23 +33,23 @@ public:
     void exeStopPointing();
     void exeKill();
 
-    /* 0x8C */ char* _8C;
-    /* 0x90 */ const char* mObjectName;
-    /* 0x94 */ TVec3f mRailClipCenter;
-    /* 0xA0 */ TVec3f mOrbitCenter;
+    /* 0x8C */ char* _90;
+    /* 0x94 */ const char* mObjectName;
+    /* 0x98 */ TVec3f mRailClipCenter;
+    /* 0xA4 */ TVec3f mOrbitCenter;
 
     /// @brief JMapInfo arg 2.
-    /* 0xAC */ bool mHasShadow;
+    /* 0xB0 */ bool mHasShadow;
 
-    /* 0xAD */ bool mIsConnected;
-    /* 0xB0 */ TVec3f mUpVec;
-    /* 0xBC */ TVec3f mFrontVec;
+    /* 0xB1 */ bool mIsConnected;
+    /* 0xB4 */ TVec3f mUp;
+    /* 0xC0 */ TVec3f mFront;
 
     /// @brief In radians.
-    /* 0xC8 */ f32 mOrbitAngle;
+    /* 0xCC */ f32 mOrbitAngle;
 
     /// @brief Used for both rail movement and orbit speed.
-    /* 0xCC */ f32 mMoveSpeed;
+    /* 0xD0 */ f32 mMoveSpeed;
 };
 
 /// @brief Amp
@@ -60,9 +61,6 @@ public:
     virtual void initAfterPlacement();
     virtual void calcAndSetBaseMtx();
 
-    /// @brief JMapInfo arg 1.
-    /* 0xD0 */ u32 _D0;
-    /* 0xD4 */ bool _D4;
-    /* 0xD5 */ u8 _D5;
-    /* 0xD8 */ s32 _D8;
+    /* 0xD4 */ bool mSideType;
+    /* 0xD8 */ s32 mGravityType;
 };
