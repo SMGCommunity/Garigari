@@ -1,4 +1,5 @@
 #include "Game/Util/SpringValue.hpp"
+#include "Game/Util/MathUtil.hpp"
 
 SpringValue::SpringValue() {
     mRestValue = 0.0f;
@@ -29,4 +30,8 @@ f32 SpringValue::update() {
     mVelocity += mAccelFactor * (mRestValue - mSpringValue);
     mVelocity *= mDamping;
     return mSpringValue;
+}
+
+void SpringValue::clampSpring(f32 maxValue) {
+    mSpringValue = MR::min(mSpringValue, maxValue);
 }

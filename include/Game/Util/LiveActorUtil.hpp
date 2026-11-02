@@ -341,7 +341,7 @@ namespace MR {
     PartsModel* createPartsModelNpc(LiveActor* pHost, const char* pName, const char* pModelName, MtxPtr pMtx);
     PartsModel* createPartsModelIndirectNpc(LiveActor* pHost, const char* pName, const char* pModelName, MtxPtr pMtx);
     PartsModel* createPartsModelEnemyAndFix(LiveActor* pHost, const char* pName, const char* pModelName, MtxPtr pMtx);
-    PartsModel* createPartsModelNpcAndFix(LiveActor* pHost, const char* pName, const char* pModelName, MtxPtr pMtx);
+    PartsModel* createPartsModelNpcAndFix(LiveActor* pHost, const char* pName, const char* pModelName, MtxPtr pMtx, const char* pJointName);
 
     RailObj* createRailObj(const char* pName, LiveActor* pHost, const JMapInfoIter& rIter);
 
@@ -363,4 +363,6 @@ namespace MR {
 
     HitSensor* getBodySensor(LiveActor* pActor);
     void setBodySensorType(LiveActor* pActor, u32 sensorType);
+
+    void initMapPartsClipping(LiveActor*, const JMapInfoIter&, TVec3f*, bool);
 };  // namespace MR

@@ -11,7 +11,7 @@ public:
     virtual void draw() const;
 
     void capture() const;
-    void drawFog(s16 left, s16 top, s16 right, s16 bottom, bool) const NO_INLINE;
+    void drawFog(s16 left, s16 top, s16 right, s16 bottom, bool) const;
     JUTTexture* getGradientTexture() const;
 
     /* 0x18 */ JUTTexture* mDepthTexture;

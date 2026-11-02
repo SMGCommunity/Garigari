@@ -15,6 +15,7 @@
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/MtxUtil.hpp"
 
+// FIXME: some vtables aren't being emitted which prevents linking
 
 GravityCreator::GravityCreator() {
 }

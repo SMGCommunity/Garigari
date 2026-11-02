@@ -18,9 +18,7 @@ public:
     /* 0x28 */ TVec3f mLocalPos;
     /* 0x34 */ TVec3f _34;
     /* 0x40 */ TVec3f mUpDir;
-    /* 0x4C */ f32 _4C;
-    /* 0x50 */ f32 _50;
-    /* 0x54 */ f32 _54;
+    /* 0x4C */ TVec3f _4C;
     /* 0x58 */ f32 mRadius;
     /* 0x5C */ f32 _5C;
     /* 0x60 */ f32 _60;

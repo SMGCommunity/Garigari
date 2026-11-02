@@ -124,7 +124,7 @@ namespace MR {
     void start2PJumpAssistJustSound();
     void start2PAttackAssistSound();
     void limitedStarPieceHitSound();
-    void startCurrentStageBGM();
+    void startCurrentStageBGM(bool); // Changed in SMG2
     //JAISoundHandle* startBossBGM(s32);
     //JAISoundHandle* startEventBGM(s32);
     //JAISoundHandle* startAfterBossBGM();

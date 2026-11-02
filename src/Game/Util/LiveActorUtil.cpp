@@ -10,17 +10,22 @@
 #include "Game/LiveActor/LodCtrl.hpp"
 #include "Game/LiveActor/MirrorCamera.hpp"
 #include "Game/LiveActor/ModelManager.hpp"
+#include "Game/LiveActor/ModelObj.hpp"
+#include "Game/LiveActor/PartsModel.hpp"
 #include "Game/Map/CollisionParts.hpp"
 #include "Game/NameObj/NameObjExecuteHolder.hpp"
 #include "Game/NameObj/NameObjFinder.hpp"
 #include "Game/Player/GroupChecker.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/System/ResourceHolder.hpp"
 #include "Game/System/ResourceInfo.hpp"
 #include "Game/Util/ActorAnimUtil.hpp"
+#include "Game/Util/ActorInitUtil.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/CollisionPartsFilter.hpp"
+#include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/FurMulti.hpp"
 #include "Game/Util/GravityUtil.hpp"
@@ -1700,6 +1705,191 @@ namespace MR {
         return pCollisionParts->mHitSensor->mType;
     }
 
+    ModelObj* createModelObj(const char* pName, const char* pModelName, MtxPtr pMtx, int drawBufferType, int movementType) {
+        ModelObj* modelObj = new ModelObj(pName, pModelName, pMtx, drawBufferType, movementType, -2, false);
+
+        modelObj->initWithoutIter();
+
+        return modelObj;
+    }
+
+    DemoObj* createDemoObj(const char* pName, const char* pModelName, MtxPtr pMtx) {
+        DemoObj* demoObj = new DemoObj(pName, pMtx);
+
+        initActor(demoObj, pModelName, false);
+        demoObj->initWithoutIter();
+
+        return demoObj;
+    }
+
+    DemoObj* createDemoObjWithAnimArc(const char* pName, const char* pModelName, const char* pAnimArcName, MtxPtr pMtx) {
+        DemoObj* demoObj = new DemoObj(pName, pMtx);
+
+        initActorNoIter(demoObj, pModelName, pAnimArcName, false);
+        demoObj->initWithoutIter();
+
+        return demoObj;
+    }
+
+    DemoObj* createDemoObj(const char* pName, const char* pModelName, const char* pFuncName, MtxPtr pMtx) {
+        DemoObj* demoObj = new DemoObj(pName, pMtx);
+
+        initActor(demoObj, pModelName, pFuncName, false);
+        demoObj->initWithoutIter();
+
+        return demoObj;
+    }
+
+    DemoObj* createDemoObjWithAnimArc(const char* pName, const char* pModelName, const char* pAnimArcName, const char* pFuncName, MtxPtr pMtx) {
+        DemoObj* demoObj = new DemoObj(pName, pMtx);
+
+        initActorNoIter(demoObj, pModelName, pAnimArcName, pFuncName, false);
+        demoObj->initWithoutIter();
+
+        return demoObj;
+    }
+
+    ModelObj* createModelObjMapObjDecoration(const char* pName, const char* pModelName, MtxPtr pMtx) {
+        return createModelObj(pName, pModelName, pMtx, -2, -2);
+    }
+
+    ModelObj* createModelObjMapObj(const char* pName, const char* pModelName, MtxPtr pMtx) {
+        // TODO: If DrawBufferType is still mismatched, expect this to be fixed when the enum is updated.
+        return createModelObj(pName, pModelName, pMtx, DrawBufferType_MapObj, -2);
+    }
+
+    ModelObj* createModelObjMapObjStrongLight(const char* pName, const char* pModelName, MtxPtr pMtx) {
+        // TODO: If DrawBufferType is still mismatched, expect this to be fixed when the enum is updated.
+        return createModelObj(pName, pModelName, pMtx, DrawBufferType_MapObjStrongLight, -2);
+    }
+
+    ModelObj* createModelObjNoSilhouettedMapObj(const char* pName, const char* pModelName, MtxPtr pMtx) {
+        // TODO: If DrawBufferType is still mismatched, expect this to be fixed when the enum is updated.
+        return createModelObj(pName, pModelName, pMtx, DrawBufferType_NoSilhouettedMapObj, -2);
+    }
+
+    ModelObj* createModelObjNoSilhouettedMapObjStrongLight(const char* pName, const char* pModelName, MtxPtr pMtx) {
+        // TODO: If DrawBufferType is still mismatched, expect this to be fixed when the enum is updated.
+        return createModelObj(pName, pModelName, pMtx, DrawBufferType_NoSilhouettedMapObjStrongLight, -2);
+    }
+
+    ModelObj* createModelObjIndirectMapObj(const char* pName, const char* pModelName, MtxPtr pMtx) {
+        // TODO: If DrawBufferType is still mismatched, expect this to be fixed when the enum is updated.
+        return createModelObj(pName, pModelName, pMtx, DrawBufferType_IndirectMapObj, -2);
+    }
+
+    ModelObj* createModelObjPlayerDecoration(const char* pName, const char* pModelName, MtxPtr pMtx) {
+        // TODO: If DrawBufferType is still mismatched, expect this to be fixed when the enum is updated.
+        return createModelObj(pName, pModelName, pMtx, DrawBufferType_PlayerDecoration, -2);
+    }
+
+    ModelObj* createModelObjEnemy(const char* pName, const char* pModelName, MtxPtr pMtx) {
+        // TODO: If DrawBufferType is still mismatched, expect this to be fixed when the enum is updated.
+        return createModelObj(pName, pModelName, pMtx, DrawBufferType_Enemy, MovementType_Enemy);
+    }
+
+    ModelObj* createModelObjNpc(const char* pName, const char* pModelName, MtxPtr pMtx) {
+        // TODO: If DrawBufferType is still mismatched, expect this to be fixed when the enum is updated.
+        return createModelObj(pName, pModelName, pMtx, DrawBufferType_NPC, -2);
+    }
+
+    ModelObj* createModelObjBloomModel(const char* pName, const char* pModelName, MtxPtr pMtx, bool registerDemo) {
+        // TODO: If DrawBufferType is still mismatched, expect this to be fixed when the enum is updated.
+        ModelObj* modelObj = new ModelObj(pName, pModelName, pMtx, DrawBufferType_BloomModel, -2, -2, false);
+
+        modelObj->initWithoutIter();
+
+        if (registerDemo) {
+            registerDemoSimpleCastAll(modelObj);
+        }
+
+        return modelObj;
+    }
+
+    PartsModel* createPartsModel(LiveActor* pHost, const char* pName, const char* pModelName, MtxPtr pMtx, u32 drawBufferType) {
+        PartsModel* partsModel = new PartsModel(pHost, pName, pModelName, pMtx, drawBufferType, false);
+
+        partsModel->initWithoutIter();
+
+        return partsModel;
+    }
+
+    PartsModel* createPartsModelMapObj2(LiveActor* pHost, const char* pName, const char* pModelName, MtxPtr pMtx) {
+        return createPartsModel(pHost, pName, pModelName, pMtx, DrawBufferType_None);
+    }
+
+    PartsModel* createPartsModelMapObj(LiveActor* pHost, const char* pName, const char* pModelName, MtxPtr pMtx) {
+        // TODO: If DrawBufferType is still mismatched, expect this to be fixed when the enum is updated.
+        return createPartsModel(pHost, pName, pModelName, pMtx, DrawBufferType_MapObj);
+    }
+
+    PartsModel* createPartsModelMapObjStrongLight(LiveActor* pHost, const char* pName, const char* pModelName, MtxPtr pMtx) {
+        // TODO: If DrawBufferType is still mismatched, expect this to be fixed when the enum is updated.
+        return createPartsModel(pHost, pName, pModelName, pMtx, DrawBufferType_NoSilhouettedMapObjStrongLight);
+    }
+
+    PartsModel* createPartsModelNoSilhouettedMapObj(LiveActor* pHost, const char* pName, const char* pModelName, MtxPtr pMtx) {
+        // TODO: If DrawBufferType is still mismatched, expect this to be fixed when the enum is updated.
+        return createPartsModel(pHost, pName, pModelName, pMtx, DrawBufferType_NoSilhouettedMapObj);
+    }
+
+    PartsModel* createPartsModelEnemy(LiveActor* pHost, const char* pName, const char* pModelName, MtxPtr pMtx) {
+        // TODO: If DrawBufferType is still mismatched, expect this to be fixed when the enum is updated.
+        return createPartsModel(pHost, pName, pModelName, pMtx, DrawBufferType_Enemy);
+    }
+
+    PartsModel* createPartsModelNpc(LiveActor* pHost, const char* pName, const char* pModelName, MtxPtr pMtx) {
+        // TODO: If DrawBufferType is still mismatched, expect this to be fixed when the enum is updated.
+        PartsModel* partsModel = new PartsModel(pHost, pName, pModelName, pMtx, DrawBufferType_NPC, false);
+
+        partsModel->initWithoutIter();
+        partsModel->mCheckHiddenHost = true;
+
+        return partsModel;
+    }
+
+    PartsModel* createPartsModelIndirectNpc(LiveActor* pHost, const char* pName, const char* pModelName, MtxPtr pMtx) {
+        // TODO: If DrawBufferType is still mismatched, expect this to be fixed when the enum is updated.
+        PartsModel* partsModel = new PartsModel(pHost, pName, pModelName, pMtx, DrawBufferType_IndirectNpc, false);
+
+        partsModel->initWithoutIter();
+        partsModel->mCheckHiddenHost = true;
+
+        return partsModel;
+    }
+
+    PartsModel* createPartsModelEnemyAndFix(LiveActor* pHost, const char* pName, const char* pModelName, MtxPtr pMtx) {
+        // TODO: If DrawBufferType is still mismatched, expect this to be fixed when the enum is updated.
+        PartsModel* partsModel = new PartsModel(pHost, pName, pModelName, pMtx, DrawBufferType_EnemyDecoration, false);
+
+        partsModel->initFixedPosition(pHost->mPosition, pHost->mRotation, nullptr);
+        partsModel->initWithoutIter();
+
+        return partsModel;
+    }
+
+    PartsModel* createPartsModelEnemyAndFix(LiveActor* pHost, const char* pName, const char* pModelName, MtxPtr pMtx, const TVec3f& rOffset,
+                                            const TVec3f& rRotate, const char* pJointName) {
+        // TODO: If DrawBufferType is still mismatched, expect this to be fixed when the enum is updated.
+        PartsModel* partsModel = new PartsModel(pHost, pName, pModelName, pMtx, DrawBufferType_Enemy, false);
+
+        partsModel->initFixedPosition(rOffset, rRotate, pJointName);
+        partsModel->initWithoutIter();
+
+        return partsModel;
+    }
+
+    PartsModel* createPartsModelNpcAndFix(LiveActor* pHost, const char* pName, const char* pModelName, const char* pJointName) {
+        // TODO: If DrawBufferType is still mismatched, expect this to be fixed when the enum is updated.
+        PartsModel* partsModel = new PartsModel(pHost, pName, pModelName, nullptr, DrawBufferType_NPC, false);
+
+        partsModel->initFixedPosition(pJointName);
+        partsModel->initWithoutIter();
+        partsModel->mCheckHiddenHost = true;
+
+        return partsModel;
+    }
+
     void stopSceneAtStep(const LiveActor* pActor, s32 step, s32 sceneStep) {
         if (isStep(pActor, step)) {
             stopScene(sceneStep);
@@ -1725,6 +1915,21 @@ namespace MR {
         return ctrl;
     }
 
+    bool tryKillAndForceDeleteEffectAll(LiveActor* pActor) {
+        if (!pActor->mFlags.mIsDead) {
+            pActor->makeActorDead();
+        }
+
+        return tryForceDeleteEffectAll(pActor);
+    }
+
+    HitSensor* getBodySensor(LiveActor* pActor) {
+        return pActor->getSensor("Body");
+    }
+
+    void setBodySensorType(LiveActor* pActor, u32 sensorType) {
+        getBodySensor(pActor)->setType(sensorType);
+    }
     void tryRumblePadAndCameraDistanceVeryStrong(const LiveActor* pActor, f32 near, f32 middle, f32 far) {
         if (isNearPlayerAnyTime(pActor, near)) {
             tryRumblePadVeryStrong(pActor, WPAD_CHAN0);
