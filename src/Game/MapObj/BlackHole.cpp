@@ -1,12 +1,9 @@
 #include "Game/MapObj/BlackHole.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/ActionSoundUtil.hpp"
 #include "Game/Util/ActorAnimUtil.hpp"
-#include "Game/Util/ActorCameraUtil.hpp"
 #include "Game/Util/ActorInitUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
-#include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/EffectUtil.hpp"
@@ -15,11 +12,6 @@
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
-#include "JSystem/JGeometry/TBox.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "revolution/types.h"
-#include <JSystem/JGeometry/TMatrix.hpp>
-#include <math_types.hpp>
 
 namespace NrvBlackHole {
     NEW_NERVE(BlackHoleNrvWait, BlackHole, Wait);
@@ -34,13 +26,6 @@ BlackHole::BlackHole(const char* pName)
 }
 
 void BlackHole::init(const JMapInfoIter& rIter) {
-    // FIXME
-    // decomp.me: https://decomp.me/scratch/boJyM
-    // For whatever reason, it matches more in objdiff (99.90%) than in decomp.me (99.76%).
-    // For some reason, decomp.me compiles my code differently, resulting in r5 pointing to the wrong stack address before LiveActor::initSound is
-    // called. In objdiff, the only issue is that there are discrepancies with the value 500.0f. The target assembly refers to lbl_807DCD94; the
-    // current assembly refers to @5851.
-
     initMapToolInfo(rIter);
     initModel();
     MR::connectToSceneMapObj(this);
