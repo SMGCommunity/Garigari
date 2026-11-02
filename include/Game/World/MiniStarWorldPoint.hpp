@@ -2,7 +2,7 @@
 
 #include "Game/LiveActor/LiveActor.hpp"
 
-class LayoutActor;
+class ActorLayout;
 class WorldMapObjHolder;
 
 class MiniStarWorldPoint : public LiveActor {
@@ -13,10 +13,10 @@ public:
     virtual void makeActorAppeared();
     virtual void control();
 
-    void fn_804E6820(); // TODO: better name
+    void initStateLayout();
 
     /* 0x90 */ WorldMapObjHolder* mObjHolder;
     /* 0x94 */ s32 mPointIndex;
     /* 0x98 */ s32 mWorldNo;
-    /* 0x9C */ LayoutActor* _9C;
+    /* 0x9C */ ActorLayout* mStateIcon;
 };
