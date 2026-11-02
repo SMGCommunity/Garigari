@@ -412,7 +412,7 @@ namespace MR {
     }
 
     bool tryGetItem(HitSensor* pReceiver, HitSensor* pSender) {
-        return pSender->receiveMessage(0x83, pReceiver);
+        return pReceiver->receiveMessage(0x83, pSender);
     }
 
     const TVec3f* getSensorPos(const HitSensor* pSensor) {
@@ -433,8 +433,8 @@ namespace MR {
 
     /* ... */
 
-    bool sendArbitraryMsg(u32 msg, HitSensor* pReceiver, HitSensor* a3) {
-        return a3->receiveMessage(msg, pReceiver);
+    bool sendArbitraryMsg(u32 msg, HitSensor* pReceiver, HitSensor* pSender) {
+        return pReceiver->receiveMessage(msg, pSender);
     }
 
     bool sendMsgPush(HitSensor* pReceiver, HitSensor* pSender) {
@@ -458,11 +458,11 @@ namespace MR {
     }
 
     bool sendMsgPlayerTrample(HitSensor* pReceiver, HitSensor* pSender) {
-        return pReceiver->receiveMessage(2, pSender);
+        return pReceiver->receiveMessage(0x2, pSender);
     }
 
     bool sendMsgPlayerPunch(HitSensor* pReceiver, HitSensor* pSender) {
-        return pReceiver->receiveMessage(1, pSender);
+        return pReceiver->receiveMessage(0x1, pSender);
     }
 
     bool sendMsgInvincibleAttack(HitSensor* pReceiver, HitSensor* pSender) {
