@@ -31,7 +31,7 @@ SimpleEffectLayout::SimpleEffectLayout(const char* pName, const char* pLayoutNam
 
 // CLEANME: DrawType_FileSelect doesn't fit here, should probably one of the Layout drawtypes (DrawType_TalkLayout)
 SimpleTalkTextLayout::SimpleTalkTextLayout(const char* pName, const char* pLayoutName, u32 rootPaneAnimLayerNum)
-    : SimpleLayout(pName, pLayoutName, rootPaneAnimLayerNum, MR::DrawType_FileSelect), mFormerText() {
+    : SimpleLayout(pName, pLayoutName, rootPaneAnimLayerNum, 81), mFormerText() {
     mFormerText = new TalkTextFormer(this, "Text00");
     initNerve(GET_NERVE(SimpleTalkTextLayout, SimpleTalkTextLayoutNrvStart));
     kill();

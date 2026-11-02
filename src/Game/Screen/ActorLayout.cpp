@@ -17,7 +17,7 @@ void ActorLayout::control() {
 
     TVec2f screenPosition;
 
-MR::calcScreenPosition(&screenPosition, mHostActor->mPosition + mOffset);
+    MR::calcScreenPosition(&screenPosition, mHostActor->mPosition + mOffset);
     setTrans(screenPosition);
 
     MR::showLayout(this);
