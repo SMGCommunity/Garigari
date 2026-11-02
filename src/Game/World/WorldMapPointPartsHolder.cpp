@@ -4,6 +4,7 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
 #include "Game/World/MiniEarthenPipe.hpp"
+#include "Game/World/MiniStarWorldPoint.hpp"
 #include "Game/World/MiniWorldWarpPoint.hpp"
 #include "Game/World/WorldMapObjFunction.hpp"
 #include <decomp.h>
@@ -77,7 +78,7 @@ void WorldMapPointPartsHolder::init() {
             part->mActor->mPosition += sWorldWarpPointOffset;
             part->mActor->initWithoutIter();
         } else if (::isStarRoadWarpPoint(part->mPartsTypeName)) {
-            // TODO
+            part->mActor = new MiniStarWorldPoint(mObjHolder, part->mPointIndex, part->mParam00 > worldNo);
             MR::setPosition(part->mActor, fn_804F2550(mObjHolder, part->mPointIndex));
             part->mActor->initWithoutIter();
         } else if (::isStarCheckPoint(part->mPartsTypeName)) {
