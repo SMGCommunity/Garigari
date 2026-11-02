@@ -5,12 +5,6 @@
 #include "RFL_Model.h"
 
 MiiFaceParts::MiiFaceParts(const char* pName, const MiiFaceRecipe& rRecipe) : LiveActor(pName), _90(), _94(), mRecipe(), _D0(), _D4() {
-    // FIXME
-    // decomp.me: https://decomp.me/scratch/cda1h
-    // I know exactly how to fix this: change MiiFaceRecipe::mIndex from an s16 to a u16.
-    // Problem is, I can't make changes to MiiFaceRecipe in a MiiFaceParts PR.
-    // So, I have to wait for a new MiiFaceRecipe PR to be merged in order to get this function 100% matching.
-
     mRecipe = new MiiFaceRecipe(rRecipe);
 
     MR::createSceneObj(0x76);
