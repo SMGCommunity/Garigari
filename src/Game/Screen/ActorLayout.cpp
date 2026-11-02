@@ -5,8 +5,8 @@
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 
-ActorLayout::ActorLayout(LiveActor* pHostActor, const char* pName, const char* pLayoutName, const TVec3f& rOffset, u32 a3, int drawType)
-    : SimpleLayout(pName, pLayoutName, a3, drawType), mHostActor(pHostActor), mOffset(rOffset) {
+ActorLayout::ActorLayout(LiveActor* pHostActor, const char* pName, const char* pLayoutName, const TVec3f& rOffset, u32 rootPaneAnimLayerNum, int drawType)
+    : SimpleLayout(pName, pLayoutName, rootPaneAnimLayerNum, drawType), mHostActor(pHostActor), mOffset(rOffset) {
 }
 
 void ActorLayout::control() {
@@ -14,10 +14,10 @@ void ActorLayout::control() {
         MR::hideLayout(this);
         return;
     }
+
     TVec2f screenPosition;
 
-    MR::calcScreenPosition(&screenPosition, mHostActor->mPosition + mOffset);
-
+MR::calcScreenPosition(&screenPosition, mHostActor->mPosition + mOffset);
     setTrans(screenPosition);
 
     MR::showLayout(this);
