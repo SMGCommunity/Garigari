@@ -17,8 +17,8 @@ MiiFaceParts::~MiiFaceParts() {
 
 void MiiFaceParts::init(const JMapInfoIter& rIter) {
     mBuffer = new (32) u8[mRecipe->getModelBufferSize()];
-    mCharModel = new RFLCharModel;
-    _D5 = 1;
+    mCharModel = new RFLCharModel();
+    _D5 = true;
 }
 
 void MiiFaceParts::calcAnim() {
@@ -34,7 +34,7 @@ void MiiFaceParts::calcAnim() {
 }
 
 void MiiFaceParts::calcViewAndEntry() {
-    Mtx viewMtx;
+    TPos3f viewMtx;
 
     if (_D5) {
         return;
