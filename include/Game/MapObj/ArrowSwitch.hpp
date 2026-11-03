@@ -37,12 +37,13 @@ public:
     bool requestPunch(HitSensor*, HitSensor*);
     void listenOnSwitch();
     void listenOffSwitch();
-    void exeWait();
-    void exeRotate();
-    void exeLock();
     bool isPlusLimit() const;
     bool isMinusLimit() const;
     s32 getOneStep() const;
+    
+    void exeWait();
+    void exeRotate();
+    void exeLock();
     void exeStop();
 
     /* 0x90 */ f32 mRotAngle;

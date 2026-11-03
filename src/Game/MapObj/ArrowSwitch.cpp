@@ -35,9 +35,9 @@ void ArrowSwitch::init(const JMapInfoIter& rIter) {
     MR::initActor(this, rIter, "ArrowSwitch", false);
     MR::connectToSceneNoSilhouettedMapObjStrongLight(this);
 
-    TVec3f upVec;
-    MR::calcUpVec(&upVec, this);
-    mGravity.set(-upVec);
+    TVec3f up;
+    MR::calcUpVec(&up, this);
+    mGravity.set(-up);
 
     MR::initShadowFromCSVWithInitShadowVolumeSphere(this, "Shadow");
     MR::onCalcShadow(this, nullptr);
@@ -49,9 +49,7 @@ void ArrowSwitch::init(const JMapInfoIter& rIter) {
     } else {
         initHitSensor(2);
         MR::addHitSensorMapObj(this, "Body", 8, 100.0f * mScale.x, TVec3f(0.0f, 50.0f * mScale.x, 250.0f * mScale.x));
-
         MR::addHitSensorMapObjMoveCollision(this, "collision", 8, 0.0f, TVec3f(0.0f, 0.0f, 0.0f));
-
         MR::initCollisionParts(this, "ArrowSwitch", getSensor("collision"), nullptr);
     }
 
@@ -158,7 +156,7 @@ void ArrowSwitch::listenOnSwitch() {
     switch (mSwitchType) {
     case -1:
     case SwitchType_HalfPlus:
-        mIsRotPlus = 1;
+        mIsRotPlus = true;
         mRotSpeed = ::sPunchVelocity;
         mRotYTargetIndex = Direction_Down;
         break;
@@ -192,24 +190,20 @@ void ArrowSwitch::listenOffSwitch() {
 
     mRotYTargetIndex = Direction_Up;
 
-    u32 nextSwitchType = mSwitchType + 1;
-    if (nextSwitchType <= 1 || mSwitchType == 2) {
+    switch (mSwitchType) {
+    case -1:
+    case SwitchType_QuarterPlus:
+    case SwitchType_HalfPlus:
         mIsRotPlus = false;
         mRotSpeed = -::sPunchVelocity;
-    } else {
-        switch (mSwitchType) {
-        case SwitchType_HalfPlus:
-            mIsRotPlus = false;
-            mRotSpeed = -::sPunchVelocity;
-            break;
-        case SwitchType_HalfMinus:
-        case SwitchType_QuarterMinus:
-            mIsRotPlus = true;
-            mRotSpeed = ::sPunchVelocity;
-            break;
-        default:
-            return;
-        }
+        break;
+    case SwitchType_HalfMinus:
+    case SwitchType_QuarterMinus:
+        mIsRotPlus = true;
+        mRotSpeed = ::sPunchVelocity;
+        break;
+    default:
+        return;
     }
 
     MR::invalidateClipping(this);
@@ -282,6 +276,9 @@ void ArrowSwitch::exeLock() {
     }
 }
 
+void ArrowSwitch::exeStop() {
+}
+
 bool ArrowSwitch::isPlusLimit() const {
     switch (mSwitchType) {
     case SwitchType_HalfPlus:
@@ -324,7 +321,4 @@ s32 ArrowSwitch::getOneStep() const {
     default:
         return 0;
     }
-}
-
-void ArrowSwitch::exeStop() {
 }
