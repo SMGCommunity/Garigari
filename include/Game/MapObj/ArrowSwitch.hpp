@@ -40,7 +40,7 @@ public:
     bool isPlusLimit() const;
     bool isMinusLimit() const;
     s32 getOneStep() const;
-    
+
     void exeWait();
     void exeRotate();
     void exeLock();
