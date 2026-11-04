@@ -1357,7 +1357,7 @@ config.libs = [
     GameLib(
         "LiveActor",
         [
-            Object(NonMatching, "Game/LiveActor/ActorAnimKeeper.cpp"),
+            Object(Matching, "Game/LiveActor/ActorAnimKeeper.cpp"),
             Object(NonMatching, "Game/LiveActor/ActionBgmCtrl.cpp"),
             Object(NonMatching, "Game/LiveActor/ActorPadAndCameraCtrl.cpp"),
             Object(NonMatching, "Game/LiveActor/ActorActionKeeper.cpp"),
