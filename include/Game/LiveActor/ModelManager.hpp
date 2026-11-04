@@ -3,6 +3,7 @@
 #include <revolution/types.h>
 
 class DisplayListMaker;
+class J3DFrameCtrl;
 class ResourceHolder;
 class XjointTransform;
 
@@ -19,6 +20,7 @@ public:
     void newDifferedDLBuffer();
     void startBtp(const char*);
     const char* getPlayingBckName() const;
+    J3DFrameCtrl* getBckCtrl() const;
     bool isBckStopped() const;
     bool isBtkStopped() const;
     bool isBrkStopped() const;
