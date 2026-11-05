@@ -8,14 +8,14 @@
 #include "JSystem/J3DGraphAnimator/J3DAnimation.hpp"
 
 namespace {
-    const char* sResourceName = "ActionFootPrintCtrl";
+    const char* sFileName = "ActionFootPrintCtrl";
 };
 
 ActionFootPrintInfo::ActionFootPrintInfo() : mBckName(), mBckStartFrame(), mJointName(), mIsRight(), mIsPlaying() {
 }
 
 ActionFootPrintCtrl* ActionFootPrintCtrl::tryCreate(LiveActor* pActor) {
-    if (MR::isExistFileInArc(MR::getResourceHolder(pActor), "%s.bcsv", ::sResourceName)) {
+    if (MR::isExistFileInArc(MR::getResourceHolder(pActor), "%s.bcsv", ::sFileName)) {
         return new ActionFootPrintCtrl(pActor);
     }
 
@@ -51,7 +51,7 @@ void ActionFootPrintCtrl::update() {
 }
 
 ActionFootPrintCtrl::ActionFootPrintCtrl(LiveActor* pActor) : mHost(pActor), mPlayingBckName(), mFootPrint(), mFootPrintInfoCount(), mFootPrintInfos() {
-    const JMapInfo* pInfo = MR::tryCreateCsvParser(MR::getResourceHolder(mHost), "%s.bcsv", ::sResourceName);
+    const JMapInfo* pInfo = MR::tryCreateCsvParser(MR::getResourceHolder(mHost), "%s.bcsv", ::sFileName);
 
     if (pInfo == nullptr) {
         return;

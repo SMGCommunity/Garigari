@@ -7,7 +7,7 @@
 #include <JSystem/J3DGraphAnimator/J3DAnimation.hpp>
 
 namespace {
-    const char* sResourceName = "ActionBgmCtrl";
+    const char* sFileName = "ActionBgmCtrl";
 };  // namespacea
 
 ActionBgmInfo::ActionBgmInfo()
@@ -16,7 +16,7 @@ ActionBgmInfo::ActionBgmInfo()
 }
 
 ActionBgmCtrl* ActionBgmCtrl::tryCreate(const ModelManager* pManager) {
-    if (MR::isExistFileInArc(pManager->getResourceHolder(), "%s.bcsv", ::sResourceName)) {
+    if (MR::isExistFileInArc(pManager->getResourceHolder(), "%s.bcsv", ::sFileName)) {
         return new ActionBgmCtrl(pManager);
     }
 
@@ -70,7 +70,7 @@ void ActionBgmCtrl::update() {
 }
 
 ActionBgmCtrl::ActionBgmCtrl(const ModelManager* pManager) : mModelManager(pManager), mPlayingBckName(), mBgmInfoCount(), mBgmInfos() {
-    const JMapInfo* pInfo = MR::tryCreateCsvParser(mModelManager->getResourceHolder(), "%s.bcsv", ::sResourceName);
+    const JMapInfo* pInfo = MR::tryCreateCsvParser(mModelManager->getResourceHolder(), "%s.bcsv", ::sFileName);
 
     if (pInfo == nullptr) {
         return;

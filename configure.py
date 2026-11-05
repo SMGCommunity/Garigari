@@ -1365,7 +1365,7 @@ config.libs = [
             Object(Matching, "Game/LiveActor/ActionBgmCtrl.cpp"),
             Object(NonMatching, "Game/LiveActor/ActionFlagCtrl.cpp"),
             Object(Matching, "Game/LiveActor/ActionFootPrintCtrl.cpp"),
-            Object(NonMatching, "Game/LiveActor/ActorPadAndCameraCtrl.cpp"),
+            Object(Matching, "Game/LiveActor/ActorPadAndCameraCtrl.cpp"),
             Object(NonMatching, "Game/LiveActor/ActorActionKeeper.cpp"),
             Object(NonMatching, "Game/LiveActor/ActorCameraInfo.cpp"),
             Object(NonMatching, "Game/LiveActor/ActorHitReaction.cpp"),

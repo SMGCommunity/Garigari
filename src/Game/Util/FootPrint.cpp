@@ -15,7 +15,7 @@
 namespace {
     static const s32 sFadeBufferCount = 10;
     static const s32 sFadeOutTime = 60;
-    static const char* sResourceName = "FootPrintCtrl";
+    static const char* sFileName = "FootPrintCtrl";
     static const char* sObjectName = "の足跡";
     static const char* sTextureName = "FootPrint.bti";
 };  // namespace
@@ -187,7 +187,7 @@ namespace MR {
     FootPrint* createFootPrintFromArc(const LiveActor* pActor) {
         ResTIMG* img = getTexFromArc(::sTextureName, pActor);
 
-        const JMapInfo* pInfo = tryCreateCsvParser(pActor, "%s.bcsv", ::sResourceName);
+        const JMapInfo* pInfo = tryCreateCsvParser(pActor, "%s.bcsv", ::sFileName);
 
         if (pInfo == nullptr) {
             FootPrint* pFootPrint = new FootPrint("ダミー足跡", 32);
