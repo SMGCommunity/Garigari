@@ -22,6 +22,9 @@ namespace MR {
 
     bool isPlacementLocalStage();
 
+    s32 getZoneNum();
+    const char* getZoneNameFromZoneId(s32);
+    s32 getPlacedZoneId(const JMapInfoIter&);
     TPos3f& getZonePlacementMtx(const JMapInfoIter&);
 
     void getCameraRailInfo(JMapInfoIter*, const JMapInfo**, s32, s32);
