@@ -1,15 +1,11 @@
 #include "Game/LiveActor/ActionFootPrintCtrl.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Util/ActorAnimUtil.hpp"
+#include "Game/Util/FootPrint.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
 #include "JSystem/J3DGraphAnimator/J3DAnimation.hpp"
-
-// TODO: get them from `FootPrint`
-FootPrint* createFootPrintFromArc(const LiveActor*);
-void addFootPrint(FootPrint*, const LiveActor*, const char*, bool, f32);
-void addFootPrint(FootPrint*, const LiveActor*, const TVec3f&, bool, f32);
 
 namespace {
     const char* sResourceName = "ActionFootPrintCtrl";
@@ -47,9 +43,9 @@ void ActionFootPrintCtrl::update() {
         }
 
         if (pInfo->mJointName != nullptr) {
-            addFootPrint(mFootPrint, mHost, pInfo->mJointName, pInfo->mIsRight != false, 200.0f);
+            MR::addFootPrint(mFootPrint, mHost, pInfo->mJointName, pInfo->mIsRight != false, 200.0f);
         } else {
-            addFootPrint(mFootPrint, mHost, mHost->mPosition, pInfo->mIsRight != false, 200.0f);
+            MR::addFootPrint(mFootPrint, mHost, mHost->mPosition, pInfo->mIsRight != false, 200.0f);
         }
     }
 }
@@ -65,7 +61,7 @@ ActionFootPrintCtrl::ActionFootPrintCtrl(LiveActor* pActor) : mHost(pActor), mPl
     mFootPrintInfoCount = elementCount;
     
     if (mFootPrintInfoCount > 0) {
-        mFootPrint = createFootPrintFromArc(mHost);
+        mFootPrint = MR::createFootPrintFromArc(mHost);
     }
 
     mFootPrintInfos = new ActionFootPrintInfo[elementCount];
