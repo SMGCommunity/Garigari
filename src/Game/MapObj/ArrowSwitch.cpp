@@ -102,11 +102,11 @@ void ArrowSwitch::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 }
 
 bool ArrowSwitch::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (!MR::isMsgPlayerSpinAttack(msg)) {
-        return false;
+    if (MR::isMsgPlayerSpinAttack(msg)) {
+        return requestPunch(pSender, pReceiver);
     }
 
-    return requestPunch(pSender, pReceiver);
+    return false;
 }
 
 bool ArrowSwitch::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {

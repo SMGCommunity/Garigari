@@ -5,22 +5,22 @@
 class ArrowSwitch : public LiveActor {
 public:
     enum SwitchType {
-        SwitchType_QuarterPlus = 0,
-        SwitchType_QuarterMinus = 1,
-        SwitchType_HalfPlus = 2,
-        SwitchType_HalfMinus = 3,
+        /* 0x00 */ SwitchType_QuarterPlus,
+        /* 0x01 */ SwitchType_QuarterMinus,
+        /* 0x02 */ SwitchType_HalfPlus,
+        /* 0x03 */ SwitchType_HalfMinus,
     };
 
     enum Direction {
-        Direction_Up = 0,
-        Direction_Right = 1,
-        Direction_Down = 2,
-        Direction_Left = 3,
+        /* 0x00 */ Direction_Up,
+        /* 0x01 */ Direction_Right,
+        /* 0x02 */ Direction_Down,
+        /* 0x03 */ Direction_Left,
     };
 
     enum ActionAfterRotate {
-        ActionAfterRotate_LockAfterRotate = 0,
-        ActionAfterRotate_StopAfterRotate = 1,
+        /* 0x00 */ ActionAfterRotate_LockAfterRotate,
+        /* 0x01 */ ActionAfterRotate_StopAfterRotate,
     };
 
     /// @brief Creates a new `ArrowSwitch`.
