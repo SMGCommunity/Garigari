@@ -24,7 +24,7 @@ public:
     ActionBgmCtrl(const ModelManager*);
 
     static ActionBgmCtrl* tryCreate(const ModelManager*);
-    
+
     void update();
     void findAndUpdateBgm();
     void updateBgm(ActionBgmInfo*);

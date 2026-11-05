@@ -8,10 +8,11 @@
 
 namespace {
     const char* sResourceName = "ActionBgmCtrl";
-};
+};  // namespacea
 
 ActionBgmInfo::ActionBgmInfo()
-    : mBckName(), mBckStartFrame(), mBgmName(), mBgmStateNo(-1), mIsBgmStopped(), mBgmFadeStep(60), mStageName(), mStageScenarioNo(-1), mIsPlaying(), mIsUpdated() {
+    : mBckName(), mBckStartFrame(), mBgmName(), mBgmStateNo(-1), mIsBgmStopped(), mBgmFadeStep(60), mStageName(), mStageScenarioNo(-1), mIsPlaying(),
+      mIsUpdated() {
 }
 
 ActionBgmCtrl* ActionBgmCtrl::tryCreate(const ModelManager* pManager) {
