@@ -1,9 +1,9 @@
 #include "Game/System/HeapMemoryWatcher.hpp"
 #include "Game/Util/MemoryUtil.hpp"
-#include <JSystem/JKernel/JKRHeap.hpp>
-#include <revolution/aralt.h>
 #include <JSystem/JKernel/JKRExpHeap.hpp>
+#include <JSystem/JKernel/JKRHeap.hpp>
 #include <JSystem/JKernel/JKRSolidHeap.hpp>
+#include <revolution/aralt.h>
 #include <revolution/os.h>
 #include <revolution/wpad.h>
 
@@ -124,8 +124,8 @@ void HeapMemoryWatcher::destroyFileCache() {
     ::destroyHeapAndSetNULL(reinterpret_cast< JKRHeap** >(&mFileCacheHeap));
 }
 
-void HeapMemoryWatcher::fn_804BCD50() {
-    _18->freeAll();
+void HeapMemoryWatcher::freePlayerCache() {
+    mPlayerCacheHeap->freeAll();
 }
 
 void HeapMemoryWatcher::destroySceneHeap() {
@@ -178,8 +178,8 @@ void HeapMemoryWatcher::createGameHeap() {
 }
 
 HeapMemoryWatcher::HeapMemoryWatcher()
-    : mStationedHeapNapa(), mStationedHeapGDDR(), mGameHeapNapa(), mGameHeapGDDR(), mWorldMapHeap(), mFileCacheHeap(), _18(), mSceneHeapNapa(),
-      mSceneHeapGDDR(), mWPadHeap(), mHomeButtonLayoutHeap(), mAudSystemHeap() {
+    : mStationedHeapNapa(), mStationedHeapGDDR(), mGameHeapNapa(), mGameHeapGDDR(), mWorldMapHeap(), mFileCacheHeap(), mPlayerCacheHeap(),
+      mSceneHeapNapa(), mSceneHeapGDDR(), mWPadHeap(), mHomeButtonLayoutHeap(), mAudSystemHeap() {
     JKRHeap::setErrorHandler(HeapMemoryWatcher::memoryErrorCallback);
     createHeaps();
 }

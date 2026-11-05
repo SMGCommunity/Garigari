@@ -279,8 +279,8 @@ namespace MR {
                                                       CollisionScaleType collisionScaleType);
     CollisionParts* createCollisionPartsFromResourceHolder(ResourceHolder* pResourceHolder, const char* pCollisionName, HitSensor* pBodySensor,
                                                            const TMtx34f& rMtx, TPos3f* pMatrix, CollisionScaleType collisionScaleType);
-    CollisionParts* createDashYoshiStepCollisionPartsFromResourceHolder(ResourceHolder* pResourceHolder, const char* pCollisionName,
-                                                                        HitSensor* pBodySensor, MtxPtr pMtx, CollisionScaleType collisionScaleType);
+    CollisionParts* createDashYoshiCollisionPartsFromResourceHolder(ResourceHolder* pResourceHolder, const char* pCollisionName,
+                                                                    HitSensor* pBodySensor, MtxPtr pMtx, CollisionScaleType collisionScaleType);
     CollisionParts* tryCreateCollisionMoveLimit(LiveActor* pActor, HitSensor* pBodySensor);
     CollisionParts* tryCreateCollisionWaterSurface(LiveActor* pActor, HitSensor* pBodySensor);
 

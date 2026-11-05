@@ -1,0 +1,105 @@
+#include "Game/LiveActor/ActionFootPrintCtrl.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Util/ActorAnimUtil.hpp"
+#include "Game/Util/FootPrint.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/StringUtil.hpp"
+#include "JSystem/J3DGraphAnimator/J3DAnimation.hpp"
+
+namespace {
+    const char* sFileName = "ActionFootPrintCtrl";
+};
+
+ActionFootPrintInfo::ActionFootPrintInfo() : mBckName(), mBckStartFrame(), mJointName(), mIsRight(), mIsPlaying() {
+}
+
+ActionFootPrintCtrl* ActionFootPrintCtrl::tryCreate(LiveActor* pActor) {
+    if (MR::isExistFileInArc(MR::getResourceHolder(pActor), "%s.bcsv", ::sFileName)) {
+        return new ActionFootPrintCtrl(pActor);
+    }
+
+    return nullptr;
+}
+
+void ActionFootPrintCtrl::update() {
+    if (mPlayingBckName != MR::getPlayingBckName(mHost)) {
+        mPlayingBckName = MR::getPlayingBckName(mHost);
+        findAndUpdateFootPrint();
+    }
+
+    ActionFootPrintInfo* pInfo;
+    J3DFrameCtrl* pBckCtrl = MR::getBckCtrl(mHost);
+
+    for (s32 i = 0; i < mFootPrintInfoCount; i++) {
+        pInfo = &mFootPrintInfos[i];
+
+        if (!pInfo->mIsPlaying) {
+            continue;
+        }
+
+        if (!pBckCtrl->checkPass(pInfo->mBckStartFrame)) {
+            continue;
+        }
+
+        if (pInfo->mJointName != nullptr) {
+            MR::addFootPrint(mFootPrint, mHost, pInfo->mJointName, pInfo->mIsRight != false, 200.0f);
+        } else {
+            MR::addFootPrint(mFootPrint, mHost, mHost->mPosition, pInfo->mIsRight != false, 200.0f);
+        }
+    }
+}
+
+ActionFootPrintCtrl::ActionFootPrintCtrl(LiveActor* pActor) : mHost(pActor), mPlayingBckName(), mFootPrint(), mFootPrintInfoCount(), mFootPrintInfos() {
+    const JMapInfo* pInfo = MR::tryCreateCsvParser(MR::getResourceHolder(mHost), "%s.bcsv", ::sFileName);
+
+    if (pInfo == nullptr) {
+        return;
+    }
+
+    s32 elementCount = MR::getCsvDataElementNum(pInfo);
+    mFootPrintInfoCount = elementCount;
+    
+    if (mFootPrintInfoCount > 0) {
+        mFootPrint = MR::createFootPrintFromArc(mHost);
+    }
+
+    mFootPrintInfos = new ActionFootPrintInfo[elementCount];
+
+    for (s32 i = 0; i < mFootPrintInfoCount; i++) {
+        ActionFootPrintInfo* pFootPrintInfo = &mFootPrintInfos[i];
+
+        MR::getCsvDataStr(&pFootPrintInfo->mBckName, pInfo, "BckName", i);
+        MR::getCsvDataF32(&pFootPrintInfo->mBckStartFrame, pInfo, "BckStartFrame", i);
+        MR::getCsvDataStrOrNULL(&pFootPrintInfo->mJointName, pInfo, "JointName", i);
+
+        const char* isRight = nullptr;
+        MR::getCsvDataStr(&isRight, pInfo, "IsRight", i);
+
+        if (isRight != nullptr && isRight[0] == 'o') {
+            pFootPrintInfo->mIsRight = true;
+        }
+    }
+}
+
+void ActionFootPrintCtrl::findAndUpdateFootPrint() {
+    if (mPlayingBckName == nullptr) {
+        return;
+    }
+
+    ActionFootPrintInfo* pInfo;
+
+    for (s32 i = 0; i < mFootPrintInfoCount; i++) {
+        pInfo = &mFootPrintInfos[i];
+
+        if (pInfo->mBckName == nullptr) {
+            continue;
+        }
+
+        if (MR::isEqualStringCase(mPlayingBckName, pInfo->mBckName)) {
+            pInfo->mIsPlaying = true;
+        } else {
+            pInfo->mIsPlaying = false;
+        }
+    }
+}

@@ -15,8 +15,8 @@ public:
     virtual void draw() const;
     virtual void calcAnim();
     virtual void calcViewAndEntry();
-    virtual void startMovement();
-    virtual void endMovement();
+    virtual void startMovement() {};
+    virtual void endMovement() {};
 
     void initWithoutIter();
     void setName(const char*);

@@ -1531,8 +1531,8 @@ namespace MR {
         return collisionParts;
     }
 
-    CollisionParts* createDashYoshiStepCollisionPartsFromResourceHolder(ResourceHolder* pResHolder, const char* pName, HitSensor* pSensor,
-                                                                        MtxPtr pMtx, CollisionScaleType scaleType) {
+    CollisionParts* createDashYoshiCollisionPartsFromResourceHolder(ResourceHolder* pResHolder, const char* pName, HitSensor* pSensor, MtxPtr pMtx,
+                                                                    CollisionScaleType scaleType) {
         TPos3f mtx;
         mtx.set(pMtx);
 
