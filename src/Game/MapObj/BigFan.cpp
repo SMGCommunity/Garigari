@@ -14,6 +14,10 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SceneUtil.hpp"
 
+namespace {
+    static const f32 sBaseWindWidth = 400.0f;
+};  // namespace
+
 namespace NrvBigFan {
     NEW_NERVE(BigFanNrvStop, BigFan, Stop);
     NEW_NERVE(BigFanNrvStart, BigFan, Start);
@@ -21,7 +25,7 @@ namespace NrvBigFan {
 }  // namespace NrvBigFan
 
 BigFan::BigFan(const char* pName)
-    : LiveActor(pName), mWindModel(0), mClippingCenter(0.0f, 0.0f, 0.0f), mWindLength(4000.0f), mWindSpeed(100.0f), mIsTeresaGalaxy(false) {
+    : LiveActor(pName), mWindModel(), mClippingCenter(0.0f, 0.0f, 0.0f), mWindLength(4000.0f), mWindSpeed(100.0f), mIsTeresaGalaxy() {
     BigFanFunction::createBigFanHolder();
     BigFanFunction::registerBigFan(this);
 }
@@ -47,7 +51,7 @@ void BigFan::init(const JMapInfoIter& rIter) {
 
     TVec3f frontVec;
     MR::calcFrontVec(&frontVec, this);
-    JMAVECScaleAdd(&frontVec, &mPosition, &mClippingCenter, 0.5f * mWindLength);
+    mClippingCenter.scaleAdd(0.5f * mWindLength, frontVec, mPosition);
     MR::setClippingTypeSphere(this, 400.0f + mWindLength, &mClippingCenter);
 
     initSound(4, "BigFan");
@@ -103,7 +107,7 @@ void BigFan::calcWindInfo(TVec3f* pWindInfo, const TVec3f& rPos) {
 
     TVec3f ortho;
     ortho = diff - front * dot;
-    if (PSVECMag(&ortho) >= 400.0f * mScale.x) {
+    if (ortho.length() >= ::sBaseWindWidth * mScale.x) {
         pWindInfo->zero();
         return;
     }
@@ -134,9 +138,9 @@ void BigFan::exeStart() {
         MR::startAction(mWindModel, "Appear");
 
         if (mIsTeresaGalaxy) {
-            MR::startActionSound(this, "OjBigFanStartFar", -1, -1, -1);
+            MR::startActionSound(this, "OjBigFanStartFar");
         } else {
-            MR::startActionSound(this, "OjBigFanStart", -1, -1, -1);
+            MR::startActionSound(this, "OjBigFanStart");
         }
     }
 
@@ -152,13 +156,13 @@ void BigFan::exeWait() {
     }
 
     if (mIsTeresaGalaxy) {
-        MR::startActionSound(this, "OjLvBigFanFar", -1, -1, -1);
+        MR::startActionSound(this, "OjLvBigFanFar");
     } else {
-        MR::startActionSound(this, "OjLvBigFan", -1, -1, -1);
+        MR::startActionSound(this, "OjLvBigFan");
     }
 }
 
-inline void BigFan::exeStop() {
+void BigFan::exeStop() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "Appear");
         MR::stopBck(this);

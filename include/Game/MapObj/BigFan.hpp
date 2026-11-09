@@ -11,9 +11,11 @@ public:
     void calcWindInfo(TVec3f*, const TVec3f&);
     void control();
     void start();
+
     void exeStart();
     void exeWait();
-    inline void exeStop();
+    void exeStop();
+
     inline bool isStartOrWait();
 
     /* 0x90 */ ModelObj* mWindModel;
