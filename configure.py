@@ -1497,7 +1497,7 @@ config.libs = [
             Object(NonMatching, "Game/Map/Sky.cpp"),
             Object(NonMatching, "Game/Map/SoundSyncSwitch.cpp"),
             Object(NonMatching, "Game/Map/SpaceInner.cpp"),
-            Object(NonMatching, "Game/Map/StageSwitch.cpp"),
+            Object(Matching, "Game/Map/StageSwitch.cpp"),
             Object(NonMatching, "Game/Map/SunshadeMapHolder.cpp"),
             Object(NonMatching, "Game/Map/SwitchSynchronizer.cpp"),
             Object(NonMatching, "Game/Map/SwitchWatcher.cpp"),
