@@ -1,35 +1,38 @@
 #pragma once
 
+#include "Game/Util/JMapInfo.hpp"
 #include <revolution.h>
-
-class JMapInfoIter;
 
 class JMapIdInfo {
 public:
-    JMapIdInfo() {
+    inline JMapIdInfo() {
     }
 
-    JMapIdInfo(const JMapIdInfo& rInfo) __attribute__((forceinline)) {
-        _0 = rInfo._0;
-        mZoneID = rInfo.mZoneID;
+    JMapIdInfo(s32 id, s32 zoneId);
+    JMapIdInfo(s32 id, const JMapInfoIter& rIter);
+
+    void initialize(s32 id, const JMapInfoIter& rIter);
+
+    void operator=(const JMapIdInfo& rOther) NO_INLINE {
+        mID = rOther.mID;
+        mZoneID = rOther.mZoneID;
     }
 
-    JMapIdInfo(s32, const JMapInfoIter&);
+    inline bool operator==(const JMapIdInfo& rOther) const {
+        bool ret = false;
 
-    void operator=(const JMapIdInfo& rhs) {
-        _0 = rhs._0;
-        mZoneID = rhs.mZoneID;
+        if (mID == rOther.mID && mZoneID == rOther.mZoneID) {
+            ret = true;
+        }
+
+        return ret;
     }
 
-    int getZoneID() const {
-        return mZoneID;
-    }
-
-    s32 _0;
-    int mZoneID;  // 0x04
+    /* 0x0 */ s32 mID;
+    /* 0x4 */ s32 mZoneID;
 };
 
 namespace MR {
-    JMapIdInfo& createJMapIdInfoFromGroupId(const JMapInfoIter&);
-    JMapIdInfo& createJMapIdInfoFromClippingGroupId(const JMapInfoIter&);
+    JMapIdInfo createJMapIdInfoFromGroupId(const JMapInfoIter& rIter);
+    JMapIdInfo createJMapIdInfoFromClippingGroupId(const JMapInfoIter& rIter);
 };  // namespace MR

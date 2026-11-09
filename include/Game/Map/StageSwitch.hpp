@@ -37,7 +37,7 @@ public:
     s32 getSwitchNo() const;
 
     int getZoneID() const {
-        return mIDInfo->getZoneID();
+        return mIDInfo->mID;
     }
 
     JMapIdInfo* mIDInfo;  // 0x0

@@ -648,7 +648,7 @@ config.libs = [
             Object(NonMatching, "Game/Util/FixedPosition.cpp"),
             Object(NonMatching, "Game/Util/GeometryBindUtil.cpp"),
             Object(NonMatching, "Game/Util/IKJoint.cpp"),
-            Object(NonMatching, "Game/Util/JMapIdInfo.cpp"),
+            Object(Matching, "Game/Util/JMapIdInfo.cpp"),
             Object(NonMatching, "Game/Util/JMapInfo.cpp"),
             Object(NonMatching, "Game/Util/JMapLinkInfo.cpp"),
             Object(NonMatching, "Game/Util/JointController.cpp"),

@@ -44,10 +44,10 @@ SwitchIdInfo::SwitchIdInfo(s32 switchID, const JMapInfoIter& rIter) {
 
 s32 SwitchIdInfo::getSwitchNo() const {
     if (mIsGlobal) {
-        return mIDInfo->_0 - GLOBAL_SWITCH_ID;
+        return mIDInfo->mID - GLOBAL_SWITCH_ID;
     }
 
-    return mIDInfo->_0;
+    return mIDInfo->mID;
 }
 
 StageSwitchContainer::StageSwitchContainer() : NameObj("ステージスイッチ") {
