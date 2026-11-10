@@ -15,4 +15,6 @@ namespace MR {
     void hideMaterial(const LiveActor*, const char*);
 
     void calcModelBoundingRadius(f32*, const LiveActor*);
+
+    bool isExistCollisionResource(const LiveActor*, const char*);
 };  // namespace MR
