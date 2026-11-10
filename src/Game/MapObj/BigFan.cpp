@@ -22,7 +22,7 @@ namespace NrvBigFan {
     NEW_NERVE(BigFanNrvStop, BigFan, Stop);
     NEW_NERVE(BigFanNrvStart, BigFan, Start);
     NEW_NERVE(BigFanNrvWait, BigFan, Wait);
-}  // namespace NrvBigFan
+};  // namespace NrvBigFan
 
 BigFan::BigFan(const char* pName)
     : LiveActor(pName), mWindModel(), mClippingCenter(0.0f, 0.0f, 0.0f), mWindLength(4000.0f), mWindSpeed(100.0f), mIsTeresaGalaxy() {
@@ -169,11 +169,6 @@ void BigFan::exeStop() {
     }
 }
 
-inline bool BigFan::isStartOrWait() {
-    bool flag = false;
-    if (isNerve(GET_NERVE(BigFan, BigFanNrvStart)) || isNerve(GET_NERVE(BigFan, BigFanNrvWait))) {
-        flag = true;
-    }
-
-    return flag;
+bool BigFan::isStartOrWait() {
+    return isNerve(GET_NERVE(BigFan, BigFanNrvStart)) || isNerve(GET_NERVE(BigFan, BigFanNrvWait));
 }

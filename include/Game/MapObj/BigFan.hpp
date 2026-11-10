@@ -16,7 +16,7 @@ public:
     void exeWait();
     void exeStop();
 
-    inline bool isStartOrWait();
+    bool isStartOrWait();
 
     /* 0x90 */ ModelObj* mWindModel;
     /* 0x94 */ TVec3f mClippingCenter;
@@ -28,4 +28,4 @@ public:
 namespace BigFanFunction {
     void createBigFanHolder();
     void registerBigFan(BigFan* pBigFan);
-}  // namespace BigFanFunction
+};  // namespace BigFanFunction
