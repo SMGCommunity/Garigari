@@ -4483,6 +4483,7 @@ Game/LiveActor/ActionBgmCtrl.cpp:
 
 Game/LiveActor/ActionFlagCtrl.cpp:
 	.text       start:0x80229200 end:0x80229C80 align:16
+	.rodata     start:0x80648A00 end:0x80648A08
 	.data       start:0x80694778 end:0x80694840
 	.sdata      start:0x807CFA18 end:0x807CFA28
 
@@ -4514,20 +4515,29 @@ Game/LiveActor/ActorHitReaction.cpp:
 	.sdata2     start:0x807DC360 end:0x807DC368
 
 Game/LiveActor/ActorItemGenerator.cpp:
-	.text       start:0x8022B0E0 end:0x8022B4B0 align:16
+	.text       start:0x8022B0E0 end:0x8022B8A0 align:16
 	.rodata     start:0x80648A08 end:0x80648A68
 	.data       start:0x80694AC0 end:0x80694BF8
 	.sdata      start:0x807CFA58 end:0x807CFA78
+	.sdata2     start:0x807DC370 end:0x807DC388
 
 Game/LiveActor/ActorJointCtrl.cpp:
-	.text       start:0x8022BCA0 end:0x8022BF50 align:16
+	.text       start:0x8022B8A0 end:0x8022BF50 align:16
 
 Game/LiveActor/ActorLightCtrl.cpp:
 	.text       start:0x8022BF50 end:0x8022C550 align:16
 	.rodata     start:0x80648A68 end:0x80648A70
 
+Game/LiveActor/ActorParam.cpp:
+	.text       start:0x8022C550 end:0x8022CB10 align:16
+	.rodata     start:0x80648A70 end:0x80648A98
+	.data       start:0x80694BF8 end:0x80694C80
+	.sdata      start:0x807CFA78 end:0x807CFA88
+	.sdata2     start:0x807DC388 end:0x807DC3A0
+
 Game/LiveActor/ActorSoundHolder.cpp:
-	.text       start:0x8022CD70 end:0x8022CE50 align:16
+	.text       start:0x8022CB10 end:0x8022CEE0 align:16
+	.sdata2     start:0x807DC3A0 end:0x807DC3A8
 
 Game/LiveActor/ActorStateBase.cpp:
 	.text       start:0x8022CEE0 end:0x8022CF40 align:16
@@ -7024,7 +7034,7 @@ Game/MapObj/StarPieceGroup.cpp:
 	.sbss       start:0x807D4508 end:0x807D4510
 	.sdata2     start:0x807DEA88 end:0x807DEAB0
 
-Game/MapObj/StarPieceTracking.cpp:
+Game/MapObj/StarPieceHoming.cpp:
 	.text       start:0x80319950 end:0x8031A720 align:16
 	.ctors      start:0x80644604 end:0x80644608
 	.rodata     start:0x80649880 end:0x80649888
@@ -8196,14 +8206,14 @@ Game/Player/MarineSnow.cpp:
 	.sdata2     start:0x807DF950 end:0x807DF980
 
 Game/Player/Mario.cpp:
-	.text       start:0x80386D30 end:0x803B48B0 align:16
+	.text       start:0x80386D30 end:0x803B48E0 align:16
 	.rodata     start:0x8064BC78 end:0x8064BCA8
 	.data       start:0x806C1490 end:0x806C4B90
 	.sbss       start:0x807D4E30 end:0x807D4E38
 	.sdata2     start:0x807DF980 end:0x807DFBB8
 
 Game/Player/MarioAccess.cpp:
-	.text       start:0x803B4950 end:0x803B7340 align:16
+	.text       start:0x803B48E0 end:0x803B7340 align:16
 	.data       start:0x806C4B90 end:0x806C4C28
 	.sdata2     start:0x807DFBB8 end:0x807DFBC8
 
@@ -8471,6 +8481,11 @@ Game/Player/MarioWall.cpp:
 	.data       start:0x806DED78 end:0x806DEEA0
 	.sdata2     start:0x807E04B0 end:0x807E04D8
 
+Game/Player/MarioWa_UNK1.cpp:
+	.text       start:0x80407A90 end:0x80407F30 align:16
+	.rodata     start:0x8064BEC8 end:0x8064BED0
+	.sdata2     start:0x807E04D8 end:0x807E0508
+
 Game/Player/MarioWarp.cpp:
 	.text       start:0x80407F30 end:0x80408F20 align:16
 	.rodata     start:0x8064BED0 end:0x8064BEE0
@@ -8489,6 +8504,10 @@ Game/Player/MatrixValueGetter.cpp:
 Game/Player/ModelHolder.cpp:
 	.text       start:0x80409470 end:0x804095C0 align:16
 	.data       start:0x806DF0E8 end:0x806DF158
+
+Game/Player/PLAYER_UNK3.cpp:
+	.text       start:0x804095C0 end:0x80409770 align:16
+	.data       start:0x806DF158 end:0x806DF168
 
 Game/Player/PlayerEvent.cpp:
 	.text       start:0x80409770 end:0x80409E80 align:16
@@ -8562,6 +8581,11 @@ Game/Player/YoshiBalloon.cpp:
 	.data       start:0x806EA7C8 end:0x806EA908
 	.sdata2     start:0x807E0688 end:0x807E06F8
 
+Game/Player/YoshiColor.cpp:
+	.text       start:0x804155D0 end:0x80415A10 align:16
+	.data       start:0x806EA908 end:0x806EA930
+	.sdata      start:0x807D00C8 end:0x807D00D0
+
 Game/Player/YoshiDash.cpp:
 	.text       start:0x80415A10 end:0x80415FA0 align:16
 	.data       start:0x806EAA20 end:0x806EAB10
@@ -8586,7 +8610,8 @@ Game/Player/Yoshi_UNK1.cpp:
 	.sdata2     start:0x807E0720 end:0x807E0750
 
 Game/Player/YoshiLockOnManager.cpp:
-	.text       start:0x80419720 end:0x8041A8B0 align:16
+	.text       start:0x80419720 end:0x8041AD80 align:16
+	.rodata     start:0x8064BEF0 end:0x8064BF00
 	.data       start:0x806EAF38 end:0x806EB018
 	.sdata      start:0x807D00D8 end:0x807D00F8
 	.sdata2     start:0x807E0750 end:0x807E0758
@@ -8600,6 +8625,13 @@ Game/Player/YoshiSilhouette.cpp:
 	.text       start:0x8041B120 end:0x8041B570 align:16
 	.data       start:0x806EB098 end:0x806EB128
 	.sdata2     start:0x807E0768 end:0x807E0770
+
+Game/Player/Yoshi_UNK2.cpp:
+	.text       start:0x8041B570 end:0x8041C550 align:16
+	.rodata     start:0x8064BF00 end:0x8064BF08
+	.data       start:0x806EB128 end:0x806EB178
+	.sdata      start:0x807D00F8 end:0x807D0100
+	.sdata2     start:0x807E0770 end:0x807E07A0
 
 Game/Player/YoshiTongue.cpp:
 	.text       start:0x8041C550 end:0x8041DE20 align:16
@@ -10906,6 +10938,10 @@ JSystem/JKernel/JKRHeap.cpp:
 	.data       start:0x80703FC8 end:0x80704060
 	.sdata      start:0x807D05B8 end:0x807D05C8
 	.sbss       start:0x807D6110 end:0x807D6138
+
+JSystem/JKernel/JKRHeap_UNK1.cpp:
+	.text       start:0x80501920 end:0x805019F0 align:16
+	.bss        start:0x8072BB98 end:0x8072BBB0
 
 JSystem/JKernel/JKRExpHeap.cpp:
 	.text       start:0x805019F0 end:0x80503670 align:16
