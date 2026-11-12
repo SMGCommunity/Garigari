@@ -29,20 +29,23 @@ public:
     /// @brief This function is called when the player attacks the `WoodBox`. If the player punches it, freezes it, runs into it while invincible, or
     /// attacks it with a fireball or Koopa shell, the box will be damaged. The box will also be damaged if the player ground-pounds it, but only if
     /// the box's "floor touch timer" is not 0. However, if the box doesn't have any hit points left, nothing will happen.
-    /// @param msg a number representing the type of attack performed by the player
-    /// @param pSender Pointer to the `HitSensor` of the attacking object making contact with the box
+    /// @param msg A number representing the type of attack performed by the player.
+    /// @param pSender Pointer to a `HitSensor` of the attacking object making contact with the box.
+    /// @param pReceiver Pointer to whichever of the box's `HitSensor`s was hit.
     virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
     /// @brief This function is called when an enemy attacks the `WoodBox`. Unless the box doesn't have any hit points left, this will cause the box
     /// to be damaged.
-    /// @param msg a number representing the type of attack performed by an enemy
-    /// @param pSender Pointer to the `HitSensor` of the attacking object making contact with the box
+    /// @param msg A number representing the type of attack performed by an enemy.
+    /// @param pSender Pointer to a `HitSensor` of the attacking object making contact with the box.
+    /// @param pReceiver Pointer to whichever of the box's `HitSensor`s was hit.
     virtual bool receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
     /// @brief This function is called when something other than a player or enemy attack makes contact with the `WoodBox`. If the floor makes contact
     /// with the box, the box's "floor touch timer" will be set to 2.
-    /// @param msg a number representing the type of physical contact being made with the box
-    /// @param pSender Pointer to the `HitSensor` of the object making contact with the box
+    /// @param msg A number representing the type of physical contact being made with the box.
+    /// @param pSender Pointer to a `HitSensor` of the object making contact with the box.
+    /// @param pReceiver Pointer to whichever of the box's `HitSensor`s was touched.
     virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
     /// @brief This function is called whenever damage is done to the `WoodBox`. If the box already has no hit points, nothing happens. Otherwise, it
