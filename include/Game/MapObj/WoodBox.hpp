@@ -48,9 +48,7 @@ public:
     /// @brief This function is called whenever damage is done to the `WoodBox`. If the box already has no hit points, nothing happens. Otherwise, it
     /// will lose a hit point, and if no hit points remain after this, the box will break. Different sounds and effects will play depending on whether
     /// the box is in water. Also, the `BreakModel` will appear.
-    /// @param pSender Pointer to the `HitSensor` of the object doing damage to the box. This parameter is never used.
-    /// @param pReceiver This parameter is never used.
-    void doHit(HitSensor* pSender, HitSensor* pReceiver);
+    void doHit();
 
     /// @brief Causes the `WoodBox` to reappear. If the box was previously destroyed, this function makes its `BreakModel` disappear and plays the
     /// "Appear" sound and effect.

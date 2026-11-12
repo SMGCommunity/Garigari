@@ -179,9 +179,9 @@ void WoodBox::kill() {
     }
 }
 
-void WoodBox::doHit(HitSensor* pSender, HitSensor* pReceiver) {
+void WoodBox::doHit() {
     // FIXME
-    // decomp.me: https://decomp.me/scratch/em1Qx
+    // decomp.me: https://decomp.me/scratch/0XD2p
     // In objdiff, this function is 99.58% matching if the "Function relocation diffs" option is set to "Name or address", and 99.68% matching if it's
     // set to "Data value". Everything is matching except for the data labels for the strings and floats. In decomp.me, this function is 99.68%
     // matching. The wrong numbers are being added to the memory address stored in r31.
@@ -224,34 +224,29 @@ void WoodBox::doHit(HitSensor* pSender, HitSensor* pReceiver) {
 }
 
 bool WoodBox::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    // FIXME
-    // decomp.me: https://decomp.me/scratch/kLp0X
-    // For whatever reason, the target assembly doesn't load pSender and pReceiver into r4 and r5 before calling doHit. It somehow just knows what to
-    // pass in. I can't figure out how to replicate this behavior in the current assembly.
-
     if (mHitPoint == 0) {
         return false;
     }
 
     if (MR::isMsgPlayerUpperPunch(msg)) {
-        doHit(pSender, pReceiver);
+        doHit();
         MR::sendMsgReflectV(pSender, pReceiver);
         return true;
     }
 
     if (MR::isMsgFireBallAttack(msg)) {
-        doHit(pSender, pReceiver);
+        doHit();
         return false;
     }
 
     if (MR::isMsgPlayerHitAll(msg)) {
-        doHit(pSender, pReceiver);
+        doHit();
         return true;
     }
 
     if (MR::isMsgPlayerHipDrop(msg) || MR::isMsgPlayerHipDropFloor(msg)) {
         if (mFloorTouchTimer != 0) {
-            doHit(pSender, pReceiver);
+            doHit();
             return true;
         }
 
@@ -262,13 +257,8 @@ bool WoodBox::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pRe
 }
 
 bool WoodBox::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    // FIXME
-    // decomp.me: https://decomp.me/scratch/WKdNV
-    // For whatever reason, the target assembly doesn't load pSender and pReceiver into r4 and r5 before calling doHit. It somehow just knows what to
-    // pass in. I can't figure out how to replicate this behavior in the current assembly.
-
     if (mHitPoint != 0) {
-        doHit(pSender, pReceiver);
+        doHit();
         return true;
     } else {
         return false;
