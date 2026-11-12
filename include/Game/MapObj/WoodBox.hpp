@@ -77,29 +77,29 @@ public:
     /* 0x94 */ u16 _94;
 
     /// @brief How many hit points the `WoodBox` has left. The box will only ever have 1 hit point at most, and a hit point will be subtracted each time it is damaged. The moment the box reaches 0 hit points, it will be destroyed.
-    /* 0x96 */ u16 mHitPoint;
+    /* 0x96 */ u16 mHP;
 
     /// @brief Whether the `WoodBox` contains a Power Star. Default is `false`.
     /* 0x98 */ bool mHasPowerStar;
 
     /// @brief Whether the broken remnants are shown when destroyed. Default is `true`.
-    /* 0x99 */ bool mShowBrokenRemnants;
+    /* 0x99 */ bool mIsShowDust;
 
     /// @brief Whether the "Riddle" jingle is played when broken. Default is `false`.
-    /* 0x9A */ bool mPlayRiddleSFX;
+    /* 0x9A */ bool mCanPlayRiddleSE;
 
     /* 0x9C */ TPos3f mBaseMtx;
 
     /// @brief The number of coins to be spawned when destroyed. Default is 1.
-    /* 0xCC */ s32 mCoinCount;
+    /* 0xCC */ s32 mAppearCoinNum;
 
     /// @brief The number of Star Bits to be spawned when destroyed. Default is 0.
-    /* 0xD0 */ s32 mStarPieceCount;
+    /* 0xD0 */ s32 mAppearStarPieceNum;
 
     /* 0xD4 */ BreakModel* mBreakModel;
 
     /// @brief Pointer to the Power Star model to be used in a cutscene that will play when destroyed. If the box doesn't contain a Power Star, this value is `nullptr`. Default is `nullptr`.
-    /* 0xD8 */ ModelObj* mStarDemoModel;
+    /* 0xD8 */ ModelObj* mPowerStarDemoModel;
 
     /// @brief Pointer to the 1-Up that will be spawned when destroyed. If the box doesn't contain a 1-Up, this value is `nullptr`. Default is `nullptr`.
     /* 0xDC */ BenefitItemOneUp* mOneUp;

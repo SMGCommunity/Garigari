@@ -1,6 +1,5 @@
 #include "Game/MapObj/WoodBox.hpp"
 #include "Game/LiveActor/BreakModel.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/BenefitItemOneUp.hpp"
@@ -17,10 +16,6 @@
 #include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SupportPlayUtil.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "revolution/mtx.h"
-#include "revolution/types.h"
 
 class BenefitItemObj;
 
@@ -37,47 +32,47 @@ void WoodBox::init(const JMapInfoIter& rIter) {
     MR::initActor(this, rIter, false);
     initNerve(GET_NERVE(WoodBox, WoodBoxNrvWait));
 
-    long arg0_CoinCount = 1;
-    long arg1_RemnantsType = -1;
-    long arg2_StarPieceCount = 0;
-    long arg3_SFXType = 0;
-    long arg4_OneUpType = 0;
-    long arg7_PowerStarID = 0;
+    s32 arg0 = 1;
+    s32 arg1 = -1;
+    s32 arg2 = 0;
+    s32 arg3 = 0;
+    s32 arg4 = 0;
+    s32 arg7 = 0;
 
     if (MR::isValidInfo(rIter)) {
-        MR::getJMapInfoArg0NoInit(rIter, &arg0_CoinCount);
-        MR::getJMapInfoArg1NoInit(rIter, &arg1_RemnantsType);
-        MR::getJMapInfoArg2NoInit(rIter, &arg2_StarPieceCount);
-        MR::getJMapInfoArg3NoInit(rIter, &arg3_SFXType);
-        MR::getJMapInfoArg4NoInit(rIter, &arg4_OneUpType);
-        MR::getJMapInfoArg7NoInit(rIter, &arg7_PowerStarID);
+        MR::getJMapInfoArg0NoInit(rIter, &arg0);
+        MR::getJMapInfoArg1NoInit(rIter, &arg1);
+        MR::getJMapInfoArg2NoInit(rIter, &arg2);
+        MR::getJMapInfoArg3NoInit(rIter, &arg3);
+        MR::getJMapInfoArg4NoInit(rIter, &arg4);
+        MR::getJMapInfoArg7NoInit(rIter, &arg7);
     }
 
     PSMTXCopy(getBaseMtx(), mBaseMtx);
     MR::addTransMtx(mBaseMtx, TVec3f(0.0f, 100.0f, 0.0f));
     mHasPowerStar = false;
 
-    if (arg7_PowerStarID != 0) {
+    if (arg7 != 0) {
         mHasPowerStar = true;
         MR::declarePowerStar(this);
-        mStarDemoModel = MR::createPowerStarDemoModel(this, "パワースターデモモデル", mBaseMtx);
-        mStarDemoModel->makeActorDead();
+        mPowerStarDemoModel = MR::createPowerStarDemoModel(this, "パワースターデモモデル", mBaseMtx);
+        mPowerStarDemoModel->makeActorDead();
     }
 
-    mCoinCount = arg0_CoinCount;
-    mStarPieceCount = arg2_StarPieceCount;
-    s32 arg4 = arg4_OneUpType;
-    mHitPoint = 1;
-    mShowBrokenRemnants = true;
+    mAppearCoinNum = arg0;
+    mAppearStarPieceNum = arg2;
+    s32 oneUpType = arg4;
+    mHP = 1;
+    mIsShowDust = true;
 
-    if (arg1_RemnantsType == 0) {
-        mShowBrokenRemnants = false;
+    if (arg1 == 0) {
+        mIsShowDust = false;
     }
 
-    mPlayRiddleSFX = false;
+    mCanPlayRiddleSE = false;
 
-    if (arg3_SFXType == 1) {
-        mPlayRiddleSFX = true;
+    if (arg3 == 1) {
+        mCanPlayRiddleSE = true;
     }
 
     mBreakModel = MR::createBreakModel(this, nullptr);
@@ -85,15 +80,15 @@ void WoodBox::init(const JMapInfoIter& rIter) {
     MR::setClippingFar200m(this);
     MR::validateClipping(this);
 
-    if (mCoinCount != 0) {
-        MR::declareCoin(this, mCoinCount);
+    if (mAppearCoinNum != 0) {
+        MR::declareCoin(this, mAppearCoinNum);
     }
 
-    if (mStarPieceCount != 0) {
-        MR::declareStarPiece(this, mStarPieceCount);
+    if (mAppearStarPieceNum != 0) {
+        MR::declareStarPiece(this, mAppearStarPieceNum);
     }
 
-    if (arg4 != 0) {
+    if (oneUpType != 0) {
         mOneUp = MR::createKinokoOneUp();
     } else {
         mOneUp = nullptr;
@@ -113,29 +108,29 @@ void WoodBox::exeHit() {
         MR::invalidateHitSensor(this, "Body");
 
         if (mHasPowerStar) {
-            mStarDemoModel->makeActorAppeared();
+            mPowerStarDemoModel->makeActorAppeared();
         }
     }
 
     if (MR::isStep(this, 15)) {
-        TVec3f up_20 = TVec3f(0.0f);
-        MR::calcUpVec(&up_20, this);
+        TVec3f up = TVec3f(0.0f);
+        MR::calcUpVec(&up, this);
 
-        if (mCoinCount != 0) {
-            MR::appearCoinPopToDirection(this, mPosition, up_20, mCoinCount);
+        if (mAppearCoinNum != 0) {
+            MR::appearCoinPopToDirection(this, mPosition, up, mAppearCoinNum);
         }
 
-        if (mStarPieceCount != 0) {
-            MR::appearStarPieceToDirection(this, mPosition, up_20, mStarPieceCount, 10.0f, 40.0f, false);
+        if (mAppearStarPieceNum != 0) {
+            MR::appearStarPieceToDirection(this, mPosition, up, mAppearStarPieceNum, 10.0f, 40.0f, false);
         }
 
         if (mOneUp != nullptr) {
-            TVec3f up_14;
-            MR::calcUpVec(&up_14, this);
+            TVec3f up;
+            MR::calcUpVec(&up, this);
 
             TPos3f spawnMtx;
             PSMTXCopy(getBaseMtx(), spawnMtx);
-            MR::addTransMtx(spawnMtx, up_14 * 50.0f);
+            MR::addTransMtx(spawnMtx, up * 50.0f);
             MR::appearKinokoOneUpHop(mOneUp, spawnMtx);
         }
 
@@ -143,7 +138,7 @@ void WoodBox::exeHit() {
             MR::onSwitchDead(this);
         }
 
-        if (mPlayRiddleSFX) {
+        if (mCanPlayRiddleSE) {
             MR::startActionSound(this, "SyReadRiddleS");
         }
     }
@@ -155,7 +150,7 @@ void WoodBox::exeHit() {
 
 void WoodBox::appear() {
     mFloorTouchTimer = 0;
-    mHitPoint = 1;
+    mHP = 1;
     mBreakModel->kill();
     MR::validateCollisionParts(this);
     MR::validateHitSensors(this);
@@ -165,7 +160,7 @@ void WoodBox::appear() {
 }
 
 void WoodBox::kill() {
-    if (!mShowBrokenRemnants) {
+    if (!mIsShowDust) {
         LiveActor::kill();
     } else {
         setNerve(GET_NERVE(WoodBox, WoodBoxNrvKilled));
@@ -174,19 +169,19 @@ void WoodBox::kill() {
     }
 
     if (mHasPowerStar) {
-        mStarDemoModel->makeActorDead();
+        mPowerStarDemoModel->makeActorDead();
         MR::requestAppearPowerStar(this, mPosition);
     }
 }
 
 void WoodBox::doHit() {
-    if (mHitPoint == 0) {
+    if (mHP == 0) {
         return;
     }
 
-    mHitPoint--;
+    mHP--;
 
-    if (mHitPoint == 0) {
+    if (mHP == 0) {
         MR::invalidateCollisionParts(this);
     }
 
@@ -208,7 +203,7 @@ void WoodBox::doHit() {
         MR::emitEffect(mBreakModel, "Break");
     }
 
-    if (mShowBrokenRemnants) {
+    if (mIsShowDust) {
         MR::startBva(this, "Dust");
     } else {
         MR::hideModel(this);
@@ -218,7 +213,7 @@ void WoodBox::doHit() {
 }
 
 bool WoodBox::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (mHitPoint == 0) {
+    if (mHP == 0) {
         return false;
     }
 
@@ -251,12 +246,12 @@ bool WoodBox::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pRe
 }
 
 bool WoodBox::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (mHitPoint != 0) {
+    if (mHP != 0) {
         doHit();
         return true;
-    } else {
-        return false;
     }
+    
+    return false;
 }
 
 bool WoodBox::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
