@@ -180,12 +180,6 @@ void WoodBox::kill() {
 }
 
 void WoodBox::doHit() {
-    // FIXME
-    // decomp.me: https://decomp.me/scratch/0XD2p
-    // In objdiff, this function is 99.58% matching if the "Function relocation diffs" option is set to "Name or address", and 99.68% matching if it's
-    // set to "Data value". Everything is matching except for the data labels for the strings and floats. In decomp.me, this function is 99.68%
-    // matching. The wrong numbers are being added to the memory address stored in r31.
-
     if (mHitPoint == 0) {
         return;
     }
