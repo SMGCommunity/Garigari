@@ -279,9 +279,9 @@ void WoodBox::registerBreakModelDemoCast() {
     MR::registerDemoSimpleCastAll(mBreakModel);
 }
 
-void WoodBox::exeKilled() {
-}
-
 void WoodBox::exeWait() {
     MR::attachSupportTicoToTarget(this);
+}
+
+void WoodBox::exeKilled() {
 }

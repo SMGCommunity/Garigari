@@ -59,15 +59,15 @@ public:
 
     void registerBreakModelDemoCast();
 
+    /// @brief While the `WoodBox` has not yet been destroyed, this function is called every frame.
+    void exeWait();
+
     /// @brief Once the `WoodBox` has been destroyed but before it's been removed from the world entirely, this function is called every frame. On the
     /// first frame after being destroyed, the box will be made intangible, and if it contains a Power Star, the Power Star will be made to appear. On
     /// the 15th frame after being destroyed, the "SW_DEAD" switch will be activated, the "Riddle" SFX will be played if enabled for this box, and
     /// whatever coins, Star Bits, and/or 1-Ups contained in this box will be spawned. If the box's `BreakModel` is dead, the box will be removed from
     /// the world entirely.
     void exeHit();
-
-    /// @brief While the `WoodBox` has not yet been destroyed, this function is called every frame.
-    void exeWait();
 
     /// @brief After the `WoodBox` has been removed from the world entirely, this function is called every frame. It does nothing.
     void exeKilled();
