@@ -11,19 +11,22 @@ public:
         /* 0x00 */ EFellowID_Mario,
 
         /// @brief The Luigi icon.
-        /* 0x02 */ EFellowID_Luigi,
+        /* 0x01 */ EFellowID_Luigi,
 
         /// @brief The Yoshi icon.
-        /* 0x04 */ EFellowID_Yoshi,
+        /* 0x02 */ EFellowID_Yoshi,
 
         /// @brief The Toad icon.
-        /* 0x06 */ EFellowID_Kinopio,
+        /* 0x03 */ EFellowID_Kinopio,
 
         /// @brief The Peach icon.
-        /* 0x08 */ EFellowID_Peach,
+        /* 0x04 */ EFellowID_Peach,
 
         /// @brief The Luma icon.
-        /* 0x0A */ EFellowID_Tico,
+        /* 0x05 */ EFellowID_Tico,
+
+        /// @brief The Rosalina icon.
+        /* 0x06 */ EFellowID_Rosetta,
     };
 
     /// @brief Creates a new `FileSelectIconID`.
