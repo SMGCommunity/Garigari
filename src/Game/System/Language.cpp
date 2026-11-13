@@ -5,7 +5,20 @@
 #include "Game/Util/StringUtil.hpp"
 #include <revolution/sc.h>
 
+// REGIONAL
+#if 0 && (VERSION == SB4J01)
+#define SCLanguage2GameLanguageTableIndex 0
+#elif (VERSION == SB4E01)
 #define SCLanguage2GameLanguageTableIndex 1
+#elif 0 && (VERSION == SB4P01)
+#define SCLanguage2GameLanguageTableIndex 2
+#elif 0 && (VERSION == SB4K01)
+#define SCLanguage2GameLanguageTableIndex 4
+#elif 0 && (VERSION == SB4W01)
+#define SCLanguage2GameLanguageTableIndex 5
+#else
+#define SCLanguage2GameLanguageTableIndex -1
+#endif
 
 namespace {
     const u8 cSCLanguage2GameLanguageTable[][10] = {
@@ -69,6 +82,21 @@ namespace {
             LANGUAGE_CNSIMPCHINESE,
             LANGUAGE_KRKOREAN,
         },
+// REGIONAL
+#if 0 && (VERSION == SB4W01 || VERSION == SB4K01)
+        {
+            LANGUAGE_ASTRADCHINESE,
+            LANGUAGE_USENGLISH,
+            LANGUAGE_EUGERMAN,
+            LANGUAGE_EUFRENCH,
+            LANGUAGE_EUSPANISH,
+            LANGUAGE_EUITALIAN,
+            LANGUAGE_EUDUTCH,
+            LANGUAGE_CNSIMPCHINESE,
+            LANGUAGE_CNSIMPCHINESE,
+            LANGUAGE_KRKOREAN,
+        },
+#endif
     };
     const Language cLanguages[] = {
         {LANGUAGE_JPJAPANESE, "JpJapanese"}, {LANGUAGE_USENGLISH, "UsEnglish"},         {LANGUAGE_USSPANISH, "UsSpanish"},
@@ -76,6 +104,10 @@ namespace {
         {LANGUAGE_EUFRENCH, "EuFrench"},     {LANGUAGE_EUGERMAN, "EuGerman"},           {LANGUAGE_EUITALIAN, "EuItalian"},
         {LANGUAGE_EUDUTCH, "EuDutch"},       {LANGUAGE_CNSIMPCHINESE, "CnSimpChinese"}, {LANGUAGE_CNTRADCHINESE, "CnTradChinese"},
         {LANGUAGE_KRKOREAN, "KrKorean"},
+// REGIONAL
+#if 0 && (VERSION == SB4W01 || VERSION == SB4K01)
+        {LANGUAGE_ASTRADCHINESE, "AsTradChinese"},
+#endif
     };
 };  // namespace
 
@@ -104,7 +136,16 @@ namespace MR {
     }
 
     u32 getLanguageFromIPL() {
-        return getLanguage() & LANGUAGE_MASK;
+        u32 language = getLanguage() & LANGUAGE_MASK;
+
+// REGIONAL
+#if 0 && (VERSION == SB4W01)
+        if (language == SC_LANG_TRAD_CHINESE) {
+            language = SC_LANG_JAPANESE;
+        }
+#endif
+
+        return language;
     }
 
     const char* getCurrentLanguagePrefix() {
@@ -120,8 +161,8 @@ namespace MR {
     }
 
     const char* getCurrentRegionPrefix() {
-        char prefix[2];
-        MR::extractString(prefix, getCurrentLanguagePrefix(), sizeof(prefix), 3);
+        char prefix[3];
+        MR::extractString(prefix, getCurrentLanguagePrefix(), 2, sizeof(prefix));
 
         if (MR::isEqualString(prefix, "Jp")) {
             return "Jp";
@@ -142,6 +183,13 @@ namespace MR {
         if (MR::isEqualString(prefix, "Kr")) {
             return "Kr";
         }
+
+// REGIONAL
+#if 0 && (VERSION == SB4W01 || VERSION == SB4K01)
+        if (MR::isEqualString(prefix, "As")) {
+            return "As";
+        }
+#endif
 
         return nullptr;
     }

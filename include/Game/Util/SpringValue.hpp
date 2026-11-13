@@ -9,6 +9,7 @@ public:
 
     void setParam(f32, f32, f32, f32, f32);
     f32 update();
+    void clampSpring(f32 maxValue);
 
     // I refuse to believe this isn't header defined, as it's in two different TUs between SMG1 and SMG2
     void reset() {
@@ -16,9 +17,9 @@ public:
         mVelocity = 0.0f;
     }
 
-    f32 mRestValue;
-    f32 mSpringValue;
-    f32 mAccelFactor;
-    f32 mDamping;
-    f32 mVelocity;
+    /* 0x00 */ f32 mRestValue;
+    /* 0x04 */ f32 mSpringValue;
+    /* 0x08 */ f32 mAccelFactor;
+    /* 0x0C */ f32 mDamping;
+    /* 0x10 */ f32 mVelocity;
 };

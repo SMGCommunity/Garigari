@@ -25,7 +25,7 @@ public:
     void resetGameHeapGDDR3() NO_INLINE;
     void destroyWorldMapHeap();
     void destroyFileCache();
-    void fn_804BCD50();
+    void freePlayerCache();
     void destroySceneHeap();
     static void createRootHeap();
     void createHeaps();
@@ -39,7 +39,7 @@ public:
     /* 0x0C */ JKRExpHeap* mGameHeapGDDR;
     /* 0x10 */ JKRSolidHeap* mWorldMapHeap;
     /* 0x14 */ JKRSolidHeap* mFileCacheHeap;
-    /* 0x18 */ JKRHeap* _18;
+    /* 0x18 */ JKRHeap* mPlayerCacheHeap;
     /* 0x1C */ JKRSolidHeap* mSceneHeapNapa;
     /* 0x20 */ JKRSolidHeap* mSceneHeapGDDR;
     /* 0x24 */ JKRExpHeap* mWPadHeap;

@@ -24,7 +24,6 @@ namespace AttackRockUtil {
         TVec3f zDir;
         rQuat.getZDir(zDir);
 
-        // TODO: rounding of the conversion to degree constant
         return _180_PI * MR::diffAngleAbs(velocityDir, -zDir);
     }
 

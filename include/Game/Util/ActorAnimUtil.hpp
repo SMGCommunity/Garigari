@@ -3,6 +3,7 @@
 #include <revolution.h>
 
 class LiveActor;
+class J3DFrameCtrl;
 
 namespace MR {
     void startBck(const LiveActor*, const char*, const char*);
@@ -100,11 +101,11 @@ namespace MR {
     bool isExistBtp(const LiveActor*, const char*);
     bool isExistBpk(const LiveActor*, const char*);
     bool isExistBva(const LiveActor*, const char*);
-    void* getBckCtrl(const LiveActor*);
-    void* getBtkCtrl(const LiveActor*);
-    void* getBrkCtrl(const LiveActor*);
-    void* getBtpCtrl(const LiveActor*);
-    void* getBpkCtrl(const LiveActor*);
-    void* getBvaCtrl(const LiveActor*);
+    J3DFrameCtrl* getBckCtrl(const LiveActor*);
+    J3DFrameCtrl* getBtkCtrl(const LiveActor*);
+    J3DFrameCtrl* getBrkCtrl(const LiveActor*);
+    J3DFrameCtrl* getBtpCtrl(const LiveActor*);
+    J3DFrameCtrl* getBpkCtrl(const LiveActor*);
+    J3DFrameCtrl* getBvaCtrl(const LiveActor*);
     void updateMaterial(LiveActor*);
 };  // namespace MR

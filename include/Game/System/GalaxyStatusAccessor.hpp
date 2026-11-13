@@ -11,7 +11,10 @@ public:
     const char* getName() const;
     s32 getPowerStarNum() const;
 
+	bool isCompletedNoGreen() const;
+    bool isCompletedWithGreen() const;
+
     s32 getWorldNo() const;
 
-    const ScenarioData* mScenarioData;  // 0x00
+    /* 0x00 */ const ScenarioData* mScenarioData;
 };

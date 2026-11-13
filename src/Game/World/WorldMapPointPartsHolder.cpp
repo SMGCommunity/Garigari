@@ -4,11 +4,12 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
 #include "Game/World/MiniEarthenPipe.hpp"
+#include "Game/World/MiniStarWorldPoint.hpp"
 #include "Game/World/MiniWorldWarpPoint.hpp"
+#include "Game/World/WorldMapObjFunction.hpp"
 #include <decomp.h>
 
 EXTERN_UNKNOWN_FUNC_NO_ARGS(u32, 804E82A0)
-EXTERN_UNKNOWN_FUNC(JMapInfo*, 804F24E0, WorldMapObjHolder*, const char*)
 EXTERN_UNKNOWN_FUNC(TVec3f&, 804F2550, WorldMapObjHolder*, s32)
 EXTERN_UNKNOWN_FUNC(s32, 804F2B60, WorldMapObjHolder*)
 
@@ -38,7 +39,7 @@ namespace {
     bool isTicoRouteCreator(const char* pName) NO_INLINE {
         return MR::isEqualString(pName, "TicoRouteCreator");
     }
-};  // namespace WorldMapPointPartsFunction
+};  // namespace
 
 WorldMapPointPart::WorldMapPointPart() : mPartsTypeName(), mPointIndex(), mPartsIndex(), mParam00(-1), mParam01(-1), mParam02(-1), mActor() {
 }
@@ -48,7 +49,7 @@ WorldMapPointPartsHolder::WorldMapPointPartsHolder(WorldMapObjHolder* pObjHolder
 }
 
 void WorldMapPointPartsHolder::init() {
-    JMapInfo* info = fn_804F24E0(mObjHolder, "PointParts");
+    const JMapInfo* info = WorldMapObjFunction::createCsvParser(mObjHolder, "PointParts");
     if (info == nullptr) {
         return;
     }
@@ -77,7 +78,7 @@ void WorldMapPointPartsHolder::init() {
             part->mActor->mPosition += sWorldWarpPointOffset;
             part->mActor->initWithoutIter();
         } else if (::isStarRoadWarpPoint(part->mPartsTypeName)) {
-            // TODO
+            part->mActor = new MiniStarWorldPoint(mObjHolder, part->mPointIndex, part->mParam00 > worldNo);
             MR::setPosition(part->mActor, fn_804F2550(mObjHolder, part->mPointIndex));
             part->mActor->initWithoutIter();
         } else if (::isStarCheckPoint(part->mPartsTypeName)) {
@@ -108,6 +109,30 @@ void WorldMapPointPartsHolder::init() {
         if (!::isStarRoadWarpPoint(part->mPartsTypeName)) {
             MR::invalidateClipping(part->mActor);
         }
+    }
+}
+
+void WorldMapPointPartsHolder::appear() {
+    for (s32 i = 0; i < mPointPartsNum; i++) {
+        mPointParts[i].mActor->appear();
+    }
+}
+
+void WorldMapPointPartsHolder::kill() {
+    for (s32 i = 0; i < mPointPartsNum; i++) {
+        mPointParts[i].mActor->kill();
+    }
+}
+
+void WorldMapPointPartsHolder::makeActorAppeared() {
+    for (s32 i = 0; i < mPointPartsNum; i++) {
+        mPointParts[i].mActor->makeActorAppeared();
+    }
+}
+
+void WorldMapPointPartsHolder::makeActorDead() {
+    for (s32 i = 0; i < mPointPartsNum; i++) {
+        mPointParts[i].mActor->makeActorDead();
     }
 }
 

@@ -3,6 +3,7 @@
 #include "Game/System/NerveExecutor.hpp"
 
 class MapDemoManager;
+class WorldMapObjHolder;
 
 class GrandGalaxyMapInfoHolder {  // Maybe?
 public:
@@ -12,9 +13,9 @@ public:
     void fn_804DFB00();     // Unknown
     void fn_804DFB10();     // Unknown
 
-    /* 0x0 */ void* _0;  // Unknown
-    /* 0x4 */ u32 _4;    // Unknown
-    /* 0x8 */ u32 _8;    // Unknown
+    /* 0x0 */ WorldMapObjHolder* mObjHolder;
+    /* 0x4 */ u32 _4;  // Unknown
+    /* 0x8 */ u32 _8;  // Unknown
 };
 
 class GrandGalaxyMap : public NerveExecutor {

@@ -1,10 +1,9 @@
 #include "Game/World/GrandGalaxyMap.hpp"
 #include "Game/World/MapDemoManager.hpp"
+#include "Game/World/WorldMapObjHolder.hpp"
 #include <decomp.h>
 
 EXTERN_UNKNOWN_FUNC(u32, 804E8950, void*)
-EXTERN_UNKNOWN_FUNC(void, 804F3AE0, void*)
-EXTERN_UNKNOWN_FUNC(void, 804F3B30, void*)
 
 GrandGalaxyMapInfoHolder::GrandGalaxyMapInfoHolder() : _4(), _8() {
 }
@@ -12,11 +11,11 @@ GrandGalaxyMapInfoHolder::GrandGalaxyMapInfoHolder() : _4(), _8() {
 // void GrandGalaxyMapInfoHolder::fn_804DFA40(u32 idx) {}
 
 void GrandGalaxyMapInfoHolder::fn_804DFB00() {
-    fn_804F3AE0(_0);
+    mObjHolder->appear();
 }
 
 void GrandGalaxyMapInfoHolder::fn_804DFB10() {
-    fn_804F3B30(_0);
+    mObjHolder->kill();
 }
 
 GrandGalaxyMap::GrandGalaxyMap(void* a1) : NerveExecutor("グランドギャラクシーマップ"), _8(), _C(), _10(a1), _15() {

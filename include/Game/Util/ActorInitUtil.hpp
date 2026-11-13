@@ -31,6 +31,7 @@ namespace MR {
     bool isValidInitActorCsvParser(const char*, const char*);
     bool initActor(LiveActor*, const JMapInfoIter&, const char*, const char*, const char*, bool);
     bool initActorNoIter(LiveActor*, const char*, const char*, bool);
+    bool initActorNoIter(LiveActor*, const char*, const char*, const char*, bool);
     void initDefaultPos(LiveActor*, const JMapInfoIter&) NO_INLINE;
     bool getRestartPosData(TVec3f*, TVec3f*, const JMapInfoIter&);
     bool tryInitFromRestartPos(LiveActor*, const JMapInfoIter&);

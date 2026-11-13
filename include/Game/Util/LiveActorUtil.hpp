@@ -58,6 +58,18 @@ namespace MR {
     void setClippingTypeSphere(LiveActor* pActor, f32 clippingRadius);
     void setClippingTypeSphere(LiveActor* pActor, f32 clippingRadius, const TVec3f* pClippingPos);
     void setClippingTypeSphereContainsModelBoundingBox(LiveActor* pActor, f32 radiusExtension);
+
+    enum ClippingDistance {
+        ClippingDistance_Max = 0,
+        ClippingDistance_600m = 1,
+        ClippingDistance_500m = 2,
+        ClippingDistance_400m = 3,
+        ClippingDistance_300m = 4,
+        ClippingDistance_200m = 5,
+        ClippingDistance_100m = 6,
+        ClippingDistance_50m = 7
+    };
+
     void setClippingFar50m(LiveActor* pActor);
     void setClippingFar100m(LiveActor* pActor);
     void setClippingFar200m(LiveActor* pActor);
@@ -99,8 +111,7 @@ namespace MR {
     void initMirrorReflection(LiveActor* pActor);
     void setMirrorReflectionInfoFromMtxYUp(const TPos3f& rMtx);
     void setMirrorReflectionInfoFromModel(LiveActor* pActor);
-
-    // changeModelDataTexAll
+    void changeModelDataTexAll(LiveActor*, const char*, const ResTIMG&);
 
     void initJointTransform(const LiveActor* pActor);
     // getJointTransform
@@ -231,6 +242,7 @@ namespace MR {
     void offCalcGravity(LiveActor* pActor);
 
     // various ActorActionKeeper functions
+    void startHitReaction(LiveActor* pActor, const char* pName);
 
     LiveActorGroup* joinToGroup(LiveActor* pActor, const char* pGroupName);
     LiveActorGroup* joinToGroupArray(LiveActor* pActor, const JMapInfoIter& rIter, const char* pGroupName, s32 size);
@@ -266,13 +278,14 @@ namespace MR {
     CollisionParts* createCollisionPartsFromLiveActor(LiveActor* pActor, const char* pCollisionName, HitSensor* pBodySensor, MtxPtr pMtx,
                                                       CollisionScaleType collisionScaleType);
     CollisionParts* createCollisionPartsFromResourceHolder(ResourceHolder* pResourceHolder, const char* pCollisionName, HitSensor* pBodySensor,
-                                                           const TMtx34f& rMtx, CollisionScaleType collisionScaleType);
-    CollisionParts* createDashYoshiStepCollisionPartsFromResourceHolder(ResourceHolder* pResourceHolder, const char* pCollisionName,
-                                                                        HitSensor* pBodySensor, MtxPtr pMtx, CollisionScaleType collisionScaleType);
+                                                           const TMtx34f& rMtx, TPos3f* pMatrix, CollisionScaleType collisionScaleType);
+    CollisionParts* createDashYoshiCollisionPartsFromResourceHolder(ResourceHolder* pResourceHolder, const char* pCollisionName,
+                                                                    HitSensor* pBodySensor, MtxPtr pMtx, CollisionScaleType collisionScaleType);
     CollisionParts* tryCreateCollisionMoveLimit(LiveActor* pActor, HitSensor* pBodySensor);
     CollisionParts* tryCreateCollisionWaterSurface(LiveActor* pActor, HitSensor* pBodySensor);
 
     f32 getCollisionBoundingSphereRange(const LiveActor* pActor);
+    void calcModelBoundingRadius(f32* outRadius, const LiveActor* pActor);
     bool isValidCollisionParts(LiveActor* pActor);
     void validateCollisionParts(LiveActor* pActor);
     void validateCollisionParts(CollisionParts* pCollisionParts);
@@ -288,7 +301,7 @@ namespace MR {
     void setCollisionMtx(LiveActor* pActor, CollisionParts* pCollisionParts);
     CollisionParts* getCollisionParts(LiveActor* pActor);
     bool isExistCollisionParts(const LiveActor* pActor);
-    u32 getCollisionSensortType(const CollisionParts* pCollisionParts);
+    u32 getCollisionSensorType(const CollisionParts* pCollisionParts);
 
     DemoObj* createDemoObj(const char* pName, const char* pModelName, MtxPtr pMtx);
     DemoObj* createDemoObjWithAnimArc(const char* pName, const char* pModelName, const char* pAnimArcName, MtxPtr pMtx);
@@ -306,7 +319,7 @@ namespace MR {
     ModelObj* createModelObjNPC(const char* pName, const char* pModelName, MtxPtr pMtx);
     ModelObj* createModelObjBloomModel(const char* pName, const char* pModelName, MtxPtr pMtx, bool);
 
-    CollisionObj* createCollisionObj(LiveActor* pHost, const char* pCollisionName, bool noInitBodySensor, MtxPtr pMtx);
+    CollisionObj* createCollisionObj(LiveActor* pHost, const char* pCollisionName, HitSensor* pSensor, MtxPtr pMtx);
 
     BreakModel* createBreakModel(LiveActor* pHost, MtxPtr pMtx);
     BreakModel* tryCreateBreakModel(LiveActor* pHost, MtxPtr pMtx);
@@ -328,7 +341,7 @@ namespace MR {
     PartsModel* createPartsModelNpc(LiveActor* pHost, const char* pName, const char* pModelName, MtxPtr pMtx);
     PartsModel* createPartsModelIndirectNpc(LiveActor* pHost, const char* pName, const char* pModelName, MtxPtr pMtx);
     PartsModel* createPartsModelEnemyAndFix(LiveActor* pHost, const char* pName, const char* pModelName, MtxPtr pMtx);
-    PartsModel* createPartsModelNpcAndFix(LiveActor* pHost, const char* pName, const char* pModelName, MtxPtr pMtx);
+    PartsModel* createPartsModelNpcAndFix(LiveActor* pHost, const char* pName, const char* pModelName, MtxPtr pMtx, const char* pJointName);
 
     RailObj* createRailObj(const char* pName, LiveActor* pHost, const JMapInfoIter& rIter);
 
@@ -350,4 +363,6 @@ namespace MR {
 
     HitSensor* getBodySensor(LiveActor* pActor);
     void setBodySensorType(LiveActor* pActor, u32 sensorType);
+
+    void initMapPartsClipping(LiveActor*, const JMapInfoIter&, TVec3f*, bool);
 };  // namespace MR

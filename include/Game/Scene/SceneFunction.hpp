@@ -152,7 +152,7 @@ namespace MR {
         /* 0x14 */ DrawType_ClipAreaDropLaser,
         /* 0x15 */ DrawType_SpiderThread,
         /* 0x16 */ DrawType_SpaceCocoon,
-        /* 0x17 */ DrawType_0x17,
+        /* 0x17 */ DrawType_0x17,            // TODO: DrawType_FootPrint?
         /* 0x18 */ DrawType_WarpPodPath,     // TODO: DrawType_NormalMap?
         /* 0x19 */ DrawType_FlexibleSphere,  // TODO: DrawType_DynamicCollisionObj?
         /* 0x1A */ DrawType_KirairaChain,
