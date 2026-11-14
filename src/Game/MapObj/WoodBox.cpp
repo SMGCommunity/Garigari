@@ -103,6 +103,10 @@ void WoodBox::control() {
     }
 }
 
+void WoodBox::exeWait() {
+    MR::attachSupportTicoToTarget(this);
+}
+
 void WoodBox::exeHit() {
     if (MR::isFirstStep(this)) {
         MR::invalidateHitSensor(this, "Body");
@@ -146,6 +150,9 @@ void WoodBox::exeHit() {
     if (MR::isDead(mBreakModel)) {
         kill();
     }
+}
+
+void WoodBox::exeKilled() {
 }
 
 void WoodBox::appear() {
@@ -277,11 +284,4 @@ void WoodBox::forceReappear() {
 
 void WoodBox::registerBreakModelDemoCast() {
     MR::registerDemoSimpleCastAll(mBreakModel);
-}
-
-void WoodBox::exeWait() {
-    MR::attachSupportTicoToTarget(this);
-}
-
-void WoodBox::exeKilled() {
 }
