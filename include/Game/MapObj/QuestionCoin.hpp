@@ -38,7 +38,7 @@ public:
     /* 0x090 */ TPos3f mBaseMtx;
 
     /// @brief Pointer to the `LiveActor` that will be made to jump upon collecting the Coin. Basically, this points to the player.
-    /* 0x0C0 */ LiveActor* mBoundActor;
+    /* 0x0C0 */ LiveActor* mBindActor;
 
     /// @brief The base matrix of the `LiveActor` that will be made to jump upon collecting the Coin. Basically, the player's base matrix.
     /* 0x0C4 */ TPos3f mActorMtx;
@@ -53,7 +53,7 @@ public:
     /* 0x10C */ bool mIsWeakGravity;
 
     /// @brief If `true`, the shadow will be calculated at all times.
-    /* 0x10D */ bool mCalcShadow;
+    /* 0x10D */ bool mIsCalcShadow;
 
     /* 0x110 */ s32 mPoseType;
 

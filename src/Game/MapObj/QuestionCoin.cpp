@@ -38,7 +38,7 @@ namespace NrvQuestionCoin {
 };  // namespace NrvQuestionCoin
 
 QuestionCoin::QuestionCoin(const char* pName)
-    : LiveActor(pName), mBoundActor(), mCameraInfo(), mLaunchSpeed(), mIsWeakGravity(), mCalcShadow(), mPoseType(), mShadowLengthType(),
+    : LiveActor(pName), mBindActor(), mCameraInfo(), mLaunchSpeed(), mIsWeakGravity(), mIsCalcShadow(), mPoseType(), mShadowLengthType(),
       mShadowPos(gZeroVec), mShadowDropLength() {
     mBaseMtx.identity();
     mActorMtx.identity();
@@ -52,10 +52,10 @@ void QuestionCoin::init(const JMapInfoIter& rIter) {
 
     if (mPoseType == 0) {
         MR::calcGravity(this);
-        TPos3f rotation;
-        MR::makeMtxTR(rotation.toMtxPtr(), mPosition, mRotation);
+        TPos3f mtx;
+        MR::makeMtxTR(mtx.toMtxPtr(), mPosition, mRotation);
         TVec3f front;
-        rotation.getZDir(front);
+        mtx.getZDir(front);
         MR::normalize(&front);
         MR::makeMtxUpFrontPos(&mBaseMtx, -mGravity, front, mPosition);
     } else {
@@ -125,27 +125,31 @@ void QuestionCoin::initAfterPlacement() {
 }
 
 void QuestionCoin::makeActorAppeared() {
-    if (!isNerve(GET_NERVE(QuestionCoin, HostTypeKilled))) {
-        LiveActor::makeActorAppeared();
+    if (isNerve(GET_NERVE(QuestionCoin, HostTypeKilled))) {
+        return;
     }
+
+    LiveActor::makeActorAppeared();
 }
 
 void QuestionCoin::appear() {
-    if (!isNerve(GET_NERVE(QuestionCoin, HostTypeKilled))) {
-        LiveActor::appear();
-        MR::showModel(this);
-        MR::emitEffect(this, "Appear");
-
-        if (MR::isValidSwitchDead(this)) {
-            MR::offSwitchDead(this);
-        }
-
-        setNerve(GET_NERVE(QuestionCoin, HostTypeWait));
+    if (isNerve(GET_NERVE(QuestionCoin, HostTypeKilled))) {
+        return;
     }
+
+    LiveActor::appear();
+    MR::showModel(this);
+    MR::emitEffect(this, "Appear");
+
+    if (MR::isValidSwitchDead(this)) {
+        MR::offSwitchDead(this);
+    }
+
+    setNerve(GET_NERVE(QuestionCoin, HostTypeWait));
 }
 
 void QuestionCoin::kill() {
-    mBoundActor = nullptr;
+    mBindActor = nullptr;
 
     if (MR::isValidSwitchDead(this)) {
         MR::onSwitchDead(this);
@@ -174,8 +178,8 @@ bool QuestionCoin::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor
 
 bool QuestionCoin::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgAutoRushBegin(msg) && isThrowActor() && isNerve(GET_NERVE(QuestionCoin, HostTypeWait))) {
-        mBoundActor = MR::getSensorHost(pSender);
-        mActorMtx.set(mBoundActor->getBaseMtx());
+        mBindActor = MR::getSensorHost(pSender);
+        mActorMtx.set(mBindActor->getBaseMtx());
         setNerve(GET_NERVE(QuestionCoin, HostTypeThrowActor));
         return true;
     }
@@ -207,20 +211,20 @@ void QuestionCoin::endClipped() {
 
 void QuestionCoin::initFromJMapInfoArg(const JMapInfoIter& rIter) {
     MR::getJMapInfoArg0NoInit(rIter, &mLaunchSpeed);
-    s32 gravityType = -1;
-    MR::getJMapInfoArg1NoInit(rIter, &gravityType);
-    mIsWeakGravity = gravityType == 0;
+    s32 arg1 = -1;
+    MR::getJMapInfoArg1NoInit(rIter, &arg1);
+    mIsWeakGravity = arg1 == 0;
     MR::getJMapInfoArg2NoInit(rIter, &mPoseType);
     MR::getJMapInfoArg3NoInit(rIter, &mShadowLengthType);
-    s32 calcGravity = -1;
-    MR::getJMapInfoArg4NoInit(rIter, &calcGravity);
-    mCalcShadow = calcGravity != -1;
+    s32 arg4 = -1;
+    MR::getJMapInfoArg4NoInit(rIter, &arg4);
+    mIsCalcShadow = arg4 != -1;
 }
 
 void QuestionCoin::initShadow() {
     MR::initShadowVolumeSphere(this, ::sShadowRadius * mScale.x);
 
-    if (mCalcShadow) {
+    if (mIsCalcShadow) {
         MR::onCalcShadow(this, nullptr);
     }
 }
@@ -242,7 +246,7 @@ void QuestionCoin::updateActorMtx() {
     position.lerp(startPos, *MR::getSensorPos(this, "binder"), rate);
     TPos3f mtx;
     mtx.setQT(quat, position);
-    MR::setBaseTRMtx(mBoundActor, mtx);
+    MR::setBaseTRMtx(mBindActor, mtx);
 }
 
 void QuestionCoin::exeWait() {
@@ -255,7 +259,7 @@ void QuestionCoin::exeThrowActor() {
         MR::tryRumblePadMiddle(this, 0);
         MR::hideModel(this);
         ScoreAttackFunction::score1000Points(this);
-        MR::startAction(mBoundActor, "QuestionCoinJumpStart");
+        MR::startAction(mBindActor, "QuestionCoinJumpStart");
         MR::startLevelSoundPlayer("JumpObj", -1, -1);
 
         if (MR::isExistActorCamera(mCameraInfo)) {
@@ -269,8 +273,8 @@ void QuestionCoin::exeThrowActor() {
         TVec3f velocity;
         rotation.getYDir(velocity);
         velocity.setLength(mLaunchSpeed);
-        mBoundActor->mVelocity.set(velocity);
-        MR::startAction(mBoundActor, "QuestionCoinJump");
+        mBindActor->mVelocity.set(velocity);
+        MR::startAction(mBindActor, "QuestionCoinJump");
 
         if (mIsWeakGravity) {
             MR::endBindAndPlayerForceWeakGravityJump(this, velocity);
