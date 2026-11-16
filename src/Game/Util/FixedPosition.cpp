@@ -3,6 +3,7 @@
 #include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/JointUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
 FixedPosition::FixedPosition(const LiveActor* pActor, const char* pJointName, const TVec3f& rLocalTrans, const TVec3f& rLocalRotate) {
@@ -59,7 +60,7 @@ void FixedPosition::calc() {
     }
 
     if (mNormalizeScale) {
-        // MR::makeMtxWithoutScale(&mMtx, mMtx);
+        MR::makeMtxWithoutScale(&mMtx, mMtx);
     }
 }
 

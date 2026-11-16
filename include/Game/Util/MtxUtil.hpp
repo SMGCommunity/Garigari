@@ -1,5 +1,6 @@
 #pragma once
 
+#include "revolution/mtx.h"
 #include <JSystem/JGeometry/TMatrix.hpp>
 #include <JSystem/JGeometry/TVec.hpp>
 #include <revolution.h>
@@ -14,6 +15,7 @@ namespace MR {
     void makeMtxTR(MtxPtr, f32, f32, f32, f32, f32, f32);
     void makeMtxTR(MtxPtr, const TVec3f&, const TVec3f&);
     void makeMtxTransRotateY(MtxPtr, f32, f32, f32, f32);
+    void makeMtxWithoutScale(TPos3f*, const TPos3f&);
     void makeMtxSideUp(TPos3f*, const TVec3f&, const TVec3f&);
     void makeMtxSideUpPos(TPos3f*, const TVec3f&, const TVec3f&, const TVec3f&);
     void makeMtxSideFront(TPos3f*, const TVec3f&, const TVec3f&);
