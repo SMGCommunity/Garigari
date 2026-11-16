@@ -35,6 +35,6 @@ namespace MR {
 
     s32 getCurrentStagePowerStarNum();
     bool isProductGameScene();
-    
+
     const char* getJapaneseObjectName(const char*);
 };  // namespace MR

@@ -9,11 +9,6 @@ public:
     JMapIdInfo() {
     }
 
-    JMapIdInfo(const JMapIdInfo& rInfo) __attribute__((forceinline)) {
-        _0 = rInfo._0;
-        mZoneID = rInfo.mZoneID;
-    }
-
     JMapIdInfo(s32, const JMapInfoIter&);
     JMapIdInfo(s32, s32);
 
