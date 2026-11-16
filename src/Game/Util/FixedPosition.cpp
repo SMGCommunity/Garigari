@@ -44,11 +44,6 @@ FixedPosition::FixedPosition(const LiveActor* pActor, const char* pResName, cons
 }
 
 void FixedPosition::calc() {
-    // FIXME
-    // decomp.me: https://decomp.me/scratch/u8ALi
-    // This function calls MR::makeMtxWithoutScale, which should be in MtxUtil.hpp but isn't!
-    // Until MtxUtil gets a PR to include that function in the header, this function cannot be decompiled!
-
     mMtx.identity();
     mMtx.setRotate(mLocalRotate * PI_180);
     mMtx.setTrans(mLocalTrans);
