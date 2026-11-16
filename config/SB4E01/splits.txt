@@ -6558,7 +6558,7 @@ Game/MapObj/QuestionCoin.cpp:
 	.text       start:0x802E7A40 end:0x802E89F0 align:16
 	.ctors      start:0x80644534 end:0x80644538
 	.data       start:0x806A9280 end:0x806A93D8
-	.sdata      start:0x807CFD90 end:0x807CFD98
+	.sdata      start:0x807CFD90 end:0x807CFD94
 	.sbss       start:0x807D4198 end:0x807D41A8
 	.sdata2     start:0x807DE200 end:0x807DE238
 

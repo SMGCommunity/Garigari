@@ -9,6 +9,7 @@ class HitSensor;
 enum {
     ACTMES_BOMB_TERESA_TONGUE_TOUCH = 0x4F,
     ACTMES_GLI_BIRD_TOUCH = 0x55,
+    ATYPE_QUESTION_COIN_BIND = 0x66,
     ACTMES_INHALE_BLACK_HOLE = 0x81,
     ACTMES_DISPERSE_BOMB_TERESA = 0xA2,
 };
@@ -126,7 +127,9 @@ namespace MR {
     bool tryGetItem(HitSensor*, HitSensor*);
 
     const TVec3f* getSensorPos(const HitSensor* pSensor);
+    const TVec3f* getSensorPos2(const HitSensor* pSensor);
     const TVec3f* getSensorPos(const LiveActor* pActor, const char* pSensorName);
+    const TVec3f* getSensorPos2(const LiveActor* pActor, const char* pSensorName);
     const TVec3f* tryGetSensorPos(const HitSensor* pSensor);
     const TVec3f* tryGetSensorPos(const LiveActor* pActor, const char* pSensorName);
 
