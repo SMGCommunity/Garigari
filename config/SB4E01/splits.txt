@@ -4993,6 +4993,7 @@ Game/Map/KoopaFinalStarPlanet.cpp:
 Game/Map/LightDataHolder.cpp:
 	.text       start:0x8025A330 end:0x8025A460 align:16
 	.data       start:0x80697E98 end:0x80697EA8
+	.sdata      start:0x807CFB20 end:0x807CFB28
 
 Game/Map/LightDirector.cpp:
 	.text       start:0x8025A460 end:0x8025A740 align:16
