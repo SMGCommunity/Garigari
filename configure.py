@@ -645,7 +645,7 @@ config.libs = [
             Object(NonMatching, "Game/Util/CollisionPartsFilter.cpp"),
             Object(NonMatching, "Game/Util/DirectDraw.cpp"),
             Object(NonMatching, "Game/Util/DirectDrawUtil.cpp"),
-            Object(NonMatching, "Game/Util/FixedPosition.cpp"),
+            Object(Matching, "Game/Util/FixedPosition.cpp"),
             Object(NonMatching, "Game/Util/GeometryBindUtil.cpp"),
             Object(NonMatching, "Game/Util/IKJoint.cpp"),
             Object(NonMatching, "Game/Util/JMapIdInfo.cpp"),
