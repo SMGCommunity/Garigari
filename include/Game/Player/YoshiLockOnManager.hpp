@@ -8,4 +8,4 @@ class YoshiLockOnTarget;
 
 namespace MR {
     YoshiLockOnTarget* createYoshiLockOnTarget(LiveActor*, MtxPtr, const TVec3f&);
-};
+};  // namespace MR

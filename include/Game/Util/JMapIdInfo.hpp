@@ -22,13 +22,7 @@ public:
     }
 
     bool operator==(const JMapIdInfo& rOther) const {
-        bool ret = false;
-
-        if (_0 == rOther._0 && mZoneID == rOther.mZoneID) {
-            ret = true;
-        }
-
-        return ret;
+        return _0 == rOther._0 && mZoneID == rOther.mZoneID;
     }
 
     int getZoneID() const {

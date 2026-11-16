@@ -31,21 +31,21 @@ namespace NrvRestartObj {
 
 namespace {
     static const TVec2f lbl_80729A08(12.0f, 10.0f);
-}
+};  // namespace
 
-RestartObj::RestartObj(const char* pName) : LiveActor(pName), mMapIdInfo(), mConnector() {
+RestartObj::RestartObj(const char* pName) : LiveActor(pName), mIdInfo(), mConnector() {
 }
 
 void RestartObj::init(const JMapInfoIter& rIter) {
     MR::initActor(this, rIter, "RestartObj", false);
     s32 arg0 = -1;
     MR::getJMapInfoArg0NoInit(rIter, &arg0);
-    mMapIdInfo = new JMapIdInfo(arg0, rIter);
+    mIdInfo = new JMapIdInfo(arg0, rIter);
     mConnector = new MapObjConnector(this);
     mYoshiTarget = MR::createYoshiLockOnTarget(this, MR::getJointMtx(this, "Pole3"), TVec3f(0.0f));
-    changeTexture(*mMapIdInfo == *MR::getRestartMarioNo());
+    changeTexture(*mIdInfo == *MR::getRestartMarioNo());
 
-    if (*mMapIdInfo == *MR::getRestartMarioNo() && !GameSequenceFunction::isPadMode2()) {
+    if (*mIdInfo == *MR::getRestartMarioNo() && !GameSequenceFunction::isPadMode2()) {
         initNerve(GET_NERVE(RestartObj, RestartObjNrvAfter));
     } else {
         initNerve(GET_NERVE(RestartObj, RestartObjNrvBefore));
@@ -69,7 +69,7 @@ void RestartObj::exeBefore() {
 void RestartObj::exeGet() {
     if (MR::isFirstStep(this)) {
         MR::tryRumblePadMiddle(this, 0);
-        MR::setRestartMarioNo(*mMapIdInfo);
+        MR::setRestartMarioNo(*mIdInfo);
         GameSequenceFunction::collectTicoCoinIfSaved();
         MR::startAction(this, "Get");
         MR::startActionSound(this, "Get");
@@ -129,7 +129,7 @@ void RestartObj::updateHitSensor(HitSensor* pSensor) {
 }
 
 void RestartObj::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
-    if ((MR::isPlayerInRush() || MR::isPlayerElementModeHopper())) {
+    if (MR::isPlayerInRush() || MR::isPlayerElementModeHopper()) {
         if (MR::isSensorPlayerOrRide(pReceiver) && !MR::isSensorGhost(pReceiver) && MR::isEqualSensor(pSender, this, "Body") &&
             isNerve(GET_NERVE(RestartObj, RestartObjNrvBefore)) && !isNerve(GET_NERVE(RestartObj, RestartObjNrvGet))) {
             setNerve(GET_NERVE(RestartObj, RestartObjNrvGet));
@@ -195,10 +195,10 @@ bool RestartObj::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiv
     return false;
 }
 
-void RestartObj::changeTexture(bool useActivatedTexture) {
+void RestartObj::changeTexture(bool isGet) {
     f32 frame = 0.0f;
 
-    if (useActivatedTexture) {
+    if (isGet) {
         if (MR::isPlayerLuigi()) {
             frame = 2.0f;
         } else {

@@ -17,12 +17,12 @@ public:
     virtual void init(const JMapInfoIter& rIter);
     virtual void initAfterPlacement();
     virtual void calcAndSetBaseMtx();
-    virtual void updateHitSensor(HitSensor*);
-    virtual void attackSensor(HitSensor*, HitSensor*);
+    virtual void updateHitSensor(HitSensor* pSensor);
+    virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
     virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
     virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
-    void changeTexture(bool);
+    void changeTexture(bool isGet);
 
     void exeBefore();
     void exeGet();
@@ -30,7 +30,7 @@ public:
     void exeShake();
     void exeShakeAfter();
 
-    /* 0x90 */ JMapIdInfo* mMapIdInfo;
+    /* 0x90 */ JMapIdInfo* mIdInfo;
     /* 0x94 */ MapObjConnector* mConnector;
     /* 0x98 */ YoshiLockOnTarget* mYoshiTarget;
 };
