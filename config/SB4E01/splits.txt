@@ -300,7 +300,7 @@ Game/Util/SequenceUtil.cpp:
 
 Game/Util/ShareUtil.cpp:
 	.text       start:0x8005A4E0 end:0x8005A5B0 align:16
-	.data       start:0x80669760 end:0x806697A0
+	.data       start:0x80669760 end:0x8066979C
 
 Game/Util/SoundUtil.cpp:
 	.text       start:0x8005A5B0 end:0x8005BCA0 align:16
