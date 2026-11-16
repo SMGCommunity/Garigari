@@ -1720,7 +1720,7 @@ config.libs = [
             Object(NonMatching, "Game/MapObj/RepeatBlock_UNK1.cpp"),
             Object(NonMatching, "Game/MapObj/RepeatBlockShadowDrawer.cpp"),
             Object(NonMatching, "Game/MapObj/RepeatTimerSwitchingBlock.cpp"),
-            Object(NonMatching, "Game/MapObj/RestartObj.cpp"),
+            Object(Matching, "Game/MapObj/RestartObj.cpp"),
             Object(NonMatching, "Game/MapObj/RisePictureBookPlanet.cpp"),
             Object(NonMatching, "Game/MapObj/Rock.cpp"),
             Object(Matching, "Game/MapObj/RockBreakCage.cpp"),
