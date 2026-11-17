@@ -3,6 +3,7 @@
 #include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/JointUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
 FixedPosition::FixedPosition(const LiveActor* pActor, const char* pJointName, const TVec3f& rLocalTrans, const TVec3f& rLocalRotate) {
@@ -43,11 +44,6 @@ FixedPosition::FixedPosition(const LiveActor* pActor, const char* pResName, cons
 }
 
 void FixedPosition::calc() {
-    // FIXME
-    // decomp.me: https://decomp.me/scratch/u8ALi
-    // This function calls MR::makeMtxWithoutScale, which should be in MtxUtil.hpp but isn't!
-    // Until MtxUtil gets a PR to include that function in the header, this function cannot be decompiled!
-
     mMtx.identity();
     mMtx.setRotate(mLocalRotate * PI_180);
     mMtx.setTrans(mLocalTrans);
@@ -59,7 +55,7 @@ void FixedPosition::calc() {
     }
 
     if (mNormalizeScale) {
-        // MR::makeMtxWithoutScale(&mMtx, mMtx);
+        MR::makeMtxWithoutScale(&mMtx, mMtx);
     }
 }
 
