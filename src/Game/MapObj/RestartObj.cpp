@@ -20,6 +20,7 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SupportPlayUtil.hpp"
+#include "revolution/wpad.h"
 
 namespace NrvRestartObj {
     NEW_NERVE(RestartObjNrvBefore, RestartObj, Before);
@@ -68,7 +69,7 @@ void RestartObj::exeBefore() {
 
 void RestartObj::exeGet() {
     if (MR::isFirstStep(this)) {
-        MR::tryRumblePadMiddle(this, 0);
+        MR::tryRumblePadMiddle(this, WPAD_CHAN0);
         MR::setRestartMarioNo(*mIdInfo);
         GameSequenceFunction::collectTicoCoinIfSaved();
         MR::startAction(this, "Get");
@@ -91,7 +92,7 @@ void RestartObj::exeShake() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "Shake");
         MR::startActionSound(this, "Shake");
-        MR::tryRumblePadWeak(this, 0);
+        MR::tryRumblePadWeak(this, WPAD_CHAN0);
     }
 
     if (MR::isActionEnd(this)) {
