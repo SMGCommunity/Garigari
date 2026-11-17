@@ -1808,7 +1808,7 @@ config.libs = [
             Object(NonMatching, "Game/MapObj/WhiteSnowTree.cpp"),
             Object(NonMatching, "Game/MapObj/WingBlock.cpp"),
             Object(NonMatching, "Game/MapObj/WireCoverCage.cpp"),
-            Object(NonMatching, "Game/MapObj/WoodBox.cpp"),
+            Object(Matching, "Game/MapObj/WoodBox.cpp"),
             Object(NonMatching, "Game/MapObj/WoodLogBridge.cpp"),
             Object(NonMatching, "Game/MapObj/WorldMapAccessPanel.cpp"),
             Object(NonMatching, "Game/MapObj/YellowChip.cpp"),

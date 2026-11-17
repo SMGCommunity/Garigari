@@ -10,6 +10,7 @@ class LayoutActor;
 class ModelObj;
 class ResourceHolder;
 class NameObjAdaptor;
+class BenefitItemObj;
 class BenefitItemOneUp;
 class BenefitItemLifeUp;
 class StageSwitchCtrl;
@@ -207,7 +208,7 @@ namespace MR {
     BenefitItemOneUp* createKinokoOneUp();
     void appearKinokoOneUp(BenefitItemOneUp* pKinoko, MtxPtr pMtx);
     void appearKinokoOneUpPop(BenefitItemOneUp* pKinoko, MtxPtr pMtx);
-    void appearKinokoOneUpHop(BenefitItemOneUp* pKinoko, MtxPtr pMtx);
+    void appearKinokoOneUpHop(BenefitItemObj* pKinoko, MtxPtr pMtx);
 
     BenefitItemLifeUp* createKinokoSuper();
     void appearKinokoSuperPop(BenefitItemLifeUp* pKinoko, MtxPtr pMtx);
