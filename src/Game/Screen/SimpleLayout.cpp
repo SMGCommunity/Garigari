@@ -16,7 +16,7 @@ namespace NrvSimpleTalkTextLayout {
     NEW_NERVE(SimpleTalkTextLayoutNrvEnd, SimpleTalkTextLayout, End);
 };  // namespace NrvSimpleTalkTextLayout
 
-SimpleLayout::SimpleLayout(const char* pName, const char* pLayoutName, u32 rootPaneAnimLayerNum, int drawType) : LayoutActor(pName, true) {
+SimpleLayout::SimpleLayout(const char* pName, const char* pLayoutName, u32 rootPaneAnimLayerNum, int drawType) : LayoutActor(pName) {
     int type = drawType >= 0 ? drawType : MR::DrawType_Layout;
 
     MR::connectToScene(this, MR::MovementType_Layout, MR::CalcAnimType_Layout, MR::DrawBufferType_None, type);

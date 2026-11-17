@@ -13,7 +13,7 @@ namespace NrvPopUpAddTimeAttackTime {
     NEW_NERVE(PopUpAddTimeAttackTimeNrvDisplay, PopUpAddTimeAttackTime, Display);
 }  // namespace NrvPopUpAddTimeAttackTime
 
-PopUpAddTimeAttackTime::PopUpAddTimeAttackTime(const char* pName, f32 arg2) : LayoutActor(pName, true), _2C(0.0f, 0.0f), _34(arg2) {
+PopUpAddTimeAttackTime::PopUpAddTimeAttackTime(const char* pName, f32 arg2) : LayoutActor(pName), _2C(0.0f, 0.0f), _34(arg2) {
 }
 
 void PopUpAddTimeAttackTime::appear() {
