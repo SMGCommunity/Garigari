@@ -6656,7 +6656,7 @@ Game/MapObj/RestartObj.cpp:
 	.ctors      start:0x8064455C end:0x80644560
 	.data       start:0x806AAD30 end:0x806AAE40
 	.bss        start:0x80729A08 end:0x80729A10
-	.sdata      start:0x807CFDA0 end:0x807CFDA8
+	.sdata      start:0x807CFDA0 end:0x807CFDA4
 	.sbss       start:0x807D4240 end:0x807D4258
 	.sdata2     start:0x807DE2C0 end:0x807DE2D8
 
