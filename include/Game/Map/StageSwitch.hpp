@@ -1,33 +1,36 @@
 #pragma once
 
 #include "Game/NameObj/NameObj.hpp"
+#include "Game/Util/Array.hpp"
 #include "Game/Util/JMapIdInfo.hpp"
 #include "Game/Util/JMapInfo.hpp"
 #include <revolution.h>
 
-#define GLOBAL_SWITCH_ID 1000
-#define NUM_SWITCH_FLAGS 4
-
 class BitFlag128 {
 public:
-    inline BitFlag128() {
+    BitFlag128() {
+        u32* pFlag = mFlags;
+
+        do {
+            *pFlag++ = 0;
+        } while (pFlag < &mFlags[4]);
     }
 
-    bool get(int) const;
-    void set(int, bool);
+    bool get(int idx) const;
+    void set(int bitIndex, bool setTrue);
 
-    s32 mSwitchFlags[NUM_SWITCH_FLAGS];  // 0x00
+    /* 0x0 */ u32 mFlags[4];
 };
 
 class ZoneSwitch : public BitFlag128 {
 public:
-    ZoneSwitch(int);
+    ZoneSwitch(s32 zoneID);
 
     int getZoneID() const {
         return mZoneID;
     }
 
-    int mZoneID;  // 0x10
+    /* 0x10 */ s32 mZoneID;
 };
 
 class SwitchIdInfo {
@@ -36,12 +39,12 @@ public:
 
     s32 getSwitchNo() const;
 
-    int getZoneID() const {
-        return mIDInfo->getZoneID();
+    s32 getZoneID() const {
+        return mIDInfo->mZoneID;
     }
 
-    JMapIdInfo* mIDInfo;  // 0x0
-    bool mIsGlobal;       // 0x4
+    /* 0x0 */ JMapIdInfo* mIDInfo;
+    /* 0x4 */ bool mIsGlobal;
 };
 
 class StageSwitchContainer : public NameObj {
@@ -54,9 +57,8 @@ public:
     ZoneSwitch* getZoneSwitch(const SwitchIdInfo&);
     ZoneSwitch* findZoneSwitchFromTable(const SwitchIdInfo&);
 
-    ZoneSwitch* mZoneSwitches[0x10];  // 0x14
-    s32 mSwitchCount;                 // 0x54
-    ZoneSwitch* mParentZone;          // 0x58
+    /* 0x14 */ MR::Vector< MR::FixedArray< ZoneSwitch*, 0x10 > > mZoneSwitches;
+    /* 0x58 */ ZoneSwitch* mParentZone;
 };
 
 class StageSwitchCtrl {
@@ -81,12 +83,12 @@ public:
     bool isOnSwitchParam() const;
     bool isValidSwitchParam() const;
 
-    SwitchIdInfo* mSW_A;       // 0x00
-    SwitchIdInfo* mSW_B;       // 0x04
-    SwitchIdInfo* mSW_Appear;  // 0x08
-    SwitchIdInfo* mSW_Dead;    // 0x0C
-    bool _10;
-    SwitchIdInfo* mSW_Param;  // 0x14
+    /* 0x00 */ SwitchIdInfo* mSwitchA;
+    /* 0x04 */ SwitchIdInfo* mSwitchB;
+    /* 0x08 */ SwitchIdInfo* mSwitchAppear;
+    /* 0x0C */ SwitchIdInfo* mSwitchDead;
+    /* 0x10 */ bool _10;
+    /* 0x14 */ SwitchIdInfo* mSwitchParam;
 };
 
 namespace StageSwitchFunction {

@@ -18,7 +18,7 @@ namespace NrvCometMedalCounter {
     NEW_NERVE(CometMedalCounterNrvDisappear, CometMedalCounter, Disappear);
 }  // namespace NrvCometMedalCounter
 
-CometMedalCounter::CometMedalCounter() : LayoutActor("コメットメダルカウンター", true), _2C(), mAppearer(), _34(), _38(), mIsCollected(), mIsHidden() {
+CometMedalCounter::CometMedalCounter() : LayoutActor("コメットメダルカウンター"), _2C(), mAppearer(), _34(), _38(), mIsCollected(), mIsHidden() {
 }
 
 void CometMedalCounter::init(const JMapInfoIter& rIter) {
