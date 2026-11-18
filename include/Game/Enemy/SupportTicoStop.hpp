@@ -9,14 +9,14 @@ class SupportTicoStop : public NerveExecutor {
 public:
     SupportTicoStop(LiveActor*, AnimScaleController*);
 
-    void exeDoNothing();
-    void exeTouch();
-    void exeEndTouch();
+    void exeWait();
+    void exeStop();
+    void exeEnd();
 
-    bool tryTouch();
-    bool tryAttachTouch();
+    bool tryStop();
+    bool tryEnd();
 
-    bool isTouching() const;
+    bool isStopped() const;
 
     inline void resetTouchBools() {
         _15 = _14 = false;

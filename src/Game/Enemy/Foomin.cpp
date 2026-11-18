@@ -87,7 +87,7 @@ void Foomin::exeWaitRail() {
         MR::validateClipping(this);
     }
 
-    if (mSupportTicoStop->tryAttachTouch()) {
+    if (mSupportTicoStop->tryStop()) {
         return;
     }
 
@@ -106,7 +106,7 @@ void Foomin::exeAttackSign() {
         MR::invalidateClipping(this);
     }
 
-    if (mSupportTicoStop->tryAttachTouch()) {
+    if (mSupportTicoStop->tryStop()) {
         return;
     }
 
