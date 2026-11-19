@@ -225,6 +225,7 @@ cflags_game = [
     "-ipa file",
     "-sym off",
     "-func_align 16",
+    "-i src",
     "-i include",
     "-i libs/JSystem/include",
     "-i libs/MSL_C++/include",
@@ -2086,7 +2087,7 @@ config.libs = [
     GameLib(
         "Ride",
         [
-            Object(NonMatching, "Game/Ride/Creeper.cpp"),
+            Object(Matching, "Game/Ride/Creeper.cpp"),
             Object(NonMatching, "Game/Ride/Fluff.cpp"),
             Object(NonMatching, "Game/Ride/FluffWind.cpp"),
             Object(NonMatching, "Game/Ride/GliBird.cpp"),
@@ -2096,6 +2097,7 @@ config.libs = [
             Object(NonMatching, "Game/Ride/Plant.cpp"),
             Object(NonMatching, "Game/Ride/PlantLeaf.cpp"),
             Object(NonMatching, "Game/Ride/PlantSlider.cpp"),
+            Object(NonMatching, "Game/Ride/PlantSliderPoint.cpp"),
             Object(NonMatching, "Game/Ride/PlantStalk.cpp"),
             Object(NonMatching, "Game/Ride/Pole.cpp"),
             Object(NonMatching, "Game/Ride/RollingRock.cpp"),

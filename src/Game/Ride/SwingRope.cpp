@@ -90,9 +90,9 @@ namespace NrvSwingRope {
 };  // namespace NrvSwingRope
 
 namespace {
-    static Color8 sColorPlusZ(0xFF, 0xFF, 0xFF, 0xFF);
-    static Color8 sColorPlusX(0xFF, 0xFF, 0xFF, 0xFF);
-    static Color8 sColorMinusX(0xFF, 0xFF, 0xFF, 0xFF);
+    static Color8 sColorPlusZ(255, 255, 255, 255);
+    static Color8 sColorPlusX(255, 255, 255, 255);
+    static Color8 sColorMinusX(255, 255, 255, 255);
 
     static const f32 sHangCoordMaxOffset = 200.0f;
     static const f32 sFootPosOffsetX = 0.0f;
