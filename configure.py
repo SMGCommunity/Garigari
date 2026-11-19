@@ -2102,7 +2102,7 @@ config.libs = [
             Object(NonMatching, "Game/Ride/RollingRockFunction.cpp"),
             Object(NonMatching, "Game/Ride/RollingRockStateTransform.cpp"),
             Object(NonMatching, "Game/Ride/RollingRockStateRoll.cpp"),
-            Object(NonMatching, "Game/Ride/SledRopePoint.cpp"),
+            Object(Matching, "Game/Ride/SledRopePoint.cpp"),
             Object(NonMatching, "Game/Ride/SphereAccelSensorController.cpp"),
             Object(NonMatching, "Game/Ride/SphereController.cpp"),
             Object(NonMatching, "Game/Ride/SpherePadController.cpp"),
