@@ -1693,6 +1693,7 @@ config.libs = [
             Object(NonMatching, "Game/MapObj/PicketSwitch.cpp"),
             Object(NonMatching, "Game/MapObj/PlacementObj.cpp"),
             Object(NonMatching, "Game/MapObj/PlantGroup.cpp"),
+            Object(Matching, "Game/MapObj/PlantPoint.cpp"),
             Object(NonMatching, "Game/MapObj/PlantRailInfo.cpp"),
             Object(NonMatching, "Game/MapObj/PlayerFollowPass.cpp"),
             Object(NonMatching, "Game/MapObj/PoleObstacleParts.cpp"),
