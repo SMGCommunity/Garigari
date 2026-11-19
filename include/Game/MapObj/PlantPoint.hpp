@@ -14,6 +14,10 @@ public:
 
     virtual void setAxisAndPos(const TVec3f& pSide, const TVec3f& pUp, const TVec3f& pFront, const TVec3f& pPosition);
 
+    const TVec3f& getUpVec() const {
+        return mUp;
+    }
+
     /* 0x04 */ TVec3f mPosition;
     /* 0x10 */ TVec3f mSide;
     /* 0x1C */ TVec3f mUp;

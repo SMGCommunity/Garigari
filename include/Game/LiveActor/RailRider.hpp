@@ -50,6 +50,10 @@ public:
         return mEndPos;
     }
 
+    inline const TVec3f& getCurPos() const {
+        return mCurPos;
+    }
+
     BezierRail* mBezierRail;  // 0x0
     f32 mCoord;               // 0x4
     f32 mSpeed;               // 0x8
