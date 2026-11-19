@@ -2105,7 +2105,7 @@ config.libs = [
             Object(NonMatching, "Game/Ride/RollingRockStateTransform.cpp"),
             Object(NonMatching, "Game/Ride/RollingRockStateRoll.cpp"),
             Object(Matching, "Game/Ride/SledRopePoint.cpp"),
-            Object(NonMatching, "Game/Ride/SphereAccelSensorController.cpp"),
+            Object(Matching, "Game/Ride/SphereAccelSensorController.cpp", extra_cflags=["-opt nocse"]),
             Object(Matching, "Game/Ride/SphereController.cpp"),
             Object(Matching, "Game/Ride/SpherePadController.cpp"),
             Object(Matching, "Game/Ride/SwingRope.cpp"),
