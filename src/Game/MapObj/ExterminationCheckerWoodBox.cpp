@@ -11,19 +11,19 @@ namespace NrvExterminationCheckerWoodBox {
     NEW_NERVE(ExterminationCheckerWoodBoxNrvMove, ExterminationCheckerWoodBox, Move);
 };  // namespace NrvExterminationCheckerWoodBox
 
-ExterminationCheckerWoodBox::ExterminationCheckerWoodBox(const char* pName) : LiveActor(pName), mWoodBoxList(), mNumWoodBoxes() {
+ExterminationCheckerWoodBox::ExterminationCheckerWoodBox(const char* pName) : LiveActor(pName), mWoodBoxes(), mWoodBoxNum() {
 }
 
 void ExterminationCheckerWoodBox::init(const JMapInfoIter& rIter) {
     MR::connectToSceneMapObjMovement(this);
-    mNumWoodBoxes = MR::getChildObjNum(rIter);
-    mWoodBoxList = new WoodBox*[mNumWoodBoxes];
+    mWoodBoxNum = MR::getChildObjNum(rIter);
+    mWoodBoxes = new WoodBox*[mWoodBoxNum];
 
-    for (s32 i = 0; i < mNumWoodBoxes; i++) {
-        mWoodBoxList[i] = new WoodBox("タイムアタック用木箱");
-        MR::initChildObj(mWoodBoxList[i], rIter, i);
-        mWoodBoxList[i]->registerBreakModelDemoCast();
-        MR::registerDemoSimpleCastAll(mWoodBoxList[i]);
+    for (s32 i = 0; i < mWoodBoxNum; i++) {
+        mWoodBoxes[i] = new WoodBox("タイムアタック用木箱");
+        MR::initChildObj(mWoodBoxes[i], rIter, i);
+        mWoodBoxes[i]->registerBreakModelDemoCast();
+        MR::registerDemoSimpleCastAll(mWoodBoxes[i]);
     }
 
     MR::invalidateClipping(this);
@@ -36,21 +36,23 @@ void ExterminationCheckerWoodBox::init(const JMapInfoIter& rIter) {
 
 void ExterminationCheckerWoodBox::exeMove() {
     if (MR::isOnSwitchB(this)) {
-        for (int i = 0; i < mNumWoodBoxes; i++) {
-            mWoodBoxList[i]->forceReappear();
+        for (s32 i = 0; i < mWoodBoxNum; i++) {
+            mWoodBoxes[i]->forceReappear();
         }
 
         MR::offSwitchA(this);
         MR::offSwitchB(this);
         return;
-    } else if (!MR::isOnSwitchA(this) && checkAllDestroyed()) {
+    }
+    
+    if (!MR::isOnSwitchA(this) && checkAllDestroyed()) {
         MR::onSwitchA(this);
     }
 }
 
 bool ExterminationCheckerWoodBox::checkAllDestroyed() {
-    for (int i = 0; i < mNumWoodBoxes; i++) {
-        if (mWoodBoxList[i]->mHP != 0) {
+    for (s32 i = 0; i < mWoodBoxNum; i++) {
+        if (mWoodBoxes[i]->mHP != 0) {
             return false;
         }
     }

@@ -12,7 +12,7 @@ public:
     /// @param pName A pointer to the null-terminated name of the object.
     ExterminationCheckerWoodBox(const char* pName);
 
-    /// @brief Creates and registers all of the linked wood boxes for this object. Also just generally sets up the object.
+    /// @brief Initializes the object from the object's `JMapInfo`. Also creates and registers all of the linked wood boxes for this object.
     /// @param rIter A reference to an iterator through the data related to this object. This will tell the function how many wood boxes to create.
     virtual void init(const JMapInfoIter& rIter);
 
@@ -25,8 +25,8 @@ public:
     bool checkAllDestroyed();
 
     /// @brief An array of all of the wood boxes linked to this object.
-    /* 0x90 */ WoodBox** mWoodBoxList;
+    /* 0x90 */ WoodBox** mWoodBoxes;
 
     /// @brief The number of wood boxes linked to this object.
-    /* 0x94 */ s32 mNumWoodBoxes;
+    /* 0x94 */ s32 mWoodBoxNum;
 };
