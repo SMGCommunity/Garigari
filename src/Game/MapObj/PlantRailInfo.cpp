@@ -14,13 +14,13 @@ PlantRailInfo::PlantRailInfo(const JMapInfoIter& rIter, f32 speed) : mRailSpeed(
     mPlantPoints = new PlantPoint*[mPlantPointNum];
 
     for (s32 idx = 0; idx < mPlantPointNum - 1; idx++) {
-        mPlantPoints[idx] = new PlantPoint(mRailRider->mCurPos, mRailRider->mCurDirection, TVec3f(1.0f, 0.0f, 0.0f), 1.0f);
+        mPlantPoints[idx] = new PlantPoint(mRailRider->mCurPos, mRailRider->mCurDirection, 1.0f, TVec3f(1.0f, 0.0f, 0.0f));
         mRailRider->move();
     }
 
     mRailRider->setCoord(mRailRider->getTotalLength());
 
-    PlantPoint* point = new PlantPoint(mRailRider->getCurPos(), getPlantPoint(mPlantPointNum - 2)->getUpVec(), TVec3f(1.0f, 0.0f, 0.0f), 1.0f);
+    PlantPoint* point = new PlantPoint(mRailRider->getCurPos(), getPlantPoint(mPlantPointNum - 2)->getUpVec(), 1.0f, TVec3f(1.0f, 0.0f, 0.0f));
     s32 index = mPlantPointNum - 1;
     mPlantPoints[index] = point;
 

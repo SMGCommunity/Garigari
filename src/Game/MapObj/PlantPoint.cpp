@@ -5,7 +5,7 @@
 #include <JSystem/JGeometry/TVec.hpp>
 #include <revolution/mtx.h>
 
-PlantPoint::PlantPoint(const TVec3f& rPosition, const TVec3f& rUp, const TVec3f& rSide, f32 thickness)
+PlantPoint::PlantPoint(const TVec3f& rPosition, const TVec3f& rUp, f32 thickness, const TVec3f& rSide)
     : mPosition(rPosition.x, rPosition.y, rPosition.z), mSide(rSide), mUp(rUp), mFront(0.0f, 0.0f, 1.0f), mThickness(thickness) {
     TVec3f front = mSide.cross(mUp);
 

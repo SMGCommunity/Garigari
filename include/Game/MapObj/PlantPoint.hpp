@@ -8,9 +8,9 @@ public:
     /// @brief Creates a new `PlantPoint`
     /// @param rPosition Base position for this point
     /// @param rUp Up basis vector for this point
-    /// @param rSide Side basis vector for this point
     /// @param thickness Thickness of the plant at this point
-    PlantPoint(const TVec3f& rPosition, const TVec3f& rUp, const TVec3f& rSide, f32 thickness);
+    /// @param rSide Side basis vector for this point
+    PlantPoint(const TVec3f& rPosition, const TVec3f& rUp, f32 thickness, const TVec3f& rSide);
 
     virtual void setAxisAndPos(const TVec3f& pSide, const TVec3f& pUp, const TVec3f& pFront, const TVec3f& pPosition);
 
