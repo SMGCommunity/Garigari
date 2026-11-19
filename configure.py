@@ -2107,7 +2107,7 @@ config.libs = [
             Object(NonMatching, "Game/Ride/SphereController.cpp"),
             Object(NonMatching, "Game/Ride/SpherePadController.cpp"),
             Object(Matching, "Game/Ride/SwingRope.cpp"),
-            Object(NonMatching, "Game/Ride/SwingRopePoint.cpp"),
+            Object(Matching, "Game/Ride/SwingRopePoint.cpp"),
             Object(NonMatching, "Game/Ride/Tamakoro.cpp"),
             Object(NonMatching, "Game/Ride/TamakoroTutorial.cpp"),
             Object(NonMatching, "Game/Ride/Trapeze.cpp"),
