@@ -16,6 +16,7 @@ class BenefitItemLifeUp;
 class StageSwitchCtrl;
 class Color8;
 class JUTTexture;
+class ResTIMG;
 
 typedef struct _GXColor GXColor;
 
@@ -125,6 +126,10 @@ namespace MR {
                                         const MR::FunctorBase& rFunctorOff);
 
     ResourceHolder* createAndAddResourceHolder(const char* pObjName);
+    // more ResourceHolder stuff...
+    void* loadResFromArc(const char* pArcName, const char* pResName, const ResourceHolder** ppResArc = nullptr);
+    const ResTIMG* loadTexFromArc(const char* pArcName, const char* pTexName, const ResourceHolder** ppResArc = nullptr);
+    const ResTIMG* loadTexFromArc(const char* pArcName, const ResourceHolder** ppResArc = nullptr);
     // more ResourceHolder stuff...
     bool isExistFileInArc(const ResourceHolder* pResArc, const char* pPathFormat, ...);
 
@@ -252,7 +257,6 @@ namespace MR {
     bool findLinkNamePos(const NameObj* pLinkedObj, const char* pPosName, MtxPtr pMtx);
     bool tryFindLinkNamePos(const NameObj* pLinkedObj, const char* pPosName, TVec3f* pPosition, TVec3f* pRotation);
     bool tryFindLinkNamePos(const NameObj* pLinkedObj, const char* pPosName, MtxPtr pMtx);
-
 
     // TODO: Position properly
     // These functions got changed for SMG2
