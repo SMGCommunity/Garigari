@@ -717,18 +717,18 @@ namespace JGeometry {
         }
 
         void mult33(const TVec3f& rSrc, TVec3f& rDst) const {
-            rDst.set< f32 >(rSrc.x * get(0, 0) + rSrc.y * get(0, 1) + rSrc.z * get(0, 2),
+            rDst.set< f32 >(rSrc.x * T::get(0, 0) + rSrc.y * T::get(0, 1) + rSrc.z * T::get(0, 2),
 
-                            rSrc.x * get(1, 0) + rSrc.y * get(1, 1) + rSrc.z * get(1, 2),
+                            rSrc.x * T::get(1, 0) + rSrc.y * T::get(1, 1) + rSrc.z * T::get(1, 2),
 
-                            rSrc.x * get(2, 0) + rSrc.y * get(2, 1) + rSrc.z * get(2, 2));
+                            rSrc.x * T::get(2, 0) + rSrc.y * T::get(2, 1) + rSrc.z * T::get(2, 2));
         }
     };
 
     template < class T >
     struct TPosition3 : public TRotation3< T > {
     public:
-        TPosition3() {};
+        TPosition3(){};
 
         TPosition3(MtxPtr rSrc) {
             JMath::gekko_ps_copy12(this, rSrc);
@@ -1125,7 +1125,7 @@ namespace JGeometry {
     template < class T >
     struct TProjection3 : public T {
     public:
-        TProjection3() {};
+        TProjection3(){};
 
         TProjection3(const Mtx44Ptr rSrc) {
             JMath::gekko_ps_copy16(this, rSrc);

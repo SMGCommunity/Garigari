@@ -12,11 +12,6 @@ class JMapInfoIter;
 class LiveActor;
 class ResourceHolder;
 
-namespace {
-    void createActorCameraName(char* pDest, u32 size, const LiveActor* pActor, const ActorCameraInfo* pCameraInfo);
-    void createMultiActorCameraName(char* pDest, u32 size, const LiveActor* pActor, const ActorCameraInfo* pCameraInfo, const char* pClassifier);
-};  // namespace
-
 namespace MR {
     ActorCameraInfo* createActorCameraInfo(const JMapInfoIter& rIter);
     bool createActorCameraInfoIfExist(const JMapInfoIter& rIter, ActorCameraInfo** pInfoDest);

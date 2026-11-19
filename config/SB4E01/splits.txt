@@ -300,7 +300,7 @@ Game/Util/SequenceUtil.cpp:
 
 Game/Util/ShareUtil.cpp:
 	.text       start:0x8005A4E0 end:0x8005A5B0 align:16
-	.data       start:0x80669760 end:0x8066979C
+	.data       start:0x80669760 end:0x806697A0
 
 Game/Util/SoundUtil.cpp:
 	.text       start:0x8005A5B0 end:0x8005BCA0 align:16
@@ -365,7 +365,7 @@ Game/Util/DirectDrawUtil.cpp:
 
 Game/Util/FixedPosition.cpp:
 	.text       start:0x80065DF0 end:0x800662A0 align:16
-	.data       start:0x80669CD0 end:0x80669CF3
+	.data       start:0x80669CD0 end:0x80669CF8
 	.sdata2     start:0x807D7208 end:0x807D7210
 
 Game/Util/GeometryBindUtil.cpp:
@@ -6558,7 +6558,7 @@ Game/MapObj/QuestionCoin.cpp:
 	.text       start:0x802E7A40 end:0x802E89F0 align:16
 	.ctors      start:0x80644534 end:0x80644538
 	.data       start:0x806A9280 end:0x806A93D8
-	.sdata      start:0x807CFD90 end:0x807CFD94
+	.sdata      start:0x807CFD90 end:0x807CFD98
 	.sbss       start:0x807D4198 end:0x807D41A8
 	.sdata2     start:0x807DE200 end:0x807DE238
 
@@ -6656,7 +6656,7 @@ Game/MapObj/RestartObj.cpp:
 	.ctors      start:0x8064455C end:0x80644560
 	.data       start:0x806AAD30 end:0x806AAE40
 	.bss        start:0x80729A08 end:0x80729A10
-	.sdata      start:0x807CFDA0 end:0x807CFDA4
+	.sdata      start:0x807CFDA0 end:0x807CFDA8
 	.sbss       start:0x807D4240 end:0x807D4258
 	.sdata2     start:0x807DE2C0 end:0x807DE2D8
 
@@ -8807,13 +8807,18 @@ Game/Ride/PlantLeaf.cpp:
 	.sdata2     start:0x807E0BE8 end:0x807E0C18
 
 Game/Ride/PlantSlider.cpp:
-	.text       start:0x804369D0 end:0x80438AC0 align:16
+	.text       start:0x804369D0 end:0x80438870 align:16
 	.ctors      start:0x80644834 end:0x80644838
 	.rodata     start:0x8064BFF0 end:0x8064BFF8
-	.data       start:0x806ED628 end:0x806ED7D0
+	.data       start:0x806ED628 end:0x806ED7C0
 	.sbss       start:0x807D50F0 end:0x807D5110
-	.sdata2     start:0x807E0C18 end:0x807E0CA0
+	.sdata2     start:0x807E0C18 end:0x807E0C98
 	.sbss2      start:0x807E3128 end:0x807E3130
+
+Game/Ride/PlantSliderPoint.cpp:
+	.text       start:0x80438870 end:0x80438AC0 align:16
+	.data       start:0x806ED7C0 end:0x806ED7D0
+	.sdata2     start:0x807E0C98 end:0x807E0CA0
 
 Game/Ride/PlantStalk.cpp:
 	.text       start:0x80438AC0 end:0x80439A80 align:16

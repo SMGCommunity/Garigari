@@ -260,7 +260,7 @@ void QuestionCoin::exeThrowActor() {
         MR::hideModel(this);
         ScoreAttackFunction::score1000Points(this);
         MR::startAction(mBindActor, "QuestionCoinJumpStart");
-        MR::startLevelSoundPlayer("JumpObj", -1, -1);
+        MR::startActionSoundPlayer("JumpObj", -1, -1);
 
         if (MR::isExistActorCamera(mCameraInfo)) {
             MR::startActorCameraNoTarget(this, mCameraInfo, -1);

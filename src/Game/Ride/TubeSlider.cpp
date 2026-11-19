@@ -187,13 +187,13 @@ void TubeSlider::exeRideAir() {
             if (MR::isEqualStageName("BigTree2Galaxy")) {
                 if (MR::getCurrentScenarioNo() == 3) {
                     if (MR::isPurpleCoinNum100()) {
-                        MR::startLevelSoundPlayer("JumpObj", -1, -1);
+                        MR::startActionSoundPlayer("JumpObj");
                         MR::startSubBGM("BGM_RACE_WIN", false);
                     } else {
                         MR::startSubBGM("BGM_RACE_LOSE", false);
                     }
                 } else {
-                    MR::startLevelSoundPlayer("JumpObj", -1, -1);
+                    MR::startActionSoundPlayer("JumpObj");
                     MR::startSubBGM("BGM_RACE_WIN", false);
                 }
             }
@@ -264,7 +264,7 @@ void TubeSlider::exeRide() {
 
 void TubeSlider::exeRideWallHit() {
     if (MR::isFirstStep(this)) {
-        MR::startLevelSoundPlayer("WallHitSlider", -1, -1);
+        MR::startActionSoundPlayer("WallHitSlider");
         MR::startBckPlayerJ("チューブスライダー壁ヒット");
     }
     if (!updateOnGround() && MR::isActionEnd(_90))
@@ -275,13 +275,13 @@ void TubeSlider::exeRideLand() {
     if (MR::isFirstStep(this)) {
         if (isNerve(GET_NERVE(TubeSlider, TubeSliderNrvRideDamageLand))) {
             MR::startBckPlayerJ("チューブスライダーダメージ着地");
-            MR::startLevelSoundPlayer("SliderDamageLand", -1, -1);
+            MR::startActionSoundPlayer("SliderDamageLand");
         } else {
             MR::startBckPlayerJ("チューブスライダー着地");
             if (TubeSliderFunction::isGroundIce(this)) {
-                MR::startLevelSoundPlayer("LandSkate", -1, -1);
+                MR::startActionSoundPlayer("LandSkate");
             } else {
-                MR::startLevelSoundPlayer("Land", -1, -1);
+                MR::startActionSoundPlayer("Land");
             }
         }
         MR::emitEffect(_90, "共通スリップ坂");
@@ -289,7 +289,7 @@ void TubeSlider::exeRideLand() {
 
     bool isDamaging = isNerve(GET_NERVE(TubeSlider, TubeSliderNrvRideDamageLand));
     if (isDamaging && MR::isStep(this, 40)) {
-        MR::startLevelSoundPlayer("SliderDamageLand2nd", -1, -1);
+        MR::startActionSoundPlayer("SliderDamageLand2nd");
     }
 
     if (tryPlayerJump(true)) {
@@ -530,11 +530,11 @@ bool TubeSlider::tryEndSlide() {
 }
 
 bool TubeSlider::tryPlayerJump(bool b) {
-    if ((!b && MR::testCorePadTriggerA(0)) || (b && _118 > 0)) {
+    if ((!b && MR::testCorePadTriggerA(WPAD_CHAN0)) || (b && _118 > 0)) {
         if (TubeSliderFunction::isGroundIce(this))
-            MR::startLevelSoundPlayer("JumpSkate", -1, -1);
+            MR::startActionSoundPlayer("JumpSkate");
         else
-            MR::startLevelSoundPlayer("JumpS", -1, -1);
+            MR::startActionSoundPlayer("JumpS");
         MR::tryDeleteEffect(_90, "共通スリップ坂");
         startJump(25.0f);
         MR::startBckPlayerJ("チューブスライダージャンプ");
@@ -547,8 +547,8 @@ bool TubeSlider::tryPlayerJump(bool b) {
 
 bool TubeSlider::tryPlayerSpin() {
     if (MR::isPadSwing(0)) {
-        MR::startLevelSoundPlayer("JumpSpin", -1, -1);
-        MR::tryRumblePadMiddle(this, 0);
+        MR::startActionSoundPlayer("JumpSpin");
+        MR::tryRumblePadMiddle(this, WPAD_CHAN0);
         MR::vecKillElement(_10C, _A4, &_10C);
         _10C.add(_A4 * 22.0f);
         MR::startBckPlayer("Spin", nullptr);
@@ -572,8 +572,8 @@ bool TubeSlider::tryPlayerFall() {
 
 void TubeSlider::startDamage() {
     // Two missing functions here
-    MR::tryRumblePadMiddle(this, 0);
-    MR::startLevelSoundPlayer("DamageS", -1, -1);
+    MR::tryRumblePadMiddle(this, WPAD_CHAN0);
+    MR::startActionSoundPlayer("DamageS");
     MR::startBckPlayerJ("チューブスライダーダメージ");
     MR::emitEffect(_90, "TubeSlideDamage");
     MR::tryDeleteEffect(_90, "共通スリップ坂");
@@ -738,13 +738,13 @@ bool TubeSlider::updatePlayer() {
             if (MR::isEqualStageName("BigTree2Galaxy")) {
                 if (MR::getCurrentScenarioNo() == 3) {
                     if (MR::isPurpleCoinNum100()) {
-                        MR::startLevelSoundPlayer("JumpObj", -1, -1);
+                        MR::startActionSoundPlayer("JumpObj");
                         MR::startSubBGM("BGM_RACE_WIN", false);
                     } else {
                         MR::startSubBGM("BGM_RACE_LOSE", false);
                     }
                 } else {
-                    MR::startLevelSoundPlayer("JumpObj", -1, -1);
+                    MR::startActionSoundPlayer("JumpObj");
                     MR::startSubBGM("BGM_RACE_WIN", false);
                 }
             }
