@@ -412,7 +412,7 @@ namespace MR {
     }
 
     bool tryGetItem(HitSensor* pSender, HitSensor* pReceiver) {
-        pReceiver->receiveMessage(0x83, pSender);
+        return pReceiver->receiveMessage(0x83, pSender);
     }
 
     const TVec3f* getSensorPos(const HitSensor* pSensor) {
