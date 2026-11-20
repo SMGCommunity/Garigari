@@ -1,10 +1,9 @@
 #pragma once
 
 #include <JSystem/JGeometry/TMatrix.hpp>
-#include <JSystem/JGeometry/TVec.hpp>
 #include <JSystem/JGeometry/TQuat.hpp>
+#include <JSystem/JGeometry/TVec.hpp>
 #include <revolution.h>
-
 
 class HitSensor;
 class LiveActor;
@@ -79,7 +78,7 @@ namespace MR {
     bool faceToVector(MtxPtr, TVec3f, f32);
     bool faceToPoint(MtxPtr, TVec3f, f32);
 
-     void makeQuatFromRotate(TQuat4f*, const LiveActor*);
+    void makeQuatFromRotate(TQuat4f*, const LiveActor*);
     void makeQuatAndFrontFromRotate(TQuat4f*, TVec3f*, const LiveActor*);
 
     void turnQuatUpToGravity(TQuat4f*, const TQuat4f&, const LiveActor*);
@@ -89,7 +88,7 @@ namespace MR {
     void resetPosition(LiveActor*);
     void resetPosition(LiveActor*, const TVec3f&);
     void resetPosition(LiveActor*, const char*);
-    void makeMtxOnMapCollision(MtxPtr, LiveActor*, f32);
+    void makeMtxOnMapCollision(TPos3f*, LiveActor*, f32, f32);
 
     void calcVelocityMoveToDirectionHorizon(TVec3f*, const LiveActor*, const TVec3f&, f32);
     void calcVelocityMoveToDirectionHorizon(TVec3f*, const LiveActor*, const TVec3f&, f32, f32, f32, f32);
