@@ -1,12 +1,10 @@
 #include "Game/MapObj/CoinHolder.hpp"
-#include "Game/LiveActor/LiveActorGroup.hpp"
 #include "Game/MapObj/Coin.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Util/EventUtil.hpp"
 #include "Game/Util/GravityUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
 
 namespace {
     const s32 sCoinNumMax = 512;
@@ -33,7 +31,8 @@ void CoinHolder::init(const JMapInfoIter& rIter) {
     }
 }
 
-bool CoinHolder::appearCoin(const NameObj* pObj, const TVec3f& rPosition, const TVec3f& rVelocity, s32 count, s32 life, s32 cannotTime, f32 randomize) {
+bool CoinHolder::appearCoin(const NameObj* pObj, const TVec3f& rPosition, const TVec3f& rVelocity, s32 count, s32 life, s32 cannotTime,
+                            f32 randomize) {
     CoinHostInfo* pInfo = findHostInfo(pObj);
 
     if (pInfo == nullptr) {
@@ -88,7 +87,7 @@ bool CoinHolder::hopCoin(const NameObj* pObj, const TVec3f& rPosition, const TVe
         deadMember->appearHop(rPosition, rHopDir);
         return true;
     }
-    
+
     return false;
 }
 
@@ -151,7 +150,7 @@ CoinHostInfo* CoinHolder::declare(const NameObj* pObj, s32 count) {
     }
 
     CoinHostInfo* pInfo = findHostInfo(pObj);
-    
+
     if (pInfo == nullptr) {
         pInfo = &mHostInfoArr[mHostInfoCount];
         pInfo->mHostActor = pObj;
@@ -196,8 +195,7 @@ CoinHolder* MR::getCoinHolder() {
     return (CoinHolder*)MR::getSceneObjHolder()->getObj(SceneObj_CoinHolder);
 }
 
-void MR::addToCoinHolder(const NameObj *pObj, Coin *pCoin) {
-    
-MR::getSceneObjHolder()->getObj(SceneObj_CoinHolder);
+void MR::addToCoinHolder(const NameObj* pObj, Coin* pCoin) {
+    MR::getSceneObjHolder()->getObj(SceneObj_CoinHolder);
     pCoin->setHostInfo(MR::getCoinHolder()->declare(pObj, 1));
 }
