@@ -19,6 +19,11 @@ namespace MR {
     bool calcWorldRayDirectionFromScreen(TVec3f*, const TVec2f&);
 
     f32 calcCameraDistanceZ(const TVec3f&);
+    void loadProjectionMtx();
+    void loadViewMtx();
+    const TPos3f& getCameraViewMtx();
+    const TPos3f& getCameraInvViewMtx();
+    const TProj3f& getCameraProjectionMtx();
 
     f32 getNearZ();
     f32 getFarZ();
