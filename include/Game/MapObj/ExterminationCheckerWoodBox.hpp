@@ -18,7 +18,7 @@ public:
 
     /// @brief This function is called every frame. If Switch B is activated, all boxes will reappear and all switches will be deactivated. If Switch
     /// A isn't activated and all boxes have been destroyed within the time limit, Switch A is activated.
-    void exeMove();
+    void exeWatching();
 
     /// @brief Checks whether all boxes have been destroyed.
     /// @return `true` if all boxes have been destroyed; `false` otherwise.

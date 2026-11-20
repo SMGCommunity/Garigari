@@ -8,7 +8,7 @@
 #include "Game/Util/SceneUtil.hpp"
 
 namespace NrvExterminationCheckerWoodBox {
-    NEW_NERVE(ExterminationCheckerWoodBoxNrvMove, ExterminationCheckerWoodBox, Move);
+    NEW_NERVE(ExterminationCheckerWoodBoxNrvWatching, ExterminationCheckerWoodBox, Watching);
 };  // namespace NrvExterminationCheckerWoodBox
 
 ExterminationCheckerWoodBox::ExterminationCheckerWoodBox(const char* pName) : LiveActor(pName), mWoodBoxes(), mWoodBoxNum() {
@@ -30,11 +30,11 @@ void ExterminationCheckerWoodBox::init(const JMapInfoIter& rIter) {
     MR::needStageSwitchWriteA(this, rIter);
     MR::needStageSwitchWriteB(this, rIter);
     MR::registerDemoSimpleCastAll(this);
-    initNerve(GET_NERVE(ExterminationCheckerWoodBox, ExterminationCheckerWoodBoxNrvMove));
+    initNerve(GET_NERVE(ExterminationCheckerWoodBox, ExterminationCheckerWoodBoxNrvWatching));
     makeActorAppeared();
 }
 
-void ExterminationCheckerWoodBox::exeMove() {
+void ExterminationCheckerWoodBox::exeWatching() {
     if (MR::isOnSwitchB(this)) {
         for (s32 i = 0; i < mWoodBoxNum; i++) {
             mWoodBoxes[i]->forceReappear();
@@ -44,7 +44,7 @@ void ExterminationCheckerWoodBox::exeMove() {
         MR::offSwitchB(this);
         return;
     }
-    
+
     if (!MR::isOnSwitchA(this) && checkAllDestroyed()) {
         MR::onSwitchA(this);
     }
