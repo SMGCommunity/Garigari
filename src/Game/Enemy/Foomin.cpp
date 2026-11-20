@@ -87,7 +87,7 @@ void Foomin::exeWaitRail() {
         MR::validateClipping(this);
     }
 
-    if (mSupportTicoStop->tryAttachTouch()) {
+    if (mSupportTicoStop->tryStop()) {
         return;
     }
 
@@ -106,7 +106,7 @@ void Foomin::exeAttackSign() {
         MR::invalidateClipping(this);
     }
 
-    if (mSupportTicoStop->tryAttachTouch()) {
+    if (mSupportTicoStop->tryStop()) {
         return;
     }
 
@@ -132,7 +132,7 @@ void Foomin::exeAttack() {
         MR::forceJumpPlayer(playerJumpVel * 35.0f);
 
         MR::startBckPlayer("Blow", nullptr);
-        MR::startLevelSoundPlayer("Thrown", -1, -1);
+        MR::startActionSoundPlayer("Thrown", -1, -1);
         MR::emitEffect(this, "Shrink");
         MR::invalidateCollisionParts(this);
     }

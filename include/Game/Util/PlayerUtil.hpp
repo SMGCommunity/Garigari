@@ -10,6 +10,7 @@ class LiveActor;
 class MarioActor;
 class NameObj;
 class XanimeResourceTable;
+class JAISoundID;
 
 namespace MR {
     bool isOnGroundPlayer();
@@ -51,7 +52,7 @@ namespace MR {
     void setPlayerSwingInhibitTimer(u16);
     void setPlayerSwingPermission(bool);
     void setPlayerStateWait();
-    void startBckPlayer(const char*, const char*);
+    void startBckPlayer(const char*, const char* pBrkName = nullptr);
     void startBckPlayer(const char*, const BckCtrlData&);
 
     bool isBckStoppedPlayer();
@@ -171,9 +172,12 @@ namespace MR {
     bool isPlayerCarryAny();
     LiveActor* getPlayerCarrySensorHost();
 
-    void startSoundPlayer(const char*, s32, s32);
-    void startLevelSoundPlayer(const char*, s32, s32);
-    void startLevelSoundPlayerOrYoshi(const char* pPlayerSoundName, const char* pYoshiSoundName, s32 unk);
+    void startSoundPlayer(const char*, s32 = -1, s32 = -1);
+    void startSoundPlayer(u32, s32 = -1, s32 = -1);
+    void startActionSoundPlayer(const char*, s32 = -1, s32 = -1);
+    void startActionSoundYoshi(const char*, s32 = -1, s32 = -1);
+    void startLevelSoundPlayer(const char*, s32 = -1);
+    void startLevelSoundPlayer(u32, s32 = -1);
 
     void stopSoundPlayer(const char*, u32);
     void startSoundPlayerJ(const char*);
