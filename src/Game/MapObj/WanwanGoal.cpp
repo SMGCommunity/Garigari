@@ -9,7 +9,7 @@ namespace NrvWanwanGoal {
     NEW_NERVE(WanwanGoalNrvWait, WanwanGoal, Wait);
 };  // namespace NrvWanwanGoal
 
-WanwanGoal::WanwanGoal(const char* pName) : LiveActor(pName), _90() {
+WanwanGoal::WanwanGoal(const char* pName) : LiveActor(pName), mIsActive() {
 }
 
 void WanwanGoal::init(const JMapInfoIter& rIter) {
@@ -19,19 +19,19 @@ void WanwanGoal::init(const JMapInfoIter& rIter) {
     makeActorAppeared();
 }
 
-void WanwanGoal::attackSensor(HitSensor* pSender, HitSensor* pReciever) {
-    if (_90) {
+void WanwanGoal::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
+    if (mIsActive) {
         return;
     }
 
     f32 senderRadius = MR::getSensorRadius(pSender);
 
-    if (!(MR::calcDistance(pSender, pReciever, nullptr) <= senderRadius)) {
+    if (!(MR::calcDistance(pSender, pReceiver, nullptr) <= senderRadius)) {
         return;
     }
 
-    if (MR::sendArbitraryMsg(0xab, pReciever, pSender)) {
-        _90 = true;
+    if (MR::sendArbitraryMsg(ACTMES_WANWAN_GOAL, pReceiver, pSender)) {
+        mIsActive = true;
     }
 }
 
