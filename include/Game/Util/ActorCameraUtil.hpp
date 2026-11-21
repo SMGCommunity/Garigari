@@ -41,6 +41,7 @@ namespace MR {
     bool endActorCamera(const LiveActor* pActor, const ActorCameraInfo* pInfo, bool, s32 = -1);
     bool endMultiActorCamera(const LiveActor* pActor, const ActorCameraInfo* pInfo, const char* pClassifier, bool, s32 = -1);
     bool endActorCameraAtLanding(const LiveActor* pActor, const ActorCameraInfo* pInfo, s32 = -1);
+    bool endMultiActorCameraAtLanding(const LiveActor* pActor, const ActorCameraInfo* pInfo, const char* pEventName, s32 = -1);
     bool endActorCameraProgrammable(const LiveActor* pActor, s32, bool);
 
     bool isActiveActorCamera(const LiveActor* pActor, const ActorCameraInfo* pInfo);
