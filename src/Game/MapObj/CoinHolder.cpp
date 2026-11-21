@@ -20,14 +20,14 @@ CoinHolder::CoinHolder(const char* pName) : DeriveActorGroup< Coin >(pName, ::sC
     mHostInfoArr = new CoinHostInfo[::sCoinNumMax];
 }
 
-CoinHostInfo::CoinHostInfo() : mHostActor(), mCoinDeclaredCount(), mCoinNotRemnantCount(), mCoinCollectedCount() {
+CoinHostInfo::CoinHostInfo() : mHostObj(), mDeclaredCoinCount(), mNotRemnantCoinCount(), mCollectedCoinCount() {
 }
 
 void CoinHolder::init(const JMapInfoIter& rIter) {
     for (s32 i = 0; i < ::sCreateCoinNum; i++) {
-        Coin* r3 = new Coin("コイン(共用)");
-        r3->initWithoutIter();
-        registerActor(r3);
+        Coin* pCoin = new Coin("コイン(共用)");
+        pCoin->initWithoutIter();
+        registerActor(pCoin);
     }
 }
 
@@ -39,9 +39,9 @@ bool CoinHolder::appearCoin(const NameObj* pObj, const TVec3f& rPosition, const 
         return false;
     }
 
-    bool appeared = false;
+    bool isAppear = false;
     for (s32 i = 0; i < count; i++) {
-        if (pInfo->mCoinNotRemnantCount >= pInfo->mCoinDeclaredCount) {
+        if (pInfo->mNotRemnantCoinCount >= pInfo->mDeclaredCoinCount) {
             break;
         }
 
@@ -59,10 +59,10 @@ bool CoinHolder::appearCoin(const NameObj* pObj, const TVec3f& rPosition, const 
 
         deadMember->setHostInfo(pInfo);
         deadMember->appearMove(rPosition, velocity, life, cannotTime);
-        appeared = true;
+        isAppear = true;
     }
 
-    if (!MR::isGalaxyDarkCometAppearInCurrentStage() && appeared) {
+    if (!MR::isGalaxyDarkCometAppearInCurrentStage() && isAppear) {
         if (MR::hasME()) {
             MR::startSystemME("ME_COIN_APPEAR_S");
         } else {
@@ -70,13 +70,13 @@ bool CoinHolder::appearCoin(const NameObj* pObj, const TVec3f& rPosition, const 
         }
     }
 
-    return appeared;
+    return isAppear;
 }
 
 bool CoinHolder::hopCoin(const NameObj* pObj, const TVec3f& rPosition, const TVec3f& rHopDir) {
     CoinHostInfo* pInfo = findHostInfo(pObj);
 
-    if (pInfo->mCoinNotRemnantCount >= pInfo->mCoinDeclaredCount) {
+    if (pInfo->mNotRemnantCoinCount >= pInfo->mDeclaredCoinCount) {
         return false;
     }
 
@@ -95,7 +95,7 @@ bool CoinHolder::appearCoinPop(const NameObj* pObj, const TVec3f& rPosition, s32
     TVec3f gravity;
     MR::calcGravityVector(this, rPosition, &gravity, nullptr, 0);
     TVec3f velocity = -gravity * ::sCoinVelVertical;
-    return appearCoin(pObj, rPosition, velocity, count, -1, -1, (count == 1) ? 0.0f : ::sRandomizeVel);
+    return appearCoin(pObj, rPosition, velocity, count, -1, -1, count == 1 ? 0.0f : ::sRandomizeVel);
 }
 
 bool CoinHolder::appearCoinPopToDirection(const NameObj* pObj, const TVec3f& rPosition, const TVec3f& rDirection, s32 count) {
@@ -123,7 +123,7 @@ bool CoinHolder::appearCoinCircle(const NameObj* pObj, const TVec3f& rPosition, 
         return appearCoinPop(pObj, rPosition, count);
     }
 
-    bool appeared = false;
+    bool isAppear = false;
     TVec3f gravity;
     MR::calcGravityVector(this, rPosition, &gravity, nullptr, 0);
     TVec3f axis;
@@ -138,10 +138,10 @@ bool CoinHolder::appearCoinCircle(const NameObj* pObj, const TVec3f& rPosition, 
         TVec3f velocity(horizontal - gravity);
         velocity.setLength(::sCircleVelLength);
 
-        appeared |= appearCoin(pObj, rPosition, velocity, 1, -1, -1, 0.0f);
+        isAppear |= appearCoin(pObj, rPosition, velocity, 1, -1, -1, 0.0f);
     }
 
-    return appeared;
+    return isAppear;
 }
 
 CoinHostInfo* CoinHolder::declare(const NameObj* pObj, s32 count) {
@@ -153,11 +153,11 @@ CoinHostInfo* CoinHolder::declare(const NameObj* pObj, s32 count) {
 
     if (pInfo == nullptr) {
         pInfo = &mHostInfoArr[mHostInfoCount];
-        pInfo->mHostActor = pObj;
+        pInfo->mHostObj = pObj;
         mHostInfoCount++;
     }
 
-    pInfo->mCoinDeclaredCount += count;
+    pInfo->mDeclaredCoinCount += count;
     return pInfo;
 }
 
@@ -168,18 +168,18 @@ s32 CoinHolder::getDeclareRemnantCoinCount(const NameObj* pObj) const {
         return 0;
     }
 
-    return pInfo->mCoinDeclaredCount - pInfo->mCoinNotRemnantCount;
+    return pInfo->mDeclaredCoinCount - pInfo->mNotRemnantCoinCount;
 }
 
 s32 CoinHolder::getUncollectedCoinCount(const NameObj* pObj) const {
     CoinHostInfo* pInfo = findHostInfo(pObj);
-    return pInfo->mCoinDeclaredCount - pInfo->mCoinCollectedCount;
+    return pInfo->mDeclaredCoinCount - pInfo->mCollectedCoinCount;
 }
 
 CoinHostInfo* CoinHolder::findHostInfo(const NameObj* pObj) const {
     for (s32 i = 0; i < mHostInfoCount; i++) {
-        if (mHostInfoArr[i].mHostActor == pObj) {
-            return &(mHostInfoArr[i]);
+        if (mHostInfoArr[i].mHostObj == pObj) {
+            return &mHostInfoArr[i];
         }
     }
 
@@ -188,14 +188,14 @@ CoinHostInfo* CoinHolder::findHostInfo(const NameObj* pObj) const {
 
 CoinHolder* MR::createCoinHolder() {
     MR::createSceneObj(SceneObj_CoinRotater);
-    return (CoinHolder*)MR::createSceneObj(SceneObj_CoinHolder);
+    return static_cast< CoinHolder* >(MR::createSceneObj(SceneObj_CoinHolder));
 }
 
 CoinHolder* MR::getCoinHolder() {
-    return (CoinHolder*)MR::getSceneObjHolder()->getObj(SceneObj_CoinHolder);
+    return static_cast< CoinHolder* >(MR::getSceneObjHolder()->getObj(SceneObj_CoinHolder));
 }
 
 void MR::addToCoinHolder(const NameObj* pObj, Coin* pCoin) {
-    MR::getSceneObjHolder()->getObj(SceneObj_CoinHolder);
+    MR::getCoinHolder();
     pCoin->setHostInfo(MR::getCoinHolder()->declare(pObj, 1));
 }

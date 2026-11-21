@@ -10,10 +10,10 @@ public:
     /// @brief Creates a new `CoinHostInfo`.
     CoinHostInfo();
 
-    /* 0x0 */ const NameObj* mHostActor;
-    /* 0x4 */ s32 mCoinDeclaredCount;
-    /* 0x8 */ s32 mCoinNotRemnantCount;
-    /* 0xC */ s32 mCoinCollectedCount;
+    /* 0x0 */ const NameObj* mHostObj;
+    /* 0x4 */ s32 mDeclaredCoinCount;
+    /* 0x8 */ s32 mNotRemnantCoinCount;
+    /* 0xC */ s32 mCollectedCoinCount;
 };
 
 class CoinHolder : public DeriveActorGroup< Coin > {
