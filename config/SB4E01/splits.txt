@@ -7196,7 +7196,7 @@ Game/MapObj/VsOtaRockTankIcePlanetFence.cpp:
 Game/MapObj/WanwanGoal.cpp:
 	.text       start:0x80327540 end:0x80327720 align:16
 	.ctors      start:0x8064464C end:0x80644650
-	.data       start:0x806B1440 end:0x806B14B0
+	.data       start:0x806B1440 end:0x806B14C0
 	.sbss       start:0x807D4688 end:0x807D4690
 
 Game/MapObj/WanwanLiftUpStep.cpp:

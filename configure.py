@@ -1801,7 +1801,7 @@ config.libs = [
             Object(NonMatching, "Game/MapObj/TypicalDoor.cpp"),
             Object(NonMatching, "Game/MapObj/UFOKinoko.cpp"),
             Object(NonMatching, "Game/MapObj/VsOtaRockTankIcePlanetFence.cpp"),
-            Object(NonMatching, "Game/MapObj/WanwanGoal.cpp"),
+            Object(Matching, "Game/MapObj/WanwanGoal.cpp"),
             Object(NonMatching, "Game/MapObj/WanwanLiftUpStep.cpp"),
             Object(NonMatching, "Game/MapObj/WarpPod.cpp"),
             Object(NonMatching, "Game/MapObj/WaterPressure.cpp"),
