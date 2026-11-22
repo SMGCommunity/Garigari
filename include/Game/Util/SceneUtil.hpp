@@ -34,6 +34,7 @@ namespace MR {
 
     s32 getCurrentStagePowerStarNum();
     bool isProductGameScene();
-    
+
+    s32 getPlacedZoneId(const JMapInfoIter&);
     const char* getJapaneseObjectName(const char*);
 };  // namespace MR

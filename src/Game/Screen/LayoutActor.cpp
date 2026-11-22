@@ -127,8 +127,8 @@ void LayoutActor::initNerve(const Nerve* pNerve) {
     mSpine = new Spine(this, pNerve);
 }
 
-void LayoutActor::initEffectKeeper(int param1, const char* pParam2, const EffectSystem* pEffectSystem) {
-    mEffectKeeper = new PaneEffectKeeper(this, mLayoutManager, param1, pParam2);
+void LayoutActor::initEffectKeeper(int extraEmitterNum, const char* pName, const EffectSystem* pEffectSystem) {
+    mEffectKeeper = new PaneEffectKeeper(this, mLayoutManager, extraEmitterNum, pName);
     mEffectKeeper->init(this, pEffectSystem);
 }
 
@@ -136,12 +136,12 @@ void LayoutActor::initPointingTarget(int maxNumTargets) {
     mPointingTarget = new StarPointerLayoutTargetKeeper(maxNumTargets);
 }
 
-void LayoutActor::initActionSound(int numHandles, const char* pName, TVec3f* pPos) {
+void LayoutActor::initActionSound(int handleNum, const char* pName, TVec3f* pPosition) {
     if (pName == nullptr) {
         pName = mLayoutManager->mLayoutName;
     }
 
-    // _28 = new fn_80222860(numHandles, pName, pPos);
+    // _28 = new fn_80222860(handleNum, pName, pPosition);
 }
 
 void LayoutActor::updateSpine() {

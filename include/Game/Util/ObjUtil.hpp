@@ -10,11 +10,13 @@ class LayoutActor;
 class ModelObj;
 class ResourceHolder;
 class NameObjAdaptor;
+class BenefitItemObj;
 class BenefitItemOneUp;
 class BenefitItemLifeUp;
 class StageSwitchCtrl;
 class Color8;
 class JUTTexture;
+class ResTIMG;
 
 typedef struct _GXColor GXColor;
 
@@ -125,6 +127,10 @@ namespace MR {
 
     ResourceHolder* createAndAddResourceHolder(const char* pObjName);
     // more ResourceHolder stuff...
+    void* loadResFromArc(const char* pArcName, const char* pResName, const ResourceHolder** ppResArc = nullptr);
+    const ResTIMG* loadTexFromArc(const char* pArcName, const char* pTexName, const ResourceHolder** ppResArc = nullptr);
+    const ResTIMG* loadTexFromArc(const char* pArcName, const ResourceHolder** ppResArc = nullptr);
+    // more ResourceHolder stuff...
     bool isExistFileInArc(const ResourceHolder* pResArc, const char* pPathFormat, ...);
 
     const JMapInfo* createCsvParser(const ResourceHolder* pResArc, const char* pPathFormat, ...);
@@ -207,7 +213,7 @@ namespace MR {
     BenefitItemOneUp* createKinokoOneUp();
     void appearKinokoOneUp(BenefitItemOneUp* pKinoko, MtxPtr pMtx);
     void appearKinokoOneUpPop(BenefitItemOneUp* pKinoko, MtxPtr pMtx);
-    void appearKinokoOneUpHop(BenefitItemOneUp* pKinoko, MtxPtr pMtx);
+    void appearKinokoOneUpHop(BenefitItemObj* pKinoko, MtxPtr pMtx);
 
     BenefitItemLifeUp* createKinokoSuper();
     void appearKinokoSuperPop(BenefitItemLifeUp* pKinoko, MtxPtr pMtx);
@@ -251,7 +257,6 @@ namespace MR {
     bool findLinkNamePos(const NameObj* pLinkedObj, const char* pPosName, MtxPtr pMtx);
     bool tryFindLinkNamePos(const NameObj* pLinkedObj, const char* pPosName, TVec3f* pPosition, TVec3f* pRotation);
     bool tryFindLinkNamePos(const NameObj* pLinkedObj, const char* pPosName, MtxPtr pMtx);
-
 
     // TODO: Position properly
     // These functions got changed for SMG2

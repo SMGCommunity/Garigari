@@ -8,14 +8,14 @@
 #include "Game/Util/SupportPlayUtil.hpp"
 
 namespace NrvSupportTicoStop {
-    NEW_NERVE(SupportTicoStopNrvDoNothing, SupportTicoStop, DoNothing);
-    NEW_NERVE(SupportTicoStopNrvTouch, SupportTicoStop, Touch);
-    NEW_NERVE(SupportTicoStopNrvEndTouch, SupportTicoStop, EndTouch);
+    NEW_NERVE(SupportTicoStopNrvWait, SupportTicoStop, Wait);
+    NEW_NERVE(SupportTicoStopNrvStop, SupportTicoStop, Stop);
+    NEW_NERVE(SupportTicoStopNrvEnd, SupportTicoStop, End);
 };  // namespace NrvSupportTicoStop
 
 SupportTicoStop::SupportTicoStop(LiveActor* pHost, AnimScaleController* pScaleController)
     : NerveExecutor("スターポインタ停止"), mHost(pHost), mScaleController(pScaleController), _10(), _14(), _15(), mUsePointerTouch() {
-    initNerve(GET_NERVE(SupportTicoStop, SupportTicoStopNrvDoNothing));
+    initNerve(GET_NERVE(SupportTicoStop, SupportTicoStopNrvWait));
 
     if (MR::isExistEffectKeeper(pHost) && !MR::isRegisteredEffect(pHost, "Touch")) {
         mUsePointerTouch = true;
@@ -23,17 +23,17 @@ SupportTicoStop::SupportTicoStop(LiveActor* pHost, AnimScaleController* pScaleCo
     }
 }
 
-bool SupportTicoStop::tryAttachTouch() {
+bool SupportTicoStop::tryStop() {
     if (MR::attachSupportTicoToTarget(mHost)) {
-        if (!isTouching()) {
+        if (!isStopped()) {
             _14 = true;
-            setNerve(GET_NERVE(SupportTicoStop, SupportTicoStopNrvTouch));
+            setNerve(GET_NERVE(SupportTicoStop, SupportTicoStopNrvStop));
         }
 
         return true;
     }
 
-    if (isTouching()) {
+    if (isStopped()) {
         return true;
     }
 
@@ -41,20 +41,20 @@ bool SupportTicoStop::tryAttachTouch() {
     return false;
 }
 
-bool SupportTicoStop::tryTouch() {
-    if (isTouching()) {
-        setNerve(GET_NERVE(SupportTicoStop, SupportTicoStopNrvEndTouch));
+bool SupportTicoStop::tryEnd() {
+    if (isStopped()) {
+        setNerve(GET_NERVE(SupportTicoStop, SupportTicoStopNrvEnd));
         return true;
     }
 
     return false;
 }
 
-bool SupportTicoStop::isTouching() const {
-    return isNerve(GET_NERVE(SupportTicoStop, SupportTicoStopNrvTouch));
+bool SupportTicoStop::isStopped() const {
+    return isNerve(GET_NERVE(SupportTicoStop, SupportTicoStopNrvStop));
 }
 
-void SupportTicoStop::exeTouch() {
+void SupportTicoStop::exeStop() {
     if (getNerveStep() == 0) {
         MR::startDPDHitSound();
         _10 = 0;
@@ -84,15 +84,15 @@ void SupportTicoStop::exeTouch() {
     }
 
     if (_10 > 0) {
-        setNerve(GET_NERVE(SupportTicoStop, SupportTicoStopNrvEndTouch));
+        setNerve(GET_NERVE(SupportTicoStop, SupportTicoStopNrvEnd));
     }
 }
 
-void SupportTicoStop::exeDoNothing() {
+void SupportTicoStop::exeWait() {
     resetTouchBools();
 }
 
-void SupportTicoStop::exeEndTouch() {
+void SupportTicoStop::exeEnd() {
     if (getNerveStep() == 0) {
         _15 = true;
 
@@ -111,5 +111,5 @@ void SupportTicoStop::exeEndTouch() {
         resetTouchBools();
     }
 
-    setNerve(GET_NERVE(SupportTicoStop, SupportTicoStopNrvDoNothing));
+    setNerve(GET_NERVE(SupportTicoStop, SupportTicoStopNrvWait));
 }

@@ -2,8 +2,8 @@
 
 #include <JSystem/JGeometry/TMatrix.hpp>
 #include <JSystem/JGeometry/TVec.hpp>
-#include <revolution.h>
 #include <revolution/mtx/mtx.h>
+#include <revolution/types.h>
 
 namespace MR {
     void makeMtxRotate(MtxPtr, f32, f32, f32);
@@ -14,6 +14,7 @@ namespace MR {
     void makeMtxTR(MtxPtr, f32, f32, f32, f32, f32, f32);
     void makeMtxTR(MtxPtr, const TVec3f&, const TVec3f&);
     void makeMtxTransRotateY(MtxPtr, f32, f32, f32, f32);
+    void makeMtxWithoutScale(TPos3f*, const TPos3f&);
     void makeMtxSideUp(TPos3f*, const TVec3f&, const TVec3f&);
     void makeMtxSideUpPos(TPos3f*, const TVec3f&, const TVec3f&, const TVec3f&);
     void makeMtxSideFront(TPos3f*, const TVec3f&, const TVec3f&);
@@ -57,4 +58,9 @@ namespace MR {
     void inverseConcatMtx(MtxPtr, MtxPtr, TMtx34f*);
     void turnMtxToXDirRate(TPos3f*, const TVec3f&, f32);
     void turnMtxToYDirRate(TPos3f*, const TVec3f&, f32);
+
+    // Non-official symbol.
+    inline void multMtx(Mtx pOut, const Mtx pA, const Mtx pB) {
+        PSMTXConcat(pB, pA, pOut);
+    }
 };  // namespace MR
