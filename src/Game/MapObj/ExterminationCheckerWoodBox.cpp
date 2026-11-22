@@ -42,10 +42,7 @@ void ExterminationCheckerWoodBox::exeWatching() {
 
         MR::offSwitchA(this);
         MR::offSwitchB(this);
-        return;
-    }
-
-    if (!MR::isOnSwitchA(this) && checkAllDestroyed()) {
+    } else if (!MR::isOnSwitchA(this) && checkAllDestroyed()) {
         MR::onSwitchA(this);
     }
 }
