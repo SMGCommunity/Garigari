@@ -1596,7 +1596,7 @@ config.libs = [
             Object(NonMatching, "Game/MapObj/ElectricRailMoving.cpp"),
             Object(Matching, "Game/MapObj/ExterminationCheckerWoodBox.cpp"),
             Object(NonMatching, "Game/MapObj/ExterminationSwitch.cpp"),
-            Object(NonMatching, "Game/MapObj/ExterminationWoodBoxFlagHolder.cpp"),
+            Object(Matching, "Game/MapObj/ExterminationWoodBoxFlagHolder.cpp"),
             Object(NonMatching, "Game/MapObj/FallDownBridge.cpp"),
             Object(NonMatching, "Game/MapObj/FallDownWall.cpp"),
             Object(NonMatching, "Game/MapObj/FallOutFieldDraw.cpp"),

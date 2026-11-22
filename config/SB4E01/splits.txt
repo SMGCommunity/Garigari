@@ -5766,7 +5766,7 @@ Game/MapObj/ExterminationSwitch.cpp:
 
 Game/MapObj/ExterminationWoodBoxFlagHolder.cpp:
 	.text       start:0x8029ECB0 end:0x8029EE00 align:16
-	.data       start:0x806A0590 end:0x806A05C0
+	.data       start:0x806A0590 end:0x806A05BC
 
 Game/MapObj/FallDownBridge.cpp:
 	.text       start:0x8029EE00 end:0x8029F860 align:16
