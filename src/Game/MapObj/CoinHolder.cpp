@@ -25,9 +25,9 @@ CoinHostInfo::CoinHostInfo() : mHostObj(), mDeclaredCoinCount(), mNotRemnantCoin
 
 void CoinHolder::init(const JMapInfoIter& rIter) {
     for (s32 i = 0; i < ::sCreateCoinNum; i++) {
-        Coin* pCoin = new Coin("コイン(共用)");
-        pCoin->initWithoutIter();
-        registerActor(pCoin);
+        Coin* coin = new Coin("コイン(共用)");
+        coin->initWithoutIter();
+        registerActor(coin);
     }
 }
 
