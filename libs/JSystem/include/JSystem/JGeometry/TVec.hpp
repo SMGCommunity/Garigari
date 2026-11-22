@@ -22,7 +22,7 @@ namespace JGeometry {
     }
 
 #else
-    inline void negateInternal(const f32* rSrc, f32* rDest);
+    inline void negateInternal(const f32* rSrc, f32* rDest){};
 #endif
 
 #ifdef __MWERKS__
@@ -620,6 +620,14 @@ namespace JGeometry {
         void zero() {
 #endif
             x = y = z = 0;
+        }
+
+        static TVec3 zeroVec() {
+            TVec3 z;
+            z.x = 0.0f;
+            z.y = 0.0f;
+            z.z = 0.0f;
+            return z;
         }
 
 #ifdef __MWERKS__

@@ -244,6 +244,8 @@ namespace MR {
     // various ActorActionKeeper functions
     void startHitReaction(LiveActor* pActor, const char* pName);
 
+    void startBreakReaction(LiveActor* pActor);
+
     LiveActorGroup* joinToGroup(LiveActor* pActor, const char* pGroupName);
     LiveActorGroup* joinToGroupArray(LiveActor* pActor, const JMapInfoIter& rIter, const char* pGroupName, s32 size);
     LiveActorGroup* getGroupFromArray(const LiveActor* pActor);

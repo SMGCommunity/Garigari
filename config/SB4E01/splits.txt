@@ -6474,11 +6474,15 @@ Game/MapObj/PlantGroup.cpp:
 	.sdata2     start:0x807DDF60 end:0x807DE020
 	.sbss2      start:0x807E30B8 end:0x807E30C0
 
-Game/MapObj/PlantRailInfo.cpp:
-	.text       start:0x802DE0C0 end:0x802DE650 align:16
-	.rodata     start:0x80649630 end:0x80649638
+Game/MapObj/PlantPoint.cpp:
+	.text       start:0x802DE0C0 end:0x802DE220 align:16
 	.data       start:0x806A82F8 end:0x806A8308
-	.sdata2     start:0x807DE020 end:0x807DE040
+	.sdata2     start:0x807DE020 end:0x807DE030
+
+Game/MapObj/PlantRailInfo.cpp:
+	.text       start:0x802DE220 end:0x802DE650 align:16
+	.rodata     start:0x80649630 end:0x80649638
+	.sdata2     start:0x807DE030 end:0x807DE040
 
 Game/MapObj/PlayerFollowPass.cpp:
 	.text       start:0x802DE650 end:0x802DED40 align:16
@@ -8793,17 +8797,17 @@ Game/Ride/JumpBranch.cpp:
 	.sdata2     start:0x807E0B50 end:0x807E0B80
 
 Game/Ride/Plant.cpp:
-	.text       start:0x80433E40 end:0x80436290 align:16
+	.text       start:0x80433E40 end:0x80436170 align:16
 	.ctors      start:0x80644830 end:0x80644834
 	.rodata     start:0x8064BFE8 end:0x8064BFF0
-	.data       start:0x806ED220 end:0x806ED520
+	.data       start:0x806ED220 end:0x806ED510
 	.sdata      start:0x807D0128 end:0x807D0130
 	.sbss       start:0x807D50B8 end:0x807D50F0
 	.sdata2     start:0x807E0B80 end:0x807E0BE8
 
 Game/Ride/PlantLeaf.cpp:
-	.text       start:0x80436290 end:0x804369D0 align:16
-	.data       start:0x806ED520 end:0x806ED628
+	.text       start:0x80436170 end:0x804369D0 align:16
+	.data       start:0x806ED510 end:0x806ED628
 	.sdata2     start:0x807E0BE8 end:0x807E0C18
 
 Game/Ride/PlantSlider.cpp:

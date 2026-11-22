@@ -4,6 +4,7 @@
 
 class J3DModel;
 class J3DModelData;
+class J3DMaterial;
 class LiveActor;
 
 namespace MR {
@@ -11,7 +12,11 @@ namespace MR {
 
     void syncMaterialAnimation(LiveActor*, const LiveActor*);
     J3DModel* getJ3DModel(const LiveActor*);
+    J3DModelData* getJ3DModelData(const LiveActor*);
     J3DModelData* getJ3DModelData(const char*);
+
+    J3DMaterial* getMaterial(J3DModelData*, int);
+
     void hideMaterial(const LiveActor*, const char*);
 
     void calcModelBoundingRadius(f32*, const LiveActor*);
