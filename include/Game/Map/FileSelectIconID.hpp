@@ -22,11 +22,11 @@ public:
         /// @brief The Peach icon.
         /* 0x04 */ EFellowID_Peach,
 
-        /// @brief The Luma icon.
-        /* 0x05 */ EFellowID_Tico,
-
         /// @brief The Rosalina icon.
-        /* 0x06 */ EFellowID_Rosetta,
+        /* 0x05 */ EFellowID_Rosetta,
+
+        /// @brief The Luma icon.
+        /* 0x06 */ EFellowID_Tico,
     };
 
     /// @brief Creates a new `FileSelectIconID`.
