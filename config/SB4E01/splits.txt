@@ -4317,7 +4317,7 @@ Game/Enemy/WalkerStateFunction.cpp:
 
 Game/Enemy/WalkerStateParam.cpp:
 	.text       start:0x80219FA0 end:0x80219FE0 align:16
-	.sdata2     start:0x807DC060 end:0x807DC080
+	.sdata2     start:0x807DC060 end:0x807DC07C
 
 Game/Enemy/WalkerStateStagger.cpp:
 	.text       start:0x80219FE0 end:0x8021A8F0 align:16
