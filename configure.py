@@ -623,7 +623,7 @@ config.libs = [
             Object(NonMatching, "Game/Util/N_UNK1.cpp"),
             Object(NonMatching, "Game/Util/NPCUtil.cpp"),
             Object(NonMatching, "Game/Util/ObjUtil.cpp"),
-            Object(NonMatching, "Game/Util/ParabolicPath.cpp"),
+            Object(Matching, "Game/Util/ParabolicPath.cpp"),
             Object(NonMatching, "Game/Util/PlayerUtil.cpp"),
             Object(NonMatching, "Game/Util/RailGraphUtil.cpp"),
             Object(NonMatching, "Game/Util/RailUtil.cpp"),
