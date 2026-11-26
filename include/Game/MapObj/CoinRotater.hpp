@@ -2,7 +2,6 @@
 
 #include "Game/NameObj/NameObj.hpp"
 #include <JSystem/JGeometry/TMatrix.hpp>
-#include <JSystem/JGeometry/TVec.hpp>
 
 
 class CoinRotater : public NameObj {
