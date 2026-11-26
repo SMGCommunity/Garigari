@@ -8,17 +8,13 @@ void ExterminationWoodBoxFlagHolder::init(const JMapInfoIter& rIter) {
 }
 
 void MR::setExterminationWoodBoxFlag() {
-    ExterminationWoodBoxFlagHolder* flagHolder =
-        static_cast< ExterminationWoodBoxFlagHolder* >(MR::getSceneObjHolder()->getObj(SceneObj_WoodBoxExterminationFlagHolder));
-    flagHolder->mFlag = true;
+    getSceneObj<ExterminationWoodBoxFlagHolder>(SceneObj_WoodBoxExterminationFlagHolder)->mFlag = true;
 }
 
 void MR::clearExterminationWoodBoxFlag() {
-    ExterminationWoodBoxFlagHolder* flagHolder =
-        static_cast< ExterminationWoodBoxFlagHolder* >(MR::getSceneObjHolder()->getObj(SceneObj_WoodBoxExterminationFlagHolder));
-    flagHolder->mFlag = false;
+    getSceneObj<ExterminationWoodBoxFlagHolder>(SceneObj_WoodBoxExterminationFlagHolder)->mFlag = false;
 }
 
 bool MR::getExterminationWoodBoxFlagHolder() {
-    return static_cast< ExterminationWoodBoxFlagHolder* >(MR::getSceneObjHolder()->getObj(SceneObj_WoodBoxExterminationFlagHolder))->mFlag;
+    return getSceneObj<ExterminationWoodBoxFlagHolder>(SceneObj_WoodBoxExterminationFlagHolder)->mFlag;
 }
