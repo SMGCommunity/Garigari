@@ -2373,7 +2373,7 @@ config.libs = [
             Object(NonMatching, "Game/System/NANDErrorSequence.cpp"),
             Object(NonMatching, "Game/System/NANDManager.cpp"),
             Object(NonMatching, "Game/System/NANDManagerThread.cpp"),
-            Object(NonMatching, "Game/System/NerveExecutor.cpp"),
+            Object(Matching, "Game/System/NerveExecutor.cpp"),
             Object(NonMatching, "Game/System/OSThreadWrapper.cpp"),
             Object(NonMatching, "Game/System/Overwrite.cpp"),
             Object(NonMatching, "Game/System/PauseButtonCheckerInGame.cpp"),
