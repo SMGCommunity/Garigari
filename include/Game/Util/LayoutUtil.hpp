@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Game/Screen/LayoutCoreUtil.hpp"
+#include "Game/Screen/LayoutPaneCtrl.hpp"
 #include <revolution.h>
 
 class LayoutActor;
@@ -23,6 +24,7 @@ namespace nw4r {
 namespace MR {
     LayoutHolder* createAndAddLayoutHolder(const char*);
     LayoutHolder* createAndAddLayoutHolderRawData(const char*);
+    LayoutPaneCtrl* createAndAddPaneCtrl(LayoutActor*, const char*, u32);
     void setTextBoxGameMessageRecursive(LayoutActor*, const char*, const char*);
     void setTextBoxMessageRecursive(LayoutActor*, const char*, const wchar_t*);
     void setTextBoxNumberRecursive(LayoutActor*, const char*, s32);
