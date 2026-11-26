@@ -1319,7 +1319,7 @@ config.libs = [
             Object(NonMatching, "Game/Enemy/WalkerStateChase.cpp"),
             Object(NonMatching, "Game/Enemy/WalkerStateFindPlayer.cpp"),
             Object(NonMatching, "Game/Enemy/WalkerStateFunction.cpp"),
-            Object(NonMatching, "Game/Enemy/WalkerStateParam.cpp"),
+            Object(Matching, "Game/Enemy/WalkerStateParam.cpp"),
             Object(NonMatching, "Game/Enemy/WalkerStateStagger.cpp"),
             Object(NonMatching, "Game/Enemy/WalkerStateWander.cpp"),
             Object(NonMatching, "Game/Enemy/Wanwan.cpp"),
