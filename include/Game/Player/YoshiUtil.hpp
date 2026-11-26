@@ -10,4 +10,7 @@ namespace YoshiFunction {
 
 namespace MR {
     bool isMsgYoshiStartTongue(u32);
+    bool isMsgYoshiLoopTongue(u32);
+    bool isMsgYoshiReleaseEaten(u32);
+    bool isMsgYoshiCancelEaten(u32);
 };  // namespace MR
