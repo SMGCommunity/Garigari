@@ -12,10 +12,6 @@ void ParabolicPath::initFromMaxHeight(const TVec3f& rStart, const TVec3f& rEnd, 
 }
 
 void ParabolicPath::initFromUpVector(const TVec3f& rStart, const TVec3f& rEnd, const TVec3f& rUp, f32 max) {
-    // FIXME
-    // decomp.me: TBD
-    // TVec3f::operator* is being inlined, but it shouldn't be.
-
     mAxisY.set(rUp);
 
     f32 dot = mAxisY.dot(rEnd - rStart);
@@ -27,21 +23,21 @@ void ParabolicPath::initFromUpVector(const TVec3f& rStart, const TVec3f& rEnd, c
     mPosition.set(rStart);
 }
 
-void ParabolicPath::initFromUpVectorAddHeight(const TVec3f& rStart, const TVec3f& rEnd, const TVec3f& rUp, f32 f1) {
+void ParabolicPath::initFromUpVectorAddHeight(const TVec3f& rStart, const TVec3f& rEnd, const TVec3f& rUp, f32 max) {
     f32 dot = rUp.dot(rEnd - rStart);
 
     if (dot < 0.0f) {
         dot = 0.0f;
     }
 
-    initFromUpVector(rStart, rEnd, rUp, f1 + dot);
+    initFromUpVector(rStart, rEnd, rUp, max + dot);
 }
 
 void ParabolicPath::calcPosition(TVec3f* pOut, f32 f1) const {
     f32 scalarZ = mScalar * f1;
     f32 scalarY = f1 * (mVelocity + mAccel * f1);
 
-    pOut->set((mPosition + mAxisY * scalarY) + mAxisZ * scalarZ);
+    pOut->set(mPosition + mAxisY * scalarY + mAxisZ * scalarZ);
 }
 
 void ParabolicPath::calcDirection(TVec3f* pOut, f32 f1, f32 step) const {
