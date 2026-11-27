@@ -2,7 +2,6 @@
 
 #include "Game/Screen/LayoutCoreUtil.hpp"
 #include "Game/Screen/LayoutPaneCtrl.hpp"
-#include <revolution.h>
 
 class LayoutActor;
 class LayoutHolder;

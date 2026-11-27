@@ -58,12 +58,10 @@ public:
 
     /// @brief Updates the object when the popup for a depleted battery level is hidden.
     void exeNoneHide();
-
+    
     /// @brief Gets the battery level of the Wii Remote.
     /// @return the battery level of the Wii Remote.
-    s32 getBattery() const {
-        return MR::getWPad(mChannel)->getBattery();
-    }
+    s32 getBattery() const;
 
 private:
     /// @brief The pointer to the owning actor instance.

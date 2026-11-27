@@ -69,6 +69,10 @@ void BatteryInfo::exeLow() {
     }
 }
 
+void BatteryInfo::exeLowDisappear() {
+    exeStartAnimAndSetNerveIfStopped("EndLow", GET_NERVE(BatteryInfo, BatteryInfoLowHide));
+}
+
 void BatteryInfo::exeLowHide() {
     if (MR::isFirstStep(this)) {
         MR::hidePane(mHost, mPaneName);
@@ -80,21 +84,18 @@ void BatteryInfo::exeLowHide() {
         } else {
             setNerve(GET_NERVE(BatteryInfo, BatteryInfoNoneHide));
         }
+        return;
     } else if (getBattery() == WPAD_BATTERY_LEVEL_CRITICAL) {
         setNerve(GET_NERVE(BatteryInfo, BatteryInfoCriticalAppear));
+        return;
     } else if (getBattery() > WPAD_BATTERY_LEVEL_LOW) {
         setNerve(GET_NERVE(BatteryInfo, BatteryInfoEnought));
-    } else if (MR::isGreaterStep(this, ::sLowIntervalFrame)) {
+        return;
+    }
+    
+    if (MR::isGreaterStep(this, ::sLowIntervalFrame)) {
         setNerve(GET_NERVE(BatteryInfo, BatteryInfoLowAppear));
     }
-}
-
-void BatteryInfo::exeLowDisappear() {
-    exeStartAnimAndSetNerveIfStopped("EndLow", GET_NERVE(BatteryInfo, BatteryInfoLowHide));
-}
-
-void BatteryInfo::exeDisappear() {
-    exeStartAnimAndSetNerveIfStopped("EndCritical", GET_NERVE(BatteryInfo, BatteryInfoEnought));
 }
 
 void BatteryInfo::exeCriticalAppear() {
@@ -112,6 +113,10 @@ void BatteryInfo::exeCritical() {
     }
 
     tryChangeNerveWithBatteryLeftAlreadyAppear();
+}
+
+void BatteryInfo::exeDisappear() {
+    exeStartAnimAndSetNerveIfStopped("EndCritical", GET_NERVE(BatteryInfo, BatteryInfoEnought));
 }
 
 void BatteryInfo::exeNoneAppear() {
@@ -161,31 +166,35 @@ bool BatteryInfo::exeStartAnimAndSetNerveIfStopped(const char* pAnimName, const 
 }
 
 bool BatteryInfo::tryChangeNerveWithBatteryLeftAlreadyAppear() {
-    Nerve* r31;
+    Nerve* pNerve;
     switch (getBattery()) {
     case WPAD_BATTERY_LEVEL_EMPTY:
         if (mChannel == WPAD_CHAN1) {
-            r31 = GET_NERVE(BatteryInfo, BatteryInfoNoneAppear);
+            pNerve = GET_NERVE(BatteryInfo, BatteryInfoNoneAppear);
         } else {
-            r31 = GET_NERVE(BatteryInfo, BatteryInfoDisappear);
+            pNerve = GET_NERVE(BatteryInfo, BatteryInfoDisappear);
         }
         break;
     case WPAD_BATTERY_LEVEL_CRITICAL:
-        r31 = GET_NERVE(BatteryInfo, BatteryInfoCritical);
+        pNerve = GET_NERVE(BatteryInfo, BatteryInfoCritical);
         break;
     case WPAD_BATTERY_LEVEL_LOW:
-        r31 = GET_NERVE(BatteryInfo, BatteryInfoLow);
+        pNerve = GET_NERVE(BatteryInfo, BatteryInfoLow);
         break;
     default:
-        r31 = GET_NERVE(BatteryInfo, BatteryInfoDisappear);
+        pNerve = GET_NERVE(BatteryInfo, BatteryInfoDisappear);
     }
 
-    if (!isNerve(r31)) {
-        setNerve(r31);
+    if (!isNerve(pNerve)) {
+        setNerve(pNerve);
         return true;
     }
 
     return false;
+}
+
+s32 BatteryInfo::getBattery() const {
+    return MR::getWPad(mChannel)->getBattery();
 }
 
 BatteryLayout::BatteryLayout() : LayoutActor("BatteryLayout"), mInfo1P(), mInfo2P() {
