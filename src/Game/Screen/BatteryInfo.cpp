@@ -1,5 +1,7 @@
 #include "Game/Screen/BatteryInfo.hpp"
 #include "Game/LiveActor/Nerve.hpp"
+#include "Game/System/WPad.hpp"
+#include "Game/System/WPadHolder.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/NerveUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
@@ -92,7 +94,7 @@ void BatteryInfo::exeLowHide() {
         setNerve(GET_NERVE(BatteryInfo, BatteryInfoEnought));
         return;
     }
-    
+
     if (MR::isGreaterStep(this, ::sLowIntervalFrame)) {
         setNerve(GET_NERVE(BatteryInfo, BatteryInfoLowAppear));
     }

@@ -2,8 +2,6 @@
 
 #include "Game/Screen/LayoutActor.hpp"
 #include "Game/System/NerveExecutor.hpp"
-#include "Game/System/WPad.hpp"
-#include "Game/System/WPadHolder.hpp"
 
 class BatteryInfo : public NerveExecutor {
 public:
@@ -13,15 +11,19 @@ public:
     /// @param channel The handle to the Wii Remote.
     BatteryInfo(LayoutActor* pHost, const char* pPaneName, int channel);
 
+    /// @brief Transitions from the working nerve action into a suitable nerve action, if the battery level changes while the popup is idle.
+    /// @return `true` if a new nerve action was set, `false` otherwise.
+    bool tryChangeNerveWithBatteryLeftAlreadyAppear();
+
+    /// @brief Gets the battery level of the Wii Remote.
+    /// @return the battery level of the Wii Remote.
+    s32 getBattery() const;
+
     /// @brief Plays the given animation and transitions from the working nerve action into the given nerve action once the animation has stopped.
     /// @param pAnimName The pointer to the null-terminated name of the animation.
     /// @param pNerve The pointer to the new nerve action.
     /// @return `true` if the new nerve action was set, `false` otherwise.
     bool exeStartAnimAndSetNerveIfStopped(const char* pAnimName, const Nerve* pNerve);
-
-    /// @brief Transitions from the working nerve action into a suitable nerve action, if the battery level changes while the popup is idle.
-    /// @return `true` if a new nerve action was set, `false` otherwise.
-    bool tryChangeNerveWithBatteryLeftAlreadyAppear();
 
     /// @brief Updates the object when the popup is hidden for a sufficient battery level.
     void exeEnought();
@@ -58,10 +60,6 @@ public:
 
     /// @brief Updates the object when the popup for a depleted battery level is hidden.
     void exeNoneHide();
-    
-    /// @brief Gets the battery level of the Wii Remote.
-    /// @return the battery level of the Wii Remote.
-    s32 getBattery() const;
 
 private:
     /// @brief The pointer to the owning actor instance.
