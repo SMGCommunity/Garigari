@@ -15,6 +15,8 @@ namespace MR {
     J3DModelData* getJ3DModelData(const LiveActor*);
     J3DModelData* getJ3DModelData(const char*);
 
+    s16 getBrkFrameMax(const LiveActor*, const char*);
+
     J3DMaterial* getMaterial(J3DModelData*, int);
 
     void hideMaterial(const LiveActor*, const char*);
