@@ -26,8 +26,8 @@ void CoinRotater::movement() {
     MR::makeMtxRotateY(mInWaterRotateYMtx, _14.y);
 }
 
-CoinRotater* MR::createCoinRotater() {
-    return static_cast< CoinRotater* >(MR::createSceneObj(SceneObj_CoinRotater));
+void MR::createCoinRotater() {
+   MR::createSceneObj(SceneObj_CoinRotater);
 }
 
 TMtx34f& MR::getCoinRotateYMatrix() {

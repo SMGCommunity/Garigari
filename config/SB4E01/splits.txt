@@ -5587,8 +5587,8 @@ Game/MapObj/CoinLinkGroup.cpp:
 Game/MapObj/CoinRotater.cpp:
 	.text       start:0x8028FE10 end:0x80290080 align:16
 	.rodata     start:0x806491F8 end:0x80649200
-	.data       start:0x8069E8C8 end:0x8069E8F4
-	.sdata2     start:0x807DD130 end:0x807DD144
+	.data       start:0x8069E8C8 end:0x8069E8F8
+	.sdata2     start:0x807DD130 end:0x807DD148
 
 Game/MapObj/CollapsePlane.cpp:
 	.text       start:0x80290080 end:0x80290920 align:16
