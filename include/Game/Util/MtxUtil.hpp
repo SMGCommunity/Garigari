@@ -8,6 +8,7 @@
 namespace MR {
     void makeMtxRotate(MtxPtr, f32, f32, f32);
     void makeMtxRotate(MtxPtr, const TVec3f&);
+    void makeMtxRotateY(MtxPtr, f32);
     void preScaleMtx(MtxPtr, const TVec3f&);
     void makeMtxTRS(MtxPtr, const TVec3f&, const TVec3f&, const TVec3f&);
     void makeMtxTRS(MtxPtr, f32, f32, f32, f32, f32, f32, f32, f32, f32);
